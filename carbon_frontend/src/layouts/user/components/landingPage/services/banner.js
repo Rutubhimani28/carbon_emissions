@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import bannerImg from '../../assets/images/measure_ghg_emissions.jpg';
+import bannerImg from '../../../assets/images/measure_ghg_emissions.jpg';
 
 
 const banner = () => {
