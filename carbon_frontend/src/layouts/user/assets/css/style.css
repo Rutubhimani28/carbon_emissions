@@ -30,3 +30,7 @@ body {
     z-index: 99;
     position: relative;
 }
+
+.bg-img{
+    background: url('../images/bg.png');
+}
