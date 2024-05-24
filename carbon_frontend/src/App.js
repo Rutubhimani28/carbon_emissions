@@ -16,8 +16,7 @@ import ThemeProvider from './theme';
 import './assets/style.css'
 import UserLayout from './layouts/user';
 import Services from './layouts/user/components/landingPage/services/index'
-import Footer from './layouts/user/components/footer/footer';
-import Header from './layouts/user/components/header/header';
+
 
 // ----------------------------------------------------------------------
 
@@ -37,15 +36,14 @@ export default function App() {
       {token && user ? (
         <Routers />
       ) : (
-        <>
-          <Header />
-          <Routes>
-            <Route path="/" element={<UserLayout />} />
-            <Route path="/measure-ghg-emissions" element={<Services />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-          <Footer />
-        </>
+
+        <Routes>
+          <Route path="/" element={<UserLayout />} />
+          <Route path="/measure-ghg-emissions" element={<Services />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+
       )}
     </ThemeProvider>
   );

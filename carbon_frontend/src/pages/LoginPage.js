@@ -8,6 +8,8 @@ import useResponsive from '../hooks/useResponsive';
 // sections
 import { LoginForm } from '../sections/auth/login';
 import Logo from '../layouts/user/assets/images/logo.png'
+import Header from '../layouts/user/components/header/header';
+import Footer from '../layouts/user/components/footer/footer';
 
 
 // ----------------------------------------------------------------------
@@ -46,6 +48,7 @@ export default function LoginPage() {
 
   return (
     <>
+      <Header />
       <div className='bg-img'>
 
         <StyledRoot>
@@ -72,6 +75,7 @@ export default function LoginPage() {
           </Container>
         </StyledRoot>
       </div>
+      <Footer />
     </>
   );
 }
