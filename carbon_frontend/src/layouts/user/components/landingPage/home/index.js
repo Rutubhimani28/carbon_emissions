@@ -7,7 +7,6 @@ const Index = () => {
         <div className=''>
             <Banner />
             <Goal />
-
         </div>
     )
 }
