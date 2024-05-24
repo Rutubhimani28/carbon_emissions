@@ -98,8 +98,8 @@ export default function LoginForm() {
             }
           />
         </Stack>
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" disabled={!!isLoading} style={{ background: "green", color: "white" }}>
-          {isLoading ? <CircularProgress /> : 'Login'}
+        <LoadingButton fullWidth size="large" type="submit" variant="contained" disabled={!!isLoading} style={{ background: "#4abd43", color: "white" }}>
+          {isLoading ? <CircularProgress style={{ color: "white" }} /> : 'Login'}
         </LoadingButton>
       </form>
     </>
