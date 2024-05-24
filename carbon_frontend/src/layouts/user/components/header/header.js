@@ -23,7 +23,12 @@ import logo from '../../assets/images/logo.png';
 
 
 const drawerWidth = 240;
-const navItems = ['Home', 'ESC Advisory Services', 'Measure Carbon Emissions', 'News Room', 'About Us'];
+const navItems = [
+    { name: 'Home', path: "/" },
+    { name: 'ESC Advisory Services', path: "/measure-ghg-emissions" },
+    { name: 'Measure Carbon Emissions', path: "/" },
+    { name: 'News Room', path: '/' },
+    { name: 'About Us', path: '' }];
 
 const Header = (props) => {
     const { window } = props;
@@ -51,9 +56,9 @@ const Header = (props) => {
             <Divider />
             <List>
                 {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
+                    <ListItem key={item.name} disablePadding>
                         <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
+                            <ListItemText primary={item.name} />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -108,8 +113,8 @@ const Header = (props) => {
                                 </div>
                             ) : (
                                 <>
-                                    <Button key={item} className='text-dark text-capitalize fs-6 mx-1'>
-                                        {item}
+                                    <Button key={item.name} className='text-dark text-capitalize fs-6 mx-1' onClick={() => navigate(item.path)}>
+                                        {item.name}
                                     </Button>
 
                                 </>

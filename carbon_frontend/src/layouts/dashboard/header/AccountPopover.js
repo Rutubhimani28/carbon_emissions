@@ -23,7 +23,7 @@ export default function AccountPopover() {
     {
       label: 'Profile',
       icon: 'eva:person-fill',
-      path: `/dashboard/user/view/${user._id}`,
+      path: `/dashboard/user/view/${user?._id}`,
       state: { addButton: false }
     },
   ];

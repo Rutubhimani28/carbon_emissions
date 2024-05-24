@@ -1,13 +1,9 @@
-import Footer from './components/footer/footer';
-import LandingPage from './components/landingPage/index'
-import Header from './components/header/header'
+import Home from './components/landingPage/home/index'
 
 function UserLayout() {
     return (
-        <div className="App">
-            <Header />
-            <LandingPage />
-            <Footer />
+        <div>
+            <Home />
         </div>
     );
 }
