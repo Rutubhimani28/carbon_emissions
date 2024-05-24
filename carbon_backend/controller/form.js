@@ -111,6 +111,48 @@ const add = async (req, res) => {
     }
 };
 
+const addMany = async (req, res) => {
+    try {
+        if (!req?.body?.moduleId) {
+            return res.status(400).send({ success: false, message: "moduleId is required" });
+        }
+
+        const customField = await CustomField.findById(req.body?.moduleId).select("moduleName");
+
+        if (!customField) {
+            return res.status(404).send({ success: false, message: "Module not found" });
+        }
+
+        const collectionName = customField.moduleName;
+        const collectionExists = await mongoose.connection.db.listCollections({ name: collectionName }).hasNext();
+
+        if (!collectionExists) {
+            return res.status(404).send({ success: false, message: "Collection does not exist" });
+        }
+
+        const ExistingModel = mongoose.model(collectionName);
+
+        if (!ExistingModel) {
+            return res.status(500).send({ success: false, message: 'Model not found' });
+        }
+
+        const updatedBody = req.body.map(element => {
+            element.createdDate = new Date();
+            element.updatedDate = new Date();
+            element.deleted = false;
+            return element;
+        });
+
+        const newDocumnets = await ExistingModel.insertMany(updatedBody);
+
+        return res.status(200).json({ message: 'Records added successfully', data: newDocumnets });
+
+    } catch (err) {
+        console.error(`Failed to create Records`, err);
+        return res.status(400).json({ success: false, message: `Failed to Add Records`, error: err.toString() });
+    }
+}
+
 const deleteField = async (req, res) => {
     try {
         if (!req.query?.moduleId) {
@@ -224,4 +266,4 @@ const edit = async (req, res) => {
     }
 };
 
-export default { index, view, add, edit, deleteField, deleteManyField };
+export default { index, view, add, addMany, edit, deleteField, deleteManyField };

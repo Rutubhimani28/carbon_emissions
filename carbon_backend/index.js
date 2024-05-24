@@ -10,8 +10,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import db from './db/connectDB.js';
-import serverRoute from './routes/serverRoutes.js'
-import('dotenv/config')
+import serverRoute from './routes/serverRoutes.js';
+import 'dotenv/config';
 
 const port = 8000
 
