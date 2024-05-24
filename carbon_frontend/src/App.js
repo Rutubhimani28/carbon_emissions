@@ -16,6 +16,7 @@ import ThemeProvider from './theme';
 import './assets/style.css'
 import UserLayout from './layouts/user';
 import Services from './layouts/user/components/landingPage/services/index'
+import About from './layouts/user/components/aboutUs/index';
 
 
 // ----------------------------------------------------------------------
@@ -40,6 +41,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<UserLayout />} />
           <Route path="/measure-ghg-emissions" element={<Services />} />
+          <Route path="/about-us" element={<About />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
