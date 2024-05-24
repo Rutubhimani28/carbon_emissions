@@ -32,7 +32,7 @@ export default function LoginForm() {
   const Adddata = async (values) => {
     setIsLogin(true)
     const data = values
-    const result = await apipost('user/login', data)
+    const result = await apipost('api/auth/login', data)
 
     if (result && result.status === 200) {
       sessionStorage.setItem('user', JSON?.stringify(result?.data?.user))
@@ -98,7 +98,7 @@ export default function LoginForm() {
             }
           />
         </Stack>
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" disabled={!!isLoading}>
+        <LoadingButton fullWidth size="large" type="submit" variant="contained" disabled={!!isLoading} style={{ background: "green", color: "white" }}>
           {isLoading ? <CircularProgress /> : 'Login'}
         </LoadingButton>
       </form>

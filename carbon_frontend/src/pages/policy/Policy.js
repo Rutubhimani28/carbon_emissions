@@ -202,7 +202,7 @@ const Policy = () => {
             ) : (
               <Card style={{ height: "600px" }}>
                 <DataGrid
-                  rows={data}
+                  rows={data || []}
                   columns={columns}
                   components={{ Toolbar: () => CustomToolbar({ selectedRowIds, fetchPolicyData }) }}
                   checkboxSelection

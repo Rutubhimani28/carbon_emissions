@@ -7,6 +7,8 @@ import useResponsive from '../hooks/useResponsive';
 // components
 // sections
 import { LoginForm } from '../sections/auth/login';
+import Logo from '../layouts/user/assets/images/logo.png'
+
 
 // ----------------------------------------------------------------------
 
@@ -44,9 +46,9 @@ export default function LoginPage() {
 
   return (
     <>
-     
+
       <StyledRoot>
-       
+
         {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
@@ -58,10 +60,12 @@ export default function LoginPage() {
 
         <Container maxWidth="sm">
           <StyledContent>
-            <img src="/assets/AIA.png" width={200} style={{ marginLeft: "-7px" }} />
-            <Typography variant="h4" gutterBottom mb={4}>
-              Sign in to AIACRM
-            </Typography>
+            <div className='d-flex justify-content-center flex-column align-items-center'>
+              <img src={Logo} width={200} />
+              <Typography variant="h3" gutterBottom mb={4}>
+                Sign in
+              </Typography>
+            </div>
 
 
             <LoginForm />

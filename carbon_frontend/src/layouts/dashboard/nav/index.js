@@ -8,6 +8,7 @@ import Scrollbar from '../../../components/scrollbar';
 import useResponsive from '../../../hooks/useResponsive';
 import navConfig from './config';
 import UserConfig from './userconfig';
+import Logo from '../../user/assets/images/logo.png'
 //
 // ----------------------------------------------------------------------
 
@@ -46,7 +47,7 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex', cursor: "pointer" }} onClick={home}>
-        <img src="/assets/AIA.png" width={120} style={{ marginLeft: "60px" }} alt='' />
+        <img src={Logo} width={120} style={{ marginLeft: "60px" }} alt='' />
       </Box>
 
 

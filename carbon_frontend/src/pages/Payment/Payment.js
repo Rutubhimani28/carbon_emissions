@@ -205,7 +205,7 @@ const Payment = () => {
                         ) : (
                             <Card style={{ height: "600px" }}>
                                 <DataGrid
-                                    rows={data}
+                                    rows={data || []}
                                     columns={columns}
                                     components={{
                                         Toolbar: () => (<Box padding={"10px 0"}>

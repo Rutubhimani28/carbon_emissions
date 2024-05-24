@@ -228,7 +228,7 @@ const Email = () => {
                         ) : (
                             <Card style={{ height: "600px" }}>
                                 <DataGrid
-                                    rows={data}
+                                    rows={data || []}
                                     columns={columns}
                                     components={{ Toolbar: () => CustomToolbar({ selectedRowIds, fetchEmailData }) }}
                                     checkboxSelection

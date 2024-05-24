@@ -178,7 +178,7 @@ const Documents = () => {
                         ) : (
                             <Card style={{ height: "600px" }}>
                                 <DataGrid
-                                    rows={data}
+                                    rows={data || []}
                                     columns={columns.map((column, index) => ({
                                         ...column,
                                         disableColumnMenu: index === columns.length - 1 // Disable menu icon for the last column
