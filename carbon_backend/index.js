@@ -1,10 +1,19 @@
-const express = require('express');
-const db = require('./db/connectDB')
-const serverRoute = require('./routes/serverRoutes');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+// const express = require('express');
+// const db = require('./db/connectDB')
+// const serverRoute = require('./routes/serverRoutes');
+// const bodyParser = require('body-parser');
+// const cors = require('cors');
+// const port = 8000
+// require('dotenv').config()
+
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import db from './db/connectDB.js';
+import serverRoute from './routes/serverRoutes.js'
+import('dotenv/config')
+
 const port = 8000
-require('dotenv').config()
 
 //Setup Express App
 const app = express();

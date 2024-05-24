@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
@@ -14,22 +15,36 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import logo from '../../assets/images/logo.png';
+import Banner from './banner'
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Home', 'ESC Advisory Services', 'Measure Carbon Emissions', 'News Room', 'About Us'];
 
 const Index = (props) => {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
 
+    const handleMenuClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
-                MUI
+                <img src={logo} width={100} alt="logo" />
             </Typography>
             <Divider />
             <List>
@@ -49,7 +64,7 @@ const Index = (props) => {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar component="nav">
+            <AppBar component="nav" style={{ backgroundColor: "#fff" }}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -65,13 +80,35 @@ const Index = (props) => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        MUI
+                        <img src={logo} width={"120px"} alt="logo" />
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
-                            <Button key={item} sx={{ color: '#fff' }}>
-                                {item}
-                            </Button>
+                            item === 'ESC Advisory Services' ? (
+                                <div key={item} style={{ display: 'inline' }}>
+                                    <Button
+                                        className='text-dark text-capitalize fs-6 mx-1'
+                                        onClick={handleMenuClick}
+                                    >
+                                        {item}<ExpandMoreIcon />
+                                    </Button>
+                                    <Menu
+                                        anchorEl={anchorEl}
+                                        open={Boolean(anchorEl)}
+                                        onClose={handleMenuClose}
+
+                                    >
+                                        <MenuItem style={{ width: "180px" }} onClick={handleMenuClose}>Organisations</MenuItem>
+                                        <MenuItem style={{ width: "180px" }} onClick={handleMenuClose}>Agencies</MenuItem>
+                                        <MenuItem style={{ width: "180px" }} onClick={handleMenuClose}>Hospitality</MenuItem>
+                                        <MenuItem style={{ width: "180px" }} onClick={handleMenuClose}>Exhibitions</MenuItem>
+                                    </Menu>
+                                </div>
+                            ) : (
+                                <Button key={item} className='text-dark text-capitalize fs-6 mx-1'>
+                                    {item}
+                                </Button>
+                            )
                         ))}
                     </Box>
                 </Toolbar>
@@ -93,12 +130,16 @@ const Index = (props) => {
                     {drawer}
                 </Drawer>
             </nav>
-            <Box component="main" sx={{ p: 3 }}>
+            <Box component="main">
                 <Toolbar />
-
+                <Banner />
             </Box>
         </Box>
     );
 }
+
+Index.propTypes = {
+    window: PropTypes.func,
+};
 
 export default Index;
