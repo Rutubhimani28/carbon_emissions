@@ -1,0 +1,158 @@
+@import "../layouts/user/assets/css/style.css";
+
+.loader {
+  margin-top: 70px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 3px solid black;
+  animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+
+.datepickersize div div {
+  height: 40px;
+}
+
+.fc-bg-event {
+  opacity: 1 !important;
+}
+
+.editerHeight iframe {
+  height: 680px !important;
+  min-width: 1152px !important;
+}
+
+.dspXZR {
+  min-height: 108% !important;
+}
+
+.MuiTabs-scroller {
+  overflow-x: auto !important;
+}
+
+.pending {
+  color: rgb(163, 127, 8);
+  background-color: rgb(251, 244, 221);
+  border: none;
+  width: 130px;
+
+}
+
+.pending:hover {
+  color: rgb(163, 127, 8);
+  background-color: rgb(251, 244, 221);
+  border: none;
+  width: 130px;
+
+}
+
+.deliverd {
+  color: #22c55e;
+  background-color: #22c55e29;
+  border: none;
+  width: 130px;
+
+}
+
+.deliverd:hover {
+  color: #22c55e;
+  background-color: #22c55e29;
+  border: none;
+  width: 130px;
+
+}
+
+.failed {
+  color: #b61d18;
+  background-color: #ff563029;
+  border: none;
+  width: 130px;
+
+}
+
+.failed:hover {
+  color: #b61d18;
+  background-color: #ff563029;
+  border: none;
+  width: 130px;
+
+}
+
+.inProgress {
+  color: #0f85d9;
+  background-color: #5db0f429;
+  border: none;
+  width: 130px;
+
+}
+
+.inProgress:hover {
+  color: #0f85d9;
+  background-color: #5db0f429;
+  border: none;
+  width: 130px;
+
+}
+
+.Deferred {
+  color: #800567;
+  background-color: #fbe3f6;
+  border: none;
+  width: 130px;
+
+}
+
+.Deferred:hover {
+  color: #800567;
+  background-color: #fbe3f6;
+  border: none;
+  width: 130px;
+
+}
+
+.apexcharts-legend-marker {
+  border-radius: 50% !important;
+}
+
+.chartDate input {
+  padding: 4px 14px;
+  font-size: 13.5px;
+}

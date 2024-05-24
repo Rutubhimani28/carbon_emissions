@@ -1,0 +1,32 @@
+body {
+    font-family: "Josefin Sans", sans-serif !important;
+}
+
+.fontFamily {
+    font-family: "Josefin Sans", sans-serif !important;
+
+}
+
+.green {
+    color: #4ABD43;
+}
+
+.main {
+    padding: 0 100px;
+}
+
+.cadImage {
+    opacity: 0.75;
+    transition: all 0.5s linear;
+    overflow: hidden;
+}
+
+.cadImage:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.cardBtn {
+    z-index: 99;
+    position: relative;
+}
