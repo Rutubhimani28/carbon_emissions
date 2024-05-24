@@ -194,7 +194,7 @@ const Add = (props) => {
                                                 id="lead-autocomplete"
                                                 options={leadData}
                                                 getOptionLabel={(lead) => `${lead.firstName} ${lead.lastName}`}
-                                                value={leadData.find(lead => lead._id === formik.values.lead_id) || null}
+                                                value={leadData?.find(lead => lead._id === formik.values.lead_id) || null}
                                                 onChange={(event, newValue) => {
                                                     formik.setFieldValue("lead_id", newValue ? newValue?._id : "");
                                                     formik.setFieldValue("receiver", newValue ? newValue?.emailAddress : "");
@@ -289,7 +289,7 @@ const Add = (props) => {
                                                 id="lead-autocomplete"
                                                 options={emailTemplateData}
                                                 getOptionLabel={(template) => template?.name}
-                                                value={emailTemplateData.find(template => template?.html === formik.values.html) || null}
+                                                value={emailTemplateData?.find(template => template?.html === formik.values.html) || null}
                                                 onChange={(event, newValue) => {
                                                     formik.setFieldValue("html", newValue ? newValue?.html : "");
                                                 }}

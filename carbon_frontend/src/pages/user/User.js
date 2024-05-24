@@ -146,7 +146,7 @@ const User = () => {
                         ) : (
                             <Card style={{ height: "600px" }}>
                                 <DataGrid
-                                    rows={data}
+                                    rows={data || []}
                                     columns={columns}
                                     checkboxSelection
                                     onRowSelectionModelChange={handleSelectionChange}

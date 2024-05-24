@@ -136,7 +136,7 @@ const Meeting = () => {
       cellClassName: "name-column--cell--capitalize",
       width: 215,
       renderCell: (params) => {
-         return (
+        return (
           <Box >
             {params.row.createdUser}
           </Box>
@@ -239,7 +239,7 @@ const Meeting = () => {
             ) : (
               <Card style={{ height: "600px" }}>
                 <DataGrid
-                  rows={data}
+                  rows={data || []}
                   columns={columns}
                   components={{ Toolbar: () => CustomToolbar({ selectedRowIds, fetchMeetingData }) }}
                   checkboxSelection

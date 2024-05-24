@@ -180,7 +180,7 @@ const Addcalls = (props) => {
                                             id="lead-autocomplete"
                                             options={leadData}
                                             getOptionLabel={(lead) => `${lead.firstName} ${lead.lastName}`}
-                                            value={leadData.find(lead => lead._id === formik.values.lead_id) || null}
+                                            value={leadData?.find(lead => lead._id === formik.values.lead_id) || null}
                                             onChange={(event, newValue) => {
                                                 formik.setFieldValue("lead_id", newValue ? newValue._id : "");
                                             }}

@@ -154,7 +154,7 @@ const Task = () => {
       cellClassName: " name-column--cell--capitalize",
       width: 200,
       renderCell: (params) => {
-       return (
+        return (
           <Box >
             {params?.row?.related ? params?.row?.related : "-"}
           </Box>
@@ -316,7 +316,7 @@ const Task = () => {
             ) : (
               <Card style={{ height: "600px" }}>
                 <DataGrid
-                  rows={data}
+                  rows={data || []}
                   columns={columns}
                   components={{ Toolbar: () => CustomToolbar({ selectedRowIds, fetchTaskData }) }}
                   checkboxSelection

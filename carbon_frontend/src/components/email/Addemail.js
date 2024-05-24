@@ -187,7 +187,7 @@ const Addemail = (props) => {
                                                 id="lead-autocomplete"
                                                 options={emailTemplateData}
                                                 getOptionLabel={(template) => template?.name}
-                                                value={emailTemplateData.find(template => template?.html === formik.values.html) || null}
+                                                value={emailTemplateData?.find(template => template?.html === formik.values.html) || null}
                                                 onChange={(event, newValue) => {
                                                     formik.setFieldValue("html", newValue ? newValue?.html : "");
                                                 }}
