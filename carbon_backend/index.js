@@ -10,19 +10,21 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import db from './db/connectDB.js';
-import serverRoute from './routes/serverRoutes.js'
-import('dotenv/config')
+import serverRoute from './routes/serverRoutes.js';
+import 'dotenv/config';
 
 const port = 8000
 
 //Setup Express App
 const app = express();
+
 // Middleware
 app.use(bodyParser.json());
-// Set up CORS  
-app.use(cors())
+app.use(cors());
+
 //API Routes
 app.use('/api', serverRoute);
+app.use("/file", express.static('uploads/'));
 
 app.get('/', async (req, res) => {
     res.send('Welcome to my world...')

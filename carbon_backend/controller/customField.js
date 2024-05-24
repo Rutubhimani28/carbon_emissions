@@ -349,9 +349,11 @@ async function getNextAutoIncrementValue() {
 
 const createNewModule = async (req, res) => {
     try {
-        const moduleName = req.body.moduleName;
+        const { moduleName, description, headings } = req.body;
         const url = req?.body?.isDefault ? "" : req.protocol + '://' + req?.get('host');
-        const file = `${url}/api/custom-field/icon/${req?.file?.filename}`;
+
+        const iconUrl = `${url}/file/${req?.files?.icon?.[0]?.filename}`;
+        const imageUrl = `${url}/file/${req?.files?.image?.[0]?.filename}`;
 
         const existingModule = await CustomField.findOne({ moduleName: { $regex: new RegExp(`^${moduleName}$`, 'i') } }).exec();
 
@@ -438,7 +440,16 @@ const createNewModule = async (req, res) => {
             fields.push(...req.body.fields);
         }
 
-        const newModule = new CustomField({ moduleName, icon: req?.file?.filename ? file : "", fields: fields, headings: req.body.headings || [], no: nextAutoIncrementValue, createdDate: new Date() });
+        const newModule = new CustomField({
+            moduleName: moduleName,
+            description: description,
+            fields: fields,
+            headings: headings || [],
+            icon: iconUrl,
+            imageUrl: imageUrl,
+            no: nextAutoIncrementValue,
+            createdDate: new Date(),
+        });
 
         const schemaFields = {
             createBy: {

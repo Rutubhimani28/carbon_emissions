@@ -6,8 +6,13 @@ import upload from "../middelwares/upload.js";
 
 const router = express.Router();
 
+const uploadImgsAsFields = upload.fields([
+    { name: 'icon', maxCount: 1 },
+    { name: 'image', maxCount: 1 },
+]);
+
 router.get('/', auth, customField.index);
-router.post("/add-module", auth, upload.single('icon'), customField.createNewModule);
+router.post("/add-module", auth, uploadImgsAsFields, customField.createNewModule);
 // router.put("/change-icon/:id", auth, img.upload.single('icon'), customField.changeIcon);
 // router.put("/change-module-name/:id", auth, customField.changeModuleName);
 // router.delete("/module/:id", auth, customField.deletmodule);
