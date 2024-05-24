@@ -34,6 +34,7 @@ import SMSTemplate from './pages/smsTemplate/SMSTemplate';
 import ViewSMSTemplate from './pages/smsTemplate/View';
 import UserLayout from './layouts/user';
 import Services from './layouts/user/components/landingPage/services/index'
+import DigitalContent from './pages/digitalContent';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -72,6 +73,7 @@ export default function Router() {
         { path: 'payment/view/:id', element: <PaymentView /> },
         { path: 'smstemplate', element: <SMSTemplate /> },
         { path: 'smstemplate/view/:id', element: <ViewSMSTemplate /> },
+        { path: 'digitalContent', element: <DigitalContent /> },
         // { path: 'history', element: <History /> },
         // { path: '*', element: <Navigate to="/dashboard/app" /> },
       ],

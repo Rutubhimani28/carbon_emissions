@@ -112,7 +112,6 @@ function CustomToolbar({ selectedRowIds, fetchdata }) {
 
 const Lead = () => {
 
-
   const [userAction, setUserAction] = useState(null);
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [leadData, setLeadData] = useState({})
@@ -126,7 +125,6 @@ const Lead = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
 
   const userid = sessionStorage.getItem('user_id');
 
