@@ -18,7 +18,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 
 
@@ -33,8 +33,11 @@ const navItems = [
 const Header = (props) => {
     const { window } = props;
     const navigate = useNavigate()
+    const location = useLocation()
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+
+    const routeName = location?.pathname
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -113,7 +116,7 @@ const Header = (props) => {
                                 </div>
                             ) : (
                                 <>
-                                    <Button key={item.name} className='text-dark text-capitalize fs-6 mx-1' onClick={() => navigate(item.path)}>
+                                    <Button key={item.name} className={` text-capitalize fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`} onClick={() => navigate(item.path)}>
                                         {item.name}
                                     </Button>
 
@@ -147,7 +150,7 @@ const Header = (props) => {
                 <Toolbar />
 
             </Box>
-        </Box>
+        </Box >
     );
 }
 
