@@ -32,7 +32,8 @@ import Payment from './pages/Payment/Payment';
 import PaymentView from './pages/Payment/View';
 import SMSTemplate from './pages/smsTemplate/SMSTemplate';
 import ViewSMSTemplate from './pages/smsTemplate/View';
-
+import UserLayout from './layouts/user';
+import Services from './layouts/user/components/landingPage/services/index'
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -72,14 +73,15 @@ export default function Router() {
         { path: 'smstemplate', element: <SMSTemplate /> },
         { path: 'smstemplate/view/:id', element: <ViewSMSTemplate /> },
         // { path: 'history', element: <History /> },
-
         // { path: '*', element: <Navigate to="/dashboard/app" /> },
       ],
     },
+    { path: '/', element: <UserLayout /> },
+    { path: '/measure-ghg-emissions', element: <Services /> },
     {
       element: <SimpleLayout />,
       children: [
-        // { path: '*', element: <Navigate to="/dashboard/app" />, index: true },
+        { path: '*', element: <Navigate to="/dashboard/app" />, index: true },
         // { path: '404', element: <Page404 /> },
         // { path: '*', element: <Navigate to="/404" /> },
       ],
