@@ -2,18 +2,19 @@ import express from "express";
 import auth from "../middelwares/auth.js";
 import customField from "../controller/customField.js";
 // import img from '../../controllers/images/imagesController';
+import upload from "../middelwares/upload.js";
 
 const router = express.Router();
 
 router.get('/', auth, customField.index);
-// router.post("/add-module", auth, img.upload.single('icon'), customField.createNewModule);
+router.post("/add-module", auth, upload.single('icon'), customField.createNewModule);
 // router.put("/change-icon/:id", auth, img.upload.single('icon'), customField.changeIcon);
 // router.put("/change-module-name/:id", auth, customField.changeModuleName);
 // router.delete("/module/:id", auth, customField.deletmodule);
 // router.post("/deleteMany-Module", auth, customField.deleteManyModule);
 
-// router.post('/add', auth, customField.add);
-// router.get('/view/:id', auth, customField.view);
+router.post('/add', auth, customField.add);
+router.get('/view/:id', auth, customField.view);
 // router.put('/change-fields/:id', auth, customField.editWholeFieldsArray);
 // router.put('/change-single-field/:id', auth, customField.editSingleField);
 // router.delete('/delete/:id', auth, customField.deleteField);

@@ -20,6 +20,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import logo from '../../assets/images/logo.png';
 import Banner from './banner'
+import Category from './category';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'ESC Advisory Services', 'Measure Carbon Emissions', 'News Room', 'About Us'];
@@ -130,9 +131,10 @@ const Index = (props) => {
                     {drawer}
                 </Drawer>
             </nav>
-            <Box component="main">
+            <Box component="main" >
                 <Toolbar />
                 <Banner />
+                <Category />
             </Box>
         </Box>
     );

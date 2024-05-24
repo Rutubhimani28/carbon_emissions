@@ -7,8 +7,8 @@ const banner = () => {
     return (
         <div>
             <img src={bannerImg} height={"100%"} width={"100%"} />
-            <Box sx={{ padding: "40px 70px" }}>
-                <Typography variant='h6' className='text-center fs-1 green py-3 pb-5' >Measure Carbon Emissions</Typography>
+            <Box className='main pt-5'>
+                <Typography variant='h6' className='text-center fs-1 green py-3 pb-5 fontFamily fw-bold' >Measure Carbon Emissions</Typography>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid className='fs-5' item sm={12} md={6}>For industries, <strong>assessment of your carbon footprint</strong> is a key measure in gaining insight into your emissions, and identifying the key sources of these emissions, and devising an action plan. Participating in <strong>‘Climate Neutral Now’</strong> empowers you to determine the scopes to include in your carbon footprint, as outlined in our framework.</Grid>
 
