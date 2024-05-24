@@ -41,6 +41,7 @@ export default function App() {
           <Route path="/" element={<UserLayout />} />
           <Route path="/measure-ghg-emissions" element={<Services />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
 
       )}
