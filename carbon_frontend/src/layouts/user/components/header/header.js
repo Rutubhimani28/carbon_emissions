@@ -94,13 +94,13 @@ const Header = (props) => {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         {navItems.map((item) => (
-                            item === 'ESC Advisory Services' ? (
+                            item?.name === 'ESC Advisory Services' ? (
                                 <div key={item} style={{ display: 'inline' }}>
                                     <Button
-                                        className='text-dark text-capitalize fs-6 mx-1'
+                                        className={` text-capitalize fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
                                         onClick={handleMenuClick}
                                     >
-                                        {item}<ExpandMoreIcon />
+                                        {item?.name}<ExpandMoreIcon />
                                     </Button>
                                     <Menu
                                         anchorEl={anchorEl}
