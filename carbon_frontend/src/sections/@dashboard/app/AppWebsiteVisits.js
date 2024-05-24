@@ -78,12 +78,12 @@ const BarChart = () => {
   };
 
   const handleDateChange = (e) => {
-    setStartDate(e.target.value);
-    dispatch(fetchChartData({ startDate: e.target.value }));
+    //   setStartDate(e.target.value);
+    //   dispatch(fetchChartData({ startDate: e.target.value }));
   };
-  useEffect(() => {
-    dispatch(fetchChartData({ startDate }));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchChartData({ startDate }));
+  // }, []);
 
 
 

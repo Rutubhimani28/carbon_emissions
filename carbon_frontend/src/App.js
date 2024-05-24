@@ -34,17 +34,15 @@ export default function App() {
       <ScrollToTop />
       <StyledChart />
       <ToastContainer />
-      {token && user?.role ? (
+      {token && user ? (
         <Routers />
       ) : (
         <>
           <Header />
-
           <Routes>
             <Route path="/" element={<UserLayout />} />
             <Route path="/measure-ghg-emissions" element={<Services />} />
             <Route path="/login" element={<LoginPage />} />
-
           </Routes>
           <Footer />
         </>

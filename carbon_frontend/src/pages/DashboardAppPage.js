@@ -32,12 +32,12 @@ export default function DashboardAppPage() {
 
   const today = new Date()
 
-  useEffect(() => {
-    if (userData?.length === 0) {
-      dispatch(fetchUserData())
-    }
-    dispatch(fetchDashboardData())
-  }, [])
+  // useEffect(() => {
+  //   if (userData?.length === 0) {
+  //     dispatch(fetchUserData())
+  //   }
+  //   dispatch(fetchDashboardData())
+  // }, [])
 
   return (
     <>
