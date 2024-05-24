@@ -1,11 +1,19 @@
+// const express = require('express');
+// const db = require('./db/connectDB')
+// const serverRoute = require('./routes/serverRoutes');
+// const bodyParser = require('body-parser');
+// const cors = require('cors');
+// const port = 8000
+// require('dotenv').config()
 
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import db from './db/config.js';
+import db from './db/connectDB.js';
+import serverRoute from './routes/serverRoutes.js'
 import('dotenv/config')
 
-const port = 8080
+const port = 8000
 
 //Setup Express App
 const app = express();
@@ -14,8 +22,7 @@ app.use(bodyParser.json());
 // Set up CORS  
 app.use(cors())
 //API Routes
-// app.use('/api', route);
-
+app.use('/api', serverRoute);
 
 app.get('/', async (req, res) => {
     res.send('Welcome to my world...')
@@ -23,7 +30,7 @@ app.get('/', async (req, res) => {
 
 
 const server = app.listen(port, () => {
-    const protocol = (process.env.HTTPS === 'true' || process.env.NODE_ENV === 'production') ? 'https' : 'http';
+    const protocol = (process.env.HTTPS === true || process.env.NODE_ENV === 'production') ? 'https' : 'http';
     const { address, port } = server.address();
     const host = address === '::' ? '127.0.0.1' : address;
     console.log(`Server listening at ${protocol}://${host}:${port}/`);
