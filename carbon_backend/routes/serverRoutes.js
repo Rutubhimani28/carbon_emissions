@@ -1,9 +1,9 @@
-const express = require('express');
-const userRoutes = require('./authRoutes');
-const auth = require('../middelwares/auth');
+import express from 'express';
+import userRoutes from './authRoutes.js';
+import auth from '../middelwares/auth.js';
 
 const router = express.Router();
 
 router.use('/auth', userRoutes);
 
-module.exports = router
+export default router

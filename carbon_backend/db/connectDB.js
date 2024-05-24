@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+import mongoose from "mongoose"
 
-const connectDB = async (DATABASE_URL, DB_NAME) => {
+const connectDB = async (DATABASE_URL, DATABASE) => {
 	try {
 		const DB_OPTIONS = {
-			dbName: DB_NAME
+			dbName: DATABASE
 		}
 		mongoose.set("strictQuery", false);
 		await mongoose.connect(DATABASE_URL, DB_OPTIONS);
 
 		console.log("Database Connected Successfully..");
 	} catch (err) {
-		console.log(err);
+		console.log("Database Not connected", err.message);
 	}
 }
-
-module.exports = connectDB
+export default connectDB;
