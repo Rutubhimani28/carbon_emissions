@@ -12,7 +12,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, Grid } from '@mui/material';
+import { Box, CardActionArea, Grid } from '@mui/material';
 
 const Category = () => {
     const data = [
@@ -80,7 +80,7 @@ const Category = () => {
                                             alt="green iguana"
                                             className='cadImage'
                                         />
-                                        <CardContent className='text-center text-light p-2 fontFamily cardBtn rounded-4' style={{ backgroundColor: "#4ABD43", borderRadius: "10px" }}>
+                                        <CardContent className='text-center text-light p-2 fontFamily cardBtn rounded-4' style={{ backgroundColor: "#4ABD43" }}>
                                             <Typography gutterBottom variant="h5" component="div" className='mb-1 fontFamily'>
                                                 {item.title}
                                             </Typography>
@@ -96,6 +96,16 @@ const Category = () => {
                 }
 
             </Grid>
+
+            <Box className="text-center py-5">
+
+                <Typography variant="h6" className='fontFamily pb-3'>
+                    Would you like to learn more about these <strong>nine categories </strong>and discover how you can collaborate with us to precisely pinpoint actions for mitigating carbon footprint? And are you ready to take the next step in reducing your carbon footprint reporting journey?
+                </Typography>
+                <Typography variant="h6" className='fontFamily'>
+                    Email us at <a className='text-decoration-none ' style={{ color: "#4edceb" }} href='mailTo:askme@gosustainable.ai'>askme@gosustainable.ai</a>
+                </Typography>
+            </Box>
         </div>
     )
 }
