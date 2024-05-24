@@ -5,6 +5,6 @@ import customFieldRoutes from './customFieldRoutes.js';
 const router = express.Router();
 
 router.use('/auth', userRoutes);
-router.use('/customField', customFieldRoutes);
+router.use('/custom-field', customFieldRoutes);
 
 export default router
