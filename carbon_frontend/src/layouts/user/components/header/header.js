@@ -50,7 +50,7 @@ const Header = (props) => {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
+            <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center" }}>
                 <img src={logo} width={100} alt="logo" />
             </Typography>
             <Divider />
@@ -78,18 +78,18 @@ const Header = (props) => {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' }, color: "#4ABD43", order: "1" }}
+                        sx={{ mr: 2, display: { md: 'none' }, color: "#4ABD43", order: "1" }}
                     >
                         <MenuIcon />
                     </IconButton>
                     <Typography
                         variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1, display: { sm: 'block' } }}
+                        sx={{ flexGrow: 1, display: { md: 'flex' } }}
                     >
                         <img src={logo} width={"120px"} alt="logo" />
                     </Typography>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                    <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         {navItems.map((item) => (
                             item === 'ESC Advisory Services' ? (
                                 <div key={item} style={{ display: 'inline' }}>
