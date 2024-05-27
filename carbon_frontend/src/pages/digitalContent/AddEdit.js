@@ -1,0 +1,332 @@
+import ClearIcon from "@mui/icons-material/Clear";
+import { LoadingButton } from "@mui/lab";
+import { CircularProgress, DialogContentText, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import 'react-quill/dist/quill.snow.css';
+import { apipost, apiput } from "../../service/api";
+
+const AddEdit = (props) => {
+    const { open, handleClose, setUserAction, type, selectedData } = props;
+    const [isLoading, setIsLoading] = useState(false);
+
+    const userid = sessionStorage.getItem('user_id');
+    const userRole = sessionStorage.getItem("userRole");
+
+    // -----------   initialValues
+    const initialValues = {
+        type: selectedData ? selectedData?.type : "Emails",
+        count: selectedData ? selectedData?.count : "",
+        ef: selectedData ? selectedData?.ef : "",
+        mb: selectedData ? selectedData?.mb : "",
+        noOfAttendees: selectedData ? selectedData?.noOfAttendees : "",
+        noOfHours: selectedData ? selectedData?.noOfHours : "",
+        serviceLifeOfLaptop: selectedData ? selectedData?.serviceLifeOfLaptop : "",
+        createdBy: userid,
+    };
+
+
+    const addData = async (values) => {
+        setIsLoading(true)
+        try {
+            const data = values;
+            const result = await apipost('api/digitalContent/add', data)
+            setUserAction(result)
+
+            if (result && result.status === 200) {
+                formik.resetForm();
+                handleClose();
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+        setIsLoading(false)
+
+    };
+    const editData = async (values) => {
+        setIsLoading(true)
+        try {
+            const result = await apiput(`api/digitalContent/${selectedData?._id}`, values)
+            setUserAction(result)
+
+            if (result && result.status === 200) {
+                formik.resetForm();
+                handleClose();
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+        setIsLoading(false)
+
+    };
+
+
+    // formik
+    const formik = useFormik({
+        initialValues,
+        // validationSchema,
+        enableReinitialize: true,
+        onSubmit: async (values) => {
+            if (type === "add") {
+                addData(values);
+            } else {
+                editData(values)
+            }
+        }
+    });
+
+    useEffect(() => {
+        if (type !== 'edit') {
+            formik.setFieldValue('count', "")
+            formik.setFieldValue('ef', "")
+            formik.setFieldValue('mb', "")
+            formik.setFieldValue('noOfAttendees', "")
+            formik.setFieldValue('noOfHours', "")
+            formik.setFieldValue('serviceLifeOfLaptop', "")
+        }
+    }, [formik.values.type])
+
+    return (
+        <div>
+            <Dialog
+                open={open}
+                aria-labelledby="scroll-dialog-title"
+                aria-describedby="scroll-dialog-description"
+            >
+                <DialogTitle
+                    id="scroll-dialog-title"
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <Typography variant="h6">{type === "add" ? "Add" : "Edit"}</Typography>
+                    <Typography>
+                        <ClearIcon
+                            onClick={() => {
+                                formik.resetForm()
+                                handleClose()
+                            }}
+                            style={{ cursor: "pointer" }}
+                        />
+                    </Typography>
+                </DialogTitle>
+
+                <DialogContent dividers>
+                    <form>
+                        <DialogContentText
+                            id="scroll-dialog-description"
+                            tabIndex={-1}
+                        >
+                            <Grid
+                                container
+                                rowSpacing={3}
+                                columnSpacing={{ xs: 0, sm: 5, md: 4 }}
+                            >
+                                <Grid item xs={12} sm={12} md={12}>
+                                    <FormControl>
+                                        {/* <FormLabel>Type</FormLabel> */}
+                                        <RadioGroup
+                                            row
+                                            aria-labelledby="demo-row-radio-buttons-group-label"
+                                            name="type"
+                                            value={formik.values.type || null}
+                                            error={formik.touched.type && Boolean(formik.errors.type)}
+                                            onChange={formik.handleChange}
+                                        >
+                                            <FormControlLabel value="Emails" control={<Radio />} label="Emails" />
+                                            <FormControlLabel value="Attachment" control={<Radio />} label="Attachment" />
+                                            <FormControlLabel value="Laptop" control={<Radio />} label="Laptop" />
+                                        </RadioGroup>
+                                        <FormHelperText
+                                            error={
+                                                formik.touched.type && Boolean(formik.errors.type)
+                                            }
+                                        >
+                                            {formik.touched.type && formik.errors.type}
+                                        </FormHelperText>
+                                    </FormControl>
+                                </Grid>
+
+                                {
+                                    formik.values.type === "Emails" &&
+
+                                    <Grid item xs={12} sm={12} md={12}>
+                                        <FormLabel id="demo-row-radio-buttons-group-label">Count</FormLabel>
+                                        <TextField
+                                            id="count"
+                                            name="count"
+                                            label=""
+                                            type="number"
+                                            fullWidth
+                                            size="small"
+                                            value={formik.values.count}
+                                            onChange={formik.handleChange}
+                                            error={
+                                                formik.touched.count &&
+                                                Boolean(formik.errors.count)
+                                            }
+                                            helperText={
+                                                formik.touched.count && formik.errors.count
+                                            }
+                                        />
+                                    </Grid>
+                                }
+
+                                {
+                                    formik.values.type === "Attachment" &&
+                                    <>
+
+                                        <Grid item xs={12} sm={12} md={12}>
+                                            <FormLabel id="demo-row-radio-buttons-group-label">MB</FormLabel>
+                                            <TextField
+                                                id="mb"
+                                                name="mb"
+                                                label=""
+                                                type="number"
+                                                fullWidth
+                                                size="small"
+                                                value={formik.values.mb}
+                                                onChange={formik.handleChange}
+                                                error={
+                                                    formik.touched.mb &&
+                                                    Boolean(formik.errors.mb)
+                                                }
+                                                helperText={
+                                                    formik.touched.mb && formik.errors.mb
+                                                }
+                                            />
+                                        </Grid>
+                                    </>
+                                }
+                                {
+                                    formik.values.type === "Laptop" &&
+                                    <>
+
+                                        <Grid item xs={12} sm={12} md={12}>
+                                            <FormLabel id="demo-row-radio-buttons-group-label">No.of Attendees</FormLabel>
+                                            <TextField
+                                                id="noOfAttendees"
+                                                name="noOfAttendees"
+                                                label=""
+                                                type="number"
+                                                fullWidth
+                                                size="small"
+                                                value={formik.values.noOfAttendees}
+                                                onChange={formik.handleChange}
+                                                error={
+                                                    formik.touched.noOfAttendees &&
+                                                    Boolean(formik.errors.noOfAttendees)
+                                                }
+                                                helperText={
+                                                    formik.touched.noOfAttendees && formik.errors.noOfAttendees
+                                                }
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={12} md={12}>
+                                            <FormLabel id="demo-row-radio-buttons-group-label">No. Of Hours</FormLabel>
+                                            <TextField
+                                                id="noOfHours"
+                                                name="noOfHours"
+                                                label=""
+                                                type="number"
+                                                fullWidth
+                                                size="small"
+                                                value={formik.values.noOfHours}
+                                                onChange={formik.handleChange}
+                                                error={
+                                                    formik.touched.noOfHours &&
+                                                    Boolean(formik.errors.noOfHours)
+                                                }
+                                                helperText={
+                                                    formik.touched.noOfHours && formik.errors.noOfHours
+                                                }
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={12} md={12}>
+                                            <FormLabel id="demo-row-radio-buttons-group-label">Service life of Laptop</FormLabel>
+                                            <TextField
+                                                id="serviceLifeOfLaptop"
+                                                name="serviceLifeOfLaptop"
+                                                label=""
+                                                type="number"
+                                                fullWidth
+                                                size="small"
+                                                value={formik.values.serviceLifeOfLaptop}
+                                                onChange={formik.handleChange}
+                                                error={
+                                                    formik.touched.serviceLifeOfLaptop &&
+                                                    Boolean(formik.errors.serviceLifeOfLaptop)
+                                                }
+                                                helperText={
+                                                    formik.touched.serviceLifeOfLaptop && formik.errors.serviceLifeOfLaptop
+                                                }
+                                            />
+                                        </Grid>
+                                    </>
+                                }
+                                {
+                                    (formik.values.type === "Emails" || formik.values.type === "Attachment" || formik.values.type === "Laptop") &&
+                                    <>
+
+                                        <Grid item xs={12} sm={12} md={12}>
+                                            <FormLabel id="demo-row-radio-buttons-group-label">EF</FormLabel>
+                                            <TextField
+                                                id="ef"
+                                                name="ef"
+                                                label=""
+                                                type="number"
+                                                fullWidth
+                                                size="small"
+                                                value={formik.values.ef}
+                                                onChange={formik.handleChange}
+                                                error={
+                                                    formik.touched.ef &&
+                                                    Boolean(formik.errors.ef)
+                                                }
+                                                helperText={
+                                                    formik.touched.ef && formik.errors.ef
+                                                }
+                                            />
+                                        </Grid>
+                                    </>
+                                }
+                            </Grid>
+                        </DialogContentText>
+                    </form>
+                </DialogContent>
+
+                <DialogActions>
+                    <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading}>
+                        {isLoading ? <CircularProgress size={27} /> : 'Save'}
+                    </LoadingButton>
+                    <Button
+                        type="reset"
+                        variant="outlined"
+                        style={{ textTransform: "capitalize" }}
+                        color="error"
+                        onClick={() => {
+                            formik.resetForm()
+                            handleClose()
+                        }}
+                    >
+                        Cancle
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </div >
+    );
+}
+
+export default AddEdit

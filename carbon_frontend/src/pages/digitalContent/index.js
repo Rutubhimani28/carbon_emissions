@@ -1,7 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import SmsRoundedIcon from '@mui/icons-material/SmsRounded';
 import { Box, Button, Card, Container, Stack, Typography, styled } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -19,14 +18,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import DeleteModel from '../../components/Deletemodle';
 import ImportModel from '../../components/Import/ImportModel';
-import SMSModel from '../../components/SMSModel';
 import TableStyle from '../../components/TableStyle';
 import Iconify from '../../components/iconify';
-import { fetchLeadData } from '../../redux/slice/leadSlice';
-import { apipost, deleteManyApi } from '../../service/api';
+import { fetchDigitalContentData } from '../../redux/slice/digitalContentSlice';
+import { deleteManyApi } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
-// import AddLead from './Add';
-// import EditModel from './Edit';
+import AddEdit from './AddEdit';
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +46,6 @@ const StyledMenu = styled((props) => (
 
 function CustomToolbar({ selectedRowIds, fetchdata }) {
     const [opendelete, setOpendelete] = useState(false);
-    const [smsModelOpen, setSmsModelOpen] = useState(false);
     const [userAction, setUserAction] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -59,33 +55,14 @@ function CustomToolbar({ selectedRowIds, fetchdata }) {
 
     const handleOpenDelete = () => setOpendelete(true)
 
-    const handleSmsModelOpen = () => setSmsModelOpen(true)
 
-    const handleSmsModelClose = () => setSmsModelOpen(false)
-
-    const deleteManyLead = async (data) => {
-        const result = await deleteManyApi('lead/deletemany', data)
-        dispatch(fetchLeadData())
+    const deleteManyData = async (data) => {
+        const result = await deleteManyApi('api/digitalContent/deleteMany', data)
+        dispatch(fetchDigitalContentData())
         setUserAction(result)
         handleCloseDelete();
     }
 
-    const sendSMS = async (payload) => {
-        setIsLoading(true)
-        try {
-            const result = await apipost('sms/lead', payload)
-            if (result?.status === 200) {
-                setUserAction(result)
-                handleSmsModelClose();
-                dispatch(fetchLeadData())
-            } else {
-                handleSmsModelClose();
-            }
-        } catch (error) {
-            console.log(error);
-        }
-        setIsLoading(false)
-    }
 
     useEffect(() => {
         setUserAction(userAction)
@@ -94,33 +71,30 @@ function CustomToolbar({ selectedRowIds, fetchdata }) {
     return (
         <GridToolbarContainer>
             <Box padding={"10px 0"}>
-
                 <GridToolbarColumnsButton />
                 <GridToolbarFilterButton />
                 <GridToolbarDensitySelector
                     slotProps={{ tooltip: { title: 'Change density' } }}
                 />
 
-                {selectedRowIds && selectedRowIds.length > 0 && <Button variant="text" sx={{ textTransform: 'capitalize', fontSize: "15px", padding: "4px 5px 2px  0" }} startIcon={<SmsRoundedIcon style={{ fontSize: '19px', marginLeft: "8px" }} />} onClick={handleSmsModelOpen}>Send sms</Button>}
                 {selectedRowIds && selectedRowIds.length > 0 && <Button variant="text" sx={{ textTransform: 'capitalize', fontSize: "13", padding: "4px 5px 2px  0", marginRight: "3px" }} startIcon={<DeleteIcon style={{ fontSize: '19px', marginLeft: "8px", marginBottom: "2px" }} />} onClick={handleOpenDelete}>Delete</Button>}
             </Box>
-            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={deleteManyLead} id={selectedRowIds} />
-            <SMSModel open={smsModelOpen} onClose={handleSmsModelClose} sendSMS={sendSMS} ids={selectedRowIds} isLoading={isLoading} />
+            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={deleteManyData} id={selectedRowIds} />
         </GridToolbarContainer>
     );
 }
 
-const Lead = () => {
+const DigitalContent = () => {
 
     const [userAction, setUserAction] = useState(null);
     const [selectedRowIds, setSelectedRowIds] = useState([]);
-    const [leadData, setLeadData] = useState({})
+    const [selectedData, setSelectedData] = useState({})
     const [openAdd, setOpenAdd] = useState(false);
-    const [openEdit, setOpenEdit] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openImpt, setOpenImpt] = useState(false);
+    const [type, setType] = useState('')
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -128,44 +102,34 @@ const Lead = () => {
 
     const userid = sessionStorage.getItem('user_id');
 
-    const { data, isLoading } = useSelector((state) => state?.leadDetails)
+    const { data, isLoading } = useSelector((state) => state?.digitalContentDetails)
 
     const fieldsInCrm = [
-        { Header: "First Name", accessor: 'firstName', type: 'string', required: true },
-        { Header: "Last Name", accessor: 'lastName', type: 'string', required: true },
-        { Header: "Gender", accessor: 'gender', type: 'string', required: true },
-        { Header: "Phone Number", accessor: 'phoneNumber', type: 'string' },
-        { Header: "Email Address", accessor: 'emailAddress', type: 'string', required: true },
-        { Header: "Title", accessor: 'title', type: 'string', required: true },
-        { Header: "Address", accessor: 'address', type: 'string', required: true },
-        { Header: "Date Of Birth", accessor: 'dateOfBirth', type: 'string', required: true },     // string in backend
+        { Header: "Type", accessor: 'type', type: 'string' },
+        { Header: "Count", accessor: 'count', type: 'number' },
+        { Header: "MB", accessor: 'mb', type: 'number' },
+        { Header: "No. of Attendees", accessor: 'noOfAttendees', type: 'number' },
+        { Header: "No. of Hours", accessor: 'noOfHours', type: 'number' },
+        { Header: "Service life of Laptop", accessor: 'serviceLifeOfLaptop', type: 'number' },
+        { Header: "EF", accessor: 'ef', type: 'number' },
         { Header: "Create Date", accessor: 'createdOn', type: 'date', isDisplay: false, defVal: new Date() },
-        { Header: "Create By", accessor: 'createdBy', type: 'string', isDisplay: false, defVal: userid, required: true },
-        { Header: "Deleted", accessor: 'deleted', type: 'boolean', isDisplay: false, defVal: false },
     ];
 
     const csvColumns = [
-        { Header: "Title", accessor: 'title' },
-        { Header: "First Name", accessor: 'firstName' },
-        { Header: "Last Name", accessor: 'lastName' },
-        { Header: "Gender", accessor: 'gender' },
-        { Header: "Phone Number", accessor: 'phoneNumber' },
-        { Header: "Email Address", accessor: 'emailAddress' },
-        { Header: "Date Of Birth", accessor: 'dateOfBirth' },
-        { Header: "Address", accessor: 'address' },
+        { Header: "Type", accessor: 'type' },
+        { Header: "Count", accessor: 'count' },
+        { Header: "MB", accessor: 'mb' },
+        { Header: "No. of Attendees", accessor: 'noOfAttendees' },
+        { Header: "No. of Hours", accessor: 'noOfHours' },
+        { Header: "Service life of Laptop", accessor: 'serviceLifeOfLaptop' },
+        { Header: "EF", accessor: 'ef' },
         { Header: "Create Date", accessor: 'createdOn' },
     ];
 
-    // open edit model
-    const handleOpenEdit = () => setOpenEdit(true);;
-    const handleCloseEdit = () => setOpenEdit(false);
 
     const handleOpenAdd = () => setOpenAdd(true);
     const handleCloseAdd = () => setOpenAdd(false);
 
-    const handleFirstNameClick = (id) => {
-        navigate(`/dashboard/lead/view/${id}`)
-    };
     const handleOpenImpt = () => {
         setOpenImpt(true);
         handleClose()
@@ -177,63 +141,104 @@ const Lead = () => {
     };
     const columns = [
         {
-            field: "firstName",
-            headerName: "Frist Name",
+            field: "type",
+            headerName: "Type",
             width: 230,
-            cellClassName: "name-column--cell name-column--cell--capitalize",
+            cellClassName: "name-column--cell--capitalize",
             renderCell: (params) => {
                 return (
-                    <Box onClick={() => handleFirstNameClick(params?.row?._id)}>
-                        {params.value}
+                    <Box >
+                        {params.value ? params.value : '-'}
                     </Box>
                 );
             }
         },
         {
-            field: "lastName",
-            headerName: "Last Name",
-            width: 230,
-            cellClassName: "name-column--cell--capitalize",
-        },
-        {
-            field: "gender",
-            headerName: "Gender",
+            field: "count",
+            headerName: "Count",
             width: 150,
-        },
-        {
-            field: "phoneNumber",
-            headerName: "Phone Number",
-            width: 180,
-        },
-        {
-            field: "emailAddress",
-            headerName: "Email Address",
-            width: 250,
-        },
-        {
-            field: "createdOn",
-            headerName: "Create Date",
-            width: 200,
             renderCell: (params) => {
                 return (
-                    <>
-                        {moment(params?.row?.createdOn).format('lll')}
-                    </>
+                    <Box >
+                        {params.value ? params.value : '-'}
+                    </Box>
                 );
             }
         },
+        {
+            field: "mb",
+            headerName: "MB",
+            width: 180,
+            renderCell: (params) => {
+                return (
+                    <Box >
+                        {params.value ? params.value : '-'}
+                    </Box>
+                );
+            }
+        },
+
+        {
+            field: "noOfAttendees",
+            headerName: "No. of Attendees",
+            width: 250,
+            renderCell: (params) => {
+                return (
+                    <Box >
+                        {params.value ? params.value : '-'}
+                    </Box>
+                );
+            }
+        },
+        {
+            field: "noOfHours",
+            headerName: "No. of Hours",
+            width: 250,
+            renderCell: (params) => {
+                return (
+                    <Box >
+                        {params.value ? params.value : '-'}
+                    </Box>
+                );
+            }
+        },
+        {
+            field: "serviceLifeOfLaptop",
+            headerName: "Service life of Laptop",
+            width: 250,
+            renderCell: (params) => {
+                return (
+                    <Box >
+                        {params.value ? params.value : '-'}
+                    </Box>
+                );
+            }
+        },
+        {
+            field: "ef",
+            headerName: "EF",
+            width: 250,
+            renderCell: (params) => {
+                return (
+                    <Box >
+                        {params.value ? params.value : '-'}
+                    </Box>
+                );
+            }
+        },
+
         {
             field: "action",
             headerName: "Action",
             sortable: false,
             renderCell: (params) => {
                 const handleFirstNameClick = async (data) => {
-                    setLeadData(data)
-                    handleOpenEdit();
+                    setSelectedData(data)
+                    handleOpenAdd();
                 };
                 return (
                     <>
-                        <Button variant='text' size='small' color='primary' onClick={() => handleFirstNameClick(params?.row)}><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType('edit') }}><EditIcon /></Button>
                     </>
                 );
             }
@@ -274,10 +279,10 @@ const Lead = () => {
 
         if (selectedIds && selectedIds?.length > 0) {
             const selectedRecordsWithSpecificFileds = formatRecords(data?.filter((rec) => selectedIds?.includes(rec._id)));
-            commonUtils.convertJsonToCsvOrExcel({ jsonArray: selectedRecordsWithSpecificFileds, csvColumns, fileName: "Lead", extension, setSelectedRowIds });
+            commonUtils.convertJsonToCsvOrExcel({ jsonArray: selectedRecordsWithSpecificFileds, csvColumns, fileName: "digital_Content", extension, setSelectedRowIds });
         } else {
             const AllRecordsWithSpecificFileds = formatRecords(data);
-            commonUtils.convertJsonToCsvOrExcel({ jsonArray: AllRecordsWithSpecificFileds, csvColumns, fileName: "Lead", extension, setSelectedRowIds });
+            commonUtils.convertJsonToCsvOrExcel({ jsonArray: AllRecordsWithSpecificFileds, csvColumns, fileName: "digital_Content", extension, setSelectedRowIds });
         }
     };
 
@@ -291,16 +296,13 @@ const Lead = () => {
 
 
     useEffect(() => {
-        dispatch(fetchLeadData())
+        dispatch(fetchDigitalContentData())
     }, [userAction])
     return (
         <>
-            {/* Add Lead Model */}
-            {/* <AddLead open={openAdd} handleClose={handleCloseAdd} setUserAction={setUserAction} /> */}
-            {/* Edit Lead Model */}
-            {/* <EditModel open={openEdit} handleClose={handleCloseEdit} setUserAction={setUserAction} leadData={leadData} /> */}
+            <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
 
-            <ImportModel open={openImpt} handleClose={handleCloseImpt} moduleName="Leads" api="lead/addMany" back="/dashboard/lead" fieldsInCrm={fieldsInCrm} />
+            <ImportModel open={openImpt} handleClose={handleCloseImpt} moduleName="Digital Content" api="api/digitalContent/addMany" back="/dashboard/digitalContent" fieldsInCrm={fieldsInCrm} />
 
             <Container maxWidth>
                 <Stack direction="row" alignItems="center" mb={5} justifyContent={"space-between"}>
@@ -308,7 +310,7 @@ const Lead = () => {
                         Digital Content
                     </Typography>
                     <Stack direction="row" alignItems="center" justifyContent={"flex-end"} spacing={2}>
-                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAdd}>
+                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={() => { handleOpenAdd(); setType("add") }}>
                             Add New
                         </Button>
                         <div>
@@ -359,7 +361,7 @@ const Lead = () => {
                                         ...column,
                                         disableColumnMenu: index === columns.length - 1 // Disable menu icon for the last column
                                     }))}
-                                    components={{ Toolbar: () => CustomToolbar({ selectedRowIds, fetchLeadData }) }}
+                                    components={{ Toolbar: () => CustomToolbar({ selectedRowIds, fetchDigitalContentData }) }}
                                     checkboxSelection
                                     onRowSelectionModelChange={handleSelectionChange}
                                     rowSelectionModel={selectedRowIds}
@@ -376,4 +378,4 @@ const Lead = () => {
     );
 }
 
-export default Lead
+export default DigitalContent

@@ -4,7 +4,6 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchChartData } from '../../../redux/slice/dashboardSlice';
 
 const BarChart = () => {
 

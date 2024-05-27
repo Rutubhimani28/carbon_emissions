@@ -217,7 +217,7 @@ const ImportView = () => {
                                 {fieldsInCrm && fieldsInCrm?.length > 0 && fieldsInCrm?.map((item, index) => item?.isDisplay !== false && (
                                     <React.Fragment key={index}>
                                         <Grid item xs={6} mt='10px' sx={{ textAlign: 'center' }}>
-                                            {item.Header} {item?.required && <span style={{ color: '#ff0000' }}>*</span>}
+                                            {item.Header}
                                         </Grid>
                                         <Grid item xs={4}>
                                             <FormControl fullWidth>
