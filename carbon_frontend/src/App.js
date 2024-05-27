@@ -24,6 +24,7 @@ import LoginPage from './pages/LoginPage';
 import ThemeProvider from './theme';
 import SustainableEvents from './layouts/user/components/esgAdvisory/organisations/sustainableEvents';
 import Agencies from './layouts/user/components/esgAdvisory/Agencies/agencies';
+import EventVenue from './layouts/user/components/esgAdvisory/organisations/EventVenue';
 
 // ----------------------------------------------------------------------
 
@@ -45,11 +46,12 @@ export default function App() {
       ) : (
         <>
           <Header />
-          <Routes>
+            <Routes>
             <Route path="/" element={<UserLayout />} />
             <Route path="/measure-ghg-emissions" element={<Services />} />
             <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
             <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
+            <Route path="/event-venue" element={<EventVenue />} />
             <Route path="/esg-advisory-services/organisations/esg-consulting" element={<Counsulting />} />
             <Route path="/esg-advisory-services/organisations/sustainable-events" element={<SustainableEvents />} />
             <Route path="/esg-advisory-services/service-providers/" element={<Agencies />} />
