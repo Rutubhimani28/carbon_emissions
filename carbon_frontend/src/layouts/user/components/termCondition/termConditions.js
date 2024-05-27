@@ -6,7 +6,6 @@ const TermConditions = () => {
         <div className='main py-5'>
             <Typography variant='h6' className='text-center fs-1 green mb-3 fontFamily fw-bold py-5' >Terms & Conditions</Typography>
 
-
             <ol>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>This website is owned and operated by GO SUSTAINABLE Throughout the website, the terms<strong> ‘we,’ ‘us’ </strong>and <strong>‘our’</strong> refer to <strong>GO SUSTAINABLE.</strong></li>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>By using, accessing, or visiting the GO SUSTAINABLE website, you accept and agree to comply with the following terms of use (“Terms of Use”), whether as a guest or a registered user.</li>
