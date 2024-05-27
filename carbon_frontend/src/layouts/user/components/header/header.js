@@ -27,7 +27,7 @@ const navItems = [
     { name: 'Home', path: "/" },
     { name: 'ESC Advisory Services', path: "/esg-advisory-services" },
     { name: 'Measure Carbon Emissions', path: "/measure-ghg-emissions" },
-    { name: 'News Room', path: '/' },
+    { name: 'News Room', path: '/blogs' },
     { name: 'About Us', path: '/about-us' }];
 
 const Header = (props) => {

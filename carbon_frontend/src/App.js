@@ -29,7 +29,7 @@ import Exhibitions from './layouts/user/components/esgAdvisory/exhibitions/exhib
 import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
 import Faq from './layouts/user/components/faq/faq';
 import TermConditions from './layouts/user/components/termCondition/termConditions';
-
+import NewRoom from './layouts/user/components/newRoom/index'
 // ----------------------------------------------------------------------
 
 export default function App() {
@@ -61,6 +61,7 @@ export default function App() {
             <Route path="/esg-advisory-services/hospitality-industry/" element={<Hospitality />} />
             <Route path="/esg-advisory-services/exhibition-organiser/" element={<Exhibitions />} />
             <Route path="/about-us" element={<About />} />
+            <Route path="/blogs" element={<NewRoom />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/faqs" element={<Faq />} />
