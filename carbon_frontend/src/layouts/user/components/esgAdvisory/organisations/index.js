@@ -8,9 +8,7 @@ const Index = () => {
 
     return (
         <div>
-            <Header />
             <Organisations />
-            <Footer />
         </div>
     )
 }

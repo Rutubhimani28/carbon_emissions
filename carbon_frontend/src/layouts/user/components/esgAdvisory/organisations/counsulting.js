@@ -8,7 +8,6 @@ import Header from '../../header/header'
 const Counsulting = () => {
     return (
         <div>
-            <Header />
             <img src={banner} alt="banner" />
             <div className='main'>
                 <Typography variant='h6' className='text-center fs-2 green pt-5 fontFamily fw-bold' >ESG Consulting</Typography>
@@ -44,7 +43,6 @@ const Counsulting = () => {
                 <p className='py-3 pb-3 fontFamily '>By identifying actionable areas, our<strong> step-by-step </strong>approach enables you to address key issues that demand immediate attention, fostering a targeted strategy to contribute effectively to the decarbonization of emissions within the CMO vertical.</p>
                 <p className='py-3 pb-3 fontFamily '>Please schedule a<Link style={{ color: "#4edceb", textDecoration: "none" }}> meeting with our CEO </Link>to explore potential collaboration and advisory roles in building a better world for our future generations.</p>
             </div>
-            <Footer />
         </div>
     )
 }

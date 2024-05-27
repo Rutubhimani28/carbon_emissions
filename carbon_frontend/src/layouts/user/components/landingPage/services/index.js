@@ -7,10 +7,8 @@ import Footer from '../../footer/footer';
 const Index = () => {
     return (
         <div>
-            <Header />
             <Banner />
             <Category />
-            <Footer />
         </div>
     )
 }

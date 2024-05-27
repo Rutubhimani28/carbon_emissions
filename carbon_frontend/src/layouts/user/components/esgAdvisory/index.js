@@ -7,9 +7,7 @@ import EsgAdvisory from './esgAdvisory'
 const Index = () => {
     return (
         <div>
-            <Header />
             <EsgAdvisory />
-            <Footer />
         </div>
     )
 }
