@@ -19,6 +19,7 @@ import Services from './layouts/user/components/landingPage/services/index'
 import About from './layouts/user/components/aboutUs/index';
 import EsgAdvisory from './layouts/user/components/esgAdvisory/index'
 import Organisations from './layouts/user/components/esgAdvisory/organisations/index';
+import Counsulting from './layouts/user/components/esgAdvisory/organisations/counsulting';
 
 // ----------------------------------------------------------------------
 
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/measure-ghg-emissions" element={<Services />} />
           <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
           <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
+          <Route path="/esg-advisory-services/organisations/esg-consulting/" element={<Counsulting />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<Navigate to="/login" />} />
