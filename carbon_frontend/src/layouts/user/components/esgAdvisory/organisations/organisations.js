@@ -13,9 +13,8 @@ const Organisations = () => {
             </div>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5  d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }}>
-                    {/* <Grid item xs={12} md={6} style={{ order: '2' }}> */}
                     <Box className="organise p-3 " style={{ borderRadius: "20px" }}>
-                        <Link>
+                        <Link to="/esg-advisory-services/organisations/esg-consulting/">
                             <img src={service1} alt="img" width={"100%"} />
                         </Link>
                         <Typography variant='h6' className='text-center py-2 pt-4 fontFamily'>ESG consulting</Typography>
