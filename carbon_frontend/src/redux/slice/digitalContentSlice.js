@@ -1,20 +1,20 @@
-/* eslint-disable no-useless-catch */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { apiget } from '../../service/api';
 
-export const fetchCallData = createAsyncThunk('fetchCallData', async () => {
+export const fetchDigitalContentData = createAsyncThunk('fetchDigitalContentData', async () => {
     const userid = sessionStorage.getItem('user_id');
     const userRole = sessionStorage.getItem("userRole");
+    // eslint-disable-next-line no-useless-catch
     try {
-        const response = await apiget(`call/`);
+        const response = await apiget(`api/digitalContent`);
         return response?.data?.result;
     } catch (error) {
         throw error;
     }
 });
 
-const callSlice = createSlice({
-    name: 'callDetails',
+const digitalContentSlice = createSlice({
+    name: 'digitalContentData',
     initialState: {
         data: [],
         isLoading: false,
@@ -22,15 +22,15 @@ const callSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchCallData.pending, (state) => {
+            .addCase(fetchDigitalContentData.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(fetchCallData.fulfilled, (state, action) => {
+            .addCase(fetchDigitalContentData.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
                 state.error = "";
             })
-            .addCase(fetchCallData.rejected, (state, action) => {
+            .addCase(fetchDigitalContentData.rejected, (state, action) => {
                 state.isLoading = false;
                 state.data = [];
                 state.error = action.error.message;
@@ -38,4 +38,4 @@ const callSlice = createSlice({
     },
 });
 
-export default callSlice.reducer;
+export default digitalContentSlice.reducer;
