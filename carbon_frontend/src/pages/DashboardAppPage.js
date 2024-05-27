@@ -49,7 +49,7 @@ export default function DashboardAppPage() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
-            <AppWebsiteVisits />
+            {/* <AppWebsiteVisits /> */}
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits

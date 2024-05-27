@@ -24,13 +24,13 @@ const AddEdit = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        type: selectedData ? selectedData?.type : "Emails",
-        count: selectedData ? selectedData?.count : "",
-        ef: selectedData ? selectedData?.ef : "",
-        mb: selectedData ? selectedData?.mb : "",
-        noOfAttendees: selectedData ? selectedData?.noOfAttendees : "",
-        noOfHours: selectedData ? selectedData?.noOfHours : "",
-        serviceLifeOfLaptop: selectedData ? selectedData?.serviceLifeOfLaptop : "",
+        type: type === "edit" ? selectedData?.type : "Emails",
+        count: type === "edit" ? selectedData?.count : "",
+        ef: type === "edit" ? selectedData?.ef : "",
+        mb: type === "edit" ? selectedData?.mb : "",
+        noOfAttendees: type === "edit" ? selectedData?.noOfAttendees : "",
+        noOfHours: type === "edit" ? selectedData?.noOfHours : "",
+        serviceLifeOfLaptop: type === "edit" ? selectedData?.serviceLifeOfLaptop : "",
         createdBy: userid,
     };
 
@@ -145,9 +145,9 @@ const AddEdit = (props) => {
                                             error={formik.touched.type && Boolean(formik.errors.type)}
                                             onChange={formik.handleChange}
                                         >
-                                            <FormControlLabel value="Emails" control={<Radio />} label="Emails" />
-                                            <FormControlLabel value="Attachment" control={<Radio />} label="Attachment" />
-                                            <FormControlLabel value="Laptop" control={<Radio />} label="Laptop" />
+                                            <FormControlLabel value="Emails" control={<Radio disabled={type === "edit" ? selectedData?.type !== "Emails" : ''} />} label="Emails" />
+                                            <FormControlLabel value="Attachment" control={<Radio disabled={type === "edit" ? selectedData?.type !== "Attachment" : ''} />} label="Attachment" />
+                                            <FormControlLabel value="Laptop" control={<Radio disabled={type === "edit" ? selectedData?.type !== "Laptop" : ''} />} label="Laptop" />
                                         </RadioGroup>
                                         <FormHelperText
                                             error={

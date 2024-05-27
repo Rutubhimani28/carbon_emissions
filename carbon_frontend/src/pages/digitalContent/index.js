@@ -24,6 +24,7 @@ import { fetchDigitalContentData } from '../../redux/slice/digitalContentSlice';
 import { deleteManyApi } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
 import AddEdit from './AddEdit';
+import digitalContentFile from '../../assets/SAM_digital_Content_.xlsx'
 
 // ----------------------------------------------------------------------
 
@@ -302,7 +303,7 @@ const DigitalContent = () => {
         <>
             <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
 
-            <ImportModel open={openImpt} handleClose={handleCloseImpt} moduleName="Digital Content" api="api/digitalContent/addMany" back="/dashboard/digitalContent" fieldsInCrm={fieldsInCrm} />
+            <ImportModel open={openImpt} handleClose={handleCloseImpt} moduleName="Digital Content" api="api/digitalContent/addMany" back="/dashboard/digitalContent" fieldsInCrm={fieldsInCrm} filePath={digitalContentFile} fileName={"SampleDigitalContentTemplete.xlsx"} routeName={"digitalContent"} />
 
             <Container maxWidth>
                 <Stack direction="row" alignItems="center" mb={5} justifyContent={"space-between"}>
