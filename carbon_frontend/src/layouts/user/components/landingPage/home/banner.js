@@ -16,11 +16,10 @@ const Index = () => {
                     <video
                         controls
                         src="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4"
-                        poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
                         width="1000" height="550">
                         <track kind="captions" src="captions.vtt" label="English" />
                         Sorry, your browser doesn't support embedded videos, but don't worry, you can
-                        <a href="https://archive.org/details/BigBuckBunny_124">download it</a>
+                        <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a>
                         and watch it with your favorite video player!
                     </video></Grid>
                 <Grid className='fs-5' item sm={12} md={2} style={{ opacity: "0" }}>njk</Grid>
