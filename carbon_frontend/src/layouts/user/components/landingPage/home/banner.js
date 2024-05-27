@@ -3,7 +3,7 @@ import banner from '../../../assets/images/home_banner.jpg'
 
 const Index = () => {
     return (
-        <div className=''>
+        <div>
             <img src={banner} alt='img' />
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main py-5 my-2'>
                 <Grid className='fs-5' item sm={12} md={6}>At <strong>Go Sustainable</strong>, we understand the needs and aspirations of organizations’ Chief Marketing Officer (CMO) vertical and its stakeholders. And we recognize the necessity of aligning your activities with a net-zero framework and creating an action plan, to achieve your short-, mid-, and long-term goals to reduce the greenhouse gas (GHG) emissions.</Grid>

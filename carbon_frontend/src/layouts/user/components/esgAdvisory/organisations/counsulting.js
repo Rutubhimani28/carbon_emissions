@@ -45,9 +45,8 @@ const Counsulting = () => {
                 <p className='py-3 pb-3 fontFamily '>Please schedule a<Link style={{ color: "#4edceb", textDecoration: "none" }}> meeting with our CEO </Link>to explore potential collaboration and advisory roles in building a better world for our future generations.</p>
             </div>
             <div className='text-end main py-4'>
-                <button style={{ border: "1px solid #4abd43", borderRadius: "30px", backgroundColor: "transparent", padding: "8px 20px" }} onClick={() => navigate(-1)}>Go Back </button>
+                <button style={{ border: "1px solid #4abd43", borderRadius: "30px", backgroundColor: "transparent", padding: "8px 20px" }} onClick={() => { navigate(-1); }}>Go Back </button>
             </div>
-            <Footer />
         </div>
     )
 }

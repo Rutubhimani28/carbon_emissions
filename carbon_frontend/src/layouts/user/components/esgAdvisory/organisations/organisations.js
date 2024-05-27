@@ -35,7 +35,7 @@ const Organisations = () => {
                 </Grid>
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }}>
                     <Box className="organise p-3 " style={{ borderRadius: "20px" }}>
-                        <Link>
+                        <Link to='/esg-advisory-services/organisations/sustainable-events/'>
                             <img src={service2} alt="img" width={"100%"} />
                         </Link>
                         <Typography variant='h6' className='text-center py-2 pt-4 fontFamily'>ESG consulting</Typography>

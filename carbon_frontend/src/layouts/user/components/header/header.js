@@ -95,7 +95,7 @@ const Header = (props) => {
                                     </Button>
                                     <div className='esg_menuItem'>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} >Agencies</li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} >Hospitality</li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} >Exhibitions</li>
                                     </div>
