@@ -9,7 +9,6 @@ const Counsulting = () => {
     const navigate=useNavigate();
     return (
         <div>
-            <Header />
             <img src={banner} alt="banner" />
             <div className='main'>
                 <Typography variant='h6' className='text-center fs-2 green pt-5 fontFamily fw-bold' >ESG Consulting</Typography>
@@ -50,7 +49,7 @@ const Counsulting = () => {
                 <button style={{ border: "1px solid #4abd43", borderRadius: "30px", backgroundColor: "transparent", padding: "8px 20px"}} onClick={()=>navigate(-1)}>Go Back </button>
             </div>
             <Footer />
-        </div>
+                    </div>
     )
 }
 

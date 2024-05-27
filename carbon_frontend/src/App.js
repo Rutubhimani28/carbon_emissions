@@ -20,6 +20,9 @@ import About from './layouts/user/components/aboutUs/index';
 import EsgAdvisory from './layouts/user/components/esgAdvisory/index'
 import Organisations from './layouts/user/components/esgAdvisory/organisations/index';
 import Counsulting from './layouts/user/components/esgAdvisory/organisations/counsulting';
+import ContactUs from './layouts/user/components/contactUs/ContactUs';
+import Header from './layouts/user/components/header/header';
+import Footer from './layouts/user/components/footer/footer';
 
 // ----------------------------------------------------------------------
 
@@ -39,17 +42,21 @@ export default function App() {
       {token && user ? (
         <Routers />
       ) : (
-
-        <Routes>
-          <Route path="/" element={<UserLayout />} />
-          <Route path="/measure-ghg-emissions" element={<Services />} />
-          <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
-          <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
-          <Route path="/esg-advisory-services/organisations/esg-consulting/" element={<Counsulting />} />
-          <Route path="/about-us" element={<About />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="*" element={<Navigate to="/login" />} />
-        </Routes>
+        <>
+          <Header />
+          <Routes>
+            <Route path="/" element={<UserLayout />} />
+            <Route path="/measure-ghg-emissions" element={<Services />} />
+            <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
+            <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
+            <Route path="/esg-advisory-services/organisations/esg-consulting/" element={<Counsulting />} />
+            <Route path="/about-us" element={<About />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </Routes>
+          <Footer />
+        </>
 
       )}
     </ThemeProvider>

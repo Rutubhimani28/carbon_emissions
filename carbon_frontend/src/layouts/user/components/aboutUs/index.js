@@ -6,9 +6,7 @@ import AboutUs from './about'
 const Index = () => {
     return (
         <div>
-            <Header />
             <AboutUs />
-            <Footer />
         </div>
     )
 }
