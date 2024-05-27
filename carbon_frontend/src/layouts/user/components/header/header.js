@@ -96,8 +96,8 @@ const Header = (props) => {
                                     <div className='esg_menuItem'>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} >Hospitality</li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} >Exhibitions</li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
                                     </div>
                                 </div>
                             ) : (
