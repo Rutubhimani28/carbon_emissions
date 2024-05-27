@@ -26,6 +26,9 @@ import SustainableEvents from './layouts/user/components/esgAdvisory/organisatio
 import Agencies from './layouts/user/components/esgAdvisory/Agencies/agencies';
 import Hospitality from './layouts/user/components/esgAdvisory/hospitality/hospitality';
 import Exhibitions from './layouts/user/components/esgAdvisory/exhibitions/exhibitions';
+import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
+import Faq from './layouts/user/components/faq/faq';
+import TermConditions from './layouts/user/components/termCondition/termConditions';
 
 // ----------------------------------------------------------------------
 
@@ -56,9 +59,12 @@ export default function App() {
             <Route path="/esg-advisory-services/organisations/sustainable-events" element={<SustainableEvents />} />
             <Route path="/esg-advisory-services/service-providers/" element={<Agencies />} />
             <Route path="/esg-advisory-services/hospitality-industry/" element={<Hospitality />} />
-              <Route path="/esg-advisory-services/exhibition-organiser/" element={<Exhibitions />} />
+            <Route path="/esg-advisory-services/exhibition-organiser/" element={<Exhibitions />} />
             <Route path="/about-us" element={<About />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/faqs" element={<Faq />} />
+            <Route path="/terms-conditions" element={<TermConditions />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
