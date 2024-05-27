@@ -18,15 +18,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 
 
 const drawerWidth = 240;
 const navItems = [
     { name: 'Home', path: "/" },
-    { name: 'ESC Advisory Services', path: "/measure-ghg-emissions" },
-    { name: 'Measure Carbon Emissions', path: "/" },
+    { name: 'ESC Advisory Services', path: "/esg-advisory-services" },
+    { name: 'Measure Carbon Emissions', path: "/measure-ghg-emissions" },
     { name: 'News Room', path: '/' },
     { name: 'About Us', path: '/about-us' }];
 
@@ -35,20 +35,11 @@ const Header = (props) => {
     const navigate = useNavigate()
     const location = useLocation()
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
 
     const routeName = location?.pathname
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
-    };
-
-    const handleMenuClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
     };
 
     const drawer = (
@@ -95,24 +86,19 @@ const Header = (props) => {
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         {navItems.map((item) => (
                             item?.name === 'ESC Advisory Services' ? (
-                                <div key={item} style={{ display: 'inline' }}>
+                                <div key={item.name} style={{ display: 'inline' }} className='esg_menu'>
                                     <Button
-                                        className={` text-capitalize fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
-                                        onClick={handleMenuClick}
+                                        className={` text-capitalize  fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
+                                        onClick={() => navigate(item.path)}
                                     >
                                         {item?.name}<ExpandMoreIcon />
                                     </Button>
-                                    <Menu
-                                        anchorEl={anchorEl}
-                                        open={Boolean(anchorEl)}
-                                        onClose={handleMenuClose}
-
-                                    >
-                                        <MenuItem style={{ width: "180px" }} onClick={handleMenuClose}>Organisations</MenuItem>
-                                        <MenuItem style={{ width: "180px" }} onClick={handleMenuClose}>Agencies</MenuItem>
-                                        <MenuItem style={{ width: "180px" }} onClick={handleMenuClose}>Hospitality</MenuItem>
-                                        <MenuItem style={{ width: "180px" }} onClick={handleMenuClose}>Exhibitions</MenuItem>
-                                    </Menu>
+                                    <div className='esg_menuItem'>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} >Agencies</li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} >Hospitality</li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} >Exhibitions</li>
+                                    </div>
                                 </div>
                             ) : (
                                 <>
@@ -150,7 +136,7 @@ const Header = (props) => {
                 <Toolbar />
 
             </Box>
-        </Box >
+        </Box>
     );
 }
 

@@ -23,10 +23,7 @@ const Index = () => {
                         and watch it with your favorite video player!
                     </video></Grid>
                 <Grid className='fs-5' item sm={12} md={2} style={{ opacity: "0" }}>njk</Grid>
-
             </Grid>
-
-
         </div>
     )
 }

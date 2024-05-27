@@ -17,7 +17,8 @@ import './assets/style.css'
 import UserLayout from './layouts/user';
 import Services from './layouts/user/components/landingPage/services/index'
 import About from './layouts/user/components/aboutUs/index';
-
+import EsgAdvisory from './layouts/user/components/esgAdvisory/index'
+import Organisations from './layouts/user/components/esgAdvisory/organisations/index';
 
 // ----------------------------------------------------------------------
 
@@ -41,6 +42,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<UserLayout />} />
           <Route path="/measure-ghg-emissions" element={<Services />} />
+          <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
+          <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<Navigate to="/login" />} />
