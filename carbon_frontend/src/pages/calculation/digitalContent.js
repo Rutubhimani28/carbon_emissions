@@ -77,8 +77,8 @@ const DigitalContent = () => {
         }
     }, [allData])
 
-    const handeleDelete = (id) => {
-        dispatch(deleteData({ id }))
+    const handeleDelete = () => {
+        dispatch(deleteData())
     }
 
 
@@ -268,7 +268,7 @@ const DigitalContent = () => {
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit(); setType('add') }}>Calculate and Add To Footprint</Button>
-                                    <Button variant='outlined' onClick={() => { formik.resetForm(); setType('') }} color='error'>Cancle</Button>
+                                    <Button variant='outlined' onClick={() => { formik.resetForm(); setType(''); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
 
                             </Grid>
