@@ -6,6 +6,8 @@ import userSlice from '../slice/userSlice';
 
 import digitalContentSlice from '../slice/digitalContentSlice'
 import totalDigitalContSlice from '../slice/totalDigitalContSlice';
+import airFreightSlice from '../slice/airFreightSlice'
+import totalAirFreightSlice from '../slice/totalAirFreightSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -21,13 +23,18 @@ const totalDigitalContentPersistConfig = {
     key: 'totalDigitalContentDetails',
     storage: storageSession,
 };
-
+const totalAirFreightPersistConfig = {
+    key: 'totalAirFreightDetails',
+    storage: storageSession,
+};
 
 export const store = configureStore({
     reducer: {
         userDetails: persistReducer(userPersistConfig, userSlice),
         digitalContentDetails: digitalContentSlice,
         totalDigitalContentDetails: totalDigitalContSlice,
+        airFreightDetails: airFreightSlice,
+        totalAirFreightDetails: persistReducer(totalAirFreightPersistConfig, totalAirFreightSlice),
     },
     middleware,
 });
