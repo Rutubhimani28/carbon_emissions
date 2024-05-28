@@ -31,6 +31,9 @@ import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy
 import TermConditions from './layouts/user/components/termCondition/termConditions';
 import LoginPage from './pages/LoginPage';
 import ThemeProvider from './theme';
+import Blog1 from './layouts/user/components/newsRoom/blog1';
+import Blog2 from './layouts/user/components/newsRoom/blog2';
+import Blog3 from './layouts/user/components/newsRoom/blog3';
 // ----------------------------------------------------------------------
 
 export default function App() {
@@ -65,6 +68,9 @@ export default function App() {
             <Route path="/esg-advisory-services/exhibition-organiser/" element={<Exhibitions />} />
             <Route path="/about-us" element={<About />} />
             <Route path="/blogs" element={<NewRoom />} />
+            <Route path="/blogs/blog1" element={<Blog1 />} />
+            <Route path="/blogs/blog2" element={<Blog2 />} />
+            <Route path="/blogs/blog3" element={<Blog3 />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/faqs" element={<Faq />} />
