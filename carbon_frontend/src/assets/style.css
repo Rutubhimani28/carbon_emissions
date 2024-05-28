@@ -1,4 +1,5 @@
 @import "../layouts/user/assets/css/style.css";
+@import 'animate.css';
 
 .loader {
   margin-top: 70px;
