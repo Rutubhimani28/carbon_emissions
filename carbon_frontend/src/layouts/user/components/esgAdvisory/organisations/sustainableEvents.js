@@ -12,22 +12,22 @@ const SustainableEvents = () => {
         <div>
             <img src={banner} alt="banner" />
             <div className='main'>
-                <Typography variant='h6' className='text-center fs-2 green pt-5 fontFamily fw-bold' >Sustainable Events</Typography>
+                <Typography variant='h6' className='text-center fs-2 green pt-5 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Sustainable Events</Typography>
 
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 d-flex justify-content-center align-items-center ' >
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={6} className='wow animate__animated animate__fadeInLeft animate__slow'>
                         <Box className="ps-3">
                             <p>From expansive trade shows and vibrant festivals to intimate business conferences, these events play a pivotal role in our society, fostering social, economic, and technological benefits. However, the grandeur often comes with a carbon footprint. Our approach goes beyond identifying suitable event venues; we negotiate with hotels and connect with qualified service providers and agencies. Throughout the event lifecycle, we steadfastly adhere to the net-zero framework, intricately weaving sustainability practices into every phase. </p>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} md={6}  >
+                    <Grid item xs={12} md={6} className='wow animate__animated animate__fadeInRight animate__slow' >
                         <Box className="ps-3">
                             <p >Collaborate with us to pinpoint the right partners and conduct a comprehensive analysis of greenhouse gas (GHG) emissions and waste associated with your upcoming event. Through this collaborative effort, we’ll unveil innovative and sustainable solutions, optimizing and significantly reducing environmental impacts at every stage—from pre-event planning to execution and post-event assessments. Let’s make your event not only memorable but also a beacon of environmental responsibility.</p>
                         </Box>
                     </Grid>
                 </Grid>
-                <p className='text-center '>Kindly note that the information on the below two tabs is relevant to individuals in the Chief Marketing Officer (CMO) or Sustainability verticals or the vertical/ individuals who are looking to conduct an event</p>
-                <div className='d-flex justify-content-around py-5 mt-4'>
+                <p className='text-center wow animate__animated animate__fadeInUp animate__slow'>Kindly note that the information on the below two tabs is relevant to individuals in the Chief Marketing Officer (CMO) or Sustainability verticals or the vertical/ individuals who are looking to conduct an event</p>
+                <div className='d-flex justify-content-around py-5 mt-4 wow animate__animated animate__fadeInUp animate__slow'>
 
                     <Box onClick={() => navigate("/event-venue")}>
                         <p

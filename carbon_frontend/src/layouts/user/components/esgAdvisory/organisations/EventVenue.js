@@ -74,15 +74,15 @@ const EventVenue = () => {
     <div className="main py-5">
 
       <Box>
-        <Typography variant="h5" className="text-center fs-1 green pt-4 fontFamily fw-bold">
+        <Typography variant="h5" className="text-center fs-1 green pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow">
           Event Venue
         </Typography>
-        <p className="text-center pt-3 fontFamily ">
+        <p className="text-center pt-3 fontFamily wow animate__animated animate__fadeInUp animate__slow">
           Choosing the right event (hotel) venue is crucial for an organization or exhibitor when planning an event or
           exhibition. It not only plays a major role in showcasing their financial strength but also demonstrates a firm
           commitment to their partners, customers, and the audience.
         </p>
-        <p className="text-center pb-5 fontFamily ">
+        <p className="text-center pb-5 fontFamily wow animate__animated animate__fadeInUp animate__slow">
           Please provide the necessary details and submit your request, and we will get back to you within 24-48 hours
           or alternatively write to us at
           <Link className=" text-decoration-none" style={{ color: "#4edceb" }}> askme@gosustainable.ai</Link>

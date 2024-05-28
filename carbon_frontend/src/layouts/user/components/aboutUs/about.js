@@ -16,28 +16,28 @@ const About = () => {
                 <img src={banner} alt="img" width={"100%"} />
             </div>
             <div className='text-center main py-4'>
-                <p className='pt-2 pb-4 fontFamily mx-4' style={{ fontSize: "18px" }} >In today’s world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to<strong> introduce sustainable practices </strong> within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact.</p>
+                <p className='pt-2 pb-4 fontFamily mx-4 wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }} >In today’s world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to<strong> introduce sustainable practices </strong> within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact.</p>
             </div>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
-                <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} >
+                <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                     <Box className="text-center">
                         <Typography variant='h6' className=' fs-1 pt-2 pb-4 fontFamily fw-bold green' >What we do</Typography>
                         <p className=' fs-5'>We offer <span style={{ color: "#4edceb" }}> ESG Advisory Services</span>, bringing together the CMO vertical and their stakeholders on our integrated platform. Our aim is to foster collaboration and devise innovative methodologies for measuring both direct and indirect greenhouse gas (GHG) emissions.</p>
                     </Box>
                 </Grid>
-                <Grid item xs={12} md={6} sx={{ order: { md: '1' } }}>
+                <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInRight animate__slow'>
                     <Box >
                         <img src={what} alt="img" width={"90%"} style={{ borderRadius: "10px" }} />
                     </Box>
                 </Grid>
             </Grid>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} className='wow animate__animated animate__fadeInLeft animate__slow'>
                     <Box >
                         <img src={net} alt="img" width={"90%"} style={{ borderRadius: "10px" }} />
                     </Box>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} className='wow animate__animated animate__fadeInRight animate__slow'>
                     <Box className="text-center">
                         <Typography variant='h6' className=' fs-1 pt-2 pb-4 fontFamily fw-bold green' >Net-Zero Framework</Typography>
                         <p className=' fs-5'>We encourage organizations to <span style={{ color: "#4edceb" }}> assess the emissions </span> resulting from their various marketing activities and collaborate with us <strong> to minimize their carbon footprint by leveraging our net-zero framework.</strong></p>
@@ -46,7 +46,7 @@ const About = () => {
             </Grid>
             <div>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
-                    <Grid item xs={12} md={9} sx={{ order: { xs: "2", md: "1" } }}>
+                    <Grid item xs={12} md={9} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                         <Box className="text-center main">
                             <div className='d-flex flex-column justify-content-between align-items-center'>
                                 <Typography variant='h6' className=' fs-1 fontFamily fw-bold green' >Meet the Founder</Typography>
@@ -56,7 +56,7 @@ const About = () => {
                             <p className=' fs-5'>A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.</p>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} md={3} className='d-flex justify-content-center align-items-center flex-column' sx={{ order: { md: '1' } }}>
+                    <Grid item xs={12} md={3} className='d-flex justify-content-center align-items-center flex-column wow animate__animated animate__fadeInRight animate__slow' sx={{ order: { md: '1' } }}>
                         <Box >
                             <img src={ceo} alt="img" width={"100%"} style={{ borderRadius: "10px" }} />
                         </Box>

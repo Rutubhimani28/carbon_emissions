@@ -3,15 +3,15 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
-import cat1 from '../../../assets/images/cat1.png'
-import cat2 from '../../../assets/images/cat2.png'
-import cat3 from '../../../assets/images/cat3.png'
-import cat4 from '../../../assets/images/cat4.png'
-import cat5 from '../../../assets/images/cat5.png'
-import cat6 from '../../../assets/images/cat6.png'
-import cat7 from '../../../assets/images/cat7.png'
-import cat8 from '../../../assets/images/cat8.png'
-import cat9 from '../../../assets/images/cat9.png'
+import cat1 from '../../assets/images/cat1.png'
+import cat2 from '../../assets/images/cat2.png'
+import cat3 from '../../assets/images/cat3.png'
+import cat4 from '../../assets/images/cat4.png'
+import cat5 from '../../assets/images/cat5.png'
+import cat6 from '../../assets/images/cat6.png'
+import cat7 from '../../assets/images/cat7.png'
+import cat8 from '../../assets/images/cat8.png'
+import cat9 from '../../assets/images/cat9.png'
 
 const Category = () => {
     const data = [
@@ -69,7 +69,7 @@ const Category = () => {
                 {
                     data.map((item, i) => {
                         return (
-                            <Grid item sm={12} md={4}>
+                            <Grid item sm={12} md={4} className='wow animate__animated animate__fadeInUp animate__slow'>
                                 <Card className='bg-bg-transparent shadow-none'>
                                     <CardActionArea>
                                         <CardMedia
@@ -98,10 +98,10 @@ const Category = () => {
 
             <Box className="text-center py-5">
 
-                <p className='fontFamily pb-3 fs-5'>
+                <p className='fontFamily pb-3 fs-5 wow animate__animated animate__fadeInUp animate__slow'>
                     Would you like to learn more about these <strong>nine categories </strong>and discover how you can collaborate with us to precisely pinpoint actions for mitigating carbon footprint? And are you ready to take the next step in reducing your carbon footprint reporting journey?
                 </p>
-                <p className='fontFamily fs-5'>
+                <p className='fontFamily fs-5 wow animate__animated animate__fadeInUp animate__slow'>
                     Email us at <a className='text-decoration-none ' style={{ color: "#4edceb" }} href='mailTo:askme@gosustainable.ai'>askme@gosustainable.ai</a>
                 </p>
             </Box>

@@ -13,7 +13,7 @@ const Blog3 = () => {
                 <div className='container pt-5 d-flex justify-content-center'>
                     <img src={blog3} alt="blog2" width={'65%'} className='blogImageRadius' />
                 </div>
-                <Typography variant='h6' className='text-center fs-2 green pt-4 fontFamily fw-bold px-3' >Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News</Typography>
+                <Typography variant='h6' className='text-center fs-2 green pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News</Typography>
 
 
             </div>

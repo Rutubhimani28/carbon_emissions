@@ -25,7 +25,7 @@ import SustainableEvents from './layouts/user/components/esgAdvisory/organisatio
 import Faq from './layouts/user/components/faq/faq';
 import Footer from './layouts/user/components/footer/footer';
 import Header from './layouts/user/components/header/header';
-import Services from './layouts/user/components/landingPage/services/index';
+import Services from './layouts/user/components/services/index';
 import NewRoom from './layouts/user/components/newsRoom';
 import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
 import TermConditions from './layouts/user/components/termCondition/termConditions';
