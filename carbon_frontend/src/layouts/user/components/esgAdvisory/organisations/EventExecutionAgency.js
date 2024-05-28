@@ -48,7 +48,7 @@ const EventExecutionAgency = () => {
             mobile: yup
                 .string()
                 .required()
-                .matches(/^(0)?[0-9]{9,14}$/, 'Number is invalid'),
+                .matches(/^[0-9]{10}$/, 'Number is invalid'),
             designation: yup.string().required('Designation is required'),
             organisationName: yup.string().required('Organisation Name is required'),
             fixedDateFrom: yup.string().required('Fixed Date From is required'),

@@ -112,7 +112,6 @@ const DigitalContent = () => {
         { Header: "No. of Attendees", accessor: 'noOfAttendees', type: 'number' },
         { Header: "No. of Hours", accessor: 'noOfHours', type: 'number' },
         { Header: "Service life of Laptop", accessor: 'serviceLifeOfLaptop', type: 'number' },
-        { Header: "EF", accessor: 'ef', type: 'number' },
         { Header: "Create Date", accessor: 'createdOn', type: 'date', isDisplay: false, defVal: new Date() },
     ];
 
@@ -123,7 +122,6 @@ const DigitalContent = () => {
         { Header: "No. of Attendees", accessor: 'noOfAttendees' },
         { Header: "No. of Hours", accessor: 'noOfHours' },
         { Header: "Service life of Laptop", accessor: 'serviceLifeOfLaptop' },
-        { Header: "EF", accessor: 'ef' },
         { Header: "Create Date", accessor: 'createdOn' },
     ];
 
@@ -157,7 +155,7 @@ const DigitalContent = () => {
         {
             field: "count",
             headerName: "Count",
-            width: 150,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -169,7 +167,7 @@ const DigitalContent = () => {
         {
             field: "mb",
             headerName: "MB",
-            width: 180,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -182,7 +180,7 @@ const DigitalContent = () => {
         {
             field: "noOfAttendees",
             headerName: "No. of Attendees",
-            width: 250,
+            width:200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -194,7 +192,7 @@ const DigitalContent = () => {
         {
             field: "noOfHours",
             headerName: "No. of Hours",
-            width: 250,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -215,18 +213,7 @@ const DigitalContent = () => {
                 );
             }
         },
-        {
-            field: "ef",
-            headerName: "EF",
-            width: 250,
-            renderCell: (params) => {
-                return (
-                    <Box >
-                        {params.value ? params.value : '-'}
-                    </Box>
-                );
-            }
-        },
+
 
         {
             field: "action",

@@ -1,9 +1,10 @@
-import { Box, Button, FormHelperText, FormLabel, Grid, TextField } from '@mui/material';
+import { Box, Button, CircularProgress, FormHelperText, FormLabel, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import * as yup from 'yup';
 import { InlineWidget, PopupWidget, PopupModal, useCalendlyEventListener } from 'react-calendly';
 import { Link } from 'react-router-dom';
+import { apipost } from '../../../../service/api';
 
 const ContactUsForm = () => {
   const initialValues = {
@@ -16,6 +17,7 @@ const ContactUsForm = () => {
     message: '',
   };
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const formik = useFormik({
     initialValues,
@@ -25,7 +27,7 @@ const ContactUsForm = () => {
       mobile: yup
         .string()
         .required()
-        .matches(/^(0)?[0-9]{9,14}$/, 'Number is invalid'),
+        .matches(/^[0-9]{10}$/, 'Number is invalid'),
       organisation: yup.string().required('Organisation is required'),
       workEmail: yup.string().required('Work Email is required'),
       lastName: yup.string().required('Last Name is required'),
@@ -33,16 +35,32 @@ const ContactUsForm = () => {
       message: yup.string().required('Message is required'),
     }),
     onSubmit: (values) => {
-      // handleSubmit(values)
+      handleSubmit(values);
     },
   });
 
-  useCalendlyEventListener({
-    onProfilePageViewed: (e) => console.log('onProfilePageViewed----::', e),
-    onDateAndTimeSelected: (e) => console.log('onDateAndTimeSelected----::', e),
-    onEventTypeViewed: (e) => console.log('onEventTypeViewed----::', e),
-    onEventScheduled: (e) => console.log('payload----::', e.data.payload, e),
-  });
+  console.log(formik.errors)
+  const handleSubmit = async (values) => {
+    setIsLoading(true);
+    try {
+      const result = await apipost('api/contactUs/add', values);
+
+      if (result && result.status === 200) {
+        formik.resetForm();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  };
+
+  /* For future use */
+  // useCalendlyEventListener({
+  //   onProfilePageViewed: (e) => console.log('onProfilePageViewed----::', e),
+  //   onDateAndTimeSelected: (e) => console.log('onDateAndTimeSelected----::', e),
+  //   onEventTypeViewed: (e) => console.log('onEventTypeViewed----::', e),
+  //   onEventScheduled: (e) => console.log('payload----::', e.data.payload, e),
+  // });
 
   const pageSettings = {
     backgroundColor: '#ffffff',
@@ -80,7 +98,7 @@ const ContactUsForm = () => {
     },
     date: new Date(Date.now() + 86400000),
     city: 'Winterfell',
-    secondTelephone: '+1987654321'
+    secondTelephone: '+1987654321',
   };
 
   return (
@@ -101,6 +119,7 @@ const ContactUsForm = () => {
                   value={formik.values.firstName}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                   helperText={formik.touched.firstName && formik.errors.firstName}
                 />
@@ -117,6 +136,7 @@ const ContactUsForm = () => {
                   value={formik.values.lastName}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.lastName && Boolean(formik.errors.lastName)}
                   helperText={formik.touched.lastName && formik.errors.lastName}
                 />
@@ -133,6 +153,7 @@ const ContactUsForm = () => {
                   value={formik.values.organisation}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.organisation && Boolean(formik.errors.organisation)}
                   helperText={formik.touched.organisation && formik.errors.organisation}
                 />
@@ -149,6 +170,7 @@ const ContactUsForm = () => {
                   value={formik.values.designation}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.designation && Boolean(formik.errors.designation)}
                   helperText={formik.touched.designation && formik.errors.designation}
                 />
@@ -165,6 +187,7 @@ const ContactUsForm = () => {
                   value={formik.values.workEmail}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.workEmail && Boolean(formik.errors.workEmail)}
                   helperText={formik.touched.workEmail && formik.errors.workEmail}
                 />
@@ -181,6 +204,7 @@ const ContactUsForm = () => {
                   value={formik.values.mobile}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.mobile && Boolean(formik.errors.mobile)}
                   helperText={formik.touched.mobile && formik.errors.mobile}
                 />
@@ -198,6 +222,7 @@ const ContactUsForm = () => {
                   value={formik.values.message}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.message && Boolean(formik.errors.message)}
                   helperText={formik.touched.message && formik.errors.message}
                 />
@@ -219,14 +244,15 @@ const ContactUsForm = () => {
                   variant="contained"
                   color="secondary"
                   disableElevation
-                // onClick={handleClickaction}
+                  onClick={formik.handleSubmit}
+                  type="submit"
                 >
-                  Submit
+                  {isLoading ? <CircularProgress size={27} /> : 'Submit'}
                 </Button>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} >
+          <Grid item xs={12} sm={6}>
             <InlineWidget url="https://calendly.com/fayiba2108/meet" />
 
             {/* <button style={{ display: 'block', margin: '0 auto' }} onClick={() => setIsOpen(true)}>

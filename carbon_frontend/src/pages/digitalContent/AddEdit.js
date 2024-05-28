@@ -26,7 +26,6 @@ const AddEdit = (props) => {
     const initialValues = {
         type: type === "edit" ? selectedData?.type : "Emails",
         count: type === "edit" ? selectedData?.count : "",
-        ef: type === "edit" ? selectedData?.ef : "",
         mb: type === "edit" ? selectedData?.mb : "",
         noOfAttendees: type === "edit" ? selectedData?.noOfAttendees : "",
         noOfHours: type === "edit" ? selectedData?.noOfHours : "",
@@ -89,7 +88,6 @@ const AddEdit = (props) => {
     useEffect(() => {
         if (type !== 'edit') {
             formik.setFieldValue('count', "")
-            formik.setFieldValue('ef', "")
             formik.setFieldValue('mb', "")
             formik.setFieldValue('noOfAttendees', "")
             formik.setFieldValue('noOfHours', "")
@@ -276,32 +274,7 @@ const AddEdit = (props) => {
                                         </Grid>
                                     </>
                                 }
-                                {
-                                    (formik.values.type === "Emails" || formik.values.type === "Attachment" || formik.values.type === "Laptop") &&
-                                    <>
 
-                                        <Grid item xs={12} sm={12} md={12}>
-                                            <FormLabel id="demo-row-radio-buttons-group-label">EF</FormLabel>
-                                            <TextField
-                                                id="ef"
-                                                name="ef"
-                                                label=""
-                                                type="number"
-                                                fullWidth
-                                                size="small"
-                                                value={formik.values.ef}
-                                                onChange={formik.handleChange}
-                                                error={
-                                                    formik.touched.ef &&
-                                                    Boolean(formik.errors.ef)
-                                                }
-                                                helperText={
-                                                    formik.touched.ef && formik.errors.ef
-                                                }
-                                            />
-                                        </Grid>
-                                    </>
-                                }
                             </Grid>
                         </DialogContentText>
                     </form>
@@ -325,7 +298,7 @@ const AddEdit = (props) => {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div >
+        </div>
     );
 }
 
