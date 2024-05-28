@@ -84,7 +84,7 @@ const EventVenue = () => {
         </p>
         <p className="text-center pb-5 fontFamily ">
           Please provide the necessary details and submit your request, and we will get back to you within 24-48 hours
-          or alternatively write to us at{' '}
+          or alternatively write to us at
           <Link className="text-primary text-decoration-none">askme@gosustainable.ai</Link>
         </p>
       </Box>
