@@ -1,12 +1,17 @@
-import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { useFormik } from 'formik';
-import * as yup from "yup";
 import { Delete } from '@mui/icons-material';
+import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
+import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as yup from "yup";
+import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
 
 const DigitalContent = () => {
 
-    const [data, setData] = useState([])
+    const dispatch = useDispatch();
+
+    const allData = useSelector((state) => state?.totalDigitalContentDetails?.data)
+    const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -38,14 +43,16 @@ const DigitalContent = () => {
             return errors;
         },
         onSubmit: async (values) => {
-            setData((pre) => [...pre, { id: data?.length + 1, ...values }])
+            dispatch(addData({ id: allData?.length + 1, ...values }))
             formik.resetForm()
         },
     });
+
     const handeleDelete = (id) => {
-        const filteData = data?.filter((item, i) => item?.id !== id)
-        setData(filteData)
+        dispatch(deleteData({ id }))
     }
+
+
 
     useEffect(() => {
         formik.setFieldValue("count", '')
@@ -287,19 +294,19 @@ const DigitalContent = () => {
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit(); }}>Calculate and Add To Footprint</Button>
-                                    <Button variant='outlined' onClick={formik.resetForm}>Cancle</Button>
+                                    <Button variant='outlined' onClick={formik.resetForm} color='error'>Cancle</Button>
                                 </Stack>
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography>Total Digital Content Footprint = 0.03 metric tons of CO2e</Typography>
+                                <Typography>{`Total Digital Content Footprint = ${totalEmission} metric tons of CO2e`}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
                                 <ul>
                                     {
-                                        data?.map((item, index) => (
+                                        allData?.length > 0 && allData?.map((item, index) => (
                                             <li>
-                                                {`${item?.emission} metric tons: ${item?.type}`} <span><Delete onClick={() => handeleDelete(item?.id)} /></span>
+                                                {`${item?.emission} metric tons: ${item?.type}`} <span><Delete onClick={() => handeleDelete(item?.id)} style={{ cursor: 'pointer' }} /></span>
                                             </li>
 
                                         ))
