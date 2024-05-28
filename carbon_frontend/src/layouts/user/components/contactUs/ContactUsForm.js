@@ -2,6 +2,7 @@ import { Box, Button, FormLabel, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as yup from "yup"
+import { InlineWidget, PopupWidget } from "react-calendly";
 
 const ContactUsForm = () => {
   const initialValues = {
@@ -33,7 +34,6 @@ const ContactUsForm = () => {
 
   return (
     <div>
-
       <Box>
         Contact Us
         <Grid container spacing={2} p={4}>
@@ -189,7 +189,15 @@ const ContactUsForm = () => {
 
           </Grid>
           <Grid item xs={12} sm={6}>
-            card 2
+            <InlineWidget url="https://calendly.com/fayiba2108/meet" />
+
+            {/* <PopupWidget
+              url="https://calendly.com/your_scheduling_page"
+              rootElement={document.getElementById("root")}
+              text="Click here to schedule!"
+              textColor="#ffffff"
+              color="#00a2ff"
+            /> */}
           </Grid>
         </Grid>
       </Box>
