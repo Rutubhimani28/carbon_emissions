@@ -29,7 +29,7 @@ import Exhibitions from './layouts/user/components/esgAdvisory/exhibitions/exhib
 import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
 import Faq from './layouts/user/components/faq/faq';
 import TermConditions from './layouts/user/components/termCondition/termConditions';
-import NewRoom from './layouts/user/components/newRoom/index'
+import NewRoom from './layouts/user/components/newsRoom/index'
 // ----------------------------------------------------------------------
 
 export default function App() {
