@@ -22,39 +22,48 @@ const Result = () => {
                             <table>
                                 <tr>
                                     <th>Production</th>
-                                    <td align='right'>0 metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>0</td>
+                                    <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Air Freight</th>
-                                    <td align='right'>0 metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>0 </td>
+                                    <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Food</th>
-                                    <td align='right'>0 metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>0</td>
+                                    <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Energy Updated</th>
-                                    <td align='right'>0 metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>0</td>
+                                    <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Travel</th>
-                                    <td align='right'>0 metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>0</td>
+                                    <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Digital Content</th>
-                                    <td align='right'>{allData?.totalEmission} metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>{allData?.totalEmission}</td>
+                                    <td className='ps-1'> metric tons of CO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Local Transportation</th>
-                                    <td align='right' style={{ paddingLeft: "20px" }}>0 metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>0</td>
+                                    <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Accomodation</th>
-                                    <td align='right'>0 metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>0</td>
+                                    <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Waste</th>
-                                    <td align='right'>0 metric tons of CO2e</td>
+                                    <td align='right' className='ps-4'>0</td>
+                                    <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                             </table>
                             <h4 className='text-center py-3 fw-bold'>Total = {total} metric tons of CO2e</h4>
@@ -68,7 +77,7 @@ const Result = () => {
                     </div>
                 </Card>
             </Container>
-        </div>
+        </div >
     )
 }
 
