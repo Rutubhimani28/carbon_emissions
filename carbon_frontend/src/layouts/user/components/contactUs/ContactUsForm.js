@@ -46,8 +46,8 @@ const ContactUsForm = () => {
       </p>
       <Box>
         <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'}>
-            <Grid container spacing={2} p={1} py={2}>
+          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
+            <Grid container spacing={2} p={1} py={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
               <Grid item xs={12} sm={6}>
                 <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">First Name <span style={{ color: "red" }}>*</span></FormLabel>
                 <TextField
