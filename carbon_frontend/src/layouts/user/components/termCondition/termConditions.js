@@ -4,9 +4,9 @@ import React from 'react'
 const TermConditions = () => {
     return (
         <div className='main py-5'>
-            <Typography variant='h6' className='text-center fs-1 green mb-3 fontFamily fw-bold py-5' >Terms & Conditions</Typography>
+            <Typography variant='h6' className='text-center fs-1 green mb-3 fontFamily fw-bold py-5 wow animate__animated animate__fadeInUp animate__slow' >Terms & Conditions</Typography>
 
-            <ol>
+            <ol className='wow animate__animated animate__fadeInLeft animate__slow'>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>This website is owned and operated by GO SUSTAINABLE Throughout the website, the terms<strong> ‘we,’ ‘us’ </strong>and <strong>‘our’</strong> refer to <strong>GO SUSTAINABLE.</strong></li>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>By using, accessing, or visiting the GO SUSTAINABLE website, you accept and agree to comply with the following terms of use (“Terms of Use”), whether as a guest or a registered user.</li>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>For information on how we collect and use personal information, on cookies and other similar devices we use, and how to set your cookie preferences, please see our Privacy Policy. Changes to these terms</li>

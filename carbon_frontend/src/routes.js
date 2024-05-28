@@ -8,7 +8,7 @@ import UserView from './pages/user/View'
 import DashboardAppPage from './pages/DashboardAppPage';
 import ImportView from './components/Import/ImportView';
 import UserLayout from './layouts/user';
-import Services from './layouts/user/components/landingPage/services/index'
+import Services from './layouts/user/components/services/index'
 import DigitalContent from './pages/digitalContent';
 import Calculation from './pages/calculation';
 // ----------------------------------------------------------------------

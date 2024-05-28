@@ -72,17 +72,16 @@ const EventVenue = () => {
 
   return (
     <div className="main py-5">
-
       <Box>
-        <Typography variant="h5" className="text-center fs-1 green pt-4 fontFamily fw-bold">
+        <Typography variant="h5" className="text-center fs-1 green pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow">
           Event Venue
         </Typography>
-        <p className="text-center pt-3 fontFamily ">
+        <p className="text-center pt-3 fontFamily wow animate__animated animate__fadeInUp animate__slow">
           Choosing the right event (hotel) venue is crucial for an organization or exhibitor when planning an event or
           exhibition. It not only plays a major role in showcasing their financial strength but also demonstrates a firm
           commitment to their partners, customers, and the audience.
         </p>
-        <p className="text-center pb-5 fontFamily ">
+        <p className="text-center pb-5 fontFamily wow animate__animated animate__fadeInUp animate__slow">
           Please provide the necessary details and submit your request, and we will get back to you within 24-48 hours
           or alternatively write to us at
           <Link className=" text-decoration-none" style={{ color: "#4edceb" }}> askme@gosustainable.ai</Link>
@@ -150,7 +149,7 @@ const EventVenue = () => {
             <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Designation <span style={{ color: "red" }}>*</span></FormLabel>
             <TextField
               name="designation"
-              type="email"
+              type="text"
               size="small"
               fullWidth
               value={formik.values.designation}
@@ -232,7 +231,7 @@ const EventVenue = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label fw-bolder">Browse your venue <span style={{ color: "red" }}>*</span></FormLabel>
+            <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label fw-bolder">Browse your venue </FormLabel>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">city <span style={{ color: "red" }}>*</span></FormLabel>

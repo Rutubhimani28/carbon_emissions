@@ -84,11 +84,7 @@ const ContactUsForm = () => {
   };
 
   return (
-    <div className="main py-5">
-      <p className="text-center pt-3 fontFamily main fw-bold fs-5">
-        For enquiries, please share your details, and we’ll respond within 24-48 hours. Alternatively, you can email us
-        at  <Link className=" text-decoration-none" style={{ color: '#4edceb' }}>askme@gosustainable.ai. </Link>
-      </p>
+    <div>
       <Box>
         <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
