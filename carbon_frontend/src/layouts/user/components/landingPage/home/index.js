@@ -6,11 +6,9 @@ import Footer from '../../footer/footer'
 
 const Index = () => {
     return (
-        <div className=''>
-            <Header />
+        <div>
             <Banner />
             <Goal />
-            <Footer />
         </div>
     )
 }

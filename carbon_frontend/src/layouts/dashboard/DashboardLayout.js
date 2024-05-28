@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 // @mui
 import { styled } from '@mui/material/styles';
 //
+// import { fetchCustomFieldData } from '../../redux/slice/customFieldSlice';
 import Header from './header';
 import Nav from './nav';
 
@@ -34,6 +36,14 @@ const Main = styled('div')(({ theme }) => ({
 
 export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
+
+  // const dispatch = useDispatch();
+
+  // const customFieldData = useSelector((state) => state?.customFieldDetails);
+
+  // useEffect(async () => {
+  //   await dispatch(fetchCustomFieldData());
+  // }, []);
 
   return (
     <StyledRoot>

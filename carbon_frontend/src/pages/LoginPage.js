@@ -48,7 +48,6 @@ export default function LoginPage() {
 
   return (
     <>
-      <Header />
       <div className='bg-img'>
 
         <StyledRoot>
@@ -75,7 +74,6 @@ export default function LoginPage() {
           </Container>
         </StyledRoot>
       </div>
-      <Footer />
     </>
   );
 }
