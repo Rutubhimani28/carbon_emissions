@@ -8,10 +8,12 @@ import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
 
 const DigitalContent = () => {
 
+    const [type, setType] = useState('')
     const dispatch = useDispatch();
 
-    const allData = useSelector((state) => state?.totalDigitalContentDetails?.data)
+    const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
     const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
+
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -25,32 +27,55 @@ const DigitalContent = () => {
         noOfAttendees: '',
         noOfHours: '',
         serviceLifeOfLaptop: '',
-        emissionOne: '',
-        emissionTwo: '',
-        emissionThree: '',
+        emissionOne: 0,
+        emissionTwo: 0,
+        emissionThree: 0,
     };
 
     const formik = useFormik({
         initialValues,
-        // validationSchema,
-
         onSubmit: async (values) => {
             formik.setFieldValue('emissionOne', values?.count * 13 / 1000);
             formik.setFieldValue('emissionTwo', values?.MB * 50 / 1000);
-            const emission = values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop);
-            formik.setFieldValue('emissionThree', emission || "");
+            const emission = values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop) || 0;
+            formik.setFieldValue('emissionThree', emission || 0);
 
             const data = [
                 {
-                    type: 'emails',
+                    type: 'Emails',
                     count: values?.count,
-                    emissionOne: values?.emissionOne
+                    emission: values?.count * 13 / 1000
+                },
+                {
+                    type: 'Attachment',
+                    mb: values?.MB,
+                    emission: values?.MB * 50 / 1000
+                },
+                {
+                    type: 'Laptop',
+                    noOfAttendees: values?.noOfAttendees,
+                    noOfHours: values?.noOfHours,
+                    serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
+                    emission: values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop)
                 },
             ]
 
-            dispatch(addData({ values }))
+            dispatch(addData({ data }))
         },
     });
+
+    useEffect(() => {
+        if (allData?.length > 0) {
+            formik.setFieldValue("count", allData[0]?.count)
+            formik.setFieldValue("emissionOne", allData[0]?.emission)
+            formik.setFieldValue("MB", allData[1]?.mb)
+            formik.setFieldValue("emissionTwo", allData[1]?.emission)
+            formik.setFieldValue("noOfAttendees", allData[2]?.noOfAttendees)
+            formik.setFieldValue("noOfHours", allData[2]?.noOfHours)
+            formik.setFieldValue("serviceLifeOfLaptop", allData[2]?.serviceLifeOfLaptop)
+            formik.setFieldValue("emissionThree", allData[2]?.emission)
+        }
+    }, [allData])
 
     const handeleDelete = (id) => {
         dispatch(deleteData({ id }))
@@ -242,8 +267,8 @@ const DigitalContent = () => {
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }}>Calculate and Add To Footprint</Button>
-                                    <Button variant='outlined' onClick={formik.resetForm} color='error'>Cancle</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setType('add') }}>Calculate and Add To Footprint</Button>
+                                    <Button variant='outlined' onClick={() => { formik.resetForm(); setType('') }} color='error'>Cancle</Button>
                                 </Stack>
 
                             </Grid>
@@ -253,11 +278,11 @@ const DigitalContent = () => {
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
                                 <ul>
                                     {
-                                        allData?.length > 0 && allData?.map((item, index) => (
-                                            <li>
-                                                {`${item?.emission} metric tons: ${item?.type}`} <span><Delete onClick={() => handeleDelete(item?.id)} style={{ cursor: 'pointer' }} /></span>
-                                            </li>
+                                        allData?.length > 0 && allData?.map((item) => (
 
+                                            <li>
+                                                {`${item?.type} : ${item?.emission} metric tons of CO2e`}
+                                            </li>
                                         ))
                                     }
                                 </ul>
