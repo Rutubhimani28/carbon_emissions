@@ -9,9 +9,11 @@ import {
     RadioGroup,
     Select,
     TextField,
+    Typography,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 
 const EventExecutionAgency = () => {
@@ -68,10 +70,19 @@ const EventExecutionAgency = () => {
     });
 
     return (
-        <div>
+        <Box sx={{ px: 6 }} >
             <br />
             <br />
-            Event Execution Agency
+            <Box >
+                <Typography variant='h5' className='text-center fs-1 green pt-4 fontFamily fw-bold' >Event Execution Agency</Typography>
+                <p className='text-center pt-3 fontFamily '>
+                    Selecting the right event agency is a critical component in the flawless execution of your event. Through the application of your expectations, the chosen agency becomes instrumental in not only achieving your objectives but also delivering a seamless and impactful experience for your customers, aligned with your sustainability goals or write to us at <Link className="text-primary text-decoration-none">askme@gosustainable.ai.</Link>
+                </p>
+                <p className='text-center pb-5 fontFamily '>
+                    <b>Please Note:</b> We will provide you with minimum two and maximum three agencies based on your ask.
+                </p>
+            </Box>
+
             <Box m={4}>
                 <Grid container spacing={2} p={2} py={2} border={2} borderColor={'#e2e2e2'}>
                     <Grid item xs={12} sm={6}>
@@ -347,7 +358,7 @@ const EventExecutionAgency = () => {
                     </Grid>
                 </Grid>
             </Box>
-        </div>
+        </Box>
     );
 };
 

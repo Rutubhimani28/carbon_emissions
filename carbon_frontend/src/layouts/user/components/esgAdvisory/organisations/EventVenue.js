@@ -9,9 +9,11 @@ import {
   RadioGroup,
   Select,
   TextField,
+  Typography,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 
 const EventVenue = () => {
@@ -71,6 +73,21 @@ const EventVenue = () => {
     <div>
       <br />
       <br />
+      <Box>
+        <Typography variant="h5" className="text-center fs-1 green pt-4 fontFamily fw-bold">
+          Event Venue
+        </Typography>
+        <p className="text-center pt-3 fontFamily ">
+          Choosing the right event (hotel) venue is crucial for an organization or exhibitor when planning an event or
+          exhibition. It not only plays a major role in showcasing their financial strength but also demonstrates a firm
+          commitment to their partners, customers, and the audience.
+        </p>
+        <p className="text-center pb-5 fontFamily ">
+          Please provide the necessary details and submit your request, and we will get back to you within 24-48 hours
+          or alternatively write to us at{' '}
+          <Link className="text-primary text-decoration-none">askme@gosustainable.ai</Link>
+        </p>
+      </Box>
       Event Venue
       <Box m={4}>
         <Grid container spacing={2} p={2} py={2} border={2} borderColor={'#e2e2e2'}>
@@ -340,7 +357,7 @@ const EventVenue = () => {
               variant="contained"
               color="secondary"
               disableElevation
-              // onClick={handleClickaction}
+            // onClick={handleClickaction}
             >
               Submit
             </Button>
