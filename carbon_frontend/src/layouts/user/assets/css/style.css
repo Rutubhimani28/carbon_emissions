@@ -124,3 +124,8 @@
 .organise:hover h6 {
     color: #fff;
 }
+
+.roombg1 {
+    background-image: url('../images/room1.jpeg');
+    height: 100%;
+}
