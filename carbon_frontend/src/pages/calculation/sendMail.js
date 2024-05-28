@@ -21,7 +21,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { apipost } from "../../service/api";
 
 const SendMail = (props) => {
-    const { open, close, setUserAction } = props;
+    const { open, close, setUserAction, datas } = props;
     const [isLoading, setIsLoading] = useState(false);
     const [emails, setEmails] = useState([])
     const [err, setErr] = useState('')
@@ -33,32 +33,36 @@ const SendMail = (props) => {
 
     // -----------  validationSchema
     const validationSchema = yup.object({
-        relatedTo: yup.string().required("Related To is required"),
         subject: yup.string().required("Subject is required"),
-        receiver: yup.string().required("Receiver is required"),
     });
 
     // -----------   initialValues
     const initialValues = {
-        relatedTo: "Lead",
         subject: "",
-        message: "",
         receiver: "",
         sender: userid,
-        lead_id: "",
-        contact_id: "",
-        html: "",
-        createdBy: userid,
     };
+
+    const handleCancel = () => {
+        formik.resetForm();
+        setEmails([]);
+        close();
+    }
 
     // add email api
     const addEmail = async (values) => {
         setIsLoading(true)
 
         try {
-            const data = values;
-            const result = await apipost('email/add', data)
-            setUserAction(result)
+            const data = {
+                subject: values?.subject,
+                receiver: emails,
+                data: datas,
+                sender: values?.sender
+            };
+
+            const result = await apipost('api/email/add', data)
+            // setUserAction(result)
 
             if (result && result.status === 201) {
                 formik.resetForm();
@@ -218,8 +222,7 @@ const SendMail = (props) => {
                         style={{ textTransform: "capitalize" }}
                         color="error"
                         onClick={() => {
-                            formik.resetForm()
-                            close()
+                            handleCancel()
                         }}
                     >
                         Cancle

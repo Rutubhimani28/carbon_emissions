@@ -5,14 +5,14 @@ const Index = () => {
     return (
         <div>
             <img src={banner} alt='img' />
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main py-5 my-2'>
-                <Grid className='fs-5' item sm={12} md={6}>At <strong>Go Sustainable</strong>, we understand the needs and aspirations of organizations’ Chief Marketing Officer (CMO) vertical and its stakeholders. And we recognize the necessity of aligning your activities with a net-zero framework and creating an action plan, to achieve your short-, mid-, and long-term goals to reduce the greenhouse gas (GHG) emissions.</Grid>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main py-5 my-2 '>
+                <Grid className='fs-5 wow animate__animated animate__fadeInLeft animate__slow ' item sm={12} md={6}>At <strong>Go Sustainable</strong>, we understand the needs and aspirations of organizations’ Chief Marketing Officer (CMO) vertical and its stakeholders. And we recognize the necessity of aligning your activities with a net-zero framework and creating an action plan, to achieve your short-, mid-, and long-term goals to reduce the greenhouse gas (GHG) emissions.</Grid>
 
-                <Grid className='fs-5' item sm={12} md={6}>We strive to seamlessly integrate Environmental, Social, and Governance (ESG) considerations into your organization’s strategy through our advisory services. By aligning ESG principles with business objectives, we will support to enhance your brand credibility and contribute to long-term value creation, reinforcing your organization’s position as a socially responsible leader.</Grid>
+                <Grid className='fs-5 wow animate__animated animate__fadeInRight animate__slow ' item sm={12} md={6}>We strive to seamlessly integrate Environmental, Social, and Governance (ESG) considerations into your organization’s strategy through our advisory services. By aligning ESG principles with business objectives, we will support to enhance your brand credibility and contribute to long-term value creation, reinforcing your organization’s position as a socially responsible leader.</Grid>
             </Grid>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main py-5 my-2'>
                 <Grid className='fs-5' item sm={12} md={2} style={{ opacity: "0" }}>hb</Grid>
-                <Grid className='fs-5 d-flex justify-content-center' item sm={12} md={8}>
+                <Grid className='fs-5 d-flex justify-content-center wow animate__animated animate__fadeInUp animate__slow' item sm={12} md={8}>
                     <video
                         controls
                         src="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4"
