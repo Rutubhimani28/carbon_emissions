@@ -23,16 +23,11 @@ const totalDigitalContSlice = createSlice({
             // Recalculate totalEmission
             state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0);
         },
-        deleteData: (state, action) => {
-            const { id } = action.payload;
-            const filteredData = state.data.filter((item) => item.id !== id);
-            const totalEmission = filteredData.reduce((total, item) => total + item.emission, 0);
-            return {
-                ...state,
-                data: filteredData,
-                totalEmission,
-            };
-        },
+        deleteData: (state, action) => ({
+            ...state,
+            data: [],
+            totalEmission: 0
+        }),
 
     },
 });
