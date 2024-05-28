@@ -27,7 +27,7 @@ export const store = configureStore({
     reducer: {
         userDetails: persistReducer(userPersistConfig, userSlice),
         digitalContentDetails: digitalContentSlice,
-        totalDigitalContentDetails: persistReducer(totalDigitalContentPersistConfig, totalDigitalContSlice),
+        totalDigitalContentDetails: totalDigitalContSlice,
     },
     middleware,
 });
