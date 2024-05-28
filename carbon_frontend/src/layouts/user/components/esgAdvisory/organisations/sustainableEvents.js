@@ -39,8 +39,13 @@ const SustainableEvents = () => {
                         </p>
                     </Box>
 
-                    <Box>
-                        <p className='text-center  text-white pt-3 fontFamily fw-bold pb-2 rounded-3' style={{ backgroundColor: "#4ABD43", width: "500px" }}>Event Execution Agency <TbWorld /></p>
+                    <Box onClick={() => navigate('/event-execution-agency')}>
+                        <p
+                            className="text-center  text-white pt-3 fontFamily fw-bold pb-2 rounded-3"
+                            style={{ cursor: "pointer", backgroundColor: '#4ABD43', width: '500px' }}
+                        >
+                            Event Execution Agency <TbWorld />
+                        </p>
                     </Box>
                 </div>
 

@@ -31,6 +31,7 @@ import Faq from './layouts/user/components/faq/faq';
 import TermConditions from './layouts/user/components/termCondition/termConditions';
 import EventVenue from './layouts/user/components/esgAdvisory/organisations/EventVenue';
 import NewRoom from './layouts/user/components/newRoom/index'
+import EventExecutionAgency from './layouts/user/components/esgAdvisory/organisations/EventExecutionAgency';
 // ----------------------------------------------------------------------
 
 export default function App() {
@@ -51,12 +52,13 @@ export default function App() {
       ) : (
         <>
           <Header />
-            <Routes>
+          <Routes>
             <Route path="/" element={<UserLayout />} />
             <Route path="/measure-ghg-emissions" element={<Services />} />
             <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
             <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
             <Route path="/event-venue" element={<EventVenue />} />
+            <Route path="/event-execution-agency" element={<EventExecutionAgency />} />
             <Route path="/esg-advisory-services/organisations/esg-consulting" element={<Counsulting />} />
             <Route path="/esg-advisory-services/organisations/sustainable-events" element={<SustainableEvents />} />
             <Route path="/esg-advisory-services/service-providers/" element={<Agencies />} />
