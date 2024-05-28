@@ -17,6 +17,7 @@ import calendarSlice from '../slice/calendarSlice';
 import paymentSlice from '../slice/paymentSlice';
 import smsTemplateSlice from '../slice/smsTemplateSlice';
 import dashboardSlice from '../slice/dashboardSlice';
+// import customFieldSlice from '../slice/customFieldSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -44,6 +45,10 @@ const smsTemPersistConfig = {
     key: 'smsTempDetails',
     storage: storageSession,
 };
+// const customFieldPersistConfig = {
+//     key: 'customFieldDetails',
+//     storage: storageSession,
+// };
 
 
 export const store = configureStore({
@@ -63,6 +68,7 @@ export const store = configureStore({
         documentDetails: documentSlice,
         calendarDetails: calendarSlice,
         dashboardDetails: dashboardSlice,
+        // customFieldDetails: persistReducer(customFieldPersistConfig, customFieldSlice),
     },
     middleware,
 });
