@@ -66,7 +66,7 @@ const Result = () => {
                                     <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                             </table>
-                            <h4 className='text-center py-3 fw-bold'>Total = {total} metric tons of CO2e</h4>
+                            <h4 className='text-center py-3 fw-bold'>Total To Offset = {total} metric tons of CO2e</h4>
                         </Box>
                     </div>
                     <div className='d-flex justify-content-end p-3'>
