@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import TableStyle from '../../components/TableStyle';
 import Iconify from '../../components/iconify';
 import { fetchUserData } from '../../redux/slice/userSlice';
-import AddUser from './Add';
+// import AddUser from './Add';
 import { commonUtils } from '../../utils/utils';
 
 // ----------------------------------------------------------------------
@@ -120,7 +120,7 @@ const ContactUs = () => {
 
     return (
         <>
-            <AddUser open={openAdd} handleClose={handleCloseAdd} setUserAction={setUserAction} />
+            {/* <AddUser open={openAdd} handleClose={handleCloseAdd} setUserAction={setUserAction} /> */}
 
             <Container maxWidth>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
