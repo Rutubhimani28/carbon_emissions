@@ -86,7 +86,7 @@ const DigitalContent = () => {
     return (
         <div>
             <Container maxWidth>
-                <Card style={{ padding: "20px" }}>
+                <Card className='p-4'>
                     <Box >
                         <Grid
                             container
@@ -272,10 +272,10 @@ const DigitalContent = () => {
                                 </Stack>
 
                             </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                            <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
                                 <Typography>{`Total Digital Content Footprint = ${totalEmission} metric tons of CO2e`}</Typography>
                             </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                            <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
                                     {
                                         allData?.length > 0 && allData?.map((item) => (
@@ -291,7 +291,7 @@ const DigitalContent = () => {
                     </Box>
                 </Card>
             </Container>
-        </div >
+        </div>
     )
 }
 
