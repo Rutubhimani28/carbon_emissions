@@ -5,6 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { Box } from '@mui/material';
 import { Padding } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
@@ -13,15 +14,15 @@ const Footer = () => {
     return (
         <div className='text-light text-center py-4' style={{ backgroundColor: "#4ABD43" }} >
             <p>
-                <a href="#" className='px-2 text-decoration-none text-light'>Home </a> |
-                <a href="#" className='px-2 text-decoration-none text-light'> About Us </a>|
-                <a href="#" className='px-2 text-decoration-none text-light'> ESG Advisory Services </a>|
-                <a href="#" className='px-2 text-decoration-none text-light'>Measure Carbon Emissions </a>|
-                <a href="#" className='px-2 text-decoration-none text-light'> News Room </a>|
-                <a href="#" className='px-2 text-decoration-none text-light'> Terms & Conditions </a>|
-                <a href="#" className='px-2 text-decoration-none text-light'> Privacy Policy </a>|
-                <a href="#" className='px-2 text-decoration-none text-light'> Contact </a>|
-                <a href="#" className='px-2 text-decoration-none text-light'> FAQs </a>
+                <Link to="/" className='px-2 text-decoration-none text-light'>Home </Link> |
+                <Link to="/about-us" className='px-2 text-decoration-none text-light'> About Us </Link>|
+                <Link to="/esg-advisory-services" className='px-2 text-decoration-none text-light'> ESG Advisory Services </Link>|
+                <Link to="/measure-ghg-emissions" className='px-2 text-decoration-none text-light'>Measure Carbon Emissions </Link>|
+                <Link to="#" className='px-2 text-decoration-none text-light'> News Room </Link>|
+                <Link to="/terms-conditions" className='px-2 text-decoration-none text-light'> Terms & Conditions </Link>|
+                <Link to="/privacy-policy" className='px-2 text-decoration-none text-light'> Privacy Policy </Link>|
+                <Link to="/contact-us" className='px-2 text-decoration-none text-light'> Contact </Link>|
+                <Link to="/faqs" className='px-2 text-decoration-none text-light'> FAQs </Link>
             </p>
             <div className='d-flex justify-content-center py-2 pb-4'>
                 <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#ff0000", color: "#fff", borderRadius: "5px" }}><MdMail /></Box>
