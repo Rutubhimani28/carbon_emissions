@@ -11,6 +11,7 @@ import UserLayout from './layouts/user';
 import Services from './layouts/user/components/services/index'
 import DigitalContent from './pages/digitalContent';
 import Calculation from './pages/calculation';
+import ContactUs from './pages/contactUs/ContactUs';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -26,6 +27,7 @@ export default function Router() {
         { path: ':view/import', element: <ImportView /> },
         { path: 'digitalContent', element: <DigitalContent /> },
         { path: 'calculation', element: <Calculation /> },
+        { path: 'contactUs', element: <ContactUs /> },
       ],
     },
     { path: '/', element: <UserLayout /> },
