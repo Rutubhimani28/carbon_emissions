@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-import { react } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 // routes
 import { ToastContainer } from 'react-toastify';
@@ -14,24 +13,24 @@ import ScrollToTop from './components/scroll-to-top';
 import UserLayout from './layouts/user';
 import About from './layouts/user/components/aboutUs/index';
 import ContactUs from './layouts/user/components/contactUs/ContactUs';
+import Agencies from './layouts/user/components/esgAdvisory/Agencies/agencies';
+import Exhibitions from './layouts/user/components/esgAdvisory/exhibitions/exhibitions';
+import Hospitality from './layouts/user/components/esgAdvisory/hospitality/hospitality';
 import EsgAdvisory from './layouts/user/components/esgAdvisory/index';
+import EventExecutionAgency from './layouts/user/components/esgAdvisory/organisations/EventExecutionAgency';
+import EventVenue from './layouts/user/components/esgAdvisory/organisations/EventVenue';
 import Counsulting from './layouts/user/components/esgAdvisory/organisations/counsulting';
 import Organisations from './layouts/user/components/esgAdvisory/organisations/index';
+import SustainableEvents from './layouts/user/components/esgAdvisory/organisations/sustainableEvents';
+import Faq from './layouts/user/components/faq/faq';
 import Footer from './layouts/user/components/footer/footer';
 import Header from './layouts/user/components/header/header';
 import Services from './layouts/user/components/landingPage/services/index';
+import NewRoom from './layouts/user/components/newsRoom';
+import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
+import TermConditions from './layouts/user/components/termCondition/termConditions';
 import LoginPage from './pages/LoginPage';
 import ThemeProvider from './theme';
-import SustainableEvents from './layouts/user/components/esgAdvisory/organisations/sustainableEvents';
-import Agencies from './layouts/user/components/esgAdvisory/Agencies/agencies';
-import Hospitality from './layouts/user/components/esgAdvisory/hospitality/hospitality';
-import Exhibitions from './layouts/user/components/esgAdvisory/exhibitions/exhibitions';
-import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
-import Faq from './layouts/user/components/faq/faq';
-import TermConditions from './layouts/user/components/termCondition/termConditions';
-import EventVenue from './layouts/user/components/esgAdvisory/organisations/EventVenue';
-import NewRoom from './layouts/user/components/newRoom/index'
-import EventExecutionAgency from './layouts/user/components/esgAdvisory/organisations/EventExecutionAgency';
 // ----------------------------------------------------------------------
 
 export default function App() {
