@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { InlineWidget, PopupWidget, PopupModal, useCalendlyEventListener } from 'react-calendly';
 import { Link } from 'react-router-dom';
+import * as yup from "yup";
 
 const ContactUsForm = () => {
   const initialValues = {

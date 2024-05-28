@@ -5,6 +5,7 @@ import storageSession from 'redux-persist/lib/storage/session'; // Import sessio
 import userSlice from '../slice/userSlice';
 
 import digitalContentSlice from '../slice/digitalContentSlice'
+import totalDigitalContSlice from '../slice/totalDigitalContSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -22,6 +23,7 @@ export const store = configureStore({
     reducer: {
         userDetails: persistReducer(userPersistConfig, userSlice),
         digitalContentDetails: digitalContentSlice,
+        totalDigitalContentDetails: totalDigitalContSlice,
     },
     middleware,
 });

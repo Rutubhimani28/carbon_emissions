@@ -127,5 +127,27 @@
 
 .roombg1 {
     background-image: url('../images/room1.jpeg');
-    height: 100%;
+    height: 510px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.roombg2 {
+    background-image: url('../images/room2.jpeg');
+    height: 250px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.roombg3 {
+    background-image: url('../images/room3.jpg');
+    height: 250px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
