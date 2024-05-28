@@ -1,8 +1,9 @@
 import { Box, Button, FormHelperText, FormLabel, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
+import * as yup from "yup"
+import { InlineWidget, PopupWidget } from "react-calendly";
 import { Link } from 'react-router-dom';
-import * as yup from 'yup';
 
 const ContactUsForm = () => {
   const initialValues = {
@@ -39,7 +40,7 @@ const ContactUsForm = () => {
     <div className="main py-5">
       <p className="text-center pt-3 fontFamily main fw-bold fs-5">
         For enquiries, please share your details, and we’ll respond within 24-48 hours. Alternatively, you can email us
-        at{' '}
+        at
         <Link className=" text-decoration-none" style={{ color: '#4edceb' }}>
           askme@gosustainable.ai.
         </Link>
@@ -166,11 +167,19 @@ const ContactUsForm = () => {
             </Grid>
           </Grid>
           <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'}>
-            fcghj
+            <InlineWidget url="https://calendly.com/fayiba2108/meet" />
+
+            {/* <PopupWidget
+              url="https://calendly.com/your_scheduling_page"
+              rootElement={document.getElementById("root")}
+              text="Click here to schedule!"
+              textColor="#ffffff"
+              color="#00a2ff"
+            /> */}
           </Grid>
         </Grid>
-      </Box>
-    </div>
+      </Box >
+    </div >
   );
 };
 
