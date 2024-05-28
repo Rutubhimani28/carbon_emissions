@@ -1,8 +1,8 @@
 import { Box, Button, FormHelperText, FormLabel, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import React from 'react';
-import * as yup from "yup"
-import { InlineWidget, PopupWidget } from "react-calendly";
+import React, { useState } from 'react';
+import * as yup from 'yup';
+import { InlineWidget, PopupWidget, PopupModal, useCalendlyEventListener } from 'react-calendly';
 import { Link } from 'react-router-dom';
 
 const ContactUsForm = () => {
@@ -15,6 +15,7 @@ const ContactUsForm = () => {
     mobile: '',
     message: '',
   };
+  const [isOpen, setIsOpen] = useState(false);
 
   const formik = useFormik({
     initialValues,
@@ -36,21 +37,66 @@ const ContactUsForm = () => {
     },
   });
 
+  useCalendlyEventListener({
+    onProfilePageViewed: (e) => console.log('onProfilePageViewed----::', e),
+    onDateAndTimeSelected: (e) => console.log('onDateAndTimeSelected----::', e),
+    onEventTypeViewed: (e) => console.log('onEventTypeViewed----::', e),
+    onEventScheduled: (e) => console.log('payload----::', e.data.payload, e),
+  });
+
+  const pageSettings = {
+    backgroundColor: '#ffffff',
+    hideEventTypeDetails: false,
+    hideLandingPageDetails: false,
+    primaryColor: '#00a2ff',
+    textColor: '#4d5055',
+  };
+  const utm = {
+    utmCampaign: 'Spring Sale 2019',
+    utmContent: 'Shoe and Shirts',
+    utmMedium: 'Ad',
+    utmSource: 'Facebook',
+    utmTerm: 'Spring',
+  };
+
+  const prefill = {
+    email: 'test@test.com',
+    firstName: 'Jon',
+    lastName: 'Snow',
+    name: 'Jon Snow',
+    smsReminderNumber: '+1234567890',
+    guests: ['janedoe@example.com', 'johndoe@example.com'],
+    customAnswers: {
+      a1: 'a1',
+      a2: 'a2',
+      a3: 'a3',
+      a4: 'a4',
+      a5: 'a5',
+      a6: 'a6',
+      a7: 'a7',
+      a8: 'a8',
+      a9: 'a9',
+      a10: 'a10',
+    },
+    date: new Date(Date.now() + 86400000),
+    city: 'Winterfell',
+    secondTelephone: '+1987654321'
+  };
+
   return (
     <div className="main py-5">
       <p className="text-center pt-3 fontFamily main fw-bold fs-5">
         For enquiries, please share your details, and we’ll respond within 24-48 hours. Alternatively, you can email us
-        at
-        <Link className=" text-decoration-none" style={{ color: '#4edceb' }}>
-          askme@gosustainable.ai.
-        </Link>
+        at  <Link className=" text-decoration-none" style={{ color: '#4edceb' }}>askme@gosustainable.ai. </Link>
       </p>
       <Box>
         <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
+          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <Grid container spacing={2} p={1} py={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
               <Grid item xs={12} sm={6}>
-                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">First Name <span style={{ color: "red" }}>*</span></FormLabel>
+                <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+                  First Name <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
                 <TextField
                   name="firstName"
                   type="text"
@@ -64,7 +110,9 @@ const ContactUsForm = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Last Name <span style={{ color: "red" }}>*</span></FormLabel>
+                <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+                  Last Name <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
                 <TextField
                   name="lastName"
                   type="text"
@@ -78,7 +126,9 @@ const ContactUsForm = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Organisation <span style={{ color: "red" }}>*</span></FormLabel>
+                <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+                  Organisation <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
                 <TextField
                   name="organisation"
                   type="text"
@@ -92,7 +142,9 @@ const ContactUsForm = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Designation <span style={{ color: "red" }}>*</span></FormLabel>
+                <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+                  Designation <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
                 <TextField
                   name="designation"
                   type="text"
@@ -106,7 +158,9 @@ const ContactUsForm = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Work Email <span style={{ color: "red" }}>*</span></FormLabel>
+                <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+                  Work Email <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
                 <TextField
                   name="workEmail"
                   type="email"
@@ -120,7 +174,9 @@ const ContactUsForm = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Mobile <span style={{ color: "red" }}>*</span></FormLabel>
+                <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+                  Mobile <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
                 <TextField
                   name="mobile"
                   type="text"
@@ -134,7 +190,9 @@ const ContactUsForm = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Message <span style={{ color: "red" }}>*</span></FormLabel>
+                <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+                  Message <span style={{ color: 'red' }}>*</span>
+                </FormLabel>
                 <TextField
                   name="message"
                   multiline
@@ -150,7 +208,13 @@ const ContactUsForm = () => {
                 <FormHelperText>0 of 200 max words.</FormHelperText>
               </Grid>
               <Grid item xs={12}>
-                <p className='pt-2'>By submitting the above info, you acknowledge that you have read our <Link style={{ color: "#4ABD43", textDecoration: "none" }} to='/privacy-policy'> Privacy Policy.</Link></p>
+                <p className="pt-2">
+                  By submitting the above info, you acknowledge that you have read our{' '}
+                  <Link style={{ color: '#4ABD43', textDecoration: 'none' }} to="/privacy-policy">
+                    {' '}
+                    Privacy Policy.
+                  </Link>
+                </p>
               </Grid>
               <Grid item xs={5} sm={8}>
                 <Button
@@ -166,13 +230,25 @@ const ContactUsForm = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'}>
+          <Grid item xs={12} sm={6} >
             <InlineWidget url="https://calendly.com/fayiba2108/meet" />
 
+            {/* <button style={{ display: 'block', margin: '0 auto' }} onClick={() => setIsOpen(true)}>
+              Custom Button
+            </button> */}
+            <PopupModal
+              url="https://calendly.com/fayiba2108/meet"
+              pageSettings={pageSettings}
+              utm={utm}
+              prefill={prefill}
+              onModalClose={() => setIsOpen(false)}
+              open={isOpen}
+              rootElement={document.getElementById('root')}
+            />
             {/* <PopupWidget
-              url="https://calendly.com/your_scheduling_page"
+              url="https://calendly.com/fayiba2108/meet"
               rootElement={document.getElementById("root")}
-              text="Click here to schedule!"
+              text="schedule metting"
               textColor="#ffffff"
               color="#00a2ff"
             /> */}
