@@ -16,7 +16,7 @@ const navConfig = [
   {
     title: 'Digital Content',
     path: '/dashboard/digitalContent',
-    icon: icon('ic_analytics'),
+    icon: icon('ic_digitalContent'),
   },
   {
     title: 'Calculation',

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <title>
+        Your Carbon Footprint :
+    </title> -->
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Your Carbon Footprint :</h2>
+
+    <table>
+        <tr>
+            <th>Production</th>
+            <td>
+                <%= data.totlaProduction %> metric tons of CO2e
+            </td>
+        </tr>
+        <tr>
+            <th>Air Freight</th>
+            <td>
+                <%= data.totalAirFreight %> metric tons of CO2e
+            </td>
+        </tr>
+        <tr>
+            <th>Food</th>
+            <td>
+                <%= data.totalFood %> metric tons of CO2e
+            </td>
+        </tr>
+        <tr>
+            <th>Energy Updated</th>
+            <td>
+                <%= data.totalEnergyUpdated %> metric tons of CO2e
+            </td>
+        </tr>
+        <tr>
+            <th>Travel</th>
+            <td>
+                <%= data.totlaTravel %> metric tons of CO2e
+            </td>
+        </tr>
+        <tr>
+            <th>Digital Content</th>
+            <td>
+                <%= data.totalDIgitalContent %> metric tons of CO2e
+            </td>
+        </tr>
+        <tr>
+            <th>Local Transportation</th>
+            <td>
+                <%= data.totalLocalTransportation %> metric tons of CO2e
+            </td>
+        </tr>
+        <tr>
+            <th>Accomodation</th>
+            <td>
+                <%= data.totalAccomodation %> metric tons of CO2e
+            </td>
+        </tr>
+        <tr>
+            <th>Waste</th>
+            <td>
+                <%= data.totalWaste %> metric tons of CO2e
+            </td>
+        </tr>
+    </table>
+
+    <h4 class=''>Total = <%= data.grandTotal %> metric tons of CO2e</h4>
+
+</body>
+
+</html>

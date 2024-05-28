@@ -151,3 +151,44 @@
     background-position: center;
     background-size: cover;
 }
+
+.blogImageRadius {
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+.nextBlog {
+    position: relative;
+    transition: all 0.4s linear;
+}
+
+.nextBlogContent {
+    position: absolute;
+    left: -200px;
+    background-color: #ffffff;
+    width: 200px;
+
+    transition: all 0.4s linear;
+}
+
+.nextBlog:hover .nextBlogContent {
+    left: 137px;
+}
+
+.nextBlogRight {
+    position: relative;
+    transition: all 0.4s linear;
+}
+
+.nextBlogContentRight {
+    position: absolute;
+    background-color: #ffffff;
+    width: 200px;
+    left: 137px;
+
+    transition: all 0.4s linear;
+}
+
+.nextBlogRight:hover .nextBlogContentRight {
+    left: -200px;
+}

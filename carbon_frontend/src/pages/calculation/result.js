@@ -9,9 +9,22 @@ const Result = () => {
 
     const total = 0 + 0 + 0 + 0 + allData?.totalEmission + 0 + 0 + 0
 
+    const data = {
+        "totalWaste": "0",
+        "totalAccomodation": "0",
+        "totalLocalTransportation": "0",
+        "totalDIgitalContent": allData?.totalEmission,
+        "totlaTravel": "0",
+        "totalEnergyUpdated": "0",
+        "totalFood": "0",
+        "totalAirFreight": "0",
+        "totlaProduction": "0",
+        "grandTotal": total
+    }
+
     return (
         <div>
-            <SendMail open={open} close={() => setOpen(false)} />
+            <SendMail open={open} close={() => setOpen(false)} datas={data} />
 
             <Container maxWidth>
                 <Card>
