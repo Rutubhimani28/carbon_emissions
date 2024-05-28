@@ -19,6 +19,8 @@ import smsTemplateSlice from '../slice/smsTemplateSlice';
 import dashboardSlice from '../slice/dashboardSlice';
 // import customFieldSlice from '../slice/customFieldSlice';
 
+import digitalContentSlice from '../slice/digitalContentSlice'
+
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
         serializableCheck: false,
@@ -69,6 +71,7 @@ export const store = configureStore({
         calendarDetails: calendarSlice,
         dashboardDetails: dashboardSlice,
         // customFieldDetails: persistReducer(customFieldPersistConfig, customFieldSlice),
+        digitalContentDetails: digitalContentSlice,
     },
     middleware,
 });

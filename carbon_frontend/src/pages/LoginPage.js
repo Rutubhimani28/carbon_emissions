@@ -8,6 +8,8 @@ import useResponsive from '../hooks/useResponsive';
 // sections
 import { LoginForm } from '../sections/auth/login';
 import Logo from '../layouts/user/assets/images/logo.png'
+import Header from '../layouts/user/components/header/header';
+import Footer from '../layouts/user/components/footer/footer';
 
 
 // ----------------------------------------------------------------------
@@ -46,10 +48,11 @@ export default function LoginPage() {
 
   return (
     <>
+      <div className='bg-img'>
 
-      <StyledRoot>
+        <StyledRoot>
 
-        {/* {mdUp && (
+          {/* {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Hi, Welcome Back
@@ -58,20 +61,19 @@ export default function LoginPage() {
           </StyledSection>
         )} */}
 
-        <Container maxWidth="sm">
-          <StyledContent>
-            <div className='d-flex justify-content-center flex-column align-items-center'>
-              <img src={Logo} width={200} />
-              <Typography variant="h3" gutterBottom mb={4}>
-                Sign in
-              </Typography>
-            </div>
-
-
-            <LoginForm />
-          </StyledContent>
-        </Container>
-      </StyledRoot>
+          <Container maxWidth="sm">
+            <StyledContent>
+              <div className='d-flex justify-content-center flex-column align-items-center'>
+                <img src={Logo} width={200} />
+                <Typography variant="h3" gutterBottom mb={4}>
+                  Sign in
+                </Typography>
+              </div>
+              <LoginForm />
+            </StyledContent>
+          </Container>
+        </StyledRoot>
+      </div>
     </>
   );
 }

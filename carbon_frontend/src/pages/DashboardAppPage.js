@@ -1,43 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { faker } from '@faker-js/faker';
 import { Container, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import moment from 'moment';
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
-import Iconify from '../components/iconify';
-import { fetchDashboardData } from '../redux/slice/dashboardSlice';
-import { fetchUserData } from '../redux/slice/userSlice';
 import {
-  AppConversionRates,
-  AppCurrentSubject,
   AppCurrentVisits,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppTasks,
-  AppTrafficBySite,
   AppWebsiteVisits,
-  AppWidgetSummary,
+  AppWidgetSummary
 } from '../sections/@dashboard/app';
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
   const theme = useTheme();
 
-  const allData = useSelector((state) => state?.dashboardDetails?.data)
   const userData = useSelector((state) => state?.userDetails?.data)
 
   const dispatch = useDispatch();
 
   const today = new Date()
-
-  // useEffect(() => {
-  //   if (userData?.length === 0) {
-  //     dispatch(fetchUserData())
-  //   }
-  //   dispatch(fetchDashboardData())
-  // }, [])
 
   return (
     <>
@@ -52,34 +33,34 @@ export default function DashboardAppPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Leads" total={allData?.totalData?.totalLead} color="error" icon={'ic:baseline-leaderboard'} />
+            <AppWidgetSummary title="Leads" total={0} color="error" icon={'ic:baseline-leaderboard'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Contacts" total={allData?.totalData?.totalContact} color="info" icon={'fluent:book-contacts-24-filled'} />
+            <AppWidgetSummary title="Contacts" total={0} color="info" icon={'fluent:book-contacts-24-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Policies" total={allData?.totalData?.totalPolicy} color="warning" icon={'ic:baseline-policy'} />
+            <AppWidgetSummary title="Policies" total={0} color="warning" icon={'ic:baseline-policy'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Tasks" total={allData?.totalData?.totalTask} icon={'mdi:events'} />
+            <AppWidgetSummary title="Tasks" total={0} icon={'mdi:events'} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
-            <AppWebsiteVisits />
+            {/* <AppWebsiteVisits /> */}
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
               title="Today Statstics :"
-              subheader={`${moment(allData?.todayCount?.date).format('DD-MM-YYYY') || null}`}
-              allData={allData}
+              subheader={`${moment(today).format('DD-MM-YYYY') || null}`}
+              allData={[]}
               chartData={[
-                { label: 'Lead', value: allData?.todayCount?.totalLead || 0 },
-                { label: 'Contact', value: allData?.todayCount?.totalContact || 0 },
-                { label: 'Policy', value: allData?.todayCount?.totalPolicy || 0 },
-                { label: 'Task', value: allData?.todayCount?.totalTask || 0 },
+                { label: 'Lead', value: 0 },
+                { label: 'Contact', value: 0 },
+                { label: 'Policy', value: 0 },
+                { label: 'Task', value: 0 },
               ]}
 
               chartColors={[

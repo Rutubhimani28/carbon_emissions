@@ -12,11 +12,9 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Box, FormLabel } from "@mui/material";
-import SampleLeadTemplete from '../../assets/SampleLeadTemplete.xlsx'
-import SampleContactTemplete from '../../assets/SampleContactTemplete.xlsx'
 
 const ImportModel = (props) => {
-    const { open, handleClose, moduleName, fieldsInCrm, api, back } = props
+    const { open, handleClose, moduleName, filePath, fileName, routeName, fieldsInCrm, api, back } = props
     const navigate = useNavigate();
 
     const validationSchema = yup.object({
@@ -34,17 +32,15 @@ const ImportModel = (props) => {
         onSubmit: async (values) => {
             if (values?.file) {
                 handleClose();
-                const module = moduleName === "Leads" ? 'lead' : 'contact';
-                navigate(`/dashboard/${module}/import`, { state: { fileData: values.file, moduleName, fieldsInCrm, api, back } });
+                navigate(`/dashboard/${routeName}/import`, { state: { fileData: values.file, moduleName, fieldsInCrm, api, back } });
             }
             formik.resetForm();
         },
     });
     const handleTempleteDownload = () => {
         const anchor = document.createElement("a");
-        anchor.href = SampleLeadTemplete;
-        anchor.href = moduleName === "Leads" ? SampleLeadTemplete : SampleContactTemplete;
-        anchor.download = moduleName === "Leads" ? "SampleLeadTemplete.xlsx" : "SampleContactTemplete.xlsx";
+        anchor.href = filePath;
+        anchor.download = fileName;
         anchor.click();
     }
 
