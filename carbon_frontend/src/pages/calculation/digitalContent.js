@@ -20,31 +20,35 @@ const DigitalContent = () => {
 
     // -----------   initialValues
     const initialValues = {
-        type: 'Emails',
         count: '',
-        mb: '',
+        MB: '',
         noOfAttendees: '',
         noOfHours: '',
         serviceLifeOfLaptop: '',
-        ef: '',
-        emission: '',
+        emissionOne: '',
+        emissionTwo: '',
+        emissionThree: '',
     };
 
     const formik = useFormik({
         initialValues,
-        validationSchema,
-        validate: (values) => {
-            const errors = {};
-            if (values?.type === "Emails" && values?.count === "" || values?.ef === "") {
-                errors.count = "Count is required";
-                errors.ef = "EF is required";
-            }
+        // validationSchema,
 
-            return errors;
-        },
         onSubmit: async (values) => {
-            dispatch(addData({ id: allData?.length + 1, ...values }))
-            formik.resetForm()
+            formik.setFieldValue('emissionOne', values?.count * 13 / 1000);
+            formik.setFieldValue('emissionTwo', values?.MB * 50 / 1000);
+            const emission = values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop);
+            formik.setFieldValue('emissionThree', emission || "");
+
+            const data = [
+                {
+                    type: 'emails',
+                    count: values?.count,
+                    emissionOne: values?.emissionOne
+                },
+            ]
+
+            dispatch(addData({ values }))
         },
     });
 
@@ -54,72 +58,22 @@ const DigitalContent = () => {
 
 
 
-    useEffect(() => {
-        formik.setFieldValue("count", '')
-        formik.setFieldValue("mb", '')
-        formik.setFieldValue("noOfAttendees", '')
-        formik.setFieldValue("noOfHours", '')
-        formik.setFieldValue("serviceLifeOfLaptop", '')
-        formik.setFieldValue("ef", '')
-        formik.setFieldValue("emission", '')
-    }, [formik?.values?.type])
-
-
-    useEffect(() => {
-        const { type, count, ef, mb, noOfAttendees, noOfHours, serviceLifeOfLaptop } = formik.values;
-
-        if (type === "Emails") {
-            formik.setFieldValue('emission', count * ef);
-        } else if (type === "Attachment") {
-            formik.setFieldValue('emission', mb * ef);
-        } else if (type === "Laptop") {
-            const emission = noOfAttendees * ef * (noOfHours / serviceLifeOfLaptop);
-            formik.setFieldValue('emission', emission || "");
-        }
-    }, [formik.values]);
-
     return (
         <div>
             <Container maxWidth>
-                <Card style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
-                    <Box width={"50%"}>
+                <Card style={{ padding: "20px" }}>
+                    <Box >
                         <Grid
                             container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                         >
 
-                            <Grid item xs={12} sm={12} md={12}>
-                                <FormControl fullWidth>
-                                    <FormLabel>Type <span style={{ color: "red" }}>*</span></FormLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="type"
-                                        name="type"
-                                        label=""
-                                        size='small'
-                                        fullWidth
-                                        value={formik.values.type || null}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.type &&
-                                            Boolean(formik.errors.type)
-                                        }
-                                        helperText={
-                                            formik.touched.type && formik.errors.type
-                                        }
-                                    >
-                                        <MenuItem value="Emails">Emails</MenuItem>
-                                        <MenuItem value="Attachment">Attachment </MenuItem>
-                                        <MenuItem value="Laptop">Laptop </MenuItem>
-                                    </Select>
-                                    <FormHelperText>{formik.touched.type && formik.errors.type}</FormHelperText>
-                                </FormControl>
-                            </Grid>
-                            {
-                                formik.values.type === "Emails" &&
-
-                                <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={4} md={4}>
+                                <Typography variant='h6'>
+                                    Emails
+                                </Typography>
+                                <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label">Count <span style={{ color: "red" }}>*</span></FormLabel>
                                     <TextField
                                         id="count"
@@ -138,159 +92,154 @@ const DigitalContent = () => {
                                         }
                                     />
                                 </Grid>
-                            }
-                            {
-                                formik.values.type === "Attachment" &&
-                                <Grid item xs={12} sm={12} md={12}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">MB <span style={{ color: "red" }}>*</span></FormLabel>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e) <span style={{ color: "red" }}>*</span></FormLabel>
                                     <TextField
-                                        id="mb"
-                                        name="mb"
+                                        id="emissionOne"
+                                        name="emissionOne"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.mb}
+                                        disabled
+                                        value={formik.values.emissionOne}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.mb &&
-                                            Boolean(formik.errors.mb)
+                                            formik.touched.emissionOne &&
+                                            Boolean(formik.errors.emissionOne)
                                         }
                                         helperText={
-                                            formik.touched.mb && formik.errors.mb
+                                            formik.touched.emissionOne && formik.errors.emissionOne
                                         }
                                     />
                                 </Grid>
-
-                            }
-                            {
-                                formik.values.type === "Laptop" &&
-                                <>
-
-                                    <Grid item xs={12} sm={12} md={12}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label">No.of Attendees <span style={{ color: "red" }}>*</span></FormLabel>
-                                        <TextField
-                                            id="noOfAttendees"
-                                            name="noOfAttendees"
-                                            label=""
-                                            fullWidth
-                                            size="small"
-                                            value={formik.values.noOfAttendees}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                formik.touched.noOfAttendees &&
-                                                Boolean(formik.errors.noOfAttendees)
-                                            }
-                                            helperText={
-                                                formik.touched.noOfAttendees && formik.errors.noOfAttendees
-                                            }
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={12}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label">No. of hours<span style={{ color: "red" }}>*</span></FormLabel>
-                                        <TextField
-                                            id="noOfHours"
-                                            name="noOfHours"
-                                            label=""
-                                            fullWidth
-                                            size="small"
-                                            value={formik.values.noOfHours}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                formik.touched.noOfHours &&
-                                                Boolean(formik.errors.noOfHours)
-                                            }
-                                            helperText={
-                                                formik.touched.noOfHours && formik.errors.noOfHours
-                                            }
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={12}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label">Service life of Laptop<span style={{ color: "red" }}>*</span></FormLabel>
-                                        <TextField
-                                            id="serviceLifeOfLaptop"
-                                            name="serviceLifeOfLaptop"
-                                            label=""
-                                            fullWidth
-                                            size="small"
-                                            value={formik.values.serviceLifeOfLaptop}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                formik.touched.serviceLifeOfLaptop &&
-                                                Boolean(formik.errors.serviceLifeOfLaptop)
-                                            }
-                                            helperText={
-                                                formik.touched.serviceLifeOfLaptop && formik.errors.serviceLifeOfLaptop
-                                            }
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={12} md={12}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label">EF of laptop  (kg Co2e)<span style={{ color: "red" }}>*</span></FormLabel>
-                                        <TextField
-                                            id="ef"
-                                            name="ef"
-                                            label=""
-                                            fullWidth
-                                            size="small"
-                                            value={formik.values.ef}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                formik.touched.ef &&
-                                                Boolean(formik.errors.ef)
-                                            }
-                                            helperText={
-                                                formik.touched.ef && formik.errors.ef
-                                            }
-                                        />
-                                    </Grid>
-                                </>
-
-                            }
-                            {
-                                (formik.values.type === "Emails" || formik.values.type === "Attachment") && (
-                                    <>
-                                        <Grid item xs={12} sm={12} md={12}>
-                                            <FormLabel id="demo-row-radio-buttons-group-label">EF <span style={{ color: "red" }}>*</span></FormLabel>
-                                            <TextField
-                                                id="ef"
-                                                name="ef"
-                                                label=""
-                                                fullWidth
-                                                size="small"
-                                                value={formik.values.ef}
-                                                onChange={formik.handleChange}
-                                                error={
-                                                    formik.touched.ef &&
-                                                    Boolean(formik.errors.ef)
-                                                }
-                                                helperText={
-                                                    formik.touched.ef && formik.errors.ef
-                                                }
-                                            />
-                                        </Grid>
-                                    </>
-                                )
-                            }
-
-                            <Grid item xs={12} sm={12} md={12}>
-                                <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e) <span style={{ color: "red" }}>*</span></FormLabel>
-                                <TextField
-                                    id="emission"
-                                    name="emission"
-                                    label=""
-                                    fullWidth
-                                    size="small"
-                                    disabled
-                                    value={formik.values.emission}
-                                    onChange={formik.handleChange}
-                                    error={
-                                        formik.touched.emission &&
-                                        Boolean(formik.errors.emission)
-                                    }
-                                    helperText={
-                                        formik.touched.emission && formik.errors.emission
-                                    }
-                                />
                             </Grid>
+                            <Grid item xs={12} sm={4} md={4}>
+                                <Typography variant='h6'>
+                                    Attachment
+                                </Typography>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">MB <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <TextField
+                                        id="MB"
+                                        name="MB"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        value={formik.values.MB}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.MB &&
+                                            Boolean(formik.errors.MB)
+                                        }
+                                        helperText={
+                                            formik.touched.MB && formik.errors.MB
+                                        }
+                                    />
+                                </Grid>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e) <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <TextField
+                                        id="emissionTwo"
+                                        name="emissionTwo"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        disabled
+                                        value={formik.values.emissionTwo}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.emissionTwo &&
+                                            Boolean(formik.errors.emissionTwo)
+                                        }
+                                        helperText={
+                                            formik.touched.emissionTwo && formik.errors.emissionTwo
+                                        }
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={12} sm={4} md={4}>
+                                <Typography variant='h6'>
+                                    Laptop
+                                </Typography>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">No.of Attendees <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <TextField
+                                        id="noOfAttendees"
+                                        name="noOfAttendees"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        value={formik.values.noOfAttendees}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.noOfAttendees &&
+                                            Boolean(formik.errors.noOfAttendees)
+                                        }
+                                        helperText={
+                                            formik.touched.noOfAttendees && formik.errors.noOfAttendees
+                                        }
+                                    />
+                                </Grid>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">No. of hours<span style={{ color: "red" }}>*</span></FormLabel>
+                                    <TextField
+                                        id="noOfHours"
+                                        name="noOfHours"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        value={formik.values.noOfHours}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.noOfHours &&
+                                            Boolean(formik.errors.noOfHours)
+                                        }
+                                        helperText={
+                                            formik.touched.noOfHours && formik.errors.noOfHours
+                                        }
+                                    />
+                                </Grid>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Service life of Laptop<span style={{ color: "red" }}>*</span></FormLabel>
+                                    <TextField
+                                        id="serviceLifeOfLaptop"
+                                        name="serviceLifeOfLaptop"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        value={formik.values.serviceLifeOfLaptop}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.serviceLifeOfLaptop &&
+                                            Boolean(formik.errors.serviceLifeOfLaptop)
+                                        }
+                                        helperText={
+                                            formik.touched.serviceLifeOfLaptop && formik.errors.serviceLifeOfLaptop
+                                        }
+                                    />
+                                </Grid>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <TextField
+                                        id="emissionThree"
+                                        name="emissionThree"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        disabled
+                                        value={formik.values.emissionThree}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.emissionThree &&
+                                            Boolean(formik.errors.emissionThree)
+                                        }
+                                        helperText={
+                                            formik.touched.emissionThree && formik.errors.emissionThree
+                                        }
+                                    />
+                                </Grid>
+                            </Grid>
+
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit(); }}>Calculate and Add To Footprint</Button>
@@ -317,7 +266,7 @@ const DigitalContent = () => {
                     </Box>
                 </Card>
             </Container>
-        </div>
+        </div >
     )
 }
 
