@@ -178,8 +178,8 @@ const ContactUsForm = () => {
             /> */}
           </Grid>
         </Grid>
-      </Box >
-    </div >
+      </Box>
+    </div>
   );
 };
 
