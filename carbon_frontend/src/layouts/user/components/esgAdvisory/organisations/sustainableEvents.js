@@ -29,12 +29,23 @@ const SustainableEvents = () => {
                 <p className='text-center '>Kindly note that the information on the below two tabs is relevant to individuals in the Chief Marketing Officer (CMO) or Sustainability verticals or the vertical/ individuals who are looking to conduct an event</p>
                 <div className='d-flex justify-content-around py-5 mt-4'>
 
-                    <Box>
-                        <p className='text-center  text-white pt-3 fontFamily fw-bold pb-2 rounded-3' style={{ backgroundColor: "#4ABD43", width: "500px" }}>Event Venue <FaLocationDot/> </p>
+                    <Box onClick={() => navigate("/event-venue")}>
+                        <p
+                            className='text-center text-white pt-3 fontFamily fw-bold pb-2 rounded-3'
+                            style={{ cursor: "pointer", backgroundColor: "#4ABD43", width: "500px" }}
+                        >
+                            Event Venue
+                            <FaLocationDot />
+                        </p>
                     </Box>
 
-                    <Box>
-                        <p className='text-center  text-white pt-3 fontFamily fw-bold pb-2 rounded-3' style={{ backgroundColor: "#4ABD43", width: "500px" }}>Event Execution Agency <TbWorld/></p>
+                    <Box onClick={() => navigate('/event-execution-agency')}>
+                        <p
+                            className="text-center  text-white pt-3 fontFamily fw-bold pb-2 rounded-3"
+                            style={{ cursor: "pointer", backgroundColor: '#4ABD43', width: '500px' }}
+                        >
+                            Event Execution Agency <TbWorld />
+                        </p>
                     </Box>
                 </div>
 

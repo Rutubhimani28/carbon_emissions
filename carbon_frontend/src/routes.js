@@ -10,6 +10,7 @@ import ImportView from './components/Import/ImportView';
 import UserLayout from './layouts/user';
 import Services from './layouts/user/components/landingPage/services/index'
 import DigitalContent from './pages/digitalContent';
+import Calculation from './pages/calculation';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -24,6 +25,7 @@ export default function Router() {
         { path: 'user/view/:id', element: <UserView /> },
         { path: ':view/import', element: <ImportView /> },
         { path: 'digitalContent', element: <DigitalContent /> },
+        { path: 'calculation', element: <Calculation /> },
       ],
     },
     { path: '/', element: <UserLayout /> },
