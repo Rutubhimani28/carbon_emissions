@@ -29,13 +29,12 @@ const EventExecutionAgency = () => {
         fixedDateTo: '',
         alternateDatesFrom: '',
         alternateDatesTo: '',
-        city: '',
-        preferredHotels: '',
-        eventType: '',
-        eventSizeNoOfPax: '',
-        foodBeverages: '',
-        roomsNeeded: '',
-        airportTransferNeeded: '',
+        allocatedBudgetForYourActivity: "",
+        agencyTypeNeeded: "",
+        entertainment: "",
+        teamBuilding: "",
+        motivationalSpeaker: "",
+        emcee: "",
         message: '',
     };
 
@@ -56,13 +55,12 @@ const EventExecutionAgency = () => {
             fixedDateTo: yup.string().required('Fixed Date To is required'),
             alternateDatesFrom: yup.string().required('Alternate Dates From is required'),
             alternateDatesTo: yup.string().required('Alternate Dates To is required'),
-            city: yup.string().required('City is required'),
-            preferredHotels: yup.string().required('Preferred Hotels is required'),
-            eventType: yup.string().required('Event Type is required'),
-            eventSizeNoOfPax: yup.string().required('Event Size No Of Pax is required'),
-            foodBeverages: yup.string().required('Food Beverages is required'),
-            roomsNeeded: yup.string().required('Rooms Needed is required'),
-            airportTransferNeeded: yup.string().required('Airport Transfer Needed is required'),
+            allocatedBudgetForYourActivity: yup.string().required('Allocated Budget For Your Activity is required'),
+            agencyTypeNeeded: yup.string().required('Agency Type Needed is required'),
+            entertainment: yup.string().required('Entertainment is required'),
+            teamBuilding: yup.string().required('Team Building is required'),
+            motivationalSpeaker: yup.string().required('Motivational Speaker is required'),
+            emcee: yup.string().required('Emcee is required'),
             message: yup.string().required('Message is required'),
         }),
         onSubmit: (values) => {
@@ -145,7 +143,7 @@ const EventExecutionAgency = () => {
                         <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Designation <span style={{ color: "red" }}>*</span></FormLabel>
                         <TextField
                             name="designation"
-                            type="email"
+                            type="text"
                             size="small"
                             fullWidth
                             value={formik.values.designation}
@@ -227,105 +225,86 @@ const EventExecutionAgency = () => {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label fw-bolder">Browse your venue <span style={{ color: "red" }}>*</span></FormLabel>
+                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label fw-bolder">Browse your venue </FormLabel>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">city <span style={{ color: "red" }}>*</span></FormLabel>
+                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Allocated budget for your activity ($) <span style={{ color: "red" }}>*</span></FormLabel>
                         <Select
                             displayEmpty
                             inputProps={{ 'aria-label': 'Without label' }}
                             fullWidth
                             labelId="demo-simple-select-helper-label"
                             size="small"
-                            name="city"
+                            name="allocatedBudgetForYourActivity"
                             id="demo-simple-select-helper"
-                            value={formik.values.city}
+                            value={formik.values.allocatedBudgetForYourActivity}
                             onChange={formik.handleChange}
                         >
                             <MenuItem value={'india'}>India</MenuItem>
                         </Select>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Preferred Hotels <span style={{ color: "red" }}>*</span></FormLabel>
+                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Agency type needed <span style={{ color: "red" }}>*</span></FormLabel>
                         <Select
                             displayEmpty
                             inputProps={{ 'aria-label': 'Without label' }}
                             fullWidth
                             labelId="demo-simple-select-helper-label"
                             size="small"
-                            name="preferredHotels"
+                            name="agencyTypeNeeded"
                             id="demo-simple-select-helper"
-                            value={formik.values.city}
+                            value={formik.values.agencyTypeNeeded}
                             onChange={formik.handleChange}
                         >
                             <MenuItem value={'india'}>India</MenuItem>
                         </Select>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Event Type <span style={{ color: "red" }}>*</span></FormLabel>
-                        <Select
-                            displayEmpty
-                            inputProps={{ 'aria-label': 'Without label' }}
-                            fullWidth
-                            labelId="demo-simple-select-helper-label"
-                            size="small"
-                            name="eventType"
-                            id="demo-simple-select-helper"
-                            value={formik.values.eventType}
-                            onChange={formik.handleChange}
-                        >
-                            <MenuItem value={'india'}>India</MenuItem>
-                        </Select>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Event Size (No. Of Pax) <span style={{ color: "red" }}>*</span></FormLabel>
-                        <TextField
-                            name="eventSizeNoOfPax"
-                            type="textarea"
-                            size="small"
-                            fullWidth
-                            value={formik.values.eventSizeNoOfPax}
-                            // placeholder="Enter Hear"
-                            onChange={formik.handleChange}
-                            error={formik.touched.eventSizeNoOfPax && Boolean(formik.errors.eventSizeNoOfPax)}
-                            helperText={formik.touched.eventSizeNoOfPax && formik.errors.eventSizeNoOfPax}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Food & Beverages <span style={{ color: "red" }}>*</span></FormLabel>
+
+                    <Grid item xs={12} sm={3}>
+                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Entertainment <span style={{ color: "red" }}>*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="female"
-                            name="radio-buttons-group"
+                            name="entertainment"
                         >
                             <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="no" control={<Radio />} label="No" />
                         </RadioGroup>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Rooms Needed <span style={{ color: "red" }}>*</span></FormLabel>
+                    <Grid item xs={12} sm={3}>
+                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Team Building <span style={{ color: "red" }}>*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
+                            name="teamBuilding"
                             defaultValue="female"
-                            name="radio-buttons-group"
                         >
                             <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="no" control={<Radio />} label="No" />
                         </RadioGroup>
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Airport Transfer Needed <span style={{ color: "red" }}>*</span></FormLabel>
+                    <Grid item xs={12} sm={3}>
+                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Motivational Speaker <span style={{ color: "red" }}>*</span></FormLabel>
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="female"
-                            name="radio-buttons-group"
+                            name="motivationalSpeaker"
+                        >
+                            <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="no" control={<Radio />} label="No" />
+                        </RadioGroup>
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Emcee <span style={{ color: "red" }}>*</span></FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="female"
+                            name="emcee"
                         >
                             <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="no" control={<Radio />} label="No" />
                         </RadioGroup>
                     </Grid>
 
-                    {/*  */}
                     <Grid item xs={12}>
                         <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Message <span style={{ color: "red" }}>*</span></FormLabel>
                         <TextField
