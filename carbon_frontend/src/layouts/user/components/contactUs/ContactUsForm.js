@@ -1,9 +1,8 @@
 import { Box, Button, FormHelperText, FormLabel, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import React from 'react';
-import * as yup from "yup"
-import { InlineWidget, PopupWidget } from "react-calendly";
+import { InlineWidget } from "react-calendly";
 import { Link } from 'react-router-dom';
+import * as yup from "yup";
 
 const ContactUsForm = () => {
   const initialValues = {
