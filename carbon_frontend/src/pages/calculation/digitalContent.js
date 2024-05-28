@@ -57,7 +57,6 @@ const DigitalContent = () => {
         formik.setFieldValue("emission", '')
     }, [formik?.values?.type])
 
-    console.log(data)
 
     useEffect(() => {
         const { type, count, ef, mb, noOfAttendees, noOfHours, serviceLifeOfLaptop } = formik.values;
@@ -68,9 +67,9 @@ const DigitalContent = () => {
             formik.setFieldValue('emission', mb * ef);
         } else if (type === "Laptop") {
             const emission = noOfAttendees * ef * (noOfHours / serviceLifeOfLaptop);
-            formik.setFieldValue('emission', emission);
+            formik.setFieldValue('emission', emission || "");
         }
-    }, [formik.values, formik.setFieldValue]);
+    }, [formik.values]);
 
     return (
         <div>
