@@ -72,7 +72,6 @@ const EventVenue = () => {
 
   return (
     <div className="main py-5">
-
       <Box>
         <Typography variant="h5" className="text-center fs-1 green pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow">
           Event Venue
@@ -150,7 +149,7 @@ const EventVenue = () => {
             <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Designation <span style={{ color: "red" }}>*</span></FormLabel>
             <TextField
               name="designation"
-              type="email"
+              type="text"
               size="small"
               fullWidth
               value={formik.values.designation}
@@ -232,7 +231,7 @@ const EventVenue = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label fw-bolder">Browse your venue <span style={{ color: "red" }}>*</span></FormLabel>
+            <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label fw-bolder">Browse your venue </FormLabel>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">city <span style={{ color: "red" }}>*</span></FormLabel>
