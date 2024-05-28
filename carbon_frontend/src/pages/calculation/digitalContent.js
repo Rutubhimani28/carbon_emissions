@@ -99,7 +99,7 @@ const DigitalContent = () => {
                                     Emails
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Count <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Count</FormLabel>
                                     <TextField
                                         id="count"
                                         name="count"
@@ -118,7 +118,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e) <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e)</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -143,7 +143,7 @@ const DigitalContent = () => {
                                     Attachment
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">MB <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">MB</FormLabel>
                                     <TextField
                                         id="MB"
                                         name="MB"
@@ -162,7 +162,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e) <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e)</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -187,7 +187,7 @@ const DigitalContent = () => {
                                     Laptop
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">No.of Attendees <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">No.of Attendees</FormLabel>
                                     <TextField
                                         id="noOfAttendees"
                                         name="noOfAttendees"
@@ -206,7 +206,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">No. of hours<span style={{ color: "red" }}>*</span></FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">No. of hour</FormLabel>
                                     <TextField
                                         id="noOfHours"
                                         name="noOfHours"
@@ -225,7 +225,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Service life of Laptop<span style={{ color: "red" }}>*</span></FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Service life of Lapto</FormLabel>
                                     <TextField
                                         id="serviceLifeOfLaptop"
                                         name="serviceLifeOfLaptop"
@@ -244,7 +244,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
