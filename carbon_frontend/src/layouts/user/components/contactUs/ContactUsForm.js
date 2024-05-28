@@ -1,30 +1,34 @@
-import { Box, Button, FormLabel, Grid, TextField } from '@mui/material';
+import { Box, Button, FormHelperText, FormLabel, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
-import * as yup from "yup"
+import { Link } from 'react-router-dom';
+import * as yup from 'yup';
 
 const ContactUsForm = () => {
   const initialValues = {
-    firstName: "",
-    organisation: "",
-    workEmail: "",
-    lastName: "",
-    designation: "",
-    mobile: "",
-    message: "",
-  }
+    firstName: '',
+    organisation: '',
+    workEmail: '',
+    lastName: '',
+    designation: '',
+    mobile: '',
+    message: '',
+  };
 
   const formik = useFormik({
     initialValues,
     enableReinitialize: true,
     validationSchema: yup.object({
-      firstName: yup.string().required("Message is required"),
-      mobile: yup.string().required().matches(/^(0)?[0-9]{9,14}$/, 'Number is invalid'),
-      organisation: yup.string().required("Organisation is required"),
-      workEmail: yup.string().required("Work Email is required"),
-      lastName: yup.string().required("Last Name is required"),
-      designation: yup.string().required("Designation is required"),
-      message: yup.string().required("Message is required"),
+      firstName: yup.string().required('Message is required'),
+      mobile: yup
+        .string()
+        .required()
+        .matches(/^(0)?[0-9]{9,14}$/, 'Number is invalid'),
+      organisation: yup.string().required('Organisation is required'),
+      workEmail: yup.string().required('Work Email is required'),
+      lastName: yup.string().required('Last Name is required'),
+      designation: yup.string().required('Designation is required'),
+      message: yup.string().required('Message is required'),
     }),
     onSubmit: (values) => {
       // handleSubmit(values)
@@ -32,146 +36,120 @@ const ContactUsForm = () => {
   });
 
   return (
-    <div>
-
+    <div className="main py-5">
+      <p className="text-center pt-3 fontFamily main fw-bold fs-5">
+        For enquiries, please share your details, and we’ll respond within 24-48 hours. Alternatively, you can email us
+        at{' '}
+        <Link className=" text-decoration-none" style={{ color: '#4edceb' }}>
+          askme@gosustainable.ai.
+        </Link>
+      </p>
       <Box>
-        Contact Us
-        <Grid container spacing={2} p={4}>
-          <Grid item xs={12} sm={6} border={2} borderColor={"#e2e2e2"}>
+        <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'}>
             <Grid container spacing={2} p={1} py={2}>
               <Grid item xs={12} sm={6}>
-                <FormLabel id="demo-row-radio-buttons-group-label">First Name</FormLabel>
+                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">First Name <span style={{ color: "red" }}>*</span></FormLabel>
                 <TextField
-                  name='firstName'
-                  type='text'
-                  size='small'
+                  name="firstName"
+                  type="text"
+                  size="small"
                   fullWidth
                   value={formik.values.firstName}
-                  placeholder='Enter Hear'
+                  // placeholder="Enter Hear"
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.firstName &&
-                    Boolean(formik.errors.firstName)
-                  }
-                  helperText={
-                    formik.touched.firstName && formik.errors.firstName
-                  }
+                  error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                  helperText={formik.touched.firstName && formik.errors.firstName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel id="demo-row-radio-buttons-group-label">Last Name</FormLabel>
+                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Last Name <span style={{ color: "red" }}>*</span></FormLabel>
                 <TextField
-                  name='lastName'
-                  type='text'
-                  size='small'
+                  name="lastName"
+                  type="text"
+                  size="small"
                   fullWidth
                   value={formik.values.lastName}
-                  placeholder='Enter Hear'
+                  // placeholder="Enter Hear"
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.lastName &&
-                    Boolean(formik.errors.lastName)
-                  }
-                  helperText={
-                    formik.touched.lastName && formik.errors.lastName
-                  }
+                  error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                  helperText={formik.touched.lastName && formik.errors.lastName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel id="demo-row-radio-buttons-group-label">Organisation</FormLabel>
+                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Organisation <span style={{ color: "red" }}>*</span></FormLabel>
                 <TextField
-                  name='organisation'
-                  type='text'
-                  size='small'
+                  name="organisation"
+                  type="text"
+                  size="small"
                   fullWidth
                   value={formik.values.organisation}
-                  placeholder='Enter Hear'
+                  // placeholder="Enter Hear"
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.organisation &&
-                    Boolean(formik.errors.organisation)
-                  }
-                  helperText={
-                    formik.touched.organisation && formik.errors.organisation
-                  }
+                  error={formik.touched.organisation && Boolean(formik.errors.organisation)}
+                  helperText={formik.touched.organisation && formik.errors.organisation}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel id="demo-row-radio-buttons-group-label">Designation</FormLabel>
+                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Designation <span style={{ color: "red" }}>*</span></FormLabel>
                 <TextField
-                  name='designation'
-                  type='text'
-                  size='small'
+                  name="designation"
+                  type="text"
+                  size="small"
                   fullWidth
                   value={formik.values.designation}
-                  placeholder='Enter Hear'
+                  // placeholder="Enter Hear"
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.designation &&
-                    Boolean(formik.errors.designation)
-                  }
-                  helperText={
-                    formik.touched.designation && formik.errors.designation
-                  }
+                  error={formik.touched.designation && Boolean(formik.errors.designation)}
+                  helperText={formik.touched.designation && formik.errors.designation}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel id="demo-row-radio-buttons-group-label">Work Email</FormLabel>
+                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Work Email <span style={{ color: "red" }}>*</span></FormLabel>
                 <TextField
-                  name='workEmail'
-                  type='email'
-                  size='small'
+                  name="workEmail"
+                  type="email"
+                  size="small"
                   fullWidth
                   value={formik.values.workEmail}
-                  placeholder='Enter Hear'
+                  // placeholder="Enter Hear"
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.workEmail &&
-                    Boolean(formik.errors.workEmail)
-                  }
-                  helperText={
-                    formik.touched.workEmail && formik.errors.workEmail
-                  }
+                  error={formik.touched.workEmail && Boolean(formik.errors.workEmail)}
+                  helperText={formik.touched.workEmail && formik.errors.workEmail}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel id="demo-row-radio-buttons-group-label">Mobile</FormLabel>
+                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Mobile <span style={{ color: "red" }}>*</span></FormLabel>
                 <TextField
-                  name='mobile'
-                  type='text'
-                  size='small'
+                  name="mobile"
+                  type="text"
+                  size="small"
                   fullWidth
                   value={formik.values.mobile}
-                  placeholder='Enter Hear'
+                  // placeholder="Enter Hear"
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.mobile &&
-                    Boolean(formik.errors.mobile)
-                  }
-                  helperText={
-                    formik.touched.mobile && formik.errors.mobile
-                  }
+                  error={formik.touched.mobile && Boolean(formik.errors.mobile)}
+                  helperText={formik.touched.mobile && formik.errors.mobile}
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormLabel id="demo-row-radio-buttons-group-label">Message</FormLabel>
+                <FormLabel className='fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Message <span style={{ color: "red" }}>*</span></FormLabel>
                 <TextField
-                  name='message'
-                  type='textarea'
+                  name="message"
+                  multiline
                   rows={3}
-                  size='small'
+                  size="small"
                   fullWidth
                   value={formik.values.message}
-                  placeholder='Enter Hear'
+                  // placeholder="Enter Hear"
                   onChange={formik.handleChange}
-                  error={
-                    formik.touched.message &&
-                    Boolean(formik.errors.message)
-                  }
-                  helperText={
-                    formik.touched.message && formik.errors.message
-                  }
+                  error={formik.touched.message && Boolean(formik.errors.message)}
+                  helperText={formik.touched.message && formik.errors.message}
                 />
+                <FormHelperText>0 of 200 max words.</FormHelperText>
+              </Grid>
+              <Grid item xs={12}>
+                <p className='pt-2'>By submitting the above info, you acknowledge that you have read our <Link style={{ color: "#4ABD43", textDecoration: "none" }} to='/privacy-policy'> Privacy Policy.</Link></p>
               </Grid>
               <Grid item xs={5} sm={8}>
                 <Button
@@ -186,10 +164,9 @@ const ContactUsForm = () => {
                 </Button>
               </Grid>
             </Grid>
-
           </Grid>
-          <Grid item xs={12} sm={6}>
-            card 2
+          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'}>
+            fcghj
           </Grid>
         </Grid>
       </Box>
