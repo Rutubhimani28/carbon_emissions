@@ -1,4 +1,4 @@
-body {
+* {
     font-family: "Josefin Sans", sans-serif !important;
 }
 
@@ -123,4 +123,9 @@ body {
 
 .organise:hover h6 {
     color: #fff;
+}
+
+.roombg1 {
+    background-image: url('../images/room1.jpeg');
+    height: 100%;
 }

@@ -19,7 +19,6 @@ export const commonUtils = {
         XLSX.writeFile(wb, `${fileName}_${(formatedDate)}.${extension}`);    // .csv, .xlsx
         if (setSelectedRowIds) setSelectedRowIds([])
     },
-
     downloadCsvOrExcel: ({ csvColumns, data, extension, fileName, selectedIds, setSelectedRowIds }) => {
         const formatDateOfBirth = (dateString) => {
             return moment(dateString).format('DD/MM/YYYY HH:MM A')
@@ -48,5 +47,4 @@ export const commonUtils = {
             commonUtils.convertJsonToCsvOrExcel({ jsonArray: AllRecordsWithSpecificFileds, csvColumns, fileName, extension, setSelectedRowIds });
         }
     }
-
 }
