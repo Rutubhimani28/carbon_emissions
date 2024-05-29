@@ -8,10 +8,16 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from '@mui/icons-material/Edit';
 import TableStyleTwo from '../../components/TableStyleTwo';
+import AddEdit from './AddEdit';
 
-const Meetings = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechments, _id, setUserAction, data, type }) => {
+const Meetings = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechments, _id, setUserAction, data }) => {
+    const [type, setType] = useState('')
+    const [openAdd, setOpenAdd] = useState(false);
+    const [selectedData, setSelectedData] = useState({})
+
+    const handleOpenAdd = () => setOpenAdd(true);
+    const handleCloseAdd = () => setOpenAdd(false);
     const attechment = rows.filter((item) => item.type === 'Attachment')
-
 
     const columns = [
         {
@@ -25,13 +31,13 @@ const Meetings = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechmen
             headerName: "Action",
             sortable: false,
             renderCell: (params) => {
-                // const handleFirstNameClick = async (data) => {
-                //     setLeadData(data)
-                //     handleOpenEdit();
-                // };
+                const handleFirstNameClick = async (data) => {
+                    setSelectedData(data)
+                    handleOpenAdd();
+                };
                 return (
                     <>
-                        <Button variant='text' size='small' color='primary'><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
                     </>
                 );
             }
@@ -40,7 +46,7 @@ const Meetings = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechmen
 
     return (
         <div>
-            {/* Add Meeting */}
+            <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
 
             <Box style={{ cursor: "pointer" }} p={2}>
                 <Grid container display="flex" alignItems="center">

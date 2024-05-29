@@ -6,9 +6,16 @@ import React, { useState } from 'react'
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import TableStyleTwo from '../../components/TableStyleTwo';
+import AddEdit from './AddEdit';
 
 const Notes = ({ rows, toggleVisibilityEmails, isVisibleEmails, _id, setUserAction, method, leadView }) => {
 
+    const [type, setType] = useState('')
+    const [openAdd, setOpenAdd] = useState(false);
+    const [selectedData, setSelectedData] = useState({})
+
+    const handleOpenAdd = () => setOpenAdd(true);
+    const handleCloseAdd = () => setOpenAdd(false);
     const emails = rows.filter((item) => item.type === 'Emails')
 
     const columns = [
@@ -30,13 +37,13 @@ const Notes = ({ rows, toggleVisibilityEmails, isVisibleEmails, _id, setUserActi
             flex: 1,
             sortable: false,
             renderCell: (params) => {
-                // const handleFirstNameClick = async (data) => {
-                //     setLeadData(data)
-                //     handleOpenEdit();
-                // };
+                const handleFirstNameClick = async (data) => {
+                    setSelectedData(data)
+                    handleOpenAdd();
+                };
                 return (
                     <>
-                        <Button variant='text' size='small' color='primary' ><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
                     </>
                 );
             }
@@ -44,15 +51,11 @@ const Notes = ({ rows, toggleVisibilityEmails, isVisibleEmails, _id, setUserActi
 
     ];
 
-    // open note model
-    const [openNote, setOpenNote] = useState(false);
-    const handleOpenNote = () => {
-        setOpenNote(true);
-    };
-    const handleCloseNote = () => setOpenNote(false);
 
     return (
         <div>
+            <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
+
             <Box p={2} style={{ cursor: "pointer" }}>
                 <Grid container display="flex" alignItems="center">
                     <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
