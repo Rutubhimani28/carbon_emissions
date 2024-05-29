@@ -394,6 +394,7 @@ const EventExecutionAgency = () => {
                             color="secondary"
                             disableElevation
                             onClick={formik.handleSubmit}
+                            className='custom-btn'
                         >
                             {isLoading ? <CircularProgress size={27} /> : 'Submit'}
                         </Button>

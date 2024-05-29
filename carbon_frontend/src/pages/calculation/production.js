@@ -18,31 +18,29 @@ const Production = () => {
 
     // -----------   initialValues
     const initialValues = {
-        noOfKms: 0,
-        weightInKgs: 0,
-        ef: 0,
-        emission: 0,
+
     };
 
     const formik = useFormik({
         initialValues,
         // validationSchema,
         onSubmit: async (values) => {
-            const ef = Number(values?.weightInKgs) / Number(values?.noOfKms);
-            formik.setFieldValue('ef', ef || 0);
+            console.log(values, "values")
+            // const ef = Number(values?.weightInKgs) / Number(values?.noOfKms);
+            // formik.setFieldValue('ef', ef || 0);
 
-            const emission = Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(ef);
-            formik.setFieldValue('emission', emission || 0);
+            // const emission = Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(ef);
+            // formik.setFieldValue('emission', emission || 0);
 
-            const data = [
-                {
-                    type: 'Air',
-                    noOfKms: values?.noOfKms,
-                    weightInKgs: values?.weightInKgs,
-                    ef,
-                    emission,
-                },
-            ];
+            // const data = [
+            //     {
+            //         type: 'Air',
+            //         noOfKms: values?.noOfKms,
+            //         weightInKgs: values?.weightInKgs,
+            //         ef,
+            //         emission,
+            //     },
+            // ];
 
             // dispatch(addProductionData({ data }));
         },
@@ -205,7 +203,6 @@ const Production = () => {
                                     {item?.name}
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={4} py={1}>
-                                    {console.log(formik.values)}
                                     <TextField
                                         id={`${item?.fieldName}_area`}
                                         name={`${item?.fieldName}_area`}
