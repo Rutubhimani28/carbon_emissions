@@ -63,11 +63,22 @@
 p {
   margin-bottom: 0 !important;
 }
+
 .custom-btn {
   color: white;
   background: #4abd43;
 }
+
 .custom-btn:hover {
   color: white;
   background: #4abd43;
+}
+
+.css-e5dh6b .MuiDataGrid-columnHeaders {
+  background-color: #f5f5f5 !important;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.css-e5dh6b .MuiDataGrid-footerContainer {
+  background-color: #f5f5f5 !important;
 }

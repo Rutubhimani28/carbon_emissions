@@ -13,9 +13,10 @@ import {
 } from '@mui/x-data-grid';
 import moment from "moment";
 import React, { useEffect, useState } from 'react';
-import { CiExport, CiImport } from "react-icons/ci";
+import { CiExport } from "react-icons/ci";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import digitalContentFile from '../../assets/SAM_digital_Content_.xlsx';
 import DeleteModel from '../../components/Deletemodle';
 import ImportModel from '../../components/Import/ImportModel';
 import TableStyle from '../../components/TableStyle';
@@ -24,10 +25,9 @@ import { fetchDigitalContentData } from '../../redux/slice/digitalContentSlice';
 import { deleteManyApi } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
 import AddEdit from './AddEdit';
-import digitalContentFile from '../../assets/SAM_digital_Content_.xlsx'
-import Email from './email'
-import Laptop from './laptop'
-import Attechment from './attechment'
+import Attechment from './attechment';
+import Email from './email';
+import Laptop from './laptop';
 // ----------------------------------------------------------------------
 
 const StyledMenu = styled((props) => (
@@ -382,18 +382,18 @@ const DigitalContent = () => {
                 </Card> */}
 
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={3.5}>
                         <Card sx={{ marginTop: "20px" }}>
                             <Email toggleVisibilityEmails={toggleVisibilityEmails} isVisibleEmails={isVisibleEmails} setUserAction={setUserAction} rows={data} />
                         </Card>
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={3.5}>
                         <Card sx={{ marginTop: "20px" }}>
                             <Attechment toggleVisibilityAttechments={toggleVisibilityAttechments} isVisibleAttechments={isVisibleAttechments} setUserAction={setUserAction} rows={data} />
                         </Card>
 
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={5}>
                         <Card sx={{ marginTop: "20px" }}>
                             <Laptop toggleVisibilityLaptop={toggleVisibilityLaptop} isVisibleLaptop={isVisibleLaptop} setUserAction={setUserAction} rows={data} data={data} />
                         </Card>

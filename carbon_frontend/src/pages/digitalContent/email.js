@@ -21,7 +21,7 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
         {
             field: "count",
             headerName: "Count",
-            width: 400,
+            width: 200,
             valueFormatter: (params) => params.value,
         },
         {
@@ -71,10 +71,14 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
             {/* {
                 isVisibleEmails && */}
             <TableStyleTwo>
-                <Box width="100%" height="30vh">
+                <Box width="100%" height="50vh">
                     <DataGrid
                         rows={emails || []}
-                        columns={columns}
+                        // columns={columns}
+                        columns={columns.map((column, index) => ({
+                            ...column,
+                            disableColumnMenu: index === columns.length - 1 // Disable menu icon for the last column
+                        }))}
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
                         pagination={false}

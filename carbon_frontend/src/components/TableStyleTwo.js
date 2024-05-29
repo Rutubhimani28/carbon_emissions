@@ -11,7 +11,7 @@ const TableStyleTwo = styled('div')({
     borderBottom: "none",
   },
   "& .name-column--cell--capitalize": {
-      textTransform: "capitalize"
+    textTransform: "capitalize"
   },
   "& .name-column--cell": {
     color: Palette.primary.main,
@@ -32,7 +32,7 @@ const TableStyleTwo = styled('div')({
     minHeight: 40,
     borderRadius: "0 0 5px 5px",
   },
-  
+
   ".css-1jiby6q-MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within, .css-1jiby6q-MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
     outline: "none"
   }
