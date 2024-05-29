@@ -25,7 +25,9 @@ import { deleteManyApi } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
 import AddEdit from './AddEdit';
 import digitalContentFile from '../../assets/SAM_digital_Content_.xlsx'
-
+import Email from './email'
+import Laptop from './laptop'
+import Attechment from './attechment'
 // ----------------------------------------------------------------------
 
 const StyledMenu = styled((props) => (
@@ -96,6 +98,10 @@ const DigitalContent = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openImpt, setOpenImpt] = useState(false);
     const [type, setType] = useState('')
+    const [isVisibleNotes, setIsVisibleNotes] = useState(false);
+    const [isVisibleMeetings, setIsVisibleMeetings] = useState(false);
+    const [isVisibleTask, setIsVisibleTask] = useState(false);
+
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -104,7 +110,7 @@ const DigitalContent = () => {
     const userid = sessionStorage.getItem('user_id');
 
     const { data, isLoading } = useSelector((state) => state?.digitalContentDetails)
-
+    console.log(data);
     const fieldsInCrm = [
         { Header: "Type", accessor: 'type', type: 'string' },
         { Header: "Count", accessor: 'count', type: 'number' },
@@ -138,6 +144,10 @@ const DigitalContent = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const toggleVisibilityNotes = () => setIsVisibleNotes(!isVisibleNotes);
+    const toggleVisibilityMeeting = () => setIsVisibleMeetings(!isVisibleMeetings);
+    const toggleVisibilityTask = () => setIsVisibleTask(!isVisibleTask);
+
     const columns = [
         {
             field: "type",
@@ -176,11 +186,10 @@ const DigitalContent = () => {
                 );
             }
         },
-
         {
             field: "noOfAttendees",
             headerName: "No. of Attendees",
-            width:200,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -213,8 +222,6 @@ const DigitalContent = () => {
                 );
             }
         },
-
-
         {
             field: "action",
             headerName: "Action",
@@ -361,6 +368,20 @@ const DigitalContent = () => {
 
                     </Box>
                 </TableStyle>
+                <Card sx={{ marginTop: "50px" }}>
+                    <Email toggleVisibilityNotes={toggleVisibilityNotes} isVisibleNotes={isVisibleNotes} setUserAction={setUserAction} rows={data} />
+                </Card>
+
+                {/* Tasks Table */}
+                <Card sx={{ marginTop: "20px" }}>
+                    <Laptop toggleVisibilityTask={toggleVisibilityTask} isVisibleTask={isVisibleTask} setUserAction={setUserAction} rows={data} data={data} />
+                </Card>
+
+                {/* Meetings Table */}
+                <Card sx={{ marginTop: "20px" }}>
+                    <Attechment toggleVisibilityMeeting={toggleVisibilityMeeting} isVisibleMeetings={isVisibleMeetings} setUserAction={setUserAction} rows={data} />
+                </Card>
+
             </Container>
         </>
     );

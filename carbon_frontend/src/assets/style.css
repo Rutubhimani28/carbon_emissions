@@ -60,3 +60,7 @@
   background-color: #70ad47;
 
 }
+
+p {
+  margin-bottom: 0 !important;
+}
