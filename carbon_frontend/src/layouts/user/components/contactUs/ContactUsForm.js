@@ -26,13 +26,13 @@ const ContactUsForm = () => {
       firstName: yup.string().required('Message is required'),
       mobile: yup
         .string()
-        .required()
+        .required("Mobile is require")
         .matches(/^[0-9]{10}$/, 'Number is invalid'),
       organisation: yup.string().required('Organisation is required'),
-      workEmail: yup.string().required('Work Email is required'),
+      workEmail: yup.string().email("Email is invalid").required('Work Email is required'),
       lastName: yup.string().required('Last Name is required'),
       designation: yup.string().required('Designation is required'),
-      message: yup.string().required('Message is required'),
+      message: yup.string().required('Message is required').max(200, 'Message must be at most 200 characters long'),
     }),
     onSubmit: (values) => {
       handleSubmit(values);
