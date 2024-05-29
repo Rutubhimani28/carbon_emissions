@@ -28,7 +28,7 @@ const Calculation = () => {
     return (
         <div>
             <Container maxWidth>
-                <Box sx={{ maxWidth: { xs: 320, sm: 480, md: 1300 }, }}>
+                <Box sx={{ maxWidth: { xs: 320, sm: 500, md: 1350 }, }}>
                     <Tabs
                         value={value}
                         onChange={handleChange}
