@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, Button, Card, Container, Stack, Typography, styled } from '@mui/material';
+import { Box, Button, Card, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {
@@ -24,6 +24,7 @@ import { fetchAirFreightData } from '../../redux/slice/airFreightSlice';
 import { deleteManyApi } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
 import AddEdit from './AddEdit';
+import TableStyleTwo from '../../components/TableStyleTwo';
 // import airFreightFile from '../../assets/SAM_air_Freight_.xlsx'
 
 // ----------------------------------------------------------------------
@@ -136,20 +137,20 @@ const AirFreight = () => {
         setAnchorEl(null);
     };
     const columns = [
-        {
-            field: "type",
-            headerName: "Type",
-            width: 230,
-            flex: 1,
-            cellClassName: "name-column--cell--capitalize",
-            renderCell: (params) => {
-                return (
-                    <Box >
-                        {params.value ? params.value : '-'}
-                    </Box>
-                );
-            }
-        },
+        // {
+        //     field: "type",
+        //     headerName: "Type",
+        //     width: 230,
+        //     flex: 1,
+        //     cellClassName: "name-column--cell--capitalize",
+        //     renderCell: (params) => {
+        //         return (
+        //             <Box >
+        //                 {params.value ? params.value : '-'}
+        //             </Box>
+        //         );
+        //     }
+        // },
         {
             field: "noOfKms",
             headerName: "No Of Kms",
@@ -189,6 +190,8 @@ const AirFreight = () => {
                 return (
                     <>
                         <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType('edit') }}><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleClick(params?.row); }}><DeleteIcon /></Button>
+
                     </>
                 );
             }
@@ -298,7 +301,7 @@ const AirFreight = () => {
                         </div>
                     </Stack>
                 </Stack>
-                <TableStyle>
+                {/* <TableStyle>
                     <Box width="100%">
                         {isLoading ? (
                             <Card style={{ display: 'flex', justifyContent: 'center', height: "600px" }}>
@@ -323,7 +326,45 @@ const AirFreight = () => {
                         )}
 
                     </Box>
-                </TableStyle>
+                </TableStyle> */}
+
+
+
+                <div>
+                    {/* <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
+                    <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} /> */}
+                    <Card className='tableWraper'>
+                        <Box p={2} style={{ cursor: "pointer" }}>
+                            <Grid container display="flex" alignItems="center">
+                                <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
+                                    <Stack direction="row" spacing={1} alignItems={"center"}>
+                                        <Typography variant="h5">Air</Typography>
+                                    </Stack>
+
+                                </Stack>
+                            </Grid>
+                        </Box>
+                        <TableStyleTwo>
+                            <Box width="100%" height="50vh">
+                                <DataGrid
+                                    rows={data || []}
+                                    getRowId={row => row._id}
+                                    // columnHeaderHeight={40}
+                                    pagination={false}
+                                    columns={columns.map((column, index) => ({
+                                        ...column,
+                                        disableColumnMenu: index === columns.length - 1 // Disable menu icon for the last column
+                                    }))}
+                                    disableSelectionOnClick
+                                    onRowClick={(params, event) => {
+                                        event.defaultMuiPrevented = true;
+                                    }}
+                                />
+                            </Box>
+                        </TableStyleTwo>
+
+                    </Card>
+                </div>
             </Container>
         </>
     );
