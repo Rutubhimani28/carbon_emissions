@@ -119,7 +119,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (gm CO2e)</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -163,7 +163,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (gm CO2e)</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -226,7 +226,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Service life of Lapto</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Service life of Laptop</FormLabel>
                                     <TextField
                                         id="serviceLifeOfLaptop"
                                         name="serviceLifeOfLaptop"
