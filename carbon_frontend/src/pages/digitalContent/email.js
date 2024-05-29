@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Box, Button, Grid, Stack, Typography } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { DataGrid } from '@mui/x-data-grid'
-import React, { useState } from 'react'
-import RemoveIcon from "@mui/icons-material/Remove";
-import AddIcon from "@mui/icons-material/Add";
+import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
+import { useState } from 'react';
 import TableStyleTwo from '../../components/TableStyleTwo';
 import AddEdit from './AddEdit';
 
@@ -19,22 +18,17 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
     const emails = rows?.filter((item) => item?.type === 'Emails')
 
     const columns = [
-
-        // {
-        //     field: "",
-        //     headerName: "",
-        //     flex: 1,
-        // },
         {
             field: "count",
             headerName: "Count",
-            flex: 1,
+            width: 400,
             valueFormatter: (params) => params.value,
         },
         {
             field: "action",
             headerName: "Action",
             sortable: false,
+            width: 200,
             renderCell: (params) => {
                 const handleFirstNameClick = async (data) => {
                     setSelectedData(data)
@@ -43,6 +37,7 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
                 return (
                     <>
                         <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary'><DeleteIcon /></Button>
                     </>
                 );
             }

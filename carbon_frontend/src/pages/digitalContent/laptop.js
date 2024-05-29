@@ -1,14 +1,14 @@
-import { Box, Button, Grid, Stack, Typography } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import RemoveIcon from "@mui/icons-material/Remove";
-import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
+import { useState } from 'react';
 import TableStyleTwo from '../../components/TableStyleTwo';
 import AddEdit from './AddEdit';
 
-const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop,  setUserAction}) => {
+
+
+const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }) => {
 
     const [type, setType] = useState('')
     const [openAdd, setOpenAdd] = useState(false);
@@ -59,6 +59,7 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop,  setUserAction}
             field: "action",
             headerName: "Action",
             sortable: false,
+            flex:1,
             renderCell: (params) => {
                 const handleFirstNameClick = async (data) => {
                     setSelectedData(data)
@@ -67,6 +68,7 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop,  setUserAction}
                 return (
                     <>
                         <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary'><DeleteIcon /></Button>
                     </>
                 );
             }

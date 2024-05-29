@@ -5,7 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import RemoveIcon from "@mui/icons-material/Remove";
-import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import TableStyleTwo from '../../components/TableStyleTwo';
 import AddEdit from './AddEdit';
@@ -30,6 +30,7 @@ const Attechments = ({ rows, style, toggleVisibilityAttechments, isVisibleAttech
             field: "action",
             headerName: "Action",
             sortable: false,
+            flex: 1,
             renderCell: (params) => {
                 const handleFirstNameClick = async (data) => {
                     setSelectedData(data)
@@ -37,7 +38,8 @@ const Attechments = ({ rows, style, toggleVisibilityAttechments, isVisibleAttech
                 };
                 return (
                     <>
-                        <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary'><EditIcon className='me-3' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }} /></Button>
+                        <Button variant='text' size='small' color='primary'><DeleteIcon /></Button>
                     </>
                 );
             }

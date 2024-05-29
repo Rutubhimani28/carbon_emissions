@@ -382,18 +382,18 @@ const DigitalContent = () => {
                 </Card> */}
 
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Grid item xs={3.5}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ marginTop: "20px" }}>
                             <Email toggleVisibilityEmails={toggleVisibilityEmails} isVisibleEmails={isVisibleEmails} setUserAction={setUserAction} rows={data} />
                         </Card>
                     </Grid>
-                    <Grid item xs={3.5}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ marginTop: "20px" }}>
                             <Attechment toggleVisibilityAttechments={toggleVisibilityAttechments} isVisibleAttechments={isVisibleAttechments} setUserAction={setUserAction} rows={data} />
                         </Card>
 
                     </Grid>
-                    <Grid item xs={5}>
+                    <Grid item xs={12}>
                         <Card sx={{ marginTop: "20px" }}>
                             <Laptop toggleVisibilityLaptop={toggleVisibilityLaptop} isVisibleLaptop={isVisibleLaptop} setUserAction={setUserAction} rows={data} data={data} />
                         </Card>
