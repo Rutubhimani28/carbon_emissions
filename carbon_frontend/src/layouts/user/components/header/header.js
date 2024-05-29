@@ -50,11 +50,28 @@ const Header = (props) => {
             <Divider />
             <List>
                 {navItems.map((item) => (
-                    <ListItem key={item.name} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item.name} />
-                        </ListItemButton>
-                    </ListItem>
+                    item?.name === 'ESC Advisory Services' ? (
+                        <div key={item.name} style={{ display: 'inline' }} className='esg_menu'>
+                            <Button
+                                className={` text-capitalize  fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
+                                onClick={() => navigate(item.path)}
+                            >
+                                {item?.name}<ExpandMoreIcon />
+                            </Button>
+                            <div className='esg_menuItem'>
+                                <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
+                                <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
+                                <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
+                                <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
+                            </div>
+                        </div>
+                    ) : (
+                        <ListItem key={item.name} disablePadding>
+                            <ListItemButton onClick={() => navigate(item.path)}>
+                                <ListItemText primary={item.name} />
+                            </ListItemButton>
+                        </ListItem>
+                    )
                 ))}
             </List>
         </Box>

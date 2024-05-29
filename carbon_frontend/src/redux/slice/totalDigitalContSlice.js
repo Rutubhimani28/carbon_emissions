@@ -13,14 +13,11 @@ const totalDigitalContSlice = createSlice({
             newData.forEach((newItem) => {
                 const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
                 if (existingItemIndex !== -1) {
-                    // Update the existing item
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
                 } else {
-                    // Add the new item
                     state.data.push(newItem);
                 }
             });
-            // Recalculate totalEmission
             state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0);
         },
         deleteData: (state, action) => ({
