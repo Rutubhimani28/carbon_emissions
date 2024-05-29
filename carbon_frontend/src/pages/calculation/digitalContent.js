@@ -119,7 +119,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (gm CO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -163,7 +163,7 @@ const DigitalContent = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (gm CO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -225,27 +225,8 @@ const DigitalContent = () => {
                                         }
                                     />
                                 </Grid>
-                                {/* <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Service life of Laptop</FormLabel>
-                                    <TextField
-                                        id="serviceLifeOfLaptop"
-                                        name="serviceLifeOfLaptop"
-                                        label=""
-                                        fullWidth
-                                        size="small"
-                                        value={formik.values.serviceLifeOfLaptop}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.serviceLifeOfLaptop &&
-                                            Boolean(formik.errors.serviceLifeOfLaptop)
-                                        }
-                                        helperText={
-                                            formik.touched.serviceLifeOfLaptop && formik.errors.serviceLifeOfLaptop
-                                        }
-                                    />
-                                </Grid> */}
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -274,7 +255,7 @@ const DigitalContent = () => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Digital Content Footprint = ${totalEmission} metric tons of CO2e`}</Typography>
+                                <Typography>{`Total Digital Content Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -282,7 +263,7 @@ const DigitalContent = () => {
                                         allData?.length > 0 && allData?.map((item) => (
 
                                             <li>
-                                                {`${item?.type} : ${item?.emission} metric tons of CO2e`}
+                                                {`${item?.type} : ${item?.emission} tons of kgCO2e`}
                                             </li>
                                         ))
                                     }

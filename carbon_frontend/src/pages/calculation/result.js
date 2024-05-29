@@ -47,50 +47,50 @@ const Result = () => {
                                 <tr>
                                     <th>Production</th>
                                     <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
+                                    <td className='ps-1'>tons of kgCO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Air Freight</th>
                                     <td align='right' className='ps-4'>{allFreightData?.totalEmission}</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
+                                    <td className='ps-1'>tons of kgCO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Food</th>
                                     <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
+                                    <td className='ps-1'>tons of kgCO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Energy Updated</th>
                                     <td align='right' className='ps-4'>{allEnergyData?.totalEmission}</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
+                                    <td className='ps-1'>tons of kgCO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Travel</th>
                                     <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
+                                    <td className='ps-1'>tons of kgCO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Digital Content</th>
                                     <td align='right' className='ps-4'>{allDigitalContentData?.totalEmission}</td>
-                                    <td className='ps-1'> metric tons of CO2e</td>
+                                    <td className='ps-1'> tons of kgCO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Local Transportation</th>
                                     <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
+                                    <td className='ps-1'>tons of kgCO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Accomodation</th>
                                     <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
+                                    <td className='ps-1'>tons of kgCO2e</td>
                                 </tr>
                                 <tr>
                                     <th>Waste</th>
                                     <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
+                                    <td className='ps-1'>tons of kgCO2e</td>
                                 </tr>
                             </table>
-                            <h4 className='text-center py-3 fw-bold'>Total To Offset = {total} metric tons of CO2e</h4>
+                            <h4 className='text-center py-3 fw-bold'>Total To Offset = {total}  tons of kgCO2e</h4>
                         </Box>
                     </div>
                     <div className='d-flex justify-content-end p-3'>

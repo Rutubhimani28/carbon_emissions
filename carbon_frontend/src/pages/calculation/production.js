@@ -239,14 +239,14 @@ const Production = () => {
 
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                            <Typography>{`Total Production Footprint = ${totalEmission} metric tons of CO2e`}</Typography>
+                            <Typography>{`Total Production Footprint = ${totalEmission} tons of CO2e`}</Typography>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3}>
                             <ul>
                                 {
                                     allData?.length > 0 && allData?.map((item, index) => (
                                         <li>
-                                            {`${item?.type} : ${item?.emission} metric tons of CO2e`}
+                                            {`${item?.type} : ${item?.emission} tons of CO2e`}
                                         </li>
 
                                     ))
