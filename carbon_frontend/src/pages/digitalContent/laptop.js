@@ -120,7 +120,7 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }
             <TableStyleTwo>
                 <Box width="100%" height="30vh">
                     <DataGrid
-                        rows={laptop}
+                        rows={laptop || []}
                         columns={columns.map((column, index) => ({
                             ...column,
                             disableColumnMenu: index === columns.length - 1 // Disable menu icon for the last column

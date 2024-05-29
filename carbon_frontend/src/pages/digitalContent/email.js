@@ -92,7 +92,7 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
             <TableStyleTwo>
                 <Box width="100%" height="30vh">
                     <DataGrid
-                        rows={emails}
+                        rows={emails || []}
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
                         pagination={false}

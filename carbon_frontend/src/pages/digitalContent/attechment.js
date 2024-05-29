@@ -91,7 +91,7 @@ const Attechments = ({ rows, style, toggleVisibilityAttechments, isVisibleAttech
             <TableStyleTwo>
                 <Box width="100%" height="30vh">
                     <DataGrid
-                        rows={attechment}
+                        rows={attechment || []}
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
                         disableSelectionOnClick
