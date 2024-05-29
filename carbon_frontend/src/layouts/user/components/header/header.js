@@ -35,7 +35,6 @@ const Header = (props) => {
     const navigate = useNavigate()
     const location = useLocation()
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
 
     const routeName = location?.pathname
 
@@ -54,10 +53,10 @@ const Header = (props) => {
                     item?.name === 'ESC Advisory Services' ? (
                         <div key={item.name} style={{ display: 'inline' }} className='esg_menu'>
                             <Button
-                                className={` text-capitalize d-flex justify-content-between  fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
+                                className={` text-capitalize  fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
+                                onClick={() => navigate(item.path)}
                             >
-
-                                <span onClick={() => navigate(item.path)}>{item?.name}</span> <span className=''><ExpandMoreIcon onClick={() => setMenuOpen(!menuOpen)} /></span>
+                                {item?.name}<ExpandMoreIcon />
                             </Button>
                             <div className='esg_menuItem'>
                                 <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
