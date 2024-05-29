@@ -46,7 +46,14 @@ const edit = async (req, res) => {
         res.status(400).json({ success: false, error: 'Failed to Update Data' });
     }
 }
-
+const deleteData = async (req, res) => {
+    try {
+        let result = await airFreight.findOneAndDelete({ _id: req.params.id })
+        res.status(200).json({ message: "Data deleted successfully", result })
+    } catch (err) {
+        res.status(404).json({ message: "error", err })
+    }
+}
 const deleteMany = async (req, res) => {
     try {
         const ids = req.body;
@@ -61,4 +68,4 @@ const deleteMany = async (req, res) => {
         res.status(500).send({ success: false, message: 'Server error', error });
     }
 };
-export default { index, add, addMany, edit, deleteMany }
+export default { index, add, addMany, edit, deleteData, deleteMany }

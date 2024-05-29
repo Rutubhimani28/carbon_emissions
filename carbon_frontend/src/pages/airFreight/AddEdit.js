@@ -217,7 +217,7 @@ const AddEdit = (props) => {
                 </DialogContent>
 
                 <DialogActions>
-                    <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading}>
+                    <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading} className="custom-btn">
                         {isLoading ? <CircularProgress size={27} /> : 'Save'}
                     </LoadingButton>
                     <Button
