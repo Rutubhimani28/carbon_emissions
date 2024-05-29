@@ -6,6 +6,7 @@ import digitalContent from '../../../assets/Digital.png'
 import dashboard from '../../../assets/dashboard.png'
 import AirFreight from '../../../assets/Travel.png'
 import contact from '../../../assets/contact.png'
+import events from '../../../assets/events.png'
 
 // ----------------------------------------------------------------------
 
@@ -41,7 +42,7 @@ const navConfig = [
   {
     title: 'Events',
     path: '/dashboard/events',
-    icon: <img src={contact} alt='Result' width={30} />,
+    icon: <img src={events} alt='Result' width={30} />,
   },
   // {
   //   title: 'User Management',

@@ -14,6 +14,7 @@ import Waste from '../../assets/Waste.png'
 import production from '../../assets/production.png'
 import result from '../../assets/result.png'
 import Production from './production';
+import EnergyUpdated from './energyUpdated';
 
 const Calculation = () => {
 
@@ -50,6 +51,7 @@ const Calculation = () => {
                 <Box mt={2}>
                     {value === 0 && <Production />}
                     {value === 1 && <AirFreight />}
+                    {value === 3 && <EnergyUpdated />}
                     {value === 5 && <DigitalContent />}
                     {value === 9 && <Result />}
                 </Box>

@@ -30,7 +30,7 @@ const AirFreight = () => {
         // validationSchema,
         onSubmit: async (values) => {
 
-            const ef = Number(values?.weightInKgs) / Number(values?.noOfKms);
+            const ef = 0.15;
             formik.setFieldValue('ef', ef || 0);
 
             const emission = Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(ef);
