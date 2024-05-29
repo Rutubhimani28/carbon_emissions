@@ -47,6 +47,7 @@ const edit = async (req, res) => {
 }
 
 const deleteData = async (req, res) => {
+    console.log(req.params.id)
     try {
         let result = await digitalContent.findOneAndDelete({ _id: req.params.id })
         res.status(200).json({ message: "Data deleted successfully", result })

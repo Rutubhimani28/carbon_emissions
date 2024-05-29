@@ -5,18 +5,30 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import TableStyleTwo from '../../components/TableStyleTwo';
 import AddEdit from './AddEdit';
-
-
+import { apidelete } from '../../service/api';
+import DeleteModel from '../../components/Deletemodle';
 
 const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }) => {
 
     const [type, setType] = useState('')
     const [openAdd, setOpenAdd] = useState(false);
     const [selectedData, setSelectedData] = useState({})
+    const [opendelete, setOpendelete] = useState(false);
+    const [id, setId] = useState('')
+
+    const laptop = rows?.filter((item) => item?.type === 'Laptop')
 
     const handleOpenAdd = () => setOpenAdd(true);
     const handleCloseAdd = () => setOpenAdd(false);
-    const laptop = rows?.filter((item) => item?.type === 'Laptop')
+    const handleCloseDelete = () => setOpendelete(false)
+    const handleOpenDelete = () => setOpendelete(true)
+
+    const handleDelete = async (id) => {
+        const result = await apidelete(`api/digitalContent/${id}`)
+        setUserAction(result)
+        handleCloseDelete();
+    }
+
 
     const columns = [
         {
@@ -59,16 +71,20 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }
             field: "action",
             headerName: "Action",
             sortable: false,
-            flex:1,
+            flex: 1,
             renderCell: (params) => {
                 const handleFirstNameClick = async (data) => {
                     setSelectedData(data)
                     handleOpenAdd();
                 };
+                const handleClick = async (data) => {
+                    setId(data?._id)
+                    handleOpenDelete();
+                };
                 return (
                     <>
                         <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
-                        <Button variant='text' size='small' color='primary'><DeleteIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleClick(params?.row); }}><DeleteIcon /></Button>
                     </>
                 );
             }
@@ -79,6 +95,7 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }
     return (
         <div>
             <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
+            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} />
 
             <Box style={{ cursor: "pointer" }} p={2}>
                 <Grid container display="flex" alignItems="center">
@@ -104,7 +121,10 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }
                 <Box width="100%" height="30vh">
                     <DataGrid
                         rows={laptop}
-                        columns={columns}
+                        columns={columns.map((column, index) => ({
+                            ...column,
+                            disableColumnMenu: index === columns.length - 1 // Disable menu icon for the last column
+                        }))}
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
                         disableSelectionOnClick

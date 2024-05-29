@@ -6,16 +6,30 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import TableStyleTwo from '../../components/TableStyleTwo';
 import AddEdit from './AddEdit';
+import DeleteModel from '../../components/Deletemodle';
+import { apidelete } from '../../service/api';
 
 const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }) => {
 
     const [type, setType] = useState('')
     const [openAdd, setOpenAdd] = useState(false);
     const [selectedData, setSelectedData] = useState({})
+    const [opendelete, setOpendelete] = useState(false);
+    const [id, setId] = useState('')
+
+    const emails = rows?.filter((item) => item?.type === 'Emails')
+
+    const handleCloseDelete = () => setOpendelete(false)
+    const handleOpenDelete = () => setOpendelete(true)
 
     const handleOpenAdd = () => setOpenAdd(true);
     const handleCloseAdd = () => setOpenAdd(false);
-    const emails = rows?.filter((item) => item?.type === 'Emails')
+
+    const handleDelete = async (id) => {
+        const result = await apidelete(`api/digitalContent/${id}`)
+        setUserAction(result)
+        handleCloseDelete();
+    }
 
     const columns = [
         {
@@ -34,10 +48,14 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
                     setSelectedData(data)
                     handleOpenAdd();
                 };
+                const handleClick = async (data) => {
+                    setId(data?._id)
+                    handleOpenDelete();
+                };
                 return (
                     <>
                         <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
-                        <Button variant='text' size='small' color='primary'><DeleteIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleClick(params?.row); }}><DeleteIcon /></Button>
                     </>
                 );
             }
@@ -49,6 +67,7 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
     return (
         <div>
             <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
+            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} />
 
             <Box p={2} style={{ cursor: "pointer" }}>
                 <Grid container display="flex" alignItems="center">
@@ -74,10 +93,13 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
                 <Box width="100%" height="30vh">
                     <DataGrid
                         rows={emails}
-                        columns={columns}
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
                         pagination={false}
+                        columns={columns.map((column, index) => ({
+                            ...column,
+                            disableColumnMenu: index === columns.length - 1 // Disable menu icon for the last column
+                        }))}
                         disableSelectionOnClick
                         onRowClick={(params, event) => {
                             event.defaultMuiPrevented = true;
