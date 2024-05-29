@@ -55,7 +55,7 @@ const Attechments = ({ rows, style, toggleVisibilityAttechments, isVisibleAttech
                 return (
                     <>
                         <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
-                        <Button variant='text' size='small' color='primary' onClick={() => { handleClick(params?.row); }}><DeleteIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleClick(params?.row); }}><DeleteIcon color='error' /></Button>
                     </>
                 );
             }

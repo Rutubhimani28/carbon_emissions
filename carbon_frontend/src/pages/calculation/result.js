@@ -4,14 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import SendMail from './sendMail';
 import { deleteData } from '../../redux/slice/totalDigitalContSlice';
 import { deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
+import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails)
     const allFreightData = useSelector((state) => state?.totalAirFreightDetails)
+    const allEnergyData = useSelector((state) => state?.totalEnergyUpdatedDetails)
 
-    const total = 0 + allFreightData?.totalEmission + 0 + 0 + allDigitalContentData?.totalEmission + 0 + 0 + 0
+    const total = 0 + allFreightData?.totalEmission + 0 + allEnergyData?.totalEmission + allDigitalContentData?.totalEmission + 0 + 0 + 0
 
     const data = {
         "totalWaste": "0",
@@ -19,7 +21,7 @@ const Result = () => {
         "totalLocalTransportation": "0",
         "totalDIgitalContent": allDigitalContentData?.totalEmission,
         "totlaTravel": "0",
-        "totalEnergyUpdated": "0",
+        "totalEnergyUpdated": allEnergyData?.totalEmission,
         "totalFood": "0",
         "totalAirFreight": allFreightData?.totalEmission,
         "totlaProduction": "0",
@@ -29,6 +31,7 @@ const Result = () => {
     const handeleDelete = () => {
         dispatch(deleteData())
         dispatch(deleteAirFreightData())
+        dispatch(deleteEnergyData())
     }
     return (
         <div>
@@ -58,7 +61,7 @@ const Result = () => {
                                 </tr>
                                 <tr>
                                     <th>Energy Updated</th>
-                                    <td align='right' className='ps-4'>0</td>
+                                    <td align='right' className='ps-4'>{allEnergyData?.totalEmission}</td>
                                     <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
