@@ -128,6 +128,7 @@ const DigitalContent = () => {
         { Header: "No. of Attendees", accessor: 'noOfAttendees' },
         { Header: "No. of Hours", accessor: 'noOfHours' },
         { Header: "Service life of Laptop", accessor: 'serviceLifeOfLaptop' },
+        { Header: "Emission", accessor: 'emission' },
         { Header: "Create Date", accessor: 'createdOn' },
     ];
 
@@ -305,7 +306,7 @@ const DigitalContent = () => {
                         Digital Content
                     </Typography>
                     <Stack direction="row" alignItems="center" justifyContent={"flex-end"} spacing={2}>
-                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={() => { handleOpenAdd(); setType("add") }}>
+                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={() => { handleOpenAdd(); setType("add") }} className="custom-btn">
                             Add New
                         </Button>
                         <div>
@@ -318,6 +319,7 @@ const DigitalContent = () => {
                                 disableElevation
                                 onClick={handleClick}
                                 endIcon={<KeyboardArrowDownIcon />}
+                                className="custom-btn"
                             >
                                 Action
                             </Button>
@@ -342,7 +344,7 @@ const DigitalContent = () => {
                         </div>
                     </Stack>
                 </Stack>
-                <TableStyle>
+                {/* <TableStyle>
                     <Box width="100%">
                         {isLoading ? (
                             <Card style={{ display: 'flex', justifyContent: 'center', height: "600px" }}>
@@ -367,7 +369,7 @@ const DigitalContent = () => {
                         )}
 
                     </Box>
-                </TableStyle>
+                </TableStyle> */}
 
                 {/* <Card sx={{ marginTop: "50px" }}>
                     <Email toggleVisibilityEmails={toggleVisibilityEmails} isVisibleEmails={isVisibleEmails} setUserAction={setUserAction} rows={data} />

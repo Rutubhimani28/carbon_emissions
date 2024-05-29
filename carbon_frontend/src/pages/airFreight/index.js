@@ -21,7 +21,7 @@ import DeleteModel from '../../components/Deletemodle';
 import TableStyle from '../../components/TableStyle';
 import Iconify from '../../components/iconify';
 import { fetchAirFreightData } from '../../redux/slice/airFreightSlice';
-import { deleteManyApi } from '../../service/api';
+import { apidelete, deleteManyApi } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
 import AddEdit from './AddEdit';
 import TableStyleTwo from '../../components/TableStyleTwo';
@@ -98,6 +98,12 @@ const AirFreight = () => {
     const [openImpt, setOpenImpt] = useState(false);
     const [type, setType] = useState('')
     const open = Boolean(anchorEl);
+    const [opendelete, setOpendelete] = useState(false);
+    const [id, setId] = useState('')
+
+    const handleCloseDelete = () => setOpendelete(false)
+    const handleOpenDelete = () => setOpendelete(true)
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -127,11 +133,11 @@ const AirFreight = () => {
     const handleOpenAdd = () => setOpenAdd(true);
     const handleCloseAdd = () => setOpenAdd(false);
 
-    const handleOpenImpt = () => {
-        setOpenImpt(true);
-        handleClose();
-    };
-    const handleCloseImpt = () => setOpenImpt(false);
+    const handleDelete = async (id) => {
+        const result = await apidelete(`api/airFreight/${id}`)
+        setUserAction(result)
+        handleCloseDelete();
+    }
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -187,11 +193,14 @@ const AirFreight = () => {
                     setSelectedData(data)
                     handleOpenAdd();
                 };
+                const handleClick = async (data) => {
+                    setId(data?._id)
+                    handleOpenDelete();
+                };
                 return (
                     <>
-                        <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType('edit') }}><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
                         <Button variant='text' size='small' color='primary' onClick={() => { handleClick(params?.row); }}><DeleteIcon /></Button>
-
                     </>
                 );
             }
@@ -255,6 +264,7 @@ const AirFreight = () => {
     return (
         <>
             <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
+            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} />
 
             {/* <ImportModel open={openImpt} handleClose={handleCloseImpt} moduleName="Air Freight" api="api/airFreight/addMany" back="/dashboard/airFreight" fieldsInCrm={fieldsInCrm} filePath={airFreightFile} fileName={"SampleAirFreightTemplete.xlsx"} routeName={"airFreight"} /> */}
 
@@ -264,7 +274,7 @@ const AirFreight = () => {
                         Air Freight
                     </Typography>
                     <Stack direction="row" alignItems="center" justifyContent={"flex-end"} spacing={2}>
-                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={() => { handleOpenAdd(); setType("add") }}>
+                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={() => { handleOpenAdd(); setType("add") }} className="custom-btn">
                             Add New
                         </Button>
                         <div>
@@ -277,6 +287,7 @@ const AirFreight = () => {
                                 disableElevation
                                 onClick={handleClick}
                                 endIcon={<KeyboardArrowDownIcon />}
+                                className="custom-btn"
                             >
                                 Action
                             </Button>

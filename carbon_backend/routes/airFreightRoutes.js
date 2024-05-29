@@ -8,6 +8,7 @@ router.get('/', auth, airFreightController.index);
 router.post('/add', auth, airFreightController.add);
 router.post('/addMany', auth, airFreightController.addMany);
 router.put('/:id', auth, airFreightController.edit);
+router.delete('/:id', auth, airFreightController.deleteData);
 router.post('/deleteMany', auth, airFreightController.deleteMany);
 
 export default router;

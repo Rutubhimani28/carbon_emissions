@@ -141,7 +141,7 @@ const ContactUs = () => {
                         Contact Us
                     </Typography>
                     <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
-                        <Button variant="contained" startIcon={<CiExport icon="eva:plus-fill" />} onClick={() => { handleExportSms('xlsx') }} >
+                        <Button variant="contained" startIcon={<CiExport icon="eva:plus-fill" />} onClick={() => { handleExportSms('xlsx') }} className='custom-btn'>
                             {selectedRowIds && selectedRowIds?.length > 0 ? 'Export Selected Data' : 'Export'}
                         </Button>
                     </Stack>
