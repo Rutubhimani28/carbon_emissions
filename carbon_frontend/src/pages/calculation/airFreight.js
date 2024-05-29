@@ -34,7 +34,7 @@ const AirFreight = () => {
 
             const data = [
                 {
-                    type: 'air',
+                    type: 'Air',
                     noOfKms: values?.noOfKms,
                     weightInKgs: values?.weightInKgs,
                     emission
