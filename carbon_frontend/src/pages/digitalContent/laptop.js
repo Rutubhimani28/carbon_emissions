@@ -59,7 +59,7 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }
             field: "action",
             headerName: "Action",
             sortable: false,
-            flex:1,
+            flex: 1,
             renderCell: (params) => {
                 const handleFirstNameClick = async (data) => {
                     setSelectedData(data)
