@@ -15,7 +15,7 @@ const eventVenueList = async (req, res) => {
 const eventExecutionAgencyList = async (req, res) => {
     const query = req.query;
 
-    let allData = await eventExecutionAgencyList.find(query);
+    let allData = await eventExecutionAgencySchema.find(query);
 
     let result = allData.filter((item) => item.createdBy !== null);
     result = result.sort((a, b) => b.createdOn - a.createdOn);

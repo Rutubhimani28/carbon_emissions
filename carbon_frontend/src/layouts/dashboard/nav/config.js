@@ -38,6 +38,11 @@ const navConfig = [
     path: '/dashboard/contactUs',
     icon: <img src={contact} alt='Result' width={30} />,
   },
+  {
+    title: 'Events',
+    path: '/dashboard/events',
+    icon: <img src={contact} alt='Result' width={30} />,
+  },
   // {
   //   title: 'User Management',
   //   path: '/dashboard/user',
