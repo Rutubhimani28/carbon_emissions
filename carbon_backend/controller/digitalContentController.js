@@ -46,6 +46,15 @@ const edit = async (req, res) => {
     }
 }
 
+const deleteData = async (req, res) => {
+    try {
+        let result = await digitalContent.findOneAndDelete({ _id: req.params.id })
+        res.status(200).json({ message: "Data deleted successfully", result })
+    } catch (err) {
+        res.status(404).json({ message: "error", err })
+    }
+}
+
 const deleteMany = async (req, res) => {
     try {
         const ids = req.body;
@@ -60,4 +69,4 @@ const deleteMany = async (req, res) => {
         res.status(500).send({ message: 'Server error', error });
     }
 };
-export default { index, add, addMany, edit, deleteMany }
+export default { index, add, addMany, edit, deleteData, deleteMany }
