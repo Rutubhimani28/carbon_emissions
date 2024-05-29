@@ -92,7 +92,7 @@ const Result = () => {
                     </div>
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
-                            <Button variant='contained' onClick={() => setOpen(true)}>Send Mail</Button>
+                            <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Send Mail</Button>
                             <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button>
                         </Stack>
                     </div>

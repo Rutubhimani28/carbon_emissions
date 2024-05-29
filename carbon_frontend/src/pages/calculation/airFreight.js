@@ -21,7 +21,7 @@ const AirFreight = () => {
     const initialValues = {
         noOfKms: 0,
         weightInKgs: 0,
-        ef: 0.15,
+        ef: 0,
         emission: 0
     };
 
@@ -29,7 +29,11 @@ const AirFreight = () => {
         initialValues,
         // validationSchema,
         onSubmit: async (values) => {
-            const emission = Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(values?.ef);
+
+            const ef = Number(values?.weightInKgs) / Number(values?.noOfKms);
+            formik.setFieldValue('ef', ef || 0);
+
+            const emission = Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(ef);
             formik.setFieldValue('emission', emission || 0);
 
             const data = [
@@ -37,8 +41,8 @@ const AirFreight = () => {
                     type: 'Air',
                     noOfKms: values?.noOfKms,
                     weightInKgs: values?.weightInKgs,
-                    emission
-                    // ef: values?.ef,
+                    ef,
+                    emission,
                 }
             ];
 
@@ -55,7 +59,7 @@ const AirFreight = () => {
             formik.setFieldValue("emission", allData[0]?.emission);
             formik.setFieldValue("noOfKms", allData[0]?.noOfKms);
             formik.setFieldValue("weightInKgs", allData[0]?.weightInKgs);
-            // formik.setFieldValue("ef", allData[0]?.ef);
+            formik.setFieldValue("ef", allData[0]?.ef);
         }
     }, [allData])
 
@@ -115,11 +119,32 @@ const AirFreight = () => {
                                         }
                                     />
                                 </Grid>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions</FormLabel>
+                                    <TextField
+                                        id="emission"
+                                        name="emission"
+                                        label=""
+                                        type='number'
+                                        fullWidth
+                                        size="small"
+                                        disabled
+                                        value={formik.values.emission}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.emission &&
+                                            Boolean(formik.errors.emission)
+                                        }
+                                        helperText={
+                                            formik.touched.emission && formik.errors.emission
+                                        }
+                                    />
+                                </Grid>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"end"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }}>Calculate and Add To Footprint</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
                                 </Stack>
 
