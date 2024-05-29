@@ -26,6 +26,11 @@ const navConfig = [
     path: '/dashboard/calculation',
     icon: <img src={Result} alt='Result' width={30} />,
   },
+  {
+    title: 'contactUs',
+    path: '/dashboard/contactUs',
+    icon: icon('ic_calculator'),
+  },
   // {
   //   title: 'User Management',
   //   path: '/dashboard/user',
