@@ -14,7 +14,7 @@ const DigitalContent = () => {
     const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
     const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
 
-
+    console.log(totalEmission)
     // -----------  validationSchema
     const validationSchema = yup.object({
         type: yup.string().required("Type is required"),
@@ -44,21 +44,22 @@ const DigitalContent = () => {
                 {
                     type: 'Emails',
                     count: values?.count,
-                    emission: values?.count * 13 / 1000
+                    emission: (values?.count * 13 / 1000)
                 },
                 {
                     type: 'Attachment',
                     mb: values?.MB,
-                    emission: values?.MB * 50 / 1000
+                    emission: (values?.MB * 50 / 1000)
                 },
                 {
                     type: 'Laptop',
                     noOfAttendees: values?.noOfAttendees,
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
-                    emission: values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop)
-                },
-            ]
+                    emission: (values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop))
+                }
+            ];
+
 
             dispatch(addData({ data }))
         },
