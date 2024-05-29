@@ -39,7 +39,6 @@ const ContactUsForm = () => {
     },
   });
 
-  console.log(formik.errors)
   const handleSubmit = async (values) => {
     setIsLoading(true);
     try {

@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const event = new mongoose.Schema({
+const eventVenue = new mongoose.Schema({
     firstName: { type: String },
     lastName: { type: String },
     email: { type: String },
@@ -23,4 +23,4 @@ const event = new mongoose.Schema({
     modifiedOn: { type: Date, default: Date.now }
 })
 
-export default mongoose.model('event', event, 'event')
+export default mongoose.model('eventVenue', eventVenue, 'eventVenue')
