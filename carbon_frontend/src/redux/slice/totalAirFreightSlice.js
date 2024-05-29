@@ -1,21 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const totalDigitalContSlice = createSlice({
-    name: "totalDigitalContent",
+const totalAirFreightSlice = createSlice({
+    name: "totalAirFreight",
     initialState: {
         data: [],
         totalEmission: 0
     },
     reducers: {
-        addData: (state, action) => {
+        addAirFreightData: (state, action) => {
             const newData = Array.isArray(action.payload) ? action.payload : [action.payload];
             newData.forEach((newItem) => {
                 const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
                 if (existingItemIndex !== -1) {
+                    console.log("existingItemIndex !== -1 ", existingItemIndex !== -1);
                     // Update the existing item
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
                 } else {
+                    console.log("else existingItemIndex !== -1 ", existingItemIndex !== -1);
                     // Add the new item
                     state.data.push(newItem);
                 }
@@ -23,7 +25,7 @@ const totalDigitalContSlice = createSlice({
             // Recalculate totalEmission
             state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0);
         },
-        deleteData: (state, action) => ({
+        deleteAirFreightData: (state, action) => ({
             ...state,
             data: [],
             totalEmission: 0
@@ -32,5 +34,5 @@ const totalDigitalContSlice = createSlice({
     },
 });
 
-export const { addData, deleteData } = totalDigitalContSlice.actions;
-export default totalDigitalContSlice.reducer;
+export const { addAirFreightData, deleteAirFreightData } = totalAirFreightSlice.actions;
+export default totalAirFreightSlice.reducer;

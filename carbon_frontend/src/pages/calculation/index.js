@@ -2,6 +2,7 @@ import { Box, Container, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import DigitalContent from './digitalContent';
 import Result from './result';
+import AirFreight from './airFreight';
 
 const Calculation = () => {
 
@@ -38,6 +39,7 @@ const Calculation = () => {
                 <Box mt={2}>
                     {value === 5 && <DigitalContent />}
                     {value === 9 && <Result />}
+                    {value === 1 && <AirFreight />}
                 </Box>
             </Container>
         </div>

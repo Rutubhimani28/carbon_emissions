@@ -32,8 +32,8 @@ export const store = configureStore({
     reducer: {
         userDetails: persistReducer(userPersistConfig, userSlice),
         digitalContentDetails: digitalContentSlice,
-        totalDigitalContentDetails: totalDigitalContSlice,
         airFreightDetails: airFreightSlice,
+        totalDigitalContentDetails: persistReducer(totalDigitalContentPersistConfig, totalDigitalContSlice),
         totalAirFreightDetails: persistReducer(totalAirFreightPersistConfig, totalAirFreightSlice),
     },
     middleware,

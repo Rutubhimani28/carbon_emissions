@@ -5,19 +5,20 @@ import SendMail from './sendMail';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
-    const allData = useSelector((state) => state?.totalDigitalContentDetails)
+    const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails)
+    const allFreightData = useSelector((state) => state?.totalAirFreightDetails)
 
-    const total = 0 + 0 + 0 + 0 + allData?.totalEmission + 0 + 0 + 0
+    const total = 0 + allFreightData?.totalEmission + 0 + 0 + allDigitalContentData?.totalEmission + 0 + 0 + 0
 
     const data = {
         "totalWaste": "0",
         "totalAccomodation": "0",
         "totalLocalTransportation": "0",
-        "totalDIgitalContent": allData?.totalEmission,
+        "totalDIgitalContent": allDigitalContentData?.totalEmission,
         "totlaTravel": "0",
         "totalEnergyUpdated": "0",
         "totalFood": "0",
-        "totalAirFreight": "0",
+        "totalAirFreight": allFreightData?.totalEmission,
         "totlaProduction": "0",
         "grandTotal": total
     }
@@ -40,7 +41,7 @@ const Result = () => {
                                 </tr>
                                 <tr>
                                     <th>Air Freight</th>
-                                    <td align='right' className='ps-4'>0 </td>
+                                    <td align='right' className='ps-4'>{allFreightData?.totalEmission}</td>
                                     <td className='ps-1'>metric tons of CO2e</td>
                                 </tr>
                                 <tr>
@@ -60,7 +61,7 @@ const Result = () => {
                                 </tr>
                                 <tr>
                                     <th>Digital Content</th>
-                                    <td align='right' className='ps-4'>{allData?.totalEmission}</td>
+                                    <td align='right' className='ps-4'>{allDigitalContentData?.totalEmission}</td>
                                     <td className='ps-1'> metric tons of CO2e</td>
                                 </tr>
                                 <tr>
