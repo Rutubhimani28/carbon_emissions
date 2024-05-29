@@ -5,6 +5,7 @@ import digitalContentRoutes from './digitalContentRoutes.js'
 import emailRoutes from './emailRoutes.js'
 import contactUsRoutes from './contactUsRoutes.js'
 import eventRoutes from './eventRoutes.js'
+import airFreightRoutes from './airFreightRoutes.js'
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.use('/digitalContent', digitalContentRoutes);
 router.use('/email', emailRoutes);
 router.use('/contactUs', contactUsRoutes);
 router.use('/events', eventRoutes);
+router.use('/airFreight', airFreightRoutes);
 
 export default router

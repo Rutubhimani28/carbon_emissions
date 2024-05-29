@@ -23,6 +23,11 @@ const navConfig = [
     path: '/dashboard/calculation',
     icon: icon('ic_calculator'),
   },
+  {
+    title: 'Air freight',
+    path: '/dashboard/airfreight',
+    icon: icon('ic_calculator'),
+  },
   // {
   //   title: 'User Management',
   //   path: '/dashboard/user',
