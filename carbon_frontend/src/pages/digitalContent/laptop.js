@@ -103,7 +103,7 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }
             <TableStyleTwo>
                 <Box width="100%" height="30vh">
                     <DataGrid
-                        rows={laptop}
+                        rows={laptop || []}
                         columns={columns}
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
