@@ -13,11 +13,9 @@ const totalAirFreightSlice = createSlice({
             newData.forEach((newItem) => {
                 const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
                 if (existingItemIndex !== -1) {
-                    console.log("existingItemIndex !== -1 ", existingItemIndex !== -1);
                     // Update the existing item
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
                 } else {
-                    console.log("else existingItemIndex !== -1 ", existingItemIndex !== -1);
                     // Add the new item
                     state.data.push(newItem);
                 }
