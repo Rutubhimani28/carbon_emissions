@@ -142,9 +142,9 @@ const AirFreight = () => {
                                 </Grid>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"end"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }}>Calculate and Add To Footprint</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
                                 </Stack>
 
