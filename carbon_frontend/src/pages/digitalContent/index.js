@@ -330,10 +330,10 @@ const DigitalContent = () => {
                                 open={open}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleOpenImpt} disableRipple>
+                                {/* <MenuItem onClick={handleOpenImpt} disableRipple>
                                     <CiImport style={{ marginRight: "7px" }} />
                                     Import
-                                </MenuItem>
+                                </MenuItem> */}
                                 <MenuItem onClick={() => { handleClose(); handleExportLeads('xlsx') }} disableRipple>
                                     <CiExport style={{ marginRight: "7px" }} />
                                     {selectedRowIds && selectedRowIds?.length > 0 ? 'Export Selected Data' : 'Export'}

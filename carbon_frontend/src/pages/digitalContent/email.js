@@ -78,6 +78,10 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
                         pagination={false}
+                        disableSelectionOnClick
+                        onRowClick={(params, event) => {
+                            event.defaultMuiPrevented = true;
+                        }}
                     />
                 </Box>
             </TableStyleTwo>

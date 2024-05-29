@@ -78,6 +78,10 @@ const Attechments = ({ rows, style, toggleVisibilityAttechments, isVisibleAttech
                         columns={columns}
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
+                        disableSelectionOnClick
+                        onRowClick={(params, event) => {
+                            event.defaultMuiPrevented = true;
+                        }}
                     />
                 </Box>
             </TableStyleTwo>
