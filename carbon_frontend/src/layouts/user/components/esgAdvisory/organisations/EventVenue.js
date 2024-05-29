@@ -68,7 +68,7 @@ const EventVenue = () => {
       foodBeverages: yup.string().required('Food Beverages is required'),
       roomsNeeded: yup.string().required('Rooms Needed is required'),
       airportTransferNeeded: yup.string().required('Airport Transfer Needed is required'),
-      message: yup.string().required('Message is required'),
+      message: yup.string().required('Message is required').max(200, 'Message must be at most 200 characters long'),
     }),
     onSubmit: (values) => {
       handleSubmit(values);
@@ -462,7 +462,6 @@ const EventVenue = () => {
             <p className="pt-2">
               By submitting the above info, you acknowledge that you have read our{' '}
               <Link style={{ color: '#4ABD43', textDecoration: 'none' }} to="/privacy-policy">
-                {' '}
                 Privacy Policy.
               </Link>
             </p>

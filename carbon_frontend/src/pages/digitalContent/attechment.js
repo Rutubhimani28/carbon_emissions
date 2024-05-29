@@ -10,14 +10,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import TableStyleTwo from '../../components/TableStyleTwo';
 import AddEdit from './AddEdit';
 
-const Meetings = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechments, _id, setUserAction, data }) => {
+const Attechments = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechments, setUserAction }) => {
     const [type, setType] = useState('')
     const [openAdd, setOpenAdd] = useState(false);
     const [selectedData, setSelectedData] = useState({})
 
     const handleOpenAdd = () => setOpenAdd(true);
     const handleCloseAdd = () => setOpenAdd(false);
-    const attechment = rows.filter((item) => item.type === 'Attachment')
+    const attechment = rows?.filter((item) => item?.type === 'Attachment')
 
     const columns = [
         {
@@ -52,7 +52,7 @@ const Meetings = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechmen
                 <Grid container display="flex" alignItems="center">
                     <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
                         <Stack direction="row" spacing={1} alignItems={"center"}>
-                            <Button
+                            {/* <Button
                                 onClick={toggleVisibilityAttechments}
                                 color="secondary"
                                 variant="contained"
@@ -60,28 +60,28 @@ const Meetings = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechmen
                                 sx={{ width: "28px", minWidth: "0px", padding: "0px", height: "25px", backgroundColor: "#4ABD43" }}
                             >
                                 {isVisibleAttechments ? <RemoveIcon /> : <AddIcon />}
-                            </Button>
+                            </Button> */}
                             <Typography variant="h5">Attechments</Typography>
                         </Stack>
 
                     </Stack>
                 </Grid>
             </Box>
-            {
-                isVisibleAttechments &&
-                <TableStyleTwo>
-                    <Box width="100%" height="30vh">
-                        <DataGrid
-                            rows={attechment}
-                            columns={columns}
-                            getRowId={row => row._id}
-                            columnHeaderHeight={40}
-                        />
-                    </Box>
-                </TableStyleTwo>
-            }
+            {/* {
+                isVisibleAttechments && */}
+            <TableStyleTwo>
+                <Box width="100%" height="30vh">
+                    <DataGrid
+                        rows={attechment}
+                        columns={columns}
+                        getRowId={row => row._id}
+                        columnHeaderHeight={40}
+                    />
+                </Box>
+            </TableStyleTwo>
+            {/* } */}
         </div>
     )
 }
 
-export default Meetings
+export default Attechments

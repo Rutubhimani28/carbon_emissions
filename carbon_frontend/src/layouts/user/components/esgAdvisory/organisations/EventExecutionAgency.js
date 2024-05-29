@@ -1,6 +1,7 @@
 import {
     Box,
     Button,
+    CircularProgress,
     FormControlLabel,
     FormHelperText,
     FormLabel,
@@ -13,10 +14,14 @@ import {
     Typography,
 } from '@mui/material';
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { apipost } from '../../../../../service/api';
 
 const EventExecutionAgency = () => {
+    const [isLoading, setIsLoading] = useState(false);
+
     const navigate = useNavigate()
     const initialValues = {
         firstName: '',
@@ -31,10 +36,10 @@ const EventExecutionAgency = () => {
         alternateDatesTo: '',
         allocatedBudgetForYourActivity: "",
         agencyTypeNeeded: "",
-        entertainment: "",
-        teamBuilding: "",
-        motivationalSpeaker: "",
-        emcee: "",
+        entertainment: null,
+        teamBuilding: null,
+        motivationalSpeaker: null,
+        emcee: null,
         message: '',
     };
 
@@ -44,10 +49,10 @@ const EventExecutionAgency = () => {
         validationSchema: yup.object({
             firstName: yup.string().required('First Name is required'),
             lastName: yup.string().required('Last Name is required'),
-            email: yup.string().email().required('Email is required'),
+            email: yup.string().email('Email is invalid').required('Email is required'),
             mobile: yup
                 .string()
-                .required()
+                .required('Mobile is require')
                 .matches(/^[0-9]{10}$/, 'Number is invalid'),
             designation: yup.string().required('Designation is required'),
             organisationName: yup.string().required('Organisation Name is required'),
@@ -61,12 +66,27 @@ const EventExecutionAgency = () => {
             teamBuilding: yup.string().required('Team Building is required'),
             motivationalSpeaker: yup.string().required('Motivational Speaker is required'),
             emcee: yup.string().required('Emcee is required'),
-            message: yup.string().required('Message is required'),
+            message: yup.string().required('Message is required').max(200, 'Message must be at most 200 characters long'),
         }),
         onSubmit: (values) => {
-            // handleSubmit(values)
+            handleSubmit(values)
         },
     });
+
+
+    const handleSubmit = async (values) => {
+        setIsLoading(true);
+        try {
+            const result = await apipost('api/events/event-execution-agency', values);
+
+            if (result && result.status === 200) {
+                formik.resetForm();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        setIsLoading(false);
+    };
 
     return (
         <Box sx={{ px: 6 }} className="main py-5" >
@@ -93,6 +113,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.firstName}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                             helperText={formik.touched.firstName && formik.errors.firstName}
                         />
@@ -107,6 +128,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.lastName}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.lastName && Boolean(formik.errors.lastName)}
                             helperText={formik.touched.lastName && formik.errors.lastName}
                         />
@@ -121,6 +143,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.email}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.email && Boolean(formik.errors.email)}
                             helperText={formik.touched.email && formik.errors.email}
                         />
@@ -135,6 +158,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.mobile}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.mobile && Boolean(formik.errors.mobile)}
                             helperText={formik.touched.mobile && formik.errors.mobile}
                         />
@@ -149,6 +173,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.designation}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.designation && Boolean(formik.errors.designation)}
                             helperText={formik.touched.designation && formik.errors.designation}
                         />
@@ -163,6 +188,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.organisationName}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.organisationName && Boolean(formik.errors.organisationName)}
                             helperText={formik.touched.organisationName && formik.errors.organisationName}
                         />
@@ -177,6 +203,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.fixedDateFrom}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.fixedDateFrom && Boolean(formik.errors.fixedDateFrom)}
                             helperText={formik.touched.fixedDateFrom && formik.errors.fixedDateFrom}
                         />
@@ -188,9 +215,13 @@ const EventExecutionAgency = () => {
                             type="date"
                             size="small"
                             fullWidth
+                            inputProps={{
+                                min: formik.values.fixedDateFrom
+                            }}
                             value={formik.values.fixedDateTo}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.fixedDateTo && Boolean(formik.errors.fixedDateTo)}
                             helperText={formik.touched.fixedDateTo && formik.errors.fixedDateTo}
                         />
@@ -205,6 +236,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.alternateDatesFrom}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.alternateDatesFrom && Boolean(formik.errors.alternateDatesFrom)}
                             helperText={formik.touched.alternateDatesFrom && formik.errors.alternateDatesFrom}
                         />
@@ -216,9 +248,13 @@ const EventExecutionAgency = () => {
                             type="date"
                             size="small"
                             fullWidth
+                            inputProps={{
+                                min: formik.values.alternateDatesFrom
+                            }}
                             value={formik.values.alternateDatesTo}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.alternateDatesTo && Boolean(formik.errors.alternateDatesTo)}
                             helperText={formik.touched.alternateDatesTo && formik.errors.alternateDatesTo}
                         />
@@ -239,9 +275,13 @@ const EventExecutionAgency = () => {
                             id="demo-simple-select-helper"
                             value={formik.values.allocatedBudgetForYourActivity}
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                         >
                             <MenuItem value={'india'}>India</MenuItem>
                         </Select>
+                        <FormHelperText error={formik.touched.allocatedBudgetForYourActivity && Boolean(formik.errors.allocatedBudgetForYourActivity)}>
+                            {formik.touched.allocatedBudgetForYourActivity && formik.errors.allocatedBudgetForYourActivity}
+                        </FormHelperText>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Agency type needed <span style={{ color: "red" }}>*</span></FormLabel>
@@ -255,54 +295,74 @@ const EventExecutionAgency = () => {
                             id="demo-simple-select-helper"
                             value={formik.values.agencyTypeNeeded}
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                         >
                             <MenuItem value={'india'}>India</MenuItem>
                         </Select>
+                        <FormHelperText error={formik.touched.agencyTypeNeeded && Boolean(formik.errors.agencyTypeNeeded)}>
+                            {formik.touched.agencyTypeNeeded && formik.errors.agencyTypeNeeded}
+                        </FormHelperText>
                     </Grid>
 
                     <Grid item xs={12} sm={3}>
                         <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Entertainment <span style={{ color: "red" }}>*</span></FormLabel>
                         <RadioGroup
+                            onChange={formik.handleChange}
+                            value={formik.values?.entertainment}
                             aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="female"
                             name="entertainment"
                         >
                             <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="no" control={<Radio />} label="No" />
                         </RadioGroup>
+                        <FormHelperText error={formik.touched.entertainment && Boolean(formik.errors.entertainment)}>
+                            {formik.touched.entertainment && formik.errors.entertainment}
+                        </FormHelperText>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Team Building <span style={{ color: "red" }}>*</span></FormLabel>
                         <RadioGroup
+                            onChange={formik.handleChange}
+                            value={formik.values?.teamBuilding}
                             aria-labelledby="demo-radio-buttons-group-label"
                             name="teamBuilding"
-                            defaultValue="female"
                         >
                             <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="no" control={<Radio />} label="No" />
                         </RadioGroup>
+                        <FormHelperText error={formik.touched.teamBuilding && Boolean(formik.errors.teamBuilding)}>
+                            {formik.touched.teamBuilding && formik.errors.teamBuilding}
+                        </FormHelperText>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Motivational Speaker <span style={{ color: "red" }}>*</span></FormLabel>
                         <RadioGroup
+                            onChange={formik.handleChange}
+                            value={formik.values?.motivationalSpeaker}
                             aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="female"
                             name="motivationalSpeaker"
                         >
                             <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="no" control={<Radio />} label="No" />
                         </RadioGroup>
+                        <FormHelperText error={formik.touched.motivationalSpeaker && Boolean(formik.errors.motivationalSpeaker)}>
+                            {formik.touched.motivationalSpeaker && formik.errors.motivationalSpeaker}
+                        </FormHelperText>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                         <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Emcee <span style={{ color: "red" }}>*</span></FormLabel>
                         <RadioGroup
+                            onChange={formik.handleChange}
+                            value={formik.values?.emcee}
                             aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="female"
                             name="emcee"
                         >
                             <FormControlLabel value="yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="no" control={<Radio />} label="No" />
                         </RadioGroup>
+                        <FormHelperText error={formik.touched.emcee && Boolean(formik.errors.emcee)}>
+                            {formik.touched.emcee && formik.errors.emcee}
+                        </FormHelperText>
                     </Grid>
 
                     <Grid item xs={12}>
@@ -316,6 +376,7 @@ const EventExecutionAgency = () => {
                             value={formik.values.message}
                             // placeholder="Enter Hear"
                             onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                             error={formik.touched.message && Boolean(formik.errors.message)}
                             helperText={formik.touched.message && formik.errors.message}
                         />
@@ -332,9 +393,9 @@ const EventExecutionAgency = () => {
                             variant="contained"
                             color="secondary"
                             disableElevation
-                        // onClick={handleClickaction}
+                            onClick={formik.handleSubmit}
                         >
-                            Submit
+                            {isLoading ? <CircularProgress size={27} /> : 'Submit'}
                         </Button>
                     </Grid>
                 </Grid>
