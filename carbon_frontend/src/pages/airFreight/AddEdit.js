@@ -194,7 +194,7 @@ const AddEdit = (props) => {
                                                     id="weightInKgs"
                                                     name="weightInKgs"
                                                     label=""
-                                                    type="weightInKgs"
+                                                    type="number"
                                                     fullWidth
                                                     size="small"
                                                     value={formik.values.weightInKgs}

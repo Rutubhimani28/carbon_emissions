@@ -120,7 +120,7 @@ const AirFreight = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (/gm CO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions</FormLabel>
                                     <TextField
                                         id="emission"
                                         name="emission"

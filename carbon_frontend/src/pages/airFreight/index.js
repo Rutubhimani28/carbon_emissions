@@ -140,6 +140,7 @@ const AirFreight = () => {
             field: "type",
             headerName: "Type",
             width: 230,
+            flex: 1,
             cellClassName: "name-column--cell--capitalize",
             renderCell: (params) => {
                 return (
@@ -153,6 +154,7 @@ const AirFreight = () => {
             field: "noOfKms",
             headerName: "No Of Kms",
             width: 200,
+            flex: 1,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -165,6 +167,7 @@ const AirFreight = () => {
             field: "weightInKgs",
             headerName: "Weight (Kgs)",
             width: 200,
+            flex: 1,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -177,6 +180,7 @@ const AirFreight = () => {
             field: "action",
             headerName: "Action",
             sortable: false,
+            flex: 1,
             renderCell: (params) => {
                 const handleFirstNameClick = async (data) => {
                     setSelectedData(data)
