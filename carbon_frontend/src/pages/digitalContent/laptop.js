@@ -7,10 +7,9 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from '@mui/icons-material/Edit';
 import TableStyleTwo from '../../components/TableStyleTwo';
 
-const Tasks = ({ rows, toggleVisibilityTask, isVisibleTask, _id, setUserAction, leadData, type }) => {
+const Tasks = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserAction, leadData, type }) => {
 
     const laptop = rows.filter((item) => item.type === 'Laptop')
-    console.log(laptop);
 
     const columns = [
         {
@@ -77,12 +76,13 @@ const Tasks = ({ rows, toggleVisibilityTask, isVisibleTask, _id, setUserAction, 
                     <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
                         <Stack direction="row" spacing={1} alignItems={"center"}>
                             <Button
-                                onClick={toggleVisibilityTask}
+                                onClick={toggleVisibilityLaptop}
                                 color="secondary"
+                                className='custom-btn'
                                 variant="contained"
                                 sx={{ width: "28px", minWidth: "0px", padding: "0px", height: "25px", backgroundColor: "#4ABD43" }}
                             >
-                                {isVisibleTask ? <RemoveIcon /> : <AddIcon />}
+                                {isVisibleLaptop ? <RemoveIcon /> : <AddIcon />}
                             </Button>
                             <Typography variant="h5">Laptop</Typography>
                         </Stack>
@@ -90,7 +90,7 @@ const Tasks = ({ rows, toggleVisibilityTask, isVisibleTask, _id, setUserAction, 
                 </Grid>
             </Box>
             {
-                isVisibleTask &&
+                isVisibleLaptop &&
                 <TableStyleTwo>
                     <Box width="100%" height="30vh">
                         <DataGrid

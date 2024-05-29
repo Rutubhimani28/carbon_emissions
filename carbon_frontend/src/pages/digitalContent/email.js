@@ -7,10 +7,10 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import TableStyleTwo from '../../components/TableStyleTwo';
 
-const Notes = ({ rows, toggleVisibilityNotes, isVisibleNotes, _id, setUserAction, method, leadView }) => {
+const Notes = ({ rows, toggleVisibilityEmails, isVisibleEmails, _id, setUserAction, method, leadView }) => {
 
     const emails = rows.filter((item) => item.type === 'Emails')
-    
+
     const columns = [
 
         {
@@ -58,12 +58,12 @@ const Notes = ({ rows, toggleVisibilityNotes, isVisibleNotes, _id, setUserAction
                     <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
                         <Stack direction="row" spacing={1} alignItems={"center"}>
                             <Button
-                                onClick={toggleVisibilityNotes}
-
+                                onClick={toggleVisibilityEmails}
+                                className='custom-btn'
                                 variant="contained"
                                 sx={{ width: "28px", minWidth: "0px", padding: "0px", height: "25px", backgroundColor: "#4ABD43", '&hover': { backgroundColor: "#4ABD43" } }}
                             >
-                                {isVisibleNotes ? <RemoveIcon /> : <AddIcon />}
+                                {isVisibleEmails ? <RemoveIcon /> : <AddIcon />}
                             </Button>
                             <Typography variant="h5">Emails</Typography>
                         </Stack>
@@ -72,7 +72,7 @@ const Notes = ({ rows, toggleVisibilityNotes, isVisibleNotes, _id, setUserAction
                 </Grid>
             </Box>
             {
-                isVisibleNotes &&
+                isVisibleEmails &&
                 <TableStyleTwo>
                     <Box width="100%" height="30vh">
                         <DataGrid

@@ -98,9 +98,9 @@ const DigitalContent = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openImpt, setOpenImpt] = useState(false);
     const [type, setType] = useState('')
-    const [isVisibleNotes, setIsVisibleNotes] = useState(false);
-    const [isVisibleMeetings, setIsVisibleMeetings] = useState(false);
-    const [isVisibleTask, setIsVisibleTask] = useState(false);
+    const [isVisibleEmails, setIsVisibleEmails] = useState(false);
+    const [isVisibleAttechments, setIsVisibleAttechments] = useState(false);
+    const [isVisibleLaptop, setIsVisibleLaptop] = useState(false);
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -144,9 +144,9 @@ const DigitalContent = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const toggleVisibilityNotes = () => setIsVisibleNotes(!isVisibleNotes);
-    const toggleVisibilityMeeting = () => setIsVisibleMeetings(!isVisibleMeetings);
-    const toggleVisibilityTask = () => setIsVisibleTask(!isVisibleTask);
+    const toggleVisibilityEmails = () => setIsVisibleEmails(!isVisibleEmails);
+    const toggleVisibilityAttechments = () => setIsVisibleAttechments(!isVisibleAttechments);
+    const toggleVisibilityLaptop = () => setIsVisibleLaptop(!isVisibleLaptop);
 
     const columns = [
         {
@@ -369,17 +369,17 @@ const DigitalContent = () => {
                     </Box>
                 </TableStyle>
                 <Card sx={{ marginTop: "50px" }}>
-                    <Email toggleVisibilityNotes={toggleVisibilityNotes} isVisibleNotes={isVisibleNotes} setUserAction={setUserAction} rows={data} />
+                    <Email toggleVisibilityEmails={toggleVisibilityEmails} isVisibleEmails={isVisibleEmails} setUserAction={setUserAction} rows={data} />
                 </Card>
 
                 {/* Tasks Table */}
                 <Card sx={{ marginTop: "20px" }}>
-                    <Laptop toggleVisibilityTask={toggleVisibilityTask} isVisibleTask={isVisibleTask} setUserAction={setUserAction} rows={data} data={data} />
+                    <Laptop toggleVisibilityLaptop={toggleVisibilityLaptop} isVisibleLaptop={isVisibleLaptop} setUserAction={setUserAction} rows={data} data={data} />
                 </Card>
 
                 {/* Meetings Table */}
                 <Card sx={{ marginTop: "20px" }}>
-                    <Attechment toggleVisibilityMeeting={toggleVisibilityMeeting} isVisibleMeetings={isVisibleMeetings} setUserAction={setUserAction} rows={data} />
+                    <Attechment toggleVisibilityAttechments={toggleVisibilityAttechments} isVisibleAttechments={isVisibleAttechments} setUserAction={setUserAction} rows={data} />
                 </Card>
 
             </Container>

@@ -9,9 +9,8 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from '@mui/icons-material/Edit';
 import TableStyleTwo from '../../components/TableStyleTwo';
 
-const Meetings = ({ rows, style, toggleVisibilityMeeting, isVisibleMeetings, _id, setUserAction, data, type }) => {
+const Meetings = ({ rows, style, toggleVisibilityAttechments, isVisibleAttechments, _id, setUserAction, data, type }) => {
     const attechment = rows.filter((item) => item.type === 'Attachment')
-    console.log(attechment);
 
 
     const columns = [
@@ -48,12 +47,13 @@ const Meetings = ({ rows, style, toggleVisibilityMeeting, isVisibleMeetings, _id
                     <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
                         <Stack direction="row" spacing={1} alignItems={"center"}>
                             <Button
-                                onClick={toggleVisibilityMeeting}
+                                onClick={toggleVisibilityAttechments}
                                 color="secondary"
                                 variant="contained"
+                                className='custom-btn'
                                 sx={{ width: "28px", minWidth: "0px", padding: "0px", height: "25px", backgroundColor: "#4ABD43" }}
                             >
-                                {isVisibleMeetings ? <RemoveIcon /> : <AddIcon />}
+                                {isVisibleAttechments ? <RemoveIcon /> : <AddIcon />}
                             </Button>
                             <Typography variant="h5">Attechments</Typography>
                         </Stack>
@@ -62,7 +62,7 @@ const Meetings = ({ rows, style, toggleVisibilityMeeting, isVisibleMeetings, _id
                 </Grid>
             </Box>
             {
-                isVisibleMeetings &&
+                isVisibleAttechments &&
                 <TableStyleTwo>
                     <Box width="100%" height="30vh">
                         <DataGrid
