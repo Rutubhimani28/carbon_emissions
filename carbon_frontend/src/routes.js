@@ -13,6 +13,7 @@ import DigitalContent from './pages/digitalContent';
 import Calculation from './pages/calculation';
 import AirFreight from './pages/airFreight';
 import ContactUs from './pages/contactUs/ContactUs';
+import Events from './pages/events/Events';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -30,6 +31,7 @@ export default function Router() {
         { path: 'airFreight', element: <AirFreight /> },
         { path: 'calculation', element: <Calculation /> },
         { path: 'contactUs', element: <ContactUs /> },
+        { path: 'events', element: <Events /> },
       ],
     },
     { path: '/', element: <UserLayout /> },
