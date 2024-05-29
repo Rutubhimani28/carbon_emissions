@@ -6,10 +6,17 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from '@mui/icons-material/Edit';
 import TableStyleTwo from '../../components/TableStyleTwo';
+import AddEdit from './AddEdit';
 
-const Tasks = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserAction, leadData, type }) => {
+const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop,  setUserAction}) => {
 
-    const laptop = rows.filter((item) => item.type === 'Laptop')
+    const [type, setType] = useState('')
+    const [openAdd, setOpenAdd] = useState(false);
+    const [selectedData, setSelectedData] = useState({})
+
+    const handleOpenAdd = () => setOpenAdd(true);
+    const handleCloseAdd = () => setOpenAdd(false);
+    const laptop = rows?.filter((item) => item?.type === 'Laptop')
 
     const columns = [
         {
@@ -53,13 +60,13 @@ const Tasks = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserActi
             headerName: "Action",
             sortable: false,
             renderCell: (params) => {
-                // const handleFirstNameClick = async (data) => {
-                //     setLeadData(data)
-                //     handleOpenEdit();
-                // };
+                const handleFirstNameClick = async (data) => {
+                    setSelectedData(data)
+                    handleOpenAdd();
+                };
                 return (
                     <>
-                        <Button variant='text' size='small' color='primary' ><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
                     </>
                 );
             }
@@ -69,13 +76,13 @@ const Tasks = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserActi
 
     return (
         <div>
-            {/* Add Tasks */}
+            <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
 
             <Box style={{ cursor: "pointer" }} p={2}>
                 <Grid container display="flex" alignItems="center">
                     <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
                         <Stack direction="row" spacing={1} alignItems={"center"}>
-                            <Button
+                            {/* <Button
                                 onClick={toggleVisibilityLaptop}
                                 color="secondary"
                                 className='custom-btn'
@@ -83,27 +90,27 @@ const Tasks = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserActi
                                 sx={{ width: "28px", minWidth: "0px", padding: "0px", height: "25px", backgroundColor: "#4ABD43" }}
                             >
                                 {isVisibleLaptop ? <RemoveIcon /> : <AddIcon />}
-                            </Button>
+                            </Button> */}
                             <Typography variant="h5">Laptop</Typography>
                         </Stack>
                     </Stack>
                 </Grid>
             </Box>
-            {
-                isVisibleLaptop &&
-                <TableStyleTwo>
-                    <Box width="100%" height="30vh">
-                        <DataGrid
-                            rows={laptop}
-                            columns={columns}
-                            getRowId={row => row._id}
-                            columnHeaderHeight={40}
-                        />
-                    </Box>
-                </TableStyleTwo>
-            }
+            {/* {
+                isVisibleLaptop && */}
+            <TableStyleTwo>
+                <Box width="100%" height="30vh">
+                    <DataGrid
+                        rows={laptop}
+                        columns={columns}
+                        getRowId={row => row._id}
+                        columnHeaderHeight={40}
+                    />
+                </Box>
+            </TableStyleTwo>
+            {/* } */}
         </div>
     )
 }
 
-export default Tasks
+export default Laptop
