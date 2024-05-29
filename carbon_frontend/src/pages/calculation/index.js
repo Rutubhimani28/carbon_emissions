@@ -12,6 +12,7 @@ import Transportation from '../../assets/Transportation.png'
 import Travel from '../../assets/Travel.png'
 import Waste from '../../assets/Waste.png'
 import production from '../../assets/production.png'
+import result from '../../assets/result.png'
 
 const Calculation = () => {
 
@@ -33,16 +34,16 @@ const Calculation = () => {
                         scrollButtons="auto"
                         aria-label="scrollable auto tabs example"
                     >
-                        <Tab  icon={<img src={production} alt='' width={50} />} label="Production" />
-                        <Tab  icon={<img src={Travel} alt='' width={50} />} label="Air Freight" />
-                        <Tab  icon={<img src={Food} alt='' width={50} />} label="Food" />
-                        <Tab  icon={<img src={Energy} alt='' width={50} />} label="Energy Updated" />
-                        <Tab  icon={<img src={Travel} alt='' width={50} />} label="Travel" />
-                        <Tab  icon={<img src={digital} alt='' width={50} />} label="Digital Content" />
-                        <Tab  icon={<img src={Transportation} alt='' width={50} />} label="Local Transportation" />
-                        <Tab  icon={<img src={Accommodation} alt='' width={50} />} label="Accomodation" />
-                        <Tab  icon={<img src={Waste} alt='' width={50} />} label="Waste" />
-                        <Tab  icon={<img src={digital} alt='' width={50} />} label="Result" />
+                        <Tab icon={<img src={production} alt='' width={50} />} label="Production" />
+                        <Tab icon={<img src={Travel} alt='' width={50} />} label="Air Freight" />
+                        <Tab icon={<img src={Food} alt='' width={50} />} label="Food" />
+                        <Tab icon={<img src={Energy} alt='' width={50} />} label="Energy Updated" />
+                        <Tab icon={<img src={Travel} alt='' width={50} />} label="Travel" />
+                        <Tab icon={<img src={digital} alt='' width={50} />} label="Digital Content" />
+                        <Tab icon={<img src={Transportation} alt='' width={50} />} label="Local Transportation" />
+                        <Tab icon={<img src={Accommodation} alt='' width={50} />} label="Accomodation" />
+                        <Tab icon={<img src={Waste} alt='' width={50} />} label="Waste" />
+                        <Tab icon={<img src={result} alt='' width={50} />} label="Result" />
                     </Tabs>
                 </Box>
                 <Box mt={2}>
