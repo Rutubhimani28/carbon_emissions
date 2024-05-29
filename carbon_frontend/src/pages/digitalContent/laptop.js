@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from '@mui/icons-material/Edit';
 import TableStyleTwo from '../../components/TableStyleTwo';
 
-const Tasks = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserAction, leadData, type }) => {
+const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserAction, leadData, type }) => {
 
     const laptop = rows.filter((item) => item.type === 'Laptop')
 
@@ -75,7 +75,7 @@ const Tasks = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserActi
                 <Grid container display="flex" alignItems="center">
                     <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
                         <Stack direction="row" spacing={1} alignItems={"center"}>
-                            <Button
+                            {/* <Button
                                 onClick={toggleVisibilityLaptop}
                                 color="secondary"
                                 className='custom-btn'
@@ -83,27 +83,27 @@ const Tasks = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, _id, setUserActi
                                 sx={{ width: "28px", minWidth: "0px", padding: "0px", height: "25px", backgroundColor: "#4ABD43" }}
                             >
                                 {isVisibleLaptop ? <RemoveIcon /> : <AddIcon />}
-                            </Button>
+                            </Button> */}
                             <Typography variant="h5">Laptop</Typography>
                         </Stack>
                     </Stack>
                 </Grid>
             </Box>
-            {
-                isVisibleLaptop &&
-                <TableStyleTwo>
-                    <Box width="100%" height="30vh">
-                        <DataGrid
-                            rows={laptop}
-                            columns={columns}
-                            getRowId={row => row._id}
-                            columnHeaderHeight={40}
-                        />
-                    </Box>
-                </TableStyleTwo>
-            }
+            {/* {
+                isVisibleLaptop && */}
+            <TableStyleTwo>
+                <Box width="100%" height="30vh">
+                    <DataGrid
+                        rows={laptop}
+                        columns={columns}
+                        getRowId={row => row._id}
+                        columnHeaderHeight={40}
+                    />
+                </Box>
+            </TableStyleTwo>
+            {/* } */}
         </div>
     )
 }
 
-export default Tasks
+export default Laptop

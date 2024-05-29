@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, Button, Card, Container, Stack, Typography, styled } from '@mui/material';
+import { Box, Button, Card, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {
@@ -368,19 +368,38 @@ const DigitalContent = () => {
 
                     </Box>
                 </TableStyle>
-                <Card sx={{ marginTop: "50px" }}>
+
+                {/* <Card sx={{ marginTop: "50px" }}>
                     <Email toggleVisibilityEmails={toggleVisibilityEmails} isVisibleEmails={isVisibleEmails} setUserAction={setUserAction} rows={data} />
                 </Card>
 
-                {/* Tasks Table */}
                 <Card sx={{ marginTop: "20px" }}>
                     <Laptop toggleVisibilityLaptop={toggleVisibilityLaptop} isVisibleLaptop={isVisibleLaptop} setUserAction={setUserAction} rows={data} data={data} />
                 </Card>
 
-                {/* Meetings Table */}
                 <Card sx={{ marginTop: "20px" }}>
                     <Attechment toggleVisibilityAttechments={toggleVisibilityAttechments} isVisibleAttechments={isVisibleAttechments} setUserAction={setUserAction} rows={data} />
-                </Card>
+                </Card> */}
+
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={3.5}>
+                        <Card sx={{ marginTop: "20px" }}>
+                            <Email toggleVisibilityEmails={toggleVisibilityEmails} isVisibleEmails={isVisibleEmails} setUserAction={setUserAction} rows={data} />
+                        </Card>
+                    </Grid>
+                    <Grid item xs={3.5}>
+                        <Card sx={{ marginTop: "20px" }}>
+                            <Attechment toggleVisibilityAttechments={toggleVisibilityAttechments} isVisibleAttechments={isVisibleAttechments} setUserAction={setUserAction} rows={data} />
+                        </Card>
+
+                    </Grid>
+                    <Grid item xs={5}>
+                        <Card sx={{ marginTop: "20px" }}>
+                            <Laptop toggleVisibilityLaptop={toggleVisibilityLaptop} isVisibleLaptop={isVisibleLaptop} setUserAction={setUserAction} rows={data} data={data} />
+                        </Card>
+                    </Grid>
+
+                </Grid>
 
             </Container>
         </>
