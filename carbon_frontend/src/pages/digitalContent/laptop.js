@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import TableStyleTwo from '../../components/TableStyleTwo';
 import AddEdit from './AddEdit';
 
-const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop,  setUserAction}) => {
+const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop, setUserAction }) => {
 
     const [type, setType] = useState('')
     const [openAdd, setOpenAdd] = useState(false);
@@ -105,6 +105,10 @@ const Laptop = ({ rows, toggleVisibilityLaptop, isVisibleLaptop,  setUserAction}
                         columns={columns}
                         getRowId={row => row._id}
                         columnHeaderHeight={40}
+                        disableSelectionOnClick
+                        onRowClick={(params, event) => {
+                            event.defaultMuiPrevented = true;
+                        }}
                     />
                 </Box>
             </TableStyleTwo>
