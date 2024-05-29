@@ -1,10 +1,13 @@
 import { Box, Button, Card, Container, Stack } from '@mui/material';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SendMail from './sendMail';
+import { deleteData } from '../../redux/slice/totalDigitalContSlice';
+import { deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
     const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails)
     const allFreightData = useSelector((state) => state?.totalAirFreightDetails)
 
@@ -23,6 +26,10 @@ const Result = () => {
         "grandTotal": total
     }
 
+    const handeleDelete = () => {
+        dispatch(deleteData())
+        dispatch(deleteAirFreightData())
+    }
     return (
         <div>
             <SendMail open={open} close={() => setOpen(false)} datas={data} />
@@ -86,7 +93,7 @@ const Result = () => {
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
                             <Button variant='contained' onClick={() => setOpen(true)}>Send Mail</Button>
-                            <Button variant='outlined' color='error'>Clear</Button>
+                            <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button>
                         </Stack>
                     </div>
                 </Card>
