@@ -8,14 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import TableStyle from '../../components/TableStyle';
 import Iconify from '../../components/iconify';
 import { fetchUserData } from '../../redux/slice/userSlice';
-// import AddUser from './Add';
 import { commonUtils } from '../../utils/utils';
+import { fetchContactUsData } from '../../redux/slice/contactUsSlice';
 
 // ----------------------------------------------------------------------
 
 const ContactUs = () => {
 
-    const [openAdd, setOpenAdd] = useState(false);
     const [userAction, setUserAction] = useState(null)
     const [selectedRowIds, setSelectedRowIds] = useState([]);
 
@@ -25,60 +24,74 @@ const ContactUs = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { data, isLoading } = useSelector((state) => state?.userDetails)
-
-    const handleOpenAdd = () => setOpenAdd(true);
-    const handleCloseAdd = () => setOpenAdd(false);
+    const { data, isLoading } = useSelector((state) => state?.contactUs)
 
     const columns = [
         {
             field: "firstName",
             headerName: "First Name",
-            width: 300,
-            cellClassName: "name-column--cell name-column--cell--capitalize",
-            renderCell: (params) => {
-                const handleFirstNameClick = () => {
-                    navigate(`/dashboard/user/view/${params.row._id}`)
-                };
-
-                return (
-                    <Box onClick={handleFirstNameClick}>
-                        {params.value}
-                    </Box>
-                );
-            }
+            width: 200,
+            cellClassName: "name-column--cell--capitalize",
         },
         {
             field: "lastName",
             headerName: "Last Name",
             cellClassName: "name-column--cell--capitalize",
-            width: 300,
-
+            width: 200,
         },
         {
-            field: "emailAddress",
-            headerName: "Email Address",
-            width: 400,
-        },
-        {
-            field: "role",
-            headerName: "Role",
+            field: "workEmail",
+            headerName: "Email",
             cellClassName: "name-column--cell--capitalize",
-            width: 300
-        }
+            width: 300,
+        },
+        {
+            field: "mobile",
+            headerName: "Mobile",
+            cellClassName: "name-column--cell--capitalize",
+            width: 200,
+        },
+        {
+            field: "designation",
+            headerName: "Designation",
+            cellClassName: "name-column--cell--capitalize",
+            width: 200
+        },
+        {
+            field: "organisation",
+            headerName: "Organisation",
+            width: 300,
+        },
     ];
+
     const csvColumns = [
         {
-            Header: "First Name", accessor: 'firstName'
+            accessor: "firstName",
+            Header: "First Name"
         },
         {
-            Header: "Last Name", accessor: 'lastName'
+            accessor: "lastName",
+            Header: "Last Name"
         },
         {
-            Header: "Email Address", accessor: 'emailAddress'
+            accessor: "workEmail",
+            Header: "Email"
         },
         {
-            Header: "Role", accessor: 'role'
+            accessor: "mobile",
+            Header: "Mobile"
+        },
+        {
+            accessor: "organisation",
+            Header: "Organisation"
+        },
+        {
+            accessor: "designation",
+            Header: "Designation"
+        },
+        {
+            accessor: "message",
+            Header: "Message"
         }
     ];
 
@@ -115,7 +128,7 @@ const ContactUs = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchUserData());
+        dispatch(fetchContactUsData());
     }, [userAction])
 
     return (
@@ -125,12 +138,9 @@ const ContactUs = () => {
             <Container maxWidth>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
                     <Typography variant="h4">
-                        User
+                        Contact Us
                     </Typography>
                     <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
-                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAdd}>
-                            Add New
-                        </Button>
                         <Button variant="contained" startIcon={<CiExport icon="eva:plus-fill" />} onClick={() => { handleExportSms('xlsx') }} >
                             {selectedRowIds && selectedRowIds?.length > 0 ? 'Export Selected Data' : 'Export'}
                         </Button>
