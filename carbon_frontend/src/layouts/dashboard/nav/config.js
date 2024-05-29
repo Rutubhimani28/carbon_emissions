@@ -4,7 +4,7 @@ import SvgColor from '../../../components/svg-color';
 import Result from '../../../assets/result.png'
 import digitalContent from '../../../assets/Digital.png'
 import dashboard from '../../../assets/dashboard.png'
-import AirFreight from '../../../assets/Travel.png'
+import Logistics from '../../../assets/Logistics.png'
 import contact from '../../../assets/contact.png'
 import events from '../../../assets/events.png'
 
@@ -20,12 +20,12 @@ const navConfig = [
     icon: <img src={dashboard} alt='dashboard' width={25} />,
   },
   {
-    title: 'Air freight',
+    title: 'Logistics',
     path: '/dashboard/airfreight',
-    icon: <img src={AirFreight} alt='Result' width={30} />,
+    icon: <img src={Logistics} alt='Result' width={30} />,
   },
   {
-    title: 'Digital Content',
+    title: 'Digital',
     path: '/dashboard/digitalContent',
     icon: <img src={digitalContent} alt='digitalContent' width={30} />,
   },

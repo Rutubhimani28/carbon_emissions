@@ -271,7 +271,7 @@ const AirFreight = () => {
             <Container maxWidth>
                 <Stack direction="row" alignItems="center" mb={5} justifyContent={"space-between"}>
                     <Typography variant="h4" >
-                        Air Freight
+                        Logistics
                     </Typography>
                     <Stack direction="row" alignItems="center" justifyContent={"flex-end"} spacing={2}>
                         <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={() => { handleOpenAdd(); setType("add") }} className="custom-btn">
