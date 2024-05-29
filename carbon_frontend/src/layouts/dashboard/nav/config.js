@@ -1,6 +1,9 @@
 // component
 import PaymentsRoundedIcon from '@mui/icons-material/PaymentsRounded';
 import SvgColor from '../../../components/svg-color';
+import Result from '../../../assets/result.png'
+import digitalContent from '../../../assets/Digital.png'
+import dashboard from '../../../assets/dashboard.png'
 
 // ----------------------------------------------------------------------
 
@@ -11,17 +14,17 @@ const navConfig = [
   {
     title: 'Dashboard',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
+    icon: <img src={dashboard} alt='dashboard' width={25} />,
   },
   {
     title: 'Digital Content',
     path: '/dashboard/digitalContent',
-    icon: icon('ic_digitalContent'),
+    icon: <img src={digitalContent} alt='digitalContent' width={30} />,
   },
   {
     title: 'Calculation',
     path: '/dashboard/calculation',
-    icon: icon('ic_calculator'),
+    icon: <img src={Result} alt='Result' width={30} />,
   },
   // {
   //   title: 'User Management',

@@ -30,6 +30,7 @@ const AddEdit = (props) => {
         noOfAttendees: type === "edit" ? selectedData?.noOfAttendees : "",
         noOfHours: type === "edit" ? selectedData?.noOfHours : "",
         serviceLifeOfLaptop: type === "edit" ? selectedData?.serviceLifeOfLaptop : "",
+        emission: 0,
         createdBy: userid,
     };
 
@@ -37,7 +38,15 @@ const AddEdit = (props) => {
     const addData = async (values) => {
         setIsLoading(true)
         try {
-            const data = values;
+            const data = {
+                type: values?.type,
+                count: values?.count,
+                mb: values?.mb,
+                noOfAttendees: values?.noOfAttendees,
+                noOfHours: values?.noOfHours,
+                serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
+                emission: values?.emission
+            };
             const result = await apipost('api/digitalContent/add', data)
             setUserAction(result)
 
@@ -55,7 +64,16 @@ const AddEdit = (props) => {
     const editData = async (values) => {
         setIsLoading(true)
         try {
-            const result = await apiput(`api/digitalContent/${selectedData?._id}`, values)
+            const data = {
+                type: values?.type,
+                count: values?.count,
+                mb: values?.mb,
+                noOfAttendees: values?.noOfAttendees,
+                noOfHours: values?.noOfHours,
+                serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
+                emission: values?.emission
+            };
+            const result = await apiput(`api/digitalContent/${selectedData?._id}`, data)
             setUserAction(result)
 
             if (result && result.status === 200) {
@@ -92,8 +110,19 @@ const AddEdit = (props) => {
             formik.setFieldValue('noOfAttendees', "")
             formik.setFieldValue('noOfHours', "")
             formik.setFieldValue('serviceLifeOfLaptop', "")
+            formik.setFieldValue('emission', 0)
         }
     }, [formik.values.type])
+
+    useEffect(() => {
+        if (formik.values.type === "Emails") {
+            formik.setFieldValue('emission', (formik?.values?.count * 13 / 1000).toFixed(2) || 0)
+        } else if (formik.values.type === "Attachment") {
+            formik.setFieldValue('emission', (formik?.values?.mb * 50 / 1000).toFixed(2) || 0)
+        } else if (formik.values.type === "Laptop") {
+            formik.setFieldValue('emission', (formik?.values?.noOfAttendees * 340 * (formik?.values?.noOfHours / formik?.values?.serviceLifeOfLaptop)).toFixed(2) || 0)
+        }
+    }, [formik.values])
 
     return (
         <div>

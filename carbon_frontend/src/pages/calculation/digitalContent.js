@@ -57,7 +57,7 @@ const DigitalContent = () => {
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
                     // Calculate emission: (noOfAttendees * 340 * (noOfHours / serviceLifeOfLaptop)), then format to 2 decimal places
-                    emission: parseFloat((values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop)).toFixed(2))
+                    emission: parseFloat((values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop)).toFixed(2)) || 0
                 }
             ];
 
@@ -268,7 +268,7 @@ const DigitalContent = () => {
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit() }}>Calculate and Add To Footprint</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
 

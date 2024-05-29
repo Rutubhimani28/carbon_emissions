@@ -240,12 +240,13 @@ const ContactUsForm = () => {
               <Grid item xs={5} sm={8}>
                 <Button
                   id="action"
-                  aria-haspopup="true"
+                  // aria-haspopup="true"
                   variant="contained"
-                  color="secondary"
-                  disableElevation
+                  // color="secondary"
+                  // disableElevation
                   onClick={formik.handleSubmit}
                   type="submit"
+                  className='custom-btn'
                 >
                   {isLoading ? <CircularProgress size={27} /> : 'Submit'}
                 </Button>

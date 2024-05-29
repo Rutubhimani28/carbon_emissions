@@ -8,6 +8,7 @@ const digitalContent = new mongoose.Schema({
     noOfHours: { type: Number },
     serviceLifeOfLaptop: { type: Number },
     ef: { type: Number },
+    emission: { type: Number },
     createdOn: { type: Date, default: Date.now },
     modifiedOn: { type: Date, default: Date.now }
 })

@@ -1,4 +1,4 @@
-@import "../layouts/user/assets/css/style.css";
+@import '../layouts/user/assets/css/style.css';
 @import 'animate.css';
 
 .loader {
@@ -58,5 +58,13 @@
 
 .css-6d3pg0-MuiTabs-indicator {
   background-color: #70ad47;
+}
 
+.custom-btn {
+  color: white;
+  background: #4abd43;
+}
+.custom-btn:hover {
+  color: white;
+  background: #4abd43;
 }
