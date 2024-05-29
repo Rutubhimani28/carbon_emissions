@@ -8,13 +8,11 @@ import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
 
 const DigitalContent = () => {
 
-    const [type, setType] = useState('')
     const dispatch = useDispatch();
 
     const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
     const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
 
-    console.log(totalEmission)
     // -----------  validationSchema
     const validationSchema = yup.object({
         type: yup.string().required("Type is required"),
@@ -44,22 +42,24 @@ const DigitalContent = () => {
                 {
                     type: 'Emails',
                     count: values?.count,
-                    emission: (values?.count * 13 / 1000)
+                    // Calculate emission: (count * 13) / 1000, then format to 2 decimal places
+                    emission: parseFloat((values?.count * 13 / 1000).toFixed(2))
                 },
                 {
                     type: 'Attachment',
                     mb: values?.MB,
-                    emission: (values?.MB * 50 / 1000)
+                    // Calculate emission: (MB * 50) / 1000, then format to 2 decimal places
+                    emission: parseFloat((values?.MB * 50 / 1000).toFixed(2))
                 },
                 {
                     type: 'Laptop',
                     noOfAttendees: values?.noOfAttendees,
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
-                    emission: (values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop))
+                    // Calculate emission: (noOfAttendees * 340 * (noOfHours / serviceLifeOfLaptop)), then format to 2 decimal places
+                    emission: parseFloat((values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop)).toFixed(2))
                 }
             ];
-
 
             dispatch(addData({ data }))
         },
@@ -268,8 +268,8 @@ const DigitalContent = () => {
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setType('add') }}>Calculate and Add To Footprint</Button>
-                                    <Button variant='outlined' onClick={() => { formik.resetForm(); setType(''); handeleDelete() }} color='error'>Clear</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit() }}>Calculate and Add To Footprint</Button>
+                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
 
                             </Grid>
