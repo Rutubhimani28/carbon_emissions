@@ -4,6 +4,8 @@ import SvgColor from '../../../components/svg-color';
 import Result from '../../../assets/result.png'
 import digitalContent from '../../../assets/Digital.png'
 import dashboard from '../../../assets/dashboard.png'
+import AirFreight from '../../../assets/Travel.png'
+import contact from '../../../assets/contact.png'
 
 // ----------------------------------------------------------------------
 
@@ -15,6 +17,11 @@ const navConfig = [
     title: 'Dashboard',
     path: '/dashboard/app',
     icon: <img src={dashboard} alt='dashboard' width={25} />,
+  },
+  {
+    title: 'Air freight',
+    path: '/dashboard/airfreight',
+    icon: <img src={AirFreight} alt='Result' width={30} />,
   },
   {
     title: 'Digital Content',
@@ -29,12 +36,7 @@ const navConfig = [
   {
     title: 'contactUs',
     path: '/dashboard/contactUs',
-    icon: icon('ic_calculator'),
-  },
-  {
-    title: 'Air freight',
-    path: '/dashboard/airfreight',
-    icon: icon('ic_calculator'),
+    icon: <img src={contact} alt='Result' width={30} />,
   },
   // {
   //   title: 'User Management',
