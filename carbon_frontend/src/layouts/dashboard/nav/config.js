@@ -7,6 +7,7 @@ import dashboard from '../../../assets/dashboard.png'
 import Logistics from '../../../assets/Logistics.png'
 import contact from '../../../assets/contact.png'
 import events from '../../../assets/events.png'
+import Production from '../../../assets/production.png'
 
 // ----------------------------------------------------------------------
 
@@ -28,6 +29,11 @@ const navConfig = [
     title: 'Digital',
     path: '/dashboard/digitalContent',
     icon: <img src={digitalContent} alt='digitalContent' width={30} />,
+  },
+  {
+    title: 'Production',
+    path: '/dashboard/production',
+    icon: <img src={Production} alt='Production' width={30} />,
   },
   {
     title: 'Calculation',

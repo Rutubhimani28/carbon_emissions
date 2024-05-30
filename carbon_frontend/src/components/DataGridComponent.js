@@ -6,12 +6,21 @@ import {
     GridToolbarFilterButton,
 } from '@mui/x-data-grid';
 
-const DataGrid = (props) => {
-    const { data, columns, checkboxSelection, setSelectedRowIds, selectedRowIds } = props;
+const DataGridComponent = (props) => {
+    const { data, columns, checkboxSelection, setSelectedRowIds, selectedRowIds, toolbar } = props;
 
     const handleSelectionChange = (selectionModel) => {
-        setSelectedRowIds(selectionModel);
+        if (setSelectedRowIds) {
+            setSelectedRowIds(selectionModel);
+        }
     };
+    const CustomToolbar = () => (
+        <Box padding={'10px 0'}>
+            <GridToolbarColumnsButton />
+            <GridToolbarFilterButton />
+            <GridToolbarDensitySelector slotProps={{ tooltip: { title: 'Change density' } }} />
+        </Box>
+    );
 
     return (
         <Card style={{ height: '600px' }}>
@@ -22,13 +31,7 @@ const DataGrid = (props) => {
                 onRowSelectionModelChange={handleSelectionChange}
                 rowSelectionModel={selectedRowIds}
                 components={{
-                    Toolbar: () => (
-                        <Box padding={'10px 0'}>
-                            <GridToolbarColumnsButton />
-                            <GridToolbarFilterButton />
-                            <GridToolbarDensitySelector slotProps={{ tooltip: { title: 'Change density' } }} />
-                        </Box>
-                    ),
+                    Toolbar: toolbar !== false && CustomToolbar,
                 }}
                 getRowId={(row) => row._id}
             />
@@ -36,4 +39,4 @@ const DataGrid = (props) => {
     );
 };
 
-export default DataGrid;
+export default DataGridComponent;
