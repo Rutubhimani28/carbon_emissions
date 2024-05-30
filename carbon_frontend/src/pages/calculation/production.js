@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 // import { useEffect } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProductionData, deleteProductionData } from '../../redux/slice/productionSlice';
+import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
 
 const Production = () => {
     const dispatch = useDispatch();
@@ -139,7 +139,7 @@ const Production = () => {
                         <Grid item xs={12} sm={12} md={12} marginTop={3}>
                             <Typography>{`Total Production Footprint = ${parseFloat(totalEmission)} tons of kgCO2e`}</Typography>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                        {/* <Grid item xs={12} sm={12} md={12} marginTop={3}>
                             <ul>
                                 {
                                     allData?.length > 0 && allData?.map((item, index) => (
@@ -150,7 +150,7 @@ const Production = () => {
                                     ))
                                 }
                             </ul>
-                        </Grid>
+                        </Grid> */}
                     </Box>
                 </Card>
             </Container>

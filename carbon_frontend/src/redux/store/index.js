@@ -11,7 +11,7 @@ import totalAirFreightSlice from '../slice/totalAirFreightSlice';
 import contactUsSlice from '../slice/contactUsSlice';
 import totalEnergyUpdatedSlice from '../slice/totalEnergyUpdatedSlice';
 import eventsSlice from '../slice/eventsSlice';
-import productionSlice from '../slice/productionSlice';
+import productionSlice from '../slice/totalProductionSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
