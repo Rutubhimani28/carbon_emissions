@@ -35,24 +35,24 @@ const Goal = () => {
             <div className='pb-5'>
                 <Typography variant='h6' className='text-center fs-3 green pt-5 pb-3 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Our Mission & Vision</Typography>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='my-4'>
-                    <Grid item xs={0} md={2.5} style={{ opacity: "0" }}>
+                    <Grid item xs={0} md={2.1} style={{ opacity: "0" }}>
                         fd
                     </Grid>
-                    <Grid item xs={12} md={3.5} className='wow animate__animated animate__fadeInLeft animate__slow'>
-                        <Box className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 bg-white" style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px", height: "250px" }}>
+                    <Grid item sm={12} md={3.9} className='wow animate__animated animate__fadeInLeft animate__slow'>
+                        <Box className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 bg-white mx-3" style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px" }}>
                             <img src={mission} alt="img" width={50} />
                             <Typography variant='h6' className='text-center fs-5 pt-2 pb-4 fontFamily fw-bold' >Mission</Typography>
                             <p className='text-center fs-6'>To promote awareness within industries regarding the crucial significance of steering their marketing operations with sustainable practices and to motivate them to actively reduce their carbon footprint.</p>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} md={3.5} className='wow animate__animated animate__fadeInRight animate__slow'>
-                        <Box className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 bg-white" style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px", height: "250px" }}>
+                    <Grid item sm={12} md={3.9} className='wow animate__animated animate__fadeInRight animate__slow'>
+                        <Box className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 bg-white mx-3" style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px" }}>
                             <img src={vision} alt="img" width={50} />
                             <Typography variant='h6' className='text-center fs-5  pt-2 pb-4 fontFamily fw-bold' >Vision</Typography>
                             <p className='text-center fs-6'>Charting a pioneering vision, we aspire to empower the Chief Marketing Officer vertical and its stakeholders, guiding them towards accomplishing a 50% reduction in both direct and indirect greenhouse gas emissions by 2030.</p>
                         </Box>
                     </Grid>
-                    <Grid item xs={0} md={2.5} style={{ opacity: "0" }}>
+                    <Grid item xs={0} md={2.1} style={{ opacity: "0" }}>
                         df
                     </Grid>
                 </Grid>
