@@ -14,6 +14,7 @@ import Calculation from './pages/calculation';
 import AirFreight from './pages/airFreight';
 import ContactUs from './pages/contactUs/ContactUs';
 import Events from './pages/events/Events';
+import Production from './pages/production/Production';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -28,6 +29,7 @@ export default function Router() {
         { path: 'user/view/:id', element: <UserView /> },
         { path: ':view/import', element: <ImportView /> },
         { path: 'digitalContent', element: <DigitalContent /> },
+        { path: 'production', element: <Production /> },
         { path: 'airFreight', element: <AirFreight /> },
         { path: 'calculation', element: <Calculation /> },
         { path: 'contactUs', element: <ContactUs /> },
