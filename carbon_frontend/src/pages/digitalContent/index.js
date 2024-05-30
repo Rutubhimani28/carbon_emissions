@@ -395,7 +395,7 @@ const DigitalContent = () => {
                         </Card>
 
                     </Grid>
-                    <Grid item xs={5}>
+                    <Grid item xs={12} md={5}>
                         <Card sx={{ marginTop: "20px" }}>
                             <Laptop toggleVisibilityLaptop={toggleVisibilityLaptop} isVisibleLaptop={isVisibleLaptop} setUserAction={setUserAction} rows={data} data={data} />
                         </Card>
