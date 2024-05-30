@@ -58,50 +58,53 @@ export default function LoginForm() {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit}>
-        <Stack spacing={3} mb={2} className='Login'>
-          <TextField
-            name="emailAddress"
-            label="Email"
-            value={formik.values.emailAddress}
-            onChange={formik.handleChange}
-            error={
-              formik.touched.emailAddress &&
-              Boolean(formik.errors.emailAddress)
-            }
-            helperText={
-              formik.touched.emailAddress && formik.errors.emailAddress
-            }
-          />
+      <div style={{ marginBottom: '40px' }}>
 
-          <TextField
-            name="password"
-            label="Password"
-            type={showPassword ? 'text' : 'password'}
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            error={
-              formik.touched.password &&
-              Boolean(formik.errors.password)
-            }
-            helperText={
-              formik.touched.password && formik.errors.password
-            }
-          />
-        </Stack>
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" disabled={!!isLoading} style={{ background: "#4abd43", color: "white" }}>
-          {isLoading ? <CircularProgress style={{ color: "white" }} /> : 'Login'}
-        </LoadingButton>
-      </form>
+        <form onSubmit={formik.handleSubmit}>
+          <Stack spacing={3} mb={2} className='Login'>
+            <TextField
+              name="emailAddress"
+              label="Email"
+              value={formik.values.emailAddress}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.emailAddress &&
+                Boolean(formik.errors.emailAddress)
+              }
+              helperText={
+                formik.touched.emailAddress && formik.errors.emailAddress
+              }
+            />
+
+            <TextField
+              name="password"
+              label="Password"
+              type={showPassword ? 'text' : 'password'}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              error={
+                formik.touched.password &&
+                Boolean(formik.errors.password)
+              }
+              helperText={
+                formik.touched.password && formik.errors.password
+              }
+            />
+          </Stack>
+          <LoadingButton fullWidth size="large" type="submit" variant="contained" disabled={!!isLoading} style={{ background: "#4abd43", color: "white" }}>
+            {isLoading ? <CircularProgress style={{ color: "white" }} /> : 'Login'}
+          </LoadingButton>
+        </form>
+      </div>
     </>
   );
 }

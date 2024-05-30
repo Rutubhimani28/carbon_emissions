@@ -11,26 +11,25 @@ const Production = () => {
     const totalEmission = useSelector((state) => state?.totalProductionDetails?.totalEmission);
 
     const fileldData = [
-        { name: 'MDF', ef: 0.345, fieldName: 'mdf' },
-        { name: 'Open Panel Timber Frame ', ef: 0.856, fieldName: 'openPanelTimberFrame' },
-        { name: 'Carpet ', ef: 0.263, fieldName: 'carpet' },
-        { name: 'Sawn Timber', ef: 6.7, fieldName: 'sawnTimber' },
-        { name: 'Wood', ef: 3.1, fieldName: 'wood' },
-        { name: 'Adhesive Vinyl', ef: 6.4, fieldName: 'adhesiveVinyl' },
-        { name: 'Aluminium', ef: 1.83, fieldName: 'aluminium' },
-        { name: 'Steel ', ef: 0.42, fieldName: 'steel' },
-        { name: 'Carpet ', ef: 0.64, fieldName: 'carpet' },
-        { name: 'Iron', ef: 0, fieldName: 'iron' },
-        { name: 'Paint ', ef: 0, fieldName: 'paint' },
+        { name: 'Open Panel Timber Frame ', ef: 0.345, fieldName: 'openPanelTimberFrame' },
+        { name: 'MDF', ef: 0.856, fieldName: 'mdf' },
+        { name: 'Sawn Timber', ef: 0.263, fieldName: 'sawnTimber' },
+        { name: 'Carpet ', ef: 6.7, fieldName: 'carpet' },
+        { name: 'Adhesive Vinyl', ef: 3.1, fieldName: 'adhesiveVinyl' },
+        { name: 'Wood', ef: 6.4, fieldName: 'wood' },
+        { name: 'Steel ', ef: 1.83, fieldName: 'steel' },
+        { name: 'Aluminium', ef: 0.42, fieldName: 'aluminium' },
+        { name: 'Iron', ef: 0.64, fieldName: 'iron' },
         { name: 'Wooden Floor', ef: 0, fieldName: 'woodenFloor' },
-        { name: 'Cardboard', ef: 8.3, fieldName: 'cardboard' },
-        { name: 'Cotton Banner', ef: 0.94, fieldName: 'cottonBanner' },
-        { name: 'Polyester', ef: 1.2, fieldName: 'polyester' },
-        { name: 'paper', ef: 12.7, fieldName: 'paper' },
-        { name: 'Lanyards', ef: 14.5, fieldName: 'lanyards' },
-        { name: 'Cotton canvas ', ef: 22.74, fieldName: 'cottonCanvas' },
-        { name: 'Nylon', ef: 2.792, fieldName: 'nylon' },
-        { name: 'Poly Ethelene', ef: 12.7, fieldName: 'polyEthelene' },
+        { name: 'Paint ', ef: 0, fieldName: 'paint' },
+        { name: 'Cotton Banner', ef: 8.3, fieldName: 'cottonBanner' },
+        { name: 'Cardboard', ef: 0.94, fieldName: 'cardboard' },
+        { name: 'paper', ef: 1.2, fieldName: 'paper' },
+        { name: 'Polyester', ef: 12.7, fieldName: 'polyester' },
+        { name: 'Cotton canvas ', ef: 14.5, fieldName: 'cottonCanvas' },
+        { name: 'Lanyards', ef: 22.74, fieldName: 'lanyards' },
+        { name: 'Poly Ethelene', ef: 2.792, fieldName: 'polyEthelene' },
+        { name: 'Nylon', ef: 12.7, fieldName: 'nylon' },
     ];
 
     const initialValues = fileldData.reduce((field, item, i) => {
@@ -100,7 +99,7 @@ const Production = () => {
                                 <>
 
                                     <tr>
-                                        <th className='ps-4 py-1'> {item?.name}</th>
+                                        <td className='ps-4 py-1'> {item?.name}</td>
                                         <td className='ps-4 py-1'> <TextField
                                             id={`${item?.fieldName}_area`}
                                             name={`${item?.fieldName}_area`}
@@ -136,7 +135,7 @@ const Production = () => {
                             </Stack>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                            <Typography>{`Total Production Footprint = ${parseFloat(totalEmission)} tons of kgCO2e`}</Typography>
+                            <Typography>{`Total Production Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                         </Grid>
                         {/* <Grid item xs={12} sm={12} md={12} marginTop={3}>
                             <ul>

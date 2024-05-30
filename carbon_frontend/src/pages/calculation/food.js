@@ -92,30 +92,30 @@ const Food = () => {
                                 <tr>
                                     <th />
                                     <th className='ps-2'>No of Pax</th>
-                                    <th className='ps-2'>Emission</th>
+                                    <th className='ps-2'>Emission (kgCO2e)</th>
                                 </tr>
                                 <tr>
-                                    <th className='ps-2 py-1'>Veg Starter</th>
+                                    <td className='ps-2 py-1'>Veg Starter</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxOne' value={formik?.values?.noOfPaxOne} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
                                 </tr>
                                 <tr>
-                                    <th className='ps-2 py-1'>Veg Plate Lunch/ Dinner</th>
+                                    <td className='ps-2 py-1'>Veg Plate Lunch/ Dinner</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                                 <tr>
-                                    <th className='ps-2 py-1'>Non veg starter</th>
+                                    <td className='ps-2 py-1'>Non veg starter</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                                 <tr>
-                                    <th className='ps-2 py-1'>Non Veg plate Lunch/ Dinner</th>
+                                    <td className='ps-2 py-1'>Non Veg plate Lunch/ Dinner</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                                 <tr>
-                                    <th className='ps-2 py-1'>High Tea</th>
+                                    <td className='ps-2 py-1'>High Tea</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFive' value={formik?.values?.noOfPaxFive} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
                                 </tr>
