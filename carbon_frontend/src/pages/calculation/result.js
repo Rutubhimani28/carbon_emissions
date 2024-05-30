@@ -20,7 +20,7 @@ const Result = () => {
     const allProductionData = useSelector((state) => state?.totalProductionDetails);
     const allLocalTranspotationData = useSelector((state) => state?.totalLocalTranspotationDetails);
 
-    const total = parseFloat(allProductionData?.totalEmission) + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + parseFloat(allDigitalContentData?.totalEmission) + parseFloat(allLocalTranspotationData?.totalEmission) + 0 + parseFloat(allWasteData?.totalEmission)
+    const total = parseFloat(allProductionData?.totalEmission) + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + 0 + parseFloat(allDigitalContentData?.totalEmission) + parseFloat(allLocalTranspotationData?.totalEmission) + 0 + parseFloat(allWasteData?.totalEmission)
 
     const resultData = [
         {
