@@ -35,7 +35,7 @@ const AddEdit = (props) => {
     const addData = async (values) => {
         setIsLoading(true);
         try {
-            const ef = Number(values?.weightInKgs) / Number(values?.noOfKms) || 0;
+            const ef = 0.15 || 0;
 
             const data = {
                 ...values,
@@ -60,7 +60,7 @@ const AddEdit = (props) => {
     const editData = async (values) => {
         setIsLoading(true);
         try {
-            const ef = Number(values?.weightInKgs) / Number(values?.noOfKms) || 0;
+            const ef = 0.15 || 0;
 
             const data = {
                 ...values,

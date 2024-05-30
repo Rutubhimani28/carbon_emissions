@@ -4,14 +4,14 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
-import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
+import { addEnergyData, deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 
-const DigitalContent = () => {
+const EnergyUpdated = () => {
 
     const dispatch = useDispatch();
 
-    const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
-    const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
+    const allData = useSelector((state) => state?.totalEnergyUpdatedDetails?.data[0]?.data)
+    const totalEmission = useSelector((state) => state?.totalEnergyUpdatedDetails?.totalEmission)
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -20,68 +20,56 @@ const DigitalContent = () => {
 
     // -----------   initialValues
     const initialValues = {
-        count: '',
-        MB: '',
-        noOfAttendees: '',
-        noOfHours: '',
-        serviceLifeOfLaptop: '',
+        kwh: '',
         emissionOne: 0,
+        gallonsOne: '',
         emissionTwo: 0,
+        gallonsTwo: '',
         emissionThree: 0,
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', values?.count * 13 / 1000);
-            formik.setFieldValue('emissionTwo', values?.MB * 50 / 1000);
-            const emission = values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop) || 0;
-            formik.setFieldValue('emissionThree', emission || 0);
+            formik.setFieldValue('emissionOne', values?.kwh * 0.43);
+            formik.setFieldValue('emissionTwo', values?.gallonsOne * 0.0089);
+            formik.setFieldValue('emissionThree', values?.gallonsTwo * 10.18);
 
             const data = [
                 {
-                    type: 'Emails',
-                    count: values?.count,
-                    // Calculate emission: (count * 13) / 1000, then format to 2 decimal places
-                    emission: parseFloat((values?.count * 13 / 1000).toFixed(2))
+                    type: 'Electricity',
+                    kwh: values?.kwh,
+                    emission: parseFloat((values?.kwh * 0.43).toFixed(2)) || 0
                 },
                 {
-                    type: 'Attachment',
-                    mb: values?.MB,
-                    // Calculate emission: (MB * 50) / 1000, then format to 2 decimal places
-                    emission: parseFloat((values?.MB * 50 / 1000).toFixed(2))
+                    type: 'Petrol',
+                    gallonsOne: values?.gallonsOne,
+                    emission: parseFloat((values?.gallonsOne * 0.0089).toFixed(2)) || 0
                 },
                 {
-                    type: 'Laptop',
-                    noOfAttendees: values?.noOfAttendees,
-                    noOfHours: values?.noOfHours,
-                    serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
-                    // Calculate emission: (noOfAttendees * 340 * (noOfHours / serviceLifeOfLaptop)), then format to 2 decimal places
-                    emission: parseFloat((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0
+                    type: 'Diesel',
+                    gallonsTwo: values?.gallonsTwo,
+                    emission: parseFloat((values?.gallonsTwo * 10.18).toFixed(2)) || 0
                 }
             ];
-
-            dispatch(addData({ data }))
+            dispatch(addEnergyData({ data }))
         },
     });
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("count", allData[0]?.count)
+            formik.setFieldValue("kwh", allData[0]?.kwh)
             formik.setFieldValue("emissionOne", allData[0]?.emission)
-            formik.setFieldValue("MB", allData[1]?.mb)
+            formik.setFieldValue("gallonsOne", allData[1]?.gallonsOne)
             formik.setFieldValue("emissionTwo", allData[1]?.emission)
-            formik.setFieldValue("noOfAttendees", allData[2]?.noOfAttendees)
-            formik.setFieldValue("noOfHours", allData[2]?.noOfHours)
-            formik.setFieldValue("serviceLifeOfLaptop", allData[2]?.serviceLifeOfLaptop)
+            formik.setFieldValue("gallonsTwo", allData[2]?.gallonsTwo)
             formik.setFieldValue("emissionThree", allData[2]?.emission)
         }
     }, [allData])
 
     const handeleDelete = () => {
-        dispatch(deleteData())
+        dispatch(deleteEnergyData())
     }
-
 
 
     return (
@@ -97,24 +85,24 @@ const DigitalContent = () => {
 
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h6'>
-                                    Emails
+                                    Electricity
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Count</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Kwh</FormLabel>
                                     <TextField
-                                        id="count"
-                                        name="count"
+                                        id="kwh"
+                                        name="kwh"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.count}
+                                        value={formik.values.kwh}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.count &&
-                                            Boolean(formik.errors.count)
+                                            formik.touched.kwh &&
+                                            Boolean(formik.errors.kwh)
                                         }
                                         helperText={
-                                            formik.touched.count && formik.errors.count
+                                            formik.touched.kwh && formik.errors.kwh
                                         }
                                     />
                                 </Grid>
@@ -141,24 +129,24 @@ const DigitalContent = () => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h6'>
-                                    Attachment
+                                    Petrol
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">MB</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Gallons</FormLabel>
                                     <TextField
-                                        id="MB"
-                                        name="MB"
+                                        id="gallonsOne"
+                                        name="gallonsOne"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.MB}
+                                        value={formik.values.gallonsOne}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.MB &&
-                                            Boolean(formik.errors.MB)
+                                            formik.touched.gallonsOne &&
+                                            Boolean(formik.errors.gallonsOne)
                                         }
                                         helperText={
-                                            formik.touched.MB && formik.errors.MB
+                                            formik.touched.gallonsOne && formik.errors.gallonsOne
                                         }
                                     />
                                 </Grid>
@@ -185,43 +173,24 @@ const DigitalContent = () => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h6'>
-                                    Laptop
+                                    Diesel
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">No.of Attendees</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Gallons</FormLabel>
                                     <TextField
-                                        id="noOfAttendees"
-                                        name="noOfAttendees"
+                                        id="gallonsTwo"
+                                        name="gallonsTwo"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.noOfAttendees}
+                                        value={formik.values.gallonsTwo}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.noOfAttendees &&
-                                            Boolean(formik.errors.noOfAttendees)
+                                            formik.touched.gallonsTwo &&
+                                            Boolean(formik.errors.gallonsTwo)
                                         }
                                         helperText={
-                                            formik.touched.noOfAttendees && formik.errors.noOfAttendees
-                                        }
-                                    />
-                                </Grid>
-                                <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">No. of hour</FormLabel>
-                                    <TextField
-                                        id="noOfHours"
-                                        name="noOfHours"
-                                        label=""
-                                        fullWidth
-                                        size="small"
-                                        value={formik.values.noOfHours}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.noOfHours &&
-                                            Boolean(formik.errors.noOfHours)
-                                        }
-                                        helperText={
-                                            formik.touched.noOfHours && formik.errors.noOfHours
+                                            formik.touched.gallonsTwo && formik.errors.gallonsTwo
                                         }
                                     />
                                 </Grid>
@@ -255,7 +224,7 @@ const DigitalContent = () => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Digital Content Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                                <Typography>{`Total Energy Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -277,4 +246,4 @@ const DigitalContent = () => {
     )
 }
 
-export default DigitalContent
+export default EnergyUpdated

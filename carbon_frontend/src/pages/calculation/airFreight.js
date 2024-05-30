@@ -30,7 +30,7 @@ const AirFreight = () => {
         // validationSchema,
         onSubmit: async (values) => {
 
-            const ef = Number(values?.weightInKgs) / Number(values?.noOfKms);
+            const ef = 0.15;
             formik.setFieldValue('ef', ef || 0);
 
             const emission = Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(ef);
@@ -120,7 +120,7 @@ const AirFreight = () => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emission"
                                         name="emission"
@@ -150,14 +150,14 @@ const AirFreight = () => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography>{`Total Air Freight Footprint = ${totalEmission} metric tons of CO2e`}</Typography>
+                                <Typography>{`Total Air Freight Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
                                 <ul>
                                     {
                                         allData?.length > 0 && allData?.map((item, index) => (
                                             <li>
-                                                {`${item?.type} : ${item?.emission} metric tons of CO2e`}
+                                                {`${item?.type} : ${item?.emission} tons of kgCO2e`}
                                             </li>
 
                                         ))
