@@ -35,14 +35,14 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
         {
             field: "count",
             headerName: "Count",
-            width: 200,
+            flex: 1,
             valueFormatter: (params) => params.value,
         },
         {
             field: "action",
             headerName: "Action",
             sortable: false,
-            width: 200,
+            flex: 1,
             renderCell: (params) => {
                 const handleFirstNameClick = async (data) => {
                     setSelectedData(data)

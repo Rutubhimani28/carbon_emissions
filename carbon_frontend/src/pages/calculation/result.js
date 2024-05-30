@@ -6,6 +6,7 @@ import { deleteData } from '../../redux/slice/totalDigitalContSlice';
 import { deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
 import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
+import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
@@ -15,13 +16,14 @@ const Result = () => {
     const allEnergyData = useSelector((state) => state?.totalEnergyUpdatedDetails)
     const allFoodData = useSelector((state) => state?.totalFoodDetails);
     const allWasteData = useSelector((state) => state?.totalWasteDetails);
+    const allProductionData = useSelector((state) => state?.totalProductionDetails);
 
-    const total = 0 + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + parseFloat(allDigitalContentData?.totalEmission) + 0 + 0 + parseFloat(allWasteData?.totalEmission)
+    const total = parseFloat(allProductionData?.totalEmission) + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + parseFloat(allDigitalContentData?.totalEmission) + 0 + 0 + parseFloat(allWasteData?.totalEmission)
 
     const resultData = [
         {
             type: 'Production',
-            totalEmission: 0
+            totalEmission: allProductionData?.totalEmission
         },
         {
             type: 'Logistics',
@@ -66,7 +68,7 @@ const Result = () => {
         "totalEnergyUpdated": allEnergyData?.totalEmission,
         "totalFood": allFoodData?.totalEmission,
         "totalAirFreight": allFreightData?.totalEmission,
-        "totlaProduction": "0",
+        "totlaProduction": allProductionData?.totalEmission,
         "grandTotal": total
     }
 
@@ -75,6 +77,7 @@ const Result = () => {
         dispatch(deleteAirFreightData())
         dispatch(deleteEnergyData())
         dispatch(deleteFoodData())
+        dispatch(deleteWasteData())
     }
     return (
         <div>
