@@ -14,6 +14,7 @@ import eventsSlice from '../slice/eventsSlice';
 import totalFoodSlice from '../slice/totalFoodSlice';
 import totalWasteSlice from '../slice/totalWasteSlice';
 import totalProductionSlice from '../slice/totalProductionSlice';
+import totalLocalTranspotationSlice from '../slice/totalLocalTranspotationSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -50,6 +51,10 @@ const totalWastePersistConfig = {
     key: 'totalWasteDetails',
     storage: storageSession,
 };
+const totalLocalTranspotationPersistConfig = {
+    key: 'totalLocalTranspotation',
+    storage: storageSession,
+};
 
 export const store = configureStore({
     reducer: {
@@ -64,6 +69,7 @@ export const store = configureStore({
         totalEnergyUpdatedDetails: persistReducer(totalEnergyUpdatedPersistConfig, totalEnergyUpdatedSlice),
         totalFoodDetails: persistReducer(totalFoodPersistConfig, totalFoodSlice),
         totalWasteDetails: persistReducer(totalWastePersistConfig, totalWasteSlice),
+        totalLocalTranspotationDetails: persistReducer(totalLocalTranspotationPersistConfig, totalLocalTranspotationSlice),
     },
     middleware,
 });
