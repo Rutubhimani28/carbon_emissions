@@ -35,29 +35,68 @@ const Header = (props) => {
     const navigate = useNavigate()
     const location = useLocation()
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const routeName = location?.pathname
 
+    const handleMenuToggle = (event) => {
+        event.stopPropagation();
+        setIsMenuOpen(!isMenuOpen);
+    };
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center" }}>
-                <img src={logo} width={100} alt="logo" />
-            </Typography>
-            <Divider />
-            <List>
-                {navItems.map((item) => (
-                    <ListItem key={item.name} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item.name} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
+        <>
+            <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+                <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center" }}>
+                    <img src={logo} width={100} alt="logo" />
+                </Typography>
+                <Divider />
+                <List>
+                    {navItems.map((item) => (
+                        item?.name === 'ESC Advisory Services' ? (
+                            <div key={item.name} style={{ display: 'inline', marginLeft: "-15px" }} className='esg_menu'>
+                                <Button
+                                    className={`text-capitalize fs-6 fw-bold  ${routeName === item?.path ? 'green' : 'text-dark'}`}
+                                    onClick={() => navigate(item.path)}
+                                >
+                                    {item?.name}
+                                </Button>
+                                <ExpandMoreIcon
+                                    className="expand-icon"
+                                    onClick={handleMenuToggle}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                                {isMenuOpen && (
+                                    <div className='esg_menuItem' style={{ zIndex: "9" }}>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
+                                            <Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link>
+                                        </li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
+                                            <Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link>
+                                        </li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
+                                            <Link to="/esg-advisory-services/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link>
+                                        </li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
+                                            <Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link>
+                                        </li>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <ListItem key={item.name} disablePadding>
+                                <ListItemButton onClick={() => navigate(item.path)} className='text-dark'>
+                                    <ListItemText primary={item.name} />
+                                </ListItemButton>
+                            </ListItem>
+                        )
+                    ))}
+                </List>
+            </Box>
+        </>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;

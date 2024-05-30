@@ -1,4 +1,5 @@
-@import "../layouts/user/assets/css/style.css";
+@import '../layouts/user/assets/css/style.css';
+@import 'animate.css';
 
 .loader {
   margin-top: 70px;
@@ -47,116 +48,37 @@
   }
 }
 
-.datepickersize div div {
-  height: 40px;
-}
-
-.fc-bg-event {
-  opacity: 1 !important;
-}
-
-.editerHeight iframe {
-  height: 680px !important;
-  min-width: 1152px !important;
-}
-
-.dspXZR {
-  min-height: 108% !important;
-}
-
-.MuiTabs-scroller {
-  overflow-x: auto !important;
-}
-
-.pending {
-  color: rgb(163, 127, 8);
-  background-color: rgb(251, 244, 221);
-  border: none;
-  width: 130px;
-
-}
-
-.pending:hover {
-  color: rgb(163, 127, 8);
-  background-color: rgb(251, 244, 221);
-  border: none;
-  width: 130px;
-
-}
-
-.deliverd {
-  color: #22c55e;
-  background-color: #22c55e29;
-  border: none;
-  width: 130px;
-
-}
-
-.deliverd:hover {
-  color: #22c55e;
-  background-color: #22c55e29;
-  border: none;
-  width: 130px;
-
-}
-
-.failed {
-  color: #b61d18;
-  background-color: #ff563029;
-  border: none;
-  width: 130px;
-
-}
-
-.failed:hover {
-  color: #b61d18;
-  background-color: #ff563029;
-  border: none;
-  width: 130px;
-
-}
-
-.inProgress {
-  color: #0f85d9;
-  background-color: #5db0f429;
-  border: none;
-  width: 130px;
-
-}
-
-.inProgress:hover {
-  color: #0f85d9;
-  background-color: #5db0f429;
-  border: none;
-  width: 130px;
-
-}
-
-.Deferred {
-  color: #800567;
-  background-color: #fbe3f6;
-  border: none;
-  width: 130px;
-
-}
-
-.Deferred:hover {
-  color: #800567;
-  background-color: #fbe3f6;
-  border: none;
-  width: 130px;
-
-}
-
-.apexcharts-legend-marker {
-  border-radius: 50% !important;
-}
-
-.chartDate input {
-  padding: 4px 14px;
-  font-size: 13.5px;
-}
-
 .Login .MuiTextField-root {
   background-color: #e8f0fe !important;
+}
+
+.css-11ea04f-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #70ad47;
+}
+
+.css-6d3pg0-MuiTabs-indicator {
+  background-color: #70ad47;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+
+.custom-btn {
+  color: white;
+  background: #4abd43;
+}
+
+.custom-btn:hover {
+  color: white;
+  background: #4abd43;
+}
+
+.css-e5dh6b .MuiDataGrid-columnHeaders {
+  background-color: #f5f5f5 !important;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.css-e5dh6b .MuiDataGrid-footerContainer {
+  background-color: #f5f5f5 !important;
 }

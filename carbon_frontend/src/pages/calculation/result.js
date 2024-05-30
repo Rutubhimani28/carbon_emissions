@@ -1,27 +1,87 @@
 import { Box, Button, Card, Container, Stack } from '@mui/material';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SendMail from './sendMail';
+import { deleteData } from '../../redux/slice/totalDigitalContSlice';
+import { deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
+import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
+import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
+import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
+import { deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
-    const allData = useSelector((state) => state?.totalDigitalContentDetails)
+    const dispatch = useDispatch();
+    const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails)
+    const allFreightData = useSelector((state) => state?.totalAirFreightDetails)
+    const allEnergyData = useSelector((state) => state?.totalEnergyUpdatedDetails)
+    const allFoodData = useSelector((state) => state?.totalFoodDetails);
+    const allWasteData = useSelector((state) => state?.totalWasteDetails);
+    const allProductionData = useSelector((state) => state?.totalProductionDetails);
+    const allLocalTranspotationData = useSelector((state) => state?.totalLocalTranspotationDetails);
 
-    const total = 0 + 0 + 0 + 0 + allData?.totalEmission + 0 + 0 + 0
+    const total = parseFloat(allProductionData?.totalEmission) + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + parseFloat(allDigitalContentData?.totalEmission) + parseFloat(allLocalTranspotationData?.totalEmission) + 0 + parseFloat(allWasteData?.totalEmission)
+
+    const resultData = [
+        {
+            type: 'Production',
+            totalEmission: allProductionData?.totalEmission
+        },
+        {
+            type: 'Logistics',
+            totalEmission: allFreightData?.totalEmission
+        },
+        {
+            type: 'Food',
+            totalEmission: allFoodData?.totalEmission
+        },
+        {
+            type: 'Energy',
+            totalEmission: allEnergyData?.totalEmission
+        },
+        {
+            type: 'Travel',
+            totalEmission: 0
+        },
+        {
+            type: 'Digital',
+            totalEmission: allDigitalContentData?.totalEmission
+        },
+        {
+            type: 'Local Transportation',
+            totalEmission: allLocalTranspotationData?.totalEmission
+        },
+        {
+            type: 'Accomodation',
+            totalEmission: 0
+        },
+        {
+            type: 'Waste',
+            totalEmission: allWasteData?.totalEmission
+        },
+    ]
 
     const data = {
-        "totalWaste": "0",
+        "totalWaste": allWasteData?.totalEmission,
         "totalAccomodation": "0",
-        "totalLocalTransportation": "0",
-        "totalDIgitalContent": allData?.totalEmission,
+        "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
+        "totalDIgitalContent": allDigitalContentData?.totalEmission,
         "totlaTravel": "0",
-        "totalEnergyUpdated": "0",
-        "totalFood": "0",
-        "totalAirFreight": "0",
-        "totlaProduction": "0",
+        "totalEnergyUpdated": allEnergyData?.totalEmission,
+        "totalFood": allFoodData?.totalEmission,
+        "totalAirFreight": allFreightData?.totalEmission,
+        "totlaProduction": allProductionData?.totalEmission,
         "grandTotal": total
     }
 
+    const handeleDelete = () => {
+        dispatch(deleteData())
+        dispatch(deleteAirFreightData())
+        dispatch(deleteEnergyData())
+        dispatch(deleteFoodData())
+        dispatch(deleteWasteData())
+        dispatch(deleteLocalTranspotationData())
+    }
     return (
         <div>
             <SendMail open={open} close={() => setOpen(false)} datas={data} />
@@ -33,59 +93,23 @@ const Result = () => {
                         <Box >
                             <h4 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h4>
                             <table>
-                                <tr>
-                                    <th>Production</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Air Freight</th>
-                                    <td align='right' className='ps-4'>0 </td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Food</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Energy Updated</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Travel</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Digital Content</th>
-                                    <td align='right' className='ps-4'>{allData?.totalEmission}</td>
-                                    <td className='ps-1'> metric tons of CO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Local Transportation</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Accomodation</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Waste</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>metric tons of CO2e</td>
-                                </tr>
+                                {
+                                    resultData?.length > 0 && resultData?.map((item) => (
+                                        <tr>
+                                            <th>{item?.type}</th>
+                                            <td align='right' className='ps-4'>{item?.totalEmission}</td>
+                                            <td className='ps-1'>tons of kgCO2e</td>
+                                        </tr>
+                                    ))
+                                }
                             </table>
-                            <h4 className='text-center py-3 fw-bold'>Total To Offset = {total} metric tons of CO2e</h4>
+                            <h4 className='text-center py-3 fw-bold'>Total To Offset = {total}  tons of kgCO2e</h4>
                         </Box>
                     </div>
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
-                            <Button variant='contained' onClick={() => setOpen(true)}>Send Mail</Button>
-                            <Button variant='outlined' color='error'>Clear</Button>
+                            <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Send Mail</Button>
+                            <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button>
                         </Stack>
                     </div>
                 </Card>

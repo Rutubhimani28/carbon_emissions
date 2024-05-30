@@ -9,20 +9,22 @@ const totalDigitalContSlice = createSlice({
     },
     reducers: {
         addData: (state, action) => {
-            state.data.push(action.payload);
-            state.totalEmission = state.data.reduce((total, item) => total + item.emission, 0);
+            const newData = Array.isArray(action.payload) ? action.payload : [action.payload];
+            newData.forEach((newItem) => {
+                const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
+                if (existingItemIndex !== -1) {
+                    state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
+                } else {
+                    state.data.push(newItem);
+                }
+            });
+            state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
         },
-
-        deleteData: (state, action) => {
-            const { id } = action.payload;
-            const filteredData = state.data.filter((item) => item.id !== id);
-            const totalEmission = filteredData.reduce((total, item) => total + item.emission, 0);
-            return {
-                ...state,
-                data: filteredData,
-                totalEmission,
-            };
-        },
+        deleteData: (state, action) => ({
+            ...state,
+            data: [],
+            totalEmission: 0
+        }),
 
     },
 });

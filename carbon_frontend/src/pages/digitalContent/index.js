@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, Button, Card, Container, Stack, Typography, styled } from '@mui/material';
+import { Box, Button, Card, Container, Grid, Stack, Typography, styled } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {
@@ -13,9 +13,10 @@ import {
 } from '@mui/x-data-grid';
 import moment from "moment";
 import React, { useEffect, useState } from 'react';
-import { CiExport, CiImport } from "react-icons/ci";
+import { CiExport } from "react-icons/ci";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import digitalContentFile from '../../assets/SAM_digital_Content_.xlsx';
 import DeleteModel from '../../components/Deletemodle';
 import ImportModel from '../../components/Import/ImportModel';
 import TableStyle from '../../components/TableStyle';
@@ -24,8 +25,9 @@ import { fetchDigitalContentData } from '../../redux/slice/digitalContentSlice';
 import { deleteManyApi } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
 import AddEdit from './AddEdit';
-import digitalContentFile from '../../assets/SAM_digital_Content_.xlsx'
-
+import Attechment from './attechment';
+import Email from './email';
+import Laptop from './laptop';
 // ----------------------------------------------------------------------
 
 const StyledMenu = styled((props) => (
@@ -96,6 +98,10 @@ const DigitalContent = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openImpt, setOpenImpt] = useState(false);
     const [type, setType] = useState('')
+    const [isVisibleEmails, setIsVisibleEmails] = useState(false);
+    const [isVisibleAttechments, setIsVisibleAttechments] = useState(false);
+    const [isVisibleLaptop, setIsVisibleLaptop] = useState(false);
+
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -104,7 +110,7 @@ const DigitalContent = () => {
     const userid = sessionStorage.getItem('user_id');
 
     const { data, isLoading } = useSelector((state) => state?.digitalContentDetails)
-
+    console.log(data);
     const fieldsInCrm = [
         { Header: "Type", accessor: 'type', type: 'string' },
         { Header: "Count", accessor: 'count', type: 'number' },
@@ -112,7 +118,6 @@ const DigitalContent = () => {
         { Header: "No. of Attendees", accessor: 'noOfAttendees', type: 'number' },
         { Header: "No. of Hours", accessor: 'noOfHours', type: 'number' },
         { Header: "Service life of Laptop", accessor: 'serviceLifeOfLaptop', type: 'number' },
-        { Header: "EF", accessor: 'ef', type: 'number' },
         { Header: "Create Date", accessor: 'createdOn', type: 'date', isDisplay: false, defVal: new Date() },
     ];
 
@@ -123,7 +128,7 @@ const DigitalContent = () => {
         { Header: "No. of Attendees", accessor: 'noOfAttendees' },
         { Header: "No. of Hours", accessor: 'noOfHours' },
         { Header: "Service life of Laptop", accessor: 'serviceLifeOfLaptop' },
-        { Header: "EF", accessor: 'ef' },
+        { Header: "Emission", accessor: 'emission' },
         { Header: "Create Date", accessor: 'createdOn' },
     ];
 
@@ -140,6 +145,10 @@ const DigitalContent = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const toggleVisibilityEmails = () => setIsVisibleEmails(!isVisibleEmails);
+    const toggleVisibilityAttechments = () => setIsVisibleAttechments(!isVisibleAttechments);
+    const toggleVisibilityLaptop = () => setIsVisibleLaptop(!isVisibleLaptop);
+
     const columns = [
         {
             field: "type",
@@ -157,7 +166,7 @@ const DigitalContent = () => {
         {
             field: "count",
             headerName: "Count",
-            width: 150,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -169,7 +178,7 @@ const DigitalContent = () => {
         {
             field: "mb",
             headerName: "MB",
-            width: 180,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -178,11 +187,10 @@ const DigitalContent = () => {
                 );
             }
         },
-
         {
             field: "noOfAttendees",
             headerName: "No. of Attendees",
-            width: 250,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -194,7 +202,7 @@ const DigitalContent = () => {
         {
             field: "noOfHours",
             headerName: "No. of Hours",
-            width: 250,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <Box >
@@ -215,19 +223,6 @@ const DigitalContent = () => {
                 );
             }
         },
-        {
-            field: "ef",
-            headerName: "EF",
-            width: 250,
-            renderCell: (params) => {
-                return (
-                    <Box >
-                        {params.value ? params.value : '-'}
-                    </Box>
-                );
-            }
-        },
-
         {
             field: "action",
             headerName: "Action",
@@ -308,10 +303,10 @@ const DigitalContent = () => {
             <Container maxWidth>
                 <Stack direction="row" alignItems="center" mb={5} justifyContent={"space-between"}>
                     <Typography variant="h4" >
-                        Digital Content
+                        Digital
                     </Typography>
                     <Stack direction="row" alignItems="center" justifyContent={"flex-end"} spacing={2}>
-                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={() => { handleOpenAdd(); setType("add") }}>
+                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={() => { handleOpenAdd(); setType("add") }} className="custom-btn">
                             Add New
                         </Button>
                         <div>
@@ -324,6 +319,7 @@ const DigitalContent = () => {
                                 disableElevation
                                 onClick={handleClick}
                                 endIcon={<KeyboardArrowDownIcon />}
+                                className="custom-btn"
                             >
                                 Action
                             </Button>
@@ -336,10 +332,10 @@ const DigitalContent = () => {
                                 open={open}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleOpenImpt} disableRipple>
+                                {/* <MenuItem onClick={handleOpenImpt} disableRipple>
                                     <CiImport style={{ marginRight: "7px" }} />
                                     Import
-                                </MenuItem>
+                                </MenuItem> */}
                                 <MenuItem onClick={() => { handleClose(); handleExportLeads('xlsx') }} disableRipple>
                                     <CiExport style={{ marginRight: "7px" }} />
                                     {selectedRowIds && selectedRowIds?.length > 0 ? 'Export Selected Data' : 'Export'}
@@ -348,7 +344,7 @@ const DigitalContent = () => {
                         </div>
                     </Stack>
                 </Stack>
-                <TableStyle>
+                {/* <TableStyle>
                     <Box width="100%">
                         {isLoading ? (
                             <Card style={{ display: 'flex', justifyContent: 'center', height: "600px" }}>
@@ -373,7 +369,40 @@ const DigitalContent = () => {
                         )}
 
                     </Box>
-                </TableStyle>
+                </TableStyle> */}
+
+                {/* <Card sx={{ marginTop: "50px" }}>
+                    <Email toggleVisibilityEmails={toggleVisibilityEmails} isVisibleEmails={isVisibleEmails} setUserAction={setUserAction} rows={data} />
+                </Card>
+
+                <Card sx={{ marginTop: "20px" }}>
+                    <Laptop toggleVisibilityLaptop={toggleVisibilityLaptop} isVisibleLaptop={isVisibleLaptop} setUserAction={setUserAction} rows={data} data={data} />
+                </Card>
+
+                <Card sx={{ marginTop: "20px" }}>
+                    <Attechment toggleVisibilityAttechments={toggleVisibilityAttechments} isVisibleAttechments={isVisibleAttechments} setUserAction={setUserAction} rows={data} />
+                </Card> */}
+
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <Grid item xs={12} md={3.5}>
+                        <Card sx={{ marginTop: "20px" }}>
+                            <Email toggleVisibilityEmails={toggleVisibilityEmails} isVisibleEmails={isVisibleEmails} setUserAction={setUserAction} rows={data} />
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} md={3.5}>
+                        <Card sx={{ marginTop: "20px" }}>
+                            <Attechment toggleVisibilityAttechments={toggleVisibilityAttechments} isVisibleAttechments={isVisibleAttechments} setUserAction={setUserAction} rows={data} />
+                        </Card>
+
+                    </Grid>
+                    <Grid item xs={12} md={5}>
+                        <Card sx={{ marginTop: "20px" }}>
+                            <Laptop toggleVisibilityLaptop={toggleVisibilityLaptop} isVisibleLaptop={isVisibleLaptop} setUserAction={setUserAction} rows={data} data={data} />
+                        </Card>
+                    </Grid>
+
+                </Grid>
+
             </Container>
         </>
     );

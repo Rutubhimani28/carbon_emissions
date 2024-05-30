@@ -1,9 +1,10 @@
-import { Box, Button, FormHelperText, FormLabel, Grid, TextField } from '@mui/material';
+import { Box, Button, CircularProgress, FormHelperText, FormLabel, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import * as yup from 'yup';
 import { InlineWidget, PopupWidget, PopupModal, useCalendlyEventListener } from 'react-calendly';
 import { Link } from 'react-router-dom';
+import { apipost } from '../../../../service/api';
 
 const ContactUsForm = () => {
   const initialValues = {
@@ -16,6 +17,7 @@ const ContactUsForm = () => {
     message: '',
   };
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const formik = useFormik({
     initialValues,
@@ -24,25 +26,40 @@ const ContactUsForm = () => {
       firstName: yup.string().required('Message is required'),
       mobile: yup
         .string()
-        .required()
-        .matches(/^(0)?[0-9]{9,14}$/, 'Number is invalid'),
+        .required("Mobile is require")
+        .matches(/^[0-9]{10}$/, 'Number is invalid'),
       organisation: yup.string().required('Organisation is required'),
-      workEmail: yup.string().required('Work Email is required'),
+      workEmail: yup.string().email("Email is invalid").required('Work Email is required'),
       lastName: yup.string().required('Last Name is required'),
       designation: yup.string().required('Designation is required'),
-      message: yup.string().required('Message is required'),
+      message: yup.string().required('Message is required').max(200, 'Message must be at most 200 characters long'),
     }),
     onSubmit: (values) => {
-      // handleSubmit(values)
+      handleSubmit(values);
     },
   });
 
-  useCalendlyEventListener({
-    onProfilePageViewed: (e) => console.log('onProfilePageViewed----::', e),
-    onDateAndTimeSelected: (e) => console.log('onDateAndTimeSelected----::', e),
-    onEventTypeViewed: (e) => console.log('onEventTypeViewed----::', e),
-    onEventScheduled: (e) => console.log('payload----::', e.data.payload, e),
-  });
+  const handleSubmit = async (values) => {
+    setIsLoading(true);
+    try {
+      const result = await apipost('api/contactUs/add', values);
+
+      if (result && result.status === 200) {
+        formik.resetForm();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  };
+
+  /* For future use */
+  // useCalendlyEventListener({
+  //   onProfilePageViewed: (e) => console.log('onProfilePageViewed----::', e),
+  //   onDateAndTimeSelected: (e) => console.log('onDateAndTimeSelected----::', e),
+  //   onEventTypeViewed: (e) => console.log('onEventTypeViewed----::', e),
+  //   onEventScheduled: (e) => console.log('payload----::', e.data.payload, e),
+  // });
 
   const pageSettings = {
     backgroundColor: '#ffffff',
@@ -80,15 +97,11 @@ const ContactUsForm = () => {
     },
     date: new Date(Date.now() + 86400000),
     city: 'Winterfell',
-    secondTelephone: '+1987654321'
+    secondTelephone: '+1987654321',
   };
 
   return (
-    <div className="main py-5">
-      <p className="text-center pt-3 fontFamily main fw-bold fs-5">
-        For enquiries, please share your details, and we’ll respond within 24-48 hours. Alternatively, you can email us
-        at  <Link className=" text-decoration-none" style={{ color: '#4edceb' }}>askme@gosustainable.ai. </Link>
-      </p>
+    <div>
       <Box>
         <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -105,6 +118,7 @@ const ContactUsForm = () => {
                   value={formik.values.firstName}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                   helperText={formik.touched.firstName && formik.errors.firstName}
                 />
@@ -121,6 +135,7 @@ const ContactUsForm = () => {
                   value={formik.values.lastName}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.lastName && Boolean(formik.errors.lastName)}
                   helperText={formik.touched.lastName && formik.errors.lastName}
                 />
@@ -137,6 +152,7 @@ const ContactUsForm = () => {
                   value={formik.values.organisation}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.organisation && Boolean(formik.errors.organisation)}
                   helperText={formik.touched.organisation && formik.errors.organisation}
                 />
@@ -153,6 +169,7 @@ const ContactUsForm = () => {
                   value={formik.values.designation}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.designation && Boolean(formik.errors.designation)}
                   helperText={formik.touched.designation && formik.errors.designation}
                 />
@@ -169,6 +186,7 @@ const ContactUsForm = () => {
                   value={formik.values.workEmail}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.workEmail && Boolean(formik.errors.workEmail)}
                   helperText={formik.touched.workEmail && formik.errors.workEmail}
                 />
@@ -185,6 +203,7 @@ const ContactUsForm = () => {
                   value={formik.values.mobile}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.mobile && Boolean(formik.errors.mobile)}
                   helperText={formik.touched.mobile && formik.errors.mobile}
                 />
@@ -202,6 +221,7 @@ const ContactUsForm = () => {
                   value={formik.values.message}
                   // placeholder="Enter Hear"
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   error={formik.touched.message && Boolean(formik.errors.message)}
                   helperText={formik.touched.message && formik.errors.message}
                 />
@@ -219,18 +239,20 @@ const ContactUsForm = () => {
               <Grid item xs={5} sm={8}>
                 <Button
                   id="action"
-                  aria-haspopup="true"
+                  // aria-haspopup="true"
                   variant="contained"
-                  color="secondary"
-                  disableElevation
-                // onClick={handleClickaction}
+                  // color="secondary"
+                  // disableElevation
+                  onClick={formik.handleSubmit}
+                  type="submit"
+                  className='custom-btn'
                 >
-                  Submit
+                  {isLoading ? <CircularProgress size={27} /> : 'Submit'}
                 </Button>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} >
+          <Grid item xs={12} sm={6}>
             <InlineWidget url="https://calendly.com/fayiba2108/meet" />
 
             {/* <button style={{ display: 'block', margin: '0 auto' }} onClick={() => setIsOpen(true)}>

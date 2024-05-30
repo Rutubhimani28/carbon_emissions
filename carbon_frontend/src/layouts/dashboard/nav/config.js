@@ -1,6 +1,13 @@
 // component
 import PaymentsRoundedIcon from '@mui/icons-material/PaymentsRounded';
 import SvgColor from '../../../components/svg-color';
+import Result from '../../../assets/result.png'
+import digitalContent from '../../../assets/Digital.png'
+import dashboard from '../../../assets/dashboard.png'
+import Logistics from '../../../assets/Logistics.png'
+import contact from '../../../assets/contact.png'
+import events from '../../../assets/events.png'
+import Production from '../../../assets/production.png'
 
 // ----------------------------------------------------------------------
 
@@ -11,17 +18,37 @@ const navConfig = [
   {
     title: 'Dashboard',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
+    icon: <img src={dashboard} alt='dashboard' width={25} />,
   },
   {
-    title: 'Digital Content',
+    title: 'Logistics',
+    path: '/dashboard/airfreight',
+    icon: <img src={Logistics} alt='Result' width={30} />,
+  },
+  {
+    title: 'Digital',
     path: '/dashboard/digitalContent',
-    icon: icon('ic_digitalContent'),
+    icon: <img src={digitalContent} alt='digitalContent' width={30} />,
+  },
+  {
+    title: 'Production',
+    path: '/dashboard/production',
+    icon: <img src={Production} alt='Production' width={30} />,
   },
   {
     title: 'Calculation',
     path: '/dashboard/calculation',
-    icon: icon('ic_calculator'),
+    icon: <img src={Result} alt='Result' width={30} />,
+  },
+  {
+    title: 'contactUs',
+    path: '/dashboard/contactUs',
+    icon: <img src={contact} alt='Result' width={30} />,
+  },
+  {
+    title: 'Events',
+    path: '/dashboard/events',
+    icon: <img src={events} alt='Result' width={30} />,
   },
   // {
   //   title: 'User Management',

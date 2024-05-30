@@ -8,9 +8,13 @@ import UserView from './pages/user/View'
 import DashboardAppPage from './pages/DashboardAppPage';
 import ImportView from './components/Import/ImportView';
 import UserLayout from './layouts/user';
-import Services from './layouts/user/components/landingPage/services/index'
+import Services from './layouts/user/components/services/index'
 import DigitalContent from './pages/digitalContent';
 import Calculation from './pages/calculation';
+import AirFreight from './pages/airFreight';
+import ContactUs from './pages/contactUs/ContactUs';
+import Events from './pages/events/Events';
+import Production from './pages/production/Production';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -25,7 +29,11 @@ export default function Router() {
         { path: 'user/view/:id', element: <UserView /> },
         { path: ':view/import', element: <ImportView /> },
         { path: 'digitalContent', element: <DigitalContent /> },
+        { path: 'production', element: <Production /> },
+        { path: 'airFreight', element: <AirFreight /> },
         { path: 'calculation', element: <Calculation /> },
+        { path: 'contactUs', element: <ContactUs /> },
+        { path: 'events', element: <Events /> },
       ],
     },
     { path: '/', element: <UserLayout /> },

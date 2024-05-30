@@ -31,7 +31,7 @@ export default function CustomizedDialogs(props) {
 
   const validationSchema = yup.object({
     message: yup.string().required("Message is required"),
-    addNumber: yup.string().notRequired().matches(/^(0)?[0-9]{9,14}$/, 'Number is invalid'),
+    addNumber: yup.string().notRequired().matches(/^[0-9]{10}$/, 'Number is invalid'),
 
   });
 
