@@ -18,7 +18,7 @@ const totalEnergyUpdatedSlice = createSlice({
                     state.data.push(newItem);
                 }
             });
-            state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0);
+            state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
         },
         deleteEnergyData: (state, action) => ({
             ...state,

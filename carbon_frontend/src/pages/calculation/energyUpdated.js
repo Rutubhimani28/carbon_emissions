@@ -76,7 +76,7 @@ const EnergyUpdated = () => {
         <div>
             <Container maxWidth>
                 <Card className='p-4'>
-                    <Box >
+                    <Box>
                         <Grid
                             container
                             rowSpacing={3}
