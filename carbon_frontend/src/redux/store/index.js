@@ -12,6 +12,8 @@ import contactUsSlice from '../slice/contactUsSlice';
 import totalEnergyUpdatedSlice from '../slice/totalEnergyUpdatedSlice';
 import eventsSlice from '../slice/eventsSlice';
 import productionSlice from '../slice/productionSlice';
+import totalFoodSlice from '../slice/totalFoodSlice';
+import totalWasteSlice from '../slice/totalWasteSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -40,6 +42,14 @@ const totalEnergyUpdatedPersistConfig = {
     key: 'totalEnergyUpdatedDetails',
     storage: storageSession,
 };
+const totalFoodPersistConfig = {
+    key: 'totalFoodDetails',
+    storage: storageSession,
+};
+const totalWastePersistConfig = {
+    key: 'totalWasteDetails',
+    storage: storageSession,
+};
 
 export const store = configureStore({
     reducer: {
@@ -52,6 +62,8 @@ export const store = configureStore({
         totalAirFreightDetails: persistReducer(totalAirFreightPersistConfig, totalAirFreightSlice),
         productionDetails: persistReducer(productionPersistConfig, productionSlice),
         totalEnergyUpdatedDetails: persistReducer(totalEnergyUpdatedPersistConfig, totalEnergyUpdatedSlice),
+        totalFoodDetails: persistReducer(totalFoodPersistConfig, totalFoodSlice),
+        totalWasteDetails: persistReducer(totalWastePersistConfig, totalWasteSlice),
     },
     middleware,
 });

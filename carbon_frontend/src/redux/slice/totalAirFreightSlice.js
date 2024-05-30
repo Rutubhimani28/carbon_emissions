@@ -21,7 +21,7 @@ const totalAirFreightSlice = createSlice({
                 }
             });
             // Recalculate totalEmission
-            state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0);
+            state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
         },
         deleteAirFreightData: (state, action) => ({
             ...state,

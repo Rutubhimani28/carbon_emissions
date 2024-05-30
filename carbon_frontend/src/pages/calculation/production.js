@@ -236,7 +236,6 @@ const Production = () => {
                                 <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                 <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
                             </Stack>
-
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3}>
                             <Typography>{`Total Production Footprint = ${totalEmission} tons of CO2e`}</Typography>

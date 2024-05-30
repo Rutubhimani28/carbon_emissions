@@ -5,6 +5,7 @@ import SendMail from './sendMail';
 import { deleteData } from '../../redux/slice/totalDigitalContSlice';
 import { deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
 import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
+import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
@@ -12,17 +13,58 @@ const Result = () => {
     const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails)
     const allFreightData = useSelector((state) => state?.totalAirFreightDetails)
     const allEnergyData = useSelector((state) => state?.totalEnergyUpdatedDetails)
+    const allFoodData = useSelector((state) => state?.totalFoodDetails);
+    const allWasteData = useSelector((state) => state?.totalWasteDetails);
 
-    const total = 0 + allFreightData?.totalEmission + 0 + allEnergyData?.totalEmission + allDigitalContentData?.totalEmission + 0 + 0 + 0
+    const total = 0 + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + parseFloat(allDigitalContentData?.totalEmission) + 0 + 0 + parseFloat(allWasteData?.totalEmission)
+
+    const resultData = [
+        {
+            type: 'Production',
+            totalEmission: 0
+        },
+        {
+            type: 'Logistics',
+            totalEmission: allFreightData?.totalEmission
+        },
+        {
+            type: 'Food',
+            totalEmission: allFoodData?.totalEmission
+        },
+        {
+            type: 'Energy',
+            totalEmission: allEnergyData?.totalEmission
+        },
+        {
+            type: 'Travel',
+            totalEmission: 0
+        },
+        {
+            type: 'Digital',
+            totalEmission: allDigitalContentData?.totalEmission
+        },
+        {
+            type: 'Local Transportation',
+            totalEmission: 0
+        },
+        {
+            type: 'Accomodation',
+            totalEmission: 0
+        },
+        {
+            type: 'Waste',
+            totalEmission: allWasteData?.totalEmission
+        },
+    ]
 
     const data = {
-        "totalWaste": "0",
+        "totalWaste": allWasteData?.totalEmission,
         "totalAccomodation": "0",
         "totalLocalTransportation": "0",
         "totalDIgitalContent": allDigitalContentData?.totalEmission,
         "totlaTravel": "0",
         "totalEnergyUpdated": allEnergyData?.totalEmission,
-        "totalFood": "0",
+        "totalFood": allFoodData?.totalEmission,
         "totalAirFreight": allFreightData?.totalEmission,
         "totlaProduction": "0",
         "grandTotal": total
@@ -32,6 +74,7 @@ const Result = () => {
         dispatch(deleteData())
         dispatch(deleteAirFreightData())
         dispatch(deleteEnergyData())
+        dispatch(deleteFoodData())
     }
     return (
         <div>
@@ -44,51 +87,15 @@ const Result = () => {
                         <Box >
                             <h4 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h4>
                             <table>
-                                <tr>
-                                    <th>Production</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>tons of kgCO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Air Freight</th>
-                                    <td align='right' className='ps-4'>{allFreightData?.totalEmission}</td>
-                                    <td className='ps-1'>tons of kgCO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Food</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>tons of kgCO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Energy Updated</th>
-                                    <td align='right' className='ps-4'>{allEnergyData?.totalEmission}</td>
-                                    <td className='ps-1'>tons of kgCO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Travel</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>tons of kgCO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Digital Content</th>
-                                    <td align='right' className='ps-4'>{allDigitalContentData?.totalEmission}</td>
-                                    <td className='ps-1'> tons of kgCO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Local Transportation</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>tons of kgCO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Accomodation</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>tons of kgCO2e</td>
-                                </tr>
-                                <tr>
-                                    <th>Waste</th>
-                                    <td align='right' className='ps-4'>0</td>
-                                    <td className='ps-1'>tons of kgCO2e</td>
-                                </tr>
+                                {
+                                    resultData?.length > 0 && resultData?.map((item) => (
+                                        <tr>
+                                            <th>{item?.type}</th>
+                                            <td align='right' className='ps-4'>{item?.totalEmission}</td>
+                                            <td className='ps-1'>tons of kgCO2e</td>
+                                        </tr>
+                                    ))
+                                }
                             </table>
                             <h4 className='text-center py-3 fw-bold'>Total To Offset = {total}  tons of kgCO2e</h4>
                         </Box>

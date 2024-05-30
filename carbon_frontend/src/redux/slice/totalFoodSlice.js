@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const totalDigitalContSlice = createSlice({
-    name: "totalDigitalContent",
+const totalFoodSlice = createSlice({
+    name: "food",
     initialState: {
         data: [],
         totalEmission: 0
     },
     reducers: {
-        addData: (state, action) => {
+        addFoodData: (state, action) => {
             const newData = Array.isArray(action.payload) ? action.payload : [action.payload];
             newData.forEach((newItem) => {
                 const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
@@ -20,7 +20,7 @@ const totalDigitalContSlice = createSlice({
             });
             state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
         },
-        deleteData: (state, action) => ({
+        deleteFoodData: (state, action) => ({
             ...state,
             data: [],
             totalEmission: 0
@@ -29,5 +29,5 @@ const totalDigitalContSlice = createSlice({
     },
 });
 
-export const { addData, deleteData } = totalDigitalContSlice.actions;
-export default totalDigitalContSlice.reducer;
+export const { addFoodData, deleteFoodData } = totalFoodSlice.actions;
+export default totalFoodSlice.reducer;
