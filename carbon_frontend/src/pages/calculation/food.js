@@ -1,10 +1,12 @@
 import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, } from '@mui/material';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
+import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFoodData, deleteFoodData } from '../../redux/slice/totalFoodSlice';
 
-const Food = () => {
+const Food = (props) => {
+    const { setValue } = props;
     const dispatch = useDispatch()
     const allData = useSelector((state) => state?.totalFoodDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalFoodDetails?.totalEmission);
@@ -125,6 +127,7 @@ const Food = () => {
                             <Stack direction={"row"} spacing={2}>
                                 <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                 <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
+                                <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                             </Stack>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>

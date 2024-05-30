@@ -1,11 +1,13 @@
 import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography } from '@mui/material';
-import { useEffect } from 'react';
 import { useFormik } from 'formik';
-import * as yup from "yup";
+import { useEffect } from 'react';
+import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import * as yup from "yup";
 import { addAirFreightData, deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
 
-const AirFreight = () => {
+const AirFreight = (props) => {
+    const { setValue } = props;
 
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalAirFreightDetails?.data[0]?.data);
@@ -144,8 +146,9 @@ const AirFreight = () => {
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"end"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate And Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                 </Stack>
 
                             </Grid>

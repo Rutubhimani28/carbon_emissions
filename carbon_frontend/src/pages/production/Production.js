@@ -63,8 +63,8 @@ const Production = () => {
 
     const columns = [
         {
-            field: "count",
-            headerName: "Count",
+            field: "totalArea",
+            headerName: "Total Area",
             flex: 1,
             valueFormatter: (params) => params.value,
         },
@@ -86,6 +86,30 @@ const Production = () => {
 
     ];
 
+
+    const fileldData = [
+        { name: 'MDF', ef: 0.345, fieldName: 'mdf' },
+        { name: 'Open Panel Timber Frame ', ef: 0.856, fieldName: 'openPanelTimberFrame' },
+        { name: 'Carpet ', ef: 0.263, fieldName: 'carpet' },
+        { name: 'Sawn Timber', ef: 6.7, fieldName: 'sawnTimber' },
+        { name: 'Wood', ef: 3.1, fieldName: 'wood' },
+        { name: 'Adhesive Vinyl', ef: 6.4, fieldName: 'adhesiveVinyl' },
+        { name: 'Aluminium', ef: 1.83, fieldName: 'aluminium' },
+        { name: 'Steel ', ef: 0.42, fieldName: 'steel' },
+        { name: 'Carpet ', ef: 0.64, fieldName: 'carpet' },
+        { name: 'Iron', ef: 0, fieldName: 'iron' },
+        { name: 'Paint ', ef: 0, fieldName: 'paint' },
+        { name: 'Wooden Floor', ef: 0, fieldName: 'woodenFloor' },
+        { name: 'Cardboard', ef: 8.3, fieldName: 'cardboard' },
+        { name: 'Cotton Banner', ef: 0.94, fieldName: 'cottonBanner' },
+        { name: 'Polyester', ef: 1.2, fieldName: 'polyester' },
+        { name: 'paper', ef: 12.7, fieldName: 'paper' },
+        { name: 'Lanyards', ef: 14.5, fieldName: 'lanyards' },
+        { name: 'Cotton canvas ', ef: 22.74, fieldName: 'cottonCanvas' },
+        { name: 'Nylon', ef: 2.792, fieldName: 'nylon' },
+        { name: 'Poly Ethelene', ef: 12.7, fieldName: 'polyEthelene' },
+    ];
+
     return (
         <div>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -94,22 +118,6 @@ const Production = () => {
                         <Box p={2} display="flex" alignItems="center" style={{ cursor: "pointer" }}>
                             <Typography variant="h5">Emails</Typography>
                         </Box>
-                        <DataGridComponent
-                            data={data}
-                            columns={columns}
-                        />
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <Card sx={{ marginTop: '20px' }}>
-                        <DataGridComponent
-                            data={data}
-                            columns={columns}
-                        />
-                    </Card>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <Card sx={{ marginTop: '20px' }}>
                         <DataGridComponent
                             data={data}
                             columns={columns}
