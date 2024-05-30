@@ -15,6 +15,7 @@ const productionSlice = createSlice({
                 if (existingItemIndex !== -1) {
                     // Update the existing item
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
+                    console.log(state.data[existingItemIndex]);
                 } else {
                     // Add the new item
                     state.data.push(newItem);
