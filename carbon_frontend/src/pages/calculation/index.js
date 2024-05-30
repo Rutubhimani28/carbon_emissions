@@ -17,6 +17,7 @@ import Production from './production';
 import EnergyUpdated from './energyUpdated';
 import Food from './food'
 import Waste from './waste';
+import LocalTranspotation from './localTranspotation';
 
 const Calculation = () => {
 
@@ -56,6 +57,7 @@ const Calculation = () => {
                     {value === 2 && <Food />}
                     {value === 3 && <EnergyUpdated />}
                     {value === 5 && <DigitalContent />}
+                    {value === 6 && <LocalTranspotation />}
                     {value === 8 && <Waste />}
                     {value === 9 && <Result />}
                 </Box>
