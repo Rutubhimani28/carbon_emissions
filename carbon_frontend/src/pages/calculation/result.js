@@ -7,6 +7,7 @@ import { deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
 import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
 import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
+import { deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
@@ -17,8 +18,9 @@ const Result = () => {
     const allFoodData = useSelector((state) => state?.totalFoodDetails);
     const allWasteData = useSelector((state) => state?.totalWasteDetails);
     const allProductionData = useSelector((state) => state?.totalProductionDetails);
+    const allLocalTranspotationData = useSelector((state) => state?.totalLocalTranspotationDetails);
 
-    const total = parseFloat(allProductionData?.totalEmission) + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + parseFloat(allDigitalContentData?.totalEmission) + 0 + 0 + parseFloat(allWasteData?.totalEmission)
+    const total = parseFloat(allProductionData?.totalEmission) + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + parseFloat(allDigitalContentData?.totalEmission) + parseFloat(allLocalTranspotationData?.totalEmission) + 0 + parseFloat(allWasteData?.totalEmission)
 
     const resultData = [
         {
@@ -47,7 +49,7 @@ const Result = () => {
         },
         {
             type: 'Local Transportation',
-            totalEmission: 0
+            totalEmission: allLocalTranspotationData?.totalEmission
         },
         {
             type: 'Accomodation',
@@ -62,7 +64,7 @@ const Result = () => {
     const data = {
         "totalWaste": allWasteData?.totalEmission,
         "totalAccomodation": "0",
-        "totalLocalTransportation": "0",
+        "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
         "totalDIgitalContent": allDigitalContentData?.totalEmission,
         "totlaTravel": "0",
         "totalEnergyUpdated": allEnergyData?.totalEmission,
@@ -78,6 +80,7 @@ const Result = () => {
         dispatch(deleteEnergyData())
         dispatch(deleteFoodData())
         dispatch(deleteWasteData())
+        dispatch(deleteLocalTranspotationData())
     }
     return (
         <div>

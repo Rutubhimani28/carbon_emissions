@@ -71,24 +71,10 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
 
             <Box p={2} style={{ cursor: "pointer" }}>
                 <Grid container display="flex" alignItems="center">
-                    <Stack direction="row" alignItems="center" justifyContent={"space-between"} width={"100%"}>
-                        <Stack direction="row" spacing={1} alignItems={"center"}>
-                            {/* <Button
-                                onClick={toggleVisibilityEmails}
-                                className='custom-btn'
-                                variant="contained"
-                                sx={{ width: "28px", minWidth: "0px", padding: "0px", height: "25px", backgroundColor: "#4ABD43", '&hover': { backgroundColor: "#4ABD43" } }}
-                            >
-                                {isVisibleEmails ? <RemoveIcon /> : <AddIcon />}
-                            </Button> */}
-                            <Typography variant="h5">Emails</Typography>
-                        </Stack>
-
-                    </Stack>
+                    <Typography variant="h5">Emails</Typography>
                 </Grid>
             </Box>
-            {/* {
-                isVisibleEmails && */}
+            
             <TableStyleTwo>
                 <Box width="100%" height="50vh">
                     <DataGrid
@@ -107,8 +93,6 @@ const Emails = ({ rows, toggleVisibilityEmails, isVisibleEmails, setUserAction }
                     />
                 </Box>
             </TableStyleTwo>
-
-            {/* } */}
         </div>
     )
 }
