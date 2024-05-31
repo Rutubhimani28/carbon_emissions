@@ -1,43 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { Button } from '@mui/material'
 import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
+import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
-import Paper from '@mui/material/Paper'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { useNavigate } from 'react-router-dom'
-import { Button } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import DeleteModel from '../../components/Deletemodle';
-import AddEdit from './AddEdit'
-import { apidelete } from '../../service/api'
-import { fetchProductionData } from '../../redux/slice/productionSlice'
+import DeleteModel from '../../components/Deletemodle'
 import Iconify from '../../components/iconify'
+import { fetchProductionData } from '../../redux/slice/productionSlice'
+import { apidelete } from '../../service/api'
+import AddEdit from './AddEdit'
 
-function createData(Material, Details = []) {
-    return {
-        Material,
-        Details: [
-            { TotalArea: '2', action: '' },
-            { TotalArea: '2', action: '' },
-            { TotalArea: '2', action: '' },
-            { TotalArea: '2', action: '' }
-        ]
-    }
-}
 function Row(props) {
-    const { row, setUserAction, type, handleCloseAdd, openAdd, data } = props
-    console.log(row.Material, "row----------");
-    console.log(data, "datadatadatadata");
+    const { row, setUserAction } = props
     const [open, setOpen] = useState(false)
     const [opendelete, setOpendelete] = useState(false);
     const [selectedRowIds, setSelectedRowIds] = useState([]);
@@ -49,22 +35,10 @@ function Row(props) {
         setUserAction(result)
         handleCloseDelete();
     }
-    const handleSelectionChange = (selectionModel) => {
-        setSelectedRowIds(selectionModel);
-    };
 
-    const updatedData = []
 
-    //     data.forEach( => {
-    // console.log(item)
-    //         // updatedData.push()
-    //     });
-
-    console.log(updatedData)
-    const fData = data.filter((item) => item?.material === row?.Material)
 
     const handleCloseDelete = () => setOpendelete(false)
-    const handleOpenDelete = () => setOpendelete(true)
 
     return (
         <>
@@ -76,7 +50,7 @@ function Row(props) {
                     </IconButton>
                 </TableCell>
                 <TableCell className='text-dark fw-bolder fs-6' component='th' scope='row'>
-                    {row.Material}{' '}
+                    {row.name}{' '}
                 </TableCell>
             </TableRow>
             <TableRow>
@@ -94,10 +68,9 @@ function Row(props) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {row?.Details?.map((historyRow) => (
+                                    {row?.details?.map((historyRow) => (
                                         <TableRow key={historyRow.employee1} sx={{ borderBottom: 0 }}>
-
-                                            <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow.TotalArea}</TableCell>
+                                            <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow.totalArea}</TableCell>
                                             <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' /></span> </TableCell>
                                         </TableRow>
                                     ))}
@@ -111,41 +84,28 @@ function Row(props) {
     )
 }
 
-const rows = [
-    createData('Open Panel Timber Frame'),
-    createData('MDF'),
-    createData('Sawn Timber'),
-    createData('Carpet'),
-    createData('Adhesive Vinyl'),
-    createData('Wood'),
-    createData('Steel'),
-    createData('Aluminium'),
-    createData('Iron'),
-    createData('Wooden Floor'),
-    createData('Paint'),
-    createData('Cotton Banner'),
-    createData('Cardboard'),
-    createData("paper"),
-    createData('Polyester'),
-    createData('Cotton canvas'),
-    createData('Lanyards'),
-    createData('Poly Ethelene'),
-    createData('Nylon'),
-]
-
 export default function CollapsibleTable() {
 
     const [userAction, setUserAction] = useState(null)
     const [type, setType] = useState('')
     const [selectedData, setSelectedData] = useState({})
     const [openAdd, setOpenAdd] = useState(false);
-    const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { data, isLoading } = useSelector((state) => state?.productionDetails)
+    const { data } = useSelector((state) => state?.productionDetails)
 
     const handleOpenAdd = () => setOpenAdd(true);
     const handleCloseAdd = () => setOpenAdd(false);
+
+    const updatedData = data.reduce((acc, obj) => {
+        const existing = acc.find(item => item.name === obj.material);
+        if (existing) {
+            existing.details.push({ ...obj });
+        } else {
+            acc.push({ name: obj.material, details: [{ ...obj }] });
+        }
+        return acc;
+    }, []);
 
     useEffect(() => {
         dispatch(fetchProductionData());
@@ -172,7 +132,7 @@ export default function CollapsibleTable() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows?.map((row, i) => (
+                            {updatedData?.map((row, i) => (
                                 <Row key={i} row={row} data={data} setUserAction={setUserAction} type={type} openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
                             ))}
                         </TableBody>
