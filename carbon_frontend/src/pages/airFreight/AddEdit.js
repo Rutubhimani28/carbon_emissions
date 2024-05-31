@@ -146,6 +146,7 @@ const AddEdit = (props) => {
                                         id="combo-box-demo"
                                         options={typeList}
                                         name="material"
+                                        disabled={type === "edit"}
                                         fullWidth
                                         getOptionLabel={(item) => item?.label}
                                         value={typeList?.find((item) => item?.label === formik.values.type)}

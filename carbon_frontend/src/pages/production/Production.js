@@ -2,7 +2,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { Button } from '@mui/material'
+import { Button, Container } from '@mui/material'
 import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
@@ -110,32 +110,34 @@ export default function CollapsibleTable() {
     return (
         <>
             <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
-            <Paper>
-                <div className='d-flex justify-content-between pt-3 px-5 pb-2 align-items-center'>
-                    <Typography variant='h5' className='text-dark fw-bolder'>
-                        Production
-                    </Typography>
-                    <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} className="custom-btn" onClick={() => { handleOpenAdd(); setType("add") }}>
-                        Add New
-                    </Button>
-                </div>
-                <TableContainer component={Paper}>
-                    <Table aria-label='collapsible table'>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell />
-                                <TableCell className='fs-6 text-muted fw-bolder'>Material</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {updatedData?.map((row, i) => (
-                                <Row key={i} row={row} data={data} setUserAction={setUserAction} type={type} setSelectedData={setSelectedData} setType={setType} openAdd={openAdd} handleOpenAdd={handleOpenAdd} />
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+            <Container maxWidth>
+                <Paper>
+                    <div className='d-flex justify-content-between pt-3 px-5 pb-2 align-items-center'>
+                        <Typography variant='h5' className='text-dark fw-bolder'>
+                            Production
+                        </Typography>
+                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} className="custom-btn" onClick={() => { handleOpenAdd(); setType("add") }}>
+                            Add New
+                        </Button>
+                    </div>
+                    <TableContainer component={Paper}>
+                        <Table aria-label='collapsible table'>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell />
+                                    <TableCell className='fs-6 text-muted fw-bolder'>Material</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {updatedData?.map((row, i) => (
+                                    <Row key={i} row={row} data={data} setUserAction={setUserAction} type={type} setSelectedData={setSelectedData} setType={setType} openAdd={openAdd} handleOpenAdd={handleOpenAdd} />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
 
-            </Paper>
+                </Paper>
+            </Container>
         </>
     )
 }
