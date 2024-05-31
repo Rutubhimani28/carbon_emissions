@@ -42,7 +42,6 @@ const ContactUs = () => {
         {
             field: "workEmail",
             headerName: "Email",
-            cellClassName: "name-column--cell--capitalize",
             width: 300,
         },
         {
