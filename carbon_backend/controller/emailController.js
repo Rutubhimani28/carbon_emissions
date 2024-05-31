@@ -1,9 +1,13 @@
+import dayjs from "dayjs"
 import sendMail from '../middelwares/sendMail.js';
 import Email from '../models/email.js';
 
 const addEmail = async (req, res) => {
     try {
         const { subject, receiver, sender, data, templateName } = req.body;
+
+        let updatedData = { ...data }
+        updatedData.created = dayjs().format('YYYY-MM-DD HH:mm A')
 
         if (!receiver || receiver?.length < 1) {
             return res.status(400).json({ success: false, message: 'Receiver is required' });
@@ -12,7 +16,7 @@ const addEmail = async (req, res) => {
         const sendMailPayload = {
             receiver: receiver,
             subject: subject,
-            data: { ...data },
+            data: updatedData,
             templateName: templateName || "grand_total_result_Template"
         };
 
