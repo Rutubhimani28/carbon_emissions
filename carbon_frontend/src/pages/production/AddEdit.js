@@ -177,6 +177,7 @@ const AddEdit = (props) => {
                                         id="combo-box-demo"
                                         options={materialList}
                                         name="material"
+                                        fullWidth
                                         getOptionLabel={(item) => item?.label}
                                         value={materialList?.find((item) => item?.label === formik.values.material)}
                                         onChange={(event, newValue) => {
