@@ -7,8 +7,9 @@ import userSlice from '../slice/userSlice';
 import digitalContentSlice from '../slice/digitalContentSlice'
 import totalDigitalContSlice from '../slice/totalDigitalContSlice';
 import airFreightSlice from '../slice/airFreightSlice'
-import totalAirFreightSlice from '../slice/totalAirFreightSlice';
 import contactUsSlice from '../slice/contactUsSlice';
+import productionSlice from '../slice/productionSlice';
+import totalAirFreightSlice from '../slice/totalAirFreightSlice';
 import totalEnergyUpdatedSlice from '../slice/totalEnergyUpdatedSlice';
 import eventsSlice from '../slice/eventsSlice';
 import totalFoodSlice from '../slice/totalFoodSlice';
@@ -63,6 +64,7 @@ export const store = configureStore({
         airFreightDetails: airFreightSlice,
         contactUs: contactUsSlice,
         events: eventsSlice,
+        productionDetails: productionSlice,
         totalDigitalContentDetails: persistReducer(totalDigitalContentPersistConfig, totalDigitalContSlice),
         totalAirFreightDetails: persistReducer(totalAirFreightPersistConfig, totalAirFreightSlice),
         totalProductionDetails: persistReducer(totalProductionPersistConfig, totalProductionSlice),

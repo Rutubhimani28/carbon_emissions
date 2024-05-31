@@ -1,6 +1,6 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import { LoadingButton } from "@mui/lab";
-import { CircularProgress, DialogContentText, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from "@mui/material";
+import { Autocomplete, CircularProgress, DialogContentText, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -22,10 +22,33 @@ const AddEdit = (props) => {
     const userid = sessionStorage.getItem('user_id');
     const userRole = sessionStorage.getItem("userRole");
 
+    const materialList = [
+        { label: 'Open Panel Timber Frame', value: 0.345 },
+        { label: 'MDF', value: 0.856 },
+        { label: 'Sawn Timber', value: 0.263 },
+        { label: 'Carpet', value: 6.7 },
+        { label: 'Adhesive Vinyl', value: 3.1 },
+        { label: 'Wood', value: 6.4 },
+        { label: 'Steel', value: 1.83 },
+        { label: 'Aluminium', value: 0.42 },
+        { label: 'Iron', value: 0.64 },
+        { label: 'Wooden Floor', value: 0 },
+        { label: 'Paint', value: 0 },
+        { label: 'Cotton Banner', value: 8.3 },
+        { label: 'Cardboard', value: 0.94 },
+        { label: 'paper', value: 1.2 },
+        { label: 'Polyester', value: 12.7 },
+        { label: 'Cotton canvas', value: 14.5 },
+        { label: 'Lanyards', value: 22.74 },
+        { label: 'Poly Ethelene', value: 2.792 },
+        { label: 'Nylon', value: 12.7 },
+    ]
+
     // -----------   initialValues
     const initialValues = {
         material: type === "edit" ? selectedData?.material : "",
         totalArea: type === "edit" ? selectedData?.totalArea : "",
+        ef: type === "edit" ? selectedData?.ef : "",
         emission: type === "edit" ? selectedData?.emission : "",
         createdBy: userid,
     };
@@ -37,7 +60,8 @@ const AddEdit = (props) => {
             const data = {
                 material: values?.material,
                 totalArea: values?.totalArea,
-                emission: values?.emission
+                ef: values?.ef,
+                emission: Number((values?.ef * values?.totalArea).toFixed(2))
             };
             const result = await apipost('api/production/add', data)
             setUserAction(result)
@@ -59,7 +83,8 @@ const AddEdit = (props) => {
             const data = {
                 material: values?.material,
                 totalArea: values?.totalArea,
-                emission: values?.emission
+                ef: values?.ef,
+                emission: Number((values?.ef * values?.totalArea).toFixed(2))
             };
             const result = await apiput(`api/production/${selectedData?._id}`, data)
             setUserAction(result)
@@ -148,24 +173,24 @@ const AddEdit = (props) => {
                             >
                                 <Grid item xs={12} sm={12} md={12}>
                                     <FormLabel id="demo-row-radio-buttons-group-label">Material</FormLabel>
-                                    <TextField
-                                        id="material"
+                                    <Autocomplete
+                                        id="combo-box-demo"
+                                        options={materialList}
                                         name="material"
-                                        label=""
-                                        fullWidth
-                                        size="small"
-                                        value={formik.values.material}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.material &&
-                                            Boolean(formik.errors.material)
-                                        }
-                                        helperText={
-                                            formik.touched.material && formik.errors.material
-                                        }
+                                        getOptionLabel={(item) => item?.label}
+                                        value={materialList?.find((item) => item?.label === formik.values.material)}
+                                        onChange={(event, newValue) => {
+                                            formik.setFieldValue("material", newValue ? newValue?.label : "");
+                                            formik.setFieldValue("ef", newValue ? newValue?.value : "");
+                                        }}
+                                        renderInput={(params) =>
+                                            <TextField {...params}
+                                                size="small"
+                                                name="material"
+                                                placeholder='Select'
+                                            />}
                                     />
                                 </Grid>
-
 
                                 <Grid item xs={12} sm={12} md={12}>
                                     <FormLabel id="demo-row-radio-buttons-group-label">Total Area (m2)/ Amount</FormLabel>
