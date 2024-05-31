@@ -13,8 +13,8 @@ const energy = new mongoose.Schema({
         type: Number,
         default: null
     },
-    // ef: { type: Number },
-    // emission: { type: Number },
+    ef: { type: Number },
+    emission: { type: Number },
     createdOn: { type: Date, default: Date.now },
     modifiedOn: { type: Date, default: Date.now }
 });
