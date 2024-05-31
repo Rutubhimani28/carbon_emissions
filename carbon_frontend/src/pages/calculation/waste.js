@@ -270,7 +270,7 @@ const Waste = (props) => {
                     </Grid>
                 </Grid>
             </Container>
-        </div >
+        </div>
     )
 }
 
