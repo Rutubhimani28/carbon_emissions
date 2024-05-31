@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { addEnergyData, deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 
 const EnergyUpdated = (props) => {
-    const { setValue } = props;
+    const { setValue, value } = props;
 
     const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ const EnergyUpdated = (props) => {
             formik.setFieldValue("gallonsTwo", allData[2]?.gallonsTwo)
             formik.setFieldValue("emissionThree", allData[2]?.emission)
         }
-    }, [allData])
+    }, [value])
 
     const handeleDelete = () => {
         dispatch(deleteEnergyData())

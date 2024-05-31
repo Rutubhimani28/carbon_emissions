@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
 
 const DigitalContent = (props) => {
-    const { setValue } = props;
+    const { setValue, value } = props;
 
     const dispatch = useDispatch();
 
@@ -43,13 +43,11 @@ const DigitalContent = (props) => {
                 {
                     type: 'Emails',
                     count: values?.count,
-                    // Calculate emission: (count * 13) / 1000, then format to 2 decimal places
                     emission: parseFloat((values?.count * 13 / 1000).toFixed(2))
                 },
                 {
                     type: 'Attachment',
                     mb: values?.MB,
-                    // Calculate emission: (MB * 50) / 1000, then format to 2 decimal places
                     emission: parseFloat((values?.MB * 50 / 1000).toFixed(2))
                 },
                 {
@@ -57,7 +55,6 @@ const DigitalContent = (props) => {
                     noOfAttendees: values?.noOfAttendees,
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
-                    // Calculate emission: (noOfAttendees * 340 * (noOfHours / serviceLifeOfLaptop)), then format to 2 decimal places
                     emission: parseFloat((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0
                 }
             ];
@@ -77,7 +74,7 @@ const DigitalContent = (props) => {
             formik.setFieldValue("serviceLifeOfLaptop", allData[2]?.serviceLifeOfLaptop)
             formik.setFieldValue("emissionThree", allData[2]?.emission)
         }
-    }, [allData])
+    }, [value])
 
     const handeleDelete = () => {
         dispatch(deleteData())

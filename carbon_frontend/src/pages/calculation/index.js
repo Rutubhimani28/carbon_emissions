@@ -52,14 +52,14 @@ const Calculation = () => {
                     </Tabs>
                 </Box>
                 <Box mt={2}>
-                    {value === 0 && <Production setValue={setValue} />}
-                    {value === 1 && <AirFreight setValue={setValue} />}
-                    {value === 2 && <Food setValue={setValue} />}
-                    {value === 3 && <EnergyUpdated setValue={setValue} />}
-                    {value === 5 && <DigitalContent setValue={setValue} />}
-                    {value === 6 && <LocalTranspotation setValue={setValue} />}
-                    {value === 8 && <Waste setValue={setValue} />}
-                    {value === 9 && <Result setValue={setValue} />}
+                    {value === 0 && <Production setValue={setValue} value={value} />}
+                    {value === 1 && <AirFreight setValue={setValue} value={value} />}
+                    {value === 2 && <Food setValue={setValue} value={value} />}
+                    {value === 3 && <EnergyUpdated setValue={setValue} value={value} />}
+                    {value === 5 && <DigitalContent setValue={setValue} value={value} />}
+                    {value === 6 && <LocalTranspotation setValue={setValue} value={value} />}
+                    {value === 8 && <Waste setValue={setValue} value={value} />}
+                    {value === 9 && <Result setValue={setValue} value={value} />}
                 </Box>
             </Container>
         </div>

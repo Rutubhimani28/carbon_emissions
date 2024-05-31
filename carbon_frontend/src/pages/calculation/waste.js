@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addWasteData, deleteWasteData } from '../../redux/slice/totalWasteSlice';
 
 const Waste = (props) => {
-    const { setValue } = props;
+    const { setValue, value } = props;
     const dispatch = useDispatch()
     const allData = useSelector((state) => state?.totalWasteDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalWasteDetails?.totalEmission);
@@ -136,7 +136,7 @@ const Waste = (props) => {
             formik.setFieldValue("badgeHolders", allData[9]?.badgeHolders)
             formik.setFieldValue("badgeHoldersEmission", allData[9]?.emission)
         }
-    }, [allData])
+    }, [value])
 
     return (
         <div>
@@ -270,7 +270,7 @@ const Waste = (props) => {
                     </Grid>
                 </Grid>
             </Container>
-        </div >
+        </div>
     )
 }
 

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addLocalTranspotationData, deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
 
 const LocalTranspotation = (props) => {
-    const { setValue } = props;
+    const { setValue, value } = props;
     const dispatch = useDispatch()
     const allData = useSelector((state) => state?.totalLocalTranspotationDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalLocalTranspotationDetails?.totalEmission);
@@ -105,7 +105,6 @@ const LocalTranspotation = (props) => {
                     emission: parseFloat((29.29 * values?.metroKms).toFixed(2)) || 0
                 },
             ];
-            console.log(data, "data")
             dispatch(addLocalTranspotationData({ data }))
         },
     });
@@ -149,7 +148,7 @@ const LocalTranspotation = (props) => {
             formik.setFieldValue("metroKms", allData[8]?.metroKms)
             formik.setFieldValue("metroEmission", allData[8]?.emission)
         }
-    }, [allData])
+    }, [value])
 
     return (
         <div>
