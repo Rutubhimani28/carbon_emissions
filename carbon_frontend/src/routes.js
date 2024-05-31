@@ -15,6 +15,12 @@ import AirFreight from './pages/airFreight';
 import ContactUs from './pages/contactUs/ContactUs';
 import Events from './pages/events/Events';
 import Production from './pages/production/Production';
+import Food from './pages/food';
+import Energy from './pages/energy';
+import Travel from './pages/Travel';
+import Transportation from './pages/transportation';
+import Accomodation from './pages/accomodation';
+import Waste from './pages/waste';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -30,6 +36,12 @@ export default function Router() {
         { path: ':view/import', element: <ImportView /> },
         { path: 'digitalContent', element: <DigitalContent /> },
         { path: 'production', element: <Production /> },
+        { path: 'food', element: <Food /> },
+        { path: 'energy', element: <Energy /> },
+        { path: 'travel', element: <Travel /> },
+        { path: 'transportation', element: <Transportation /> },
+        { path: 'accomodation', element: <Accomodation /> },
+        { path: 'waste', element: <Waste /> },
         { path: 'airFreight', element: <AirFreight /> },
         { path: 'calculation', element: <Calculation /> },
         { path: 'contactUs', element: <ContactUs /> },
