@@ -1,72 +1,55 @@
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Box, Button, Card, Grid, Stack, Typography } from '@mui/material';
-import DataGridComponent from '../../components/DataGridComponent';
+import { Box, Button, Card, Container, Stack, Typography } from '@mui/material';
+import { DataGrid, GridToolbarColumnsButton, GridToolbarDensitySelector, GridToolbarFilterButton } from '@mui/x-data-grid';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import DeleteModel from '../../components/Deletemodle';
+import TableStyle from '../../components/TableStyle';
+import Iconify from '../../components/iconify';
+import { fetchContactUsData } from '../../redux/slice/contactUsSlice';
+import { commonUtils } from '../../utils/utils';
+import AddEdit from './AddEdit';
+import { apidelete } from '../../service/api';
+
+// ----------------------------------------------------------------------
 
 const Production = () => {
-    const data = [
-        {
-            "_id": "6656fe0f143c0c9cc7a72137",
-            "type": "Emails",
-            "count": 80,
-            "mb": null,
-            "noOfAttendees": null,
-            "noOfHours": null,
-            "serviceLifeOfLaptop": null,
-            "emission": 1.04,
-            "createdOn": "2024-05-29T10:06:07.091Z",
-            "modifiedOn": "2024-05-29T10:06:07.092Z",
-            "__v": 0
-        },
-        {
-            "_id": "6656efd3ad220594438e5dac",
-            "type": "Emails",
-            "count": 10,
-            "mb": null,
-            "noOfAttendees": null,
-            "noOfHours": null,
-            "serviceLifeOfLaptop": null,
-            "emission": 0.13,
-            "createdOn": "2024-05-29T09:05:23.061Z",
-            "modifiedOn": "2024-05-29T09:05:23.061Z",
-            "__v": 0
-        },
-        {
-            "_id": "665586877d504f228d5e6b57",
-            "type": "Laptop",
-            "count": null,
-            "mb": null,
-            "noOfAttendees": 10,
-            "noOfHours": 15,
-            "serviceLifeOfLaptop": 5840,
-            "ef": 12,
-            "createdOn": "2024-05-28T07:23:51.672Z",
-            "modifiedOn": "2024-05-28T07:23:51.672Z",
-            "__v": 0,
-            "emission": 8.73
-        },
-        {
-            "_id": "6655867e7d504f228d5e6b54",
-            "type": "Attachment",
-            "count": null,
-            "mb": 1,
-            "noOfAttendees": null,
-            "noOfHours": null,
-            "serviceLifeOfLaptop": null,
-            "ef": 1,
-            "createdOn": "2024-05-28T07:23:42.552Z",
-            "modifiedOn": "2024-05-28T07:23:42.552Z",
-            "__v": 0,
-            "emission": 0.05
-        }
-    ]
+
+    const [userAction, setUserAction] = useState(null)
+    const [selectedRowIds, setSelectedRowIds] = useState([]);
+    const [openAdd, setOpenAdd] = useState(false);
+    const [type, setType] = useState('')
+    const [selectedData, setSelectedData] = useState({})
+    const [opendelete, setOpendelete] = useState(false);
+    const [id, setId] = useState('')
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const { data, isLoading } = useSelector((state) => state?.contactUs)
+
+    const handleSelectionChange = (selectionModel) => {
+        setSelectedRowIds(selectionModel);
+    };
+    const handleOpenAdd = () => setOpenAdd(true);
+    const handleCloseAdd = () => setOpenAdd(false);
+
+    const handleCloseDelete = () => setOpendelete(false)
+    const handleOpenDelete = () => setOpendelete(true)
 
     const columns = [
         {
-            field: "totalArea",
-            headerName: "Total Area",
+            field: "material",
+            headerName: "Material",
             flex: 1,
-            valueFormatter: (params) => params.value,
+            cellClassName: "name-column--cell--capitalize",
+        },
+        {
+            field: "totalArea",
+            headerName: "Total Area (m2)/ Amount",
+            flex: 1,
         },
         {
             field: "action",
@@ -74,11 +57,18 @@ const Production = () => {
             sortable: false,
             flex: 1,
             renderCell: (params) => {
-
+                const handleFirstNameClick = async (data) => {
+                    setSelectedData(data)
+                    handleOpenAdd();
+                };
+                const handleClick = async (data) => {
+                    setId(data?._id)
+                    handleOpenDelete();
+                };
                 return (
                     <>
-                        <Button variant='text' size='small' color='primary' ><DeleteIcon color='error' /></Button>
-                        <Button variant='text' size='small' color='primary' ><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleFirstNameClick(params?.row); setType("edit") }}><EditIcon /></Button>
+                        <Button variant='text' size='small' color='primary' onClick={() => { handleClick(params?.row); }}><DeleteIcon color='error' /></Button>
                     </>
                 );
             }
@@ -86,47 +76,132 @@ const Production = () => {
 
     ];
 
-
-    const fileldData = [
-        { name: 'MDF', ef: 0.345, fieldName: 'mdf' },
-        { name: 'Open Panel Timber Frame ', ef: 0.856, fieldName: 'openPanelTimberFrame' },
-        { name: 'Carpet ', ef: 0.263, fieldName: 'carpet' },
-        { name: 'Sawn Timber', ef: 6.7, fieldName: 'sawnTimber' },
-        { name: 'Wood', ef: 3.1, fieldName: 'wood' },
-        { name: 'Adhesive Vinyl', ef: 6.4, fieldName: 'adhesiveVinyl' },
-        { name: 'Aluminium', ef: 1.83, fieldName: 'aluminium' },
-        { name: 'Steel ', ef: 0.42, fieldName: 'steel' },
-        { name: 'Carpet ', ef: 0.64, fieldName: 'carpet' },
-        { name: 'Iron', ef: 0, fieldName: 'iron' },
-        { name: 'Paint ', ef: 0, fieldName: 'paint' },
-        { name: 'Wooden Floor', ef: 0, fieldName: 'woodenFloor' },
-        { name: 'Cardboard', ef: 8.3, fieldName: 'cardboard' },
-        { name: 'Cotton Banner', ef: 0.94, fieldName: 'cottonBanner' },
-        { name: 'Polyester', ef: 1.2, fieldName: 'polyester' },
-        { name: 'paper', ef: 12.7, fieldName: 'paper' },
-        { name: 'Lanyards', ef: 14.5, fieldName: 'lanyards' },
-        { name: 'Cotton canvas ', ef: 22.74, fieldName: 'cottonCanvas' },
-        { name: 'Nylon', ef: 2.792, fieldName: 'nylon' },
-        { name: 'Poly Ethelene', ef: 12.7, fieldName: 'polyEthelene' },
+    const csvColumns = [
+        {
+            accessor: "firstName",
+            Header: "First Name"
+        },
+        {
+            accessor: "lastName",
+            Header: "Last Name"
+        },
+        {
+            accessor: "workEmail",
+            Header: "Email"
+        },
+        {
+            accessor: "mobile",
+            Header: "Mobile"
+        },
+        {
+            accessor: "organisation",
+            Header: "Organisation"
+        },
+        {
+            accessor: "designation",
+            Header: "Designation"
+        },
+        {
+            accessor: "message",
+            Header: "Message"
+        }
     ];
 
-    return (
-        <div>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={12} md={4}>
-                    <Card sx={{ marginTop: '20px' }}>
-                        <Box p={2} display="flex" alignItems="center" style={{ cursor: "pointer" }}>
-                            <Typography variant="h5">Emails</Typography>
-                        </Box>
-                        <DataGridComponent
-                            data={data}
-                            columns={columns}
-                        />
-                    </Card>
-                </Grid>
-            </Grid>
-        </div>
-    );
-};
+    const handleDelete = async (id) => {
+        const result = await apidelete(`api/production/${id}`)
+        setUserAction(result)
+        handleCloseDelete();
+    }
 
-export default Production;
+    const downloadCsvOrExcel = async (extension, selectedIds) => {
+        if (selectedIds && selectedIds?.length > 0) {
+            const selectedRecordsWithSpecificFileds = data?.filter((rec) => selectedIds.includes(rec._id))?.map((rec) => {
+                const selectedFieldsData = {};
+                csvColumns?.forEach((item) => {
+                    selectedFieldsData[item.accessor] = rec[item.accessor];
+                });
+                return selectedFieldsData;
+            });
+            commonUtils.convertJsonToCsvOrExcel({ jsonArray: selectedRecordsWithSpecificFileds, csvColumns, fileName: "User", extension, setSelectedRowIds });
+        } else {
+            const AllRecordsWithSpecificFileds = data?.map((rec) => {
+                const selectedFieldsData = {};
+                csvColumns?.forEach((item) => {
+                    selectedFieldsData[item?.accessor] = rec[item?.accessor];
+                });
+                return selectedFieldsData;
+            });
+            commonUtils.convertJsonToCsvOrExcel({ jsonArray: AllRecordsWithSpecificFileds, csvColumns, fileName: "User", extension, setSelectedRowIds });
+        }
+
+    };
+
+    const handleExportSms = (extension) => {
+        if (selectedRowIds && selectedRowIds?.length > 0) {
+            downloadCsvOrExcel(extension, selectedRowIds)
+        } else {
+            downloadCsvOrExcel(extension);
+        }
+    };
+
+    useEffect(() => {
+        dispatch(fetchContactUsData());
+    }, [userAction])
+
+    return (
+        <>
+            <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
+            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} />
+
+            <Container maxWidth>
+                <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+                    <Typography variant="h4">
+                        Production
+                    </Typography>
+                    <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
+                        <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} className="custom-btn" onClick={() => { handleOpenAdd(); setType("add") }}>
+                            Add New
+                        </Button>
+
+                        {/* <Button variant="contained" startIcon={<CiExport icon="eva:plus-fill" />} onClick={() => { handleExportSms('xlsx') }} className='custom-btn'>
+                            {selectedRowIds && selectedRowIds?.length > 0 ? 'Export Selected Data' : 'Export'}
+                        </Button> */}
+                    </Stack>
+                </Stack>
+                <TableStyle>
+                    <Box width="100%" >
+                        {isLoading ? (
+                            <Card style={{ display: 'flex', justifyContent: 'center', height: "600px" }}>
+                                <span className="loader" />
+                            </Card>
+                        ) : (
+                            <Card style={{ height: "600px" }}>
+                                <DataGrid
+                                    rows={data || []}
+                                    columns={columns}
+                                    // checkboxSelection
+                                    onRowSelectionModelChange={handleSelectionChange}
+                                    rowSelectionModel={selectedRowIds}
+                                    components={{
+                                        Toolbar: () => (<Box padding={"10px 0"}>
+                                            <GridToolbarColumnsButton />
+                                            <GridToolbarFilterButton />
+                                            <GridToolbarDensitySelector
+                                                slotProps={{ tooltip: { title: 'Change density' } }}
+                                            />
+
+                                        </Box>)
+                                    }}
+                                    getRowId={row => row._id}
+                                />
+                            </Card>
+                        )}
+
+                    </Box>
+                </TableStyle>
+            </Container>
+        </>
+    );
+}
+
+export default Production
