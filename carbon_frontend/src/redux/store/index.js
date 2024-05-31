@@ -13,6 +13,7 @@ import totalAirFreightSlice from '../slice/totalAirFreightSlice';
 import totalEnergyUpdatedSlice from '../slice/totalEnergyUpdatedSlice';
 import eventsSlice from '../slice/eventsSlice';
 import foodSlice from '../slice/foodSlice';
+import energySlice from '../slice/energySlice';
 import totalFoodSlice from '../slice/totalFoodSlice';
 import totalWasteSlice from '../slice/totalWasteSlice';
 import totalProductionSlice from '../slice/totalProductionSlice';
@@ -67,6 +68,7 @@ export const store = configureStore({
         events: eventsSlice,
         productionDetails: productionSlice,
         foodDetails: foodSlice,
+        energyDetails: energySlice,
         totalDigitalContentDetails: persistReducer(totalDigitalContentPersistConfig, totalDigitalContSlice),
         totalAirFreightDetails: persistReducer(totalAirFreightPersistConfig, totalAirFreightSlice),
         totalProductionDetails: persistReducer(totalProductionPersistConfig, totalProductionSlice),
