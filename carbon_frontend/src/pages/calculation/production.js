@@ -90,8 +90,7 @@ const Production = (props) => {
                             </tr>
                             {fileldData && fileldData?.map((item, i) => (
                                 <>
-
-                                    <tr>
+                                    <tr key={i}>
                                         <td className='ps-4 py-1'> {item?.name}</td>
                                         <td className='ps-4 py-1'> <TextField
                                             id={`${item?.fieldName}_area`}
