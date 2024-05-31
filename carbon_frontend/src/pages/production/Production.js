@@ -13,6 +13,7 @@ import { fetchContactUsData } from '../../redux/slice/contactUsSlice';
 import { commonUtils } from '../../utils/utils';
 import AddEdit from './AddEdit';
 import { apidelete } from '../../service/api';
+import { fetchProductionData } from '../../redux/slice/productionSlice';
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +29,7 @@ const Production = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { data, isLoading } = useSelector((state) => state?.contactUs)
+    const { data, isLoading } = useSelector((state) => state?.productionDetails)
 
     const handleSelectionChange = (selectionModel) => {
         setSelectedRowIds(selectionModel);
@@ -145,7 +146,7 @@ const Production = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchContactUsData());
+        dispatch(fetchProductionData());
     }, [userAction])
 
     return (
