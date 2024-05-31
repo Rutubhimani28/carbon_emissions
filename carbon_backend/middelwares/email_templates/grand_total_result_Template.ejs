@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <!-- <title>
-        Your Carbon Footprint :
-    </title> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
     <style>
       table {
-        width: 50%;
+        width: 100%;
         border-collapse: collapse;
       }
 
@@ -21,14 +22,12 @@
         padding: 8px;
         text-align: left;
       }
-
       .logo {
         background-position: center;
         background-size: cover;
-        width: 23vh;
-        height: 20vh;
+        width: 59vh;
+        height: 55vh;
       }
-
       th {
         background-color: #f2f2f2;
       }
@@ -37,9 +36,12 @@
 
   <body>
     <div>
-        <img class="logo" src="<%= data.env.BACKEND_LIVE || 'https://carbon-emissions-pnz7.onrender.com' %>/logo/logo.png" alt="Logo">
-      </div>
-
+      <img
+        class="logo"
+        src="<%= data.env.BACKEND_LIVE || 'https://carbon-emissions-pnz7.onrender.com' %>/logo/logo.png"
+        alt="Logo"
+      />
+    </div>
     <h2>Your Carbon Footprint :</h2>
 
     <table>
@@ -79,12 +81,14 @@
         <th>Waste</th>
         <td><%= data.totalWaste %> tons of kgCO2e</td>
       </tr>
+      <tr>
+        <th style="text-align: end">Total</th>
+        <th><%= data.grandTotal %> tons of kgCO2e</th>
+      </tr>
     </table>
-
-    <h4 class="">Total = <%= data.grandTotal %> tons of kgCO2e</h4>
     <footer>
-        <hr>
-       <b> created : </b> <%= data.created %>
+      <hr />
+      <b> created : </b> <%= data.created %>
     </footer>
   </body>
 </html>
