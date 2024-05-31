@@ -6,8 +6,8 @@ const food = new mongoose.Schema({
         required: true
     },
     noOfPax: { type: Number },
-    // ef: { type: Number },
-    // emission: { type: Number },
+    ef: { type: Number },
+    emission: { type: Number },
     createdOn: { type: Date, default: Date.now },
     modifiedOn: { type: Date, default: Date.now }
 });
