@@ -178,8 +178,9 @@ const AddEdit = (props) => {
                                         options={materialList}
                                         name="material"
                                         fullWidth
+                                        disabled={type === "edit"}
                                         getOptionLabel={(item) => item?.label}
-                                        value={materialList?.find((item) => item?.label === formik.values.material)}
+                                        value={materialList?.find((item) => item?.label === formik.values.material) || null}
                                         onChange={(event, newValue) => {
                                             formik.setFieldValue("material", newValue ? newValue?.label : "");
                                             formik.setFieldValue("ef", newValue ? newValue?.value : "");

@@ -23,20 +23,16 @@ import { apidelete } from '../../service/api'
 import AddEdit from './AddEdit'
 
 function Row(props) {
-    const { row, setUserAction } = props
+    const { row, setUserAction, setType, setSelectedData, handleOpenAdd } = props
     const [open, setOpen] = useState(false)
     const [opendelete, setOpendelete] = useState(false);
-    const [selectedRowIds, setSelectedRowIds] = useState([]);
     const [id, setId] = useState('')
-
 
     const handleDelete = async (id) => {
         const result = await apidelete(`api/production/${id}`)
         setUserAction(result)
         handleCloseDelete();
     }
-
-
 
     const handleCloseDelete = () => setOpendelete(false)
 
@@ -71,7 +67,7 @@ function Row(props) {
                                     {row?.details?.map((historyRow) => (
                                         <TableRow key={historyRow.employee1} sx={{ borderBottom: 0 }}>
                                             <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow.totalArea}</TableCell>
-                                            <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' /></span> </TableCell>
+                                            <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -133,7 +129,7 @@ export default function CollapsibleTable() {
                         </TableHead>
                         <TableBody>
                             {updatedData?.map((row, i) => (
-                                <Row key={i} row={row} data={data} setUserAction={setUserAction} type={type} openAdd={openAdd} handleCloseAdd={handleCloseAdd} />
+                                <Row key={i} row={row} data={data} setUserAction={setUserAction} type={type} setSelectedData={setSelectedData} setType={setType} openAdd={openAdd} handleOpenAdd={handleOpenAdd} />
                             ))}
                         </TableBody>
                     </Table>
