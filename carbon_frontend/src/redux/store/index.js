@@ -14,6 +14,7 @@ import totalEnergyUpdatedSlice from '../slice/totalEnergyUpdatedSlice';
 import eventsSlice from '../slice/eventsSlice';
 import foodSlice from '../slice/foodSlice';
 import energySlice from '../slice/energySlice';
+import transportationSlice from '../slice/transportationSlice';
 import totalFoodSlice from '../slice/totalFoodSlice';
 import totalWasteSlice from '../slice/totalWasteSlice';
 import totalProductionSlice from '../slice/totalProductionSlice';
@@ -69,6 +70,7 @@ export const store = configureStore({
         productionDetails: productionSlice,
         foodDetails: foodSlice,
         energyDetails: energySlice,
+        transportationDetails: transportationSlice,
         totalDigitalContentDetails: persistReducer(totalDigitalContentPersistConfig, totalDigitalContSlice),
         totalAirFreightDetails: persistReducer(totalAirFreightPersistConfig, totalAirFreightSlice),
         totalProductionDetails: persistReducer(totalProductionPersistConfig, totalProductionSlice),

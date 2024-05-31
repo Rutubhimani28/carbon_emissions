@@ -24,7 +24,7 @@ router.use('/airFreight', airFreightRoutes);
 router.use('/production', productionRoutes);
 router.use('/food', foodRoutes);
 router.use('/energy', energyRoutes);
-router.use('/local-transport', localTransportationRoutes);
+router.use('/transportation', localTransportationRoutes);
 router.use('/waste', wasteRoutes);
 
 export default router

@@ -38,7 +38,7 @@ const AddEdit = (props) => {
     const initialValues = {
         type: type === "edit" ? selectedData?.type : "",
         noOfKms: type === "edit" ? selectedData?.noOfKms : 0,
-        noOfPasse: type === "edit" ? selectedData?.noOfPasse : 0,
+        noOfPassengers: type === "edit" ? selectedData?.noOfPassengers : 0,
         emission: type === "edit" ? selectedData?.emission : 0,
         pkm: type === "edit" ? selectedData?.pkm : 0,
         formula: type === "edit" ? selectedData?.formula : "",
@@ -50,7 +50,7 @@ const AddEdit = (props) => {
         try {
             const data = {
                 ...values,
-                emission: values?.formula === "f1" ? (Number(values?.pkm) * Number(values?.noOfKms)) / Number(values?.noOfPasse) || 0 : Number(values?.pkm) * Number(values?.noOfKms) || 0,
+                emission: values?.formula === "f1" ? (Number(values?.pkm) * Number(values?.noOfKms)) / Number(values?.noOfPassengers) || 0 : Number(values?.pkm) * Number(values?.noOfKms) || 0,
             };
             const result = await apipost('api/transportation/add', data);
             setUserAction(result);
@@ -71,7 +71,7 @@ const AddEdit = (props) => {
         try {
             const data = {
                 ...values,
-                emission: values?.formula === "f1" ? (Number(values?.pkm) * Number(values?.noOfKms)) / Number(values?.noOfPasse) || 0 : Number(values?.pkm) * Number(values?.noOfKms) || 0,
+                emission: values?.formula === "f1" ? (Number(values?.pkm) * Number(values?.noOfKms)) / Number(values?.noOfPassengers) || 0 : Number(values?.pkm) * Number(values?.noOfKms) || 0,
             };
 
             const result = await apiput(`api/transportation/${selectedData?._id}`, data);
@@ -105,9 +105,9 @@ const AddEdit = (props) => {
     useEffect(() => {
         if (type !== 'edit') {
             formik.setFieldValue('noOfKms', 0);
-            formik.setFieldValue('weightInKgs', 0);
+            // formik.setFieldValue('weightInKgs', 0);
             formik.setFieldValue('emission', 0);
-            formik.setFieldValue('ef', 0);
+            // formik.setFieldValue('ef', 0);
         }
     }, [formik.values.type])
 
@@ -195,20 +195,20 @@ const AddEdit = (props) => {
                                     <Grid item xs={12} sm={12} md={12}>
                                         <FormLabel id="demo-row-radio-buttons-group-label">No of Passengers</FormLabel>
                                         <TextField
-                                            id="noOfPasse"
-                                            name="noOfPasse"
+                                            id="noOfPassengers"
+                                            name="noOfPassengers"
                                             label=""
                                             type="number"
                                             fullWidth
                                             size="small"
-                                            value={formik.values.noOfPasse}
+                                            value={formik.values.noOfPassengers}
                                             onChange={formik.handleChange}
                                             error={
-                                                formik.touched.noOfPasse &&
-                                                Boolean(formik.errors.noOfPasse)
+                                                formik.touched.noOfPassengers &&
+                                                Boolean(formik.errors.noOfPassengers)
                                             }
                                             helperText={
-                                                formik.touched.noOfPasse && formik.errors.noOfPasse
+                                                formik.touched.noOfPassengers && formik.errors.noOfPassengers
                                             }
                                         />
                                     </Grid>

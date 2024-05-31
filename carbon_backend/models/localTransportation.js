@@ -7,7 +7,9 @@ const localTransportation = new mongoose.Schema({
     },
     noOfKms: { type: Number },
     noOfPassengers: { type: Number },
-    // emission: { type: Number },
+    pkm: { type: Number },
+    formula: { type: String },
+    emission: { type: Number },
     createdOn: { type: Date, default: Date.now },
     modifiedOn: { type: Date, default: Date.now }
 })

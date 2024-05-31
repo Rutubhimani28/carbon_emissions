@@ -78,9 +78,9 @@ function Row(props) {
             </TableRow>
         </>
     )
-}
+};
 
-export default function CollapsibleTable() {
+export default function Energy() {
 
     const [userAction, setUserAction] = useState(null)
     const [type, setType] = useState('')
@@ -140,4 +140,4 @@ export default function CollapsibleTable() {
             </Container>
         </>
     )
-}
+};
