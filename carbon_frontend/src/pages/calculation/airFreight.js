@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { addAirFreightData, deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
 
 const AirFreight = (props) => {
-    const { setValue } = props;
+    const { setValue, value } = props;
 
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalAirFreightDetails?.data[0]?.data);
@@ -63,7 +63,7 @@ const AirFreight = (props) => {
             formik.setFieldValue("weightInKgs", allData[0]?.weightInKgs);
             formik.setFieldValue("ef", allData[0]?.ef);
         }
-    }, [allData])
+    }, [value])
 
     return (
         <div>

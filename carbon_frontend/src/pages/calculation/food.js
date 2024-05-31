@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFoodData, deleteFoodData } from '../../redux/slice/totalFoodSlice';
 
 const Food = (props) => {
-    const { setValue } = props;
+    const { setValue, value } = props;
     const dispatch = useDispatch()
     const allData = useSelector((state) => state?.totalFoodDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalFoodDetails?.totalEmission);
@@ -82,7 +82,7 @@ const Food = (props) => {
             formik.setFieldValue("noOfPaxFive", allData[4]?.noOfPax)
             formik.setFieldValue("emissionFive", allData[4]?.emission)
         }
-    }, [allData])
+    }, [value])
 
     return (
         <div>

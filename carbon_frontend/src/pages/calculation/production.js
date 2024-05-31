@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
 
 const Production = (props) => {
-    const { setValue } = props;
+    const { setValue, value } = props;
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalProductionDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalProductionDetails?.totalEmission);
@@ -34,10 +34,10 @@ const Production = (props) => {
         { name: 'Nylon', ef: 12.7, fieldName: 'nylon' },
     ];
 
-    const initialValues = fileldData.reduce((field, item, i) => {
+    const initialValues = fileldData?.reduce((field, item, i) => {
 
-        field[item.fieldName] = 0;
-        field[`${item.fieldName}_area`] = 0;
+        field[item?.fieldName] = 0;
+        field[`${item?.fieldName}_area`] = 0;
         return field
     }, {});
 
@@ -48,7 +48,7 @@ const Production = (props) => {
             console.log(values, "values")
 
             const data = fileldData?.map((item) => {
-                const emission = ((values?.[`${item?.fieldName}_area`] * item.ef) || 0)
+                const emission = ((values?.[`${item?.fieldName}_area`] * item?.ef) || 0)
                 formik.setFieldValue(item?.fieldName, emission.toFixed(2))
                 return ({
                     type: item?.name,
@@ -68,21 +68,12 @@ const Production = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            // allData.map((v) => {
             fileldData?.forEach((item, i) => {
-
-                // const emission = ((formik.values?.[`${item?.fieldName}_area`] * item.ef) || 0)
-                // formik.setFieldValue(item?.fieldName, emission.toFixed(2))
-                // type: item?.name,
-                // totalArea: formik.values?.[`${item?.fieldName}_area`],
-                // emission,
                 formik.setFieldValue(item?.fieldName, allData[i]?.emission)
                 formik.setFieldValue([`${item?.fieldName}_area`], allData[i]?.totalArea)
-
             })
-            // })
         }
-    }, [allData]);
+    }, [value]);
 
     return (
         <div>

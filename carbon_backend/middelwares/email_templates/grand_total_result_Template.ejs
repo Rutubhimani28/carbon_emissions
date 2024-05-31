@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <!-- <title>
-        Your Carbon Footprint :
-    </title> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
     <style>
         table {
-            width: 50%;
+            width: 100%;
             border-collapse: collapse;
         }
 
@@ -87,9 +88,13 @@
                 <%= data.totalWaste %> metric tons of CO2e
             </td>
         </tr>
+        <tr>
+            <th style="text-align: end;">Total</th>
+            <th>
+                <%= data.grandTotal %> metric tons of CO2e
+            </th>
+        </tr>
     </table>
-
-    <h4 class=''>Total = <%= data.grandTotal %> metric tons of CO2e</h4>
 
 </body>
 
