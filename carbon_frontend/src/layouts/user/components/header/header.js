@@ -47,10 +47,14 @@ const Header = (props) => {
         setMobileOpen((prevState) => !prevState);
     };
 
+    const home = () => {
+        navigate('/')
+    }
+
     const drawer = (
         <>
             <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center" }}>
+                <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center", cursor: "pointer" }} onClick={home}>
                     <img src={logo} width={100} alt="logo" />
                 </Typography>
                 <Divider />
@@ -94,6 +98,13 @@ const Header = (props) => {
                             </ListItem>
                         )
                     ))}
+                    <ListItem disablePadding>
+                        <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
+                            <Button className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
+                                login
+                            </Button>
+                        </ListItemButton>
+                    </ListItem>
                 </List>
             </Box>
         </>
@@ -118,7 +129,8 @@ const Header = (props) => {
                     <Typography
                         variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1, display: { md: 'flex' } }}
+                        sx={{ flexGrow: 1, display: { md: 'flex' }, cursor: "pointer" }}
+                        onClick={home}
                     >
                         <img src={logo} width={"120px"} alt="logo" />
                     </Typography>
