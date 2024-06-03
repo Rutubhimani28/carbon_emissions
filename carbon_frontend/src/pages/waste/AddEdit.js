@@ -43,7 +43,7 @@ const AddEdit = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        type: type === "edit" ? selectedData?.type : "",
+        type: type === "edit" ? selectedData?.type : "Waste",
         subType: type === "edit" ? selectedData?.subType : "",
         kg: type === "edit" ? selectedData?.kg : "",
         litres: type === "edit" ? selectedData?.litres : "",
@@ -262,6 +262,7 @@ const AddEdit = (props) => {
                                             formik.setFieldValue("ef", newValue ? newValue?.ef : "");
                                             formik.setFieldValue("oneBottle", newValue ? newValue?.oneBottle : "");
                                             formik.setFieldValue("polyethelen", newValue ? newValue?.polyethelen : "");
+                                            formik.setFieldValue("formula", newValue ? newValue?.formula : "");
                                         }}
                                         renderInput={(params) =>
                                             <TextField {...params}
