@@ -1,6 +1,6 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import { LoadingButton } from "@mui/lab";
-import { Autocomplete, CircularProgress, DialogContentText, FormControlLabel, FormHelperText, FormLabel, MenuItem, Radio, RadioGroup, Select } from "@mui/material";
+import { Autocomplete, CircularProgress, DialogContentText, FormHelperText, FormLabel, MenuItem, Select } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import 'react-quill/dist/quill.snow.css';
+import * as yup from "yup";
 import { apipost, apiput } from "../../service/api";
 
 const AddEdit = (props) => {
@@ -34,6 +35,11 @@ const AddEdit = (props) => {
         { label: 'PVC Banners', ef: 7.83, type: "Branding", formula: 'f4' },
         { label: 'badge holders', ef: 22.74, type: "Branding", formula: 'f4' },
     ]
+    // -----------  validationSchema
+    const validationSchema = yup.object({
+        type: yup.string().required("Type is required"),
+        subType: yup.string().required("Sub Type is required"),
+    });
 
     // -----------   initialValues
     const initialValues = {
@@ -44,24 +50,44 @@ const AddEdit = (props) => {
         ef: type === "edit" ? selectedData?.ef : "",
         oneBottle: type === "edit" ? selectedData?.oneBottle : "",
         polyethelene: type === "edit" ? selectedData?.polyethelene : "",
-        noOfPet: type === "edit" ? selectedData?.noOfPet : "",
+        noOfPETBottles: type === "edit" ? selectedData?.noOfPETBottles : "",
+        formula: type === "edit" ? selectedData?.formula : "",
         emission: type === "edit" ? selectedData?.emission : "",
         createdBy: userid,
     };
 
+    const handleCalculation = (values, formula) => {
+        switch (formula) {
+            case 'f1':
+                return Number((values?.kg * values?.ef).toFixed(2));
+            case 'f2':
+                return Number((values?.litres * values?.ef).toFixed(2));
+            case 'f3':
+                return Number((values?.noOfPETBottles * values?.oneBottle * values?.polyethelene).toFixed(2));
+            case 'f4':
+                return Number((values?.kg * values?.ef).toFixed(2));
+            default:
+                return 0;
+        }
+    }
 
     const addData = async (values) => {
         setIsLoading(true)
         try {
             const data = {
-                material: values?.material,
-                totalArea: values?.totalArea,
+                type: values?.type,
+                subType: values?.subType,
+                kg: values?.kg,
+                litres: values?.litres,
                 ef: values?.ef,
-                emission: Number((values?.ef * values?.totalArea).toFixed(2))
+                oneBottle: values?.oneBottle,
+                polyethelene: values?.polyethelene,
+                noOfPETBottles: values?.noOfPETBottles,
+                formula: values?.formula,
+                emission: handleCalculation(values, values?.formula)
             };
-            const result = await apipost('api/production/add', data)
+            const result = await apipost('api/waste/add', data)
             setUserAction(result)
-
             if (result && result.status === 200) {
                 formik.resetForm();
                 handleClose();
@@ -77,12 +103,18 @@ const AddEdit = (props) => {
         setIsLoading(true)
         try {
             const data = {
-                material: values?.material,
-                totalArea: values?.totalArea,
+                type: values?.type,
+                subType: values?.subType,
+                kg: values?.kg,
+                litres: values?.litres,
                 ef: values?.ef,
-                emission: Number((values?.ef * values?.totalArea).toFixed(2))
+                oneBottle: values?.oneBottle,
+                polyethelene: values?.polyethelene,
+                noOfPETBottles: values?.noOfPETBottles,
+                formula: values?.formula,
+                emission: handleCalculation(values, values?.formula)
             };
-            const result = await apiput(`api/production/${selectedData?._id}`, data)
+            const result = await apiput(`api/waste/${selectedData?._id}`, data)
             setUserAction(result)
 
             if (result && result.status === 200) {
@@ -101,7 +133,7 @@ const AddEdit = (props) => {
     // formik
     const formik = useFormik({
         initialValues,
-        // validationSchema,
+        validationSchema,
         enableReinitialize: true,
         onSubmit: async (values) => {
             if (type === "add") {
@@ -119,21 +151,33 @@ const AddEdit = (props) => {
 
     useEffect(() => {
         if (type !== 'edit') {
-            formik.setFieldValue('material', "")
-            formik.setFieldValue('totalArea', "")
+            formik.setFieldValue('subType', "")
+            formik.setFieldValue('kg', "")
+            formik.setFieldValue('litres', "")
+            formik.setFieldValue('ef', "")
+            formik.setFieldValue('oneBottle', "")
+            formik.setFieldValue('polyethelene', "")
+            formik.setFieldValue('noOfPETBottles', "")
+            formik.setFieldValue('formula', "")
             formik.setFieldValue('emission', 0)
         }
     }, [formik.values.type])
 
-    // useEffect(() => {
-    //     if (formik.values.type === "Emails") {
-    //         formik.setFieldValue('emission', (formik?.values?.count * 13 / 1000).toFixed(2) || 0)
-    //     } else if (formik.values.type === "Attachment") {
-    //         formik.setFieldValue('emission', (formik?.values?.mb * 50 / 1000).toFixed(2) || 0)
-    //     } else if (formik.values.type === "Laptop") {
-    //         formik.setFieldValue('emission', (formik?.values?.noOfAttendees * 340 * (formik?.values?.noOfHours / formik?.values?.serviceLifeOfLaptop)).toFixed(2) || 0)
-    //     }
-    // }, [formik.values])
+    useEffect(() => {
+        if (type !== 'edit') {
+            if (formik.values.type === "Waste") {
+                const filterData = subTypeList?.filter((item) => item?.type === 'Waste')
+                setSubType(filterData)
+            }
+        }
+    }, [formik.values.type])
+
+    useEffect(() => {
+        if (type === 'edit') {
+            const filterData = subTypeList?.filter((item) => item?.type === selectedData?.type)
+            setSubType(filterData)
+        }
+    }, [selectedData])
 
     return (
         <div>
@@ -179,16 +223,28 @@ const AddEdit = (props) => {
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
                                             size="small"
-                                            onChange={(e) => {
-                                                setSubType(subTypeList?.filter((item) => item.type === e.target.value))
-                                                formik.handleChange(e)
-                                            }}
+                                            name="type"
+                                            fullWidth
+                                            value={formik.values.type || null}
+                                            disabled={type === "edit"}
+                                            onChange={(e) => { filterSubType(e.target.value); formik.handleChange(e) }}
+                                            error={
+                                                formik.touched.type &&
+                                                Boolean(formik.errors.type)
+                                            }
+                                            helperText={
+                                                formik.touched.type && formik.errors.type
+                                            }
                                         >
                                             <MenuItem value='Waste'>Waste</MenuItem>
                                             <MenuItem value="Water">Water</MenuItem>
                                             <MenuItem value="Plastic Water bottle">Plastic Water bottle</MenuItem>
                                             <MenuItem value="Branding">Branding</MenuItem>
                                         </Select>
+                                        <FormHelperText error={
+                                            formik.touched.type &&
+                                            Boolean(formik.errors.type)
+                                        }>{formik.touched.type && formik.errors.type}</FormHelperText>
                                     </FormControl>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12}>
@@ -196,44 +252,126 @@ const AddEdit = (props) => {
                                     <Autocomplete
                                         id="combo-box-demo"
                                         options={subType}
-                                        name="material"
+                                        name="subType"
                                         fullWidth
                                         disabled={type === "edit"}
                                         getOptionLabel={(item) => item?.label}
-                                        // value={subType?.find((item) => item?.label === formik.values.material) || null}
+                                        value={subType?.find((item) => item?.label === formik.values.subType) || null}
                                         onChange={(event, newValue) => {
-                                            formik.setFieldValue("material", newValue ? newValue?.label : "");
-                                            formik.setFieldValue("ef", newValue ? newValue?.value : "");
+                                            formik.setFieldValue("subType", newValue ? newValue?.label : "");
+                                            formik.setFieldValue("ef", newValue ? newValue?.ef : "");
+                                            formik.setFieldValue("oneBottle", newValue ? newValue?.oneBottle : "");
+                                            formik.setFieldValue("polyethelen", newValue ? newValue?.polyethelen : "");
                                         }}
                                         renderInput={(params) =>
                                             <TextField {...params}
                                                 size="small"
-                                                name="material"
+                                                name="subType"
                                                 placeholder='Select'
+                                                error={
+                                                    formik.touched.subType &&
+                                                    Boolean(formik.errors.subType)
+                                                }
+                                                helperText={
+                                                    formik.touched.subType && formik.errors.subType
+                                                }
                                             />}
                                     />
                                 </Grid>
+                                {
+                                    formik.values.type === "Waste" &&
+                                    <Grid item xs={12} sm={12} md={12}>
+                                        <FormLabel id="demo-row-radio-buttons-group-label">Kgs</FormLabel>
+                                        <TextField
+                                            id="kg"
+                                            name="kg"
+                                            label=""
+                                            type="number"
+                                            fullWidth
+                                            size="small"
+                                            value={formik.values.kg}
+                                            onChange={formik.handleChange}
+                                            error={
+                                                formik.touched.kg &&
+                                                Boolean(formik.errors.kg)
+                                            }
+                                            helperText={
+                                                formik.touched.kg && formik.errors.kg
+                                            }
+                                        />
+                                    </Grid>
+                                }
+                                {
+                                    formik.values.type === "Water" &&
+                                    <Grid item xs={12} sm={12} md={12}>
+                                        <FormLabel id="demo-row-radio-buttons-group-label">Litres/ area m3*</FormLabel>
+                                        <TextField
+                                            id="litres"
+                                            name="litres"
+                                            label=""
+                                            type="number"
+                                            fullWidth
+                                            size="small"
+                                            value={formik.values.litres}
+                                            onChange={formik.handleChange}
+                                            error={
+                                                formik.touched.litres &&
+                                                Boolean(formik.errors.litres)
+                                            }
+                                            helperText={
+                                                formik.touched.litres && formik.errors.litres
+                                            }
+                                        />
+                                    </Grid>
+                                }
+                                {
+                                    formik.values.type === "Plastic Water bottle" &&
+                                    <Grid item xs={12} sm={12} md={12}>
+                                        <FormLabel id="demo-row-radio-buttons-group-label">No. of PET bottles</FormLabel>
+                                        <TextField
+                                            id="noOfPETBottles"
+                                            name="noOfPETBottles"
+                                            label=""
+                                            type="number"
+                                            fullWidth
+                                            size="small"
+                                            value={formik.values.noOfPETBottles}
+                                            onChange={formik.handleChange}
+                                            error={
+                                                formik.touched.noOfPETBottles &&
+                                                Boolean(formik.errors.noOfPETBottles)
+                                            }
+                                            helperText={
+                                                formik.touched.noOfPETBottles && formik.errors.noOfPETBottles
+                                            }
+                                        />
+                                    </Grid>
+                                }
+                                {
+                                    formik.values.type === "Branding" &&
+                                    <Grid item xs={12} sm={12} md={12}>
+                                        <FormLabel id="demo-row-radio-buttons-group-label">Kg</FormLabel>
+                                        <TextField
+                                            id="kg"
+                                            name="kg"
+                                            label=""
+                                            type="number"
+                                            fullWidth
+                                            size="small"
+                                            value={formik.values.kg}
+                                            onChange={formik.handleChange}
+                                            error={
+                                                formik.touched.kg &&
+                                                Boolean(formik.errors.kg)
+                                            }
+                                            helperText={
+                                                formik.touched.kg && formik.errors.kg
+                                            }
+                                        />
+                                    </Grid>
+                                }
 
-                                <Grid item xs={12} sm={12} md={12}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Total Area (m2)/ Amount</FormLabel>
-                                    <TextField
-                                        id="totalArea"
-                                        name="totalArea"
-                                        label=""
-                                        type="number"
-                                        fullWidth
-                                        size="small"
-                                        value={formik.values.totalArea}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.totalArea &&
-                                            Boolean(formik.errors.totalArea)
-                                        }
-                                        helperText={
-                                            formik.touched.totalArea && formik.errors.totalArea
-                                        }
-                                    />
-                                </Grid>
+
                             </Grid>
                         </DialogContentText>
                     </form>

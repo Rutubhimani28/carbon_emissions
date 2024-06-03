@@ -9,7 +9,7 @@ const waste = new mongoose.Schema({
         type: String,
         default: null
     },
-    kgs: {
+    kg: {
         type: Number,
         default: null
     },
@@ -17,12 +17,24 @@ const waste = new mongoose.Schema({
         type: Number,
         default: null
     },
+    oneBottle: {
+        type: Number,
+        default: null
+    },
+    formula: {
+        type: String,
+        default: null
+    },
+    polyethelene: {
+        type: Number,
+        default: null
+    },
     noOfPETBottles: {
         type: Number,
         default: null
     },
-    // ef: { type: Number },
-    // emission: { type: Number },
+    ef: { type: Number },
+    emission: { type: Number },
     createdOn: { type: Date, default: Date.now },
     modifiedOn: { type: Date, default: Date.now }
 });

@@ -1,18 +1,18 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import { LoadingButton } from "@mui/lab";
-import { Autocomplete, CircularProgress, DialogContentText, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from "@mui/material";
+import { Autocomplete, CircularProgress, DialogContentText, FormLabel } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import FormControl from "@mui/material/FormControl";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import 'react-quill/dist/quill.snow.css';
+import * as yup from "yup";
 import { apipost, apiput } from "../../service/api";
 
 const AddEdit = (props) => {
@@ -44,6 +44,11 @@ const AddEdit = (props) => {
         { label: 'Nylon', value: 12.7 },
     ]
 
+    const validationSchema = yup.object({
+        material: yup.string().required("Material is required"),
+    });
+
+
     // -----------   initialValues
     const initialValues = {
         material: type === "edit" ? selectedData?.material : "",
@@ -52,7 +57,6 @@ const AddEdit = (props) => {
         emission: type === "edit" ? selectedData?.emission : "",
         createdBy: userid,
     };
-
 
     const addData = async (values) => {
         setIsLoading(true)
@@ -105,7 +109,7 @@ const AddEdit = (props) => {
     // formik
     const formik = useFormik({
         initialValues,
-        // validationSchema,
+        validationSchema,
         enableReinitialize: true,
         onSubmit: async (values) => {
             if (type === "add") {
@@ -123,16 +127,6 @@ const AddEdit = (props) => {
             formik.setFieldValue('emission', 0)
         }
     }, [formik.values.type])
-
-    // useEffect(() => {
-    //     if (formik.values.type === "Emails") {
-    //         formik.setFieldValue('emission', (formik?.values?.count * 13 / 1000).toFixed(2) || 0)
-    //     } else if (formik.values.type === "Attachment") {
-    //         formik.setFieldValue('emission', (formik?.values?.mb * 50 / 1000).toFixed(2) || 0)
-    //     } else if (formik.values.type === "Laptop") {
-    //         formik.setFieldValue('emission', (formik?.values?.noOfAttendees * 340 * (formik?.values?.noOfHours / formik?.values?.serviceLifeOfLaptop)).toFixed(2) || 0)
-    //     }
-    // }, [formik.values])
 
     return (
         <div>
@@ -190,6 +184,13 @@ const AddEdit = (props) => {
                                                 size="small"
                                                 name="material"
                                                 placeholder='Select'
+                                                error={
+                                                    formik.touched.material &&
+                                                    Boolean(formik.errors.material)
+                                                }
+                                                helperText={
+                                                    formik.touched.material && formik.errors.material
+                                                }
                                             />}
                                     />
                                 </Grid>

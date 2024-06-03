@@ -1,6 +1,3 @@
-import { useFormik } from "formik";
-import { useEffect, useState } from "react";
-import 'react-quill/dist/quill.snow.css';
 import ClearIcon from "@mui/icons-material/Clear";
 import { LoadingButton } from "@mui/lab";
 import { Autocomplete, CircularProgress, DialogContentText, FormLabel } from "@mui/material";
@@ -12,6 +9,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import 'react-quill/dist/quill.snow.css';
+import * as yup from "yup";
 import { apipost, apiput } from "../../service/api";
 
 const AddEdit = (props) => {
@@ -28,6 +29,11 @@ const AddEdit = (props) => {
         { label: 'Non Veg plate Lunch/ Dinner', value: 3825.5 },
         { label: 'High Tea', value: 642.2 },
     ]
+
+    const validationSchema = yup.object({
+        type: yup.string().required("Menu is required"),
+    });
+
 
     // -----------   initialValues
     const initialValues = {
@@ -90,7 +96,7 @@ const AddEdit = (props) => {
     // formik
     const formik = useFormik({
         initialValues,
-        // validationSchema,
+        validationSchema,
         enableReinitialize: true,
         onSubmit: async (values) => {
             if (type === "add") {
@@ -162,8 +168,15 @@ const AddEdit = (props) => {
                                         renderInput={(params) =>
                                             <TextField {...params}
                                                 size="small"
-                                                name="material"
+                                                name="type"
                                                 placeholder='Select'
+                                                error={
+                                                    formik.touched.type &&
+                                                    Boolean(formik.errors.type)
+                                                }
+                                                helperText={
+                                                    formik.touched.type && formik.errors.type
+                                                }
                                             />}
                                     />
                                 </Grid>
