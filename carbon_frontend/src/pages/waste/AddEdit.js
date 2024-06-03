@@ -179,6 +179,10 @@ const AddEdit = (props) => {
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
                                             size="small"
+                                            onChange={(e) => {
+                                                setSubType(subTypeList?.filter((item) => item.type === e.target.value))
+                                                formik.handleChange(e)
+                                            }}
                                         >
                                             <MenuItem value='Waste'>Waste</MenuItem>
                                             <MenuItem value="Water">Water</MenuItem>
