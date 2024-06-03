@@ -90,7 +90,7 @@ function Row(props) {
                                         (row.name === "Emails") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.count}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.count || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
                                         ))
@@ -99,7 +99,7 @@ function Row(props) {
                                         (row.name === "Attachment") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.mb}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.mb || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
                                         ))
@@ -108,8 +108,8 @@ function Row(props) {
                                         (row.name === "Laptop") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfAttendees}</TableCell>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfHours}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfAttendees || '-'}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfHours || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
 

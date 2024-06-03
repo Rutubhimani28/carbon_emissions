@@ -66,7 +66,7 @@ function Row(props) {
                                 <TableBody>
                                     {row?.details?.map((historyRow) => (
                                         <TableRow key={historyRow.employee1} sx={{ borderBottom: 0 }}>
-                                            <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow.noOfPax}</TableCell>
+                                            <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow.noOfPax || '-'}</TableCell>
                                             <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                         </TableRow>
                                     ))}

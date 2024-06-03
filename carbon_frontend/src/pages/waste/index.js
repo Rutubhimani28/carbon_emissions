@@ -94,7 +94,7 @@ function Row(props) {
                                         (row.name === "Waste") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.kg}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.kg || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
                                         ))
@@ -103,7 +103,7 @@ function Row(props) {
                                         (row.name === "Water") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.litres}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.litres || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
                                         ))
@@ -112,7 +112,7 @@ function Row(props) {
                                         (row.name === "Plastic Water bottle") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfPETBottles}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfPETBottles || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
 
@@ -122,7 +122,7 @@ function Row(props) {
                                         (row.name === "Branding") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.kg}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.kg || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
 
