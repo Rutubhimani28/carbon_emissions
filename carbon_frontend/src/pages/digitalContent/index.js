@@ -20,10 +20,9 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DeleteModel from '../../components/Deletemodle'
 import Iconify from '../../components/iconify'
-import { fetchProductionData } from '../../redux/slice/productionSlice'
+import { fetchDigitalContentData } from '../../redux/slice/digitalContentSlice'
 import { apidelete } from '../../service/api'
 import AddEdit from './AddEdit'
-import { fetchDigitalContentData } from '../../redux/slice/digitalContentSlice'
 
 function Row(props) {
     const { row, setUserAction, setType, setSelectedData, handleOpenAdd } = props
@@ -157,7 +156,7 @@ export default function CollapsibleTable() {
             <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
             <Container maxWidth>
                 <Paper>
-                    <div className='d-flex justify-content-between pt-3 px-5 pb-2 align-items-center'>
+                    <div className='d-flex justify-content-between pt-3  pb-2 align-items-center'>
                         <Typography variant='h5' className='text-dark fw-bolder'>
                             Digital
                         </Typography>

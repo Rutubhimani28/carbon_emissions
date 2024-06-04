@@ -14,7 +14,7 @@ import Calculation from './pages/calculation';
 import AirFreight from './pages/airFreight';
 import ContactUs from './pages/contactUs/ContactUs';
 import Events from './pages/events/Events';
-import Production from './pages/production/Production';
+import Production from './pages/production';
 import Food from './pages/food';
 import Energy from './pages/energy';
 import Travel from './pages/Travel';
@@ -29,7 +29,7 @@ export default function Router() {
       path: '/dashboard',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
+        { element: <Navigate to="/dashboard/production" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <User /> },
         { path: 'user/view/:id', element: <UserView /> },
@@ -53,7 +53,7 @@ export default function Router() {
     {
       element: <SimpleLayout />,
       children: [
-        { path: '*', element: <Navigate to="/dashboard/app" />, index: true },
+        { path: '*', element: <Navigate to="/dashboard/production" />, index: true },
         // { path: '404', element: <Page404 /> },
         // { path: '*', element: <Navigate to="/404" /> },
       ],

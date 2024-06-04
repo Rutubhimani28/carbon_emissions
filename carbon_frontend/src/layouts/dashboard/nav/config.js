@@ -20,11 +20,11 @@ const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ 
 
 
 const navConfig = [
-  {
-    title: 'Dashboard',
-    path: '/dashboard/app',
-    icon: <img src={dashboard} alt='dashboard' width={25} />,
-  },
+  // {
+  //   title: 'Dashboard',
+  //   path: '/dashboard/app',
+  //   icon: <img src={dashboard} alt='dashboard' width={25} />,
+  // },
   {
     title: 'Production',
     path: '/dashboard/production',

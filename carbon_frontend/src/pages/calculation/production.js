@@ -79,7 +79,7 @@ const Production = (props) => {
         <div>
             <Container maxWidth>
                 <Card style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
-                    <Box width={'70%'}>
+                    <Box >
 
                         <table className=''>
                             <tr>

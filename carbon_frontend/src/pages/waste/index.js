@@ -170,7 +170,7 @@ export default function CollapsibleTable() {
             <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
             <Container maxWidth>
                 <Paper>
-                    <div className='d-flex justify-content-between pt-3 px-5 pb-2 align-items-center'>
+                    <div className='d-flex justify-content-between pt-3  pb-2 align-items-center'>
                         <Typography variant='h5' className='text-dark fw-bolder'>
                             Waste
                         </Typography>
