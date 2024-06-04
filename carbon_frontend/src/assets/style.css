@@ -82,3 +82,217 @@ p {
 .css-e5dh6b .MuiDataGrid-footerContainer {
   background-color: #f5f5f5 !important;
 }
+
+.dateFiled .css-5uyutv-MuiInputBase-root-MuiOutlinedInput-root {
+  height: 38px;
+  background-color: #e0ebff;
+  border: none;
+}
+
+* {
+  font-family: "Manrope", sans-serif;
+}
+
+body {
+  background-color: #fff !important;
+}
+
+.css-1byr0tz {
+  padding-top: 40px !important;
+}
+
+.dateFiled .css-5uyutv-MuiInputBase-root-MuiOutlinedInput-root {
+  height: 38px;
+  background-color: #eef1f6;
+  border: none;
+}
+
+.startedBg {
+  /* background-image: url(../assets/bg.png); */
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.startedBg::after {
+  content: '';
+  background-color: #E3ECF9;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 15px;
+}
+
+/* src/CustomCalendar.css */
+.custom-calendar {
+  font-family: Arial, sans-serif;
+  padding: 10px 0px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.summary {
+  display: flex;
+  gap: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.timeline-header {
+  display: grid;
+  grid-template-columns: 150px repeat(13, 1fr);
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: 150px repeat(13, 1fr);
+  border: 1px solid #ddd;
+}
+
+.timeline-hour {
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  background: #E3EAFA;
+  color: #000;
+}
+
+.nurse-name {
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  background: #E3EAFA;
+}
+
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+}
+
+.empty-cell {
+  background-color: #E3EAFA;
+}
+
+.task {
+  border: 1px solid grey;
+  background: #3174ad;
+  color: white;
+  padding: 5px;
+  margin: 2px;
+  border-radius: 4px;
+  text-align: start;
+}
+
+.css-pjtb9k-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #222E93 !important;
+  background-color: #2c4ec314 !important;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* loader */
+
+.circular-loader {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.loader-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.loader-label span {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+
+
+
+
+
+
+
+
+.mid {
+  background-color: #ffba34;
+  color: #fff;
+}
+
+.low {
+  background-color: #12c97c;
+  color: #fff;
+}
+
+.high {
+  background-color: #ff5252;
+  color: #fff;
+}
+
+.commonAcuity {
+  border-radius: 30px;
+  padding: 5px 8px;
+}
+
+.css-q1sbve-MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer {
+  background-color: #e2e8fb;
+  padding: 0 !important;
+}
+
+.MuiDataGrid-columnHeader,
+.css-q1sbve-MuiDataGrid-root .MuiDataGrid-cell {
+  -webkit-tap-highlight-color: transparent;
+  padding: 0 !important;
+  box-sizing: border-box;
+}

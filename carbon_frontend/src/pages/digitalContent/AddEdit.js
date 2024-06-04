@@ -120,7 +120,7 @@ const AddEdit = (props) => {
         } else if (formik.values.type === "Attachment") {
             formik.setFieldValue('emission', (formik?.values?.mb * 50 / 1000).toFixed(2) || 0)
         } else if (formik.values.type === "Laptop") {
-            formik.setFieldValue('emission', (formik?.values?.noOfAttendees * 340 * (formik?.values?.noOfHours / formik?.values?.serviceLifeOfLaptop)).toFixed(2) || 0)
+            formik.setFieldValue('emission', (formik?.values?.noOfAttendees * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2) || 0)
         }
     }, [formik.values])
 
@@ -163,7 +163,6 @@ const AddEdit = (props) => {
                             >
                                 <Grid item xs={12} sm={12} md={12}>
                                     <FormControl>
-                                        {/* <FormLabel>Type</FormLabel> */}
                                         <RadioGroup
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
@@ -214,7 +213,6 @@ const AddEdit = (props) => {
                                 {
                                     formik.values.type === "Attachment" &&
                                     <>
-
                                         <Grid item xs={12} sm={12} md={12}>
                                             <FormLabel id="demo-row-radio-buttons-group-label">MB</FormLabel>
                                             <TextField
@@ -281,7 +279,7 @@ const AddEdit = (props) => {
                                                 }
                                             />
                                         </Grid>
-                                        <Grid item xs={12} sm={12} md={12}>
+                                        {/* <Grid item xs={12} sm={12} md={12}>
                                             <FormLabel id="demo-row-radio-buttons-group-label">Service life of Laptop</FormLabel>
                                             <TextField
                                                 id="serviceLifeOfLaptop"
@@ -300,7 +298,7 @@ const AddEdit = (props) => {
                                                     formik.touched.serviceLifeOfLaptop && formik.errors.serviceLifeOfLaptop
                                                 }
                                             />
-                                        </Grid>
+                                        </Grid> */}
                                     </>
                                 }
 

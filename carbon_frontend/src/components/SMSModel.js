@@ -9,7 +9,7 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
-import { fetchSmsTemplateData } from '../redux/slice/smsTemplateSlice';
+// import { fetchSmsTemplateData } from '../redux/slice/smsTemplateSlice';
 
 export default function CustomizedDialogs(props) {
   const { open, onClose, sendSMS, ids, isLoading } = props;
@@ -21,7 +21,7 @@ export default function CustomizedDialogs(props) {
   const [check, setCheck] = useState(false)
   const dispatch = useDispatch()
 
-  const smsTempList = useSelector((state) => state?.smsTempDetails?.data)
+  // const smsTempList = useSelector((state) => state?.smsTempDetails?.data)
 
   const initialValues = {
     ids: [...ids],
@@ -95,7 +95,7 @@ export default function CustomizedDialogs(props) {
 
   useEffect(() => {
     if (smsTempList?.length === 0) {
-      dispatch(fetchSmsTemplateData())
+      // dispatch(fetchSmsTemplateData())
     }
   }, [open])
 

@@ -45,7 +45,7 @@ Header.propTypes = {
 export default function Header({ onOpenNav }) {
   return (
     <StyledRoot>
-      <StyledToolbar>
+      <div>
         <IconButton
           onClick={onOpenNav}
           sx={{
@@ -70,9 +70,9 @@ export default function Header({ onOpenNav }) {
         >
           {/* <LanguagePopover /> */}
           {/* <NotificationsPopover /> */}
-          <AccountPopover />
+          {/* <AccountPopover /> */}
         </Stack>
-      </StyledToolbar>
+      </div>
     </StyledRoot>
   );
 }

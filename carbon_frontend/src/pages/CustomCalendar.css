@@ -1,0 +1,60 @@
+/* src/CustomCalendar.css */
+.custom-calendar {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.summary {
+    display: flex;
+    gap: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+}
+
+.timeline-header,
+.timeline-row {
+    display: grid;
+    grid-template-columns: 150px repeat(13, 1fr);
+}
+
+.timeline-hour,
+.nurse-name {
+    padding: 10px;
+    border-right: 1px solid #ddd;
+    background: #f4f4f4;
+}
+
+.tasks {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+}
+
+.task {
+    background: #3174ad;
+    color: white;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 4px;
+    text-align: center;
+}

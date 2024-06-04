@@ -85,6 +85,36 @@ const navConfig = [
     path: '/dashboard/events',
     icon: <img src={events} alt='Events' width={30} />,
   },
+  {
+    title: 'Extra',
+    path: '/dashboard/extra',
+    icon: <img src={events} alt='Events' width={30} />,
+  },
+  {
+    title: 'Extra2',
+    path: '/dashboard/extra1',
+    icon: <img src={events} alt='Events' width={30} />,
+  },
+  {
+    title: 'Home',
+    path: '/home',
+    icon: <img src={events} alt='Events' width={30} />,
+  },
+  {
+    title: 'Schedule Templete',
+    path: '/dashboard/extra1',
+    icon: <img src={events} alt='Events' width={30} />,
+  },
+  {
+    title: 'Daily Calender',
+    path: '/dashboard/dailyCalender/fileUpload',
+    icon: <img src={events} alt='Events' width={30} />,
+  },
+  {
+    title: 'Excusive Reports',
+    path: '/dashboard/extra1',
+    icon: <img src={events} alt='Events' width={30} />,
+  },
   // {
   //   title: 'User Management',
   //   path: '/dashboard/user',

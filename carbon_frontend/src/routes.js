@@ -21,6 +21,13 @@ import Travel from './pages/Travel';
 import Transportation from './pages/transportation';
 import Accomodation from './pages/accomodation';
 import Waste from './pages/waste';
+import Extra from './pages/extra';
+// import CoustomCalender from './pages/CustomCalendar'
+import GetStarted from './pages/Oncore/getStarted';
+import UploadFile from './pages/Oncore/fileUpload'
+import ExecutiveReport from './pages/Oncore/ExcusiveReport';
+import CustomCalendar from './pages/Oncore/coustomCalender';
+import Dashboard from './pages/Oncore/dashboard';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -46,9 +53,16 @@ export default function Router() {
         { path: 'calculation', element: <Calculation /> },
         { path: 'contactUs', element: <ContactUs /> },
         { path: 'events', element: <Events /> },
+        { path: 'extra', element: <Extra /> },
+        // { path: 'extra1', element: <CoustomCalender /> },
+        { path: 'dailyCalender/fileUpload', element: <UploadFile /> },
+        // { path: 'dailyCalender/executive-reports', element: <ExecutiveReport /> },
+        { path: 'dailyCalender/executive-reports', element: <Dashboard /> },
+        { path: 'dailyCalender/calender', element: <CustomCalendar /> },
       ],
     },
     { path: '/', element: <UserLayout /> },
+    { path: '/home', element: <GetStarted /> },
     { path: '/measure-ghg-emissions', element: <Services /> },
     {
       element: <SimpleLayout />,
