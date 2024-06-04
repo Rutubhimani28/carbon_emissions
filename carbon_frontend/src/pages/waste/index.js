@@ -27,19 +27,28 @@ import AddEdit from './AddEdit'
 function Row(props) {
     const { row, setUserAction, setType, setSelectedData, handleOpenAdd } = props
     const [open, setOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
     const [opendelete, setOpendelete] = useState(false);
     const [id, setId] = useState('')
 
     const handleDelete = async (id) => {
-        const result = await apidelete(`api/waste/${id}`)
-        setUserAction(result)
-        handleCloseDelete();
-    }
+        setIsLoading(true)
+        try {
+            const result = await apidelete(`api/waste/${id}`)
+            setUserAction(result)
+            handleCloseDelete();
+        } catch (error) {
+            console.error('Error deleting waste:', error);
+        }
+        setIsLoading(false)
+    };
+
     const handleCloseDelete = () => setOpendelete(false)
 
     return (
         <>
-            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} />
+            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} isLoading={isLoading} />
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                 <TableCell>
                     <IconButton aria-label='expand row' size='small' onClick={() => setOpen(!open)}>
