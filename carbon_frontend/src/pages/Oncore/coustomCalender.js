@@ -137,7 +137,6 @@ const CustomCalendar = () => {
                 <div className='d-flex flex-wrap align-items-center pt-5'>
                     <Button style={{ height: "38px", backgroundColor: "#222E93", border: "none", }} className='m-1 text-light px-4 d-flex align-items-center'>
                         <HiDownload className='me-1' /> Download
-
                     </Button>
                     <Button style={{ height: "38px", backgroundColor: "#222E93", border: "none" }} className='m-1 text-light px-4 d-flex align-items-center'>
                         <BsPrinter className='me-1' />Print
