@@ -40,17 +40,17 @@ const EnergyUpdated = (props) => {
                 {
                     type: 'Electricity',
                     kwh: values?.kwh,
-                    emission: parseFloat((values?.kwh * 0.43).toFixed(2)) || 0
+                    emission: Number((values?.kwh * 0.43).toFixed(2)) || 0
                 },
                 {
                     type: 'Petrol',
                     gallonsOne: values?.gallonsOne,
-                    emission: parseFloat((values?.gallonsOne * 0.0089).toFixed(2)) || 0
+                    emission: Number((values?.gallonsOne * 0.0089).toFixed(2)) || 0
                 },
                 {
                     type: 'Diesel',
                     gallonsTwo: values?.gallonsTwo,
-                    emission: parseFloat((values?.gallonsTwo * 10.18).toFixed(2)) || 0
+                    emission: Number((values?.gallonsTwo * 10.18).toFixed(2)) || 0
                 }
             ];
             dispatch(addEnergyData({ data }))

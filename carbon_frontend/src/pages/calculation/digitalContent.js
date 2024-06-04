@@ -36,26 +36,26 @@ const DigitalContent = (props) => {
         onSubmit: async (values) => {
             formik.setFieldValue('emissionOne', values?.count * 13 / 1000);
             formik.setFieldValue('emissionTwo', values?.MB * 50 / 1000);
-            const emission = values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop) || 0;
+            const emission = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
             formik.setFieldValue('emissionThree', emission || 0);
 
             const data = [
                 {
                     type: 'Emails',
                     count: values?.count,
-                    emission: parseFloat((values?.count * 13 / 1000).toFixed(2))
+                    emission: Number((values?.count * 13 / 1000).toFixed(2))
                 },
                 {
                     type: 'Attachment',
                     mb: values?.MB,
-                    emission: parseFloat((values?.MB * 50 / 1000).toFixed(2))
+                    emission: Number((values?.MB * 50 / 1000).toFixed(2))
                 },
                 {
                     type: 'Laptop',
                     noOfAttendees: values?.noOfAttendees,
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
-                    emission: parseFloat((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0
+                    emission: Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0
                 }
             ];
 

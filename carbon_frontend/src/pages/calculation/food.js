@@ -38,27 +38,27 @@ const Food = (props) => {
                 {
                     type: 'Veg Starter',
                     noOfPax: values?.noOfPaxOne,
-                    emission: parseFloat((1924.06 * values?.noOfPaxOne).toFixed(2)) || 0
+                    emission: Number((1924.06 * values?.noOfPaxOne).toFixed(2)) || 0
                 },
                 {
                     type: 'Veg Plate Lunch/ Dinner',
                     noOfPax: values?.noOfPaxTwo,
-                    emission: parseFloat((3825.5 * values?.noOfPaxTwo).toFixed(2)) || 0
+                    emission: Number((3825.5 * values?.noOfPaxTwo).toFixed(2)) || 0
                 },
                 {
                     type: 'Non veg starter',
                     noOfPax: values?.noOfPaxThree,
-                    emission: parseFloat((1984.1 * values?.noOfPaxThree).toFixed(2)) || 0
+                    emission: Number((1984.1 * values?.noOfPaxThree).toFixed(2)) || 0
                 },
                 {
                     type: 'Non Veg plate Lunch/ Dinner',
                     noOfPax: values?.noOfPaxFour,
-                    emission: parseFloat((2638 * values?.noOfPaxFour).toFixed(2)) || 0
+                    emission: Number((2638 * values?.noOfPaxFour).toFixed(2)) || 0
                 },
                 {
                     type: 'High Tea',
                     noOfPax: values?.noOfPaxFive,
-                    emission: parseFloat((642.2 * values?.noOfPaxFive).toFixed(2)) || 0
+                    emission: Number((642.2 * values?.noOfPaxFive).toFixed(2)) || 0
                 },
             ];
             dispatch(addFoodData({ data }))

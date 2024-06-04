@@ -53,52 +53,52 @@ const Waste = (props) => {
                 {
                     type: 'Food',
                     foodKg: values?.foodKg,
-                    emission: parseFloat((0.58 * values?.foodKg).toFixed(2)) || 0
+                    emission: Number((0.58 * values?.foodKg).toFixed(2)) || 0
                 },
                 {
                     type: 'mixedRecyclables',
                     mixedRecyclablesKg: values?.mixedRecyclablesKg,
-                    emission: parseFloat((0.09 * values?.mixedRecyclablesKg).toFixed(2)) || 0
+                    emission: Number((0.09 * values?.mixedRecyclablesKg).toFixed(2)) || 0
                 },
                 {
                     type: 'municipalSolidWaste',
                     municipalSolidWasteKg: values?.municipalSolidWasteKg,
-                    emission: parseFloat((0.52 * values?.municipalSolidWasteKg).toFixed(2)) || 0
+                    emission: Number((0.52 * values?.municipalSolidWasteKg).toFixed(2)) || 0
                 },
                 {
                     type: 'Water',
                     water: values?.water,
-                    emission: parseFloat((0.272 * values?.water).toFixed(2)) || 0
+                    emission: Number((0.272 * values?.water).toFixed(2)) || 0
                 },
                 {
                     type: '250ml',
                     bottleOne: values?.bottleOne,
-                    emission: parseFloat((values?.bottleOne * 6.42 * 0.00279).toFixed(2)) || 0
+                    emission: Number((values?.bottleOne * 6.42 * 0.00279).toFixed(2)) || 0
                 },
                 {
                     type: '500ml',
                     bottleTwo: values?.bottleTwo,
-                    emission: parseFloat((values?.bottleTwo * 13 * 0.00279).toFixed(2)) || 0
+                    emission: Number((values?.bottleTwo * 13 * 0.00279).toFixed(2)) || 0
                 },
                 {
                     type: '1000ml',
                     bottleThree: values?.bottleThree,
-                    emission: parseFloat((values?.bottleThree * 21.5 * 0.00279).toFixed(2)) || 0
+                    emission: Number((values?.bottleThree * 21.5 * 0.00279).toFixed(2)) || 0
                 },
                 {
                     type: 'PVCHDPEBanner',
                     hdpeBanner: values?.hdpeBanner,
-                    emission: parseFloat((3.11 * values?.hdpeBanner).toFixed(2)) || 0
+                    emission: Number((3.11 * values?.hdpeBanner).toFixed(2)) || 0
                 },
                 {
                     type: 'PVCBanners',
                     pvcBanners: values?.pvcBanners,
-                    emission: parseFloat((7.83 * values?.pvcBanners).toFixed(2)) || 0
+                    emission: Number((7.83 * values?.pvcBanners).toFixed(2)) || 0
                 },
                 {
                     type: 'badgeholders',
                     badgeHolders: values?.badgeHolders,
-                    emission: parseFloat((22.74 * values?.badgeHolders).toFixed(2)) || 0
+                    emission: Number((22.74 * values?.badgeHolders).toFixed(2)) || 0
                 },
 
             ];
