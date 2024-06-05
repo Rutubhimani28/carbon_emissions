@@ -17,7 +17,6 @@ const GetStarted = () => {
                 <div className='pt-2 pb-4 text-center'>
                     {/* <Typography variant='h3'>Oncore AI</Typography>
                     <Typography variant='body'>for Iinfusion Centers</Typography> */}
-                    {/* <img src={logo} alt="logo" /> */}
                 </div>
 
                 <div className='shadow p-3'>
@@ -31,7 +30,7 @@ const GetStarted = () => {
                         <li className='list-unstyled py-3 d-flex align-items-center' >
                             <span style={{ backgroundColor: "#a8a9e85e", borderRadius: "50%", padding: "0px 9px", textAlign: "center", marginRight: "7px" }}>2</span>
                             <IoMaleSharp style={{ transform: "rotate(105deg)" }} />
-                            <span className='fs-6 ps-2 '><strong>IdentiFy</strong> Areas for Improvment</span>
+                            <span className='fs-6 ps-2 '><strong>Identify</strong> Areas for Improvment</span>
                         </li>
                         <li className='list-unstyled py-3 d-flex align-items-center' >
                             <span style={{ backgroundColor: "#a8a9e85e", borderRadius: "50%", padding: "0px 9px", textAlign: "center", marginRight: "7px" }}>3</span>

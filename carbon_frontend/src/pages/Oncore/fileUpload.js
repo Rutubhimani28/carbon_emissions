@@ -111,7 +111,7 @@ function MyDropzone(props) {
                                 {
                                     !isLoading &&
                                     <div className='mt-5'>
-                                        <Button variant='contained' startIcon={<FaCheck />} onClick={() => handleRedirect()} style={{ backgroundColor: "#222e93" }}> View Result</Button>
+                                        <Button variant='contained' startIcon={<FaCheck />} onClick={() => handleRedirect()} style={{ backgroundColor: "#2ec67d" }}> View Result</Button>
                                     </div>
                                 }
                                 <div className='d-flex justify-content-center my-2'>
@@ -158,7 +158,7 @@ const Schedule = () => {
     return (
         <div className='p-3'>
             <Typography variant="body">Step {change}/3</Typography>
-            <Typography variant="h5">{change === 1 ? "Upload" : change === 2 ? "Identyfy" : change === 3 ? "Optimize" : ""}</Typography>
+            <Typography variant="h5">{change === 1 ? "Upload" : change === 2 ? "Identify" : change === 3 ? "Optimize" : ""}</Typography>
             <div className='d-flex justify-content-between align-items-center pt-3'>
                 <div className='d-flex align-items-center'>
                     <FormControl style={{ width: "200px" }} className='ps-2'>
