@@ -137,12 +137,14 @@ import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
-const Barchart = () => {
+const Barchart = ({ chartData, hourlyColors }) => {
     const [series] = useState([
         {
-            data: [12.3, 15.1, 9.0, 19.1, 14.0, 3.6, 13.2, 12.3, 15.4, 8, 10.5, 18.2],
+            data: chartData?.map((item) => item?.actualPatients),
         },
     ]);
+
+    const color = hourlyColors?.find((i) => i?.time)
 
     const [options] = useState({
         chart: {

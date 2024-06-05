@@ -104,7 +104,7 @@ const Identity = (props) => {
                 </div> */}
             </div>
             <Card className='my-5 p-4'>
-                <BarChart />
+                <BarChart chartData={analyze?.actualPatients} hourlyColors={analyze?.hourlyColors}/>
             </Card>
 
             <div className='d-flex justify-content-center' >
