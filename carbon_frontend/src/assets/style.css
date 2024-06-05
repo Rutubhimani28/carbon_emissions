@@ -2,7 +2,8 @@
 @import 'animate.css';
 
 .loader {
-  margin-top: 70px;
+  display: inline-block;
+  /* margin-top: 70px; */
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -16,7 +17,7 @@
   position: absolute;
   inset: 0px;
   border-radius: 50%;
-  border: 3px solid black;
+  border: 5px solid #07bc0c;
   animation: prixClipFix 2s linear infinite;
 }
 
