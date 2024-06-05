@@ -25,76 +25,76 @@ const navConfig = [
     path: '/dashboard/app',
     icon: <img src={dashboard} alt='dashboard' width={25} />,
   },
-  {
-    title: 'Production',
-    path: '/dashboard/production',
-    icon: <img src={Production} alt='Production' width={30} />,
-  },
-  {
-    title: 'Logistics',
-    path: '/dashboard/airfreight',
-    icon: <img src={Logistics} alt='Logistics' width={30} />,
-  },
-  {
-    title: 'Food',
-    path: '/dashboard/food',
-    icon: <img src={foodimg} alt='Food' width={30} />,
-  },
-  {
-    title: 'Energy',
-    path: '/dashboard/energy',
-    icon: <img src={energyimg} alt='Energy' width={30} />,
-  },
-  {
-    title: 'Travel',
-    path: '/dashboard/travel',
-    icon: <img src={travelimg} alt='Result' width={30} />,
-  },
-  {
-    title: 'Digital',
-    path: '/dashboard/digitalContent',
-    icon: <img src={digitalContent} alt='digitalContent' width={30} />,
-  },
-  {
-    title: 'Local Transportation',
-    path: '/dashboard/transportation',
-    icon: <img src={localTransportationimg} alt='Transportation' width={30} />,
-  },
-  {
-    title: 'Accomodation',
-    path: '/dashboard/accomodation',
-    icon: <img src={accomodationimg} alt='Accomodation' width={30} />,
-  },
-  {
-    title: 'Waste',
-    path: '/dashboard/waste',
-    icon: <img src={wasteimg} alt='Waste' width={30} />,
-  },
-  {
-    title: 'Calculation',
-    path: '/dashboard/calculation',
-    icon: <img src={Result} alt='Calculation' width={30} />,
-  },
-  {
-    title: 'contactUs',
-    path: '/dashboard/contactUs',
-    icon: <img src={contact} alt='contactUs' width={30} />,
-  },
-  {
-    title: 'Events',
-    path: '/dashboard/events',
-    icon: <img src={events} alt='Events' width={30} />,
-  },
-  {
-    title: 'Extra',
-    path: '/dashboard/extra',
-    icon: <img src={events} alt='Events' width={30} />,
-  },
-  {
-    title: 'Extra2',
-    path: '/dashboard/extra1',
-    icon: <img src={events} alt='Events' width={30} />,
-  },
+  // {
+  //   title: 'Production',
+  //   path: '/dashboard/production',
+  //   icon: <img src={Production} alt='Production' width={30} />,
+  // },
+  // {
+  //   title: 'Logistics',
+  //   path: '/dashboard/airfreight',
+  //   icon: <img src={Logistics} alt='Logistics' width={30} />,
+  // },
+  // {
+  //   title: 'Food',
+  //   path: '/dashboard/food',
+  //   icon: <img src={foodimg} alt='Food' width={30} />,
+  // },
+  // {
+  //   title: 'Energy',
+  //   path: '/dashboard/energy',
+  //   icon: <img src={energyimg} alt='Energy' width={30} />,
+  // },
+  // {
+  //   title: 'Travel',
+  //   path: '/dashboard/travel',
+  //   icon: <img src={travelimg} alt='Result' width={30} />,
+  // },
+  // {
+  //   title: 'Digital',
+  //   path: '/dashboard/digitalContent',
+  //   icon: <img src={digitalContent} alt='digitalContent' width={30} />,
+  // },
+  // {
+  //   title: 'Local Transportation',
+  //   path: '/dashboard/transportation',
+  //   icon: <img src={localTransportationimg} alt='Transportation' width={30} />,
+  // },
+  // {
+  //   title: 'Accomodation',
+  //   path: '/dashboard/accomodation',
+  //   icon: <img src={accomodationimg} alt='Accomodation' width={30} />,
+  // },
+  // {
+  //   title: 'Waste',
+  //   path: '/dashboard/waste',
+  //   icon: <img src={wasteimg} alt='Waste' width={30} />,
+  // },
+  // {
+  //   title: 'Calculation',
+  //   path: '/dashboard/calculation',
+  //   icon: <img src={Result} alt='Calculation' width={30} />,
+  // },
+  // {
+  //   title: 'contactUs',
+  //   path: '/dashboard/contactUs',
+  //   icon: <img src={contact} alt='contactUs' width={30} />,
+  // },
+  // {
+  //   title: 'Events',
+  //   path: '/dashboard/events',
+  //   icon: <img src={events} alt='Events' width={30} />,
+  // },
+  // {
+  //   title: 'Extra',
+  //   path: '/dashboard/extra',
+  //   icon: <img src={events} alt='Events' width={30} />,
+  // },
+  // {
+  //   title: 'Extra2',
+  //   path: '/dashboard/extra1',
+  //   icon: <img src={events} alt='Events' width={30} />,
+  // },
   {
     title: 'Home',
     path: '/home',
