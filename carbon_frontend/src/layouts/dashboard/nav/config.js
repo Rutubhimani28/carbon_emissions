@@ -111,7 +111,7 @@ const navConfig = [
     icon: <img src={events} alt='Events' width={30} />,
   },
   {
-    title: 'Excusive Reports',
+    title: 'Executive Reports',
     path: '/dashboard/extra1',
     icon: <img src={events} alt='Events' width={30} />,
   },

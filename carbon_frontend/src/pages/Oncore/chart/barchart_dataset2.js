@@ -272,6 +272,7 @@
 import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 const Barchart = () => {
     const [series] = useState([
@@ -304,14 +305,7 @@ const Barchart = () => {
                 dataLabels: {
                     show: false,
                 },
-                // colors: {
-                //     ranges: [
-                //         { from: 0.00, to: 10.00, color: '#cd1f1e' }, // Red
-                //         { from: 10.00, to: 14.00, color: '#f2da02' }, // Yellow
-                //         { from: 14.00, to: 16.00, color: '#f28900' }, // Orange
-                //         { from: 16.00, to: 20.00, color: '#c7c7c7' }, // Gray
-                //     ],
-                // },
+
             },
         },
         dataLabels: {
@@ -391,7 +385,7 @@ const Barchart = () => {
                             color: '#fff',
                             background: '#000'
                         },
-                        text: '100'
+                        text: 'Max-Capacity'
                     }
                 }
             ]
@@ -402,6 +396,12 @@ const Barchart = () => {
         <>
             <div><Typography variant='h5'>Chair Utilization</Typography></div>
             <ReactApexChart options={options} series={series} type="bar" height={350} />
+            <div className='d-flex flex-wrap align-items-center justify-content-center pt-5'>
+                <div className='m-2 fw-bold'><FiberManualRecordIcon style={{ marginRight: "8px", color: "#749CFC" }} />Under by 2+ Patients</div>
+                <div className='m-2 fw-bold'><FiberManualRecordIcon style={{ marginRight: "8px", color: "#749CFC" }} />At Max Capacity</div>
+                <div className='m-2 fw-bold'><FiberManualRecordIcon style={{ marginRight: "8px", color: "#081B5F" }} />Over by 1-2 Patients</div>
+                <div className='m-2 fw-bold'><FiberManualRecordIcon style={{ marginRight: "8px", color: "#1C4ADE" }} />Well Over Max Capacity</div>
+            </div>
         </>
     );
 }

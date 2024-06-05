@@ -254,7 +254,7 @@ const Barchart = () => {
                             color: '#fff',
                             background: '#000'
                         },
-                        text: '100'
+                        text: 'Max-Capacity'
                     }
                 }
             ]
