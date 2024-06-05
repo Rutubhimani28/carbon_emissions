@@ -149,6 +149,7 @@ const Waste = (props) => {
                     <Grid item xs={12} sm={6} md={6}>
                         <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                             <Box>
+                                <Typography variant='h6' className='text-center'>Food Waste</Typography>
                                 <div className='table-responsive'>
                                     <table className=''>
                                         <tr>
@@ -180,6 +181,7 @@ const Waste = (props) => {
                     <Grid item xs={12} sm={6} md={6}>
                         <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center', height: '223px' }}>
                             <Box>
+                                <Typography variant='h6' className='text-center'>Water Waste</Typography>
                                 <div className='table-responsive'>
                                     <table className=''>
                                         <tr>
@@ -200,6 +202,7 @@ const Waste = (props) => {
                     <Grid item xs={12} sm={6} md={6}>
                         <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                             <Box>
+                                <Typography variant='h6' className="text-center">Plastic Waste</Typography>
                                 <div className='table-responsive'>
                                     <table className=''>
                                         <tr>
@@ -208,17 +211,17 @@ const Waste = (props) => {
                                             <th className='ps-2'>Emission (kg CO2e)</th>
                                         </tr>
                                         <tr>
-                                            <td className='ps-2 py-1'>250ml</td>
+                                            <td className='ps-2 py-1'>250ml PET bottle</td>
                                             <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleOne' value={formik?.values?.bottleOne} onChange={formik.handleChange} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='bottleOneEmission' value={formik?.values?.bottleOneEmission} onChange={formik.handleChange} /></td>
                                         </tr>
                                         <tr>
-                                            <td className='ps-2 py-1'>500ml</td>
+                                            <td className='ps-2 py-1'>500ml PET bottle</td>
                                             <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleTwo' value={formik?.values?.bottleTwo} onChange={formik.handleChange} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='bottleTwoEmission' value={formik?.values?.bottleTwoEmission} onChange={formik.handleChange} disabled /></td>
                                         </tr>
                                         <tr>
-                                            <td className='ps-2 py-1'>1000ml</td>
+                                            <td className='ps-2 py-1'>1000ml PET bottle</td>
                                             <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleThree' value={formik?.values?.bottleThree} onChange={formik.handleChange} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='bottleThreeEmission' value={formik?.values?.bottleThreeEmission} onChange={formik.handleChange} disabled /></td>
                                         </tr>
@@ -231,6 +234,7 @@ const Waste = (props) => {
                     <Grid item xs={12} sm={6} md={6}>
                         <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                             <Box>
+                                <Typography variant='h6' className='text-center'>Branding Waste</Typography>
                                 <div className='table-responsive'>
                                     <table className=''>
                                         <tr>
