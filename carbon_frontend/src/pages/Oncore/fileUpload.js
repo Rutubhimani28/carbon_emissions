@@ -111,7 +111,7 @@ function MyDropzone(props) {
                                 {
                                     !isLoading &&
                                     <div className='mt-5'>
-                                        <Button variant='contained' startIcon={<FaCheck />} onClick={() => handleRedirect()} style={{ backgroundColor: "#222e93" }}> View Result</Button>
+                                        <Button variant='contained' startIcon={<FaCheck />} onClick={() => handleRedirect()} style={{ backgroundColor: "#2ec67d" }}> View Result</Button>
                                     </div>
                                 }
                                 <div className='d-flex justify-content-center my-2'>

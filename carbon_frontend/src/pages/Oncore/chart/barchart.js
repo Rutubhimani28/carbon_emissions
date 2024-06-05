@@ -135,6 +135,7 @@
 import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 const Barchart = () => {
     const [series] = useState([
@@ -265,6 +266,13 @@ const Barchart = () => {
         <>
             <div><Typography variant='h5'>Chair Utilization</Typography></div>
             <ReactApexChart options={options} series={series} type="bar" height={350} />
+            <div className='d-flex flex-wrap align-items-center justify-content-center pt-5'>
+
+                <div className='m-2 fw-bold'><FiberManualRecordIcon style={{ marginRight: "8px", color: "#c7c7c7" }} />Under by 2+ Patients</div>
+                <div className='m-2 fw-bold'><FiberManualRecordIcon style={{ marginRight: "8px", color: "#f2da02" }} />At Max Capacity</div>
+                <div className='m-2 fw-bold'><FiberManualRecordIcon style={{ marginRight: "8px", color: "#f28900" }} />Over by 1-2 Patients</div>
+                <div className='m-2 fw-bold'><FiberManualRecordIcon style={{ marginRight: "8px", color: "#cd1f1e" }} />Well Over Max Capacity</div>
+            </div>
         </>
     );
 }

@@ -17,7 +17,6 @@ const GetStarted = () => {
                 <div className='pt-2 pb-4 text-center'>
                     {/* <Typography variant='h3'>Oncore AI</Typography>
                     <Typography variant='body'>for Iinfusion Centers</Typography> */}
-                    {/* <img src={logo} alt="logo" /> */}
                 </div>
 
                 <div className='shadow p-3'>

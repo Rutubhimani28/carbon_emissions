@@ -293,14 +293,12 @@ class RadialBar extends Component {
                     <Typography variant="h4">Areas for Improvement</Typography>
                     <Grid container >
                         <Grid item xs={12} md={3}  >
-                            {/* <div className="p-1 rounded-circle shadow" style={{height:"200px",width:"200px"}}> */}
                             <Chart
                                 options={this.state.options}
                                 series={this.state.series}
                                 type="radialBar"
                             // width="400"
                             />
-                            {/* </div> */}
                         </Grid>
                         <Grid item xs={12} md={3}  >
                             <Chart
