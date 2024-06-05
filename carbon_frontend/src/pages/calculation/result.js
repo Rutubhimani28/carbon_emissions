@@ -8,6 +8,7 @@ import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
 import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
 import { deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
+import { deleteProductionData } from '../../redux/slice/totalProductionSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
@@ -20,7 +21,7 @@ const Result = () => {
     const allProductionData = useSelector((state) => state?.totalProductionDetails);
     const allLocalTranspotationData = useSelector((state) => state?.totalLocalTranspotationDetails);
 
-    const total = parseFloat(allProductionData?.totalEmission) + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + 0 + parseFloat(allDigitalContentData?.totalEmission) + parseFloat(allLocalTranspotationData?.totalEmission) + 0 + parseFloat(allWasteData?.totalEmission)
+    const total = Number(allProductionData?.totalEmission) + Number(allFreightData?.totalEmission) + Number(allFoodData?.totalEmission) + Number(allEnergyData?.totalEmission) + 0 + Number(allDigitalContentData?.totalEmission) + Number(allLocalTranspotationData?.totalEmission) + 0 + Number(allWasteData?.totalEmission)
 
     const resultData = [
         {
@@ -75,6 +76,7 @@ const Result = () => {
     }
 
     const handeleDelete = () => {
+        dispatch(deleteProductionData())
         dispatch(deleteData())
         dispatch(deleteAirFreightData())
         dispatch(deleteEnergyData())

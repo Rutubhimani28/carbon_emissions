@@ -20,28 +20,35 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DeleteModel from '../../components/Deletemodle'
 import Iconify from '../../components/iconify'
-import { fetchProductionData } from '../../redux/slice/productionSlice'
+import { fetchDigitalContentData } from '../../redux/slice/digitalContentSlice'
 import { apidelete } from '../../service/api'
 import AddEdit from './AddEdit'
-import { fetchDigitalContentData } from '../../redux/slice/digitalContentSlice'
 
 function Row(props) {
     const { row, setUserAction, setType, setSelectedData, handleOpenAdd } = props
     const [open, setOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
     const [opendelete, setOpendelete] = useState(false);
     const [id, setId] = useState('')
 
     const handleDelete = async (id) => {
-        const result = await apidelete(`api/digitalContent/${id}`)
-        setUserAction(result)
-        handleCloseDelete();
-    }
-    console.log(row, "row")
+        setIsLoading(true)
+        try {
+            const result = await apidelete(`api/digitalContent/${id}`)
+            setUserAction(result)
+            handleCloseDelete();
+        } catch (error) {
+            console.error('Error deleting digital:', error);
+        }
+        setIsLoading(false)
+    };
+
     const handleCloseDelete = () => setOpendelete(false)
 
     return (
         <>
-            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} />
+            <DeleteModel opendelete={opendelete} handleClosedelete={handleCloseDelete} deletedata={handleDelete} id={id} isLoading={isLoading} />
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                 <TableCell>
                     <IconButton aria-label='expand row' size='small' onClick={() => setOpen(!open)}>
@@ -90,7 +97,7 @@ function Row(props) {
                                         (row.name === "Emails") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.count}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.count || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
                                         ))
@@ -99,7 +106,7 @@ function Row(props) {
                                         (row.name === "Attachment") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.mb}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.mb || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
                                         ))
@@ -108,8 +115,8 @@ function Row(props) {
                                         (row.name === "Laptop") &&
                                         row?.details?.map((historyRow, i) => (
                                             <TableRow key={i} sx={{ borderBottom: 0 }}>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfAttendees}</TableCell>
-                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfHours}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfAttendees || '-'}</TableCell>
+                                                <TableCell className='text-dark fw-bolder fs-6 text-center'>{historyRow?.noOfHours || '-'}</TableCell>
                                                 <TableCell className='text-dark fw-bolder fs-6 text-center'><span className="pe-4 text-success " style={{ cursor: "pointer" }}><EditIcon onClick={() => { handleOpenAdd(); setType('edit'); setSelectedData(historyRow) }} /></span><span style={{ cursor: "pointer" }}><DeleteIcon color='error' onClick={() => { setId(historyRow?._id); setOpendelete(true) }} /></span> </TableCell>
                                             </TableRow>
 
@@ -157,7 +164,7 @@ export default function CollapsibleTable() {
             <AddEdit open={openAdd} handleClose={handleCloseAdd} type={type} setUserAction={setUserAction} selectedData={selectedData} />
             <Container maxWidth>
                 <Paper>
-                    <div className='d-flex justify-content-between pt-3 px-5 pb-2 align-items-center'>
+                    <div className='d-flex justify-content-between pt-3  pb-2 align-items-center'>
                         <Typography variant='h5' className='text-dark fw-bolder'>
                             Digital
                         </Typography>

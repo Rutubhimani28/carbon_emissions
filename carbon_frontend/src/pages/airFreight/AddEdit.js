@@ -1,18 +1,18 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import { LoadingButton } from "@mui/lab";
-import { Autocomplete, CircularProgress, DialogContentText, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from "@mui/material";
+import { Autocomplete, CircularProgress, DialogContentText, FormLabel } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import FormControl from "@mui/material/FormControl";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import 'react-quill/dist/quill.snow.css';
+import * as yup from "yup";
 import { apipost, apiput } from "../../service/api";
 
 const AddEdit = (props) => {
@@ -25,6 +25,11 @@ const AddEdit = (props) => {
     const typeList = [
         { label: 'Air', value: 0.15 }
     ]
+
+    const validationSchema = yup.object({
+        type: yup.string().required("Type is required"),
+    });
+
 
     // -----------   initialValues
     const initialValues = {
@@ -83,7 +88,7 @@ const AddEdit = (props) => {
     // formik
     const formik = useFormik({
         initialValues,
-        // validationSchema,
+        validationSchema,
         enableReinitialize: true,
         onSubmit: async (values) => {
             if (type === "add") {
@@ -145,7 +150,7 @@ const AddEdit = (props) => {
                                     <Autocomplete
                                         id="combo-box-demo"
                                         options={typeList}
-                                        name="material"
+                                        name="type"
                                         disabled={type === "edit"}
                                         fullWidth
                                         getOptionLabel={(item) => item?.label}
@@ -159,6 +164,13 @@ const AddEdit = (props) => {
                                                 size="small"
                                                 name="type"
                                                 placeholder='Select'
+                                                error={
+                                                    formik.touched.type &&
+                                                    Boolean(formik.errors.type)
+                                                }
+                                                helperText={
+                                                    formik.touched.type && formik.errors.type
+                                                }
                                             />}
                                     />
                                 </Grid>
