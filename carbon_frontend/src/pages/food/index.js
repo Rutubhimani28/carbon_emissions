@@ -97,7 +97,7 @@ export default function Food() {
     const [openAdd, setOpenAdd] = useState(false);
     const dispatch = useDispatch()
 
-    const { data } = useSelector((state) => state?.foodDetails)
+    const { data, isLoading } = useSelector((state) => state?.foodDetails)
 
     const handleOpenAdd = () => setOpenAdd(true);
     const handleCloseAdd = () => setOpenAdd(false);
@@ -138,10 +138,16 @@ export default function Food() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {updatedData?.map((row, i) => (
-                                    <Row key={i} row={row} data={data} setUserAction={setUserAction} type={type} setSelectedData={setSelectedData} setType={setType} openAdd={openAdd} handleOpenAdd={handleOpenAdd} />
-                                )
-                                )}
+                                {
+                                    isLoading ?
+                                        <TableRow>
+                                            <TableCell className='text-center' colSpan={2}> <span className="loader" /></TableCell>
+                                        </TableRow>
+                                        :
+                                        updatedData?.map((row, i) => (
+                                            <Row key={i} row={row} data={data} setUserAction={setUserAction} type={type} setSelectedData={setSelectedData} setType={setType} openAdd={openAdd} handleOpenAdd={handleOpenAdd} />
+                                        ))
+                                }
                             </TableBody>
                         </Table>
                     </TableContainer>
