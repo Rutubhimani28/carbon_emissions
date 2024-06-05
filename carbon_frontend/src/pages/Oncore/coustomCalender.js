@@ -2,7 +2,9 @@
 import { Button, Card, FormControl, Grid, MenuItem, Select, Typography } from '@mui/material';
 import { CiUser } from "react-icons/ci";
 // import './CustomCalendar.css';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -12,9 +14,7 @@ import Tab from '@mui/material/Tab';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BsPrinter } from "react-icons/bs";
-import { GiRockingChair } from "react-icons/gi";
 import { HiDownload } from "react-icons/hi";
-import { IoMdTime } from "react-icons/io";
 import ListView from './ListView';
 import BarChartDataSet from './chart/barchart_dataset2';
 
@@ -125,7 +125,7 @@ const CustomCalendar = () => {
                     cardData.map((item) => (
                         <Grid xs={12} md={4} p={3} className='position-relative'>
                             <div style={{ position: "absolute", top: "15px", left: "9px", zIndex: "9" }}><CheckCircleIcon style={{ color: "green", fontSize: "35px" }} /></div>
-                            <Card className='p-4 d-flex justify-content-center '>
+                            <Card className='p-4 d-flex justify-content-center ' style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
                                 <div className='d-flex  align-items-center py-4'>
                                     <div className='text-center'>
                                         <Typography variant="h4">{item.number}</Typography>
@@ -325,13 +325,15 @@ const CustomCalendar = () => {
                     </div>}
                 <div className='d-flex flex-wrap align-items-center pt-5 float-end'>
                     <Button style={{ height: "38px", backgroundColor: "#eef1f6", border: "none" }} className='m-1 text-dark px-4 d-flex align-items-center'>
-                        <CiUser className='me-1' />Add Nurse
+                        <AddRoundedIcon className='me-1 fs-6' />
+                        Add Nurse
                     </Button>
                     <Button style={{ height: "38px", backgroundColor: "#eef1f6", border: "none" }} className='m-1 text-dark px-4 d-flex align-items-center'>
-                        <GiRockingChair className='me-1' />Add Chair
+                        <CiUser className='me-1' />
+                        Add Patient
                     </Button>
                     <Button style={{ height: "38px", backgroundColor: "#eef1f6", border: "none" }} className='m-1 text-dark px-4 d-flex align-items-center'>
-                        <IoMdTime className='me-1' />Change Hours
+                        <DeleteOutlineRoundedIcon className='me-1 fs-6' />Remove Patient
                     </Button>
 
                 </div>

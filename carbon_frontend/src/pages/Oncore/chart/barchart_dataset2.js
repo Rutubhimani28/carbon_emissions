@@ -133,10 +133,10 @@
 
 // export default BarChart;
 
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 const Barchart = ({ chartData }) => {
     const [series] = useState([

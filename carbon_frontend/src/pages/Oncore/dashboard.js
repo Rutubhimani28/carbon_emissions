@@ -14,9 +14,9 @@ import { BsPrinter } from "react-icons/bs";
 import { GiRockingChair } from "react-icons/gi";
 import { HiDownload } from "react-icons/hi";
 import { IoMdTime } from "react-icons/io";
+import BarChartDataSet from './chart/barchart_dataset2'
 import ListView from './ListView';
 import BarChart from './chart/barchart'
-import BarChartDataSet from './chart/barchart_dataset2'
 
 const Dashboard = () => {
     const [value, setValue] = useState('1');

@@ -1,6 +1,7 @@
 import { Card, Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
+import label from "../../../components/label";
 
 class RadialBar extends Component {
     constructor(props) {
@@ -56,8 +57,8 @@ class RadialBar extends Component {
                         dataLabels: {
                             show: true,
                             name: {
-                                show: false,
-                                fontSize: "22px",
+                                show: true,
+                                fontSize: "10px",
                                 fontFamily: undefined,
                                 color: undefined,
                                 offsetY: -10
@@ -74,7 +75,8 @@ class RadialBar extends Component {
                             }
                         }
                     }
-                }
+                },
+                labels: ['Overall Score'],
             },
             series1: [82],
             options1: {
@@ -122,28 +124,38 @@ class RadialBar extends Component {
                                 opacity: 0.5
                             }
                         },
+                        // dataLabels: {
+                        //     show: true,
+                        //     name: {
+                        //         show: true,
+                        //         fontSize: "10px",
+                        //         fontFamily: undefined,
+                        //         color: undefined,
+                        //         offsetY: -10
+                        //     },
+                        //     value: {
+                        //         show: true,
+                        //         fontSize: "16px",
+                        //         fontFamily: undefined,
+                        //         color: undefined,
+                        //         offsetY: 16,
+                        //         // formatter: function (val) {
+                        //         //   return val + "%";
+                        //         // }
+                        //     }
+                        // }
                         dataLabels: {
-                            show: true,
                             name: {
-                                show: false,
-                                fontSize: "22px",
-                                fontFamily: undefined,
-                                color: undefined,
-                                offsetY: -10
-                            },
-                            value: {
                                 show: true,
-                                fontSize: "16px",
-                                fontFamily: undefined,
-                                color: undefined,
-                                offsetY: 16,
-                                // formatter: function (val) {
-                                //   return val + "%";
-                                // }
-                            }
+                                fontSize: "10px",
+                                formatter(val, opts) {
+                                    return ['Nursing Overtime', 'Score'];
+                                }
+                            },
                         }
                     }
-                }
+                },
+                labels: ['Nursing Overtime Score'],
             },
             series2: [68],
             options2: {
@@ -192,27 +204,37 @@ class RadialBar extends Component {
                             }
                         },
                         dataLabels: {
-                            show: true,
                             name: {
-                                show: false,
-                                fontSize: "22px",
-                                fontFamily: undefined,
-                                color: undefined,
-                                offsetY: -10
-                            },
-                            value: {
                                 show: true,
-                                fontSize: "16px",
-                                fontFamily: undefined,
-                                color: undefined,
-                                offsetY: 16,
-                                // formatter: function (val) {
-                                //   return val + "%";
-                                // }
-                            }
+                                fontSize: "10px",
+                                formatter(val, opts) {
+                                    return ['Mid-Day Overload', 'score'];
+                                }
+                            },
                         }
+                        // dataLabels: {
+                        //     show: true,
+                        //     name: {
+                        //         show: true,
+                        //         fontSize: "10px",
+                        //         fontFamily: undefined,
+                        //         color: undefined,
+                        //         offsetY: -10
+                        //     },
+                        //     value: {
+                        //         show: true,
+                        //         fontSize: "16px",
+                        //         fontFamily: undefined,
+                        //         color: undefined,
+                        //         offsetY: 16,
+                        //         // formatter: function (val) {
+                        //         //   return val + "%";
+                        //         // }
+                        //     }
+                        // }
                     }
-                }
+                },
+                labels: ['Mid-Day Overload score'],
             },
             series3: [86],
             options3: {
@@ -260,28 +282,38 @@ class RadialBar extends Component {
                                 opacity: 0.5
                             }
                         },
+                        // dataLabels: {
+                        //     show: true,
+                        //     name: {
+                        //         show: true,
+                        //         fontSize: "10px",
+                        //         fontFamily: undefined,
+                        //         color: undefined,
+                        //         offsetY: -10
+                        //     },
+                        //     value: {
+                        //         show: true,
+                        //         fontSize: "16px",
+                        //         fontFamily: undefined,
+                        //         color: undefined,
+                        //         offsetY: 16,
+                        //         // formatter: function (val) {
+                        //         //   return val + "%";
+                        //         // }
+                        //     }
+                        // }
                         dataLabels: {
-                            show: true,
                             name: {
-                                show: false,
-                                fontSize: "22px",
-                                fontFamily: undefined,
-                                color: undefined,
-                                offsetY: -10
-                            },
-                            value: {
                                 show: true,
-                                fontSize: "16px",
-                                fontFamily: undefined,
-                                color: undefined,
-                                offsetY: 16,
-                                // formatter: function (val) {
-                                //   return val + "%";
-                                // }
-                            }
+                                fontSize: "10px",
+                                formatter(val, opts) {
+                                    return ['Wait Time Score'];
+                                }
+                            },
                         }
                     }
-                }
+                },
+                labels: ['Wait Time Score'],
             }
         };
     }
