@@ -15,6 +15,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BsPrinter } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
+import { useSelector } from 'react-redux';
 import ListView from './ListView';
 import BarChartDataSet from './chart/barchart_dataset2';
 
@@ -23,6 +24,7 @@ const CustomCalendar = () => {
     const [btnSelect, setBtnSelect] = useState('');
     const [optimizeData, setoptimizeData] = useState({})
     const [select, setSelect] = useState('Paoll Center');
+    const analyze = useSelector((state) => state?.analyzeDetails?.data)
 
     const handleSelectChange = (event) => {
         setSelect(event.target.value);
@@ -71,30 +73,31 @@ const CustomCalendar = () => {
     ]
     const cardBottomData = [
         {
-            number: "27",
+            number: analyze?.overallScore || 0,
             caption: "Overall Score"
         },
         {
-            number: "30",
-            caption: "Allocated Appts"
+            number: analyze?.allocatedAppointments || 0,
+            caption: "Allocates Appts"
         },
         {
-            number: "7",
+            number: analyze?.numberOfNurses || 0,
             caption: "Total Nurses"
         },
         {
-            number: "14",
+            number: analyze?.numberOfChairs || 0,
             caption: "Total Chairs"
         },
-        {
-            number: "1.24 PM",
-            caption: "Last Run"
-        },
+        // {
+        //     number: "1.24 PM",
+        //     caption: "Last Run"
+        // },
         {
             number: "Acuity mix",
-            caption: "(0-0.5):7 (0.5-1):8 (3-5):6 (5+3):7"
+            caption: `(0-0.5):5 (0.5-1):10 (1-3):15 (3-5):20 (5+3):10`
         },
     ]
+
     // const fetchOptimizeData = () => {
     //     axios.get('https://oncore-server-public.vercel.app/api/optimize-schedule')
     //         .then((response) => {
@@ -179,7 +182,7 @@ const CustomCalendar = () => {
                                 value={select || "Paoll Center"}
                                 onChange={handleSelectChange}
                             >
-                                <MenuItem value={"Paoll Center"}>Paoll Center</MenuItem>
+                                <MenuItem value={"Paoll Center"}>Patient Acuity</MenuItem>
                                 <MenuItem value={"Twenty"}>Twenty</MenuItem>
                                 <MenuItem value={"Thirty"}>Thirty</MenuItem>
                             </Select>

@@ -2,40 +2,43 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Button, Card, Typography } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import BarChart from './chart/barchart';
 import DonutChart from './chart/dounetChart';
+import { fetchAnalyzeData } from '../../redux/slice/analyzeSlice';
 
 const Identity = (props) => {
     const { setChange } = props
     const [select, setSelect] = useState('Paoll Center');
-    const [analyze, setAnalyze] = useState({});
-
+    // const [analyze, setAnalyze] = useState({});
+    const analyze = useSelector((state) => state?.analyzeDetails?.data)
+    const dispatch = useDispatch()
     const navigate = useNavigate();
     const cardData = [
         {
-            number: analyze?.overallScore,
+            number: analyze?.overallScore || 0,
             caption: "Overall Score"
         },
         {
-            number: analyze?.allocatedAppointments,
+            number: analyze?.allocatedAppointments || 0,
             caption: "Allocates Appts"
         },
         {
-            number: analyze?.numberOfNurses,
+            number: analyze?.numberOfNurses || 0,
             caption: "Total Nurses"
         },
         {
-            number: analyze?.numberOfNurses,
+            number: analyze?.numberOfChairs || 0,
             caption: "Total Chairs"
         },
-        {
-            number: "1.24 PM",
-            caption: "Last Run"
-        },
+        // {
+        //     number: "1.24 PM",
+        //     caption: "Last Run"
+        // },
         {
             number: "Acuity mix",
-            caption: "(0-0.5):7 (0.5-1):8 (3-5):6 (5+3):7"
+            caption: `(0-0.5):5 (0.5-1):10 (1-3):15 (3-5):20 (5+3):10`
         },
     ]
 
@@ -44,17 +47,17 @@ const Identity = (props) => {
         setSelect(event.target.value);
     };
 
-    const fetchAnalyzeData = () => {
-        axios.get('https://oncore-server-public.vercel.app/api/analyze-schedule')
-            .then((response) => {
-                setAnalyze(response?.data?.payload);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+    // const fetchAnalyzeData = () => {
+    //     axios.get('https://oncore-server-public.vercel.app/api/analyze-schedule')
+    //         .then((response) => {
+    //             setAnalyze(response?.data?.payload);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
     useEffect(() => {
-        fetchAnalyzeData()
+        dispatch(fetchAnalyzeData())
     }, [])
 
     return (
@@ -104,7 +107,7 @@ const Identity = (props) => {
                 </div> */}
             </div>
             <Card className='my-5 p-4'>
-                <BarChart chartData={analyze?.actualPatients} hourlyColors={analyze?.hourlyColors}/>
+                <BarChart analyze={analyze} />
             </Card>
 
             <div className='d-flex justify-content-center' >
