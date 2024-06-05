@@ -40,7 +40,7 @@ const AirFreight = (props) => {
 
             const data = [
                 {
-                    type: 'Air',
+                    type: 'Air Freight',
                     noOfKms: values?.noOfKms,
                     weightInKgs: values?.weightInKgs,
                     ef,
@@ -79,7 +79,7 @@ const AirFreight = (props) => {
 
                             <Grid item xs={12} sm={12} md={12}>
                                 <Typography variant='h6'>
-                                    Air
+                                    Air Freight
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label">No of Kms</FormLabel>

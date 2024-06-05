@@ -23,7 +23,7 @@ const AddEdit = (props) => {
     const userRole = sessionStorage.getItem("userRole");
 
     const typeList = [
-        { label: 'Air', value: 0.15 }
+        { label: 'Air Freight', value: 0.15 }
     ]
 
     const validationSchema = yup.object({
@@ -33,11 +33,11 @@ const AddEdit = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        type: type === "edit" ? selectedData?.type : "Air",
+        type: type === "edit" ? selectedData?.type : "Air Freight",
         noOfKms: type === "edit" ? selectedData?.noOfKms : 0,
         weightInKgs: type === "edit" ? selectedData?.weightInKgs : 0,
         emission: type === "edit" ? selectedData?.emission : 0,
-        ef: type === "edit" ? selectedData?.ef : 0,
+        ef: type === "edit" ? selectedData?.ef : 0.15,
         createdBy: userid,
     };
 
@@ -46,7 +46,7 @@ const AddEdit = (props) => {
         try {
             const data = {
                 ...values,
-                emission: Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(values?.ef) || 0,
+                emission: (Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(values?.ef)) || 0,
             };
 
             const result = await apipost('api/airFreight/add', data);
@@ -68,7 +68,7 @@ const AddEdit = (props) => {
         try {
             const data = {
                 ...values,
-                emission: Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(values?.ef) || 0,
+                emission: (Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(values?.ef)) || 0,
             };
 
             const result = await apiput(`api/airFreight/${selectedData?._id}`, data);
@@ -104,7 +104,7 @@ const AddEdit = (props) => {
             formik.setFieldValue('noOfKms', 0);
             formik.setFieldValue('weightInKgs', 0);
             formik.setFieldValue('emission', 0);
-            formik.setFieldValue('ef', 0);
+            formik.setFieldValue('ef', 0.15);
         }
     }, [formik.values.type])
 
