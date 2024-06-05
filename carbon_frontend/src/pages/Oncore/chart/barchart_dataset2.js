@@ -4,11 +4,7 @@
 // import React, { useState } from 'react';
 // import ReactApexChart from 'react-apexcharts';
 
-<<<<<<< HEAD
-// const ApexChart = ({ analyzeData }) => {
-=======
 // const BarChart = ({ analyzeData }) => {
->>>>>>> f84411c1eb91cad672f5b6622ef7964e994d9457
 //     const [series, setSeries] = useState([
 //         {
 //             name: 'Cashflow',

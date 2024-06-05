@@ -111,7 +111,7 @@ const CustomCalendar = () => {
                     cardData.map((item) => (
                         <Grid xs={12} md={4} p={3} className='position-relative'>
                             <div style={{ position: "absolute", top: "15px", left: "9px", zIndex: "9" }}><CheckCircleIcon style={{ color: "green", fontSize: "35px" }} /></div>
-                            <Card className='p-4 d-flex justify-content-center '>
+                            <Card className='p-4 d-flex justify-content-center ' >
                                 <div className='d-flex  align-items-center py-4'>
                                     <div className='text-center'>
                                         <Typography variant="h4">{item.number}</Typography>
