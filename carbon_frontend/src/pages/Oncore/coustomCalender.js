@@ -50,16 +50,8 @@ const CustomCalendar = () => {
         return hours + minutes / 60;
     };
 
-    useEffect(() => {
-        axios.get('https://oncore-server-public.vercel.app/api/optimize-schedule')
-            .then((response) => {
-                setoptimizeData(response?.data?.payload);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }, [])
-    console.log("optimizeData", optimizeData)
+
+
 
     const cardData = [
         {
@@ -103,6 +95,28 @@ const CustomCalendar = () => {
             caption: "(0-0.5):7 (0.5-1):8 (3-5):6 (5+3):7"
         },
     ]
+    // const fetchOptimizeData = () => {
+    //     axios.get('https://oncore-server-public.vercel.app/api/optimize-schedule')
+    //         .then((response) => {
+    //             setoptimizeData(response?.data?.payload);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
+    const fetchOptimizeData = () => {
+        axios.get('https://oncore-server-public.vercel.app/api/optimize-schedule')
+            .then((response) => {
+                setoptimizeData(response?.data?.payload);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+    useEffect(() => {
+        fetchOptimizeData()
+    }, [])
+
     return (
         <>
 
@@ -174,7 +188,7 @@ const CustomCalendar = () => {
                     <TabPanel value="1">
                         {btnSelect === "Capacity Utilization" ?
 
-                            <BarChartDataSet />
+                            <BarChartDataSet chartData={optimizeData?.utilizationCurve} />
                             :
                             btnSelect === "Chair Schedule" ?
                                 <div className="custom-calendar ">

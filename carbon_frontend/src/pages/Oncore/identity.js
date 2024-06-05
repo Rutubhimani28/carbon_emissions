@@ -1,28 +1,32 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Button, Card, Typography } from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import BarChart from './chart/barchart';
 import DonutChart from './chart/dounetChart';
 
 const Identity = (props) => {
     const { setChange } = props
+    const [select, setSelect] = useState('Paoll Center');
+    const [analyze, setAnalyze] = useState({});
+
     const navigate = useNavigate();
     const cardData = [
         {
-            number: "27",
+            number: analyze?.overallScore,
             caption: "Overall Score"
         },
         {
-            number: "30",
+            number: analyze?.allocatedAppointments,
             caption: "Allocates Appts"
         },
         {
-            number: "7",
+            number: analyze?.numberOfNurses,
             caption: "Total Nurses"
         },
         {
-            number: "14",
+            number: analyze?.numberOfNurses,
             caption: "Total Chairs"
         },
         {
@@ -35,11 +39,24 @@ const Identity = (props) => {
         },
     ]
 
-    const [select, setSelect] = useState('Paoll Center');
 
     const handleSelectChange = (event) => {
         setSelect(event.target.value);
     };
+
+    const fetchAnalyzeData = () => {
+        axios.get('https://oncore-server-public.vercel.app/api/analyze-schedule')
+            .then((response) => {
+                setAnalyze(response?.data?.payload);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+    useEffect(() => {
+        fetchAnalyzeData()
+    }, [])
+
     return (
         <div>
             <Card className="p-3 d-flex  align-items-start justify-content-between flex-wrap">
@@ -100,7 +117,7 @@ const Identity = (props) => {
 
             </div>
             <div className=' py-5 my-5'>
-                <DonutChart />
+                <DonutChart analyze={analyze} />
 
             </div>
 

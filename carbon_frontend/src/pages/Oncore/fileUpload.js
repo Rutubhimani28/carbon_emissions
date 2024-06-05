@@ -147,7 +147,7 @@ function MyDropzone(props) {
 }
 
 const Schedule = () => {
-    const [change, setChange] = useState(1);
+    const [change, setChange] = useState(2);
     const [date, setDate] = useState('')
     const [select, setSelect] = useState('Paoll Center');
     const handleSelectChange = (event) => {
