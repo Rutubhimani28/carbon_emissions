@@ -28,30 +28,30 @@ const Food = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', (1924.06 * values?.noOfPaxOne));
-            formik.setFieldValue('emissionTwo', (3825.5 * values?.noOfPaxTwo));
-            formik.setFieldValue('emissionThree', (1984.1 * values?.noOfPaxThree));
-            formik.setFieldValue('emissionFour', (2638 * values?.noOfPaxFour));
-            formik.setFieldValue('emissionFive', (642.2 * values?.noOfPaxFive));
+            formik.setFieldValue('emissionOne', (1924.06 * values?.noOfPaxOne));    // Veg Plate Lunch/ Dinner
+            formik.setFieldValue('emissionTwo', (3825.5 * values?.noOfPaxTwo));     // Non Veg plate Lunch/ Dinner
+            formik.setFieldValue('emissionThree', (1984.1 * values?.noOfPaxThree)); // Veg Starter
+            formik.setFieldValue('emissionFour', (2638 * values?.noOfPaxFour));     // Non Veg starter
+            formik.setFieldValue('emissionFive', (642.2 * values?.noOfPaxFive));    // High Tea
 
             const data = [
                 {
-                    type: 'Veg Starter',
+                    type: 'Veg Plate Lunch/ Dinner',
                     noOfPax: values?.noOfPaxOne,
                     emission: Number((1924.06 * values?.noOfPaxOne).toFixed(2)) || 0
                 },
                 {
-                    type: 'Veg Plate Lunch/ Dinner',
+                    type: 'Non Veg plate Lunch/ Dinner',
                     noOfPax: values?.noOfPaxTwo,
                     emission: Number((3825.5 * values?.noOfPaxTwo).toFixed(2)) || 0
                 },
                 {
-                    type: 'Non veg starter',
+                    type: 'Veg starter',
                     noOfPax: values?.noOfPaxThree,
                     emission: Number((1984.1 * values?.noOfPaxThree).toFixed(2)) || 0
                 },
                 {
-                    type: 'Non Veg plate Lunch/ Dinner',
+                    type: 'Non Veg starter',
                     noOfPax: values?.noOfPaxFour,
                     emission: Number((2638 * values?.noOfPaxFour).toFixed(2)) || 0
                 },
@@ -97,22 +97,22 @@ const Food = (props) => {
                                     <th className='ps-2'>Emission (kgCO2e)</th>
                                 </tr>
                                 <tr>
-                                    <td className='ps-2 py-1'>Veg Starter</td>
+                                    <td className='ps-2 py-1'>Veg Plate Lunch/ Dinner</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxOne' value={formik?.values?.noOfPaxOne} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
                                 </tr>
                                 <tr>
-                                    <td className='ps-2 py-1'>Veg Plate Lunch/ Dinner</td>
+                                    <td className='ps-2 py-1'>Non Veg plate Lunch/ Dinner</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                                 <tr>
-                                    <td className='ps-2 py-1'>Non veg starter</td>
+                                    <td className='ps-2 py-1'>Veg Starter</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                                 <tr>
-                                    <td className='ps-2 py-1'>Non Veg plate Lunch/ Dinner</td>
+                                    <td className='ps-2 py-1'>Non Veg starter</td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour} onChange={formik.handleChange} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} disabled /></td>
                                 </tr>
