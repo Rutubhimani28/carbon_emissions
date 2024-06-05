@@ -11,7 +11,7 @@ const Identity = (props) => {
     const cardData = [
         {
             number: "27",
-            caption: "overall Score"
+            caption: "Overall Score"
         },
         {
             number: "30",
