@@ -15,6 +15,8 @@ const Identity = (props) => {
     const analyze = useSelector((state) => state?.analyzeDetails?.data)
     const dispatch = useDispatch()
     const navigate = useNavigate();
+    const acuityMixArray = analyze?.acuityMix && Object.keys(analyze?.acuityMix)
+
     const cardData = [
         {
             number: analyze?.overallScore || 0,
@@ -38,7 +40,8 @@ const Identity = (props) => {
         // },
         {
             number: "Acuity mix",
-            caption: `(0-0.5):5 (0.5-1):10 (1-3):15 (3-5):20 (5+3):10`
+            // caption: analyze?.acuityMix ? Object.keys(analyze?.acuityMix).map((item) => `(0-0.5):${analyze?.acuityMix[item]} `) : 0
+            caption: (analyze?.acuityMix && acuityMixArray?.length > 0) ? `(0-0.5):${analyze?.acuityMix[acuityMixArray[0]]} (0.5-1):${analyze?.acuityMix[acuityMixArray[1]]} (1-3):${analyze?.acuityMix[acuityMixArray[2]]} (3-5):${analyze?.acuityMix[acuityMixArray[3]]} (5+3):${analyze?.acuityMix[acuityMixArray[4]]}` : 0
         },
     ]
 

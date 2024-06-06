@@ -46,6 +46,7 @@ const CustomCalendar = () => {
     ];
 
     const hours = Array.from({ length: 13 }, (_, i) => `${8 + i}:00`);
+    const acuityMixArray = analyze?.acuityMix && Object.keys(analyze?.acuityMix)
 
     const getTimeInHours = (time) => {
         const [hours, minutes] = time.split(':').map(Number);
@@ -94,7 +95,7 @@ const CustomCalendar = () => {
         // },
         {
             number: "Acuity mix",
-            caption: `(0-0.5):5 (0.5-1):10 (1-3):15 (3-5):20 (5+3):10`
+            caption: (analyze?.acuityMix && acuityMixArray?.length > 0) ? `(0-0.5):${analyze?.acuityMix[acuityMixArray[0]]} (0.5-1):${analyze?.acuityMix[acuityMixArray[1]]} (1-3):${analyze?.acuityMix[acuityMixArray[2]]} (3-5):${analyze?.acuityMix[acuityMixArray[3]]} (5+3):${analyze?.acuityMix[acuityMixArray[4]]}` : 0
         },
     ]
 
