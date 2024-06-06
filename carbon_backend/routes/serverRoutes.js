@@ -11,6 +11,7 @@ import foodRoutes from './foodRoutes.js'
 import energyRoutes from './energyRoutes.js'
 import localTransportationRoutes from './localTransportationRoutes.js'
 import wasteRoutes from './wasteRoutes.js'
+import airTravelRoutes from './airTravelRoutes.js'
 
 const router = express.Router();
 
@@ -26,5 +27,6 @@ router.use('/food', foodRoutes);
 router.use('/energy', energyRoutes);
 router.use('/transportation', localTransportationRoutes);
 router.use('/waste', wasteRoutes);
+router.use('/airTravel', airTravelRoutes);
 
 export default router
