@@ -1,45 +1,68 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Button, Card, Typography } from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import BarChart from './chart/barchart';
 import DonutChart from './chart/dounetChart';
+import { fetchAnalyzeData } from '../../redux/slice/analyzeSlice';
 
 const Identity = (props) => {
     const { setChange } = props
+    const [select, setSelect] = useState('Paoll Center');
+    // const [analyze, setAnalyze] = useState({});
+    const analyze = useSelector((state) => state?.analyzeDetails?.data)
+    const dispatch = useDispatch()
     const navigate = useNavigate();
+    const acuityMixArray = analyze?.acuityMix && Object.keys(analyze?.acuityMix)
+
     const cardData = [
         {
-            number: "27",
+            number: analyze?.overallScore || 0,
             caption: "Overall Score"
         },
         {
-            number: "30",
+            number: analyze?.allocatedAppointments || 0,
             caption: "Allocates Appts"
         },
         {
-            number: "7",
+            number: analyze?.numberOfNurses || 0,
             caption: "Total Nurses"
         },
         {
-            number: "14",
+            number: analyze?.numberOfChairs || 0,
             caption: "Total Chairs"
         },
-        {
-            number: "1.24 PM",
-            caption: "Last Run"
-        },
+        // {
+        //     number: "1.24 PM",
+        //     caption: "Last Run"
+        // },
         {
             number: "Acuity mix",
-            caption: "(0-0.5):7 (0.5-1):8 (3-5):6 (5+3):7"
+            // caption: analyze?.acuityMix ? Object.keys(analyze?.acuityMix).map((item) => `(0-0.5):${analyze?.acuityMix[item]} `) : 0
+            caption: (analyze?.acuityMix && acuityMixArray?.length > 0) ? `(0-0.5):${analyze?.acuityMix[acuityMixArray[0]]} (0.5-1):${analyze?.acuityMix[acuityMixArray[1]]} (1-3):${analyze?.acuityMix[acuityMixArray[2]]} (3-5):${analyze?.acuityMix[acuityMixArray[3]]} (5+3):${analyze?.acuityMix[acuityMixArray[4]]}` : 0
         },
     ]
 
-    const [select, setSelect] = useState('Paoll Center');
 
     const handleSelectChange = (event) => {
         setSelect(event.target.value);
     };
+
+    // const fetchAnalyzeData = () => {
+    //     axios.get('https://oncore-server-public.vercel.app/api/analyze-schedule')
+    //         .then((response) => {
+    //             setAnalyze(response?.data?.payload);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
+    useEffect(() => {
+        dispatch(fetchAnalyzeData())
+    }, [])
+
     return (
         <div>
             <Card className="p-3 d-flex  align-items-start justify-content-between flex-wrap">
@@ -87,7 +110,7 @@ const Identity = (props) => {
                 </div> */}
             </div>
             <Card className='my-5 p-4'>
-                <BarChart />
+                <BarChart analyze={analyze} />
             </Card>
 
             <div className='d-flex justify-content-center' >
@@ -100,7 +123,7 @@ const Identity = (props) => {
 
             </div>
             <div className=' py-5 my-5'>
-                <DonutChart />
+                <DonutChart analyze={analyze} />
 
             </div>
 

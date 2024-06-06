@@ -18,6 +18,7 @@ import totalFoodSlice from '../slice/totalFoodSlice';
 import totalWasteSlice from '../slice/totalWasteSlice';
 import totalProductionSlice from '../slice/totalProductionSlice';
 import totalLocalTranspotationSlice from '../slice/totalLocalTranspotationSlice';
+import analyzeSlice from '../slice/analyzeSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -69,6 +70,7 @@ export const store = configureStore({
         productionDetails: productionSlice,
         foodDetails: foodSlice,
         energyDetails: energySlice,
+        analyzeDetails: analyzeSlice,
         totalDigitalContentDetails: persistReducer(totalDigitalContentPersistConfig, totalDigitalContSlice),
         totalAirFreightDetails: persistReducer(totalAirFreightPersistConfig, totalAirFreightSlice),
         totalProductionDetails: persistReducer(totalProductionPersistConfig, totalProductionSlice),

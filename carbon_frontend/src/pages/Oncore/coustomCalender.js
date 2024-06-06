@@ -15,6 +15,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BsPrinter } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
+import { useSelector } from 'react-redux';
 import ListView from './ListView';
 import BarChartDataSet from './chart/barchart_dataset2';
 import DoubleChart from './chart/forcastChart'
@@ -24,6 +25,7 @@ const CustomCalendar = () => {
     const [btnSelect, setBtnSelect] = useState('');
     const [optimizeData, setoptimizeData] = useState({})
     const [select, setSelect] = useState('Paoll Center');
+    const analyze = useSelector((state) => state?.analyzeDetails?.data)
 
     const handleSelectChange = (event) => {
         setSelect(event.target.value);
@@ -45,22 +47,15 @@ const CustomCalendar = () => {
     ];
 
     const hours = Array.from({ length: 13 }, (_, i) => `${8 + i}:00`);
+    const acuityMixArray = analyze?.acuityMix && Object.keys(analyze?.acuityMix)
 
     const getTimeInHours = (time) => {
         const [hours, minutes] = time.split(':').map(Number);
         return hours + minutes / 60;
     };
 
-    useEffect(() => {
-        axios.get('https://oncore-server-public.vercel.app/api/optimize-schedule')
-            .then((response) => {
-                setoptimizeData(response?.data?.payload);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }, [])
-    console.log("optimizeData", optimizeData)
+
+
 
     const cardData = [
         {
@@ -80,30 +75,53 @@ const CustomCalendar = () => {
     ]
     const cardBottomData = [
         {
-            number: "27",
+            number: analyze?.overallScore || 0,
             caption: "Overall Score"
         },
         {
-            number: "30",
-            caption: "Allocated Appts"
+            number: analyze?.allocatedAppointments || 0,
+            caption: "Allocates Appts"
         },
         {
-            number: "7",
+            number: analyze?.numberOfNurses || 0,
             caption: "Total Nurses"
         },
         {
-            number: "14",
+            number: analyze?.numberOfChairs || 0,
             caption: "Total Chairs"
         },
-        {
-            number: "1.24 PM",
-            caption: "Last Run"
-        },
+        // {
+        //     number: "1.24 PM",
+        //     caption: "Last Run"
+        // },
         {
             number: "Acuity mix",
-            caption: "(0-0.5):7 (0.5-1):8 (3-5):6 (5+3):7"
+            caption: (analyze?.acuityMix && acuityMixArray?.length > 0) ? `(0-0.5):${analyze?.acuityMix[acuityMixArray[0]]} (0.5-1):${analyze?.acuityMix[acuityMixArray[1]]} (1-3):${analyze?.acuityMix[acuityMixArray[2]]} (3-5):${analyze?.acuityMix[acuityMixArray[3]]} (5+3):${analyze?.acuityMix[acuityMixArray[4]]}` : 0
         },
     ]
+
+    // const fetchOptimizeData = () => {
+    //     axios.get('https://oncore-server-public.vercel.app/api/optimize-schedule')
+    //         .then((response) => {
+    //             setoptimizeData(response?.data?.payload);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
+    const fetchOptimizeData = () => {
+        axios.get('https://oncore-server-public.vercel.app/api/optimize-schedule')
+            .then((response) => {
+                setoptimizeData(response?.data?.payload);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+    useEffect(() => {
+        fetchOptimizeData()
+    }, [])
+
     return (
         <>
 
@@ -166,7 +184,7 @@ const CustomCalendar = () => {
                                 value={select || "Paoll Center"}
                                 onChange={handleSelectChange}
                             >
-                                <MenuItem value={"Paoll Center"}>Paoll Center</MenuItem>
+                                <MenuItem value={"Paoll Center"}>Patient Acuity</MenuItem>
                                 <MenuItem value={"Twenty"}>Twenty</MenuItem>
                                 <MenuItem value={"Thirty"}>Thirty</MenuItem>
                             </Select>
@@ -175,7 +193,7 @@ const CustomCalendar = () => {
                     <TabPanel value="1">
                         {btnSelect === "Capacity Utilization" ?
 
-                            <BarChartDataSet />
+                            <BarChartDataSet chartData={optimizeData?.utilizationCurve} />
                             :
                             btnSelect === "Chair Schedule" ?
                                 <div className="custom-calendar ">

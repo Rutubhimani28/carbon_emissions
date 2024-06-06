@@ -136,15 +136,31 @@ import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { useSelector } from 'react-redux';
 
-const Barchart = () => {
-    const [series] = useState([
+const Barchart = ({ analyze }) => {
+
+    const chartData = analyze?.actualPatients?.length > 0
+        ? analyze.actualPatients.map(patient => {
+            const colorInfo = analyze?.hourlyColors?.find(color => color?.time === patient?.time);
+            return {
+                time: patient.time,
+                actualPatients: patient.actualPatients,
+                color: colorInfo ? colorInfo.color : null
+            };
+        })
+        : [];
+
+
+    const series = [
         {
-            data: [12.3, 15.1, 9.0, 19.1, 14.0, 3.6, 13.2, 12.3, 15.4, 8, 10.5, 18.2],
+            data: chartData?.map((item) => item?.actualPatients),
         },
-    ]);
+    ];
+    const color = chartData?.length > 0 ? chartData?.map((item) => item?.color) : []
+    const categories = chartData?.length > 0 ? chartData?.map((item) => item?.time) : []
 
-    const [options] = useState({
+    const options = {
         chart: {
             height: 350,
             type: 'bar',
@@ -168,14 +184,7 @@ const Barchart = () => {
                 dataLabels: {
                     show: false,
                 },
-                colors: {
-                    ranges: [
-                        { from: 0.00, to: 10.00, color: '#cd1f1e' }, // Red
-                        { from: 10.00, to: 14.00, color: '#f2da02' }, // Yellow
-                        { from: 14.00, to: 16.00, color: '#f28900' }, // Orange
-                        { from: 16.00, to: 20.00, color: '#c7c7c7' }, // Gray
-                    ],
-                },
+
             },
         },
         dataLabels: {
@@ -187,20 +196,7 @@ const Barchart = () => {
             },
         },
         xaxis: {
-            categories: [
-                '08:00',
-                '09:00',
-                '10:00',
-                '11:00',
-                '12:00',
-                '13:00',
-                '14:00',
-                '15:00',
-                '16:00',
-                '17:00',
-                '18:00',
-                '19:00',
-            ],
+            categories,
             position: 'bottom',
             axisBorder: {
                 show: false,
@@ -259,8 +255,9 @@ const Barchart = () => {
                     }
                 }
             ]
-        }
-    });
+        },
+        colors: color
+    };
 
     return (
         <>

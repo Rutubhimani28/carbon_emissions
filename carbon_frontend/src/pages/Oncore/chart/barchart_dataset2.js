@@ -138,10 +138,10 @@ import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
-const Barchart = () => {
+const Barchart = ({ chartData }) => {
     const [series] = useState([
         {
-            data: [12.3, 15.1, 9.0, 19.1, 14.0, 3.6, 13.2, 12.3, 15.4, 8, 10.5, 18.2],
+            data: chartData?.map((item) => item?.patientCount),
         },
     ]);
 
@@ -188,20 +188,21 @@ const Barchart = () => {
             },
         },
         xaxis: {
-            categories: [
-                '08:00',
-                '09:00',
-                '10:00',
-                '11:00',
-                '12:00',
-                '13:00',
-                '14:00',
-                '15:00',
-                '16:00',
-                '17:00',
-                '18:00',
-                '19:00',
-            ],
+            categories: chartData?.map((item) => item?.time),
+            // categories: [
+            //     '08:00',
+            //     '09:00',
+            //     '10:00',
+            //     '11:00',
+            //     '12:00',
+            //     '13:00',
+            //     '14:00',
+            //     '15:00',
+            //     '16:00',
+            //     '17:00',
+            //     '18:00',
+            //     '19:00',
+            // ],
             position: 'bottom',
             axisBorder: {
                 show: false,

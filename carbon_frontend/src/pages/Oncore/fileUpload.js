@@ -48,7 +48,6 @@ function MyDropzone(props) {
         try {
             const formData = new FormData();
             formData.append('file', selectedFile[0]);
-            // formData.append('date', date);
 
             const response = await axios.post('https://oncore-server-public.vercel.app/api/upload-schedule', formData, {
                 headers: {
