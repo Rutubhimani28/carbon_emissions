@@ -17,6 +17,7 @@ import { BsPrinter } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import ListView from './ListView';
 import BarChartDataSet from './chart/barchart_dataset2';
+import DoubleChart from './chart/forcastChart'
 
 const CustomCalendar = () => {
     const [value, setValue] = useState('1');
@@ -291,6 +292,10 @@ const CustomCalendar = () => {
                                                     </div>
                                                 ))}
                                             </div>
+                                        </div>
+                                        <div className='my-5'>
+                                            <DoubleChart />
+
                                         </div>
                                     </div>
                         }
