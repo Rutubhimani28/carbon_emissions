@@ -1,6 +1,5 @@
 import { Box, Button, Card, Container, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-// import { useEffect } from 'react';
 import { useEffect } from 'react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
@@ -78,10 +77,9 @@ const Production = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
-                    <Box >
-
-                        <table className=''>
+                <Card style={{ padding: '20px', display: 'flex', justifyContent: 'center' }} className='custom-inner-bg'>
+                    <Box>
+                        <table className='table-custom-inpt-field'>
                             <tr>
 
                                 <th className='ps-4'>Material</th>
@@ -92,30 +90,35 @@ const Production = (props) => {
                                 <>
                                     <tr key={i}>
                                         <td className='ps-4 py-1'> {item?.name}</td>
-                                        <td className='ps-4 py-1'> <TextField
-                                            id={`${item?.fieldName}_area`}
-                                            name={`${item?.fieldName}_area`}
-                                            label=""
-                                            type='number'
-                                            fullWidth
-                                            size="small"
-                                            value={formik.values?.[`${item?.fieldName}_area`]}
-                                            onChange={formik.handleChange}
-                                            error={formik.touched?.[`${item?.fieldName}_area`] && Boolean(formik.errors?.[`${item?.fieldName}_area`])}
-                                            helperText={formik.touched?.[`${item?.fieldName}_area`] && formik.errors?.[`${item?.fieldName}_area`]}
-                                        /></td>
-                                        <td className='ps-4 py-1'> <TextField
-                                            id={item?.fieldName}
-                                            name={item?.fieldName}
-                                            label=""
-                                            fullWidth
-                                            disabled
-                                            size="small"
-                                            value={formik.values?.[item?.fieldName]}
-                                            onChange={formik.handleChange}
-                                            error={formik.touched?.[item?.fieldName] && Boolean(formik.errors?.[item?.fieldName])}
-                                            helperText={formik.touched?.[item?.fieldName] && formik.errors?.[item?.fieldName]}
-                                        /></td>
+                                        <td className='ps-4 py-1'>
+                                            <TextField
+                                                id={`${item?.fieldName}_area`}
+                                                name={`${item?.fieldName}_area`}
+                                                label=""
+                                                type='number'
+                                                fullWidth
+                                                size="small"
+                                                value={formik.values?.[`${item?.fieldName}_area`]}
+                                                onChange={formik.handleChange}
+                                                error={formik.touched?.[`${item?.fieldName}_area`] && Boolean(formik.errors?.[`${item?.fieldName}_area`])}
+                                                helperText={formik.touched?.[`${item?.fieldName}_area`] && formik.errors?.[`${item?.fieldName}_area`]}
+                                                inputProps={{ style: { color: 'white' } }}
+                                            />
+                                        </td>
+                                        <td className='ps-4 py-1'>
+                                            <TextField
+                                                id={item?.fieldName}
+                                                name={item?.fieldName}
+                                                label=""
+                                                fullWidth
+                                                size="small"
+                                                disabled
+                                                value={formik.values?.[item?.fieldName]}
+                                                onChange={formik.handleChange}
+                                                error={formik.touched?.[item?.fieldName] && Boolean(formik.errors?.[item?.fieldName])}
+                                                helperText={formik.touched?.[item?.fieldName] && formik.errors?.[item?.fieldName]}
+                                            />
+                                        </td>
                                     </tr>
                                 </>
                             ))}
@@ -128,7 +131,7 @@ const Production = (props) => {
                             </Stack>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                            <Typography>{`Total Production Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                            <Typography color="white">{`Total Production Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                         </Grid>
                         {/* <Grid item xs={12} sm={12} md={12} marginTop={3}>
                             <ul>

@@ -89,5 +89,57 @@ p {
 }
 
 .tabImgZoomIn:hover {
-  transform: scale(1.5);
+  transform: scale(1.2);
+}
+
+.tabImgWhite {
+  filter: invert(100%) grayscale(100%) brightness(3);
+}
+
+.tab-text,
+.tab-text:focus {
+  color: white !important;
+  font-size: 17px;
+}
+
+.table-custom-inpt-field {
+  color: white;
+}
+
+.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+  -webkit-text-fill-color: #fff;
+}
+
+.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input {
+  border: 1px solid white !important;
+  border-radius: 6px;
+}
+
+.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input:hover,
+.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input:focus {
+  border-color: white !important;
+}
+
+/* .table-custom-inpt-field .css-1l5g511-MuiInputBase-root-MuiOutlinedInput-root {
+  border: 1px solid red !important;
+} */
+
+.custom-inner-bg {
+  background: #054723;
+}
+
+.custom-outer-bg {
+  background: #1f9e6d;
+  /* display: flex;
+  align-items: center;
+  flex-direction: column; */
+}
+
+.label-white {
+  color: white;
+}
+
+.tab-outer .css-heg063-MuiTabs-flexContainer {
+  display: flex;
+  justify-content: center;
 }

@@ -13,11 +13,11 @@ const Food = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        noOfPaxOne: '',
-        noOfPaxTwo: '',
-        noOfPaxThree: '',
-        noOfPaxFour: '',
-        noOfPaxFive: '',
+        noOfPaxOne: 0,
+        noOfPaxTwo: 0,
+        noOfPaxThree: 0,
+        noOfPaxFour: 0,
+        noOfPaxFive: 0,
         emissionOne: 0,
         emissionTwo: 0,
         emissionThree: 0,
@@ -87,10 +87,10 @@ const Food = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
-                    <Box >
+                <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                    <Box>
                         <div className='table-responsive'>
-                            <table className=''>
+                            <table className='table-custom-inpt-field'>
                                 <tr>
                                     <th />
                                     <th className='ps-2'>No of Pax</th>
@@ -98,27 +98,27 @@ const Food = (props) => {
                                 </tr>
                                 <tr>
                                     <td className='ps-2 py-1'>Veg Plate Lunch/ Dinner</td>
-                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxOne' value={formik?.values?.noOfPaxOne} onChange={formik.handleChange} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxOne' value={formik?.values?.noOfPaxOne} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
                                 </tr>
                                 <tr>
                                     <td className='ps-2 py-1'>Non Veg plate Lunch/ Dinner</td>
-                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo} onChange={formik.handleChange} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                                 <tr>
                                     <td className='ps-2 py-1'>Veg Starter</td>
-                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree} onChange={formik.handleChange} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                                 <tr>
                                     <td className='ps-2 py-1'>Non Veg starter</td>
-                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour} onChange={formik.handleChange} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                                 <tr>
                                     <td className='ps-2 py-1'>High Tea</td>
-                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFive' value={formik?.values?.noOfPaxFive} onChange={formik.handleChange} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFive' value={formik?.values?.noOfPaxFive} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
                                 </tr>
                             </table>
@@ -131,7 +131,7 @@ const Food = (props) => {
                             </Stack>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                            <Typography variant='h6' className='mt-3'>Lunch, Dinner, High Tea for one day per person = {totalEmission}</Typography>
+                            <Typography className='mt-3 text-white'>Lunch, Dinner, High Tea for one day per person = {totalEmission}</Typography>
                         </Grid>
 
                         <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
@@ -139,7 +139,7 @@ const Food = (props) => {
                                 {
                                     allData?.length > 0 && allData?.map((item) => (
 
-                                        <li>
+                                        <li style={{ color: 'white' }}>
                                             {`${item?.type} : ${item?.emission} tons of kgCO2e`}
                                         </li>
                                     ))

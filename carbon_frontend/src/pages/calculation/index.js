@@ -9,7 +9,7 @@ import Energy from '../../assets/Energy.png'
 import food from '../../assets/Food & Beverage.png'
 import Logistics from '../../assets/Logistics.png'
 import Transportation from '../../assets/Transportation.png'
-import Travel from '../../assets/Travel.png'
+import AirTravel from '../../assets/Travel.png'
 import waste from '../../assets/Waste.png'
 import production from '../../assets/production.png'
 import result from '../../assets/result.png'
@@ -18,6 +18,8 @@ import EnergyUpdated from './energyUpdated';
 import Food from './food'
 import Waste from './waste';
 import LocalTranspotation from './localTranspotation';
+import AirTravelComp from './airTravel';
+import banner from '../../layouts/user/assets/images/home_banner.jpg';
 
 const Calculation = () => {
 
@@ -30,8 +32,12 @@ const Calculation = () => {
 
     return (
         <div>
-            <Container maxWidth>
-                <Box sx={{ maxWidth: { xs: 320, sm: 500, md: 1350 }, }}>
+            <Container maxWidth className="custom-outer-bg">
+                <Box sx={{ maxWidth: { xs: 320, sm: 500, md: 1350 }, }} className="tab-outer">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        {/* <img src={banner} alt="top_img" width="100%" style={{ marginLeft: 'auto', marginRight: 'auto' }} /> */}
+                        <img src={banner} alt="top_img" width="100%" />
+                    </div>
                     <Tabs
                         value={value}
                         onChange={handleChange}
@@ -39,25 +45,26 @@ const Calculation = () => {
                         scrollButtons="auto"
                         aria-label="scrollable auto tabs example"
                     >
-                        <Tab icon={<img src={production} alt='' width={35} className='tabImgZoomIn' />} label="Production" />
-                        <Tab icon={<img src={Logistics} alt='' width={35} className='tabImgZoomIn' />} label="Logistics" />
-                        <Tab icon={<img src={food} alt='' width={35} className='tabImgZoomIn' />} label="Food" />
-                        <Tab icon={<img src={Energy} alt='' width={35} className='tabImgZoomIn' />} label="Energy" />
-                        <Tab icon={<img src={Travel} alt='' width={35} className='tabImgZoomIn' />} label="Travel" />
-                        <Tab icon={<img src={digital} alt='' width={35} className='tabImgZoomIn' />} label="Digital" />
-                        <Tab icon={<img src={Transportation} alt='' width={35} className='tabImgZoomIn' />} label="Local Transportation" />
-                        <Tab icon={<img src={Accommodation} alt='' width={35} className='tabImgZoomIn' />} label="Accomodation" />
-                        <Tab icon={<img src={waste} alt='' width={35} color="red" className='tabImgZoomIn' />} label="Waste" />
-                        <Tab icon={<img src={result} alt='' width={35} className='tabImgZoomIn' />} label="Result" />
+                        <Tab icon={<img src={AirTravel} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Air Travel" className='tab-text' />
+                        <Tab icon={<img src={Transportation} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Local Transportation" className='tab-text' />
+                        <Tab icon={<img src={Accommodation} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Accomodation" className='tab-text' />
+                        <Tab icon={<img src={food} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Food" className='tab-text' />
+                        <Tab icon={<img src={Logistics} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Logistics" className='tab-text' />
+                        <Tab icon={<img src={production} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Production" className='tab-text' />
+                        <Tab icon={<img src={Energy} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Energy" className='tab-text' />
+                        <Tab icon={<img src={digital} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Digital" className='tab-text' />
+                        <Tab icon={<img src={waste} alt='' width={35} color="red" className='tabImgZoomIn tabImgWhite' />} label="Waste" className='tab-text' />
+                        <Tab icon={<img src={result} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Result" className='tab-text' />
                     </Tabs>
                 </Box>
-                <Box mt={2}>
-                    {value === 0 && <Production setValue={setValue} value={value} />}
-                    {value === 1 && <AirFreight setValue={setValue} value={value} />}
-                    {value === 2 && <Food setValue={setValue} value={value} />}
-                    {value === 3 && <EnergyUpdated setValue={setValue} value={value} />}
-                    {value === 5 && <DigitalContent setValue={setValue} value={value} />}
-                    {value === 6 && <LocalTranspotation setValue={setValue} value={value} />}
+                <Box my={2} pb={2}>
+                    {value === 0 && <AirTravelComp setValue={setValue} value={value} />}
+                    {value === 1 && <LocalTranspotation setValue={setValue} value={value} />}
+                    {value === 3 && <Food setValue={setValue} value={value} />}
+                    {value === 4 && <AirFreight setValue={setValue} value={value} />}
+                    {value === 5 && <Production setValue={setValue} value={value} />}
+                    {value === 6 && <EnergyUpdated setValue={setValue} value={value} />}
+                    {value === 7 && <DigitalContent setValue={setValue} value={value} />}
                     {value === 8 && <Waste setValue={setValue} value={value} />}
                     {value === 9 && <Result setValue={setValue} value={value} />}
                 </Box>

@@ -9,6 +9,7 @@ import totalDigitalContSlice from '../slice/totalDigitalContSlice';
 import airFreightSlice from '../slice/airFreightSlice'
 import contactUsSlice from '../slice/contactUsSlice';
 import productionSlice from '../slice/productionSlice';
+import airTravelSlice from '../slice/airTravelSlice';
 import totalAirFreightSlice from '../slice/totalAirFreightSlice';
 import totalEnergyUpdatedSlice from '../slice/totalEnergyUpdatedSlice';
 import eventsSlice from '../slice/eventsSlice';
@@ -20,6 +21,7 @@ import totalWasteSlice from '../slice/totalWasteSlice';
 import totalProductionSlice from '../slice/totalProductionSlice';
 import totalLocalTranspotationSlice from '../slice/totalLocalTranspotationSlice';
 import wasteSlice from '../slice/wasteSlice';
+import totalAirTravelSlice from '../slice/totalAirTravelSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -41,6 +43,10 @@ const totalAirFreightPersistConfig = {
 };
 const totalProductionPersistConfig = {
     key: 'totalProductionDetails',
+    storage: storageSession
+}
+const totalAirTravelPersistConfig = {
+    key: 'totalAirTravelDetails',
     storage: storageSession
 }
 
@@ -73,6 +79,7 @@ export const store = configureStore({
         energyDetails: energySlice,
         transportationDetails: transportationSlice,
         wasteDetails: wasteSlice,
+        airTravelDetails: airTravelSlice,
         totalDigitalContentDetails: persistReducer(totalDigitalContentPersistConfig, totalDigitalContSlice),
         totalAirFreightDetails: persistReducer(totalAirFreightPersistConfig, totalAirFreightSlice),
         totalProductionDetails: persistReducer(totalProductionPersistConfig, totalProductionSlice),
@@ -80,6 +87,7 @@ export const store = configureStore({
         totalFoodDetails: persistReducer(totalFoodPersistConfig, totalFoodSlice),
         totalWasteDetails: persistReducer(totalWastePersistConfig, totalWasteSlice),
         totalLocalTranspotationDetails: persistReducer(totalLocalTranspotationPersistConfig, totalLocalTranspotationSlice),
+        totalAirTravelDetails: persistReducer(totalAirTravelPersistConfig, totalAirTravelSlice),
     },
     middleware,
 });

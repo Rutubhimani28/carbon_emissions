@@ -9,6 +9,7 @@ import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
 import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
 import { deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
 import { deleteProductionData } from '../../redux/slice/totalProductionSlice';
+import { deleteAirTravelData } from '../../redux/slice/totalAirTravelSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
@@ -20,8 +21,9 @@ const Result = () => {
     const allWasteData = useSelector((state) => state?.totalWasteDetails);
     const allProductionData = useSelector((state) => state?.totalProductionDetails);
     const allLocalTranspotationData = useSelector((state) => state?.totalLocalTranspotationDetails);
+    const allAirTravelData = useSelector((state) => state?.totalAirTravelDetails);
 
-    const total = Number(allProductionData?.totalEmission) + Number(allFreightData?.totalEmission) + Number(allFoodData?.totalEmission) + Number(allEnergyData?.totalEmission) + 0 + Number(allDigitalContentData?.totalEmission) + Number(allLocalTranspotationData?.totalEmission) + 0 + Number(allWasteData?.totalEmission)
+    const total = Number(allProductionData?.totalEmission) + Number(allFreightData?.totalEmission) + Number(allFoodData?.totalEmission) + Number(allEnergyData?.totalEmission) + Number(allAirTravelData?.totalEmission) + Number(allDigitalContentData?.totalEmission) + Number(allLocalTranspotationData?.totalEmission) + 0 + Number(allWasteData?.totalEmission)
 
     const resultData = [
         {
@@ -41,8 +43,8 @@ const Result = () => {
             totalEmission: allEnergyData?.totalEmission
         },
         {
-            type: 'Travel',
-            totalEmission: 0
+            type: 'Air Travel',
+            totalEmission: allAirTravelData?.totalEmission
         },
         {
             type: 'Digital',
@@ -67,7 +69,7 @@ const Result = () => {
         "totalAccomodation": "0",
         "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
         "totalDIgitalContent": allDigitalContentData?.totalEmission,
-        "totlaTravel": "0",
+        "totalAirTravel": allAirTravelData?.totalEmission,
         "totalEnergyUpdated": allEnergyData?.totalEmission,
         "totalFood": allFoodData?.totalEmission,
         "totalAirFreight": allFreightData?.totalEmission,
@@ -83,16 +85,17 @@ const Result = () => {
         dispatch(deleteFoodData())
         dispatch(deleteWasteData())
         dispatch(deleteLocalTranspotationData())
+        dispatch(deleteAirTravelData())
     }
     return (
         <div>
             <SendMail open={open} close={() => setOpen(false)} datas={data} />
 
             <Container maxWidth>
-                <Card>
+                <Card className='custom-inner-bg'>
                     <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
 
-                        <Box >
+                        <Box color='white'>
                             <h4 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h4>
                             <table>
                                 {
@@ -116,7 +119,7 @@ const Result = () => {
                     </div>
                 </Card>
             </Container>
-        </div >
+        </div>
     )
 }
 

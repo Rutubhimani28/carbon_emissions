@@ -147,11 +147,11 @@ const Waste = (props) => {
                     columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                 >
                     <Grid item xs={12} sm={6} md={6}>
-                        <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                        <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                             <Box>
-                                <Typography variant='h6' className='text-center'>Food Waste</Typography>
+                                <Typography variant='h6' className='text-center text-white'>Food Waste</Typography>
                                 <div className='table-responsive'>
-                                    <table className=''>
+                                    <table className='table-custom-inpt-field'>
                                         <tr>
                                             <th className='ps-2'>Waste</th>
                                             <th className='ps-2'>Kgs</th>
@@ -159,17 +159,17 @@ const Waste = (props) => {
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>Food</td>
-                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='foodKg' value={formik?.values?.foodKg} onChange={formik.handleChange} /></td>
+                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='foodKg' value={formik?.values?.foodKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='foodEmission' value={formik?.values?.foodEmission} onChange={formik.handleChange} /></td>
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>Mixed Recyclables</td>
-                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='mixedRecyclablesKg' value={formik?.values?.mixedRecyclablesKg} onChange={formik.handleChange} /></td>
+                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='mixedRecyclablesKg' value={formik?.values?.mixedRecyclablesKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='mixedRecyclablesEmission' value={formik?.values?.mixedRecyclablesEmission} onChange={formik.handleChange} disabled /></td>
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>Municipal Solid Waste</td>
-                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteKg' value={formik?.values?.municipalSolidWasteKg} onChange={formik.handleChange} /></td>
+                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteKg' value={formik?.values?.municipalSolidWasteKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' value={formik?.values?.municipalSolidWasteEmission} onChange={formik.handleChange} disabled /></td>
                                         </tr>
                                     </table>
@@ -179,11 +179,11 @@ const Waste = (props) => {
 
                     </Grid>
                     <Grid item xs={12} sm={6} md={6}>
-                        <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center', height: '223px' }}>
+                        <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center', height: '223px' }}>
                             <Box>
-                                <Typography variant='h6' className='text-center'>Water Waste</Typography>
+                                <Typography variant='h6' className='text-center text-white'>Water Waste</Typography>
                                 <div className='table-responsive'>
-                                    <table className=''>
+                                    <table className='table-custom-inpt-field'>
                                         <tr>
                                             <th />
                                             <th className='ps-2'>Litres/ area m3*</th>
@@ -191,7 +191,7 @@ const Waste = (props) => {
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>Water</td>
-                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='water' value={formik?.values?.water} onChange={formik.handleChange} /></td>
+                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='water' value={formik?.values?.water} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='waterEmission' value={formik?.values?.waterEmission} onChange={formik.handleChange} /></td>
                                         </tr>
                                     </table>
@@ -200,11 +200,11 @@ const Waste = (props) => {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={6}>
-                        <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                        <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                             <Box>
-                                <Typography variant='h6' className="text-center">Plastic Waste</Typography>
+                                <Typography variant='h6' className="text-center text-white">Plastic Waste</Typography>
                                 <div className='table-responsive'>
-                                    <table className=''>
+                                    <table className='table-custom-inpt-field'>
                                         <tr>
                                             <th className='ps-2'>Plastic Water bottle</th>
                                             <th className='ps-3'>No. of PET bottles</th>
@@ -212,17 +212,17 @@ const Waste = (props) => {
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>250ml PET bottle</td>
-                                            <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleOne' value={formik?.values?.bottleOne} onChange={formik.handleChange} /></td>
+                                            <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleOne' value={formik?.values?.bottleOne} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='bottleOneEmission' value={formik?.values?.bottleOneEmission} onChange={formik.handleChange} /></td>
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>500ml PET bottle</td>
-                                            <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleTwo' value={formik?.values?.bottleTwo} onChange={formik.handleChange} /></td>
+                                            <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleTwo' value={formik?.values?.bottleTwo} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='bottleTwoEmission' value={formik?.values?.bottleTwoEmission} onChange={formik.handleChange} disabled /></td>
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>1000ml PET bottle</td>
-                                            <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleThree' value={formik?.values?.bottleThree} onChange={formik.handleChange} /></td>
+                                            <td className='ps-3 py-1'><TextField size='small' type="number" name='bottleThree' value={formik?.values?.bottleThree} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='bottleThreeEmission' value={formik?.values?.bottleThreeEmission} onChange={formik.handleChange} disabled /></td>
                                         </tr>
                                     </table>
@@ -232,11 +232,11 @@ const Waste = (props) => {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={6}>
-                        <Card className='p-4' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                        <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                             <Box>
-                                <Typography variant='h6' className='text-center'>Branding Waste</Typography>
+                                <Typography variant='h6' className='text-center text-white'>Branding Waste</Typography>
                                 <div className='table-responsive'>
-                                    <table className=''>
+                                    <table className='table-custom-inpt-field'>
                                         <tr>
                                             <th className='ps-2'>Branding</th>
                                             <th className='ps-2'>Kg</th>
@@ -244,17 +244,17 @@ const Waste = (props) => {
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>PVC HDPE Banner</td>
-                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='hdpeBanner' value={formik?.values?.hdpeBanner} onChange={formik.handleChange} /></td>
+                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='hdpeBanner' value={formik?.values?.hdpeBanner} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='hdpeBannerEmission' value={formik?.values?.hdpeBannerEmission} onChange={formik.handleChange} /></td>
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>PVC Banners</td>
-                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='pvcBanners' value={formik?.values?.pvcBanners} onChange={formik.handleChange} /></td>
+                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='pvcBanners' value={formik?.values?.pvcBanners} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='pvcBannersEmission' value={formik?.values?.pvcBannersEmission} onChange={formik.handleChange} disabled /></td>
                                         </tr>
                                         <tr>
                                             <td className='ps-2 py-1'>badge holders</td>
-                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='badgeHolders' value={formik?.values?.badgeHolders} onChange={formik.handleChange} /></td>
+                                            <td className='ps-2 py-1'><TextField size='small' type="number" name='badgeHolders' value={formik?.values?.badgeHolders} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='badgeHoldersEmission' value={formik?.values?.badgeHoldersEmission} onChange={formik.handleChange} disabled /></td>
                                         </tr>
                                     </table>
@@ -270,7 +270,7 @@ const Waste = (props) => {
                         </Stack>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                        <Typography>{`Total Waste Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
+                        <Typography color='white'>{`Total Waste Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
                     </Grid>
                 </Grid>
             </Container>

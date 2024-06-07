@@ -21,11 +21,11 @@ const EnergyUpdated = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        kwh: '',
+        kwh: 0,
         emissionOne: 0,
-        gallonsOne: '',
+        gallonsOne: 0,
         emissionTwo: 0,
-        gallonsTwo: '',
+        gallonsTwo: 0,
         emissionThree: 0,
     };
 
@@ -76,8 +76,8 @@ const EnergyUpdated = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4'>
-                    <Box>
+                <Card className='p-4 custom-inner-bg'>
+                    <Box className='table-custom-inpt-field'>
                         <Grid
                             container
                             rowSpacing={3}
@@ -89,7 +89,7 @@ const EnergyUpdated = (props) => {
                                     Electricity
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Kwh</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Kwh</FormLabel>
                                     <TextField
                                         id="kwh"
                                         name="kwh"
@@ -105,10 +105,11 @@ const EnergyUpdated = (props) => {
                                         helperText={
                                             formik.touched.kwh && formik.errors.kwh
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -133,7 +134,7 @@ const EnergyUpdated = (props) => {
                                     Petrol
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Gallons</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
                                     <TextField
                                         id="gallonsOne"
                                         name="gallonsOne"
@@ -149,10 +150,11 @@ const EnergyUpdated = (props) => {
                                         helperText={
                                             formik.touched.gallonsOne && formik.errors.gallonsOne
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -177,7 +179,7 @@ const EnergyUpdated = (props) => {
                                     Diesel
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Gallons</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
                                     <TextField
                                         id="gallonsTwo"
                                         name="gallonsTwo"
@@ -193,10 +195,11 @@ const EnergyUpdated = (props) => {
                                         helperText={
                                             formik.touched.gallonsTwo && formik.errors.gallonsTwo
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -233,7 +236,7 @@ const EnergyUpdated = (props) => {
                                     {
                                         allData?.length > 0 && allData?.map((item) => (
 
-                                            <li>
+                                            <li style={{ color: 'white' }}>
                                                 {`${item?.type} : ${item?.emission} tons of kgCO2e`}
                                             </li>
                                         ))

@@ -17,7 +17,7 @@ import Events from './pages/events/Events';
 import Production from './pages/production';
 import Food from './pages/food';
 import Energy from './pages/energy';
-import Travel from './pages/Travel';
+import AirTravel from './pages/airTravel';
 import Transportation from './pages/transportation';
 import Accomodation from './pages/accomodation';
 import Waste from './pages/waste';
@@ -38,7 +38,7 @@ export default function Router() {
         { path: 'production', element: <Production /> },
         { path: 'food', element: <Food /> },
         { path: 'energy', element: <Energy /> },
-        { path: 'travel', element: <Travel /> },
+        { path: 'airTravel', element: <AirTravel /> },
         { path: 'transportation', element: <Transportation /> },
         { path: 'accomodation', element: <Accomodation /> },
         { path: 'waste', element: <Waste /> },

@@ -21,11 +21,11 @@ const DigitalContent = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        count: '',
-        MB: '',
-        noOfAttendees: '',
-        noOfHours: '',
-        serviceLifeOfLaptop: '',
+        count: 0,
+        MB: 0,
+        noOfAttendees: 0,
+        noOfHours: 0,
+        serviceLifeOfLaptop: 0,
         emissionOne: 0,
         emissionTwo: 0,
         emissionThree: 0,
@@ -78,27 +78,26 @@ const DigitalContent = (props) => {
 
     const handeleDelete = () => {
         dispatch(deleteData())
-    }
-
-
+    };
 
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4'>
-                    <Box >
+                <Card className='p-4 custom-inner-bg'>
+                    <Box>
                         <Grid
                             container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
+                            className='table-custom-inpt-field'
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h6' color='white'>
                                     Emails
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Count</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Count</FormLabel>
                                     <TextField
                                         id="count"
                                         name="count"
@@ -114,10 +113,11 @@ const DigitalContent = (props) => {
                                         helperText={
                                             formik.touched.count && formik.errors.count
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -138,11 +138,11 @@ const DigitalContent = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h6' color='white'>
                                     Attachment
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">MB</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>MB</FormLabel>
                                     <TextField
                                         id="MB"
                                         name="MB"
@@ -158,10 +158,11 @@ const DigitalContent = (props) => {
                                         helperText={
                                             formik.touched.MB && formik.errors.MB
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -182,11 +183,11 @@ const DigitalContent = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h6' color='white'>
                                     Laptop
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">No.of Attendees</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No.of Attendees</FormLabel>
                                     <TextField
                                         id="noOfAttendees"
                                         name="noOfAttendees"
@@ -202,10 +203,11 @@ const DigitalContent = (props) => {
                                         helperText={
                                             formik.touched.noOfAttendees && formik.errors.noOfAttendees
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">No. of hour</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No. of hour</FormLabel>
                                     <TextField
                                         id="noOfHours"
                                         name="noOfHours"
@@ -221,10 +223,11 @@ const DigitalContent = (props) => {
                                         helperText={
                                             formik.touched.noOfHours && formik.errors.noOfHours
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -254,7 +257,7 @@ const DigitalContent = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Digital Content Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -274,6 +277,6 @@ const DigitalContent = (props) => {
             </Container>
         </div>
     )
-}
+};
 
-export default DigitalContent
+export default DigitalContent;

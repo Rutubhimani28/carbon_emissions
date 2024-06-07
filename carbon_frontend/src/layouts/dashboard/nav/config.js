@@ -10,7 +10,7 @@ import events from '../../../assets/events.png'
 import Production from '../../../assets/production.png'
 import foodimg from '../../../assets/Food & Beverage.png'
 import energyimg from '../../../assets/Energy.png'
-import travelimg from '../../../assets/Travel.png'
+import airTravelimg from '../../../assets/Travel.png'
 import localTransportationimg from '../../../assets/Transportation.png'
 import accomodationimg from '../../../assets/Accommodation.png'
 import wasteimg from '../../../assets/Waste.png'
@@ -26,34 +26,9 @@ const navConfig = [
   //   icon: <img src={dashboard} alt='dashboard' width={25} />,
   // },
   {
-    title: 'Production',
-    path: '/dashboard/production',
-    icon: <img src={Production} alt='Production' width={30} />,
-  },
-  {
-    title: 'Logistics',
-    path: '/dashboard/airfreight',
-    icon: <img src={Logistics} alt='Logistics' width={30} />,
-  },
-  {
-    title: 'Food',
-    path: '/dashboard/food',
-    icon: <img src={foodimg} alt='Food' width={30} />,
-  },
-  {
-    title: 'Energy',
-    path: '/dashboard/energy',
-    icon: <img src={energyimg} alt='Energy' width={30} />,
-  },
-  {
-    title: 'Travel',
-    path: '/dashboard/travel',
-    icon: <img src={travelimg} alt='Result' width={30} />,
-  },
-  {
-    title: 'Digital',
-    path: '/dashboard/digitalContent',
-    icon: <img src={digitalContent} alt='digitalContent' width={30} />,
+    title: 'Air Travel',
+    path: '/dashboard/airTravel',
+    icon: <img src={airTravelimg} alt='Result' width={30} />,
   },
   {
     title: 'Local Transportation',
@@ -64,6 +39,31 @@ const navConfig = [
     title: 'Accomodation',
     path: '/dashboard/accomodation',
     icon: <img src={accomodationimg} alt='Accomodation' width={30} />,
+  },
+  {
+    title: 'Food',
+    path: '/dashboard/food',
+    icon: <img src={foodimg} alt='Food' width={30} />,
+  },
+  {
+    title: 'Logistics',
+    path: '/dashboard/airfreight',
+    icon: <img src={Logistics} alt='Logistics' width={30} />,
+  },
+  {
+    title: 'Production',
+    path: '/dashboard/production',
+    icon: <img src={Production} alt='Production' width={30} />,
+  },
+  {
+    title: 'Energy',
+    path: '/dashboard/energy',
+    icon: <img src={energyimg} alt='Energy' width={30} />,
+  },
+  {
+    title: 'Digital',
+    path: '/dashboard/digitalContent',
+    icon: <img src={digitalContent} alt='digitalContent' width={30} />,
   },
   {
     title: 'Waste',
