@@ -1,21 +1,13 @@
-import { useEffect } from 'react';
-import { useFormik } from 'formik';
 import { Box, Button, Card, Container, Grid, Stack, TextField, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useFormik } from 'formik';
+import { useEffect } from 'react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { styled, useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import AirTravelImg from '../../assets/Travel.png';
+import { IconDiv } from '../../components/IconDiv';
 import { addAirTravelData, deleteAirTravelData } from '../../redux/slice/totalAirTravelSlice';
-import AirTravelImg from '../../assets/Travel.png'
-
-const IconDiv = styled(Box)(({ theme }) => ({
-    position: "relative",
-    top: 10,
-    left: 15,
-    [theme.breakpoints.up('lg')]: {
-        position: "absolute",
-    },
-}));
 
 const AirTravel = (props) => {
     const { setValue, value } = props;
@@ -80,7 +72,7 @@ const AirTravel = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4 custom-inner-bg' style={{ position: "relative", padding: '20px', display: 'flex', justifyContent: 'center', flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }}>
+                <Card className='p-4 custom-inner-bg' style={{ position: "relative", padding: '20px', display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }}>
                     <IconDiv>
                         <img width={100} src={AirTravelImg} alt="AirTravel" />
                     </IconDiv>

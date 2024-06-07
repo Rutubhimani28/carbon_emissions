@@ -1,14 +1,17 @@
-import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
+import { IconDiv } from '../../components/IconDiv';
 import { addAirFreightData, deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
-import Logistics from '../../assets/Logistics.png'
+import LogisticsImg from '../../assets/Logistics.png'
 
 const AirFreight = (props) => {
     const { setValue, value } = props;
+    const theme = useTheme();
 
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalAirFreightDetails?.data[0]?.data);
@@ -69,9 +72,11 @@ const AirFreight = (props) => {
     return (
         <div>
             <Container maxWidth>
-                {/* <Card style={{ padding: "20px" }}> */}
-                <Card style={{ padding: "20px", display: "flex", justifyContent: "center" }} className='custom-inner-bg'>
-                    <Box width={"50%"}>
+                <Card className='p-4 custom-inner-bg' style={{ position: "relative", padding: '20px', display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }}>
+                    <IconDiv>
+                        <img width={100} src={LogisticsImg} alt="AirTravel" />
+                    </IconDiv>
+                    <Box width={useMediaQuery(theme.breakpoints.up('lg')) ? "50%" : "100%"}>
                         <Grid
                             container
                             rowSpacing={3}
@@ -164,7 +169,7 @@ const AirFreight = (props) => {
                                 <ul>
                                     {
                                         allData?.length > 0 && allData?.map((item, index) => (
-                                            <li style={{color: 'white'}}>
+                                            <li style={{ color: 'white' }}>
                                                 {`${item?.type} : ${item?.emission} tons of kgCO2e`}
                                             </li>
 
