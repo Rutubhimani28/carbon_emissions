@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles';
 // import { fetchCustomFieldData } from '../../redux/slice/customFieldSlice';
 import Header from './header';
 import Nav from './nav';
+import banner from '../user/assets/images/home_banner.jpg';
 
 // ----------------------------------------------------------------------
 
@@ -24,12 +25,15 @@ const Main = styled('div')(({ theme }) => ({
   flexGrow: 1,
   overflow: 'auto',
   minHeight: '100%',
-  paddingTop: APP_BAR_MOBILE + 24,
   // paddingBottom: theme.spacing(10),
+  // paddingTop: APP_BAR_MOBILE + 24,
+  paddingTop: APP_BAR_MOBILE + 18,
+  paddingLeft: theme.spacing(2),
+  paddingRight: theme.spacing(2),
   [theme.breakpoints.up('lg')]: {
     // paddingTop: APP_BAR_DESKTOP + 24,
-    // paddingLeft: theme.spacing(2),
-    // paddingRight: theme.spacing(2),
+    // paddingLeft: theme.spacing(2.5),
+    // paddingRight: theme.spacing(2.5),
   },
 }));
 
@@ -53,6 +57,9 @@ export default function DashboardLayout() {
       {/* <Nav openNav={open} onCloseNav={() => setOpen(false)} /> */}
 
       <Main>
+        <div style={{ display: 'flex', marginBottom: "10px", alignItems: 'center', justifyContent: 'center' }}>
+          <img src={banner} alt="top_img" width="100%" />
+        </div>
         <Outlet />
       </Main>
     </StyledRoot>
