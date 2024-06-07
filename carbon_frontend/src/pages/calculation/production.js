@@ -1,12 +1,16 @@
-import { Box, Button, Card, Container, Grid, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
+import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
+import ProductionImg from '../../assets/production.png';
+import { IconDiv } from '../../components/IconDiv';
 
 const Production = (props) => {
     const { setValue, value } = props;
+    const theme = useTheme();
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalProductionDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalProductionDetails?.totalEmission);
@@ -71,17 +75,19 @@ const Production = (props) => {
                 formik.setFieldValue(item?.fieldName, allData[i]?.emission)
                 formik.setFieldValue([`${item?.fieldName}_area`], allData[i]?.totalArea)
             })
-        }
+        }   
     }, [value]);
 
     return (
         <div>
             <Container maxWidth>
-                <Card style={{ padding: '20px', display: 'flex', justifyContent: 'center' }} className='custom-inner-bg'>
+                <Card style={{ padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: "relative", flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }} className='custom-inner-bg'>
+                    <IconDiv>
+                        <img width={100} src={ProductionImg} alt="Production" />
+                    </IconDiv>
                     <Box>
                         <table className='table-custom-inpt-field'>
                             <tr>
-
                                 <th className='ps-4'>Material</th>
                                 <th className='ps-4'>Total Area (m2)/ Amount</th>
                                 <th className='ps-4'>Total Emissions (kgCO2e)</th>
@@ -123,7 +129,7 @@ const Production = (props) => {
                                 </>
                             ))}
                         </table>
-                        <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"end"} pt={2}>
+                        <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"} pt={2}>
                             <Stack direction={"row"} spacing={2}>
                                 <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                 <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
