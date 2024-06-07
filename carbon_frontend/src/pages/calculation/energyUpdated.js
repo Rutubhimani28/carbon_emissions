@@ -1,14 +1,17 @@
-import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography } from '@mui/material';
+import { useTheme } from '@emotion/react';
+import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
+import EnergyImg from '../../assets/Energy.png';
+import { IconDiv } from '../../components/IconDiv';
 import { addEnergyData, deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 
 const EnergyUpdated = (props) => {
     const { setValue, value } = props;
-
+    const theme = useTheme();
     const dispatch = useDispatch();
 
     const allData = useSelector((state) => state?.totalEnergyUpdatedDetails?.data[0]?.data)
@@ -72,16 +75,19 @@ const EnergyUpdated = (props) => {
         dispatch(deleteEnergyData())
     }
 
-
     return (
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg'>
-                    <Box className='table-custom-inpt-field'>
+                    <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                        <IconDiv>
+                            <img src={EnergyImg} alt="Energy" width={100} />
+                        </IconDiv>
                         <Grid
                             container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
+                            style={{ display: 'flex', justifyContent: 'center' }}
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
@@ -220,7 +226,7 @@ const EnergyUpdated = (props) => {
                                 </Grid>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
+                           <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>

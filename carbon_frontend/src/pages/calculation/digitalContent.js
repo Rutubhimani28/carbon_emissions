@@ -1,14 +1,17 @@
-import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
+import { useTheme } from '@emotion/react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
 import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
+import DigitalImg from '../../assets/Digital.png';
+import { IconDiv } from '../../components/IconDiv';
 
 const DigitalContent = (props) => {
     const { setValue, value } = props;
-
+    const theme = useTheme();
     const dispatch = useDispatch();
 
     const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
@@ -84,7 +87,10 @@ const DigitalContent = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg'>
-                    <Box>
+                    <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                        <IconDiv>
+                            <img src={DigitalImg} alt="Digital" width={100} />
+                        </IconDiv>
                         <Grid
                             container
                             rowSpacing={3}
@@ -248,7 +254,7 @@ const DigitalContent = (props) => {
                                 </Grid>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
+                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>

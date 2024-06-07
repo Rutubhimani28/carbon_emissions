@@ -1,13 +1,17 @@
-import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, } from '@mui/material';
+import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
+import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFoodData, deleteFoodData } from '../../redux/slice/totalFoodSlice';
+import { IconDiv } from '../../components/IconDiv';
+import FoodImg from '../../assets/Food & Beverage.png';
 
 const Food = (props) => {
     const { setValue, value } = props;
     const dispatch = useDispatch()
+    const theme = useTheme();
     const allData = useSelector((state) => state?.totalFoodDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalFoodDetails?.totalEmission);
 
@@ -87,7 +91,10 @@ const Food = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }}>
+                    <IconDiv>
+                        <img width={100} src={FoodImg} alt="Food" />
+                    </IconDiv>
                     <Box>
                         <div className='table-responsive'>
                             <table className='table-custom-inpt-field'>
@@ -123,7 +130,7 @@ const Food = (props) => {
                                 </tr>
                             </table>
                         </div>
-                        <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"end"} mt={3}>
+                        <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"} mt={3}>
                             <Stack direction={"row"} spacing={2}>
                                 <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                 <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
