@@ -16,6 +16,7 @@ const APP_BAR_DESKTOP = 92;
 const StyledRoot = styled('div')({
   display: 'flex',
   minHeight: '100%',
+  background: "#1f9e6d",
   overflow: 'hidden',
 });
 
