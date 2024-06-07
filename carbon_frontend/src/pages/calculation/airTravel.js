@@ -3,10 +3,23 @@ import { useFormik } from 'formik';
 import { Box, Button, Card, Container, Grid, Stack, TextField, Typography } from '@mui/material';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import { styled, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { addAirTravelData, deleteAirTravelData } from '../../redux/slice/totalAirTravelSlice';
+import AirTravelImg from '../../assets/Travel.png'
+
+const IconDiv = styled(Box)(({ theme }) => ({
+    position: "relative",
+    top: 10,
+    left: 15,
+    [theme.breakpoints.up('lg')]: {
+        position: "absolute",
+    },
+}));
 
 const AirTravel = (props) => {
     const { setValue, value } = props;
+    const theme = useTheme();
     const dispatch = useDispatch()
     const allData = useSelector((state) => state?.totalAirTravelDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirTravelDetails?.totalEmission);
@@ -67,8 +80,11 @@ const AirTravel = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
-                    <Box >
+                <Card className='p-4 custom-inner-bg' style={{ position: "relative", padding: '20px', display: 'flex', justifyContent: 'center', flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }}>
+                    <IconDiv>
+                        <img width={100} src={AirTravelImg} alt="AirTravel" />
+                    </IconDiv>
+                    <Box>
                         <div className='table-responsive'>
                             <table className='table-custom-inpt-field'>
                                 <tr>
