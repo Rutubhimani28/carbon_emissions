@@ -8,6 +8,9 @@ import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
 import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
 import { deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
+import { deleteProductionData } from '../../redux/slice/totalProductionSlice';
+import { deleteAirTravelData } from '../../redux/slice/totalAirTravelSlice';
+import { deleteHotelData } from '../../redux/slice/totalHotelSlice';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
@@ -19,8 +22,10 @@ const Result = () => {
     const allWasteData = useSelector((state) => state?.totalWasteDetails);
     const allProductionData = useSelector((state) => state?.totalProductionDetails);
     const allLocalTranspotationData = useSelector((state) => state?.totalLocalTranspotationDetails);
+    const allAirTravelData = useSelector((state) => state?.totalAirTravelDetails);
+    const allHotelData = useSelector((state) => state?.totalHotelDetails);
 
-    const total = parseFloat(allProductionData?.totalEmission) + parseFloat(allFreightData?.totalEmission) + parseFloat(allFoodData?.totalEmission) + parseFloat(allEnergyData?.totalEmission) + parseFloat(allDigitalContentData?.totalEmission) + parseFloat(allLocalTranspotationData?.totalEmission) + 0 + parseFloat(allWasteData?.totalEmission)
+    const total = Number(allProductionData?.totalEmission) + Number(allFreightData?.totalEmission) + Number(allFoodData?.totalEmission) + Number(allEnergyData?.totalEmission) + Number(allAirTravelData?.totalEmission) + Number(allDigitalContentData?.totalEmission) + Number(allLocalTranspotationData?.totalEmission) + Number(allHotelData?.totalEmission) + Number(allWasteData?.totalEmission)
 
     const resultData = [
         {
@@ -40,8 +45,8 @@ const Result = () => {
             totalEmission: allEnergyData?.totalEmission
         },
         {
-            type: 'Travel',
-            totalEmission: 0
+            type: 'Air Travel',
+            totalEmission: allAirTravelData?.totalEmission
         },
         {
             type: 'Digital',
@@ -52,8 +57,8 @@ const Result = () => {
             totalEmission: allLocalTranspotationData?.totalEmission
         },
         {
-            type: 'Accomodation',
-            totalEmission: 0
+            type: 'Hotel',
+            totalEmission: allHotelData?.totalEmission
         },
         {
             type: 'Waste',
@@ -66,31 +71,35 @@ const Result = () => {
         "totalAccomodation": "0",
         "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
         "totalDIgitalContent": allDigitalContentData?.totalEmission,
-        "totlaTravel": "0",
+        "totalAirTravel": allAirTravelData?.totalEmission,
         "totalEnergyUpdated": allEnergyData?.totalEmission,
         "totalFood": allFoodData?.totalEmission,
         "totalAirFreight": allFreightData?.totalEmission,
         "totlaProduction": allProductionData?.totalEmission,
+        "totalHotel": allHotelData?.totalEmission,
         "grandTotal": total
     }
 
     const handeleDelete = () => {
+        dispatch(deleteProductionData())
         dispatch(deleteData())
         dispatch(deleteAirFreightData())
         dispatch(deleteEnergyData())
         dispatch(deleteFoodData())
         dispatch(deleteWasteData())
         dispatch(deleteLocalTranspotationData())
+        dispatch(deleteAirTravelData())
+        dispatch(deleteHotelData())
     }
     return (
         <div>
             <SendMail open={open} close={() => setOpen(false)} datas={data} />
 
             <Container maxWidth>
-                <Card>
+                <Card className='custom-inner-bg'>
                     <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
 
-                        <Box >
+                        <Box color='white'>
                             <h4 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h4>
                             <table>
                                 {
@@ -114,7 +123,7 @@ const Result = () => {
                     </div>
                 </Card>
             </Container>
-        </div >
+        </div>
     )
 }
 

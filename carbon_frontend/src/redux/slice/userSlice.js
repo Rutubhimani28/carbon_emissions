@@ -20,20 +20,19 @@ const userSlice = createSlice({
         error: "",
     },
     extraReducers: (builder) => {
-        builder
-            .addCase(fetchUserData.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(fetchUserData.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.data = action.payload;
-                state.error = "";
-            })
-            .addCase(fetchUserData.rejected, (state, action) => {
-                state.isLoading = false;
-                state.data = [];
-                state.error = action.error.message;
-            });
+        builder.addCase(fetchUserData.pending, (state) => {
+            state.isLoading = true;
+        })
+        builder.addCase(fetchUserData.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.data = action.payload;
+            state.error = "";
+        })
+        builder.addCase(fetchUserData.rejected, (state, action) => {
+            state.isLoading = false;
+            state.data = [];
+            state.error = action.error.message;
+        });
     },
 });
 

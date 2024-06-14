@@ -54,30 +54,32 @@ export default function App() {
       ) : (
         <>
           <Header />
-          <Routes>
-            <Route path="/" element={<UserLayout />} />
-            <Route path="/measure-ghg-emissions" element={<Services />} />
-            <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
-            <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
-            <Route path="/event-venue" element={<EventVenue />} />
-            <Route path="/event-execution-agency" element={<EventExecutionAgency />} />
-            <Route path="/esg-advisory-services/organisations/esg-consulting" element={<Counsulting />} />
-            <Route path="/esg-advisory-services/organisations/sustainable-events" element={<SustainableEvents />} />
-            <Route path="/esg-advisory-services/service-providers/" element={<Agencies />} />
-            <Route path="/esg-advisory-services/hospitality-industry/" element={<Hospitality />} />
-            <Route path="/esg-advisory-services/exhibition-organiser/" element={<Exhibitions />} />
-            <Route path="/about-us" element={<About />} />
-            <Route path="/blogs" element={<NewRoom />} />
-            <Route path="/blogs/blog1" element={<Blog1 />} />
-            <Route path="/blogs/blog2" element={<Blog2 />} />
-            <Route path="/blogs/blog3" element={<Blog3 />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/faqs" element={<Faq />} />
-            <Route path="/terms-conditions" element={<TermConditions />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="*" element={<Navigate to="/login" />} />
-          </Routes>
+          <div className='template-outer-theme'>
+            <Routes>
+              <Route path="/" element={<UserLayout />} />
+              <Route path="/measure-ghg-emissions" element={<Services />} />
+              <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
+              <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
+              <Route path="/event-venue" element={<EventVenue />} />
+              <Route path="/event-execution-agency" element={<EventExecutionAgency />} />
+              <Route path="/esg-advisory-services/organisations/esg-consulting" element={<Counsulting />} />
+              <Route path="/esg-advisory-services/organisations/sustainable-events" element={<SustainableEvents />} />
+              <Route path="/esg-advisory-services/service-providers/" element={<Agencies />} />
+              <Route path="/esg-advisory-services/hospitality-industry/" element={<Hospitality />} />
+              <Route path="/esg-advisory-services/exhibition-organiser/" element={<Exhibitions />} />
+              <Route path="/about-us" element={<About />} />
+              <Route path="/blogs" element={<NewRoom />} />
+              <Route path="/blogs/blog1" element={<Blog1 />} />
+              <Route path="/blogs/blog2" element={<Blog2 />} />
+              <Route path="/blogs/blog3" element={<Blog3 />} />
+              <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/faqs" element={<Faq />} />
+              <Route path="/terms-conditions" element={<TermConditions />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="*" element={<Navigate to="/login" />} />
+            </Routes>
+          </div>
           <Footer />
         </>
 

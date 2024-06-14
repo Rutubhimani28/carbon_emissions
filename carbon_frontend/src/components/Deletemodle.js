@@ -9,7 +9,8 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
-import { Stack } from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -51,7 +52,7 @@ BootstrapDeleteModel.propTypes = {
 
 export default function CustomizedDialogs(props) {
   // eslint-disable-next-line react/prop-types
-  const { opendelete, handleClosedelete, deletedata, id } = props;
+  const { opendelete, handleClosedelete, deletedata, id, isLoading } = props;
 
   const Delete = () => {
     deletedata(id)
@@ -76,7 +77,9 @@ export default function CustomizedDialogs(props) {
         </DialogContent>
         <DialogActions>
           <Stack direction="row" spacing={2}>
-            <Button variant="contained" color="error" onClick={Delete}>Yes</Button>
+            <LoadingButton onClick={Delete} variant='contained' color="error" disabled={!!isLoading} >
+              {isLoading ? <CircularProgress size={27} /> : 'Yes'}
+            </LoadingButton>
             <Button variant="contained" onClick={handleClosedelete}>No</Button>
           </Stack>
         </DialogActions>

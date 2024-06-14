@@ -25,8 +25,8 @@ import logo from '../../assets/images/logo.png';
 const drawerWidth = 240;
 const navItems = [
     { name: 'Home', path: "/" },
-    { name: 'ESC Advisory Services', path: "/esg-advisory-services" },
-    { name: 'Measure Carbon Emissions', path: "/measure-ghg-emissions" },
+    { name: 'ESG Advisory Services', path: "/esg-advisory-services" },
+    { name: 'NetZero Tool', path: "/measure-ghg-emissions" },
     { name: 'News Room', path: '/blogs' },
     { name: 'About Us', path: '/about-us' }];
 
@@ -47,16 +47,20 @@ const Header = (props) => {
         setMobileOpen((prevState) => !prevState);
     };
 
+    const home = () => {
+        navigate('/')
+    }
+
     const drawer = (
         <>
             <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center" }}>
+                <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center", cursor: "pointer" }} onClick={home}>
                     <img src={logo} width={100} alt="logo" />
                 </Typography>
                 <Divider />
                 <List>
                     {navItems.map((item) => (
-                        item?.name === 'ESC Advisory Services' ? (
+                        item?.name === 'ESG Advisory Services' ? (
                             <div key={item.name} style={{ display: 'inline', marginLeft: "-15px" }} className='esg_menu'>
                                 <Button
                                     className={`text-capitalize fs-6 fw-bold  ${routeName === item?.path ? 'green' : 'text-dark'}`}
@@ -64,7 +68,7 @@ const Header = (props) => {
                                 >
                                     {item?.name}
                                 </Button>
-                                <ExpandMoreIcon
+                                {/* <ExpandMoreIcon
                                     className="expand-icon"
                                     onClick={handleMenuToggle}
                                     style={{ cursor: 'pointer' }}
@@ -84,7 +88,7 @@ const Header = (props) => {
                                             <Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link>
                                         </li>
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         ) : (
                             <ListItem key={item.name} disablePadding>
@@ -94,6 +98,13 @@ const Header = (props) => {
                             </ListItem>
                         )
                     ))}
+                    <ListItem disablePadding>
+                        <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
+                            <Button className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
+                                login
+                            </Button>
+                        </ListItemButton>
+                    </ListItem>
                 </List>
             </Box>
         </>
@@ -118,26 +129,28 @@ const Header = (props) => {
                     <Typography
                         variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1, display: { md: 'flex' } }}
+                        sx={{ flexGrow: 1, display: { md: 'flex' }, cursor: "pointer" }}
+                        onClick={home}
                     >
                         <img src={logo} width={"120px"} alt="logo" />
                     </Typography>
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         {navItems.map((item) => (
-                            item?.name === 'ESC Advisory Services' ? (
+                            item?.name === 'ESG Advisory Services' ? (
                                 <div key={item.name} style={{ display: 'inline' }} className='esg_menu'>
                                     <Button
                                         className={` text-capitalize  fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
                                         onClick={() => navigate(item.path)}
                                     >
-                                        {item?.name}<ExpandMoreIcon />
+                                        {/* {item?.name}<ExpandMoreIcon /> */}
+                                        {item?.name}
                                     </Button>
-                                    <div className='esg_menuItem'>
+                                    {/* <div className='esg_menuItem'>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
-                                    </div>
+                                    </div> */}
                                 </div>
                             ) : (
                                 <>

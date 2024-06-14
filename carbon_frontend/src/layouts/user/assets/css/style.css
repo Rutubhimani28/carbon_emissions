@@ -1,14 +1,17 @@
 * {
-    font-family: "Josefin Sans", sans-serif !important;
+    /* font-family: "Josefin Sans", sans-serif !important; */
+    font-family: "Lato", sans-serif !important;
 }
 
 .fontFamily {
-    font-family: "Josefin Sans", sans-serif !important;
+    /* font-family: "Josefin Sans", sans-serif !important; */
+    font-family: "Lato", sans-serif !important;
 
 }
 
 .green {
     color: #4ABD43;
+    /* color: #1f9e6d */
 }
 
 .main {

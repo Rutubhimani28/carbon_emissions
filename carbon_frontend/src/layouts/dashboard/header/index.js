@@ -23,17 +23,17 @@ const HEADER_DESKTOP = 92;
 const StyledRoot = styled(AppBar)(({ theme }) => ({
   ...bgBlur({ color: theme.palette.background.default }),
   boxShadow: 'none',
-  [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - ${NAV_WIDTH + 1}px)`,
-  },
+  // [theme.breakpoints.up('lg')]: {
+  //   width: `calc(100% - ${NAV_WIDTH + 1}px)`,
+  // },
 }));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   minHeight: HEADER_MOBILE,
-  [theme.breakpoints.up('lg')]: {
-    minHeight: HEADER_DESKTOP,
-    padding: theme.spacing(0, 5),
-  },
+  // [theme.breakpoints.up('lg')]: {
+  //   minHeight: HEADER_DESKTOP,
+  //   padding: theme.spacing(0, 5),
+  // },
 }));
 
 // ----------------------------------------------------------------------
@@ -46,7 +46,7 @@ export default function Header({ onOpenNav }) {
   return (
     <StyledRoot>
       <StyledToolbar>
-        <IconButton
+        {/* <IconButton
           onClick={onOpenNav}
           sx={{
             mr: 1,
@@ -55,7 +55,7 @@ export default function Header({ onOpenNav }) {
           }}
         >
           <Iconify icon="eva:menu-2-fill" />
-        </IconButton>
+        </IconButton> */}
 
         {/* <Searchbar /> */}
         <Box sx={{ flexGrow: 1 }} />
