@@ -39,7 +39,6 @@ const EventExecutionAgency = () => {
         {
             field: "email",
             headerName: "Email",
-            cellClassName: "name-column--cell--capitalize",
             width: 300,
         },
         {

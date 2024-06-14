@@ -1,13 +1,17 @@
-import { Delete } from '@mui/icons-material';
-import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useTheme } from '@emotion/react';
+import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
 import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
+import DigitalImg from '../../assets/Digital.png';
+import { IconDiv } from '../../components/IconDiv';
 
-const DigitalContent = () => {
-
+const DigitalContent = (props) => {
+    const { setValue, value } = props;
+    const theme = useTheme();
     const dispatch = useDispatch();
 
     const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
@@ -20,11 +24,11 @@ const DigitalContent = () => {
 
     // -----------   initialValues
     const initialValues = {
-        count: '',
-        MB: '',
-        noOfAttendees: '',
-        noOfHours: '',
-        serviceLifeOfLaptop: '',
+        count: 0,
+        MB: 0,
+        noOfAttendees: 0,
+        noOfHours: 0,
+        serviceLifeOfLaptop: 0,
         emissionOne: 0,
         emissionTwo: 0,
         emissionThree: 0,
@@ -35,29 +39,26 @@ const DigitalContent = () => {
         onSubmit: async (values) => {
             formik.setFieldValue('emissionOne', values?.count * 13 / 1000);
             formik.setFieldValue('emissionTwo', values?.MB * 50 / 1000);
-            const emission = values?.noOfAttendees * 340 * (values?.noOfHours / values?.serviceLifeOfLaptop) || 0;
+            const emission = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
             formik.setFieldValue('emissionThree', emission || 0);
 
             const data = [
                 {
                     type: 'Emails',
                     count: values?.count,
-                    // Calculate emission: (count * 13) / 1000, then format to 2 decimal places
-                    emission: parseFloat((values?.count * 13 / 1000).toFixed(2))
+                    emission: Number((values?.count * 13 / 1000).toFixed(2))
                 },
                 {
                     type: 'Attachment',
                     mb: values?.MB,
-                    // Calculate emission: (MB * 50) / 1000, then format to 2 decimal places
-                    emission: parseFloat((values?.MB * 50 / 1000).toFixed(2))
+                    emission: Number((values?.MB * 50 / 1000).toFixed(2))
                 },
                 {
                     type: 'Laptop',
                     noOfAttendees: values?.noOfAttendees,
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
-                    // Calculate emission: (noOfAttendees * 340 * (noOfHours / serviceLifeOfLaptop)), then format to 2 decimal places
-                    emission: parseFloat((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0
+                    emission: Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0
                 }
             ];
 
@@ -76,31 +77,33 @@ const DigitalContent = () => {
             formik.setFieldValue("serviceLifeOfLaptop", allData[2]?.serviceLifeOfLaptop)
             formik.setFieldValue("emissionThree", allData[2]?.emission)
         }
-    }, [allData])
+    }, [value])
 
     const handeleDelete = () => {
         dispatch(deleteData())
-    }
-
-
+    };
 
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4'>
-                    <Box >
+                <Card className='p-4 custom-inner-bg'>
+                    <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                        <IconDiv>
+                            <img src={DigitalImg} alt="Digital" width={100} />
+                        </IconDiv>
                         <Grid
                             container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
+                            className='table-custom-inpt-field'
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h6' color='white'>
                                     Emails
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Count</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Count</FormLabel>
                                     <TextField
                                         id="count"
                                         name="count"
@@ -116,10 +119,11 @@ const DigitalContent = () => {
                                         helperText={
                                             formik.touched.count && formik.errors.count
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -140,11 +144,11 @@ const DigitalContent = () => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h6' color='white'>
                                     Attachment
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">MB</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>MB</FormLabel>
                                     <TextField
                                         id="MB"
                                         name="MB"
@@ -160,10 +164,11 @@ const DigitalContent = () => {
                                         helperText={
                                             formik.touched.MB && formik.errors.MB
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -184,11 +189,11 @@ const DigitalContent = () => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h6' color='white'>
                                     Laptop
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">No.of Attendees</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No.of Attendees</FormLabel>
                                     <TextField
                                         id="noOfAttendees"
                                         name="noOfAttendees"
@@ -204,10 +209,11 @@ const DigitalContent = () => {
                                         helperText={
                                             formik.touched.noOfAttendees && formik.errors.noOfAttendees
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">No. of hour</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No. of hour</FormLabel>
                                     <TextField
                                         id="noOfHours"
                                         name="noOfHours"
@@ -223,10 +229,11 @@ const DigitalContent = () => {
                                         helperText={
                                             formik.touched.noOfHours && formik.errors.noOfHours
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -247,15 +254,16 @@ const DigitalContent = () => {
                                 </Grid>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
+                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                 </Stack>
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Digital Content Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -275,6 +283,6 @@ const DigitalContent = () => {
             </Container>
         </div>
     )
-}
+};
 
-export default DigitalContent
+export default DigitalContent;

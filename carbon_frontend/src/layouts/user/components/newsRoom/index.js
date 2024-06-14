@@ -6,7 +6,8 @@ const Index = () => {
     return (
         <div>
             <div className='main py-5'>
-                <Typography variant='h6' className='text-center fs-1 green pt-4 fontFamily fw-bold pb-5 wow animate__animated animate__fadeInUp animate__slow' >News Room & Blogs</Typography>
+                {/* <Typography variant='h6' className='text-center fs-1 green pt-4 fontFamily fw-bold pb-5 wow animate__animated animate__fadeInUp animate__slow' >News Room & Blogs</Typography> */}
+                <Typography variant='h6' className='text-center fs-1 pt-4 fontFamily fw-bold pb-5 wow animate__animated animate__fadeInUp animate__slow' >News Room & Blogs</Typography>
 
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
                     <Grid item xs={6}>
@@ -46,10 +47,10 @@ const Index = () => {
                         </Grid>
                     </Grid>
 
-                </Grid >
+                </Grid>
 
-            </div >
-        </div >
+            </div>
+        </div>
     )
 }
 

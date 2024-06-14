@@ -1,11 +1,16 @@
-import { Box, Button, Card, Container, Grid, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
-// import { useEffect } from 'react';
 import { useEffect } from 'react';
+import { useTheme } from '@mui/material/styles';
+import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
+import ProductionImg from '../../assets/production.png';
+import { IconDiv } from '../../components/IconDiv';
 
-const Production = () => {
+const Production = (props) => {
+    const { setValue, value } = props;
+    const theme = useTheme();
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalProductionDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalProductionDetails?.totalEmission);
@@ -32,10 +37,10 @@ const Production = () => {
         { name: 'Nylon', ef: 12.7, fieldName: 'nylon' },
     ];
 
-    const initialValues = fileldData.reduce((field, item, i) => {
+    const initialValues = fileldData?.reduce((field, item, i) => {
 
-        field[item.fieldName] = 0;
-        field[`${item.fieldName}_area`] = 0;
+        field[item?.fieldName] = 0;
+        field[`${item?.fieldName}_area`] = 0;
         return field
     }, {});
 
@@ -46,7 +51,7 @@ const Production = () => {
             console.log(values, "values")
 
             const data = fileldData?.map((item) => {
-                const emission = ((values?.[`${item?.fieldName}_area`] * item.ef) || 0)
+                const emission = ((values?.[`${item?.fieldName}_area`] * item?.ef) || 0)
                 formik.setFieldValue(item?.fieldName, emission.toFixed(2))
                 return ({
                     type: item?.name,
@@ -66,76 +71,73 @@ const Production = () => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            // allData.map((v) => {
             fileldData?.forEach((item, i) => {
-
-                // const emission = ((formik.values?.[`${item?.fieldName}_area`] * item.ef) || 0)
-                // formik.setFieldValue(item?.fieldName, emission.toFixed(2))
-                // type: item?.name,
-                // totalArea: formik.values?.[`${item?.fieldName}_area`],
-                // emission,
                 formik.setFieldValue(item?.fieldName, allData[i]?.emission)
                 formik.setFieldValue([`${item?.fieldName}_area`], allData[i]?.totalArea)
-
             })
-            // })
-        }
-    }, [allData]);
+        }   
+    }, [value]);
 
     return (
         <div>
             <Container maxWidth>
-                <Card style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
-                    <Box width={'70%'}>
-
-                        <table className=''>
+                <Card style={{ padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: "relative", flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }} className='custom-inner-bg'>
+                    <IconDiv>
+                        <img width={100} src={ProductionImg} alt="Production" />
+                    </IconDiv>
+                    <Box>
+                        <table className='table-custom-inpt-field'>
                             <tr>
-
                                 <th className='ps-4'>Material</th>
                                 <th className='ps-4'>Total Area (m2)/ Amount</th>
                                 <th className='ps-4'>Total Emissions (kgCO2e)</th>
                             </tr>
                             {fileldData && fileldData?.map((item, i) => (
                                 <>
-
-                                    <tr>
+                                    <tr key={i}>
                                         <td className='ps-4 py-1'> {item?.name}</td>
-                                        <td className='ps-4 py-1'> <TextField
-                                            id={`${item?.fieldName}_area`}
-                                            name={`${item?.fieldName}_area`}
-                                            label=""
-                                            type='number'
-                                            fullWidth
-                                            size="small"
-                                            value={formik.values?.[`${item?.fieldName}_area`]}
-                                            onChange={formik.handleChange}
-                                            error={formik.touched?.[`${item?.fieldName}_area`] && Boolean(formik.errors?.[`${item?.fieldName}_area`])}
-                                            helperText={formik.touched?.[`${item?.fieldName}_area`] && formik.errors?.[`${item?.fieldName}_area`]}
-                                        /></td>
-                                        <td className='ps-4 py-1'> <TextField
-                                            id={item?.fieldName}
-                                            name={item?.fieldName}
-                                            label=""
-                                            fullWidth
-                                            disabled
-                                            size="small"
-                                            value={formik.values?.[item?.fieldName]}
-                                            onChange={formik.handleChange}
-                                            error={formik.touched?.[item?.fieldName] && Boolean(formik.errors?.[item?.fieldName])}
-                                            helperText={formik.touched?.[item?.fieldName] && formik.errors?.[item?.fieldName]}
-                                        /></td>
+                                        <td className='ps-4 py-1'>
+                                            <TextField
+                                                id={`${item?.fieldName}_area`}
+                                                name={`${item?.fieldName}_area`}
+                                                label=""
+                                                type='number'
+                                                fullWidth
+                                                size="small"
+                                                value={formik.values?.[`${item?.fieldName}_area`]}
+                                                onChange={formik.handleChange}
+                                                error={formik.touched?.[`${item?.fieldName}_area`] && Boolean(formik.errors?.[`${item?.fieldName}_area`])}
+                                                helperText={formik.touched?.[`${item?.fieldName}_area`] && formik.errors?.[`${item?.fieldName}_area`]}
+                                                inputProps={{ style: { color: 'white' } }}
+                                            />
+                                        </td>
+                                        <td className='ps-4 py-1'>
+                                            <TextField
+                                                id={item?.fieldName}
+                                                name={item?.fieldName}
+                                                label=""
+                                                fullWidth
+                                                size="small"
+                                                disabled
+                                                value={formik.values?.[item?.fieldName]}
+                                                onChange={formik.handleChange}
+                                                error={formik.touched?.[item?.fieldName] && Boolean(formik.errors?.[item?.fieldName])}
+                                                helperText={formik.touched?.[item?.fieldName] && formik.errors?.[item?.fieldName]}
+                                            />
+                                        </td>
                                     </tr>
                                 </>
                             ))}
                         </table>
-                        <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"end"} pt={2}>
+                        <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"} pt={2}>
                             <Stack direction={"row"} spacing={2}>
                                 <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                 <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
+                                <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                             </Stack>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                            <Typography>{`Total Production Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                            <Typography color="white">{`Total Production Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                         </Grid>
                         {/* <Grid item xs={12} sm={12} md={12} marginTop={3}>
                             <ul>

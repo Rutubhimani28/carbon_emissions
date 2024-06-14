@@ -20,12 +20,12 @@ export default function AccountPopover() {
       icon: 'eva:home-fill',
       path: "/dashboard/app"
     },
-    {
-      label: 'Profile',
-      icon: 'eva:person-fill',
-      path: `/dashboard/user/view/${user?._id}`,
-      state: { addButton: false }
-    },
+    // {
+    //   label: 'Profile',
+    //   icon: 'eva:person-fill',
+    //   path: `/dashboard/user/view/${user?._id}`,
+    //   state: { addButton: false }
+    // },
   ];
 
 

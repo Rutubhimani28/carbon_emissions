@@ -6,7 +6,7 @@ import Footer from '../../footer/footer'
 
 const Index = () => {
     return (
-        <div>
+        <div className='template-outer-theme'>
             <Banner />
             <Goal />
         </div>

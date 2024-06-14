@@ -101,10 +101,188 @@ const ContactUsForm = () => {
   };
 
   return (
+    // <div>
+    //   <Box>
+    //     <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+    //       <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+    //         <Grid container spacing={2} p={1} py={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+    //           <Grid item xs={12} sm={6}>
+    //             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+    //               First Name <span style={{ color: 'red' }}>*</span>
+    //             </FormLabel>
+    //             <TextField
+    //               name="firstName"
+    //               type="text"
+    //               size="small"
+    //               fullWidth
+    //               value={formik.values.firstName}
+    //               // placeholder="Enter Hear"
+    //               onChange={formik.handleChange}
+    //               onBlur={formik.handleBlur}
+    //               error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+    //               helperText={formik.touched.firstName && formik.errors.firstName}
+    //             />
+    //           </Grid>
+    //           <Grid item xs={12} sm={6}>
+    //             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+    //               Last Name <span style={{ color: 'red' }}>*</span>
+    //             </FormLabel>
+    //             <TextField
+    //               name="lastName"
+    //               type="text"
+    //               size="small"
+    //               fullWidth
+    //               value={formik.values.lastName}
+    //               // placeholder="Enter Hear"
+    //               onChange={formik.handleChange}
+    //               onBlur={formik.handleBlur}
+    //               error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+    //               helperText={formik.touched.lastName && formik.errors.lastName}
+    //             />
+    //           </Grid>
+    //           <Grid item xs={12} sm={6}>
+    //             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+    //               Organisation <span style={{ color: 'red' }}>*</span>
+    //             </FormLabel>
+    //             <TextField
+    //               name="organisation"
+    //               type="text"
+    //               size="small"
+    //               fullWidth
+    //               value={formik.values.organisation}
+    //               // placeholder="Enter Hear"
+    //               onChange={formik.handleChange}
+    //               onBlur={formik.handleBlur}
+    //               error={formik.touched.organisation && Boolean(formik.errors.organisation)}
+    //               helperText={formik.touched.organisation && formik.errors.organisation}
+    //             />
+    //           </Grid>
+    //           <Grid item xs={12} sm={6}>
+    //             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+    //               Designation <span style={{ color: 'red' }}>*</span>
+    //             </FormLabel>
+    //             <TextField
+    //               name="designation"
+    //               type="text"
+    //               size="small"
+    //               fullWidth
+    //               value={formik.values.designation}
+    //               // placeholder="Enter Hear"
+    //               onChange={formik.handleChange}
+    //               onBlur={formik.handleBlur}
+    //               error={formik.touched.designation && Boolean(formik.errors.designation)}
+    //               helperText={formik.touched.designation && formik.errors.designation}
+    //             />
+    //           </Grid>
+    //           <Grid item xs={12} sm={6}>
+    //             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+    //               Work Email <span style={{ color: 'red' }}>*</span>
+    //             </FormLabel>
+    //             <TextField
+    //               name="workEmail"
+    //               type="email"
+    //               size="small"
+    //               fullWidth
+    //               value={formik.values.workEmail}
+    //               // placeholder="Enter Hear"
+    //               onChange={formik.handleChange}
+    //               onBlur={formik.handleBlur}
+    //               error={formik.touched.workEmail && Boolean(formik.errors.workEmail)}
+    //               helperText={formik.touched.workEmail && formik.errors.workEmail}
+    //             />
+    //           </Grid>
+    //           <Grid item xs={12} sm={6}>
+    //             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+    //               Mobile <span style={{ color: 'red' }}>*</span>
+    //             </FormLabel>
+    //             <TextField
+    //               name="mobile"
+    //               type="text"
+    //               size="small"
+    //               fullWidth
+    //               value={formik.values.mobile}
+    //               // placeholder="Enter Hear"
+    //               onChange={formik.handleChange}
+    //               onBlur={formik.handleBlur}
+    //               error={formik.touched.mobile && Boolean(formik.errors.mobile)}
+    //               helperText={formik.touched.mobile && formik.errors.mobile}
+    //             />
+    //           </Grid>
+    //           <Grid item xs={12}>
+    //             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
+    //               Message <span style={{ color: 'red' }}>*</span>
+    //             </FormLabel>
+    //             <TextField
+    //               name="message"
+    //               multiline
+    //               rows={3}
+    //               size="small"
+    //               fullWidth
+    //               value={formik.values.message}
+    //               // placeholder="Enter Hear"
+    //               onChange={formik.handleChange}
+    //               onBlur={formik.handleBlur}
+    //               error={formik.touched.message && Boolean(formik.errors.message)}
+    //               helperText={formik.touched.message && formik.errors.message}
+    //             />
+    //             <FormHelperText>0 of 200 max words.</FormHelperText>
+    //           </Grid>
+    //           <Grid item xs={12}>
+    //             <p className="pt-2">
+    //               By submitting the above info, you acknowledge that you have read our{' '}
+    //               <Link style={{ color: '#4ABD43', textDecoration: 'none' }} to="/privacy-policy">
+    //                 {' '}
+    //                 Privacy Policy.
+    //               </Link>
+    //             </p>
+    //           </Grid>
+    //           <Grid item xs={5} sm={8}>
+    //             <Button
+    //               id="action"
+    //               // aria-haspopup="true"
+    //               variant="contained"
+    //               // color="secondary"
+    //               // disableElevation
+    //               onClick={formik.handleSubmit}
+    //               type="submit"
+    //               className='custom-btn'
+    //             >
+    //               {isLoading ? <CircularProgress size={27} /> : 'Submit'}
+    //             </Button>
+    //           </Grid>
+    //         </Grid>
+    //       </Grid>
+    //       <Grid item xs={12} sm={6}>
+    //         <InlineWidget url="https://calendly.com/fayiba2108/meet" />
+
+    //         {/* <button style={{ display: 'block', margin: '0 auto' }} onClick={() => setIsOpen(true)}>
+    //           Custom Button
+    //         </button> */}
+    //         <PopupModal
+    //           url="https://calendly.com/fayiba2108/meet"
+    //           pageSettings={pageSettings}
+    //           utm={utm}
+    //           prefill={prefill}
+    //           onModalClose={() => setIsOpen(false)}
+    //           open={isOpen}
+    //           rootElement={document.getElementById('root')}
+    //         />
+    //         {/* <PopupWidget
+    //           url="https://calendly.com/fayiba2108/meet"
+    //           rootElement={document.getElementById("root")}
+    //           text="schedule metting"
+    //           textColor="#ffffff"
+    //           color="#00a2ff"
+    //         /> */}
+    //       </Grid>
+    //     </Grid>
+    //   </Box>
+    // </div>
+
     <div>
       <Box>
-        <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='d-flex flex-column justify-content-center align-items-center'>
+          <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }} bgcolor={'white'} borderRadius={'5px'}>
             <Grid container spacing={2} p={1} py={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
               <Grid item xs={12} sm={6}>
                 <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
@@ -229,8 +407,8 @@ const ContactUsForm = () => {
               </Grid>
               <Grid item xs={12}>
                 <p className="pt-2">
-                  By submitting the above info, you acknowledge that you have read our{' '}
-                  <Link style={{ color: '#4ABD43', textDecoration: 'none' }} to="/privacy-policy">
+                  <span style={{ color: "black", fontSize: "14px" }}>By submitting the above info, you acknowledge that you have read our{' '}</span>
+                  <Link style={{ color: '#4ABD43', textDecoration: 'none', fontSize: "14px" }} to="/privacy-policy">
                     {' '}
                     Privacy Policy.
                   </Link>
@@ -252,28 +430,11 @@ const ContactUsForm = () => {
               </Grid>
             </Grid>
           </Grid>
+          {/* <Grid item xs={12} sm={6}> </Grid> */}
           <Grid item xs={12} sm={6}>
-            <InlineWidget url="https://calendly.com/fayiba2108/meet" />
-
-            {/* <button style={{ display: 'block', margin: '0 auto' }} onClick={() => setIsOpen(true)}>
-              Custom Button
-            </button> */}
-            <PopupModal
-              url="https://calendly.com/fayiba2108/meet"
-              pageSettings={pageSettings}
-              utm={utm}
-              prefill={prefill}
-              onModalClose={() => setIsOpen(false)}
-              open={isOpen}
-              rootElement={document.getElementById('root')}
-            />
-            {/* <PopupWidget
-              url="https://calendly.com/fayiba2108/meet"
-              rootElement={document.getElementById("root")}
-              text="schedule metting"
-              textColor="#ffffff"
-              color="#00a2ff"
-            /> */}
+            <span className="text-center pt-3 fontFamily w-bold fs-5 wow animate__animated animate__fadeInUp animate__slow">
+              You can directly email your queries to <Link to="mailto:askme@sirat.earth" style={{ color: "#4edceb", textDecoration: 'none' }}>askme@sirat.earth</Link>
+            </span>
           </Grid>
         </Grid>
       </Box>

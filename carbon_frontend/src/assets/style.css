@@ -2,7 +2,8 @@
 @import 'animate.css';
 
 .loader {
-  margin-top: 70px;
+  display: inline-block;
+  /* margin-top: 70px; */
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -16,7 +17,7 @@
   position: absolute;
   inset: 0px;
   border-radius: 50%;
-  border: 3px solid black;
+  border: 5px solid #07bc0c;
   animation: prixClipFix 2s linear infinite;
 }
 
@@ -81,4 +82,85 @@ p {
 
 .css-e5dh6b .MuiDataGrid-footerContainer {
   background-color: #f5f5f5 !important;
+}
+
+.tabImgZoomIn {
+  transition: transform 0.2s;
+}
+
+.tabImgZoomIn:hover {
+  transform: scale(1.2);
+}
+
+.tabImgWhite {
+  filter: invert(100%) grayscale(100%) brightness(3);
+}
+
+.tab-text,
+.tab-text:focus {
+  color: white !important;
+  font-size: 17px;
+}
+
+.table-custom-inpt-field {
+  color: white;
+}
+
+.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+  -webkit-text-fill-color: #fff;
+}
+
+.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input {
+  border: 1px solid white !important;
+  border-radius: 6px;
+}
+
+/* .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input:hover,
+.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input:focus {
+  border-color: white !important;
+} */
+
+/* .table-custom-inpt-field .css-1l5g511-MuiInputBase-root-MuiOutlinedInput-root {
+  border: 1px solid red !important;
+} */
+
+.custom-inner-bg {
+  background: #054723;
+}
+
+.custom-outer-bg {
+  /* background: #1f9e6d; */
+}
+
+.label-white {
+  color: white;
+}
+
+.tab-outer .css-heg063-MuiTabs-flexContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.table-custom-inpt-field .css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  border: 1px solid white !important;
+  border-radius: 6px;
+  color: white !important;
+}
+
+.template-inner-bg {
+  background: #054723;
+}
+
+.template-outer-theme {
+  background: #1f9e6d !important;
+  color: white !important;
+}
+
+.template-inner-theme {
+  background: #054723 !important;
+  /* color: white; */
+}
+
+.calendly-inline-widget {
+  height: 73vh !important;
 }

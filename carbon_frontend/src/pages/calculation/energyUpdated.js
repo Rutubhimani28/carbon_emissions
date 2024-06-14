@@ -1,13 +1,17 @@
-import { Delete } from '@mui/icons-material';
-import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
+import { useTheme } from '@emotion/react';
+import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
+import EnergyImg from '../../assets/Energy.png';
+import { IconDiv } from '../../components/IconDiv';
 import { addEnergyData, deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 
-const EnergyUpdated = () => {
-
+const EnergyUpdated = (props) => {
+    const { setValue, value } = props;
+    const theme = useTheme();
     const dispatch = useDispatch();
 
     const allData = useSelector((state) => state?.totalEnergyUpdatedDetails?.data[0]?.data)
@@ -20,11 +24,11 @@ const EnergyUpdated = () => {
 
     // -----------   initialValues
     const initialValues = {
-        kwh: '',
+        kwh: 0,
         emissionOne: 0,
-        gallonsOne: '',
+        gallonsOne: 0,
         emissionTwo: 0,
-        gallonsTwo: '',
+        gallonsTwo: 0,
         emissionThree: 0,
     };
 
@@ -39,17 +43,17 @@ const EnergyUpdated = () => {
                 {
                     type: 'Electricity',
                     kwh: values?.kwh,
-                    emission: parseFloat((values?.kwh * 0.43).toFixed(2)) || 0
+                    emission: Number((values?.kwh * 0.43).toFixed(2)) || 0
                 },
                 {
                     type: 'Petrol',
                     gallonsOne: values?.gallonsOne,
-                    emission: parseFloat((values?.gallonsOne * 0.0089).toFixed(2)) || 0
+                    emission: Number((values?.gallonsOne * 0.0089).toFixed(2)) || 0
                 },
                 {
                     type: 'Diesel',
                     gallonsTwo: values?.gallonsTwo,
-                    emission: parseFloat((values?.gallonsTwo * 10.18).toFixed(2)) || 0
+                    emission: Number((values?.gallonsTwo * 10.18).toFixed(2)) || 0
                 }
             ];
             dispatch(addEnergyData({ data }))
@@ -65,22 +69,25 @@ const EnergyUpdated = () => {
             formik.setFieldValue("gallonsTwo", allData[2]?.gallonsTwo)
             formik.setFieldValue("emissionThree", allData[2]?.emission)
         }
-    }, [allData])
+    }, [value])
 
     const handeleDelete = () => {
         dispatch(deleteEnergyData())
     }
 
-
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4'>
-                    <Box>
+                <Card className='p-4 custom-inner-bg'>
+                    <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                        <IconDiv>
+                            <img src={EnergyImg} alt="Energy" width={100} />
+                        </IconDiv>
                         <Grid
                             container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
+                            style={{ display: 'flex', justifyContent: 'center' }}
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
@@ -88,7 +95,7 @@ const EnergyUpdated = () => {
                                     Electricity
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Kwh</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Kwh</FormLabel>
                                     <TextField
                                         id="kwh"
                                         name="kwh"
@@ -104,10 +111,11 @@ const EnergyUpdated = () => {
                                         helperText={
                                             formik.touched.kwh && formik.errors.kwh
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -132,7 +140,7 @@ const EnergyUpdated = () => {
                                     Petrol
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Gallons</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
                                     <TextField
                                         id="gallonsOne"
                                         name="gallonsOne"
@@ -148,10 +156,11 @@ const EnergyUpdated = () => {
                                         helperText={
                                             formik.touched.gallonsOne && formik.errors.gallonsOne
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -176,7 +185,7 @@ const EnergyUpdated = () => {
                                     Diesel
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Gallons</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
                                     <TextField
                                         id="gallonsTwo"
                                         name="gallonsTwo"
@@ -192,10 +201,11 @@ const EnergyUpdated = () => {
                                         helperText={
                                             formik.touched.gallonsTwo && formik.errors.gallonsTwo
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -216,10 +226,11 @@ const EnergyUpdated = () => {
                                 </Grid>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"flex-end"}>
+                           <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                 </Stack>
 
                             </Grid>
@@ -231,7 +242,7 @@ const EnergyUpdated = () => {
                                     {
                                         allData?.length > 0 && allData?.map((item) => (
 
-                                            <li>
+                                            <li style={{ color: 'white' }}>
                                                 {`${item?.type} : ${item?.emission} tons of kgCO2e`}
                                             </li>
                                         ))
