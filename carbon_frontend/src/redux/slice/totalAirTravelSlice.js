@@ -20,8 +20,19 @@ const totalAirTravelSlice = createSlice({
                     state.data.push(newItem);
                 }
             });
+
             // Recalculate totalEmission
-            state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
+            let totalEmission = 0;
+            state.data[0].data.forEach((item) => {
+                if (item.type === "Economy Class") {
+                    totalEmission += item.emissionOne + item.emissionTwo + item.emissionThree;
+                } else if (item.type === "Business Class") {
+                    totalEmission += item.emissionFour + item.emissionFive + item.emissionSix;
+                } else if (item.type === "First Class") {
+                    totalEmission += item.emissionSeven + item.emissionEight + item.emissionNine;
+                }
+            });
+            state.totalEmission = totalEmission;
         },
         deleteAirTravelData: (state, action) => ({
             ...state,
