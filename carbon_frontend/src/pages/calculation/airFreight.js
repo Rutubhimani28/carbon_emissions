@@ -27,7 +27,7 @@ const AirFreight = (props) => {
     const initialValues = {
         noOfKms: 0,
         weightInKgs: 0,
-        ef: 0,
+        ef: 0.15,
         emission: 0
     };
 
