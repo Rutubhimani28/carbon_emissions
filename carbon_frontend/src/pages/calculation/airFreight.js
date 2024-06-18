@@ -165,7 +165,7 @@ const AirFreight = (props) => {
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
                                 <Typography color='white'>{`Total Air Freight Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                             </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                            {/* <Grid item xs={12} sm={12} md={12} marginTop={3}>
                                 <ul>
                                     {
                                         allData?.length > 0 && allData?.map((item, index) => (
@@ -176,7 +176,7 @@ const AirFreight = (props) => {
                                         ))
                                     }
                                 </ul>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </Box>
                 </Card>

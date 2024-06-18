@@ -223,7 +223,7 @@ const LocalTranspotation = (props) => {
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Electric Car </td>
-                                                <td className='ps-3 py-1'><TextField size='small' type="number" name='electricCarKms' value={formik?.values?.electricCarKms} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='electricCarKms' value={formik?.values?.electricCarKms} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='electricCarNoPasse' value={formik?.values?.electricCarNoPasse} onChange={formik.handleChange} inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} /></td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='electricCarEmission' value={formik?.values?.electricCarEmission} onChange={formik.handleChange} /></td>
                                             </tr>
