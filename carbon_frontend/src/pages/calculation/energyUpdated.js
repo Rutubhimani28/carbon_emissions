@@ -24,26 +24,34 @@ const EnergyUpdated = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        kwh: 0,
+        kwh: 0,             // Electricity
         emissionOne: 0,
-        gallonsOne: 0,
+        gallonsOne: 0,      // Gas
         emissionTwo: 0,
-        gallonsTwo: 0,
+        gallonsTwo: 0,      // Petrol
         emissionThree: 0,
+        gasKwh: 0,          // Diesel
+        emissionFour: 0,
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
             formik.setFieldValue('emissionOne', values?.kwh * 0.43);
-            formik.setFieldValue('emissionTwo', values?.gallonsOne * 0.0089);
-            formik.setFieldValue('emissionThree', values?.gallonsTwo * 10.18);
+            formik.setFieldValue('emissionTwo', values?.gasKwh * 0.18316);
+            formik.setFieldValue('emissionThree', values?.gallonsOne * 0.0089);
+            formik.setFieldValue('emissionFour', values?.gallonsTwo * 10.18);
 
             const data = [
                 {
                     type: 'Electricity',
                     kwh: values?.kwh,
                     emission: Number((values?.kwh * 0.43).toFixed(2)) || 0
+                },
+                {
+                    type: 'Gas',
+                    kwh: values?.gasKwh,
+                    emission: Number((values?.gasKwh * 0.18316).toFixed(2)) || 0
                 },
                 {
                     type: 'Petrol',
@@ -64,10 +72,12 @@ const EnergyUpdated = (props) => {
         if (allData?.length > 0) {
             formik.setFieldValue("kwh", allData[0]?.kwh)
             formik.setFieldValue("emissionOne", allData[0]?.emission)
-            formik.setFieldValue("gallonsOne", allData[1]?.gallonsOne)
+            formik.setFieldValue("gasKwh", allData[1]?.gasKwh)
             formik.setFieldValue("emissionTwo", allData[1]?.emission)
-            formik.setFieldValue("gallonsTwo", allData[2]?.gallonsTwo)
+            formik.setFieldValue("gallonsOne", allData[2]?.gallonsOne)
             formik.setFieldValue("emissionThree", allData[2]?.emission)
+            formik.setFieldValue("gallonsTwo", allData[3]?.gallonsTwo)
+            formik.setFieldValue("emissionFour", allData[3]?.emission)
         }
     }, [value])
 
@@ -90,8 +100,8 @@ const EnergyUpdated = (props) => {
                             style={{ display: 'flex', justifyContent: 'center' }}
                         >
 
-                            <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                            <Grid item xs={12} sm={6} md={6}>
+                                <Typography variant='h6' className="text-center">
                                     Electricity
                                 </Typography>
                                 <Grid mt={2}>
@@ -135,26 +145,26 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
-                                    Petrol
+                            <Grid item xs={12} sm={6} md={6}>
+                                <Typography variant='h6' className="text-center">
+                                    Gas
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Kwh</FormLabel>
                                     <TextField
-                                        id="gallonsOne"
-                                        name="gallonsOne"
+                                        id="gasKwh"
+                                        name="gasKwh"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.gallonsOne}
+                                        value={formik.values.gasKwh}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.gallonsOne &&
-                                            Boolean(formik.errors.gallonsOne)
+                                            formik.touched.gasKwh &&
+                                            Boolean(formik.errors.gasKwh)
                                         }
                                         helperText={
-                                            formik.touched.gallonsOne && formik.errors.gallonsOne
+                                            formik.touched.gasKwh && formik.errors.gasKwh
                                         }
                                         inputProps={{ style: { color: 'white' } }}
                                     />
@@ -180,26 +190,26 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
-                                    Diesel
+                            <Grid item xs={12} sm={6} md={6}>
+                                <Typography variant='h6' className="text-center">
+                                    Petrol Generator
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
                                     <TextField
-                                        id="gallonsTwo"
-                                        name="gallonsTwo"
+                                        id="gallonsOne"
+                                        name="gallonsOne"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.gallonsTwo}
+                                        value={formik.values.gallonsOne}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.gallonsTwo &&
-                                            Boolean(formik.errors.gallonsTwo)
+                                            formik.touched.gallonsOne &&
+                                            Boolean(formik.errors.gallonsOne)
                                         }
                                         helperText={
-                                            formik.touched.gallonsTwo && formik.errors.gallonsTwo
+                                            formik.touched.gallonsOne && formik.errors.gallonsOne
                                         }
                                         inputProps={{ style: { color: 'white' } }}
                                     />
@@ -225,8 +235,53 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                             </Grid>
+                            <Grid item xs={12} sm={6} md={6}>
+                                <Typography variant='h6' className="text-center">
+                                    Diesel Generator
+                                </Typography>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
+                                    <TextField
+                                        id="gallonsTwo"
+                                        name="gallonsTwo"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        value={formik.values.gallonsTwo}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.gallonsTwo &&
+                                            Boolean(formik.errors.gallonsTwo)
+                                        }
+                                        helperText={
+                                            formik.touched.gallonsTwo && formik.errors.gallonsTwo
+                                        }
+                                        inputProps={{ style: { color: 'white' } }}
+                                    />
+                                </Grid>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <TextField
+                                        id="emissionFour"
+                                        name="emissionFour"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        disabled
+                                        value={formik.values.emissionFour}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.emissionFour &&
+                                            Boolean(formik.errors.emissionFour)
+                                        }
+                                        helperText={
+                                            formik.touched.emissionFour && formik.errors.emissionFour
+                                        }
+                                    />
+                                </Grid>
+                            </Grid>
 
-                           <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>

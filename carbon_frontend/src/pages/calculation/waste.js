@@ -33,25 +33,29 @@ const Waste = (props) => {
         bottleThreeEmission: 0,
         hdpeBanner: 0,
         pvcBanners: 0,
-        badgeHolders: 0,
+        cottonBanner: 0,
+        plasticBadgeHolders: 0,
         hdpeBannerEmission: 0,
         pvcBannersEmission: 0,
-        badgeHoldersEmission: 0,
+        cottonBannerEmission: 0,
+        plasticBadgeHoldersEmission: 0,
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('foodEmission', (0.58 * values?.foodKg).toFixed(2));
-            formik.setFieldValue('mixedRecyclablesEmission', (0.09 * values?.mixedRecyclablesKg).toFixed(2));
-            formik.setFieldValue('municipalSolidWasteEmission', (0.52 * values?.municipalSolidWasteKg).toFixed(2));
-            formik.setFieldValue('waterEmission', (0.272 * values?.water).toFixed(2));
-            formik.setFieldValue('bottleOneEmission', (values?.bottleOne * 6.42 * 0.00279).toFixed(2));
-            formik.setFieldValue('bottleTwoEmission', (values?.bottleTwo * 13 * 0.00279).toFixed(2));
-            formik.setFieldValue('bottleThreeEmission', (values?.bottleThree * 21.5 * 0.00279).toFixed(2));
-            formik.setFieldValue('hdpeBannerEmission', (3.11 * values?.hdpeBanner).toFixed(2));
-            formik.setFieldValue('pvcBannersEmission', (7.83 * values?.pvcBanners).toFixed(2));
-            formik.setFieldValue('badgeHoldersEmission', (22.74 * values?.badgeHolders).toFixed(2));
+            formik.setFieldValue('foodEmission', Number(0.58 * values?.foodKg).toFixed(2));
+            formik.setFieldValue('mixedRecyclablesEmission', Number(0.09 * values?.mixedRecyclablesKg).toFixed(2));
+            formik.setFieldValue('municipalSolidWasteEmission', Number(0.52 * values?.municipalSolidWasteKg).toFixed(2));
+            formik.setFieldValue('waterEmission', Number(0.272 * values?.water).toFixed(2));
+            formik.setFieldValue('bottleOneEmission', Number(values?.bottleOne * 6.42 * 0.00279).toFixed(2));
+            formik.setFieldValue('bottleTwoEmission', Number(values?.bottleTwo * 13 * 0.00279).toFixed(2));
+            formik.setFieldValue('bottleThreeEmission', Number(values?.bottleThree * 21.5 * 0.00279).toFixed(2));
+            formik.setFieldValue('hdpeBannerEmission', Number(3.11 * values?.hdpeBanner).toFixed(2));
+            formik.setFieldValue('pvcBannersEmission', Number(7.83 * values?.pvcBanners).toFixed(2));
+            formik.setFieldValue('cottonBannerEmission', Number(14.5 * values?.cottonBanner).toFixed(2));
+            formik.setFieldValue('plasticBadgeHoldersEmission', Number(4.2 * values?.plasticBadgeHolders).toFixed(2));
+
 
             const data = [
                 {
@@ -90,7 +94,7 @@ const Waste = (props) => {
                     emission: Number((values?.bottleThree * 21.5 * 0.00279).toFixed(2)) || 0
                 },
                 {
-                    type: 'PVCHDPEBanner',
+                    type: 'PolethyleneHDPEBanner',
                     hdpeBanner: values?.hdpeBanner,
                     emission: Number((3.11 * values?.hdpeBanner).toFixed(2)) || 0
                 },
@@ -100,11 +104,15 @@ const Waste = (props) => {
                     emission: Number((7.83 * values?.pvcBanners).toFixed(2)) || 0
                 },
                 {
-                    type: 'badgeholders',
-                    badgeHolders: values?.badgeHolders,
-                    emission: Number((22.74 * values?.badgeHolders).toFixed(2)) || 0
+                    type: 'CottonBanner',
+                    cottonBanner: values?.cottonBanner,
+                    emission: Number((14.5 * values?.cottonBanner).toFixed(2)) || 0
                 },
-
+                {
+                    type: 'PlasticBadgeHolders',
+                    plasticBadgeHolders: values?.plasticBadgeHolders,
+                    emission: Number((4.2 * values?.plasticBadgeHolders).toFixed(2)) || 0
+                },
             ];
             dispatch(addWasteData({ data }))
         },
@@ -137,8 +145,10 @@ const Waste = (props) => {
             formik.setFieldValue("hdpeBannerEmission", allData[7]?.emission)
             formik.setFieldValue("pvcBanners", allData[8]?.pvcBanners)
             formik.setFieldValue("pvcBannersEmission", allData[8]?.emission)
-            formik.setFieldValue("badgeHolders", allData[9]?.badgeHolders)
-            formik.setFieldValue("badgeHoldersEmission", allData[9]?.emission)
+            formik.setFieldValue("cottonBanner", allData[9]?.cottonBanner)
+            formik.setFieldValue("cottonBannerEmission", allData[9]?.emission)
+            formik.setFieldValue("plasticBadgeHolders", allData[10]?.plasticBadgeHolders)
+            formik.setFieldValue("plasticBadgeHoldersEmission", allData[10]?.emission)
         }
     }, [value])
 
@@ -244,7 +254,8 @@ const Waste = (props) => {
                                                 <th className='ps-2'>Emission (kg CO2e)</th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>PVC HDPE Banner</td>
+                                                {/* <td className='ps-2 py-1'>PVC HDPE Banner</td> */}
+                                                <td className='ps-2 py-1'>Polethylene HDPE Banner</td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='hdpeBanner' value={formik?.values?.hdpeBanner} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='hdpeBannerEmission' value={formik?.values?.hdpeBannerEmission} onChange={formik.handleChange} /></td>
                                             </tr>
@@ -254,9 +265,14 @@ const Waste = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='pvcBannersEmission' value={formik?.values?.pvcBannersEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>badge holders</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='badgeHolders' value={formik?.values?.badgeHolders} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='badgeHoldersEmission' value={formik?.values?.badgeHoldersEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'>Cotton Banner</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='cottonBanner' value={formik?.values?.cottonBanner} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='cottonBannerEmission' value={formik?.values?.cottonBannerEmission} onChange={formik.handleChange} disabled /></td>
+                                            </tr>
+                                            <tr>
+                                                <td className='ps-2 py-1'>Plastic Badge Holders (Polycorbonate)</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='plasticBadgeHolders' value={formik?.values?.plasticBadgeHolders} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='plasticBadgeHoldersEmission' value={formik?.values?.plasticBadgeHoldersEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                         </table>
                                     </div>
