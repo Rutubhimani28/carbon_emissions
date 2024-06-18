@@ -37,7 +37,7 @@ const DigitalContent = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', values?.count * 13 / 1000);
+            formik.setFieldValue('emissionOne', values?.count * 4 / 1000);
             formik.setFieldValue('emissionTwo', values?.MB * 50 / 1000);
             const emission = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
             formik.setFieldValue('emissionThree', emission || 0);
@@ -46,7 +46,7 @@ const DigitalContent = (props) => {
                 {
                     type: 'Emails',
                     count: values?.count,
-                    emission: Number((values?.count * 13 / 1000).toFixed(2))
+                    emission: Number((values?.count * 4 / 1000).toFixed(2))
                 },
                 {
                     type: 'Attachment',
