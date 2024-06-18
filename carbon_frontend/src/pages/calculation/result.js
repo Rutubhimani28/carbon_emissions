@@ -29,28 +29,8 @@ const Result = () => {
 
     const resultData = [
         {
-            type: 'Production',
-            totalEmission: allProductionData?.totalEmission
-        },
-        {
-            type: 'Logistics',
-            totalEmission: allFreightData?.totalEmission
-        },
-        {
-            type: 'Food',
-            totalEmission: allFoodData?.totalEmission
-        },
-        {
-            type: 'Energy',
-            totalEmission: allEnergyData?.totalEmission
-        },
-        {
             type: 'Air Travel',
             totalEmission: allAirTravelData?.totalEmission
-        },
-        {
-            type: 'Digital',
-            totalEmission: allDigitalContentData?.totalEmission
         },
         {
             type: 'Local Transportation',
@@ -61,35 +41,54 @@ const Result = () => {
             totalEmission: allHotelData?.totalEmission
         },
         {
+            type: 'Food',
+            totalEmission: allFoodData?.totalEmission
+        },
+        {
+            type: 'Logistics',
+            totalEmission: allFreightData?.totalEmission
+        },
+        {
+            type: 'Event Production',
+            totalEmission: allProductionData?.totalEmission
+        },
+        {
+            type: 'Energy',
+            totalEmission: allEnergyData?.totalEmission
+        },
+        {
+            type: 'Digital',
+            totalEmission: allDigitalContentData?.totalEmission
+        },
+        {
             type: 'Waste',
             totalEmission: allWasteData?.totalEmission
         },
     ]
 
     const data = {
-        "totalWaste": allWasteData?.totalEmission,
-        "totalAccomodation": "0",
-        "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
-        "totalDIgitalContent": allDigitalContentData?.totalEmission,
         "totalAirTravel": allAirTravelData?.totalEmission,
-        "totalEnergyUpdated": allEnergyData?.totalEmission,
+        "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
+        "totalHotel": allHotelData?.totalEmission,
         "totalFood": allFoodData?.totalEmission,
         "totalAirFreight": allFreightData?.totalEmission,
         "totlaProduction": allProductionData?.totalEmission,
-        "totalHotel": allHotelData?.totalEmission,
+        "totalEnergyUpdated": allEnergyData?.totalEmission,
+        "totalDIgitalContent": allDigitalContentData?.totalEmission,
+        "totalWaste": allWasteData?.totalEmission,
         "grandTotal": total
     }
 
     const handeleDelete = () => {
-        dispatch(deleteProductionData())
-        dispatch(deleteData())
-        dispatch(deleteAirFreightData())
-        dispatch(deleteEnergyData())
-        dispatch(deleteFoodData())
-        dispatch(deleteWasteData())
-        dispatch(deleteLocalTranspotationData())
         dispatch(deleteAirTravelData())
+        dispatch(deleteLocalTranspotationData())
         dispatch(deleteHotelData())
+        dispatch(deleteFoodData())
+        dispatch(deleteAirFreightData())
+        dispatch(deleteProductionData())
+        dispatch(deleteEnergyData())
+        dispatch(deleteData())
+        dispatch(deleteWasteData())
     }
     return (
         <div>
