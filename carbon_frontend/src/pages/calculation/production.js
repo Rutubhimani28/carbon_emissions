@@ -64,7 +64,7 @@ const Production = (props) => {
             console.log(values, "values")
 
             const data = fileldData?.map((item) => {
-                const emission = ((values?.[`${item?.fieldName}_area`] * item?.ef) || 0)
+                const emission = (Number((values?.[`${item?.fieldName}_area`] * item?.ef).toFixed(2)) || 0)
                 formik.setFieldValue(item?.fieldName, emission.toFixed(2))
                 return ({
                     type: item?.name,
