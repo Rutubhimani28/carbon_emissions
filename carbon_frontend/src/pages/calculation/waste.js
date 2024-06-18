@@ -211,6 +211,7 @@ const Waste = (props) => {
                                             </tr>
                                         </table>
                                     </div>
+                                    <Typography className='text-white mt-3 ms-3'>*area= Area of the event hall in cubic meters</Typography>
                                 </Box>
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
