@@ -14,7 +14,6 @@ const productionSlice = createSlice({
                 const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
                 if (existingItemIndex !== -1) {
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
-                    console.log(state.data[existingItemIndex]);
                 } else {
                     state.data.push(newItem);
                 }
