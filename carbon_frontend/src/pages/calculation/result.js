@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SendMail from './sendMail';
 import { deleteData } from '../../redux/slice/totalDigitalContSlice';
-import { deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
+import { deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
 import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
 import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
@@ -84,7 +84,7 @@ const Result = () => {
         dispatch(deleteLocalTranspotationData())
         dispatch(deleteHotelData())
         dispatch(deleteFoodData())
-        dispatch(deleteAirFreightData())
+        dispatch(deleteLogisticsData())
         dispatch(deleteProductionData())
         dispatch(deleteEnergyData())
         dispatch(deleteData())

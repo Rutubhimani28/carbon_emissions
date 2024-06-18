@@ -4,9 +4,8 @@ import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import * as yup from "yup";
 import { IconDiv } from '../../components/IconDiv';
-import { addAirFreightData, deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
+import { addLogisticsData, deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
 import LogisticsImg from '../../assets/Logistics.png'
 
 const AirFreight = (props) => {
@@ -17,274 +16,121 @@ const AirFreight = (props) => {
     const allData = useSelector((state) => state?.totalAirFreightDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirFreightDetails?.totalEmission);
 
-    // -----------  validationSchema
-    const validationSchema = yup.object({
-        noOfKms: yup.number().required("No of Kms is required"),
-        weightInKgs: yup.number().required("Weight is required"),
-    });
-
     // -----------   initialValues
     const initialValues = {
-        noOfKms: 0,
-        weightInKgs: 0,
-        ef: 0.15,
-        emission: 0
+        noOfKmsOne: 0,
+        noOfKmsTwo: 0,
+        kgsOne: 0,
+        kgsTwo: 0,
+        efOne: 0.005,
+        efTwo: 0.18,
+        emissionOne: 0,
+        emissionTwo: 0
     };
 
     const formik = useFormik({
         initialValues,
-        // validationSchema,
         onSubmit: async (values) => {
 
-            const ef = 0.15;
-            formik.setFieldValue('ef', ef || 0);
+            const emissionOne = values?.noOfKmsOne === 0 || values?.kgsOne === 0 ? 0 : Number((values?.noOfKmsOne * values?.kgsOne * values?.efOne).toFixed(2));
+            const emissionTwo = values?.noOfKmsTwo === 0 || values?.kgsTwo === 0 ? 0 : Number((values?.noOfKmsTwo * values?.kgsTwo * values?.efTwo).toFixed(2));
 
-            const emission = Number(values?.noOfKms) * Number(values?.weightInKgs) * Number(ef);
-            formik.setFieldValue('emission', emission || 0);
+            formik.setFieldValue('emissionOne', emissionOne);
+            formik.setFieldValue('emissionTwo', emissionTwo);
 
             const data = [
                 {
-                    type: 'Air Freight',
-                    noOfKms: values?.noOfKms,
-                    weightInKgs: values?.weightInKgs,
-                    ef,
-                    emission,
+                    type: 'Air',
+                    noOfKmsOne: values?.noOfKmsOne,
+                    kgsOne: values?.kgsOne,
+                    efOne: values?.efOne,
+                    emission: emissionOne
+                },
+                {
+                    type: 'Road',
+                    noOfKmsOne: values?.road,
+                    kgsTwo: values?.kgsTwo,
+                    efOne: values?.efTwo,
+                    emission: emissionTwo,
                 }
             ];
 
-            dispatch(addAirFreightData({ data }));
+            dispatch(addLogisticsData({ data }));
         },
     });
 
     const handeleDelete = () => {
-        dispatch(deleteAirFreightData());
+        dispatch(deleteLogisticsData());
     }
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("emission", allData[0]?.emission);
-            formik.setFieldValue("noOfKms", allData[0]?.noOfKms);
-            formik.setFieldValue("weightInKgs", allData[0]?.weightInKgs);
-            formik.setFieldValue("ef", allData[0]?.ef);
+            formik.setFieldValue("emissionOne", allData[0]?.emissionOne);
+            formik.setFieldValue("emissionTwo", allData[0]?.emissionTwo);
+            formik.setFieldValue("noOfKmsOne", allData[0]?.noOfKmsOne);
+            formik.setFieldValue("noOfKmsTwo", allData[0]?.noOfKmsTwo);
+            formik.setFieldValue("kgsOne", allData[0]?.kgsOne);
+            formik.setFieldValue("kgsTwo", allData[0]?.kgsTwo);
+            formik.setFieldValue("efOne", allData[0]?.efOne);
+            formik.setFieldValue("efTwo", allData[0]?.efTwo);
         }
     }, [value])
 
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4 custom-inner-bg' style={{ position: "relative", padding: '20px', display: 'flex', justifyContent: 'center', alignItems: "center", flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }}>
+                <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column' }}>
                     <IconDiv>
-                        <img width={100} src={LogisticsImg} alt="AirTravel" />
+                        <img width={100} src={LogisticsImg} alt="Food" />
                     </IconDiv>
-                    <Box width={useMediaQuery(theme.breakpoints.up('lg')) ? "50%" : "100%"}>
-                        <Grid
-                            container
-                            rowSpacing={3}
-                            columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-                            className='table-custom-inpt-field'
-                        >
+                    <Box>
+                        <div className='table-responsive'>
+                            <table className='table-custom-inpt-field'>
+                                <tr>
+                                    <th>Mode of Transport</th>
+                                    <th className='ps-2'>No of Kms</th>
+                                    <th className='ps-2'>Weight in Kgs</th>
+                                    <th className='ps-2'>Emission (kgCO2e)</th>
+                                </tr>
+                                <tr>
+                                    <td className='ps-2 py-1'>Air</td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfKmsOne' value={formik?.values?.noOfKmsOne} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='kgsOne' value={formik?.values?.kgsOne} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
+                                </tr>
+                                <tr>
+                                    <td className='ps-2 py-1'>Road</td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfKmsTwo' value={formik?.values?.noOfKmsTwo} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='kgsTwo' value={formik?.values?.kgsTwo} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"} mt={3}>
+                            <Stack direction={"row"} spacing={2}>
+                                <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
+                                <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
+                                <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
+                            <Typography className='mt-3 text-white'>Lunch, Dinner, High Tea for one day per person = {totalEmission}</Typography>
+                        </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
-                                <Typography variant='h6'>
-                                    Air Freight
-                                </Typography>
-                                <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No of Kms</FormLabel>
-                                    <TextField
-                                        id="noOfKms"
-                                        name="noOfKms"
-                                        label=""
-                                        type='number'
-                                        fullWidth
-                                        size="small"
-                                        value={formik.values.noOfKms}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.noOfKms &&
-                                            Boolean(formik.errors.noOfKms)
-                                        }
-                                        helperText={
-                                            formik.touched.noOfKms && formik.errors.noOfKms
-                                        }
-                                        inputProps={{ style: { color: 'white' } }}
-                                    />
-                                </Grid>
-                                <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Weight (Kgs)</FormLabel>
-                                    <TextField
-                                        id="weightInKgs"
-                                        name="weightInKgs"
-                                        label=""
-                                        type='number'
-                                        fullWidth
-                                        size="small"
-                                        value={formik.values.weightInKgs}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.weightInKgs &&
-                                            Boolean(formik.errors.weightInKgs)
-                                        }
-                                        helperText={
-                                            formik.touched.weightInKgs && formik.errors.weightInKgs
-                                        }
-                                        inputProps={{ style: { color: 'white' } }}
-                                    />
-                                </Grid>
-                                <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
-                                    <TextField
-                                        id="emission"
-                                        name="emission"
-                                        label=""
-                                        type='number'
-                                        fullWidth
-                                        size="small"
-                                        disabled
-                                        value={formik.values.emission}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.emission &&
-                                            Boolean(formik.errors.emission)
-                                        }
-                                        helperText={
-                                            formik.touched.emission && formik.errors.emission
-                                        }
-                                        inputProps={{ style: { color: 'white' } }}
-                                    />
-                                </Grid>
-                            </Grid>
+                        <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
+                            <ul>
+                                {
+                                    allData?.length > 0 && allData?.map((item) => (
 
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate And Add To Footprint</Button>
-                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
-                                </Stack>
-
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Air Freight Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
-                            </Grid>
-                            {/* <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <ul>
-                                    {
-                                        allData?.length > 0 && allData?.map((item, index) => (
-                                            <li style={{ color: 'white' }}>
-                                                {`${item?.type} : ${item?.emission} tons of kgCO2e`}
-                                            </li>
-
-                                        ))
-                                    }
-                                </ul>
-                            </Grid> */}
+                                        <li style={{ color: 'white' }}>
+                                            {`${item?.type} : ${item?.emission} tons of kgCO2e`}
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </Grid>
                     </Box>
                 </Card>
-
-                {/* <Card style={{ padding: "20px", display: "flex", justifyContent: "center" }} className='custom-inner-bg'>
-                    <Grid
-                        container
-                        rowSpacing={3}
-                        columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-                        className='table-custom-inpt-field'
-                    >
-                        // </Grid><Grid item xs={12} sm={5} md={5} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> 
-                        <Grid item xs={12} sm={5} md={5}>
-                            // <img src={Logistics} alt='Logistics.png' style={{ height: '100px', maxWidth: '100%', margin: 'auto' }} />
-                            <img src={Logistics} alt='Logistics.png' style={{ height: '100px', maxWidth: '100%' }} />
-                        </Grid>
-                        <Grid item xs={12} sm={7} md={7}>
-                            <Typography variant='h6' color='white'>
-                                Air Freight
-                            </Typography>
-                            <Grid mt={2}>
-                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No of Kms</FormLabel>
-                                <TextField
-                                    id="noOfKms"
-                                    name="noOfKms"
-                                    label=""
-                                    type='number'
-                                    fullWidth
-                                    size="small"
-                                    value={formik.values.noOfKms}
-                                    onChange={formik.handleChange}
-                                    error={
-                                        formik.touched.noOfKms &&
-                                        Boolean(formik.errors.noOfKms)
-                                    }
-                                    helperText={
-                                        formik.touched.noOfKms && formik.errors.noOfKms
-                                    }
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                            </Grid>
-                            <Grid mt={2}>
-                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Weight (Kgs)</FormLabel>
-                                <TextField
-                                    id="weightInKgs"
-                                    name="weightInKgs"
-                                    label=""
-                                    type='number'
-                                    fullWidth
-                                    size="small"
-                                    value={formik.values.weightInKgs}
-                                    onChange={formik.handleChange}
-                                    error={
-                                        formik.touched.weightInKgs &&
-                                        Boolean(formik.errors.weightInKgs)
-                                    }
-                                    helperText={
-                                        formik.touched.weightInKgs && formik.errors.weightInKgs
-                                    }
-                                    inputProps={{ style: { color: 'white' } }}
-                                />
-                            </Grid>
-                            <Grid mt={2}>
-                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
-                                <TextField
-                                    id="emission"
-                                    name="emission"
-                                    label=""
-                                    type='number'
-                                    fullWidth
-                                    size="small"
-                                    disabled
-                                    value={formik.values.emission}
-                                    onChange={formik.handleChange}
-                                    error={
-                                        formik.touched.emission &&
-                                        Boolean(formik.errors.emission)
-                                    }
-                                    helperText={
-                                        formik.touched.emission && formik.errors.emission
-                                    }
-                                />
-                            </Grid>
-                            <Stack direction={"row"} spacing={2} mt={2}>
-                                <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate And Add To Footprint</Button>
-                                <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
-                                <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
-                            </Stack>
-
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Air Freight Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <ul>
-                                    {
-                                        allData?.length > 0 && allData?.map((item, index) => (
-                                            <li>
-                                                {`${item?.type} : ${item?.emission} tons of kgCO2e`}
-                                            </li>
-
-                                        ))
-                                    }
-                                </ul>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Card> */}
-
             </Container>
         </div>
     )
