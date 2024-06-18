@@ -100,7 +100,7 @@ const EnergyUpdated = (props) => {
                             style={{ display: 'flex', justifyContent: 'center' }}
                         >
 
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={12} sm={5} md={5}>
                                 <Typography variant='h6' className="text-center">
                                     Electricity
                                 </Typography>
@@ -145,7 +145,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={12} sm={5} md={5}>
                                 <Typography variant='h6' className="text-center">
                                     Gas
                                 </Typography>
@@ -190,7 +190,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={12} sm={5} md={5}>
                                 <Typography variant='h6' className="text-center">
                                     Petrol Generator
                                 </Typography>
@@ -235,7 +235,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={12} sm={5} md={5}>
                                 <Typography variant='h6' className="text-center">
                                     Diesel Generator
                                 </Typography>

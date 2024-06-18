@@ -189,7 +189,7 @@ const Hotel = (props) => {
                             columnSpacing={{ xs: 0, sm: 5, md: 5 }}
                             style={{ justifyContent: 'center' }}
                         >
-                            <Grid item xs={12} sm={4} md={4}>
+                            <Grid item xs={12} sm={5} md={5}>
                                 <Typography variant='h6'>
                                     Hotel
                                 </Typography>
@@ -324,7 +324,7 @@ const Hotel = (props) => {
                                     </div>
                                 </Box>
                             </Grid> */}
-                            <Grid item xs={12} sm={4} md={4}>
+                            <Grid item xs={12} sm={5} md={5}>
                                 <Typography variant='h6'>
                                     Meeting Room
                                 </Typography>
@@ -356,7 +356,7 @@ const Hotel = (props) => {
                                         label=""
                                         fullWidth
                                         size="small"
-                                        disabled
+                                        type='number'
                                         value={formik.values.meetingDuration}
                                         onChange={formik.handleChange}
                                         error={
@@ -366,6 +366,7 @@ const Hotel = (props) => {
                                         helperText={
                                             formik.touched.meetingDuration && formik.errors.meetingDuration
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
@@ -375,6 +376,7 @@ const Hotel = (props) => {
                                         name="energyUtilisationEmission"
                                         label=""
                                         fullWidth
+                                        type='number'
                                         size="small"
                                         disabled
                                         value={formik.values.energyUtilisationEmission}
