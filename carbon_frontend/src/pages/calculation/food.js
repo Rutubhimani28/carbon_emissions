@@ -259,7 +259,7 @@ const Food = (props) => {
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Customised Food Menu</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -335,7 +335,7 @@ const Food = (props) => {
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Customised Beverages</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='custBeveragesEmission' value={formik?.values?.custBeveragesEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='custBeveragesEmission' value={formik?.values?.custBeveragesEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                             </tr>
                                         </table>
                                     </div>
