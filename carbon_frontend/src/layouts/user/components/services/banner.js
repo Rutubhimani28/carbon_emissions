@@ -27,6 +27,7 @@ const Banner = () => {
                     muted
                     preload
                     ref={videoRef}
+                    loop
                 >
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
