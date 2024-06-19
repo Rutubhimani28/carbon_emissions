@@ -7,9 +7,16 @@ const banner = () => {
     return (
         <div>
             {/* <img src={bannerImg} alt='img' height={"100%"} width={"100%"} /> */}
-            <div>
+            {/* <div>
                 <img src={bannerImg2} alt='Netzero' width={"100%"} style={{ objectFit: 'cover', maxHeight: "650px" }} />
-            </div>
+            </div> */}
+            <video
+                src="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4" width={"100%"} autoPlay muted>
+                <track kind="captions" src="captions.vtt" label="English" />
+                Sorry, your browser doesn't support embedded videos, but don't worry, you can
+                <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
+                and watch it with your favorite video player!
+            </video>
             <Box className='main pt-5'>
                 {/* <Typography variant='h6' className='text-center fs-1 green py-3 pb-5 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Measure Carbon Emissions</Typography> */}
                 <Typography variant='h6' className='text-center fs-1 green py-3 pb-5 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-white' >NetZero tool</Typography>
