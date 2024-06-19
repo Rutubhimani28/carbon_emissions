@@ -1,4 +1,4 @@
-
+import { PopupModal } from 'react-calendly';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
@@ -36,8 +36,24 @@ const Header = (props) => {
     const location = useLocation()
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isOpenCalendly, setIsOpenCalendly] = useState(false);
 
-    const routeName = location?.pathname
+    const routeName = location?.pathname;
+
+    const pageSettings = {
+        backgroundColor: '#ffffff',
+        hideEventTypeDetails: false,
+        hideLandingPageDetails: false,
+        primaryColor: '#00a2ff',
+        textColor: '#4d5055',
+    };
+    const utm = {
+        utmCampaign: 'Spring Sale 2019',
+        utmContent: 'Shoe and Shirts',
+        utmMedium: 'Ad',
+        utmSource: 'Facebook',
+        utmTerm: 'Spring',
+    };
 
     const handleMenuToggle = (event) => {
         event.stopPropagation();
@@ -100,6 +116,11 @@ const Header = (props) => {
                     ))}
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
+                            <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>Book a Demo</Button>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
                             <Button className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                                 login
                             </Button>
@@ -139,7 +160,7 @@ const Header = (props) => {
                             item?.name === 'ESG Advisory Services' ? (
                                 <div key={item.name} style={{ display: 'inline' }} className='esg_menu'>
                                     <Button
-                                        className={` text-capitalize  fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
+                                        className={` text-capitalize  fs-6 ${routeName === item?.path ? 'green' : 'text-dark'}`}
                                         onClick={() => navigate(item.path)}
                                     >
                                         {/* {item?.name}<ExpandMoreIcon /> */}
@@ -157,14 +178,23 @@ const Header = (props) => {
                                     <Button key={item.name} className={` text-capitalize fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`} onClick={() => navigate(item.path)}>
                                         {item.name}
                                     </Button>
-
                                 </>
                             )
                         ))}
+                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>Book a Demo</Button>
                         <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                             login
                         </Button>
                     </Box>
+                    <PopupModal
+                        url="https://calendly.com/fayiba2108/meet"
+                        pageSettings={pageSettings}
+                        utm={utm}
+
+                        onModalClose={() => setIsOpenCalendly(false)}
+                        open={isOpenCalendly}
+                        rootElement={document.getElementById('root')}
+                    />
                 </Toolbar>
             </AppBar>
             <nav>
