@@ -47,28 +47,28 @@ const Food = (props) => {
         emissionThirteen: 0,
         emissionFourteen: 0,
 
-        custBreveragesEmission: 0,
+        custBeveragesEmission: 0,
         custFoodMenuEmission: 0,
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', (1924.06 * values?.noOfPaxOne));    // Veg Plate Lunch/ Dinner
-            formik.setFieldValue('emissionTwo', (3825.5 * values?.noOfPaxTwo));     // Non Veg plate Lunch/ Dinner
-            formik.setFieldValue('emissionThree', (1984.1 * values?.noOfPaxThree)); // Veg Starter
-            formik.setFieldValue('emissionFour', (2638 * values?.noOfPaxFour));     // Non Veg starter
-            formik.setFieldValue('emissionFive', (642.2 * values?.noOfPaxFive));    // High Tea
+            formik.setFieldValue('emissionOne', Number((1924.06 * values?.noOfPaxOne).toFixed(2)));    // Veg Plate Lunch/ Dinner
+            formik.setFieldValue('emissionTwo', Number((3825.5 * values?.noOfPaxTwo).toFixed(2)));     // Non Veg plate Lunch/ Dinner
+            formik.setFieldValue('emissionThree', Number((1984.1 * values?.noOfPaxThree).toFixed(2))); // Veg Starter
+            formik.setFieldValue('emissionFour', Number((2638 * values?.noOfPaxFour).toFixed(2)));     // Non Veg starter
+            formik.setFieldValue('emissionFive', Number((642.2 * values?.noOfPaxFive).toFixed(2)));    // High Tea
 
-            formik.setFieldValue('emissionSix', (1.33 * values?.noOfBottlesOne));        // Soft Drinks
-            formik.setFieldValue('emissionSeven', (3.04 * values?.noOfBottlesTwo));       // Red Wine
-            formik.setFieldValue('emissionEight', (1.33 * values?.noOfBottlesThree));     // White Wine
-            formik.setFieldValue('emissionNine', (4.29 * values?.noOfBottlesFour));       // Whisky
-            formik.setFieldValue('emissionTen', (4.29 * values?.noOfBottlesFive));        // Gin
-            formik.setFieldValue('emissionEleven', (2.73 * values?.noOfBottlesSix));      // Rum
-            formik.setFieldValue('emissionTwelve', (4.29 * values?.noOfBottlesSeven));    // Vodka
-            formik.setFieldValue('emissionThirteen', (1.09 * values?.noOfBottlesEight));  // Fruit Juices
-            formik.setFieldValue('emissionFourteen', (1.06 * values?.noOfBottlesNine));   // Beer
+            formik.setFieldValue('emissionSix', Number((1.33 * values?.noOfBottlesOne).toFixed(2)));        // Soft Drinks
+            formik.setFieldValue('emissionSeven', Number((3.04 * values?.noOfBottlesTwo).toFixed(2)));       // Red Wine
+            formik.setFieldValue('emissionEight', Number((1.33 * values?.noOfBottlesThree).toFixed(2)));     // White Wine
+            formik.setFieldValue('emissionNine', Number((4.29 * values?.noOfBottlesFour).toFixed(2)));       // Whisky
+            formik.setFieldValue('emissionTen', Number((4.29 * values?.noOfBottlesFive).toFixed(2)));        // Gin
+            formik.setFieldValue('emissionEleven', Number((2.73 * values?.noOfBottlesSix).toFixed(2)));      // Rum
+            formik.setFieldValue('emissionTwelve', Number((4.29 * values?.noOfBottlesSeven).toFixed(2)));    // Vodka
+            formik.setFieldValue('emissionThirteen', Number((1.09 * values?.noOfBottlesEight).toFixed(2)));  // Fruit Juices
+            formik.setFieldValue('emissionFourteen', Number((1.06 * values?.noOfBottlesNine).toFixed(2)));   // Beer
 
             const data = [
                 {
@@ -143,11 +143,11 @@ const Food = (props) => {
                 },
                 {
                     type: 'Customised Food Menu',
-                    emission: values?.custFoodMenuEmission
+                    dynEmission: values?.custFoodMenuEmission
                 },
                 {
-                    type: 'Customised Breverages',
-                    emission: values?.custBreveragesEmission
+                    type: 'Customised Beverages',
+                    dynEmission: values?.custBeveragesEmission
                 },
             ];
             dispatch(addFoodData({ data }))
@@ -190,12 +190,10 @@ const Food = (props) => {
             formik.setFieldValue("noOfBottlesNine", allData[13]?.noOfBottles)
             formik.setFieldValue("emissionFourteen", allData[13]?.emission)
 
-            formik.setFieldValue("custFoodMenuEmission", allData[14]?.emission)
-            formik.setFieldValue("custBreveragesEmission", allData[15]?.emission)
+            formik.setFieldValue("custFoodMenuEmission", allData[14]?.dynEmission)
+            formik.setFieldValue("custBeveragesEmission", allData[15]?.dynEmission)
         }
     }, [value]);
-
-    console.log("------ food formik.values ", formik.values);
 
     return (
         <div>
@@ -222,19 +220,29 @@ const Food = (props) => {
                                                 <th className='ps-2'>Emission (kgCO2e)</th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Food Waste (non-meat)</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteNonMeatKg' value={formik?.values?.foodWasteNonMeatKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='foodWasteNonMeatEmission' value={formik?.values?.foodWasteNonMeatEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'>Vegetarian (Lunch/ Dinner)</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxOne' value={formik?.values?.noOfPaxOne} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Food Waste (meat)</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteMeatKg' value={formik?.values?.foodWasteMeatKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteMeatEmission' value={formik?.values?.foodWasteMeatEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'>Non-Vegetarian (Lunch/ Dinner)</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Municipal Solid Waste</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteKg' value={formik?.values?.municipalSolidWasteKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' value={formik?.values?.municipalSolidWasteEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'>Vegetarian Starter</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
+                                            </tr>
+                                            <tr>
+                                                <td className='ps-2 py-1'>Non-Vegetarian Starter</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} disabled /></td>
+                                            </tr>
+                                            <tr>
+                                                <td className='ps-2 py-1'>High Tea</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFive' value={formik?.values?.noOfPaxFive} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -263,54 +271,54 @@ const Food = (props) => {
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Breverages (1000ml)</th>
+                                                <th className='ps-2'>Beverages (1000ml)</th>
                                                 <th className='ps-2'>No of Bottles </th>
                                                 <th className='ps-2'>Emission (kgCO2e)</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Soft Drinks</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteNonMeatKg' value={formik?.values?.foodWasteNonMeatKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='foodWasteNonMeatEmission' value={formik?.values?.foodWasteNonMeatEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesOne' value={formik?.values?.noOfBottlesOne} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionSix' value={formik?.values?.emissionSix} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Red Wine</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteMeatKg' value={formik?.values?.foodWasteMeatKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteMeatEmission' value={formik?.values?.foodWasteMeatEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesTwo' value={formik?.values?.noOfBottlesTwo} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSeven' value={formik?.values?.emissionSeven} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>White Wine</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteKg' value={formik?.values?.municipalSolidWasteKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' value={formik?.values?.municipalSolidWasteEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesThree' value={formik?.values?.noOfBottlesThree} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEight' value={formik?.values?.emissionEight} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Whisky</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteNonMeatKg' value={formik?.values?.foodWasteNonMeatKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='foodWasteNonMeatEmission' value={formik?.values?.foodWasteNonMeatEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesFour' value={formik?.values?.noOfBottlesFour} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionNine' value={formik?.values?.emissionNine} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Gin</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteMeatKg' value={formik?.values?.foodWasteMeatKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteMeatEmission' value={formik?.values?.foodWasteMeatEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesFive' value={formik?.values?.noOfBottlesFive} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTen' value={formik?.values?.emissionTen} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Rum</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteKg' value={formik?.values?.municipalSolidWasteKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' value={formik?.values?.municipalSolidWasteEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesSix' value={formik?.values?.noOfBottlesSix} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEleven' value={formik?.values?.emissionEleven} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Vodka</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteKg' value={formik?.values?.municipalSolidWasteKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' value={formik?.values?.municipalSolidWasteEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesSeven' value={formik?.values?.noOfBottlesSeven} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwelve' value={formik?.values?.emissionTwelve} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Fruit Juices</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteKg' value={formik?.values?.municipalSolidWasteKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' value={formik?.values?.municipalSolidWasteEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesEight' value={formik?.values?.noOfBottlesEight} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThirteen' value={formik?.values?.emissionThirteen} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Beer</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteKg' value={formik?.values?.municipalSolidWasteKg} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' value={formik?.values?.municipalSolidWasteEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesNine' value={formik?.values?.noOfBottlesNine} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFourteen' value={formik?.values?.emissionFourteen} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -326,12 +334,22 @@ const Food = (props) => {
                                                 <th className='ps-2'>Emission (kgCO2e)</th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Customised Breverages</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='custBreveragesEmission' value={formik?.values?.custBreveragesEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'>Customised Beverages</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='custBeveragesEmission' value={formik?.values?.custBeveragesEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                         </table>
                                     </div>
                                 </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                                <Stack direction={"row"} spacing={2}>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
+                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                </Stack>
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
                             </Grid>
                         </Grid>
                     </Box>
