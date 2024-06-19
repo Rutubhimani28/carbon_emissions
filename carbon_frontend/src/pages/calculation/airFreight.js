@@ -87,7 +87,7 @@ const AirFreight = (props) => {
                         <div className='table-responsive'>
                             <table className='table-custom-inpt-field'>
                                 <tr>
-                                    <th>Mode of Transport</th>
+                                    <th className='pe-2'>Mode of Transport</th>
                                     <th className='ps-2'>No of Kms</th>
                                     <th className='ps-2'>Weight in Kgs</th>
                                     <th className='ps-2'>Emission (kgCO2e)</th>
