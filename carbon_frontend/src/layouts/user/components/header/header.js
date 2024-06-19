@@ -25,7 +25,7 @@ import logo from '../../assets/images/logo.png';
 const drawerWidth = 240;
 const navItems = [
     { name: 'Home', path: "/" },
-    { name: 'ESG Advisory Services', path: "/esg-advisory-services" },
+    { name: 'NetZero Consulting', path: "/netZero-consulting" }, 
     { name: 'NetZero Tool', path: "/measure-ghg-emissions" },
     { name: 'News Room', path: '/blogs' },
     { name: 'About Us', path: '/about-us' }];
@@ -76,7 +76,7 @@ const Header = (props) => {
                 <Divider />
                 <List>
                     {navItems.map((item) => (
-                        item?.name === 'ESG Advisory Services' ? (
+                        item?.name === 'NetZero Consulting' ? (
                             <div key={item.name} style={{ display: 'inline', marginLeft: "-15px" }} className='esg_menu'>
                                 <Button
                                     className={`text-capitalize fs-6 fw-bold  ${routeName === item?.path ? 'green' : 'text-dark'}`}
@@ -92,16 +92,16 @@ const Header = (props) => {
                                 {isMenuOpen && (
                                     <div className='esg_menuItem' style={{ zIndex: "9" }}>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link>
+                                            <Link to="/netZero-consulting/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link>
+                                            <Link to="/netZero-consulting/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/esg-advisory-services/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link>
+                                            <Link to="/netZero-consulting/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link>
+                                            <Link to="/netZero-consulting/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link>
                                         </li>
                                     </div>
                                 )} */}
@@ -157,7 +157,7 @@ const Header = (props) => {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         {navItems.map((item) => (
-                            item?.name === 'ESG Advisory Services' ? (
+                            item?.name === 'NetZero Consulting' ? (
                                 <div key={item.name} style={{ display: 'inline' }} className='esg_menu'>
                                     <Button
                                         className={` text-capitalize  fs-6 ${routeName === item?.path ? 'green' : 'text-dark'}`}
@@ -167,10 +167,10 @@ const Header = (props) => {
                                         {item?.name}
                                     </Button>
                                     {/* <div className='esg_menuItem'>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netZero-consulting/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netZero-consulting/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netZero-consulting/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netZero-consulting/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
                                     </div> */}
                                 </div>
                             ) : (

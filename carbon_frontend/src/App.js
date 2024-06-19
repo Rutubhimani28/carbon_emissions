@@ -58,15 +58,15 @@ export default function App() {
             <Routes>
               <Route path="/" element={<UserLayout />} />
               <Route path="/measure-ghg-emissions" element={<Services />} />
-              <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
-              <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
+              <Route path="/netZero-consulting" element={<EsgAdvisory />} />
+              <Route path="/netZero-consulting/organisations/" element={<Organisations />} />
               <Route path="/event-venue" element={<EventVenue />} />
               <Route path="/event-execution-agency" element={<EventExecutionAgency />} />
-              <Route path="/esg-advisory-services/organisations/esg-consulting" element={<Counsulting />} />
-              <Route path="/esg-advisory-services/organisations/sustainable-events" element={<SustainableEvents />} />
-              <Route path="/esg-advisory-services/service-providers/" element={<Agencies />} />
-              <Route path="/esg-advisory-services/hospitality-industry/" element={<Hospitality />} />
-              <Route path="/esg-advisory-services/exhibition-organiser/" element={<Exhibitions />} />
+              <Route path="/netZero-consulting/organisations/esg-consulting" element={<Counsulting />} />
+              <Route path="/netZero-consulting/organisations/sustainable-events" element={<SustainableEvents />} />
+              <Route path="/netZero-consulting/service-providers/" element={<Agencies />} />
+              <Route path="/netZero-consulting/hospitality-industry/" element={<Hospitality />} />
+              <Route path="/netZero-consulting/exhibition-organiser/" element={<Exhibitions />} />
               <Route path="/about-us" element={<About />} />
               <Route path="/blogs" element={<NewRoom />} />
               <Route path="/blogs/blog1" element={<Blog1 />} />

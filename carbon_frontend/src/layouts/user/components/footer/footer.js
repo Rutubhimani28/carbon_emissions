@@ -16,7 +16,7 @@ const Footer = () => {
             <p>
                 <Link to="/" className='px-2 text-decoration-none text-light'>Home </Link> |
                 <Link to="/about-us" className='px-2 text-decoration-none text-light'> About Us </Link>|
-                <Link to="/esg-advisory-services" className='px-2 text-decoration-none text-light'> ESG Advisory Services </Link>|
+                <Link to="/netZero-consulting" className='px-2 text-decoration-none text-light'> ESG Advisory Services </Link>|
                 <Link to="/measure-ghg-emissions" className='px-2 text-decoration-none text-light'>NetZero tool </Link>|
                 <Link to="#" className='px-2 text-decoration-none text-light'> News Room </Link>|
                 <Link to="/terms-conditions" className='px-2 text-decoration-none text-light'> Terms & Conditions </Link>|
