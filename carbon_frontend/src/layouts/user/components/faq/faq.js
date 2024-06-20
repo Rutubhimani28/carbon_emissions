@@ -36,7 +36,7 @@ const Faq = () => {
                 <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q7: Any last message for your targeted industries?</strong></p>
                 <p style={{ fontSize: "20px" }} className=' mb-5'>A7: For years, many activities have been carried out without considering the direct and indirect greenhouse gas (GHG) emissions they generate. It's time to integrate sustainability into your corporate strategy and take proactive steps to mitigate carbon emissions. Let's work together to create a roadmap towards achieving NetZero.</p>
 
-                <p style={{ fontSize: "20px" }} className=' mb-0'>There may be many more questions on your mind about how all of this can happen? Please reach out to my team by sending an email to <Link to="mailto:askme@sirat.earth" style={{ color: "#4edceb", textDecoration: 'none' }}>askme@sirat.earth</Link> and we will respond to your queries within 2-3 working days.</p>
+                <p style={{ fontSize: "20px" }} className=' mb-0'>There may be many more questions on your mind about how all of this can happen? Please reach out to my team by sending an email to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>info@sirat.earth</Link> and we will respond to your queries within 2-3 working days.</p>
             </p>
         </div>
     )

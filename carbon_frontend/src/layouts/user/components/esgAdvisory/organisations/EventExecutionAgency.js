@@ -94,7 +94,7 @@ const EventExecutionAgency = () => {
             <Box >
                 <Typography variant='h5' className='text-center fs-1 green pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Event Execution Agency</Typography>
                 <p className='text-center pt-3 fontFamily main wow animate__animated animate__fadeInUp animate__slow'>
-                    Selecting the right event agency is a critical component in the flawless execution of your event. Through the application of your expectations, the chosen agency becomes instrumental in not only achieving your objectives but also delivering a seamless and impactful experience for your customers, aligned with your sustainability goals or write to us at <Link className=" text-decoration-none" style={{ color: "#4edceb" }}>askme@gosustainable.ai.</Link>
+                    Selecting the right event agency is a critical component in the flawless execution of your event. Through the application of your expectations, the chosen agency becomes instrumental in not only achieving your objectives but also delivering a seamless and impactful experience for your customers, aligned with your sustainability goals or write to us at <Link className=" text-decoration-none" style={{ color: "#ffffd9" }}>askme@gosustainable.ai.</Link>
                 </p>
                 <p className='text-center pb-5 fontFamily wow animate__animated animate__fadeInUp animate__slow'>
                     <b>Please Note:</b> We will provide you with minimum two and maximum three agencies based on your ask.

@@ -115,12 +115,12 @@ const Category = () => {
                     Are you ready to take the next step in reducing your carbon footprint reporting journey with us?
                 </p>
                 <p className='fontFamily fs-5 wow animate__animated animate__fadeInUp animate__slow'>
-                    {/* Email us at <a className='text-decoration-none ' style={{ color: "#4edceb" }} href='mailTo:askme@sirat.earth'>askme@sirat.earth</a> */}
+                    {/* Email us at <a className='text-decoration-none ' style={{ color: "#ffffd9" }} href='mailTo:info@sirat.earth'>info@sirat.earth</a> */}
                     <PopupButton
                         url="https://calendly.com/fayiba2108/meet"
                         rootElement={document.getElementById("root")}
                         text="Book a demo"
-                        styles={{ border: 'none', background: 'none', color: "#4edceb" }}
+                        styles={{ border: 'none', background: 'none', color: "#ffffd9" }}
                     />
                 </p>
             </Box>
