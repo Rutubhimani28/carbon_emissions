@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import banner from '../../../assets/images/home_banner.jpg';
-import PosterImg from '../../../assets/images/home_video_thumbnail.jpg.png';
+import PosterImg from '../../../assets/images/Still Image for CEO Video.png';
 import BannerVideo from '../../../assets/images/Home2.mp4'
 
 const Index = () => {
