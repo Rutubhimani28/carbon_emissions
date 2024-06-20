@@ -6,6 +6,7 @@ import emailRoutes from './emailRoutes.js'
 import contactUsRoutes from './contactUsRoutes.js'
 import eventRoutes from './eventRoutes.js'
 import airFreightRoutes from './airFreightRoutes.js'
+import botRoutes from './botRoutes.js'
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.use('/email', emailRoutes);
 router.use('/contactUs', contactUsRoutes);
 router.use('/events', eventRoutes);
 router.use('/airFreight', airFreightRoutes);
+router.use('/bot', botRoutes);
 
 export default router

@@ -1,7 +1,9 @@
 /* eslint-disable no-undef */
+import { useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 // routes
 import { ToastContainer } from 'react-toastify';
+import { RiRobot2Fill } from "react-icons/ri";
 import Routers from './routes';
 
 // theme
@@ -34,6 +36,7 @@ import ThemeProvider from './theme';
 import Blog1 from './layouts/user/components/newsRoom/blog1';
 import Blog2 from './layouts/user/components/newsRoom/blog2';
 import Blog3 from './layouts/user/components/newsRoom/blog3';
+import Bot from './layouts/user/components/bot';
 // ----------------------------------------------------------------------
 
 export default function App() {
@@ -43,6 +46,9 @@ export default function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps, prefer-const
   const user = JSON.parse(sessionStorage.getItem('user'))
   useNavigate()
+
+  const [openBot, setOpenBot] = useState(false);
+  const handleCloseBot = () => setOpenBot(false);
 
   return (
     <ThemeProvider>
@@ -80,6 +86,24 @@ export default function App() {
               <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
           </div>
+
+          <button
+            onClick={() => setOpenBot(true)}
+            style={{
+              position: 'fixed',
+              bottom: '20px',
+              right: '20px',
+              zIndex: '1000',
+              padding: '5px',
+              backdropFilter: 'blur(10px)',
+              backgroundColor: 'rgba(255, 255, 255, 0.5)',
+              borderRadius: '30%',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+              border: 'none'
+            }}>
+            <RiRobot2Fill style={{ fontSize: '3rem', color: '#007BFF' }} />
+          </button>
+          <Bot openBot={openBot} handleCloseBot={handleCloseBot}  />
           <Footer />
         </>
 

@@ -164,3 +164,15 @@ p {
 .calendly-inline-widget {
   height: 73vh !important;
 }
+
+.bot .MuiDialog-paper {
+  position: absolute !important;
+  width: 420px;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+}
+
+.bot .css-ypiqx9-MuiDialogContent-root {
+  padding: 20px 24px 0px 20px !important;
+}

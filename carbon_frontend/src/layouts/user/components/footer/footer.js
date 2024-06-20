@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { MdMail } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { Padding } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
-
 
 const Footer = () => {
     const date = new Date();
@@ -16,7 +15,7 @@ const Footer = () => {
             <p>
                 <Link to="/" className='px-2 text-decoration-none text-light'>Home </Link> |
                 <Link to="/about-us" className='px-2 text-decoration-none text-light'> About Us </Link>|
-                <Link to="/netZero-consulting" className='px-2 text-decoration-none text-light'> ESG Advisory Services </Link>|
+                <Link to="/esg-advisory-services" className='px-2 text-decoration-none text-light'> ESG Advisory Services </Link>|
                 <Link to="/measure-ghg-emissions" className='px-2 text-decoration-none text-light'>NetZero tool </Link>|
                 <Link to="#" className='px-2 text-decoration-none text-light'> News Room </Link>|
                 <Link to="/terms-conditions" className='px-2 text-decoration-none text-light'> Terms & Conditions </Link>|
