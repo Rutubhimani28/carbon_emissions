@@ -61,7 +61,7 @@ const Calculation = () => {
                 <Box my={2} pb={2}>
                     {value === 0 && <AirTravelComp setValue={setValue} value={value} />}
                     {value === 1 && <LocalTranspotation setValue={setValue} value={value} />}
-                    {/* {value === 2 && <Hotel setValue={setValue} value={value} />} */}
+                    {value === 2 && <Hotel setValue={setValue} value={value} />}
                     {value === 3 && <Food setValue={setValue} value={value} />}
                     {value === 4 && <AirFreight setValue={setValue} value={value} />}
                     {value === 5 && <Production setValue={setValue} value={value} />}
