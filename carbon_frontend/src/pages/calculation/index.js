@@ -34,7 +34,7 @@ const Calculation = () => {
     return (
         <div>
             <Container maxWidth className="custom-outer-bg">
-                <Box sx={{ maxWidth: { xs: 320, sm: 500, md: 1350 }, }} className="tab-outer">
+                <Box  className="tab-outer">
                     {/* <img src={banner} alt="top_img" width="100%" style={{ marginLeft: 'auto', marginRight: 'auto' }} /> */}
                     {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img src={banner} alt="top_img" width="100%" />
