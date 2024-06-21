@@ -190,3 +190,8 @@ p {
 /* .table-custom-inpt-field .css-u85066-MuiAutocomplete-root .MuiOutlinedInput-root.MuiInputBase-sizeSmall {
   color: white
 } */
+
+.tab-fixed .MuiTabs-scroller {
+  display: flex;
+  justify-content: center;
+}
