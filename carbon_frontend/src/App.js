@@ -1,7 +1,9 @@
 /* eslint-disable no-undef */
+import { useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 // routes
 import { ToastContainer } from 'react-toastify';
+import { RiRobot2Fill } from "react-icons/ri";
 import Routers from './routes';
 
 // theme
@@ -34,6 +36,7 @@ import ThemeProvider from './theme';
 import Blog1 from './layouts/user/components/newsRoom/blog1';
 import Blog2 from './layouts/user/components/newsRoom/blog2';
 import Blog3 from './layouts/user/components/newsRoom/blog3';
+import Bot from './layouts/user/components/bot';
 // ----------------------------------------------------------------------
 
 export default function App() {
@@ -43,6 +46,9 @@ export default function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps, prefer-const
   const user = JSON.parse(sessionStorage.getItem('user'))
   useNavigate()
+
+  const [openBot, setOpenBot] = useState(false);
+  const handleCloseBot = () => setOpenBot(false);
 
   return (
     <ThemeProvider>
@@ -58,15 +64,15 @@ export default function App() {
             <Routes>
               <Route path="/" element={<UserLayout />} />
               <Route path="/measure-ghg-emissions" element={<Services />} />
-              <Route path="/esg-advisory-services" element={<EsgAdvisory />} />
-              <Route path="/esg-advisory-services/organisations/" element={<Organisations />} />
+              <Route path="/netZero-consulting" element={<EsgAdvisory />} />
+              <Route path="/netZero-consulting/organisations/" element={<Organisations />} />
               <Route path="/event-venue" element={<EventVenue />} />
               <Route path="/event-execution-agency" element={<EventExecutionAgency />} />
-              <Route path="/esg-advisory-services/organisations/esg-consulting" element={<Counsulting />} />
-              <Route path="/esg-advisory-services/organisations/sustainable-events" element={<SustainableEvents />} />
-              <Route path="/esg-advisory-services/service-providers/" element={<Agencies />} />
-              <Route path="/esg-advisory-services/hospitality-industry/" element={<Hospitality />} />
-              <Route path="/esg-advisory-services/exhibition-organiser/" element={<Exhibitions />} />
+              <Route path="/netZero-consulting/organisations/esg-consulting" element={<Counsulting />} />
+              <Route path="/netZero-consulting/organisations/sustainable-events" element={<SustainableEvents />} />
+              <Route path="/netZero-consulting/service-providers/" element={<Agencies />} />
+              <Route path="/netZero-consulting/hospitality-industry/" element={<Hospitality />} />
+              <Route path="/netZero-consulting/exhibition-organiser/" element={<Exhibitions />} />
               <Route path="/about-us" element={<About />} />
               <Route path="/blogs" element={<NewRoom />} />
               <Route path="/blogs/blog1" element={<Blog1 />} />
@@ -80,6 +86,24 @@ export default function App() {
               <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
           </div>
+
+          <button
+            onClick={() => setOpenBot(true)}
+            style={{
+              position: 'fixed',
+              bottom: '20px',
+              right: '20px',
+              zIndex: '1000',
+              padding: '5px',
+              backdropFilter: 'blur(10px)',
+              backgroundColor: 'rgba(255, 255, 255, 0.5)',
+              borderRadius: '30%',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+              border: 'none'
+            }}>
+            <RiRobot2Fill style={{ fontSize: '3rem', color: '#007BFF' }} />
+          </button>
+          <Bot openBot={openBot} handleCloseBot={handleCloseBot}  />
           <Footer />
         </>
 

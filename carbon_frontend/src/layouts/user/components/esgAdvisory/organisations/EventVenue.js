@@ -106,7 +106,7 @@ const EventVenue = () => {
         <p className="text-center pb-5 fontFamily wow animate__animated animate__fadeInUp animate__slow">
           Please provide the necessary details and submit your request, and we will get back to you within 24-48 hours
           or alternatively write to us at
-          <Link className=" text-decoration-none" style={{ color: '#4edceb' }}>
+          <Link className=" text-decoration-none" style={{ color: '#ffffd9' }}>
             {' '}
             askme@gosustainable.ai
           </Link>

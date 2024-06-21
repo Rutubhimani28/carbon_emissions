@@ -17,7 +17,7 @@ const Goal = () => {
         <div>
             {/* <div>
                 <Typography variant='h6' className='text-center fs-3 green pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow' >Targeted Sustainable Development Goals (SDGs)</Typography>
-                <p className='text-center  py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s'>As part of our framework, we are actively and directly contributing to the below 7 SDGs out of<a href="https://sdgs.un.org/goals" style={{ textDecoration: "none", color: "#4edceb" }}> 17 UN SDGs.</a></p>
+                <p className='text-center  py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s'>As part of our framework, we are actively and directly contributing to the below 7 SDGs out of<a href="https://sdgs.un.org/goals" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs.</a></p>
             </div>
             <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
 
@@ -63,7 +63,7 @@ const Goal = () => {
                         <Box className="">
                             <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' >Collaborating for Sustainable Development</Typography>
                             <p className='text-light fs-5'><strong>Sirat</strong> invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.</p>
-                            <p className='text-light fs-5'><Link className="text-decoration-none" style={{ color: '#4edceb' }} to="mailto:mohammed.shafeeq@sirat.earth">Reach out to our CEO</Link> to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
+                            <p className='text-light fs-5'><Link className="text-decoration-none" style={{ color: '#ffffd9' }} to="mailto:mohammed.shafeeq@sirat.earth">Reach out to our CEO</Link> to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>

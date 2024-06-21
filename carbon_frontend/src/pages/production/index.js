@@ -121,7 +121,7 @@ export default function CollapsibleTable() {
                 <Paper>
                     <div className='d-flex justify-content-between pt-3  pb-2 align-items-center'>
                         <Typography variant='h5' className='text-dark fw-bolder'>
-                            Production
+                            Event Production
                         </Typography>
                         <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} className="custom-btn" onClick={() => { handleOpenAdd(); setType("add") }}>
                             Add New

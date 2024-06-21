@@ -10,45 +10,56 @@ const __dirname = path.dirname(__filename);
 
 const options = { format: 'Letter' };
 
-const sendMail = async ({ receiver, subject, data, templateName }) => {
+const sendMail = async ({ receiver, subject, data, templateName, message }) => {
     try {
-        const templatePath = path.join(__dirname, '/email_templates', `${templateName}.ejs`);
-        const template = await ejs.renderFile(templatePath, { data: data });
+        let mailOptions = {};
 
-        pdf.create(template, options).toFile('./carbon_footprint.pdf', (err, res) => {
-            if (err) return console.log(err);
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.office365.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_PASSWORD
+            },
+            tls: { rejectUnauthorized: false }
+        });
 
-            const transporter = nodemailer.createTransport({
-                host: 'smtp.office365.com',
-                port: 587,
-                secure: false,
-                auth: {
-                    user: process.env.GMAIL_USER,
-                    pass: process.env.GMAIL_PASSWORD
-                },
-                tls: { rejectUnauthorized: false }
-            });
-
-            const mailOptions = {
+        if (message) {            // self message. Usage, bot form
+            mailOptions = {
                 from: process.env.GMAIL_FROM,
-                to: receiver,
+                to: process.env.GMAIL_FROM,  
                 subject: subject,
-                attachments: [
-                    {
-                        filename: 'carbon_footprint.pdf',
-                        path: './carbon_footprint.pdf',
-                        contentType: 'application/pdf'
-                    }
-                ]
+                text: message,
             };
+        } else {
+            const templatePath = path.join(__dirname, '/email_templates', `${templateName}.ejs`);
+            const template = await ejs.renderFile(templatePath, { data: data });
 
-            // Send email
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    return console.log(error);
-                }
-                console.log('Email sent: ' + info.response);
+            pdf.create(template, options).toFile('./carbon_footprint.pdf', (err, res) => {
+                if (err) return console.log(err);
+
+                mailOptions = {
+                    from: process.env.GMAIL_FROM,
+                    to: receiver,
+                    subject: subject,
+                    attachments: [
+                        {
+                            filename: 'carbon_footprint.pdf',
+                            path: './carbon_footprint.pdf',
+                            contentType: 'application/pdf'
+                        }
+                    ]
+                };
             });
+        }
+
+        // Send email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Email sent: ' + info.response);
         });
 
     } catch (error) {

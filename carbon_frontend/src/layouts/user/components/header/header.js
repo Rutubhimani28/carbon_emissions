@@ -1,4 +1,4 @@
-
+import { PopupModal } from 'react-calendly';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
@@ -19,13 +19,13 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
-
+// import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo3.gif';
 
 const drawerWidth = 240;
 const navItems = [
     { name: 'Home', path: "/" },
-    { name: 'ESG Advisory Services', path: "/esg-advisory-services" },
+    { name: 'NetZero Consulting', path: "/netZero-consulting" },
     { name: 'NetZero Tool', path: "/measure-ghg-emissions" },
     { name: 'News Room', path: '/blogs' },
     { name: 'About Us', path: '/about-us' }];
@@ -36,8 +36,24 @@ const Header = (props) => {
     const location = useLocation()
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isOpenCalendly, setIsOpenCalendly] = useState(false);
 
-    const routeName = location?.pathname
+    const routeName = location?.pathname;
+
+    const pageSettings = {
+        backgroundColor: '#ffffff',
+        hideEventTypeDetails: false,
+        hideLandingPageDetails: false,
+        primaryColor: '#00a2ff',
+        textColor: '#4d5055',
+    };
+    const utm = {
+        utmCampaign: 'Spring Sale 2019',
+        utmContent: 'Shoe and Shirts',
+        utmMedium: 'Ad',
+        utmSource: 'Facebook',
+        utmTerm: 'Spring',
+    };
 
     const handleMenuToggle = (event) => {
         event.stopPropagation();
@@ -60,7 +76,7 @@ const Header = (props) => {
                 <Divider />
                 <List>
                     {navItems.map((item) => (
-                        item?.name === 'ESG Advisory Services' ? (
+                        item?.name === 'NetZero Consulting' ? (
                             <div key={item.name} style={{ display: 'inline', marginLeft: "-15px" }} className='esg_menu'>
                                 <Button
                                     className={`text-capitalize fs-6 fw-bold  ${routeName === item?.path ? 'green' : 'text-dark'}`}
@@ -76,16 +92,16 @@ const Header = (props) => {
                                 {isMenuOpen && (
                                     <div className='esg_menuItem' style={{ zIndex: "9" }}>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link>
+                                            <Link to="/netZero-consulting/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link>
+                                            <Link to="/netZero-consulting/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/esg-advisory-services/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link>
+                                            <Link to="/netZero-consulting/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link>
+                                            <Link to="/netZero-consulting/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link>
                                         </li>
                                     </div>
                                 )} */}
@@ -100,11 +116,16 @@ const Header = (props) => {
                     ))}
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
+                            <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
+                        </ListItemButton>
+                    </ListItem>
+                    {/* <ListItem disablePadding>
+                        <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
                             <Button className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                                 login
                             </Button>
                         </ListItemButton>
-                    </ListItem>
+                    </ListItem> */}
                 </List>
             </Box>
         </>
@@ -136,20 +157,20 @@ const Header = (props) => {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         {navItems.map((item) => (
-                            item?.name === 'ESG Advisory Services' ? (
+                            item?.name === 'NetZero Consulting' ? (
                                 <div key={item.name} style={{ display: 'inline' }} className='esg_menu'>
                                     <Button
-                                        className={` text-capitalize  fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`}
+                                        className={` text-capitalize  fs-6 ${routeName === item?.path ? 'green' : 'text-dark'}`}
                                         onClick={() => navigate(item.path)}
                                     >
                                         {/* {item?.name}<ExpandMoreIcon /> */}
                                         {item?.name}
                                     </Button>
                                     {/* <div className='esg_menuItem'>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/esg-advisory-services/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netZero-consulting/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netZero-consulting/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netZero-consulting/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netZero-consulting/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
                                     </div> */}
                                 </div>
                             ) : (
@@ -157,14 +178,23 @@ const Header = (props) => {
                                     <Button key={item.name} className={` text-capitalize fs-6 mx-1 ${routeName === item?.path ? 'green' : 'text-dark'}`} onClick={() => navigate(item.path)}>
                                         {item.name}
                                     </Button>
-
                                 </>
                             )
                         ))}
-                        <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
+                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
+                        {/* <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                             login
-                        </Button>
+                        </Button> */}
                     </Box>
+                    <PopupModal
+                        url="https://calendly.com/fayiba2108/meet"
+                        pageSettings={pageSettings}
+                        utm={utm}
+
+                        onModalClose={() => setIsOpenCalendly(false)}
+                        open={isOpenCalendly}
+                        rootElement={document.getElementById('root')}
+                    />
                 </Toolbar>
             </AppBar>
             <nav>

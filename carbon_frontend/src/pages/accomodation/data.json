@@ -1,0 +1,4453 @@
+[
+    {
+        "geography": "Africa",
+        "country": "Various",
+        "stars_four_fourPointHalf": 46.0,
+        "stars_five": 68.3
+    },
+    {
+        "geography": "Asia",
+        "country": "Various",
+        "stars_four_fourPointHalf": 60.0,
+        "stars_five": 80.5
+    },
+    {
+        "geography": "Europe",
+        "country": "Various",
+        "stars_four_fourPointHalf": 13.2,
+        "stars_five": 21.8
+    },
+    {
+        "geography": "Latin America and the Caribbean",
+        "country": "Various",
+        "stars_four_fourPointHalf": 32.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Northern America",
+        "country": "Various",
+        "stars_four_fourPointHalf": 23.9,
+        "stars_five": 39.3
+    },
+    {
+        "geography": "Oceania",
+        "country": "Various",
+        "stars_four_fourPointHalf": 34.8,
+        "stars_five": 50.6
+    },
+    {
+        "geography": "Australia/New Zealand",
+        "country": "Various",
+        "stars_four_fourPointHalf": 26.0,
+        "stars_five": 40.6
+    },
+    {
+        "geography": "Caribbean",
+        "country": "Various",
+        "stars_four_fourPointHalf": 50.4,
+        "stars_five": 67.8
+    },
+    {
+        "geography": "Central America",
+        "country": "Various",
+        "stars_four_fourPointHalf": 34.2,
+        "stars_five": 55.2
+    },
+    {
+        "geography": "Central Asia",
+        "country": "Various",
+        "stars_four_fourPointHalf": 44.3,
+        "stars_five": 145.2
+    },
+    {
+        "geography": "Eastern Africa",
+        "country": "Various",
+        "stars_four_fourPointHalf": 41.1,
+        "stars_five": 85.0
+    },
+    {
+        "geography": "Eastern Asia",
+        "country": "Various",
+        "stars_four_fourPointHalf": 63.6,
+        "stars_five": 77.4
+    },
+    {
+        "geography": "Eastern Europe",
+        "country": "Various",
+        "stars_four_fourPointHalf": 19.8,
+        "stars_five": 36.4
+    },
+    {
+        "geography": "Melanesia",
+        "country": "Various",
+        "stars_four_fourPointHalf": 43.2,
+        "stars_five": null
+    },
+    {
+        "geography": "Northern Africa",
+        "country": "Various",
+        "stars_four_fourPointHalf": 57.5,
+        "stars_five": 56.6
+    },
+    {
+        "geography": "Northern Europe",
+        "country": "Various",
+        "stars_four_fourPointHalf": 14.9,
+        "stars_five": 24.7
+    },
+    {
+        "geography": "Polynesia",
+        "country": "Various",
+        "stars_four_fourPointHalf": null,
+        "stars_five": null
+    },
+    {
+        "geography": "South America",
+        "country": "Various",
+        "stars_four_fourPointHalf": 21.2,
+        "stars_five": 38.2
+    },
+    {
+        "geography": "South-Eastern Asia",
+        "country": "Various",
+        "stars_four_fourPointHalf": 49.8,
+        "stars_five": 73.1
+    },
+    {
+        "geography": "Southern Africa",
+        "country": "Various",
+        "stars_four_fourPointHalf": null,
+        "stars_five": null
+    },
+    {
+        "geography": "Southern Asia",
+        "country": "Various",
+        "stars_four_fourPointHalf": 52.3,
+        "stars_five": 82.0
+    },
+    {
+        "geography": "Southern Europe",
+        "country": "Various",
+        "stars_four_fourPointHalf": 12.8,
+        "stars_five": 25.4
+    },
+    {
+        "geography": "Western Asia",
+        "country": "Various",
+        "stars_four_fourPointHalf": 57.1,
+        "stars_five": 92.9
+    },
+    {
+        "geography": "Western Europe",
+        "country": "Various",
+        "stars_four_fourPointHalf": 12.0,
+        "stars_five": 16.5
+    },
+    {
+        "geography": "Afghanistan",
+        "country": "Afghanistan",
+        "stars_four_fourPointHalf": 32.2,
+        "stars_five": 74.8
+    },
+    {
+        "geography": "Aland Islands",
+        "country": "Aland Islands",
+        "stars_four_fourPointHalf": 18.6,
+        "stars_five": 36.1
+    },
+    {
+        "geography": "Albania",
+        "country": "Albania",
+        "stars_four_fourPointHalf": 7.3,
+        "stars_five": 9.0
+    },
+    {
+        "geography": "Algeria",
+        "country": "Algeria",
+        "stars_four_fourPointHalf": 37.9,
+        "stars_five": 63.1
+    },
+    {
+        "geography": "American Samoa, USA",
+        "country": "American Samoa, USA",
+        "stars_four_fourPointHalf": 29.9,
+        "stars_five": 58.0
+    },
+    {
+        "geography": "Andorra",
+        "country": "Andorra",
+        "stars_four_fourPointHalf": 10.3,
+        "stars_five": 12.5
+    },
+    {
+        "geography": "Angola",
+        "country": "Angola",
+        "stars_four_fourPointHalf": 11.5,
+        "stars_five": 22.2
+    },
+    {
+        "geography": "Anguilla",
+        "country": "Anguilla",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Antarctica",
+        "country": "Antarctica",
+        "stars_four_fourPointHalf": 25.7,
+        "stars_five": 49.8
+    },
+    {
+        "geography": "Antigua and Barbuda",
+        "country": "Antigua and Barbuda",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Argentina",
+        "country": "Argentina",
+        "stars_four_fourPointHalf": 21.2,
+        "stars_five": 34.8
+    },
+    {
+        "geography": "Armenia",
+        "country": "Armenia",
+        "stars_four_fourPointHalf": 17.7,
+        "stars_five": 34.3
+    },
+    {
+        "geography": "Aruba",
+        "country": "Aruba",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Australia",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 33.0,
+        "stars_five": 46.7
+    },
+    {
+        "geography": "Austria",
+        "country": "Austria",
+        "stars_four_fourPointHalf": 8.3,
+        "stars_five": 14.8
+    },
+    {
+        "geography": "Azerbaijan",
+        "country": "Azerbaijan",
+        "stars_four_fourPointHalf": 23.2,
+        "stars_five": 45.0
+    },
+    {
+        "geography": "Bahamas",
+        "country": "Bahamas",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Bahrain",
+        "country": "Bahrain",
+        "stars_four_fourPointHalf": 83.9,
+        "stars_five": 118.3
+    },
+    {
+        "geography": "Bangladesh",
+        "country": "Bangladesh",
+        "stars_four_fourPointHalf": 37.1,
+        "stars_five": 86.3
+    },
+    {
+        "geography": "Barbados",
+        "country": "Barbados",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Belarus",
+        "country": "Belarus",
+        "stars_four_fourPointHalf": 23.9,
+        "stars_five": 46.3
+    },
+    {
+        "geography": "Belgium",
+        "country": "Belgium",
+        "stars_four_fourPointHalf": 16.8,
+        "stars_five": 31.9
+    },
+    {
+        "geography": "Belize",
+        "country": "Belize",
+        "stars_four_fourPointHalf": 18.4,
+        "stars_five": 44.0
+    },
+    {
+        "geography": "Benin",
+        "country": "Benin",
+        "stars_four_fourPointHalf": 24.7,
+        "stars_five": 48.0
+    },
+    {
+        "geography": "Bermuda",
+        "country": "Bermuda",
+        "stars_four_fourPointHalf": 14.8,
+        "stars_five": 30.8
+    },
+    {
+        "geography": "Bhutan",
+        "country": "Bhutan",
+        "stars_four_fourPointHalf": 30.1,
+        "stars_five": 70.0
+    },
+    {
+        "geography": "Bolivia",
+        "country": "Bolivia",
+        "stars_four_fourPointHalf": 20.4,
+        "stars_five": 39.5
+    },
+    {
+        "geography": "Bonaire",
+        "country": "Bonaire",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Bosnia and Herzegovina",
+        "country": "Bosnia and Herzegovina",
+        "stars_four_fourPointHalf": 17.8,
+        "stars_five": 21.8
+    },
+    {
+        "geography": "Botswana",
+        "country": "Botswana",
+        "stars_four_fourPointHalf": 46.2,
+        "stars_five": 89.7
+    },
+    {
+        "geography": "Bouvet Island",
+        "country": "Bouvet Island",
+        "stars_four_fourPointHalf": 25.7,
+        "stars_five": 49.8
+    },
+    {
+        "geography": "Brazil",
+        "country": "Brazil",
+        "stars_four_fourPointHalf": 10.0,
+        "stars_five": 16.4
+    },
+    {
+        "geography": "British Indian Ocean Territory",
+        "country": "British Indian Ocean Territory",
+        "stars_four_fourPointHalf": 17.8,
+        "stars_five": 34.4
+    },
+    {
+        "geography": "Brunei Darussalam",
+        "country": "Brunei Darussalam",
+        "stars_four_fourPointHalf": 49.1,
+        "stars_five": 89.5
+    },
+    {
+        "geography": "Bulgaria",
+        "country": "Bulgaria",
+        "stars_four_fourPointHalf": 23.9,
+        "stars_five": 46.3
+    },
+    {
+        "geography": "Burkina Faso",
+        "country": "Burkina Faso",
+        "stars_four_fourPointHalf": 22.2,
+        "stars_five": 43.2
+    },
+    {
+        "geography": "Burundi",
+        "country": "Burundi",
+        "stars_four_fourPointHalf": 21.7,
+        "stars_five": 42.1
+    },
+    {
+        "geography": "Cambodia",
+        "country": "Cambodia",
+        "stars_four_fourPointHalf": 34.6,
+        "stars_five": 44.5
+    },
+    {
+        "geography": "Cameroon",
+        "country": "Cameroon",
+        "stars_four_fourPointHalf": 19.0,
+        "stars_five": 36.9
+    },
+    {
+        "geography": "Canada",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 14.2,
+        "stars_five": 41.7
+    },
+    {
+        "geography": "Cape Verde",
+        "country": "Cape Verde",
+        "stars_four_fourPointHalf": 19.7,
+        "stars_five": 38.2
+    },
+    {
+        "geography": "Cayman Islands",
+        "country": "Cayman Islands",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Central African Republic",
+        "country": "Central African Republic",
+        "stars_four_fourPointHalf": 21.7,
+        "stars_five": 42.1
+    },
+    {
+        "geography": "Chad",
+        "country": "Chad",
+        "stars_four_fourPointHalf": 21.7,
+        "stars_five": 42.1
+    },
+    {
+        "geography": "Chile",
+        "country": "Chile",
+        "stars_four_fourPointHalf": 31.5,
+        "stars_five": 61.0
+    },
+    {
+        "geography": "China",
+        "country": "China",
+        "stars_four_fourPointHalf": 65.0,
+        "stars_five": 74.0
+    },
+    {
+        "geography": "Christmas Island",
+        "country": "Christmas Island",
+        "stars_four_fourPointHalf": 17.8,
+        "stars_five": 34.4
+    },
+    {
+        "geography": "Cocos (Keeling) Islands",
+        "country": "Cocos (Keeling) Islands",
+        "stars_four_fourPointHalf": 17.8,
+        "stars_five": 34.4
+    },
+    {
+        "geography": "Colombia",
+        "country": "Colombia",
+        "stars_four_fourPointHalf": 19.5,
+        "stars_five": 36.4
+    },
+    {
+        "geography": "Comoros",
+        "country": "Comoros",
+        "stars_four_fourPointHalf": 21.6,
+        "stars_five": 41.8
+    },
+    {
+        "geography": "Congo",
+        "country": "Congo",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Cook Islands",
+        "country": "Cook Islands",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Costa Rica",
+        "country": "Costa Rica",
+        "stars_four_fourPointHalf": 13.1,
+        "stars_five": 21.2
+    },
+    {
+        "geography": "Croatia",
+        "country": "Croatia",
+        "stars_four_fourPointHalf": 11.9,
+        "stars_five": 19.6
+    },
+    {
+        "geography": "Cuba",
+        "country": "Cuba",
+        "stars_four_fourPointHalf": 26.9,
+        "stars_five": 52.2
+    },
+    {
+        "geography": "Curacao",
+        "country": "Curacao",
+        "stars_four_fourPointHalf": 35.4,
+        "stars_five": 68.7
+    },
+    {
+        "geography": "Cyprus",
+        "country": "Cyprus",
+        "stars_four_fourPointHalf": 15.5,
+        "stars_five": 19.0
+    },
+    {
+        "geography": "Czech Republic",
+        "country": "Czech Republic",
+        "stars_four_fourPointHalf": 18.9,
+        "stars_five": 36.7
+    },
+    {
+        "geography": "Côte d'Ivoire",
+        "country": "Côte d'Ivoire",
+        "stars_four_fourPointHalf": 20.6,
+        "stars_five": 39.9
+    },
+    {
+        "geography": "Democratic Republic of the Congo",
+        "country": "Democratic Republic of the Congo",
+        "stars_four_fourPointHalf": 12.9,
+        "stars_five": 25.1
+    },
+    {
+        "geography": "Denmark",
+        "country": "Denmark",
+        "stars_four_fourPointHalf": 9.1,
+        "stars_five": 17.6
+    },
+    {
+        "geography": "Djibouti",
+        "country": "Djibouti",
+        "stars_four_fourPointHalf": 21.6,
+        "stars_five": 41.8
+    },
+    {
+        "geography": "Dominica",
+        "country": "Dominica",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Dominican Republic",
+        "country": "Dominican Republic",
+        "stars_four_fourPointHalf": 51.3,
+        "stars_five": 67.7
+    },
+    {
+        "geography": "Ecuador",
+        "country": "Ecuador",
+        "stars_four_fourPointHalf": 15.6,
+        "stars_five": 30.2
+    },
+    {
+        "geography": "Egypt",
+        "country": "Egypt",
+        "stars_four_fourPointHalf": 44.6,
+        "stars_five": 59.0
+    },
+    {
+        "geography": "El Salvador",
+        "country": "El Salvador",
+        "stars_four_fourPointHalf": 11.0,
+        "stars_five": 26.3
+    },
+    {
+        "geography": "Equatorial Guinea",
+        "country": "Equatorial Guinea",
+        "stars_four_fourPointHalf": 21.7,
+        "stars_five": 42.1
+    },
+    {
+        "geography": "Eritrea",
+        "country": "Eritrea",
+        "stars_four_fourPointHalf": 31.2,
+        "stars_five": 60.5
+    },
+    {
+        "geography": "Estonia",
+        "country": "Estonia",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Eswatini",
+        "country": "Eswatini",
+        "stars_four_fourPointHalf": 16.3,
+        "stars_five": 31.7
+    },
+    {
+        "geography": "Ethiopia",
+        "country": "Ethiopia",
+        "stars_four_fourPointHalf": 12.7,
+        "stars_five": 24.6
+    },
+    {
+        "geography": "FYR of Macedonia",
+        "country": "FYR of Macedonia",
+        "stars_four_fourPointHalf": 15.7,
+        "stars_five": 19.2
+    },
+    {
+        "geography": "Falkland Islands (Malvinas)",
+        "country": "Falkland Islands (Malvinas)",
+        "stars_four_fourPointHalf": 25.5,
+        "stars_five": 49.4
+    },
+    {
+        "geography": "Faroe Islands",
+        "country": "Faroe Islands",
+        "stars_four_fourPointHalf": 26.0,
+        "stars_five": 50.5
+    },
+    {
+        "geography": "Fiji",
+        "country": "Fiji",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Finland",
+        "country": "Finland",
+        "stars_four_fourPointHalf": 11.3,
+        "stars_five": 21.8
+    },
+    {
+        "geography": "France",
+        "country": "France",
+        "stars_four_fourPointHalf": 7.2,
+        "stars_five": 11.6
+    },
+    {
+        "geography": "French Guiana",
+        "country": "French Guiana",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "French Polynesia",
+        "country": "French Polynesia",
+        "stars_four_fourPointHalf": 39.7,
+        "stars_five": 77.0
+    },
+    {
+        "geography": "French Southern Territories",
+        "country": "French Southern Territories",
+        "stars_four_fourPointHalf": 19.7,
+        "stars_five": 38.2
+    },
+    {
+        "geography": "Gabon",
+        "country": "Gabon",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Gambia",
+        "country": "Gambia",
+        "stars_four_fourPointHalf": 22.2,
+        "stars_five": 43.2
+    },
+    {
+        "geography": "Georgia",
+        "country": "Georgia",
+        "stars_four_fourPointHalf": 17.2,
+        "stars_five": 33.5
+    },
+    {
+        "geography": "Germany",
+        "country": "Germany",
+        "stars_four_fourPointHalf": 14.2,
+        "stars_five": 21.3
+    },
+    {
+        "geography": "Ghana",
+        "country": "Ghana",
+        "stars_four_fourPointHalf": 20.7,
+        "stars_five": 40.2
+    },
+    {
+        "geography": "Gibraltar",
+        "country": "Gibraltar",
+        "stars_four_fourPointHalf": 14.0,
+        "stars_five": 17.1
+    },
+    {
+        "geography": "Greece",
+        "country": "Greece",
+        "stars_four_fourPointHalf": 30.1,
+        "stars_five": 35.7
+    },
+    {
+        "geography": "Greenland",
+        "country": "Greenland",
+        "stars_four_fourPointHalf": 14.2,
+        "stars_five": 29.7
+    },
+    {
+        "geography": "Grenada",
+        "country": "Grenada",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Guadeloupe",
+        "country": "Guadeloupe",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Guam, USA",
+        "country": "Guam, USA",
+        "stars_four_fourPointHalf": 29.9,
+        "stars_five": 58.0
+    },
+    {
+        "geography": "Guatemala",
+        "country": "Guatemala",
+        "stars_four_fourPointHalf": 13.7,
+        "stars_five": 32.7
+    },
+    {
+        "geography": "Guernsey",
+        "country": "Guernsey",
+        "stars_four_fourPointHalf": 25.7,
+        "stars_five": 49.8
+    },
+    {
+        "geography": "Guinea",
+        "country": "Guinea",
+        "stars_four_fourPointHalf": 22.2,
+        "stars_five": 43.2
+    },
+    {
+        "geography": "Guinea-Bissau",
+        "country": "Guinea-Bissau",
+        "stars_four_fourPointHalf": 22.2,
+        "stars_five": 43.2
+    },
+    {
+        "geography": "Guyana",
+        "country": "Guyana",
+        "stars_four_fourPointHalf": 26.5,
+        "stars_five": 51.4
+    },
+    {
+        "geography": "Haiti",
+        "country": "Haiti",
+        "stars_four_fourPointHalf": 30.5,
+        "stars_five": 59.1
+    },
+    {
+        "geography": "Heard and McDonald Islands",
+        "country": "Heard and McDonald Islands",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Holy See (Vatican City State)",
+        "country": "Holy See (Vatican City State)",
+        "stars_four_fourPointHalf": 10.2,
+        "stars_five": 12.4
+    },
+    {
+        "geography": "Honduras",
+        "country": "Honduras",
+        "stars_four_fourPointHalf": 14.2,
+        "stars_five": 33.9
+    },
+    {
+        "geography": "Hong Kong, China",
+        "country": "Hong Kong, China",
+        "stars_four_fourPointHalf": 69.9,
+        "stars_five": 142.4
+    },
+    {
+        "geography": "Hungary",
+        "country": "Hungary",
+        "stars_four_fourPointHalf": 16.5,
+        "stars_five": 23.3
+    },
+    {
+        "geography": "Iceland",
+        "country": "Iceland",
+        "stars_four_fourPointHalf": 14.7,
+        "stars_five": 28.4
+    },
+    {
+        "geography": "India",
+        "country": "India",
+        "stars_four_fourPointHalf": 51.3,
+        "stars_five": 79.4
+    },
+    {
+        "geography": "Indonesia",
+        "country": "Indonesia",
+        "stars_four_fourPointHalf": 69.1,
+        "stars_five": 137.6
+    },
+    {
+        "geography": "Iraq",
+        "country": "Iraq",
+        "stars_four_fourPointHalf": 28.0,
+        "stars_five": 54.3
+    },
+    {
+        "geography": "Ireland",
+        "country": "Ireland",
+        "stars_four_fourPointHalf": 11.0,
+        "stars_five": 13.5
+    },
+    {
+        "geography": "Islamic Republic of Iran",
+        "country": "Islamic Republic of Iran",
+        "stars_four_fourPointHalf": 24.3,
+        "stars_five": 47.2
+    },
+    {
+        "geography": "Isle of Man",
+        "country": "Isle of Man",
+        "stars_four_fourPointHalf": 25.7,
+        "stars_five": 49.8
+    },
+    {
+        "geography": "Israel",
+        "country": "Israel",
+        "stars_four_fourPointHalf": 43.0,
+        "stars_five": 83.3
+    },
+    {
+        "geography": "Italy",
+        "country": "Italy",
+        "stars_four_fourPointHalf": 14.2,
+        "stars_five": 36.0
+    },
+    {
+        "geography": "Jamaica",
+        "country": "Jamaica",
+        "stars_four_fourPointHalf": 22.1,
+        "stars_five": 42.8
+    },
+    {
+        "geography": "Japan",
+        "country": "Japan",
+        "stars_four_fourPointHalf": 43.2,
+        "stars_five": 106.1
+    },
+    {
+        "geography": "Jersey",
+        "country": "Jersey",
+        "stars_four_fourPointHalf": 25.7,
+        "stars_five": 49.8
+    },
+    {
+        "geography": "Jordan",
+        "country": "Jordan",
+        "stars_four_fourPointHalf": 57.6,
+        "stars_five": 67.6
+    },
+    {
+        "geography": "Kazakhstan",
+        "country": "Kazakhstan",
+        "stars_four_fourPointHalf": 89.8,
+        "stars_five": 174.2
+    },
+    {
+        "geography": "Kenya",
+        "country": "Kenya",
+        "stars_four_fourPointHalf": 14.1,
+        "stars_five": 27.3
+    },
+    {
+        "geography": "Kiribati",
+        "country": "Kiribati",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Korea",
+        "country": "Korea",
+        "stars_four_fourPointHalf": 52.6,
+        "stars_five": 80.2
+    },
+    {
+        "geography": "Kosovo",
+        "country": "Kosovo",
+        "stars_four_fourPointHalf": 34.2,
+        "stars_five": 66.4
+    },
+    {
+        "geography": "Kuwait",
+        "country": "Kuwait",
+        "stars_four_fourPointHalf": 44.0,
+        "stars_five": 73.2
+    },
+    {
+        "geography": "Kyrgyzstan",
+        "country": "Kyrgyzstan",
+        "stars_four_fourPointHalf": 15.0,
+        "stars_five": 29.1
+    },
+    {
+        "geography": "Lao P.D.R.",
+        "country": "Lao P.D.R.",
+        "stars_four_fourPointHalf": 25.6,
+        "stars_five": 32.9
+    },
+    {
+        "geography": "Latvia",
+        "country": "Latvia",
+        "stars_four_fourPointHalf": 17.0,
+        "stars_five": 32.9
+    },
+    {
+        "geography": "Lebanon",
+        "country": "Lebanon",
+        "stars_four_fourPointHalf": 28.9,
+        "stars_five": 56.1
+    },
+    {
+        "geography": "Lesotho",
+        "country": "Lesotho",
+        "stars_four_fourPointHalf": 16.3,
+        "stars_five": 31.7
+    },
+    {
+        "geography": "Liberia",
+        "country": "Liberia",
+        "stars_four_fourPointHalf": 22.2,
+        "stars_five": 43.2
+    },
+    {
+        "geography": "Libya",
+        "country": "Libya",
+        "stars_four_fourPointHalf": 44.7,
+        "stars_five": 74.4
+    },
+    {
+        "geography": "Liechtenstein",
+        "country": "Liechtenstein",
+        "stars_four_fourPointHalf": 6.7,
+        "stars_five": 9.8
+    },
+    {
+        "geography": "Lithuania",
+        "country": "Lithuania",
+        "stars_four_fourPointHalf": 18.0,
+        "stars_five": 35.0
+    },
+    {
+        "geography": "Luxembourg",
+        "country": "Luxembourg",
+        "stars_four_fourPointHalf": 5.6,
+        "stars_five": 8.1
+    },
+    {
+        "geography": "Macau, China",
+        "country": "Macau, China",
+        "stars_four_fourPointHalf": 78.7,
+        "stars_five": 152.7
+    },
+    {
+        "geography": "Madagascar",
+        "country": "Madagascar",
+        "stars_four_fourPointHalf": 21.6,
+        "stars_five": 41.8
+    },
+    {
+        "geography": "Malawi",
+        "country": "Malawi",
+        "stars_four_fourPointHalf": 16.3,
+        "stars_five": 31.7
+    },
+    {
+        "geography": "Malaysia",
+        "country": "Malaysia",
+        "stars_four_fourPointHalf": 56.1,
+        "stars_five": 90.7
+    },
+    {
+        "geography": "Maldives",
+        "country": "Maldives",
+        "stars_four_fourPointHalf": 82.0,
+        "stars_five": 159.1
+    },
+    {
+        "geography": "Mali",
+        "country": "Mali",
+        "stars_four_fourPointHalf": 22.2,
+        "stars_five": 43.2
+    },
+    {
+        "geography": "Malta",
+        "country": "Malta",
+        "stars_four_fourPointHalf": 12.3,
+        "stars_five": 15.0
+    },
+    {
+        "geography": "Marshall Islands",
+        "country": "Marshall Islands",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Martinique",
+        "country": "Martinique",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Mauritania",
+        "country": "Mauritania",
+        "stars_four_fourPointHalf": 33.6,
+        "stars_five": 55.9
+    },
+    {
+        "geography": "Mauritius",
+        "country": "Mauritius",
+        "stars_four_fourPointHalf": 29.9,
+        "stars_five": 58.0
+    },
+    {
+        "geography": "Mayotte",
+        "country": "Mayotte",
+        "stars_four_fourPointHalf": 19.7,
+        "stars_five": 38.2
+    },
+    {
+        "geography": "Mexico",
+        "country": "Mexico",
+        "stars_four_fourPointHalf": 37.2,
+        "stars_five": 58.6
+    },
+    {
+        "geography": "Micronesia",
+        "country": "Micronesia",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Monaco",
+        "country": "Monaco",
+        "stars_four_fourPointHalf": 6.7,
+        "stars_five": 9.8
+    },
+    {
+        "geography": "Mongolia",
+        "country": "Mongolia",
+        "stars_four_fourPointHalf": 61.1,
+        "stars_five": 117.5
+    },
+    {
+        "geography": "Montenegro",
+        "country": "Montenegro",
+        "stars_four_fourPointHalf": 13.5,
+        "stars_five": 16.6
+    },
+    {
+        "geography": "Montserrat",
+        "country": "Montserrat",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Morocco",
+        "country": "Morocco",
+        "stars_four_fourPointHalf": 48.9,
+        "stars_five": 81.3
+    },
+    {
+        "geography": "Mozambique",
+        "country": "Mozambique",
+        "stars_four_fourPointHalf": 6.5,
+        "stars_five": 12.5
+    },
+    {
+        "geography": "Myanmar",
+        "country": "Myanmar",
+        "stars_four_fourPointHalf": 30.5,
+        "stars_five": 39.1
+    },
+    {
+        "geography": "Namibia",
+        "country": "Namibia",
+        "stars_four_fourPointHalf": 5.4,
+        "stars_five": 10.4
+    },
+    {
+        "geography": "Nauru",
+        "country": "Nauru",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Nepal",
+        "country": "Nepal",
+        "stars_four_fourPointHalf": 20.2,
+        "stars_five": 46.9
+    },
+    {
+        "geography": "Netherlands",
+        "country": "Netherlands",
+        "stars_four_fourPointHalf": 16.1,
+        "stars_five": 23.9
+    },
+    {
+        "geography": "Netherlands Antilles",
+        "country": "Netherlands Antilles",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "New Caledonia",
+        "country": "New Caledonia",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "New Zealand",
+        "country": "New Zealand",
+        "stars_four_fourPointHalf": 10.1,
+        "stars_five": 19.5
+    },
+    {
+        "geography": "Nicaragua",
+        "country": "Nicaragua",
+        "stars_four_fourPointHalf": 12.7,
+        "stars_five": 30.4
+    },
+    {
+        "geography": "Niger",
+        "country": "Niger",
+        "stars_four_fourPointHalf": 35.5,
+        "stars_five": 68.9
+    },
+    {
+        "geography": "Nigeria",
+        "country": "Nigeria",
+        "stars_four_fourPointHalf": 22.7,
+        "stars_five": 44.1
+    },
+    {
+        "geography": "Niue",
+        "country": "Niue",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Norfolk Islands",
+        "country": "Norfolk Islands",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "North Korea",
+        "country": "North Korea",
+        "stars_four_fourPointHalf": 29.9,
+        "stars_five": 57.5
+    },
+    {
+        "geography": "Northern Mariana Islands",
+        "country": "Northern Mariana Islands",
+        "stars_four_fourPointHalf": 28.9,
+        "stars_five": 56.0
+    },
+    {
+        "geography": "Norway",
+        "country": "Norway",
+        "stars_four_fourPointHalf": 14.9,
+        "stars_five": 29.0
+    },
+    {
+        "geography": "Oman",
+        "country": "Oman",
+        "stars_four_fourPointHalf": 56.2,
+        "stars_five": 135.3
+    },
+    {
+        "geography": "Pakistan",
+        "country": "Pakistan",
+        "stars_four_fourPointHalf": 32.5,
+        "stars_five": 75.5
+    },
+    {
+        "geography": "Palau",
+        "country": "Palau",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Palestinian Territory",
+        "country": "Palestinian Territory",
+        "stars_four_fourPointHalf": 36.7,
+        "stars_five": 61.1
+    },
+    {
+        "geography": "Panama",
+        "country": "Panama",
+        "stars_four_fourPointHalf": 23.1,
+        "stars_five": 55.4
+    },
+    {
+        "geography": "Papua New Guinea",
+        "country": "Papua New Guinea",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Paraguay",
+        "country": "Paraguay",
+        "stars_four_fourPointHalf": 13.4,
+        "stars_five": 26.1
+    },
+    {
+        "geography": "Peru",
+        "country": "Peru",
+        "stars_four_fourPointHalf": 15.1,
+        "stars_five": 36.7
+    },
+    {
+        "geography": "Philippines",
+        "country": "Philippines",
+        "stars_four_fourPointHalf": 68.0,
+        "stars_five": 121.5
+    },
+    {
+        "geography": "Pitcairn",
+        "country": "Pitcairn",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Poland",
+        "country": "Poland",
+        "stars_four_fourPointHalf": 28.0,
+        "stars_five": 42.4
+    },
+    {
+        "geography": "Portugal",
+        "country": "Portugal",
+        "stars_four_fourPointHalf": 14.2,
+        "stars_five": 14.4
+    },
+    {
+        "geography": "Puerto Rico, USA",
+        "country": "Puerto Rico, USA",
+        "stars_four_fourPointHalf": 56.8,
+        "stars_five": 116.3
+    },
+    {
+        "geography": "Qatar",
+        "country": "Qatar",
+        "stars_four_fourPointHalf": 80.9,
+        "stars_five": 118.4
+    },
+    {
+        "geography": "Republic of Moldova",
+        "country": "Republic of Moldova",
+        "stars_four_fourPointHalf": 26.2,
+        "stars_five": 50.8
+    },
+    {
+        "geography": "Reunion",
+        "country": "Reunion",
+        "stars_four_fourPointHalf": 19.7,
+        "stars_five": 38.2
+    },
+    {
+        "geography": "Romania",
+        "country": "Romania",
+        "stars_four_fourPointHalf": 22.0,
+        "stars_five": 42.6
+    },
+    {
+        "geography": "Russian Federation",
+        "country": "Russian Federation",
+        "stars_four_fourPointHalf": 23.8,
+        "stars_five": 46.2
+    },
+    {
+        "geography": "Rwanda",
+        "country": "Rwanda",
+        "stars_four_fourPointHalf": 21.6,
+        "stars_five": 41.8
+    },
+    {
+        "geography": "Saba",
+        "country": "Saba",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Saint Helena",
+        "country": "Saint Helena",
+        "stars_four_fourPointHalf": 23.8,
+        "stars_five": 46.2
+    },
+    {
+        "geography": "Saint Kitts and Nevis",
+        "country": "Saint Kitts and Nevis",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Saint Lucia",
+        "country": "Saint Lucia",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Saint Martin",
+        "country": "Saint Martin",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Saint Pierre and Miquelon",
+        "country": "Saint Pierre and Miquelon",
+        "stars_four_fourPointHalf": 14.2,
+        "stars_five": 29.7
+    },
+    {
+        "geography": "Saint Vincent and the Grenadines",
+        "country": "Saint Vincent and the Grenadines",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Saint-Barthelemy",
+        "country": "Saint-Barthelemy",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Samoa",
+        "country": "Samoa",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "San Marino",
+        "country": "San Marino",
+        "stars_four_fourPointHalf": 10.3,
+        "stars_five": 12.5
+    },
+    {
+        "geography": "Sao Tome and Principe",
+        "country": "Sao Tome and Principe",
+        "stars_four_fourPointHalf": 17.8,
+        "stars_five": 34.6
+    },
+    {
+        "geography": "Saudi Arabia",
+        "country": "Saudi Arabia",
+        "stars_four_fourPointHalf": 72.5,
+        "stars_five": 114.9
+    },
+    {
+        "geography": "Senegal",
+        "country": "Senegal",
+        "stars_four_fourPointHalf": 25.7,
+        "stars_five": 49.9
+    },
+    {
+        "geography": "Serbia",
+        "country": "Serbia",
+        "stars_four_fourPointHalf": 41.2,
+        "stars_five": 79.9
+    },
+    {
+        "geography": "Seychelles",
+        "country": "Seychelles",
+        "stars_four_fourPointHalf": 21.6,
+        "stars_five": 41.8
+    },
+    {
+        "geography": "Sierra Leone",
+        "country": "Sierra Leone",
+        "stars_four_fourPointHalf": 22.2,
+        "stars_five": 43.2
+    },
+    {
+        "geography": "Singapore",
+        "country": "Singapore",
+        "stars_four_fourPointHalf": 22.9,
+        "stars_five": 44.2
+    },
+    {
+        "geography": "Sint Eustatius",
+        "country": "Sint Eustatius",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Sint Maarten",
+        "country": "Sint Maarten",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Slovak Republic",
+        "country": "Slovak Republic",
+        "stars_four_fourPointHalf": 12.8,
+        "stars_five": 24.9
+    },
+    {
+        "geography": "Slovenia",
+        "country": "Slovenia",
+        "stars_four_fourPointHalf": 10.2,
+        "stars_five": 12.5
+    },
+    {
+        "geography": "Solomon Islands",
+        "country": "Solomon Islands",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Somalia",
+        "country": "Somalia",
+        "stars_four_fourPointHalf": 21.6,
+        "stars_five": 41.8
+    },
+    {
+        "geography": "South Africa",
+        "country": "South Africa",
+        "stars_four_fourPointHalf": 32.2,
+        "stars_five": 62.5
+    },
+    {
+        "geography": "South Georgia and the South Sandwich Islands",
+        "country": "South Georgia and the South Sandwich Islands",
+        "stars_four_fourPointHalf": 25.7,
+        "stars_five": 49.8
+    },
+    {
+        "geography": "South Sudan",
+        "country": "South Sudan",
+        "stars_four_fourPointHalf": 31.6,
+        "stars_five": 61.3
+    },
+    {
+        "geography": "Spain",
+        "country": "Spain",
+        "stars_four_fourPointHalf": 11.1,
+        "stars_five": 19.3
+    },
+    {
+        "geography": "Sri Lanka",
+        "country": "Sri Lanka",
+        "stars_four_fourPointHalf": 39.1,
+        "stars_five": 90.9
+    },
+    {
+        "geography": "Sudan",
+        "country": "Sudan",
+        "stars_four_fourPointHalf": 29.4,
+        "stars_five": 48.9
+    },
+    {
+        "geography": "Suriname",
+        "country": "Suriname",
+        "stars_four_fourPointHalf": 24.8,
+        "stars_five": 48.1
+    },
+    {
+        "geography": "Svalbard and Jan Mayen Islands",
+        "country": "Svalbard and Jan Mayen Islands",
+        "stars_four_fourPointHalf": 22.0,
+        "stars_five": 42.7
+    },
+    {
+        "geography": "Sweden",
+        "country": "Sweden",
+        "stars_four_fourPointHalf": 14.8,
+        "stars_five": 28.8
+    },
+    {
+        "geography": "Switzerland",
+        "country": "Switzerland",
+        "stars_four_fourPointHalf": 6.8,
+        "stars_five": 9.0
+    },
+    {
+        "geography": "Syrian Arab Republic",
+        "country": "Syrian Arab Republic",
+        "stars_four_fourPointHalf": 28.1,
+        "stars_five": 54.5
+    },
+    {
+        "geography": "Taiwan, China",
+        "country": "Taiwan, China",
+        "stars_four_fourPointHalf": 58.0,
+        "stars_five": 112.2
+    },
+    {
+        "geography": "Tajikistan",
+        "country": "Tajikistan",
+        "stars_four_fourPointHalf": 15.4,
+        "stars_five": 29.8
+    },
+    {
+        "geography": "Tanzania",
+        "country": "Tanzania",
+        "stars_four_fourPointHalf": 20.2,
+        "stars_five": 39.2
+    },
+    {
+        "geography": "Thailand",
+        "country": "Thailand",
+        "stars_four_fourPointHalf": 33.9,
+        "stars_five": 54.4
+    },
+    {
+        "geography": "Timor-Leste",
+        "country": "Timor-Leste",
+        "stars_four_fourPointHalf": 25.6,
+        "stars_five": 32.9
+    },
+    {
+        "geography": "Togo",
+        "country": "Togo",
+        "stars_four_fourPointHalf": 20.9,
+        "stars_five": 40.5
+    },
+    {
+        "geography": "Tokelau",
+        "country": "Tokelau",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Tonga",
+        "country": "Tonga",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Trinidad and Tobago",
+        "country": "Trinidad and Tobago",
+        "stars_four_fourPointHalf": 23.0,
+        "stars_five": 44.7
+    },
+    {
+        "geography": "Tunisia",
+        "country": "Tunisia",
+        "stars_four_fourPointHalf": 34.9,
+        "stars_five": 58.1
+    },
+    {
+        "geography": "Turkey",
+        "country": "Turkey",
+        "stars_four_fourPointHalf": 32.3,
+        "stars_five": 50.3
+    },
+    {
+        "geography": "Turkmenistan",
+        "country": "Turkmenistan",
+        "stars_four_fourPointHalf": 28.7,
+        "stars_five": 55.7
+    },
+    {
+        "geography": "Turks and Caicos Islands",
+        "country": "Turks and Caicos Islands",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Tuvalu",
+        "country": "Tuvalu",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "US Minor Outlying Islands",
+        "country": "US Minor Outlying Islands",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Uganda",
+        "country": "Uganda",
+        "stars_four_fourPointHalf": 21.6,
+        "stars_five": 41.8
+    },
+    {
+        "geography": "Ukraine",
+        "country": "Ukraine",
+        "stars_four_fourPointHalf": 23.4,
+        "stars_five": 45.3
+    },
+    {
+        "geography": "United Arab Emirates",
+        "country": "United Arab Emirates",
+        "stars_four_fourPointHalf": 57.8,
+        "stars_five": 109.2
+    },
+    {
+        "geography": "United Kingdom",
+        "country": "United Kingdom",
+        "stars_four_fourPointHalf": 15.3,
+        "stars_five": 24.7
+    },
+    {
+        "geography": "United States",
+        "country": "United States",
+        "stars_four_fourPointHalf": 24.4,
+        "stars_five": 38.8
+    },
+    {
+        "geography": "Uruguay",
+        "country": "Uruguay",
+        "stars_four_fourPointHalf": 14.3,
+        "stars_five": 27.8
+    },
+    {
+        "geography": "Uzbekistan",
+        "country": "Uzbekistan",
+        "stars_four_fourPointHalf": 23.8,
+        "stars_five": 46.2
+    },
+    {
+        "geography": "Vanuatu",
+        "country": "Vanuatu",
+        "stars_four_fourPointHalf": 27.4,
+        "stars_five": 53.1
+    },
+    {
+        "geography": "Venezuela",
+        "country": "Venezuela",
+        "stars_four_fourPointHalf": 15.5,
+        "stars_five": 30.1
+    },
+    {
+        "geography": "Vietnam",
+        "country": "Vietnam",
+        "stars_four_fourPointHalf": 86.6,
+        "stars_five": 100.6
+    },
+    {
+        "geography": "Virgin Islands (British)",
+        "country": "Virgin Islands (British)",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 48.5
+    },
+    {
+        "geography": "Virgin Islands (US)",
+        "country": "Virgin Islands (US)",
+        "stars_four_fourPointHalf": 28.2,
+        "stars_five": 54.7
+    },
+    {
+        "geography": "Wallis and Futuna Islands",
+        "country": "Wallis and Futuna Islands",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Western Sahara",
+        "country": "Western Sahara",
+        "stars_four_fourPointHalf": 33.6,
+        "stars_five": 55.9
+    },
+    {
+        "geography": "Yemen",
+        "country": "Yemen",
+        "stars_four_fourPointHalf": 45.6,
+        "stars_five": 75.8
+    },
+    {
+        "geography": "Zambia",
+        "country": "Zambia",
+        "stars_four_fourPointHalf": 9.0,
+        "stars_five": 17.4
+    },
+    {
+        "geography": "Zimbabwe",
+        "country": "Zimbabwe",
+        "stars_four_fourPointHalf": 21.9,
+        "stars_five": 42.5
+    },
+    {
+        "geography": "Alabama State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 49.7,
+        "stars_five": 58.5
+    },
+    {
+        "geography": "Alaska State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 35.0,
+        "stars_five": 57.3
+    },
+    {
+        "geography": "Alberta",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 59.9,
+        "stars_five": 113.1
+    },
+    {
+        "geography": "Anhui",
+        "country": "China",
+        "stars_four_fourPointHalf": 46.5,
+        "stars_five": 56.3
+    },
+    {
+        "geography": "Arizona State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 30.7,
+        "stars_five": 51.5
+    },
+    {
+        "geography": "Arkansas State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 30.6,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Australian Capital Territory",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 34.1,
+        "stars_five": 55.9
+    },
+    {
+        "geography": "Bali Island",
+        "country": "Indonesia",
+        "stars_four_fourPointHalf": 84.0,
+        "stars_five": 204.2
+    },
+    {
+        "geography": "Beijing",
+        "country": "China",
+        "stars_four_fourPointHalf": 81.5,
+        "stars_five": 87.3
+    },
+    {
+        "geography": "British Columbia",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 14.3,
+        "stars_five": 25.2
+    },
+    {
+        "geography": "California State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 14.2,
+        "stars_five": 26.8
+    },
+    {
+        "geography": "Cancun-Riviera Maya (Mexico)",
+        "country": "Various",
+        "stars_four_fourPointHalf": 46.7,
+        "stars_five": 57.6
+    },
+    {
+        "geography": "Caribbean Islands",
+        "country": "Mexico",
+        "stars_four_fourPointHalf": 50.4,
+        "stars_five": 70.1
+    },
+    {
+        "geography": "Chongqing",
+        "country": "China",
+        "stars_four_fourPointHalf": 50.1,
+        "stars_five": 74.0
+    },
+    {
+        "geography": "Colorado State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 31.3,
+        "stars_five": 79.1
+    },
+    {
+        "geography": "Connecticut State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 23.4,
+        "stars_five": 34.1
+    },
+    {
+        "geography": "Delaware State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 27.7,
+        "stars_five": 45.4
+    },
+    {
+        "geography": "Florida State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 24.0,
+        "stars_five": 42.1
+    },
+    {
+        "geography": "Fujian",
+        "country": "China",
+        "stars_four_fourPointHalf": 67.8,
+        "stars_five": 60.7
+    },
+    {
+        "geography": "Gansu",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "Georgia State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 25.9,
+        "stars_five": 31.0
+    },
+    {
+        "geography": "Guangdong",
+        "country": "China",
+        "stars_four_fourPointHalf": 74.6,
+        "stars_five": 95.2
+    },
+    {
+        "geography": "Guangxi",
+        "country": "China",
+        "stars_four_fourPointHalf": 62.9,
+        "stars_five": 103.0
+    },
+    {
+        "geography": "Guizhou",
+        "country": "China",
+        "stars_four_fourPointHalf": 71.2,
+        "stars_five": 116.6
+    },
+    {
+        "geography": "Hainan",
+        "country": "China",
+        "stars_four_fourPointHalf": 71.7,
+        "stars_five": 101.4
+    },
+    {
+        "geography": "Hawaii State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 32.4,
+        "stars_five": 53.5
+    },
+    {
+        "geography": "Hebei",
+        "country": "China",
+        "stars_four_fourPointHalf": 65.9,
+        "stars_five": 94.7
+    },
+    {
+        "geography": "Heilongjiang",
+        "country": "China",
+        "stars_four_fourPointHalf": 45.4,
+        "stars_five": 74.4
+    },
+    {
+        "geography": "Henan",
+        "country": "China",
+        "stars_four_fourPointHalf": 70.7,
+        "stars_five": 123.2
+    },
+    {
+        "geography": "Hubei",
+        "country": "China",
+        "stars_four_fourPointHalf": 57.6,
+        "stars_five": 62.6
+    },
+    {
+        "geography": "Hunan",
+        "country": "China",
+        "stars_four_fourPointHalf": 67.6,
+        "stars_five": 75.7
+    },
+    {
+        "geography": "Idaho State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 25.8,
+        "stars_five": 42.2
+    },
+    {
+        "geography": "Illinois State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 35.9,
+        "stars_five": 69.7
+    },
+    {
+        "geography": "Indiana State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 33.8,
+        "stars_five": 59.4
+    },
+    {
+        "geography": "Inner Mongolia",
+        "country": "China",
+        "stars_four_fourPointHalf": 63.7,
+        "stars_five": 104.3
+    },
+    {
+        "geography": "Iowa State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 42.7,
+        "stars_five": 72.0
+    },
+    {
+        "geography": "Jiangsu",
+        "country": "China",
+        "stars_four_fourPointHalf": 68.8,
+        "stars_five": 68.9
+    },
+    {
+        "geography": "Jiangxi",
+        "country": "China",
+        "stars_four_fourPointHalf": 59.4,
+        "stars_five": 54.4
+    },
+    {
+        "geography": "Jilin",
+        "country": "China",
+        "stars_four_fourPointHalf": 63.1,
+        "stars_five": 86.2
+    },
+    {
+        "geography": "Kansas State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 41.5,
+        "stars_five": 67.9
+    },
+    {
+        "geography": "Kentucky State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 24.8,
+        "stars_five": 47.0
+    },
+    {
+        "geography": "Liaoning",
+        "country": "China",
+        "stars_four_fourPointHalf": 70.2,
+        "stars_five": 96.8
+    },
+    {
+        "geography": "Louisiana State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 28.7,
+        "stars_five": 49.3
+    },
+    {
+        "geography": "Macau",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "Maine State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 26.2,
+        "stars_five": 42.9
+    },
+    {
+        "geography": "Manitoba",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 14.9,
+        "stars_five": 24.4
+    },
+    {
+        "geography": "Maryland State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 26.5,
+        "stars_five": 44.4
+    },
+    {
+        "geography": "Massachusetts State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 19.3,
+        "stars_five": 38.5
+    },
+    {
+        "geography": "Michigan State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 33.9,
+        "stars_five": 67.1
+    },
+    {
+        "geography": "Minnesota State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 53.4,
+        "stars_five": 82.3
+    },
+    {
+        "geography": "Mississippi State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 29.8,
+        "stars_five": 48.8
+    },
+    {
+        "geography": "Missouri State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 42.2,
+        "stars_five": 73.2
+    },
+    {
+        "geography": "Montana State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 30.8,
+        "stars_five": 50.5
+    },
+    {
+        "geography": "Nebraska State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 40.3,
+        "stars_five": 65.9
+    },
+    {
+        "geography": "Nevada State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 27.8,
+        "stars_five": 44.6
+    },
+    {
+        "geography": "New Brunswick",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 42.1,
+        "stars_five": 68.9
+    },
+    {
+        "geography": "New Hampshire State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 22.5,
+        "stars_five": 36.9
+    },
+    {
+        "geography": "New Jersey State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 21.5,
+        "stars_five": 40.7
+    },
+    {
+        "geography": "New Mexico State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 30.2,
+        "stars_five": 49.5
+    },
+    {
+        "geography": "New South Wales",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 35.1,
+        "stars_five": 51.4
+    },
+    {
+        "geography": "New York State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 16.2,
+        "stars_five": 27.4
+    },
+    {
+        "geography": "Newfoundland and Labrador",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 21.9,
+        "stars_five": 35.9
+    },
+    {
+        "geography": "Ningxia Hui",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "North Carolina State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 21.4,
+        "stars_five": 37.8
+    },
+    {
+        "geography": "North Dakota State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 42.0,
+        "stars_five": 68.8
+    },
+    {
+        "geography": "Northern Territory",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 29.0,
+        "stars_five": 47.5
+    },
+    {
+        "geography": "Northwest Territories",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 41.0
+    },
+    {
+        "geography": "Nova Scotia",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 51.1,
+        "stars_five": 83.7
+    },
+    {
+        "geography": "Nunavut",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 36.7,
+        "stars_five": 60.2
+    },
+    {
+        "geography": "Ohio State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 34.4,
+        "stars_five": 59.2
+    },
+    {
+        "geography": "Oklahoma State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 40.1,
+        "stars_five": 62.0
+    },
+    {
+        "geography": "Ontario",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 12.8,
+        "stars_five": 22.1
+    },
+    {
+        "geography": "Oregon State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 17.3,
+        "stars_five": 34.9
+    },
+    {
+        "geography": "Pennsylvania State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 25.4,
+        "stars_five": 48.9
+    },
+    {
+        "geography": "Prince Edward Island",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 21.5,
+        "stars_five": 35.2
+    },
+    {
+        "geography": "Qinghai",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "Quebec",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 6.8,
+        "stars_five": 16.1
+    },
+    {
+        "geography": "New Jersey State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 21.5,
+        "stars_five": 40.7
+    },
+    {
+        "geography": "New Mexico State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 30.2,
+        "stars_five": 49.5
+    },
+    {
+        "geography": "New South Wales",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 35.1,
+        "stars_five": 51.4
+    },
+    {
+        "geography": "New York State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 16.2,
+        "stars_five": 27.4
+    },
+    {
+        "geography": "Newfoundland and Labrador",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 21.9,
+        "stars_five": 35.9
+    },
+    {
+        "geography": "Ningxia Hui",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "North Carolina State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 21.4,
+        "stars_five": 37.8
+    },
+    {
+        "geography": "North Dakota State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 42.0,
+        "stars_five": 68.8
+    },
+    {
+        "geography": "Northern Territory",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 29.0,
+        "stars_five": 47.5
+    },
+    {
+        "geography": "Northwest Territories",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 25.0,
+        "stars_five": 41.0
+    },
+    {
+        "geography": "Nova Scotia",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 51.1,
+        "stars_five": 83.7
+    },
+    {
+        "geography": "Nunavut",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 36.7,
+        "stars_five": 60.2
+    },
+    {
+        "geography": "Ohio State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 34.4,
+        "stars_five": 59.2
+    },
+    {
+        "geography": "Oklahoma State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 40.1,
+        "stars_five": 62.0
+    },
+    {
+        "geography": "Ontario",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 12.8,
+        "stars_five": 22.1
+    },
+    {
+        "geography": "Oregon State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 17.3,
+        "stars_five": 34.9
+    },
+    {
+        "geography": "Pennsylvania State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 25.4,
+        "stars_five": 48.9
+    },
+    {
+        "geography": "Prince Edward Island",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 21.5,
+        "stars_five": 35.2
+    },
+    {
+        "geography": "Qinghai",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "Quebec",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 6.8,
+        "stars_five": 16.1
+    },
+    {
+        "geography": "Queensland",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 41.0,
+        "stars_five": 67.1
+    },
+    {
+        "geography": "Rhode Island State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 24.3,
+        "stars_five": 37.3
+    },
+    {
+        "geography": "Saskatchewan",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 69.7,
+        "stars_five": 114.2
+    },
+    {
+        "geography": "Shaanxi",
+        "country": "China",
+        "stars_four_fourPointHalf": 64.3,
+        "stars_five": 99.6
+    },
+    {
+        "geography": "Shandong",
+        "country": "China",
+        "stars_four_fourPointHalf": 55.2,
+        "stars_five": 65.6
+    },
+    {
+        "geography": "Shanghai",
+        "country": "China",
+        "stars_four_fourPointHalf": 58.7,
+        "stars_five": 108.7
+    },
+    {
+        "geography": "Shanxi",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "Sichuan",
+        "country": "China",
+        "stars_four_fourPointHalf": 59.2,
+        "stars_five": 69.4
+    },
+    {
+        "geography": "South Australia",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 21.3,
+        "stars_five": 34.9
+    },
+    {
+        "geography": "South Carolina State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 18.0,
+        "stars_five": 37.1
+    },
+    {
+        "geography": "South Dakota State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 44.3,
+        "stars_five": 72.5
+    },
+    {
+        "geography": "Suzhou",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "Tasmania",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 19.2,
+        "stars_five": 31.4
+    },
+    {
+        "geography": "Tennessee State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 24.4,
+        "stars_five": 48.9
+    },
+    {
+        "geography": "Texas State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 28.4,
+        "stars_five": 38.0
+    },
+    {
+        "geography": "Tianjin",
+        "country": "China",
+        "stars_four_fourPointHalf": 58.0,
+        "stars_five": 126.7
+    },
+    {
+        "geography": "Tibet",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "Utah State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 23.9,
+        "stars_five": 41.4
+    },
+    {
+        "geography": "Vermont State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 19.9,
+        "stars_five": 32.6
+    },
+    {
+        "geography": "Victoria",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 37.1,
+        "stars_five": 52.9
+    },
+    {
+        "geography": "Virginia State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 20.0,
+        "stars_five": 41.1
+    },
+    {
+        "geography": "Washington State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 17.8,
+        "stars_five": 34.3
+    },
+    {
+        "geography": "West Virginia State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 34.5,
+        "stars_five": 56.5
+    },
+    {
+        "geography": "Western Australia",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 19.3,
+        "stars_five": 31.6
+    },
+    {
+        "geography": "Wisconsin State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 33.7,
+        "stars_five": 76.8
+    },
+    {
+        "geography": "Wyoming State",
+        "country": "United States",
+        "stars_four_fourPointHalf": 28.3,
+        "stars_five": 46.4
+    },
+    {
+        "geography": "Xinjiang",
+        "country": "China",
+        "stars_four_fourPointHalf": 49.2,
+        "stars_five": 61.8
+    },
+    {
+        "geography": "Yukon",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 23.5,
+        "stars_five": 38.4
+    },
+    {
+        "geography": "Yunnan",
+        "country": "China",
+        "stars_four_fourPointHalf": 61.2,
+        "stars_five": 85.0
+    },
+    {
+        "geography": "Zhejiang",
+        "country": "China",
+        "stars_four_fourPointHalf": 62.3,
+        "stars_five": 60.3
+    },
+    {
+        "geography": "AMBA",
+        "country": "Argentina",
+        "stars_four_fourPointHalf": 15.3
+    },
+    {
+        "geography": "Aberdeen",
+        "country": "United Kingdom"
+    },
+    {
+        "geography": "Abilene, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Abu Dhabi",
+        "country": "United Arab Emirates",
+        "stars_four_fourPointHalf": 62.0,
+        "stars_five": 139.7
+    },
+    {
+        "geography": "Ahmedabad",
+        "country": "India"
+    },
+    {
+        "geography": "Akron, OH",
+        "country": "United States"
+    },
+    {
+        "geography": "Alabama State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Albany, NY",
+        "country": "United States"
+    },
+    {
+        "geography": "Albuquerque, NM",
+        "country": "United States"
+    },
+    {
+        "geography": "Allentown, PA",
+        "country": "United States"
+    },
+    {
+        "geography": "Amarillo, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Amman",
+        "country": "Jordan"
+    },
+    {
+        "geography": "Amsterdam",
+        "country": "Netherlands",
+        "stars_four_fourPointHalf": 16.1,
+        "stars_five": 27.9
+    },
+    {
+        "geography": "Anchorage, AK",
+        "country": "United States"
+    },
+    {
+        "geography": "Ann Arbor, MI",
+        "country": "United States"
+    },
+    {
+        "geography": "Appleton, WI",
+        "country": "United States"
+    },
+    {
+        "geography": "Arizona State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Arkansas State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Asheville, NC",
+        "country": "United States"
+    },
+    {
+        "geography": "Athens",
+        "country": "Greece"
+    },
+    {
+        "geography": "Athens, GA",
+        "country": "United States"
+    },
+    {
+        "geography": "Atlanta, GA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 25.9,
+        "stars_five": 29.3
+    },
+    {
+        "geography": "Atlantic City, NJ",
+        "country": "United States"
+    },
+    {
+        "geography": "Auburn-Opelika, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Augusta, GA",
+        "country": "United States"
+    },
+    {
+        "geography": "Austin, TX",
+        "country": "United States",
+        "stars_four_fourPointHalf": 24.9
+    },
+    {
+        "geography": "Bakersfield, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Bali",
+        "country": "Indonesia",
+        "stars_four_fourPointHalf": 85.9,
+        "stars_five": 101.4
+    },
+    {
+        "geography": "Baltimore, MD",
+        "country": "United States",
+        "stars_four_fourPointHalf": 29.3
+    },
+    {
+        "geography": "Bandung",
+        "country": "Indonesia"
+    },
+    {
+        "geography": "Bangkok",
+        "country": "Thailand",
+        "stars_four_fourPointHalf": 28.8,
+        "stars_five": 50.1
+    },
+    {
+        "geography": "Barcelona",
+        "country": "Spain",
+        "stars_four_fourPointHalf": 13.2,
+        "stars_five": 15.8
+    },
+    {
+        "geography": "Barnstable Town, MA",
+        "country": "United States"
+    },
+    {
+        "geography": "Baton Rouge, LA",
+        "country": "United States"
+    },
+    {
+        "geography": "Beaumont-Port Arthur, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Beijing",
+        "country": "China",
+        "stars_four_fourPointHalf": 81.5,
+        "stars_five": 87.3
+    },
+    {
+        "geography": "Belgrade",
+        "country": "Serbia"
+    },
+    {
+        "geography": "Bend, OR",
+        "country": "United States"
+    },
+    {
+        "geography": "Bengaluru",
+        "country": "India",
+        "stars_four_fourPointHalf": 34.0
+    },
+    {
+        "geography": "Berlin",
+        "country": "Germany",
+        "stars_four_fourPointHalf": 12.4,
+        "stars_five": 20.8
+    },
+    {
+        "geography": "Birmingham, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Bismarck, ND",
+        "country": "United States"
+    },
+    {
+        "geography": "Blacksburg, VA",
+        "country": "United States"
+    },
+    {
+        "geography": "Bloomington, IL",
+        "country": "United States"
+    },
+    {
+        "geography": "Bloomington, IN",
+        "country": "United States"
+    },
+    {
+        "geography": "Bogota",
+        "country": "Colombia",
+        "stars_four_fourPointHalf": 16.4
+    },
+    {
+        "geography": "Boise City, ID",
+        "country": "United States"
+    },
+    {
+        "geography": "Boston, MA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 19.3
+    },
+    {
+        "geography": "Boulder, CO",
+        "country": "United States"
+    },
+    {
+        "geography": "Bowling Green, KY",
+        "country": "United States"
+    },
+    {
+        "geography": "Bridgeport, CT",
+        "country": "United States"
+    },
+    {
+        "geography": "Brisbane",
+        "country": "Australia"
+    },
+    {
+        "geography": "Bristol",
+        "country": "United Kingdom"
+    },
+    {
+        "geography": "Brownsville, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Brunswick, GA",
+        "country": "United States"
+    },
+    {
+        "geography": "Brussels",
+        "country": "Belgium",
+        "stars_four_fourPointHalf": 16.8
+    },
+    {
+        "geography": "Bucharest",
+        "country": "Romania"
+    },
+    {
+        "geography": "Budapest",
+        "country": "Hungary",
+        "stars_five": 23.3
+    },
+    {
+        "geography": "Buffalo, NY",
+        "country": "United States"
+    },
+    {
+        "geography": "Cairo",
+        "country": "Egypt",
+        "stars_four_fourPointHalf": 44.6,
+        "stars_five": 66.0
+    },
+    {
+        "geography": "Calgary",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 60.1
+    },
+    {
+        "geography": "California State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Cancun",
+        "country": "Mexico",
+        "stars_four_fourPointHalf": 47.8,
+        "stars_five": 57.1
+    },
+    {
+        "geography": "Cardiff",
+        "country": "United Kingdom"
+    },
+    {
+        "geography": "Cartagena",
+        "country": "Colombia"
+    },
+    {
+        "geography": "Cedar Rapids, IA",
+        "country": "United States"
+    },
+    {
+        "geography": "Champaign-Urbana, IL",
+        "country": "United States"
+    },
+    {
+        "geography": "Changchun",
+        "country": "China"
+    },
+    {
+        "geography": "Changsha",
+        "country": "China",
+        "stars_five": 77.1
+    },
+    {
+        "geography": "Changzhou",
+        "country": "China",
+        "stars_four_fourPointHalf": 82.8
+    },
+    {
+        "geography": "Charleston, SC",
+        "country": "United States"
+    },
+    {
+        "geography": "Charleston, WV",
+        "country": "United States"
+    },
+    {
+        "geography": "Charlotte, NC",
+        "country": "United States",
+        "stars_four_fourPointHalf": 22.0
+    },
+    {
+        "geography": "Charlottesville, VA",
+        "country": "United States"
+    },
+    {
+        "geography": "Chattanooga, TN",
+        "country": "United States"
+    },
+    {
+        "geography": "Chengdu",
+        "country": "China",
+        "stars_four_fourPointHalf": 54.5,
+        "stars_five": 70.4
+    },
+    {
+        "geography": "Chennai",
+        "country": "India"
+    },
+    {
+        "geography": "Cheyenne, WY",
+        "country": "United States"
+    },
+    {
+        "geography": "Chicago, IL",
+        "country": "United States",
+        "stars_four_fourPointHalf": 35.0
+    },
+    {
+        "geography": "Chongqing",
+        "country": "China",
+        "stars_four_fourPointHalf": 50.1,
+        "stars_five": 74.0
+    },
+    {
+        "geography": "Cincinnati, OH",
+        "country": "United States",
+        "stars_four_fourPointHalf": 34.6
+    },
+    {
+        "geography": "Cleveland, OH",
+        "country": "United States",
+        "stars_four_fourPointHalf": 35.5
+    },
+    {
+        "geography": "College Station, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Cologne",
+        "country": "Germany"
+    },
+    {
+        "geography": "Colorado Springs, CO",
+        "country": "United States"
+    },
+    {
+        "geography": "Colorado State Non-Metropolitan Areas",
+        "country": "United States",
+        "stars_five": 144.4
+    },
+    {
+        "geography": "Columbia, MO",
+        "country": "United States"
+    },
+    {
+        "geography": "Columbia, SC",
+        "country": "United States"
+    },
+    {
+        "geography": "Columbus, GA",
+        "country": "United States"
+    },
+    {
+        "geography": "Columbus, OH",
+        "country": "United States",
+        "stars_four_fourPointHalf": 24.8
+    },
+    {
+        "geography": "Corpus Christi, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Dalian",
+        "country": "China"
+    },
+    {
+        "geography": "Dallas-Fort Worth, TX",
+        "country": "United States",
+        "stars_four_fourPointHalf": 27.7
+    },
+    {
+        "geography": "Dammam",
+        "country": "Saudi Arabia"
+    },
+    {
+        "geography": "Danang",
+        "country": "Vietnam"
+    },
+    {
+        "geography": "Davenport, IA (Quad Cities)",
+        "country": "United States"
+    },
+    {
+        "geography": "Dayton, OH",
+        "country": "United States"
+    },
+    {
+        "geography": "Daytona Beach, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Delhi",
+        "country": "India",
+        "stars_four_fourPointHalf": 50.0,
+        "stars_five": 66.0
+    },
+    {
+        "geography": "Denver, CO",
+        "country": "United States",
+        "stars_four_fourPointHalf": 31.0
+    },
+    {
+        "geography": "Des Moines, IA",
+        "country": "United States"
+    },
+    {
+        "geography": "Destin, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Detroit, MI",
+        "country": "United States",
+        "stars_four_fourPointHalf": 33.9
+    },
+    {
+        "geography": "Doha",
+        "country": "Qatar",
+        "stars_four_fourPointHalf": 80.9,
+        "stars_five": 118.4
+    },
+    {
+        "geography": "Dongguan",
+        "country": "China"
+    },
+    {
+        "geography": "Dothan, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Dresden",
+        "country": "Germany"
+    },
+    {
+        "geography": "Dubai-Sharjah-Ajman",
+        "country": "United Arab Emirates",
+        "stars_four_fourPointHalf": 57.0,
+        "stars_five": 91.5
+    },
+    {
+        "geography": "Dublin",
+        "country": "Ireland"
+    },
+    {
+        "geography": "Duluth, MN-WI",
+        "country": "United States"
+    },
+    {
+        "geography": "Durham, NC",
+        "country": "United States"
+    },
+    {
+        "geography": "Dusseldorf",
+        "country": "Germany",
+        "stars_four_fourPointHalf": 12.6
+    },
+    {
+        "geography": "Eau Claire, WI",
+        "country": "United States"
+    },
+    {
+        "geography": "Edinburgh",
+        "country": "United Kingdom",
+        "stars_four_fourPointHalf": 9.8
+    },
+    {
+        "geography": "Edmonton",
+        "country": "Canada"
+    },
+    {
+        "geography": "El Paso, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Elizabethtown, KY",
+        "country": "United States"
+    },
+    {
+        "geography": "Erie, PA",
+        "country": "United States"
+    },
+    {
+        "geography": "Eugene-Springfield, OR",
+        "country": "United States"
+    },
+    {
+        "geography": "Evansville, IN-KY",
+        "country": "United States"
+    },
+    {
+        "geography": "Fargo, ND",
+        "country": "United States"
+    },
+    {
+        "geography": "Fayetteville, AR",
+        "country": "United States"
+    },
+    {
+        "geography": "Fayetteville, NC",
+        "country": "United States"
+    },
+    {
+        "geography": "Flagstaff, AZ",
+        "country": "United States"
+    },
+    {
+        "geography": "Flint, MI",
+        "country": "United States"
+    },
+    {
+        "geography": "Florence, SC",
+        "country": "United States"
+    },
+    {
+        "geography": "Florida State Non-Metropolitan Areas",
+        "country": "United States",
+        "stars_four_fourPointHalf": 22.9
+    },
+    {
+        "geography": "Fort Collins, CO",
+        "country": "United States"
+    },
+    {
+        "geography": "Fort Myers, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Fort Wayne, IN",
+        "country": "United States"
+    },
+    {
+        "geography": "Foshan",
+        "country": "China",
+        "stars_four_fourPointHalf": 84.9
+    },
+    {
+        "geography": "Frankfurt",
+        "country": "Germany",
+        "stars_four_fourPointHalf": 18.1,
+        "stars_five": 21.1
+    },
+    {
+        "geography": "Fresno, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Fuzhou",
+        "country": "China",
+        "stars_five": 62.2
+    },
+    {
+        "geography": "GOA",
+        "country": "India"
+    },
+    {
+        "geography": "Gainesville, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Geneva",
+        "country": "Switzerland"
+    },
+    {
+        "geography": "Georgia State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Glasgow",
+        "country": "United Kingdom"
+    },
+    {
+        "geography": "Grand Cayman",
+        "country": "Cayman Islands"
+    },
+    {
+        "geography": "Grand Rapids, MI",
+        "country": "United States"
+    },
+    {
+        "geography": "Greater Dhaka Area",
+        "country": "Bangladesh"
+    },
+    {
+        "geography": "Green Bay, WI",
+        "country": "United States"
+    },
+    {
+        "geography": "Greensboro, NC",
+        "country": "United States"
+    },
+    {
+        "geography": "Greenville, SC",
+        "country": "United States"
+    },
+    {
+        "geography": "Guadalajara",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Guangzhou",
+        "country": "China",
+        "stars_four_fourPointHalf": 66.3,
+        "stars_five": 103.5
+    },
+    {
+        "geography": "Guatemala City",
+        "country": "Guatemala"
+    },
+    {
+        "geography": "Guiyang",
+        "country": "China"
+    },
+    {
+        "geography": "Gulfport-Biloxi, MS",
+        "country": "United States"
+    },
+    {
+        "geography": "Gurugram",
+        "country": "India"
+    },
+    {
+        "geography": "Haikou",
+        "country": "China",
+        "stars_four_fourPointHalf": 64.3
+    },
+    {
+        "geography": "Hamburg",
+        "country": "Germany",
+        "stars_four_fourPointHalf": 11.5
+    },
+    {
+        "geography": "Hangzhou",
+        "country": "China",
+        "stars_four_fourPointHalf": 46.9,
+        "stars_five": 64.1
+    },
+    {
+        "geography": "Hanoi",
+        "country": "Vietnam"
+    },
+    {
+        "geography": "Hanover",
+        "country": "Germany"
+    },
+    {
+        "geography": "Harbin",
+        "country": "China"
+    },
+    {
+        "geography": "Harrisburg, PA",
+        "country": "United States"
+    },
+    {
+        "geography": "Harrisonburg, VA",
+        "country": "United States"
+    },
+    {
+        "geography": "Hartford, CT",
+        "country": "United States"
+    },
+    {
+        "geography": "Hattiesburg, MS",
+        "country": "United States"
+    },
+    {
+        "geography": "Hawaii State Non-Metropolitan Areas",
+        "country": "United States",
+        "stars_four_fourPointHalf": 32.8
+    },
+    {
+        "geography": "Hefei",
+        "country": "China",
+        "stars_four_fourPointHalf": 46.1,
+        "stars_five": 52.2
+    },
+    {
+        "geography": "Helsinki",
+        "country": "Finland",
+        "stars_four_fourPointHalf": 11.3
+    },
+    {
+        "geography": "Ho Chi Minh City",
+        "country": "Vietnam",
+        "stars_four_fourPointHalf": 77.1
+    },
+    {
+        "geography": "Hong Kong",
+        "country": "Hong Kong, China",
+        "stars_four_fourPointHalf": 69.9,
+        "stars_five": 142.4
+    },
+    {
+        "geography": "Honolulu, HI",
+        "country": "United States",
+        "stars_four_fourPointHalf": 32.3
+    },
+    {
+        "geography": "Houston, TX",
+        "country": "United States",
+        "stars_four_fourPointHalf": 32.9
+    },
+    {
+        "geography": "Hua Hin",
+        "country": "Thailand",
+        "stars_five": 47.2
+    },
+    {
+        "geography": "Huizhou",
+        "country": "China",
+        "stars_four_fourPointHalf": 73.1
+    },
+    {
+        "geography": "Huntington, WV",
+        "country": "United States"
+    },
+    {
+        "geography": "Huntsville, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Huzhou",
+        "country": "China"
+    },
+    {
+        "geography": "Hyderabad",
+        "country": "India",
+        "stars_four_fourPointHalf": 51.3
+    },
+    {
+        "geography": "Idaho State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Illinois State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Indiana State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Indianapolis, IN",
+        "country": "United States",
+        "stars_four_fourPointHalf": 34.8
+    },
+    {
+        "geography": "Iowa City, IA",
+        "country": "United States"
+    },
+    {
+        "geography": "Iowa State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Istanbul",
+        "country": "Turkey",
+        "stars_four_fourPointHalf": 29.9,
+        "stars_five": 42.2
+    },
+    {
+        "geography": "Jackson, MS",
+        "country": "United States"
+    },
+    {
+        "geography": "Jacksonville, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Jakarta",
+        "country": "Indonesia",
+        "stars_four_fourPointHalf": 78.4,
+        "stars_five": 137.6
+    },
+    {
+        "geography": "Jeddah",
+        "country": "Saudi Arabia",
+        "stars_five": 150.5
+    },
+    {
+        "geography": "Jiaxing",
+        "country": "China"
+    },
+    {
+        "geography": "Jinan",
+        "country": "China"
+    },
+    {
+        "geography": "Jinhua",
+        "country": "China",
+        "stars_four_fourPointHalf": 44.9
+    },
+    {
+        "geography": "Kalamazoo, MI",
+        "country": "United States"
+    },
+    {
+        "geography": "Kansas City, MO",
+        "country": "United States",
+        "stars_four_fourPointHalf": 30.7
+    },
+    {
+        "geography": "Kansas State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Kelowna",
+        "country": "Canada"
+    },
+    {
+        "geography": "Kennewick, WA",
+        "country": "United States"
+    },
+    {
+        "geography": "Kentucky State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Kingsport, TN",
+        "country": "United States"
+    },
+    {
+        "geography": "Kingston",
+        "country": "Canada"
+    },
+    {
+        "geography": "Knoxville, TN",
+        "country": "United States"
+    },
+    {
+        "geography": "Kochi",
+        "country": "India"
+    },
+    {
+        "geography": "Koh Samui",
+        "country": "Thailand",
+        "stars_five": 91.7
+    },
+    {
+        "geography": "Kolkata",
+        "country": "India"
+    },
+    {
+        "geography": "Kuala Lumpur",
+        "country": "Malaysia",
+        "stars_four_fourPointHalf": 49.1,
+        "stars_five": 87.3
+    },
+    {
+        "geography": "Kunming",
+        "country": "China"
+    },
+    {
+        "geography": "Kuwait City",
+        "country": "Kuwait"
+    },
+    {
+        "geography": "Kyoto",
+        "country": "Japan"
+    },
+    {
+        "geography": "Lafayette, IN",
+        "country": "United States"
+    },
+    {
+        "geography": "Lafayette, LA",
+        "country": "United States"
+    },
+    {
+        "geography": "Lake Charles, LA",
+        "country": "United States"
+    },
+    {
+        "geography": "Lakeland, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Lancaster, PA",
+        "country": "United States"
+    },
+    {
+        "geography": "Langfang",
+        "country": "China"
+    },
+    {
+        "geography": "Langkawi",
+        "country": "Malaysia"
+    },
+    {
+        "geography": "Lansing, MI",
+        "country": "United States"
+    },
+    {
+        "geography": "Las Cruces, NM",
+        "country": "United States"
+    },
+    {
+        "geography": "Las Palmas",
+        "country": "Spain"
+    },
+    {
+        "geography": "Las Vegas, NV",
+        "country": "United States"
+    },
+    {
+        "geography": "Leeds",
+        "country": "United Kingdom"
+    },
+    {
+        "geography": "Leipzig",
+        "country": "Germany"
+    },
+    {
+        "geography": "Lexington, KY",
+        "country": "United States"
+    },
+    {
+        "geography": "Lima",
+        "country": "Peru"
+    },
+    {
+        "geography": "Lincoln, NE",
+        "country": "United States"
+    },
+    {
+        "geography": "Lisbon",
+        "country": "Portugal"
+    },
+    {
+        "geography": "Little Rock, AR",
+        "country": "United States"
+    },
+    {
+        "geography": "Liverpool",
+        "country": "United Kingdom",
+        "stars_four_fourPointHalf": 16.5
+    },
+    {
+        "geography": "London, UK",
+        "country": "United Kingdom",
+        "stars_four_fourPointHalf": 12.6,
+        "stars_five": 24.8
+    },
+    {
+        "geography": "Longview, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Los Angeles, CA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 13.3,
+        "stars_five": 24.1
+    },
+    {
+        "geography": "Los Cabos",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Louisiana State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Louisville, KY",
+        "country": "United States",
+        "stars_four_fourPointHalf": 25.8
+    },
+    {
+        "geography": "Lubbock, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Lynchburg, VA",
+        "country": "United States"
+    },
+    {
+        "geography": "MONTERREY",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Macau",
+        "country": "Macau, China",
+        "stars_five": 152.7
+    },
+    {
+        "geography": "Macon, GA",
+        "country": "United States"
+    },
+    {
+        "geography": "Madison, WI",
+        "country": "United States"
+    },
+    {
+        "geography": "Madrid",
+        "country": "Spain",
+        "stars_four_fourPointHalf": 11.8,
+        "stars_five": 18.5
+    },
+    {
+        "geography": "Makkah",
+        "country": "Saudi Arabia"
+    },
+    {
+        "geography": "Manama",
+        "country": "Bahrain",
+        "stars_four_fourPointHalf": 83.9,
+        "stars_five": 118.3
+    },
+    {
+        "geography": "Manchester",
+        "country": "United Kingdom",
+        "stars_four_fourPointHalf": 11.8
+    },
+    {
+        "geography": "Manchester, NH",
+        "country": "United States"
+    },
+    {
+        "geography": "Manhattan, KS",
+        "country": "United States"
+    },
+    {
+        "geography": "Maryland State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "McAllen, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Medford, OR MSA",
+        "country": "United States"
+    },
+    {
+        "geography": "Melbourne",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 37.1,
+        "stars_five": 52.9
+    },
+    {
+        "geography": "Memphis, TN",
+        "country": "United States"
+    },
+    {
+        "geography": "Merida",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Metro Manila",
+        "country": "Philippines",
+        "stars_four_fourPointHalf": 75.5
+    },
+    {
+        "geography": "Mexico City",
+        "country": "Mexico",
+        "stars_four_fourPointHalf": 25.7,
+        "stars_five": 47.3
+    },
+    {
+        "geography": "Miami, FL",
+        "country": "United States",
+        "stars_four_fourPointHalf": 23.5,
+        "stars_five": 39.6
+    },
+    {
+        "geography": "Michigan State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Midland, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Milan",
+        "country": "Italy",
+        "stars_four_fourPointHalf": 14.8,
+        "stars_five": 49.7
+    },
+    {
+        "geography": "Milwaukee, WI",
+        "country": "United States",
+        "stars_four_fourPointHalf": 32.2
+    },
+    {
+        "geography": "Minneapolis, MN",
+        "country": "United States",
+        "stars_four_fourPointHalf": 53.4
+    },
+    {
+        "geography": "Minnesota State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Mississippi State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Missoula, MT",
+        "country": "United States"
+    },
+    {
+        "geography": "Missouri State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Mobile, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Modesto, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Moncton",
+        "country": "Canada"
+    },
+    {
+        "geography": "Montana State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Montego Bay",
+        "country": "Jamaica"
+    },
+    {
+        "geography": "Montgomery, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Montreal",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 11.6
+    },
+    {
+        "geography": "Morgantown, WV",
+        "country": "United States"
+    },
+    {
+        "geography": "Mumbai",
+        "country": "India",
+        "stars_five": 67.8
+    },
+    {
+        "geography": "Munich",
+        "country": "Germany",
+        "stars_four_fourPointHalf": 14.2
+    },
+    {
+        "geography": "Muscat",
+        "country": "Oman",
+        "stars_four_fourPointHalf": 26.8
+    },
+    {
+        "geography": "Myrtle Beach, SC",
+        "country": "United States"
+    },
+    {
+        "geography": "Nadi",
+        "country": "Fiji"
+    },
+    {
+        "geography": "Nagoya",
+        "country": "Japan"
+    },
+    {
+        "geography": "Nanchang",
+        "country": "China"
+    },
+    {
+        "geography": "Nanjing",
+        "country": "China",
+        "stars_four_fourPointHalf": 74.2,
+        "stars_five": 82.6
+    },
+    {
+        "geography": "Mobile, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Modesto, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Moncton",
+        "country": "Canada"
+    },
+    {
+        "geography": "Montana State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Montego Bay",
+        "country": "Jamaica"
+    },
+    {
+        "geography": "Montgomery, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Montreal",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 11.6
+    },
+    {
+        "geography": "Morgantown, WV",
+        "country": "United States"
+    },
+    {
+        "geography": "Munich",
+        "country": "Germany",
+        "stars_four_fourPointHalf": 14.2
+    },
+    {
+        "geography": "Muscat",
+        "country": "Oman",
+        "stars_four_fourPointHalf": 26.8
+    },
+    {
+        "geography": "Myrtle Beach, SC",
+        "country": "United States"
+    },
+    {
+        "geography": "Nadi",
+        "country": "Fiji"
+    },
+    {
+        "geography": "Nagoya",
+        "country": "Japan"
+    },
+    {
+        "geography": "Nanchang",
+        "country": "China"
+    },
+    {
+        "geography": "Nanjing",
+        "country": "China",
+        "stars_four_fourPointHalf": 74.2,
+        "stars_five": 82.6
+    },
+    {
+        "geography": "Ohio State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Oklahoma City, OK",
+        "country": "United States"
+    },
+    {
+        "geography": "Oklahoma State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Omaha, NE",
+        "country": "United States"
+    },
+    {
+        "geography": "Oregon State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Orlando, FL",
+        "country": "United States",
+        "stars_four_fourPointHalf": 23.9
+    },
+    {
+        "geography": "Osaka",
+        "country": "Japan",
+        "stars_four_fourPointHalf": 37.3
+    },
+    {
+        "geography": "Ottawa–Gatineau",
+        "country": "Canada"
+    },
+    {
+        "geography": "Palm Bay, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Palma de Mallorca",
+        "country": "Spain"
+    },
+    {
+        "geography": "Panama City",
+        "country": "Panama",
+        "stars_four_fourPointHalf": 20.7
+    },
+    {
+        "geography": "Panama City, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Paris",
+        "country": "France",
+        "stars_four_fourPointHalf": 7.2,
+        "stars_five": 12.3
+    },
+    {
+        "geography": "Pattaya",
+        "country": "Thailand"
+    },
+    {
+        "geography": "Penang",
+        "country": "Malaysia"
+    },
+    {
+        "geography": "Pennsylvania  State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Pensacola, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Peoria, IL",
+        "country": "United States"
+    },
+    {
+        "geography": "Perth",
+        "country": "Australia"
+    },
+    {
+        "geography": "Philadelphia, PA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 23.7
+    },
+    {
+        "geography": "Phoenix, AZ",
+        "country": "United States",
+        "stars_four_fourPointHalf": 26.8
+    },
+    {
+        "geography": "Phu Quoc",
+        "country": "Vietnam"
+    },
+    {
+        "geography": "Phuket",
+        "country": "Thailand",
+        "stars_four_fourPointHalf": 38.2,
+        "stars_five": 72.2
+    },
+    {
+        "geography": "Pittsburgh, PA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 27.1
+    },
+    {
+        "geography": "Pittsfield, MA",
+        "country": "United States"
+    },
+    {
+        "geography": "Playa del Carmen",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Porec",
+        "country": "Croatia"
+    },
+    {
+        "geography": "Port St. Lucie, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Portland, ME",
+        "country": "United States"
+    },
+    {
+        "geography": "Portland, OR",
+        "country": "United States",
+        "stars_four_fourPointHalf": 17.3
+    },
+    {
+        "geography": "Porto",
+        "country": "Portugal"
+    },
+    {
+        "geography": "Poughkeepsie, NY",
+        "country": "United States"
+    },
+    {
+        "geography": "Prague",
+        "country": "Czech Republic",
+        "stars_four_fourPointHalf": 20.8
+    },
+    {
+        "geography": "Providence, RI",
+        "country": "United States"
+    },
+    {
+        "geography": "Provo, UT",
+        "country": "United States"
+    },
+    {
+        "geography": "Puebla",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Puerto Vallarta",
+        "country": "Mexico",
+        "stars_four_fourPointHalf": 34.3
+    },
+    {
+        "geography": "Pune",
+        "country": "India",
+        "stars_four_fourPointHalf": 33.6,
+        "stars_five": 90.7
+    },
+    {
+        "geography": "Punta Cana",
+        "country": "Dominican Republic",
+        "stars_four_fourPointHalf": 52.1
+    },
+    {
+        "geography": "Qingdao",
+        "country": "China",
+        "stars_four_fourPointHalf": 55.4
+    },
+    {
+        "geography": "Quanzhou",
+        "country": "China"
+    },
+    {
+        "geography": "Quebec",
+        "country": "Canada"
+    },
+    {
+        "geography": "Queretaro",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Raleigh, NC",
+        "country": "United States"
+    },
+    {
+        "geography": "Rapid City, SD",
+        "country": "United States"
+    },
+    {
+        "geography": "Reading, PA",
+        "country": "United States"
+    },
+    {
+        "geography": "Regina",
+        "country": "Canada"
+    },
+    {
+        "geography": "Reno, NV",
+        "country": "United States"
+    },
+    {
+        "geography": "Rhine-Ruhr",
+        "country": "Germany",
+        "stars_four_fourPointHalf": 15.7
+    },
+    {
+        "geography": "Richmond, VA",
+        "country": "United States"
+    },
+    {
+        "geography": "Rio de Janeiro",
+        "country": "Brazil"
+    },
+    {
+        "geography": "Riyadh",
+        "country": "Saudi Arabia",
+        "stars_four_fourPointHalf": 72.5,
+        "stars_five": 113.4
+    },
+    {
+        "geography": "Roanoke, VA",
+        "country": "United States"
+    },
+    {
+        "geography": "Rochester, MN",
+        "country": "United States"
+    },
+    {
+        "geography": "Rochester, NY",
+        "country": "United States"
+    },
+    {
+        "geography": "Rocky Mount, NC",
+        "country": "United States"
+    },
+    {
+        "geography": "Rome",
+        "country": "Italy",
+        "stars_four_fourPointHalf": 16.5
+    },
+    {
+        "geography": "Sacramento, CA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 14.0
+    },
+    {
+        "geography": "Saginaw, MI",
+        "country": "United States"
+    },
+    {
+        "geography": "Salinas, CA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 55.1
+    },
+    {
+        "geography": "Salt Lake City, UT",
+        "country": "United States"
+    },
+    {
+        "geography": "San Angelo, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "San Antonio, TX",
+        "country": "United States",
+        "stars_four_fourPointHalf": 29.1
+    },
+    {
+        "geography": "San Bernardino, CA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 26.6
+    },
+    {
+        "geography": "San Diego, CA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 14.5
+    },
+    {
+        "geography": "San Francisco, CA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 14.0,
+        "stars_five": 22.0
+    },
+    {
+        "geography": "San Jose Costa Rica",
+        "country": "San José, CA, United States"
+    },
+    {
+        "geography": "San Juan–Caguas–Guaynabo",
+        "country": "Puerto Rico, USA",
+        "stars_four_fourPointHalf": 56.8
+    },
+    {
+        "geography": "Santa Barbara, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Santa Cruz, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Santa Rosa, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Santiago",
+        "country": "Chile",
+        "stars_four_fourPointHalf": 30.3
+    },
+    {
+        "geography": "Santo Domingo",
+        "country": "Dominican Republic"
+    },
+    {
+        "geography": "Sanya",
+        "country": "China",
+        "stars_four_fourPointHalf": 71.7,
+        "stars_five": 105.8
+    },
+    {
+        "geography": "Sao Paulo",
+        "country": "Brazil",
+        "stars_four_fourPointHalf": 9.7
+    },
+    {
+        "geography": "Sarasota, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Saskatoon",
+        "country": "Canada"
+    },
+    {
+        "geography": "Savannah, GA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 24.9
+    },
+    {
+        "geography": "Scranton, PA",
+        "country": "United States"
+    },
+    {
+        "geography": "Seattle, WA",
+        "country": "United States",
+        "stars_four_fourPointHalf": 17.8
+    },
+    {
+        "geography": "Sebastian, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Seoul",
+        "country": "Korea",
+        "stars_four_fourPointHalf": 45.2,
+        "stars_five": 85.6
+    },
+    {
+        "geography": "Shanghai",
+        "country": "China",
+        "stars_four_fourPointHalf": 58.7,
+        "stars_five": 108.7
+    },
+    {
+        "geography": "Shaoxing",
+        "country": "China"
+    },
+    {
+        "geography": "Shenyang",
+        "country": "China"
+    },
+    {
+        "geography": "Shenzhen",
+        "country": "China",
+        "stars_four_fourPointHalf": 72.9,
+        "stars_five": 92.9
+    },
+    {
+        "geography": "Shreveport, LA",
+        "country": "United States"
+    },
+    {
+        "geography": "Sichuan Nonmetropolitan Area",
+        "country": "China"
+    },
+    {
+        "geography": "Singapore",
+        "country": "Singapore",
+        "stars_four_fourPointHalf": 22.9,
+        "stars_five": 44.2
+    },
+    {
+        "geography": "Sioux City, IA-NE-SD",
+        "country": "United States"
+    },
+    {
+        "geography": "Sioux Falls, SD",
+        "country": "United States"
+    },
+    {
+        "geography": "South Bali",
+        "country": "Indonesia",
+        "stars_four_fourPointHalf": 69.9,
+        "stars_five": 307.6
+    },
+    {
+        "geography": "South Bend, IN",
+        "country": "United States"
+    },
+    {
+        "geography": "South Carolina State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "South Dakota State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Spartanburg, SC",
+        "country": "United States"
+    },
+    {
+        "geography": "Spokane, WA",
+        "country": "United States"
+    },
+    {
+        "geography": "Springfield, IL",
+        "country": "United States"
+    },
+    {
+        "geography": "Springfield, MA",
+        "country": "United States"
+    },
+    {
+        "geography": "Springfield, MO",
+        "country": "United States"
+    },
+    {
+        "geography": "St. George, UT",
+        "country": "United States"
+    },
+    {
+        "geography": "St. John's",
+        "country": "Canada"
+    },
+    {
+        "geography": "St. Louis, MO",
+        "country": "United States",
+        "stars_four_fourPointHalf": 43.4
+    },
+    {
+        "geography": "Stockton, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Surabaya",
+        "country": "Indonesia"
+    },
+    {
+        "geography": "Suzhou",
+        "country": "China",
+        "stars_four_fourPointHalf": 58.6,
+        "stars_five": 73.4
+    },
+    {
+        "geography": "Sydney",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 34.8,
+        "stars_five": 51.4
+    },
+    {
+        "geography": "Syracuse, NY",
+        "country": "United States"
+    },
+    {
+        "geography": "Tallahassee, FL",
+        "country": "United States"
+    },
+    {
+        "geography": "Tampa Bay, FL",
+        "country": "United States",
+        "stars_four_fourPointHalf": 23.2
+    },
+    {
+        "geography": "Tel Aviv",
+        "country": "Israel"
+    },
+    {
+        "geography": "Temple, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Tennessee State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Texarkana, AR",
+        "country": "United States"
+    },
+    {
+        "geography": "Texas State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Tianjin",
+        "country": "China",
+        "stars_four_fourPointHalf": 58.0,
+        "stars_five": 126.7
+    },
+    {
+        "geography": "Tokyo",
+        "country": "Japan",
+        "stars_four_fourPointHalf": 56.1,
+        "stars_five": 102.9
+    },
+    {
+        "geography": "Toledo, OH",
+        "country": "United States"
+    },
+    {
+        "geography": "Toluca",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Topeka, KS",
+        "country": "United States"
+    },
+    {
+        "geography": "Toronto",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 11.4
+    },
+    {
+        "geography": "Trenton, NJ",
+        "country": "United States"
+    },
+    {
+        "geography": "Tucson, AZ",
+        "country": "United States"
+    },
+    {
+        "geography": "Tulsa, OK",
+        "country": "United States"
+    },
+    {
+        "geography": "Tuscaloosa, AL",
+        "country": "United States"
+    },
+    {
+        "geography": "Tyler, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Utah State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Valdosta, GA",
+        "country": "United States"
+    },
+    {
+        "geography": "Valencia",
+        "country": "Spain"
+    },
+    {
+        "geography": "Vallejo, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Vancouver",
+        "country": "Canada",
+        "stars_four_fourPointHalf": 13.7
+    },
+    {
+        "geography": "Venice",
+        "country": "Italy",
+        "stars_four_fourPointHalf": 15.4
+    },
+    {
+        "geography": "Ventura, CA",
+        "country": "United States"
+    },
+    {
+        "geography": "Vienna",
+        "country": "Austria",
+        "stars_four_fourPointHalf": 8.3,
+        "stars_five": 14.0
+    },
+    {
+        "geography": "Villahermosa",
+        "country": "Mexico"
+    },
+    {
+        "geography": "Virginia Beach, VA",
+        "country": "United States"
+    },
+    {
+        "geography": "Virginia State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Waco, TX",
+        "country": "United States"
+    },
+    {
+        "geography": "Warsaw",
+        "country": "Poland"
+    },
+    {
+        "geography": "Washington DC",
+        "country": "United States",
+        "stars_four_fourPointHalf": 20.4,
+        "stars_five": 37.6
+    },
+    {
+        "geography": "Washington State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Waterloo, IA",
+        "country": "United States"
+    },
+    {
+        "geography": "West Midlands",
+        "country": "United Kingdom",
+        "stars_four_fourPointHalf": 17.5
+    },
+    {
+        "geography": "West Virginia State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Wheeling, WV-OH",
+        "country": "United States"
+    },
+    {
+        "geography": "Wichita, KS",
+        "country": "United States"
+    },
+    {
+        "geography": "Williamsport, PA",
+        "country": "United States"
+    },
+    {
+        "geography": "Wilmington, NC",
+        "country": "United States"
+    },
+    {
+        "geography": "Winchester, VA-WV",
+        "country": "United States"
+    },
+    {
+        "geography": "Winnipeg",
+        "country": "Canada"
+    },
+    {
+        "geography": "Winston-Salem, NC",
+        "country": "United States"
+    },
+    {
+        "geography": "Wisconsin State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Worcester, MA",
+        "country": "United States"
+    },
+    {
+        "geography": "Wuhan",
+        "country": "China",
+        "stars_four_fourPointHalf": 60.7
+    },
+    {
+        "geography": "Wuxi",
+        "country": "China",
+        "stars_four_fourPointHalf": 82.6,
+        "stars_five": 71.4
+    },
+    {
+        "geography": "Wyoming State Non-Metropolitan Areas",
+        "country": "United States"
+    },
+    {
+        "geography": "Xiamen",
+        "country": "China",
+        "stars_four_fourPointHalf": 68.6,
+        "stars_five": 53.8
+    },
+    {
+        "geography": "Xian",
+        "country": "China",
+        "stars_four_fourPointHalf": 64.6,
+        "stars_five": 99.6
+    },
+    {
+        "geography": "Xuzhou",
+        "country": "China"
+    },
+    {
+        "geography": "Yantai",
+        "country": "China"
+    },
+    {
+        "geography": "Yinchuan",
+        "country": "China"
+    },
+    {
+        "geography": "York",
+        "country": "United Kingdom"
+    },
+    {
+        "geography": "York, PA",
+        "country": "United States"
+    },
+    {
+        "geography": "Youngstown, OH",
+        "country": "United States"
+    },
+    {
+        "geography": "Yuma, AZ",
+        "country": "United States"
+    },
+    {
+        "geography": "Zhengzhou",
+        "country": "China"
+    },
+    {
+        "geography": "Zhenjiang",
+        "country": "China"
+    },
+    {
+        "geography": "Zhuhai",
+        "country": "China"
+    },
+    {
+        "geography": "Zurich",
+        "country": "Switzerland",
+        "stars_four_fourPointHalf": 6.3
+    }
+]

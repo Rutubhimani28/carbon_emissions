@@ -1,35 +1,44 @@
 import { Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Faq = () => {
     return (
         <div className='main py-5'>
-            <Typography variant='h6' className='text-center fs-1 green mb-3 fontFamily fw-bold py-5 wow animate__animated animate__fadeInUp animate__slow' >FAQ's</Typography>
+            {/* <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5 wow animate__animated animate__fadeInUp animate__slow' >FAQ's</Typography> */}
+            <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5' >FAQ's</Typography>
 
-            <p className='wow animate__animated animate__fadeInLeft animate__slow'>
+            {/* <p className='wow animate__animated animate__fadeInLeft animate__slow'> */}
+            <p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>In candid conversation with our Founder & CEO of <strong>Sirat</strong>, Mr.Mohammed Shafeeq.</p>
 
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q1: What is Go Sustainable all about? And why now?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>A1: It’s about urging the Chief Marketing Officer (CMO) vertical of organizations to adopt sustainable measures while managing their marketing and corporate affairs operations. For the second question, why now? If not now, then when? </p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q2: Why do you think that the CMO vertical of an organization has to follow sustainable measures?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>A2: With deep pockets, the CMO vertical is at the forefront, enhancing brand awareness, driving customer acquisition, and fostering overall business growth through the implementation of effective marketing strategies, contributing significantly to their organization’s Environmental, Social, and Governance (ESG) initiatives. But have these organizations ever looked behind the curtain to see how their own CMO vertical is contributing to the industry’s direct and indirect greenhouse gas (GHG) emissions? Now is the time for the CMO vertical to focus its efforts in this regard.</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q3: You mentioned that the Organization’s CMO vertical is not embracing sustainable measures while executing their activities. Can you give us a couple of examples?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'>A3: Yes, here are the two examples-</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'>Example 1: Let’s consider activities like promoting a product/solution or conducting a customer event. These generate a significant amount of direct and indirect GHG emissions. Travel, accommodation, local transportation, and wasted resources contribute to this impact.</p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>Example 2: Take an ad campaign video shoot. This activity, if not managed sustainably, can have negative effects on the environment and social causes. Using harmful materials, consuming resources recklessly during the shoot can be detrimental. Our role is to identify and optimize areas that produce emissions.</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q4: Do you mean to say that the Organization’s CMO vertical is not following sustainable measures? Why?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>A4: Yes, they are not, and the reason is a lack of awareness. For instance, not using plastic water bottles is one initiative, but there is a long road ahead. Lack of consideration for emissions during various activities, like events or campaigns, is a significant issue that needs attention.</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q5: Does Go Sustainable claim that they have a net-zero framework?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>A5: Yes, we have a step-by-step process for various verticals—organizations, service providers, hotels, and exhibitors—to achieve net-zero by 2050 in their activities. Our vision aims to empower these verticals, guiding them to achieve a 50% reduction in both direct and indirect greenhouse gas emissions by 2030.</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q6: When we look onto the activities which the CMOs execute, they need service providers and hotel venues to drive those. What is your strategy in involving them in this entire process?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>A6: As mentioned earlier, we have separate frameworks for service providers and hotel venues that will guide them to reduce the carbon emissions they generate while supporting the marketing activities.</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q7: There are big exhibitions happening at regular intervals conducted by government bodies and third-parties. What is your take on supporting these exhibitors?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>A7: We have a framework for everyone. Just connect with us, and we can have a dialogue. You can refer to our dedicated page for exhibitors for more details.</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q8: If I have that framework copy, then why do I need Go Sustainable?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>A8: Frameworks are there to guide, but what you need is expertise, at least for a few months, where we can handhold you and help you to identify the areas that generate carbon emissions. The second part is the toughest, which is optimizing emissions, and it can only happen with a dialogue between all the other stakeholders. Last but not least, measuring and reporting emissions – not everyone can do that. So, you need us to complete the cycle.</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q9: Any message to the Organization’s CMO vertical, service providers, hotel venues, and exhibitors?</strong></p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>A9: For all these years, you have been executing a multitude of activities without considering the direct and indirect GHG emissions generated through your activities. It’s time for you to embrace sustainability as part of your overall corporate strategy and contribute to mitigating carbon emissions through your actions</p>
-                <p style={{ fontSize: "20px" }} className=' mb-0'>There may be many more questions, what are you waiting for? Please <span style={{ color: "#4edceb" }}>reach out to us</span>, and let’s talk to create long-term value.</p>
+                <p style={{ fontSize: "20px" }} className=' mb-0'>A1: It’s about urging the Chief Marketing Officer (CMO) vertical of organizations to adopt sustainable measures while managing their marketing and corporate affairs operations with the ultimate goal of achieving NetZero.</p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>For the second question, why now? If not now, then when? Are we going to wait another decade to understand the importance of sustainable marketing, or should we act now?</p>
 
+                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q2: What are your different services that you provide for your clients and and who are your targeted customers apart from organizations' CMO vertical? And why target them?</strong></p>
+                <p style={{ fontSize: "20px" }} className=''>A2: We offer a NetZero Consulting service and a NetZero Tool, both of which complement each other, allowing our customers to leverage synergies to the fullest. </p>
+                <p style={{ fontSize: "20px" }} className=''>To elaborate on the NetZero Tool, it has been meticulously developed through extensive research and tailored to meet the specific needs our targeted customers. We have categorised in a step-by-step method to facilitate easy measurement of emissions based on their type of activity.</p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>Our targeted customers include, organisations’ Chief Marketing Officer (CMO) vertical, agencies specializing in event and digital marketing, hospitality and exhibition organisers. These sectors are closely interconnected, each depending on one or more other industry verticals for various aspects of their operations.</p>
+
+                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q3: Why do you think the CMO vertical of an organization should follow sustainable measures?</strong></p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>A3: The CMO vertical wields substantial resources and budgets to boost brand awareness, drive customer acquisition, and spur business growth with effective marketing strategies. However, it's crucial for these organizations to consider the impact of their operations on greenhouse gas (GHG) emissions, both direct and indirect, as part of their Environmental, Social, and Governance (ESG) initiatives. Now is the opportune moment for the CMO vertical to prioritize sustainable practices in their operations.</p>
+
+                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q4: You mentioned that the organization's CMO vertical is not embracing sustainable measures while executing their activities. Can you share a few examples?</strong></p>
+                <p style={{ fontSize: "20px" }} className=''>A4: Example 1: Consider activities such as promoting a product/solution or hosting a customer event. These events generate a significant CO2 footprint due to factors like travel, accommodation, local transportation, wastage of resources, and other categories identified in our NetZero Tool that contribute to this impact.</p>
+                <p style={{ fontSize: "20px" }} className=''>Example 2: Imagine a CMO vertical planning a digital campaign on social media, focusing primarily on key performance indicators like lead generation and impressions. However, often overlooked is the CO2 footprint generated by such digital campaigns.</p>
+                <p style={{ fontSize: "20px" }} className=''>Example 3: Consider an ad campaign video shoot. If not managed sustainably, this activity can have adverse effects on the environment and social causes. The use of harmful materials and reckless consumption of resources during the shoot can be detrimental. Our role is to identify and optimize areas that contribute to emissions.</p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>To address these challenges, we have developed the NetZero Tool. By inputting relevant data, it calculates the emissions generated, prompting the CMO vertical to take corrective actions and engage with us to optimize their operations. We advocate not for cessation of digital campaigns or events but for their optimization to reduce CO2 emissions stemming from marketing activities.</p>
+
+                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q5: Do you mean to say that the organization’s CMO vertical is not following sustainable measures? Why?</strong></p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>A5: Yes, they are not, and the primary reason, in most cases, is lack of awareness. For example, initiatives like avoiding plastic water bottles or reducing air travel are steps in the right direction, but there is much more to be done. The lack of consideration for emissions during various marketing activities, such as events or digital campaigns, is a significant issue that requires immediate attention.</p>
+
+                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q6: Does Sirat claim to have a net-zero framework and tool?</strong></p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>A6: Yes, we have developed a comprehensive framework for various sectors—organizations, service providers (agencies), hospitality, and exhibitors—to achieve NetZero by 2050. This framework is complemented by our NetZero Consulting Services and a NetZero Tool. Our vision is to empower these sectors, guiding them to achieve a 50% reduction in both direct and indirect greenhouse gas emissions by 2030.</p>
+
+                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q7: Any last message for your targeted industries?</strong></p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>A7: For years, many activities have been carried out without considering the direct and indirect greenhouse gas (GHG) emissions they generate. It's time to integrate sustainability into your corporate strategy and take proactive steps to mitigate carbon emissions. Let's work together to create a roadmap towards achieving NetZero.</p>
+
+                <p style={{ fontSize: "20px" }} className=' mb-0'>There may be many more questions on your mind about how all of this can happen? Please reach out to my team by sending an email to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link> and we will respond to your queries within 2-3 working days.</p>
             </p>
         </div>
     )

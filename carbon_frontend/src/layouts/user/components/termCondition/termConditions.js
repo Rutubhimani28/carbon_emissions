@@ -4,7 +4,7 @@ import React from 'react'
 const TermConditions = () => {
     return (
         <div className='main py-5'>
-            <Typography variant='h6' className='text-center fs-1 green mb-3 fontFamily fw-bold py-5 wow animate__animated animate__fadeInUp animate__slow' >Terms & Conditions</Typography>
+            <Typography variant='h6' className='text-center fs-1 mb-3 fontFamily fw-bold py-5 wow animate__animated animate__fadeInUp animate__slow' >Terms & Conditions</Typography>
 
             <ol className='wow animate__animated animate__fadeInLeft animate__slow'>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>This website is owned and operated by SIRAT (Sirat2Sustainability Pvt Ltd). Throughout the website, the terms<strong> ‘we,’ ‘us’ </strong>and <strong>‘our’</strong> refer to <strong>SIRAT.</strong></li>

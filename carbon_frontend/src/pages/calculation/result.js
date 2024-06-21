@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SendMail from './sendMail';
 import { deleteData } from '../../redux/slice/totalDigitalContSlice';
-import { deleteAirFreightData } from '../../redux/slice/totalAirFreightSlice';
+import { deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
 import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
 import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
@@ -29,28 +29,8 @@ const Result = () => {
 
     const resultData = [
         {
-            type: 'Production',
-            totalEmission: allProductionData?.totalEmission
-        },
-        {
-            type: 'Logistics',
-            totalEmission: allFreightData?.totalEmission
-        },
-        {
-            type: 'Food',
-            totalEmission: allFoodData?.totalEmission
-        },
-        {
-            type: 'Energy',
-            totalEmission: allEnergyData?.totalEmission
-        },
-        {
             type: 'Air Travel',
             totalEmission: allAirTravelData?.totalEmission
-        },
-        {
-            type: 'Digital',
-            totalEmission: allDigitalContentData?.totalEmission
         },
         {
             type: 'Local Transportation',
@@ -61,35 +41,54 @@ const Result = () => {
             totalEmission: allHotelData?.totalEmission
         },
         {
+            type: 'Food',
+            totalEmission: allFoodData?.totalEmission
+        },
+        {
+            type: 'Logistics',
+            totalEmission: allFreightData?.totalEmission
+        },
+        {
+            type: 'Event Production',
+            totalEmission: allProductionData?.totalEmission
+        },
+        {
+            type: 'Energy',
+            totalEmission: allEnergyData?.totalEmission
+        },
+        {
+            type: 'Digital',
+            totalEmission: allDigitalContentData?.totalEmission
+        },
+        {
             type: 'Waste',
             totalEmission: allWasteData?.totalEmission
         },
     ]
 
     const data = {
-        "totalWaste": allWasteData?.totalEmission,
-        "totalAccomodation": "0",
-        "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
-        "totalDIgitalContent": allDigitalContentData?.totalEmission,
         "totalAirTravel": allAirTravelData?.totalEmission,
-        "totalEnergyUpdated": allEnergyData?.totalEmission,
+        "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
+        "totalHotel": allHotelData?.totalEmission,
         "totalFood": allFoodData?.totalEmission,
         "totalAirFreight": allFreightData?.totalEmission,
         "totlaProduction": allProductionData?.totalEmission,
-        "totalHotel": allHotelData?.totalEmission,
+        "totalEnergyUpdated": allEnergyData?.totalEmission,
+        "totalDIgitalContent": allDigitalContentData?.totalEmission,
+        "totalWaste": allWasteData?.totalEmission,
         "grandTotal": total
     }
 
     const handeleDelete = () => {
-        dispatch(deleteProductionData())
-        dispatch(deleteData())
-        dispatch(deleteAirFreightData())
-        dispatch(deleteEnergyData())
-        dispatch(deleteFoodData())
-        dispatch(deleteWasteData())
-        dispatch(deleteLocalTranspotationData())
         dispatch(deleteAirTravelData())
+        dispatch(deleteLocalTranspotationData())
         dispatch(deleteHotelData())
+        dispatch(deleteFoodData())
+        dispatch(deleteLogisticsData())
+        dispatch(deleteProductionData())
+        dispatch(deleteEnergyData())
+        dispatch(deleteData())
+        dispatch(deleteWasteData())
     }
     return (
         <div>
@@ -100,7 +99,7 @@ const Result = () => {
                     <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
 
                         <Box color='white'>
-                            <h4 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h4>
+                            <h3 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h3>
                             <table>
                                 {
                                     resultData?.length > 0 && resultData?.map((item) => (
@@ -112,7 +111,7 @@ const Result = () => {
                                     ))
                                 }
                             </table>
-                            <h4 className='text-center py-3 fw-bold'>Total To Offset = {total}  tons of kgCO2e</h4>
+                            <h4 className='text-center py-3 fw-bold mt-1'>Total To Offset = {total}  tons of kgCO2e</h4>
                         </Box>
                     </div>
                     <div className='d-flex justify-content-end p-3'>

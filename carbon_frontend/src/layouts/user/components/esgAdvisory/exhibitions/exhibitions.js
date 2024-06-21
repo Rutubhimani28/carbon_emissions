@@ -68,7 +68,7 @@ const Exhibitions = () => {
                 </Grid>
             </Grid>
             <p className=' fs-5 wow animate__animated animate__fadeInUp animate__slow'>Partnering with us enables you to address the ESG models effectively.</p>
-            <p className=' fs-5 wow animate__animated animate__fadeInUp animate__slow'>Are you seeking a partner to assist you in setting up a strong ESG model to identify, optimise and reduce your carbon emissions generated during your exhibition/ congress? Kindly visit our<span style={{ color: "#4edceb" }}> Sustainable Events </span>page and fill the details or alternatively share your details below and submit your request, we will promptly reconnect with you to explore the collaboration opportunities.</p>
+            <p className=' fs-5 wow animate__animated animate__fadeInUp animate__slow'>Are you seeking a partner to assist you in setting up a strong ESG model to identify, optimise and reduce your carbon emissions generated during your exhibition/ congress? Kindly visit our<span style={{ color: "#ffffd9" }}> Sustainable Events </span>page and fill the details or alternatively share your details below and submit your request, we will promptly reconnect with you to explore the collaboration opportunities.</p>
         </div>
     )
 }

@@ -147,6 +147,16 @@ p {
   color: white !important;
 }
 
+.table-custom-inpt-field .css-wb57ya-MuiFormControl-root-MuiTextField-root {
+  border: 1px solid white !important;
+  border-radius: 6px;
+  color: white !important;
+}
+
+.table-custom-inpt-field .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-u85066-MuiAutocomplete-root .MuiOutlinedInput-root {
+  color: white
+}
+
 .template-inner-bg {
   background: #054723;
 }
@@ -163,4 +173,16 @@ p {
 
 .calendly-inline-widget {
   height: 73vh !important;
+}
+
+.bot .MuiDialog-paper {
+  position: absolute !important;
+  width: 420px;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+}
+
+.bot .css-ypiqx9-MuiDialogContent-root {
+  padding: 20px 24px 0px 20px !important;
 }

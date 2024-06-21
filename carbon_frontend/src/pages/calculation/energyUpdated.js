@@ -35,9 +35,9 @@ const EnergyUpdated = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', values?.kwh * 0.43);
-            formik.setFieldValue('emissionTwo', values?.gallonsOne * 0.0089);
-            formik.setFieldValue('emissionThree', values?.gallonsTwo * 10.18);
+            formik.setFieldValue('emissionOne', Number((values?.kwh * 0.43).toFixed(2)));
+            formik.setFieldValue('emissionTwo', Number((values?.gallonsOne * 8.78).toFixed(2)));
+            formik.setFieldValue('emissionThree', Number((values?.gallonsTwo * 10.21).toFixed(2)));
 
             const data = [
                 {
@@ -48,12 +48,12 @@ const EnergyUpdated = (props) => {
                 {
                     type: 'Petrol',
                     gallonsOne: values?.gallonsOne,
-                    emission: Number((values?.gallonsOne * 0.0089).toFixed(2)) || 0
+                    emission: Number((values?.gallonsOne * 8.78).toFixed(2)) || 0
                 },
                 {
                     type: 'Diesel',
                     gallonsTwo: values?.gallonsTwo,
-                    emission: Number((values?.gallonsTwo * 10.18).toFixed(2)) || 0
+                    emission: Number((values?.gallonsTwo * 10.21).toFixed(2)) || 0
                 }
             ];
             dispatch(addEnergyData({ data }))
@@ -91,7 +91,7 @@ const EnergyUpdated = (props) => {
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Electricity
                                 </Typography>
                                 <Grid mt={2}>
@@ -136,7 +136,7 @@ const EnergyUpdated = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Petrol
                                 </Typography>
                                 <Grid mt={2}>
@@ -181,7 +181,7 @@ const EnergyUpdated = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Diesel
                                 </Typography>
                                 <Grid mt={2}>
@@ -226,7 +226,7 @@ const EnergyUpdated = (props) => {
                                 </Grid>
                             </Grid>
 
-                           <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
@@ -257,4 +257,4 @@ const EnergyUpdated = (props) => {
     )
 }
 
-export default EnergyUpdated
+export default EnergyUpdated;

@@ -42,7 +42,7 @@ const Counsulting = () => {
 
 
                 <p className='py-3 pb-3 fontFamily  wow animate__animated animate__fadeInUp animate__slow'>By identifying actionable areas, our<strong> step-by-step </strong>approach enables you to address key issues that demand immediate attention, fostering a targeted strategy to contribute effectively to the decarbonization of emissions within the CMO vertical.</p>
-                <p className='py-3 pb-3 fontFamily  wow animate__animated animate__fadeInUp animate__slow'>Please schedule a<Link style={{ color: "#4edceb", textDecoration: "none" }}> meeting with our CEO </Link>to explore potential collaboration and advisory roles in building a better world for our future generations.</p>
+                <p className='py-3 pb-3 fontFamily  wow animate__animated animate__fadeInUp animate__slow'>Please schedule a<Link style={{ color: "#ffffd9", textDecoration: "none" }}> meeting with our CEO </Link>to explore potential collaboration and advisory roles in building a better world for our future generations.</p>
             </div>
             <div className='text-end main py-4 wow animate__animated animate__fadeInUp animate__slow'>
                 <button style={{ border: "1px solid #4abd43", borderRadius: "30px", backgroundColor: "transparent", padding: "8px 20px" }} onClick={() => { navigate(-1); }}>Go Back </button>

@@ -14,12 +14,16 @@ const productionSlice = createSlice({
                 const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
                 if (existingItemIndex !== -1) {
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
-                    console.log(state.data[existingItemIndex]);
                 } else {
                     state.data.push(newItem);
                 }
             });
-            state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
+            state.totalEmission = state.data[0].data.reduce((total, item) => {
+                if (item?.emission) {
+                    return total + item.emission;
+                }
+                return total;
+            }, 0).toFixed(2);
         },
         deleteProductionData: (state, action) => ({
             ...state,

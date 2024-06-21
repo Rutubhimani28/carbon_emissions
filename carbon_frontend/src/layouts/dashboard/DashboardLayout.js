@@ -7,7 +7,8 @@ import { styled } from '@mui/material/styles';
 // import { fetchCustomFieldData } from '../../redux/slice/customFieldSlice';
 import Header from './header';
 import Nav from './nav';
-import banner from '../user/assets/images/home_banner.jpg';
+// import banner from '../user/assets/images/home_banner.jpg';
+import banner from '../user/assets/images/NetZero Tool Pic.jpeg';
 
 // ----------------------------------------------------------------------
 
@@ -57,7 +58,7 @@ export default function DashboardLayout() {
       {/* <Nav openNav={open} onCloseNav={() => setOpen(false)} /> */}
 
       <Main>
-        <div style={{ display: 'flex', marginBottom: "10px", alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', marginBottom: "10px", overflow: 'hidden', alignItems: 'center', justifyContent: 'center', height: '600px' }}>
           <img src={banner} alt="top_img" width="100%" />
         </div>
         <Outlet />

@@ -8,7 +8,7 @@ const totalAirFreightSlice = createSlice({
         totalEmission: 0
     },
     reducers: {
-        addAirFreightData: (state, action) => {
+        addLogisticsData: (state, action) => {
             const newData = Array.isArray(action.payload) ? action.payload : [action.payload];
             newData.forEach((newItem) => {
                 const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
@@ -23,7 +23,7 @@ const totalAirFreightSlice = createSlice({
             // Recalculate totalEmission
             state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
         },
-        deleteAirFreightData: (state, action) => ({
+        deleteLogisticsData: (state, action) => ({
             ...state,
             data: [],
             totalEmission: 0
@@ -32,5 +32,5 @@ const totalAirFreightSlice = createSlice({
     },
 });
 
-export const { addAirFreightData, deleteAirFreightData } = totalAirFreightSlice.actions;
+export const { addLogisticsData, deleteLogisticsData } = totalAirFreightSlice.actions;
 export default totalAirFreightSlice.reducer;

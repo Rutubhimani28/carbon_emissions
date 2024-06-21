@@ -1,12 +1,13 @@
-import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
-import { useFormik } from 'formik';
 import { useEffect } from 'react';
+import { useFormik } from 'formik';
 import { useTheme } from '@emotion/react';
+import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography, useMediaQuery, Autocomplete } from '@mui/material';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHotelData, deleteHotelData } from '../../redux/slice/totalHotelSlice';
 import Accomodation from '../../assets/Accommodation.png';
 import { IconDiv } from '../../components/IconDiv';
+import HotelData from '../accomodation/data.json';
 
 const Hotel = (props) => {
     const { setValue, value } = props;
@@ -15,120 +16,67 @@ const Hotel = (props) => {
     const allData = useSelector((state) => state?.totalHotelDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
 
-
-    // Energy Utilisation
-    // totalMeetingRoomArea(Sgft)
-    // meetingDuration(No of Hrs)
-    // EF
-    // Emissions  =  Ef * totalMeetingRoomArea * meetingDuration
-
+    const hotelType = [
+        { label: '4 Stars', value: 4 },
+        { label: '4.5 Stars', value: 4.5 },
+        { label: '5 Stars', value: 5 }
+    ];
 
     // -----------   initialValues
     const initialValues = {
-        totalMeetingRoomArea: 0,
-        meetingDuration: 0,
-        ef: 0.00104,                        // Energy Utilisation
-        energyUtilisationEmission: 0,
-        pickaLocation: '',
+        // Hotel
+        geography: '',
+        country: '',
         hotelType: '',
         roomsOccupied: 0,
-        hotelEmission: 0
-        // petrolCarKms: 0,
-        // petrolCarNoPasse: 0,
-        // energyUtilisationEmission: 0,
-        // dieselCarKms: 0,
-        // dieselCarNoPasse: 0,
-        // dieselCarEmission: 0,
-        // suvDieselKms: 0,
-        // suvDieselNoPasse: 0,
-        // suvDieselEmission: 0,
-        // suvPetrolKms: 0,
-        // suvPetrolNoPasse: 0,
-        // suvPetrolEmission: 0,
-        // camperPetrolKms: 0,
-        // camperPetrolNoPasse: 0,
-        // camperPetrolEmission: 0,
-        // caperDieselKms: 0,
-        // caperDieselNoPasse: 0,
-        // caperDieselEmission: 0,
-        // busDieselKms: 0,
-        // busDieselEmission: 0,
-        // electricCarKms: 0,
-        // electricCarEmission: 0,
-        // metroKms: 0,
-        // metroEmission: 0,
+        efOne: null,
+        emissionsOne: 0,
+        filteredCountries: [],
+        totalMeetingRoomArea: 0,
+        // Meeting Room1
+        meetingDuration: 0,
+        efTwo: 0.00104,
+        emissionsTwo: 0,
+        // Meeting Room2  
+        energyUtilisedKwh: 0,
+        efThree: 0.43,
+        emissionsThree: 0,
     };
-
-
 
     const formik = useFormik({
         initialValues,
+        enableReinitialize: true,
         onSubmit: async (values) => {
 
-            formik.setFieldValue('energyUtilisationEmission', (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number(((values?.ef * values?.totalMeetingRoomArea * values?.meetingDuration)).toFixed(2)));
+            formik.setFieldValue('emissionsOne', (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2)));
+            formik.setFieldValue('emissionsTwo', (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2)));
+            formik.setFieldValue('emissionsThree', (values?.energyUtilisedKwh === 0) ? 0 : Number((values?.efThree * values?.energyUtilisedKwh).toFixed(2)));
 
             const data = [
                 {
-                    type: 'Energy Utilisation',
-                    totalMeetingRoomArea: values?.totalMeetingRoomArea,
-                    meetingDuration: values?.meetingDuration,
-                    ef: values?.ef,
-                    emission: (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number(((values?.ef * values?.totalMeetingRoomArea * values?.meetingDuration)).toFixed(2)) || 0
-                },
-                {
                     type: 'Hotel',
-                    pickaLocation: values?.pickaLocation,
+                    geography: values?.geography,
                     hotelType: values?.hotelType,
                     roomsOccupied: values?.roomsOccupied,
-                    hotelEmission: 10000
+                    filteredCountries: values?.filteredCountries,
+                    efOne: values?.efOne,
+                    emission: (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2))
                 },
-                // {
-                //     type: 'Diesel Car',
-                //     dieselCarKms: values?.dieselCarKms,
-                //     dieselCarNoPasse: values?.dieselCarNoPasse,
-                //     emission: (values?.dieselCarNoPasse === 0 || values?.dieselCarKms === 0) ? 0 : Number(((137 * values?.dieselCarKms) / values?.dieselCarNoPasse).toFixed(2)) || 0
-                // },
-                // {
-                //     type: 'SUV Diesel',
-                //     suvDieselKms: values?.suvDieselKms,
-                //     suvDieselNoPasse: values?.suvDieselNoPasse,
-                //     emission: (values?.suvDieselKms === 0 || values?.suvDieselNoPasse === 0) ? 0 : Number(((220 * values?.suvDieselKms) / values?.suvDieselNoPasse).toFixed(2)) || 0
-                // },
-                // {
-                //     type: 'SUV Petrol',
-                //     suvPetrolKms: values?.suvPetrolKms,
-                //     suvPetrolNoPasse: values?.suvPetrolNoPasse,
-                //     emission: (values?.suvPetrolKms === 0 || values?.suvPetrolNoPasse === 0) ? 0 : Number(((181 * values?.suvPetrolKms) / values?.suvPetrolNoPasse).toFixed(2)) || 0
-                // },
-                // {
-                //     type: 'Camper Petrol',
-                //     camperPetrolKms: values?.camperPetrolKms,
-                //     camperPetrolNoPasse: values?.camperPetrolNoPasse,
-                //     emission: (values?.camperPetrolKms === 0 || values?.camperPetrolNoPasse === 0) ? 0 : Number(((327 * values?.camperPetrolKms) / values?.camperPetrolNoPasse).toFixed(2)) || 0
-                // },
-                // {
-                //     type: 'Caper Diesel',
-                //     caperDieselKms: values?.caperDieselKms,
-                //     caperDieselNoPasse: values?.caperDieselNoPasse,
-                //     emission: (values?.caperDieselKms === 0 || values?.caperDieselNoPasse === 0) ? 0 : Number(((267 * values?.caperDieselKms) / values?.caperDieselNoPasse).toFixed(2)) || 0
-                // },
-                // {
-                //     type: 'Bus-Diesel',
-                //     busDieselKms: values?.busDieselKms,
-                //     emission: (values?.busDieselKms === 0) ? 0 : Number((15.1 * values?.busDieselKms).toFixed(2)) || 0
-                // },
-                // {
-                //     type: 'Electric Car',
-                //     electricCarKms: values?.electricCarKms,
-                //     emission: (values?.electricCarKms === 0) ? 0 : Number((45 * values?.electricCarKms).toFixed(2)) || 0
-                // },
-                // {
-                //     type: 'Metro',
-                //     metroKms: values?.metroKms,
-                //     emission: (values?.metroKms === 0) ? 0 : Number((29.29 * values?.metroKms).toFixed(2)) || 0
-                // },
+                {
+                    type: 'Meeting Room One',
+                    totalMeetingRoomArea: values?.totalMeetingRoomArea,
+                    meetingDuration: values?.meetingDuration,
+                    emission: (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2))
+                    // ef: values?.efTwo,
+                },
+                {
+                    type: 'Meeting Room Two',
+                    energyUtilisedKwh: values?.energyUtilisedKwh,
+                    emission: (values?.energyUtilisedKwh === 0) ? 0 : Number((values?.efThree * values?.energyUtilisedKwh).toFixed(2))
+                    // ef: values?.efThree,
+                },
             ];
-            dispatch(addHotelData({ data }))
+            dispatch(addHotelData({ data }));
         },
     });
 
@@ -138,42 +86,23 @@ const Hotel = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("meetingDuration", allData[0]?.meetingDuration)
-            formik.setFieldValue("totalMeetingRoomArea", allData[0]?.totalMeetingRoomArea)
-            formik.setFieldValue("energyUtilisationEmission", allData[0]?.emission)
+            formik.setFieldValue("geography", allData[0]?.geography)
+            formik.setFieldValue("country", allData[0]?.country)
+            formik.setFieldValue("hotelType", allData[0]?.hotelType)
+            formik.setFieldValue("roomsOccupied", allData[0]?.roomsOccupied)
+            formik.setFieldValue("efOne", allData[0]?.efOne)
+            formik.setFieldValue("emissionsOne", allData[0]?.emission)
+            formik.setFieldValue("filteredCountries", allData[0]?.filteredCountries)
 
-            // formik.setFieldValue("dieselCarKms", allData[1]?.dieselCarKms)
-            // formik.setFieldValue("dieselCarNoPasse", allData[1]?.dieselCarNoPasse)
-            // formik.setFieldValue("dieselCarEmission", allData[1]?.emission)
+            formik.setFieldValue("meetingDuration", allData[1]?.meetingDuration)
+            formik.setFieldValue("totalMeetingRoomArea", allData[1]?.totalMeetingRoomArea)
+            formik.setFieldValue("emissionsTwo", allData[1]?.emission)
 
-            // formik.setFieldValue("suvDieselKms", allData[2]?.suvDieselKms)
-            // formik.setFieldValue("suvDieselNoPasse", allData[2]?.suvDieselNoPasse)
-            // formik.setFieldValue("suvDieselEmission", allData[2]?.emission)
-
-            // formik.setFieldValue("suvPetrolKms", allData[3]?.suvPetrolKms)
-            // formik.setFieldValue("suvPetrolNoPasse", allData[3]?.suvPetrolNoPasse)
-            // formik.setFieldValue("suvPetrolEmission", allData[3]?.emission)
-
-            // formik.setFieldValue("camperPetrolKms", allData[4]?.camperPetrolKms)
-            // formik.setFieldValue("camperPetrolNoPasse", allData[4]?.camperPetrolNoPasse)
-            // formik.setFieldValue("camperPetrolEmission", allData[4]?.emission)
-
-            // formik.setFieldValue("caperDieselKms", allData[5]?.caperDieselKms)
-            // formik.setFieldValue("caperDieselNoPasse", allData[5]?.caperDieselNoPasse)
-            // formik.setFieldValue("caperDieselEmission", allData[5]?.emission)
-
-            // formik.setFieldValue("busDieselKms", allData[6]?.busDieselKms)
-            // formik.setFieldValue("busDieselEmission", allData[6]?.emission)
-
-            // formik.setFieldValue("electricCarKms", allData[7]?.electricCarKms)
-            // formik.setFieldValue("electricCarEmission", allData[7]?.emission)
-
-            // formik.setFieldValue("metroKms", allData[8]?.metroKms)
-            // formik.setFieldValue("metroEmission", allData[8]?.emission)
+            formik.setFieldValue("meetingDuration", allData[2]?.meetingDuration)
+            formik.setFieldValue("totalMeetingRoomArea", allData[2]?.totalMeetingRoomArea)
+            formik.setFieldValue("emissionsThree", allData[2]?.emission)
         }
-    }, [value])
-
-    console.log("---  formik.values ", formik.values)
+    }, [value]);
 
     return (
         <div>
@@ -190,79 +119,120 @@ const Hotel = (props) => {
                             style={{ justifyContent: 'center' }}
                         >
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Hotel
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Pick a location</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Geography</FormLabel>
                                     <FormControl fullWidth>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            size="small"
-                                            name="pickaLocation"
+                                        <Autocomplete
+                                            options={HotelData}
+                                            name="geography"
                                             fullWidth
-                                            value={formik.values.pickaLocation || null}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                formik.touched.pickaLocation &&
-                                                Boolean(formik.errors.pickaLocation)
-                                            }
-                                            helperText={
-                                                formik.touched.pickaLocation && formik.errors.pickaLocation
-                                            }
-                                        >
-                                            <MenuItem value='Waste'>Waste</MenuItem>
-                                            <MenuItem value="Water">Water</MenuItem>
-                                            <MenuItem value="Plastic Water bottle">Plastic Water bottle</MenuItem>
-                                            <MenuItem value="Branding">Branding</MenuItem>
-                                        </Select>
-                                        <FormHelperText error={
-                                            formik.touched.pickaLocation &&
-                                            Boolean(formik.errors.pickaLocation)
-                                        }>{formik.touched.pickaLocation && formik.errors.pickaLocation}</FormHelperText>
+                                            getOptionLabel={(item) => item?.geography}
+                                            value={formik.values?.filteredCountries?.find((item) => item?.geography === formik.values?.geography) || null}
+                                            onChange={(event, newValue) => {
+                                                formik.setFieldValue("geography", newValue ? newValue?.geography : "");
+                                                formik.setFieldValue("filteredCountries", HotelData?.filter((item) => item?.geography === newValue?.geography) || []);
+
+                                                // reset fields
+                                                formik.setFieldValue("country", '');
+                                                formik.setFieldValue("hotelType", '');
+                                                formik.setFieldValue("efOne", null);
+                                                formik.setFieldValue("emissionsOne", 0);
+                                            }}
+                                            renderInput={(params) =>
+                                                <TextField {...params}
+                                                    size="small"
+                                                    name="geography"
+                                                    placeholder='Select'
+                                                    error={
+                                                        formik.touched.geography &&
+                                                        Boolean(formik.errors.geography)
+                                                    }
+                                                    helperText={
+                                                        formik.touched.geography && formik.errors.geography
+                                                    }
+                                                />}
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Country</FormLabel>
+                                    <FormControl fullWidth>
+                                        <Autocomplete
+                                            options={formik.values?.filteredCountries}
+                                            name="country"
+                                            fullWidth
+                                            disabled={!formik.values.geography}
+                                            getOptionLabel={(item) => item?.country}
+                                            value={formik.values?.filteredCountries?.find((item) => item?.country === formik.values?.country) || null}
+                                            onChange={(event, newValue) => {
+                                                formik.setFieldValue("country", newValue ? newValue?.country : "");
+                                                // reset fields
+                                                formik.setFieldValue("hotelType", '');
+                                                formik.setFieldValue("emissionsOne", 0);
+                                                formik.setFieldValue("efOne", null);
+                                            }}
+                                            renderInput={(params) =>
+                                                <TextField {...params}
+                                                    size="small"
+                                                    name="country"
+                                                    placeholder='Select'
+                                                    error={
+                                                        formik.touched.country &&
+                                                        Boolean(formik.errors.country)
+                                                    }
+                                                    helperText={
+                                                        formik.touched.country && formik.errors.country
+                                                    }
+                                                />}
+                                        />
                                     </FormControl>
                                 </Grid>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Hotel Type</FormLabel>
                                     <FormControl fullWidth>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            size="small"
+                                        <Autocomplete
+                                            options={hotelType}
                                             name="hotelType"
                                             fullWidth
-                                            value={formik.values.hotelType || null}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                formik.touched.hotelType &&
-                                                Boolean(formik.errors.hotelType)
-                                            }
-                                            helperText={
-                                                formik.touched.hotelType && formik.errors.hotelType
-                                            }
-                                        >
-                                            <MenuItem value='Waste'>Waste</MenuItem>
-                                            <MenuItem value="Water">Water</MenuItem>
-                                            <MenuItem value="Plastic Water bottle">Plastic Water bottle</MenuItem>
-                                            <MenuItem value="Branding">Branding</MenuItem>
-                                        </Select>
-                                        <FormHelperText error={
-                                            formik.touched.hotelType &&
-                                            Boolean(formik.errors.hotelType)
-                                        }>{formik.touched.hotelType && formik.errors.hotelType}</FormHelperText>
+                                            disabled={!formik.values.country}
+                                            getOptionLabel={(item) => item?.label}
+                                            value={hotelType?.find((item) => item?.value === formik.values?.hotelType) || null}
+                                            onChange={(event, newValue) => {
+                                                formik.setFieldValue("hotelType", newValue ? newValue?.value : "");
+
+                                                const selectedHotelTypeData = formik.values?.filteredCountries?.find((item) => item.country === formik.values?.country);
+                                                const hotellTypeEf = newValue?.value === 4 || newValue?.value === 4.5 ? selectedHotelTypeData?.stars_four_fourPointHalf : selectedHotelTypeData?.stars_five;
+                                                formik.setFieldValue("efOne", hotellTypeEf);
+                                            }}
+                                            renderInput={(params) =>
+                                                <TextField {...params}
+                                                    size="small"
+                                                    name="hotelType"
+                                                    placeholder='Select'
+                                                    error={
+                                                        formik.touched.hotelType &&
+                                                        Boolean(formik.errors.hotelType)
+                                                    }
+                                                    helperText={
+                                                        formik.touched.hotelType && formik.errors.hotelType
+                                                    }
+                                                />}
+                                        />
                                     </FormControl>
                                 </Grid>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Rooms Occupied</FormLabel>
                                     <FormControl fullWidth>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
+                                        <TextField
                                             size="small"
                                             name="roomsOccupied"
                                             fullWidth
-                                            value={formik.values.roomsOccupied || null}
+                                            disabled={!formik.values.hotelType}
+                                            type="number"
+                                            value={formik.values.roomsOccupied || 0}
                                             onChange={formik.handleChange}
                                             error={
                                                 formik.touched.roomsOccupied &&
@@ -271,12 +241,8 @@ const Hotel = (props) => {
                                             helperText={
                                                 formik.touched.roomsOccupied && formik.errors.roomsOccupied
                                             }
-                                        >
-                                            <MenuItem value='Waste'>Waste</MenuItem>
-                                            <MenuItem value="Water">Water</MenuItem>
-                                            <MenuItem value="Plastic Water bottle">Plastic Water bottle</MenuItem>
-                                            <MenuItem value="Branding">Branding</MenuItem>
-                                        </Select>
+                                            inputProps={{ style: { color: 'white' } }}
+                                        />
                                         <FormHelperText error={
                                             formik.touched.roomsOccupied &&
                                             Boolean(formik.errors.roomsOccupied)
@@ -286,47 +252,27 @@ const Hotel = (props) => {
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
-                                        id="hotelEmission"
-                                        name="hotelEmission"
+                                        id="emissionsOne"
+                                        name="emissionsOne"
                                         label=""
                                         fullWidth
                                         size="small"
                                         disabled
-                                        value={formik.values.hotelEmission}
+                                        value={formik.values.emissionsOne}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.hotelEmission &&
-                                            Boolean(formik.errors.hotelEmission)
+                                            formik.touched.emissionsOne &&
+                                            Boolean(formik.errors.emissionsOne)
                                         }
                                         helperText={
-                                            formik.touched.hotelEmission && formik.errors.hotelEmission
+                                            formik.touched.emissionsOne && formik.errors.emissionsOne
                                         }
                                     />
                                 </Grid>
                             </Grid>
-                            {/* <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th className='ps-2'>Meeting Room</th>
-                                                <th className='ps-2'>Total Meeting Room Area (Sqft)</th>
-                                                <th className='ps-2'>Meeting Duration (No of Hrs)</th>
-                                                <th className='ps-2'>Emission (kg CO2e)</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Energy Utilisation</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='totalMeetingRoomArea' value={formik?.values?.totalMeetingRoomArea} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='meetingDuration' value={formik?.values?.meetingDuration} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='energyUtilisationEmission' value={formik?.values?.energyUtilisationEmission} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid> */}
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
-                                    Meeting Room
+                                <Typography variant='h4'>
+                                    Meeting Room Energy Consumption
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Total Meeting Room Area (Sqft)</FormLabel>
@@ -356,7 +302,7 @@ const Hotel = (props) => {
                                         label=""
                                         fullWidth
                                         size="small"
-                                        disabled
+                                        type='number'
                                         value={formik.values.meetingDuration}
                                         onChange={formik.handleChange}
                                         error={
@@ -366,25 +312,71 @@ const Hotel = (props) => {
                                         helperText={
                                             formik.touched.meetingDuration && formik.errors.meetingDuration
                                         }
+                                        inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
                                     <TextField
-                                        id="energyUtilisationEmission"
-                                        name="energyUtilisationEmission"
-                                        label=""
+                                        id="emissionsTwo"
+                                        name="emissionsTwo"
                                         fullWidth
+                                        type='number'
                                         size="small"
                                         disabled
-                                        value={formik.values.energyUtilisationEmission}
+                                        value={formik.values.emissionsTwo}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.energyUtilisationEmission &&
-                                            Boolean(formik.errors.energyUtilisationEmission)
+                                            formik.touched.emissionsTwo &&
+                                            Boolean(formik.errors.emissionsTwo)
                                         }
                                         helperText={
-                                            formik.touched.energyUtilisationEmission && formik.errors.energyUtilisationEmission
+                                            formik.touched.emissionsTwo && formik.errors.emissionsTwo
+                                        }
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={12} sm={4} md={4}>
+                                <Typography variant='h4'>
+                                    Meeting Room Energy Consumption
+                                </Typography>
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh)</FormLabel>
+                                    <TextField
+                                        id="energyUtilisedKwh"
+                                        name="energyUtilisedKwh"
+                                        fullWidth
+                                        size="small"
+                                        value={formik.values.energyUtilisedKwh}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.energyUtilisedKwh &&
+                                            Boolean(formik.errors.energyUtilisedKwh)
+                                        }
+                                        helperText={
+                                            formik.touched.energyUtilisedKwh && formik.errors.energyUtilisedKwh
+                                        }
+                                        inputProps={{ style: { color: 'white' } }}
+                                    />
+                                </Grid>
+
+                                <Grid mt={2}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <TextField
+                                        id="emissionsThree"
+                                        name="emissionsThree"
+                                        fullWidth
+                                        type='number'
+                                        size="small"
+                                        disabled
+                                        value={formik.values.emissionsThree}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.emissionsThree &&
+                                            Boolean(formik.errors.emissionsThree)
+                                        }
+                                        helperText={
+                                            formik.touched.emissionsThree && formik.errors.emissionsThree
                                         }
                                     />
                                 </Grid>
@@ -407,4 +399,4 @@ const Hotel = (props) => {
     )
 }
 
-export default Hotel
+export default Hotel;

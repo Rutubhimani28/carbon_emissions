@@ -24,11 +24,11 @@ const About = () => {
                 <img src={banner} alt="img" width={"100%"} height='600px' />
             </div>
             <div className='text-center main py-4'>
-                <p className='pt-2 pb-4 fontFamily mx-4 wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }} >In today's world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to introduce sustainable practices within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact.</p>
+                <p className='py-4 fontFamily mx-4 wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }} >In today's world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to introduce NetZero Consulting within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact. We further provide a user-friendly NetZero Tool to help to identify, optimise (through our NetZero Consulting) and measure the emissions generated from marketing operations.</p>
             </div>
             <div>
                 <Typography variant='h6' className='text-center fs-3 green pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow' style={{ color: '#054723' }}>Targeted Sustainable Development Goals (SDGs)</Typography>
-                <p className='text-center  py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s'>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" style={{ textDecoration: "none", color: "#4edceb" }}> 17 UN SDGs.</a></p>
+                <p className='text-center  py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s'>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs</a>.</p>
             </div>
             <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
                 <img src={goal1} alt='img' width={200} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
@@ -43,7 +43,7 @@ const About = () => {
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                     <Box className="text-center">
                         <Typography variant='h6' className=' fs-1 pt-2 pb-4 fontFamily fw-bold green' >What we do</Typography>
-                        <p className=' fs-5'>We offer <span style={{ color: "#4edceb" }}> ESG Advisory Services</span>, bringing together the CMO vertical and their stakeholders on our integrated platform. Our aim is to foster collaboration and devise innovative methodologies for measuring both direct and indirect greenhouse gas (GHG) emissions.</p>
+                        <p className=' fs-5'>We offer <span style={{ color: "#ffffd9" }}> ESG Advisory Services</span>, bringing together the CMO vertical and their stakeholders on our integrated platform. Our aim is to foster collaboration and devise innovative methodologies for measuring both direct and indirect greenhouse gas (GHG) emissions.</p>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInRight animate__slow'>
@@ -61,7 +61,7 @@ const About = () => {
                 <Grid item xs={12} md={6} className='wow animate__animated animate__fadeInRight animate__slow'>
                     <Box className="text-center">
                         <Typography variant='h6' className=' fs-1 pt-2 pb-4 fontFamily fw-bold green' >Net-Zero Framework</Typography>
-                        <p className=' fs-5'>We encourage organizations to <span style={{ color: "#4edceb" }}> assess the emissions </span> resulting from their various marketing activities and collaborate with us <strong> to minimize their carbon footprint by leveraging our net-zero framework.</strong></p>
+                        <p className=' fs-5'>We encourage organizations to <span style={{ color: "#ffffd9" }}> assess the emissions </span> resulting from their various marketing activities and collaborate with us <strong> to minimize their carbon footprint by leveraging our net-zero framework.</strong></p>
                     </Box>
                 </Grid>
             </Grid> */}
@@ -80,7 +80,7 @@ const About = () => {
                                 url="https://calendly.com/fayiba2108/meet"
                                 rootElement={document.getElementById("root")}
                                 text="Book a slot with our CEO"
-                                styles={{ border: 'none', background: 'none', color: "#4edceb" }}
+                                styles={{ border: 'none', background: 'none', color: "#ffffd9" }}
                             />
                         </Box>
                     </Grid>
@@ -114,7 +114,7 @@ const About = () => {
                                 url="https://calendly.com/fayiba2108/meet"
                                 rootElement={document.getElementById("root")}
                                 text="Book a slot with our CEO"
-                                styles={{ border: 'none', background: 'none', color: "#4edceb" }}
+                                styles={{ border: 'none', background: 'none', color: "#ffffd9" }}
                             />
                         </Box>
                     </Grid>

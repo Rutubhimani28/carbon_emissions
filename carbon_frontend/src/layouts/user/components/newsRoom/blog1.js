@@ -8,13 +8,13 @@ import blog2 from '../../assets/images/room2.jpeg';
 
 const Blog1 = () => {
     return (
-        <div className='main my-5 position-relative'>
+        <div className='main my-5 pb-5 position-relative'>
             <div className='container'>
 
                 <div className='container pt-5 d-flex justify-content-center'>
                     <img src={blog1} alt="blog2" width={'85%'} className='blogImageRadius' />
                 </div>
-                <Typography variant='h6' className='text-center fs-2 green pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
+                <Typography variant='h6' className='text-center fs-2 pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
                 <ul className='p-5 wow animate__animated animate__fadeInUp animate__slow'>
                     <li className='fs-5 '>Go Sustainable provided ESG Advisory services to identify, optimize and report the Carbon emissions generated from the event.</li>
                     <li className='fs-5 pt-1'>We reported 2.35 tCO2e is reduced from this activity by adopting sustainable measures.</li>
@@ -29,9 +29,9 @@ const Blog1 = () => {
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' >We offer ESG advisory services to Chief Marketing Officers (CMOs) and their partners, promoting and encouraging the adoption of sustainable practices in their marketing and corporate affairs activities. Additionally, we assist CMOs in identifying, optimizing, and reporting emissions produced from their operations, thereby creating a pathway to net-zero.</p>
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' ><strong>For media inquiries contact: </strong></p>
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' >Mohammed Shafeeq</p>
-                <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' >Email: <Link className='text-decoration-none' style={{ color: "#4edceb" }} to='mailto:mohammed.shafeeq@gosustainable.ai'>mohammed.shafeeq@gosustainable.ai</Link></p>
+                <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' >Email: <Link className='text-decoration-none' style={{ color: "#ffffd9" }} to='mailto:mohammed.shafeeq@gosustainable.ai'>mohammed.shafeeq@gosustainable.ai</Link></p>
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' ><strong>Follow us on social media </strong></p>
-                <p ><Link className='text-decoration-none wow animate__animated animate__fadeInUp animate__slow' style={{ color: "#4edceb" }} to='https://www.linkedin.com/company/gosustainable-cmo/'>LinkedIn </Link> <Link className='text-decoration-none' style={{ color: "#4edceb" }} to='https://twitter.com/shafeeqm'>Twitter</Link></p>
+                <p ><Link className='text-decoration-none wow animate__animated animate__fadeInUp animate__slow' style={{ color: "#ffffd9" }} to='https://www.linkedin.com/company/gosustainable-cmo/'>LinkedIn </Link> <Link className='text-decoration-none' style={{ color: "#ffffd9" }} to='https://twitter.com/shafeeqm'>Twitter</Link></p>
             </div>
             <div className='border-bottom mt-5' />
             <div className='d-flex align-items-center mt-3 wow animate__animated animate__fadeInUp animate__slow'>
@@ -43,12 +43,12 @@ const Blog1 = () => {
             </div>
             <div style={{ position: "fixed", bottom: "70px", left: "0", }} >
                 <Link to='/blogs/blog2' className='d-flex nextBlog'>
-                    <div style={{ backgroundColor: "#4edceb", color: "#fff", padding: "25px 10px" }}>
+                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
                         <FaChevronLeft />
                     </div>
                     <img src={blog2} alt="blog2" height={"80px"} width={"100px"} />
                     <div className='nextBlogContent'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#4edceb" }}>Empowering organizations: Meeting net-zero through the reduction of single-use plastics</Typography>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>Empowering organizations: Meeting net-zero through the reduction of single-use plastics</Typography>
 
                     </div>
                 </Link>
