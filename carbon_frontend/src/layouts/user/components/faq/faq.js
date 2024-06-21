@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom'
 const Faq = () => {
     return (
         <div className='main py-5'>
-            <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5 wow animate__animated animate__fadeInUp animate__slow' >FAQ's</Typography>
+            {/* <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5 wow animate__animated animate__fadeInUp animate__slow' >FAQ's</Typography> */}
+            <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5' >FAQ's</Typography>
 
-            <p className='wow animate__animated animate__fadeInLeft animate__slow'>
+            {/* <p className='wow animate__animated animate__fadeInLeft animate__slow'> */}
+            <p>
                 <p style={{ fontSize: "20px" }} className=' mb-5'>In candid conversation with our Founder & CEO of <strong>Sirat</strong>, Mr.Mohammed Shafeeq.</p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-0'>A1: It’s about urging the Chief Marketing Officer (CMO) vertical of organizations to adopt sustainable measures while managing their marketing and corporate affairs operations with the ultimate goal of achieving NetZero.</p>
