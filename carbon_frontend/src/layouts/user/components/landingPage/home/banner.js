@@ -61,8 +61,8 @@ const Index = () => {
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
                     and watch it with your favorite video player!
                 </video>
-                <div style={{ position: 'absolute', right: '40px', bottom: '25px', color: "white", fontSize: '24px', fontWeight: '700' }}>
-                    <span>enabling the path to net-zero</span>
+                <div style={{ position: 'absolute', right: '40px', bottom: '25px', color: "white", fontSize: '30px', fontWeight: '800' }}>
+                    <span>Enabling the path to NetZero</span>
                 </div>
             </div>
 
