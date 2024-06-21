@@ -20,9 +20,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 // import logo from '../../assets/images/logo.png';
-import logo from '../../assets/images/logo2.gif';
-
-
+import logo from '../../assets/images/logo3.gif';
 
 const drawerWidth = 240;
 const navItems = [
