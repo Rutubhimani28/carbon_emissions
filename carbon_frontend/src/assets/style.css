@@ -147,6 +147,16 @@ p {
   color: white !important;
 }
 
+.table-custom-inpt-field .css-wb57ya-MuiFormControl-root-MuiTextField-root {
+  border: 1px solid white !important;
+  border-radius: 6px;
+  color: white !important;
+}
+
+.table-custom-inpt-field .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-u85066-MuiAutocomplete-root .MuiOutlinedInput-root {
+  color: white
+}
+
 .template-inner-bg {
   background: #054723;
 }

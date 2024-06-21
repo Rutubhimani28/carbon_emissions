@@ -404,7 +404,6 @@ const Production = (props) => {
                                             {fieldDataOne && fieldDataOne?.map((item) => (
                                                 <>
                                                     <tr key={`one${item}`}>
-                                                        {console.log(`${item?.fieldName}Area`, formik.values[`${item?.fieldName}Area`])}
                                                         <td className='ps-2 py-1'>{item.name}</td>
                                                         <td className='ps-2 py-1'><TextField size='small' type="number" name={`${item?.fieldName}Area`} value={formik.values[`${item?.fieldName}Area`]} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                                         <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`${item?.fieldName}Emission`} value={formik.values[`${item?.fieldName}Emission`]} onChange={formik.handleChange} /></td>
