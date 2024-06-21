@@ -111,7 +111,7 @@ const Result = () => {
                                     ))
                                 }
                             </table>
-                            <h4 className='text-center py-3 fw-bold'>Total To Offset = {total}  tons of kgCO2e</h4>
+                            <h4 className='text-center py-3 fw-bold mt-1'>Total To Offset = {total}  tons of kgCO2e</h4>
                         </Box>
                     </div>
                     <div className='d-flex justify-content-end p-3'>
