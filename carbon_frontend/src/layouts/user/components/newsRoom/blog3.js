@@ -7,7 +7,7 @@ import blog3 from '../../assets/images/room3.jpg';
 
 const Blog3 = () => {
     return (
-        <div className='main my-5 position-relative'>
+        <div className='main mt-5 pb-5 position-relative'>
             <div className='container'>
 
                 <div className='container pt-5 d-flex justify-content-center'>
