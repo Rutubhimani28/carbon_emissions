@@ -15,7 +15,7 @@ const Blog2 = () => {
                 <div className='container pt-5 d-flex justify-content-center'>
                     <img src={blog2} alt="blog2" width={'85%'} className='blogImageRadius' />
                 </div>
-                <Typography variant='h6' className='text-center fs-2 green pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Empowering organizations: Meeting net-zero through the reduction of single-use plastics</Typography>
+                <Typography variant='h6' className='text-center fs-2 pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Empowering organizations: Meeting net-zero through the reduction of single-use plastics</Typography>
 
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' >From expansive trade shows and vibrant festivals to intimate business conferences, corporate events play an important role in our society, fostering social, economic, and technological benefits. The hospitality industry is at the forefront of attracting companies to host their events on their premises.</p>
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow mb-0'><strong>Do you know </strong></p>

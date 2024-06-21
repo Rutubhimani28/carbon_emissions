@@ -25,7 +25,7 @@ import logo from '../../assets/images/logo3.gif';
 const drawerWidth = 240;
 const navItems = [
     { name: 'Home', path: "/" },
-    { name: 'NetZero Consulting', path: "/netZero-consulting" }, 
+    { name: 'NetZero Consulting', path: "/netZero-consulting" },
     { name: 'NetZero Tool', path: "/measure-ghg-emissions" },
     { name: 'News Room', path: '/blogs' },
     { name: 'About Us', path: '/about-us' }];
@@ -116,16 +116,16 @@ const Header = (props) => {
                     ))}
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
-                            <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>Book a Demo</Button>
+                            <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
                         </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding>
+                    {/* <ListItem disablePadding>
                         <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
                             <Button className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                                 login
                             </Button>
                         </ListItemButton>
-                    </ListItem>
+                    </ListItem> */}
                 </List>
             </Box>
         </>
@@ -181,10 +181,10 @@ const Header = (props) => {
                                 </>
                             )
                         ))}
-                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>Book a Demo</Button>
-                        <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
+                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
+                        {/* <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                             login
-                        </Button>
+                        </Button> */}
                     </Box>
                     <PopupModal
                         url="https://calendly.com/fayiba2108/meet"

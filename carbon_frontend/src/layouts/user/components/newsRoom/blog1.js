@@ -14,7 +14,7 @@ const Blog1 = () => {
                 <div className='container pt-5 d-flex justify-content-center'>
                     <img src={blog1} alt="blog2" width={'85%'} className='blogImageRadius' />
                 </div>
-                <Typography variant='h6' className='text-center fs-2 green pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
+                <Typography variant='h6' className='text-center fs-2 pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
                 <ul className='p-5 wow animate__animated animate__fadeInUp animate__slow'>
                     <li className='fs-5 '>Go Sustainable provided ESG Advisory services to identify, optimize and report the Carbon emissions generated from the event.</li>
                     <li className='fs-5 pt-1'>We reported 2.35 tCO2e is reduced from this activity by adopting sustainable measures.</li>
