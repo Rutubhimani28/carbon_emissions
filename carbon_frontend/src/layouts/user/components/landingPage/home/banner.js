@@ -80,7 +80,7 @@ const Index = () => {
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main py-5 my-2'>
                 <Grid className='fs-5' item xs={12} sm={2} md={2} /> */}
                 <Grid className='fs-5 d-flex justify-content-center wow animate__animated animate__fadeInUp animate__slow' item sm={8} md={8}>
-                    <div className='video-responsive' style={{ position: 'relative' }}>
+                    <div className='video-responsive' style={{ position: 'relative', paddingTop: "42px" }}>
                         <video
                             controls
                             src="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4"

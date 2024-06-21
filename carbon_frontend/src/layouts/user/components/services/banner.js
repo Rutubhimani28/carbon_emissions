@@ -37,7 +37,7 @@ const Banner = () => {
             </div>
             <Box className='main pt-5'>
                 {/* <Typography variant='h6' className='text-center fs-1 green py-3 pb-5 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Measure Carbon Emissions</Typography> */}
-                <Typography variant='h6' className='text-center fs-1 green py-3 pb-5 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-white' >NetZero tool</Typography>
+                {/* <Typography variant='h6' className='text-center fs-1 green py-3 pb-5 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-white' >NetZero tool</Typography> */}
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     {/* <Grid className='fs-5 wow animate__animated animate__fadeInLeft animate__slow' item sm={12} md={6}>For industries, <strong>assessment of your carbon footprint</strong> is a key measure in gaining insight into your emissions, and identifying the key sources of these emissions, and devising an action plan. Participating in <strong>‘Climate Neutral Now’</strong> empowers you to determine the scopes to include in your carbon footprint, as outlined in our framework.</Grid> */}
                     {/* <Grid className='fs-5 wow animate__animated animate__fadeInLeft animate__slow' item sm={12} md={6}><strong>Assessment of your carbon footprint</strong> is a key measure in gaining insight and identifying the key sources of these emissions, and devising an action plan. Participating in <strong>‘Climate Neutral Now’</strong> empowers you to determine the scopes to include in your carbon footprint, as outlined in our framework.</Grid> */}
