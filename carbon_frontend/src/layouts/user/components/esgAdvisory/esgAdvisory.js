@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PopupButton } from 'react-calendly'
 import { Grid, Typography, Box } from '@mui/material'
@@ -8,8 +8,16 @@ import Organisations from '../../assets/images/Organisations2.jpg'
 import Hospitality from '../../assets/images/Hospitality.jpeg'
 import Exhibitions from '../../assets/images/Exhibition2.jpeg'
 import ESGAdvisoryServices from '../../assets/images/ESG Advisory Services.jpeg';
+import BannerVid from '../../assets/images/NetZero Consulting.mp4';
 
-const esgAdvisory = () => {
+const EsgAdvisory = () => {
+
+    const videoRef = useRef();
+
+    useEffect(() => {
+        videoRef.current.playbackRate = 0.5;
+    }, []);
+
     return (
         // <div>
         //     <video
@@ -65,8 +73,26 @@ const esgAdvisory = () => {
                 and watch it with your favorite video player!
             </video> */}
 
-            <div>
+            {/* <div>
                 <img src={ESGAdvisoryServices} alt="ESG Advisory Services" width="100%" style={{ objectFit: "cover", maxHeight: "650px" }} />
+            </div> */}
+
+            <div style={{ maxWidth: "100%", maxHeight: "750px", overflow: 'hidden' }}>
+                <video
+                    src={BannerVid}
+                    width={"100%"}
+                    height={"100%"}
+                    autoPlay
+                    muted
+                    preload
+                    ref={videoRef}
+                    loop
+                >
+                    <track kind="captions" src="captions.vtt" label="English" />
+                    Sorry, your browser doesn't support embedded videos, but don't worry, you can
+                    <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
+                    and watch it with your favorite video player!
+                </video>
             </div>
             <div className='container'>
                 <div>
@@ -188,4 +214,4 @@ const esgAdvisory = () => {
     )
 }
 
-export default esgAdvisory
+export default EsgAdvisory
