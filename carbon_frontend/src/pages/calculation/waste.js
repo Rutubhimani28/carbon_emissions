@@ -218,7 +218,7 @@ const Waste = (props) => {
                         >
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Food Waste</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Food Waste</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -247,7 +247,7 @@ const Waste = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className="text-center text-white">Plastic Waste</Typography>
+                                    <Typography variant='h4' className="text-center text-white mb-4">Plastic Waste</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -282,7 +282,7 @@ const Waste = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Marketing Waste</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Marketing Waste</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -317,7 +317,7 @@ const Waste = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Brand Promotional</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Brand Promotional</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>

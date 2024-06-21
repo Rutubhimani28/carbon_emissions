@@ -211,7 +211,7 @@ const Food = (props) => {
                         >
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Food Waste</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Food Waste</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -250,7 +250,7 @@ const Food = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white' sx={{ opacity: 0 }}>temp</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4' sx={{ opacity: 0 }}>temp</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -267,7 +267,7 @@ const Food = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Breverage Waste</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Breverage Waste</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -326,7 +326,7 @@ const Food = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white' sx={{ opacity: 0 }}>temp</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4' sx={{ opacity: 0 }}>temp</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -349,7 +349,7 @@ const Food = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Food and BeveragePs Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
                             </Grid>
                         </Grid>
                     </Box>

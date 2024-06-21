@@ -99,7 +99,7 @@ const Result = () => {
                     <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
 
                         <Box color='white'>
-                            <h4 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h4>
+                            <h3 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h3>
                             <table>
                                 {
                                     resultData?.length > 0 && resultData?.map((item) => (

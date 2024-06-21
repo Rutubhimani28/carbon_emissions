@@ -130,7 +130,7 @@ const AirTravel = (props) => {
                         >
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Economy Class</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Economy Class</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -159,7 +159,7 @@ const AirTravel = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Business Class</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Business Class</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -188,7 +188,7 @@ const AirTravel = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className="text-center text-white">First Class</Typography>
+                                    <Typography variant='h4' className="text-center text-white mb-4">First Class</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>

@@ -91,7 +91,7 @@ const EnergyUpdated = (props) => {
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Electricity
                                 </Typography>
                                 <Grid mt={2}>
@@ -136,7 +136,7 @@ const EnergyUpdated = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Petrol
                                 </Typography>
                                 <Grid mt={2}>
@@ -181,7 +181,7 @@ const EnergyUpdated = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Diesel
                                 </Typography>
                                 <Grid mt={2}>

@@ -119,7 +119,7 @@ const Hotel = (props) => {
                             style={{ justifyContent: 'center' }}
                         >
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Hotel
                                 </Typography>
                                 <Grid mt={2}>
@@ -271,7 +271,7 @@ const Hotel = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Meeting Room Energy Consumption
                                 </Typography>
                                 <Grid mt={2}>
@@ -337,7 +337,7 @@ const Hotel = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6'>
+                                <Typography variant='h4'>
                                     Meeting Room Energy Consumption
                                 </Typography>
                                 <Grid mt={2}>

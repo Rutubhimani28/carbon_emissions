@@ -393,11 +393,11 @@ const Production = (props) => {
                         >
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Type of Material</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Type of Material</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Type of Material</th>
+                                                <th />
                                                 <th className='ps-2'>Total Area (m2)</th>
                                                 <th className='ps-2'>Emission (kgCO2e)</th>
                                             </tr>
@@ -416,11 +416,11 @@ const Production = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Type of Material</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Type of Material</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Type of Material</th>
+                                                <th />
                                                 <th className='ps-2'>Weight (Kgs)</th>
                                                 <th className='ps-2'>Emission (kgCO2e)</th>
                                             </tr>
@@ -435,15 +435,15 @@ const Production = (props) => {
                                             ))}
                                         </table>
                                     </div>
-                                </Box>
+                                </Box>  
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Screen Type</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Screen Type</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Screen Type</th>
+                                                <th />
                                                 <th className='ps-2'>No of Hours</th>
                                                 <th className='ps-2'>No of Devices/ Panels</th>
                                                 <th className='ps-2'>Emission (kgCO2e)</th>
@@ -464,11 +464,11 @@ const Production = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Screen Type</Typography>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>Screen Type</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Screen Type</th>
+                                                <th />
                                                 <th className='ps-2'>No of Hours</th>
                                                 <th className='ps-2'>No of Lights</th>
                                                 <th className='ps-2'>Emission (kgCO2e)</th>

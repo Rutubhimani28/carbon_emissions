@@ -99,7 +99,7 @@ const DigitalContent = (props) => {
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6' color='white'>
+                                <Typography variant='h4' color='white'>
                                     Emails
                                 </Typography>
                                 <Grid mt={2}>
@@ -144,7 +144,7 @@ const DigitalContent = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6' color='white'>
+                                <Typography variant='h4' color='white'>
                                     Attachment
                                 </Typography>
                                 <Grid mt={2}>
@@ -189,7 +189,7 @@ const DigitalContent = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h6' color='white'>
+                                <Typography variant='h4' color='white'>
                                     Laptop
                                 </Typography>
                                 <Grid mt={2}>

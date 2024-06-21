@@ -200,7 +200,7 @@ const LocalTranspotation = (props) => {
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Model of Transport per vehicle</th>
+                                                <th className='ps-2'>Mode of Transport</th>
                                                 <th className='ps-2'>No of Kms</th>
                                                 <th className='ps-2'>No of Passengers</th>
                                                 <th className='ps-2'>Emission (kg CO2e)</th>
@@ -262,7 +262,7 @@ const LocalTranspotation = (props) => {
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Model of Transport per vehicle</th>
+                                                <th className='ps-2'>Mode of Transport</th>
                                                 <th className='ps-3'>No of Kms</th>
                                                 {/* <th className='ps-2'>Emission (kg CO2e)</th> */}
                                                 <th className='ps-2'>Emissions per person (kg CO2e)</th>
