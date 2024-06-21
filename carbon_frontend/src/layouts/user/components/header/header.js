@@ -19,7 +19,9 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+// import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo2.gif';
+
 
 
 const drawerWidth = 240;

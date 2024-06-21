@@ -123,7 +123,7 @@ const Hotel = (props) => {
                                     Hotel
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Pick a location</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Geography</FormLabel>
                                     <FormControl fullWidth>
                                         <Autocomplete
                                             options={HotelData}
