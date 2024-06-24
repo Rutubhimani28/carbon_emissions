@@ -81,12 +81,12 @@ const EsgAdvisory = () => {
                 <video
                     src={BannerVid}
                     width={"100%"}
-                    height={"100%"}
                     autoPlay
                     muted
                     preload
                     ref={videoRef}
                     loop
+                    style={{ objectFit: 'fill', height: '75vh' }}
                 >
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
@@ -94,11 +94,12 @@ const EsgAdvisory = () => {
                     and watch it with your favorite video player!
                 </video>
             </div>
+
             <div className='container'>
                 <div style={{ paddingTop: '48px', paddingBottom: '42px' }}>
                     {/* <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >NetZero Consulting</Typography> */}
                     <p className='pb-4 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5' style={{ textAlign: 'justify' }}>We provide NetZero Consulting to develop sustainable business strategies for industries. Our objective is to foster collaboration and support within these industries to collectively meet climate goals. By adopting sustainable measures, industries can reduce their operational costs while creating added value and acting responsibly. With NetZero Consulting you can improve efficiency, control costs, and achieve your sustainability goals.</p>
-                    <p className='pb-3 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textDecoration: 'none' }}>NetZero Tool</Link> supports data-driven decisions, enhances brand reputation, and aligns with your ESG objectives, reflecting our shared commitment to sustainability and compassion for future generations.</p>
+                    <p className='pb-3 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textDecoration: 'none' }}>NetZero Platform</Link> supports data-driven decisions, enhances brand reputation, and aligns with your ESG objectives, reflecting our shared commitment to sustainability and compassion for future generations.</p>
                 </div>
                 <div>
                     {/* <Typography variant='h6' className=' fs-3 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Services</Typography>
@@ -110,7 +111,7 @@ const EsgAdvisory = () => {
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='my-4 d-flex ms-1 justify-content-between wow animate__animated animate__fadeInUp animate__slow'>
                         <Grid item xs={12} md={2.8} className='shadow text-center py-2 my-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
                             <Typography variant='h6' className='fs-4 fontFamily fw-bold pb-2 pt-2' ><a href="#organisations" style={{ textDecoration: 'none', color: 'inherit' }}>Organisations</a></Typography>
-                            <p className='fontFamily fs-6'>CMO Vertical</p>x
+                            <p className='fontFamily fs-6'>CMO Vertical</p>
                         </Grid>
                         <Grid item xs={12} md={2.8} className='shadow text-center py-2 my-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
                             <Typography variant='h6' className=' fs-4 fontFamily fw-bold pb-2 pt-2' ><a href="#agencies" style={{ textDecoration: 'none', color: 'inherit' }}>Agencies</a></Typography>
@@ -135,17 +136,17 @@ const EsgAdvisory = () => {
                 <div className='my-3 pt-4 wow animate__animated animate__fadeInUp animate__slow' id="agencies">
                     <Typography variant='h6' className='fontFamily fw-bold fs-3'>Agencies</Typography>
                     <p className='py-3' style={{ textAlign: 'justify' }}>Agencies supporting organizations (clients) bring a distinctive value proposition by executing sustainable activities throughout the year. Embracing sustainable practices not only sets you apart from the competition but also demonstrates your understanding and support for environmental concerns, attracting more clients and expanding your business opportunities.</p>
-                    <p className='' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Tool</Link> assists in measuring the carbon footprint of the activities you support, positioning you as a sustainable event organizer. It provides accurate data on environmental impact, enhancing your brand reputation and aligning with your companies, and countries climate actions.</p>
+                    <p className='' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link> assists in measuring the carbon footprint of the activities you support, positioning you as a sustainable event organizer. It provides accurate data on environmental impact, enhancing your brand reputation and aligning with your companies, and countries climate actions.</p>
                 </div>
                 <div className='my-3 pt-4 wow animate__animated animate__fadeInUp animate__slow' id="hospitality">
                     <Typography variant='h6' className='fontFamily fw-bold fs-3'>Hospitality</Typography>
                     <p className='py-3' style={{ textAlign: 'justify' }}>Attracting major companies to host events and exhibitions in your hotel demonstrates your commitment to clients and sustainability. We understand that many organizations seek sustainable hotels, and we're here to help you meet those expectations.</p>
-                    <p className='' style={{ textAlign: 'justify' }}>To fully adhere to sustainable measures, you need a net-zero framework and an <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Tool</Link> that meticulously tracks the emissions generated during clients' events on your premises. Our emissions tool aids in managing your carbon footprint, attracting climate-conscious clients, and aligning with your overall ESG objectives.</p>
+                    <p className='' style={{ textAlign: 'justify' }}>To fully adhere to sustainable measures, you need a net-zero framework and an <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link> that meticulously tracks the emissions generated during clients' events on your premises. Our emissions tool aids in managing your carbon footprint, attracting climate-conscious clients, and aligning with your overall ESG objectives.</p>
                 </div>
                 <div className='pb-5 pt-4 wow animate__animated animate__fadeInUp animate__slow' id="exhibitions">
                     <Typography variant='h6' className='fontFamily fw-bold fs-3'>Exhibitions</Typography>
                     <p className='py-3' style={{ textAlign: 'justify' }}>As an exhibition or congress organizer, you play a pivotal role in bringing together diverse companies, segments, and government bodies, enabling them to showcase their innovations. To fully embrace sustainable practices, we understand your willingness to support climate initiatives.</p>
-                    <p className='' style={{ textAlign: 'justify' }}>A robust governance model, coupled with our ESG advisory services and <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Tool</Link>, enhances your reputation, attracting eco-conscious exhibitors and attendees. Together, we align with your overall ESG objectives, fostering accountability and environmental stewardship.</p>
+                    <p className='' style={{ textAlign: 'justify' }}>A robust governance model, coupled with our ESG advisory services and <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link>, enhances your reputation, attracting eco-conscious exhibitors and attendees. Together, we align with your overall ESG objectives, fostering accountability and environmental stewardship.</p>
                 </div> */}
                 {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5  d-flex justify-content-center align-items-center' id="organisation"> */}
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' id="organisation">
@@ -157,7 +158,7 @@ const EsgAdvisory = () => {
                     </Grid>
                     <Grid item xs={12} md={8} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInRight animate__slow d-flex flex-column justify-content-evenly ps-3'>
                         <p className='fs-5' style={{ textAlign: 'justify' }}>Our NetZero Consulting for the Chief Marketing Officer (CMO) vertical transcends routine ESG measures. Understanding the challenges you face, we believe in empowering you to take proactive steps towards sustainability across all your activities.</p>
-                        <p className='fs-5' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Tool</Link>, tailored specifically for the marketing vertical, diligently measures the carbon footprint generated from each activity, aiding in your journey towards sustainability goals and enhancing corporate responsibility. It offers precise data on the carbon footprint from marketing activities, enabling targeted reduction strategies.</p>
+                        <p className='fs-5' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link>, tailored specifically for the marketing vertical, diligently measures the carbon footprint generated from each activity, aiding in your journey towards sustainability goals and enhancing corporate responsibility. It offers precise data on the carbon footprint from marketing activities, enabling targeted reduction strategies.</p>
                     </Grid>
                 </Grid>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' id="agencies">
@@ -169,7 +170,7 @@ const EsgAdvisory = () => {
                     </Grid>
                     <Grid item xs={12} md={8} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow d-flex flex-column justify-content-evenly ps-3'>
                         <p className='fs-5' style={{ textAlign: 'justify' }}>Agencies supporting organizations (clients) offer a distinctive value proposition by executing sustainable activities throughout the year. Embracing NetZero practices not only sets you apart from the competition but also demonstrates your understanding to environmental concerns, attracting more clients and expanding your business opportunities.</p>
-                        <p className='fs-5' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Tool</Link> assists in measuring the carbon footprint of the activities you support, positioning you as a sustainable event organizer. It provides accurate data on environmental impact, enhancing your brand reputation and aligning with your companies, and countries climate actions.</p>
+                        <p className='fs-5' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link> assists in measuring the carbon footprint of the activities you support, positioning you as a sustainable event organizer. It provides accurate data on environmental impact, enhancing your brand reputation and aligning with your companies, and countries climate actions.</p>
                     </Grid>
                 </Grid>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' id="hospitality">
@@ -181,7 +182,7 @@ const EsgAdvisory = () => {
                     </Grid>
                     <Grid item xs={12} md={8} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInRight animate__slow d-flex flex-column justify-content-evenly ps-3'>
                         <p className='fs-5' style={{ textAlign: 'justify' }}>Attracting major companies to host events and exhibitions in your hotel demonstrates your commitment to clients and sustainability. We understand that many organizations seek sustainable hotels, and we're here to help you meet those expectations through our NetZero Consulting.</p>
-                        <p className='fs-5' style={{ textAlign: 'justify' }}>To fully adhere to sustainable measures, you need a through our NetZero framework and a <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Tool</Link> that meticulously tracks the emissions generated during clients' events on your premises. Our through our NetZero Tool aids in managing your carbon footprint, attracting climate-conscious clients, and aligning with your overall ESG objectives.</p>
+                        <p className='fs-5' style={{ textAlign: 'justify' }}>To fully adhere to sustainable measures, you need a NetZero framework and a <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link> that meticulously tracks the emissions generated during clients' events on your premises. Our through our NetZero Platform aids in managing your carbon footprint, attracting climate-conscious clients, and aligning with your overall ESG objectives.</p>
                     </Grid>
                 </Grid>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' id="exhibitions">
@@ -193,19 +194,20 @@ const EsgAdvisory = () => {
                     </Grid>
                     <Grid item xs={12} md={8} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow d-flex flex-column justify-content-evenly ps-3'>
                         <p className='fs-5' style={{ textAlign: 'justify' }}>As an exhibition or congress organizer, you play a pivotal role in bringing together diverse companies, segments, and government bodies, enabling them to showcase their innovations. To fully embrace sustainable practices, we understand your willingness to support climate initiatives.</p>
-                        <p className='fs-5' style={{ textAlign: 'justify' }}>A robust governance model, coupled with our NetZero Consulting and a <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Tool</Link>, enhances your reputation, attracting eco-conscious exhibitors and attendees. Together, we align with your overall ESG objectives, fostering accountability and environmental stewardship.</p>
+                        <p className='fs-5' style={{ textAlign: 'justify' }}>A robust governance model, coupled with our NetZero Consulting and a <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link>, enhances your reputation, attracting eco-conscious exhibitors and attendees. Together, we align with your overall ESG objectives, fostering accountability and environmental stewardship.</p>
                     </Grid>
                 </Grid>
 
-                <p>We would like to partner with you to reduce your carbon footprint, fostering long-term business value creation with a deep understanding of your needs.</p>
-                <p className='fontFamily wow animate__animated animate__fadeInUp animate__slow pb-5'>
+                <p className='fs-5'>We would like to partner with you to reduce your carbon footprint, fostering long-term business value creation with a deep understanding of your needs.</p>
+                <p className='fontFamily wow animate__animated animate__fadeInUp animate__slow pb-5 mt-1' style={{ textAlign: 'center' }}>
                     <PopupButton
-                        url="https://calendly.com/fayiba2108/meet"
+                        url="https://calendly.com/mohammed-sirat"
                         rootElement={document.getElementById("root")}
                         text="Book a demo"
                         styles={{ border: 'none', background: 'none', color: "#ffffd9", margin: '0', padding: '0' }}
+                        className='fs-5'
                     />
-                    <span> with us to know more.</span>
+                    <span className='fs-5'> with us to know more.</span>
                 </p>
 
             </div>

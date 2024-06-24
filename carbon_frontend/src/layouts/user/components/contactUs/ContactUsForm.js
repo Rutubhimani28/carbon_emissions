@@ -253,13 +253,13 @@ const ContactUsForm = () => {
     //         </Grid>
     //       </Grid>
     //       <Grid item xs={12} sm={6}>
-    //         <InlineWidget url="https://calendly.com/fayiba2108/meet" />
+    //         <InlineWidget url="https://calendly.com/mohammed-sirat" />
 
     //         {/* <button style={{ display: 'block', margin: '0 auto' }} onClick={() => setIsOpen(true)}>
     //           Custom Button
     //         </button> */}
     //         <PopupModal
-    //           url="https://calendly.com/fayiba2108/meet"
+    //           url="https://calendly.com/mohammed-sirat"
     //           pageSettings={pageSettings}
     //           utm={utm}
     //           prefill={prefill}
@@ -268,7 +268,7 @@ const ContactUsForm = () => {
     //           rootElement={document.getElementById('root')}
     //         />
     //         {/* <PopupWidget
-    //           url="https://calendly.com/fayiba2108/meet"
+    //           url="https://calendly.com/mohammed-sirat"
     //           rootElement={document.getElementById("root")}
     //           text="schedule metting"
     //           textColor="#ffffff"

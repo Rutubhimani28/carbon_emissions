@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import bannerImg from '../../assets/images/measure_ghg_emissions.jpg';
 import bannerImg2 from '../../assets/images/net.png';
-import BannerVid from '../../assets/images/NetZero Consulting.mp4';
+// import BannerVid from '../../assets/images/NetZero Consulting.mp4';
+import BannerVid2 from '../../assets/images/NetZero Platform- Updated Video.mp4';
 
 const Banner = () => {
 
@@ -20,14 +21,14 @@ const Banner = () => {
             </div> */}
             <div style={{ maxWidth: "100%", maxHeight: "750px", overflow: 'hidden' }}>
                 <video
-                    src={BannerVid}
+                    src={BannerVid2}
                     width={"100%"}
-                    height={"100%"}
                     autoPlay
                     muted
                     preload
                     ref={videoRef}
                     loop
+                    style={{ objectFit: 'fill', height: '75vh' }}
                 >
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can

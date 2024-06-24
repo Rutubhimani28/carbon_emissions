@@ -117,7 +117,7 @@ const Category = () => {
                 <p className='fontFamily fs-5 wow animate__animated animate__fadeInUp animate__slow'>
                     {/* Email us at <a className='text-decoration-none ' style={{ color: "#ffffd9" }} href='mailTo:info@sirat.earth'>Sirāt</a> */}
                     <PopupButton
-                        url="https://calendly.com/fayiba2108/meet"
+                        url="https://calendly.com/mohammed-sirat"
                         rootElement={document.getElementById("root")}
                         text="Book a demo"
                         styles={{ border: 'none', background: 'none', color: "#ffffd9" }}
