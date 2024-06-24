@@ -62,7 +62,7 @@ const Goal = () => {
                     <Grid item xs={12} md={6} className='wow animate__animated animate__fadeInUp animate__slow'>
                         <Box className="">
                             <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' >Collaborating for Sustainable Development</Typography>
-                            <p className='text-light fs-5'><strong>Sirat</strong> invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.</p>
+                            <p className='text-light fs-5'><strong>Sirāt</strong> invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.</p>
                             <p className='text-light fs-5'><Link className="text-decoration-none" style={{ color: '#ffffd9' }} to="mailto:mohammed.shafeeq@sirat.earth">Reach out to our CEO</Link> to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
                         </Box>
                     </Grid>

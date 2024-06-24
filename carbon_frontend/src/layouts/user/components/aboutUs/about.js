@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { PopupButton } from "react-calendly";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 import RemoveIcon from '@mui/icons-material/Remove'
@@ -27,17 +28,17 @@ const About = () => {
                 <p className='py-4 fontFamily mx-4 wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }} >In today's world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to introduce NetZero Consulting within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact. We further provide a user-friendly NetZero Tool to help to identify, optimise (through our NetZero Consulting) and measure the emissions generated from marketing operations.</p>
             </div>
             <div>
-                <Typography variant='h6' className='text-center fs-3 green pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow' style={{ color: '#054723' }}>Targeted Sustainable Development Goals (SDGs)</Typography>
+                <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow'>Targeted Sustainable Development Goals (SDGs)</Typography>
                 <p className='text-center  py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s'>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs</a>.</p>
             </div>
             <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
-                <img src={goal1} alt='img' width={200} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
-                <img src={goal2} alt='img' width={200} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-1s' />
-                <img src={goal3} alt='img' width={200} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s' />
-                <img src={goal4} alt='img' width={200} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-3s' />
-                <img src={goal5} alt='img' width={200} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-4s' />
-                <img src={goal6} alt='img' width={200} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp  animate__delay-5s' />
-                <img src={goal7} alt='img' width={200} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow  animate__delay-5s' />
+                <img src={goal1} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
+                <img src={goal2} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-1s' />
+                <img src={goal3} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s' />
+                <img src={goal4} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-3s' />
+                <img src={goal5} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-4s' />
+                <img src={goal6} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp  animate__delay-5s' />
+                <img src={goal7} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow  animate__delay-5s' />
             </div>
             {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
@@ -126,8 +127,8 @@ const About = () => {
                             <p className=' fs-5 mb-0'>Mohammed Shafeeq</p>
                             <p className=' fs-6 mb-0'>CEO & Founder</p>
                             <div className='d-flex justify-content-center py-2 pb-4'>
-                                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px" }}><FaXTwitter /></Box>
-                                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px" }}><FaLinkedin /></Box>
+                                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px" }}><Link to="https://x.com/shafeeqm"><FaXTwitter style={{ color: 'white' }} /></Link></Box>
+                                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px" }}><Link to="https://www.linkedin.com/in/shafeeqm/"><FaLinkedin style={{ color: 'white' }} /></Link></Box>
                             </div>
                         </div>
                     </Grid>

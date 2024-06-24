@@ -97,8 +97,8 @@ const EsgAdvisory = () => {
             <div className='container'>
                 <div style={{ paddingTop: '48px', paddingBottom: '42px' }}>
                     {/* <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >NetZero Consulting</Typography> */}
-                    <p className='pb-4 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5'>We provide NetZero Consulting to develop sustainable business strategies for industries. Our objective is to foster collaboration and support within these industries to collectively meet climate goals. By adopting sustainable measures, industries can reduce their operational costs while creating added value and acting responsibly. With NetZero Consulting you can improve efficiency, control costs, and achieve your sustainability goals.</p>
-                    <p className='pb-3 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5'>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Tool</Link> supports data-driven decisions, enhances brand reputation, and aligns with your ESG objectives, reflecting our shared commitment to sustainability and compassion for future generations.</p>
+                    <p className='pb-4 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5' style={{ textAlign: 'justify' }}>We provide NetZero Consulting to develop sustainable business strategies for industries. Our objective is to foster collaboration and support within these industries to collectively meet climate goals. By adopting sustainable measures, industries can reduce their operational costs while creating added value and acting responsibly. With NetZero Consulting you can improve efficiency, control costs, and achieve your sustainability goals.</p>
+                    <p className='pb-3 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5' style={{ textAlign: 'justify' }}>Our <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textDecoration: 'none' }}>NetZero Tool</Link> supports data-driven decisions, enhances brand reputation, and aligns with your ESG objectives, reflecting our shared commitment to sustainability and compassion for future generations.</p>
                 </div>
                 <div>
                     {/* <Typography variant='h6' className=' fs-3 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Services</Typography>
@@ -110,7 +110,7 @@ const EsgAdvisory = () => {
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='my-4 d-flex ms-1 justify-content-between wow animate__animated animate__fadeInUp animate__slow'>
                         <Grid item xs={12} md={2.8} className='shadow text-center py-2 my-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
                             <Typography variant='h6' className='fs-4 fontFamily fw-bold pb-2 pt-2' ><a href="#organisations" style={{ textDecoration: 'none', color: 'inherit' }}>Organisations</a></Typography>
-                            <p className='fontFamily fs-6'>CMO Vertical</p>
+                            <p className='fontFamily fs-6'>CMO Vertical</p>x
                         </Grid>
                         <Grid item xs={12} md={2.8} className='shadow text-center py-2 my-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
                             <Typography variant='h6' className=' fs-4 fontFamily fw-bold pb-2 pt-2' ><a href="#agencies" style={{ textDecoration: 'none', color: 'inherit' }}>Agencies</a></Typography>

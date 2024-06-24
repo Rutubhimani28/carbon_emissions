@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom'
 const Faq = () => {
     return (
         <div className='main py-5'>
-            {/* <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5 wow animate__animated animate__fadeInUp animate__slow' >FAQ's</Typography> */}
             <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5' >FAQ's</Typography>
 
-            {/* <p className='wow animate__animated animate__fadeInLeft animate__slow'> */}
             <p>
-                <p style={{ fontSize: "20px" }} className=' mb-5'>In candid conversation with our Founder & CEO of <strong>Sirat</strong>, Mr.Mohammed Shafeeq.</p>
+                <p style={{ fontSize: "20px" }} className=' mb-5'>In candid conversation with our Founder & CEO of <strong>Sirāt</strong>, Mr.Mohammed Shafeeq.</p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-0'>A1: It’s about urging the Chief Marketing Officer (CMO) vertical of organizations to adopt sustainable measures while managing their marketing and corporate affairs operations with the ultimate goal of achieving NetZero.</p>
                 <p style={{ fontSize: "20px" }} className=' mb-5'>For the second question, why now? If not now, then when? Are we going to wait another decade to understand the importance of sustainable marketing, or should we act now?</p>
@@ -32,7 +30,7 @@ const Faq = () => {
                 <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q5: Do you mean to say that the organization’s CMO vertical is not following sustainable measures? Why?</strong></p>
                 <p style={{ fontSize: "20px" }} className=' mb-5'>A5: Yes, they are not, and the primary reason, in most cases, is lack of awareness. For example, initiatives like avoiding plastic water bottles or reducing air travel are steps in the right direction, but there is much more to be done. The lack of consideration for emissions during various marketing activities, such as events or digital campaigns, is a significant issue that requires immediate attention.</p>
 
-                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q6: Does Sirat claim to have a net-zero framework and tool?</strong></p>
+                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q6: Does Sirāt claim to have a net-zero framework and tool?</strong></p>
                 <p style={{ fontSize: "20px" }} className=' mb-5'>A6: Yes, we have developed a comprehensive framework for various sectors—organizations, service providers (agencies), hospitality, and exhibitors—to achieve NetZero by 2050. This framework is complemented by our NetZero Consulting Services and a NetZero Tool. Our vision is to empower these sectors, guiding them to achieve a 50% reduction in both direct and indirect greenhouse gas emissions by 2030.</p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q7: Any last message for your targeted industries?</strong></p>
