@@ -182,7 +182,7 @@ const EsgAdvisory = () => {
                     </Grid>
                     <Grid item xs={12} md={8} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInRight animate__slow d-flex flex-column justify-content-evenly ps-3'>
                         <p className='fs-5' style={{ textAlign: 'justify' }}>Attracting major companies to host events and exhibitions in your hotel demonstrates your commitment to clients and sustainability. We understand that many organizations seek sustainable hotels, and we're here to help you meet those expectations through our NetZero Consulting.</p>
-                        <p className='fs-5' style={{ textAlign: 'justify' }}>To fully adhere to sustainable measures, you need a NetZero framework and a <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link> that meticulously tracks the emissions generated during clients' events on your premises. Our through our NetZero Platform aids in managing your carbon footprint, attracting climate-conscious clients, and aligning with your overall ESG objectives.</p>
+                        <p className='fs-5' style={{ textAlign: 'justify' }}>To fully adhere to sustainable measures, you need a NetZero framework and a <Link to="/measure-ghg-emissions" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }}>NetZero Platform</Link> that meticulously tracks the emissions generated during clients' events on your premises. Our NetZero Platform aids in managing your carbon footprint, attracting climate-conscious clients, and aligning with your overall ESG objectives.</p>
                     </Grid>
                 </Grid>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' id="exhibitions">
@@ -203,7 +203,7 @@ const EsgAdvisory = () => {
                     <PopupButton
                         url="https://calendly.com/mohammed-sirat"
                         rootElement={document.getElementById("root")}
-                        text="Book a demo"
+                        text="Book a meeting"
                         styles={{ border: 'none', background: 'none', color: "#ffffd9", margin: '0', padding: '0' }}
                         className='fs-5'
                     />
