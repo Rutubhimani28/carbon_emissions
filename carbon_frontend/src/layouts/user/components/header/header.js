@@ -20,7 +20,8 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 // import logo from '../../assets/images/logo.png';
-import logo from '../../assets/images/logo3.gif';
+// import logo from '../../assets/images/logo3.gif';
+import logo from '../../assets/images/logo4.gif';
 
 const drawerWidth = 240;
 const navItems = [
@@ -71,7 +72,8 @@ const Header = (props) => {
         <>
             <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
                 <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center", cursor: "pointer" }} onClick={home}>
-                    <img src={logo} width={100} alt="logo" />
+                    {/* <img src={logo} width={'100'} alt="logo" /> */}
+                    <img src={logo} width={'160vh'} alt="logo" />
                 </Typography>
                 <Divider />
                 <List>
@@ -153,7 +155,7 @@ const Header = (props) => {
                         sx={{ flexGrow: 1, display: { md: 'flex' }, cursor: "pointer" }}
                         onClick={home}
                     >
-                        <img src={logo} width={"120px"} alt="logo" />
+                        <img src={logo} width={"160vh"} alt="logo" />
                     </Typography>
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         {navItems.map((item) => (
