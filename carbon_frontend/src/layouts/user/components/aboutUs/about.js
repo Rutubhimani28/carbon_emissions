@@ -25,7 +25,7 @@ const About = () => {
                 <img src={banner} alt="img" width={"100%"} height='600px' />
             </div>
             <div className='text-center main py-4'>
-                <p className='py-4 fontFamily mx-4 wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }} >In today's world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to introduce NetZero Consulting within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact. We further provide a user-friendly NetZero Tool to help to identify, optimise (through our NetZero Consulting) and measure the emissions generated from marketing operations.</p>
+                <p className='py-4 fontFamily mx-4 wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }} >In today's world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to introduce NetZero Consulting within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact. We further provide a user-friendly NetZero Platform to help to identify, optimise (through our NetZero Consulting) and measure the emissions generated from marketing operations.</p>
             </div>
             <div>
                 <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow'>Targeted Sustainable Development Goals (SDGs)</Typography>
@@ -78,7 +78,7 @@ const About = () => {
                         </Box>
                         <Box className="text-center main">
                             <PopupButton
-                                url="https://calendly.com/fayiba2108/meet"
+                                url="https://calendly.com/mohammed-sirat"
                                 rootElement={document.getElementById("root")}
                                 text="Book a slot with our CEO"
                                 styles={{ border: 'none', background: 'none', color: "#ffffd9" }}
@@ -112,9 +112,9 @@ const About = () => {
                         </Box>
                         <Box className="text-center main pt-3" style={{ marginBottom: '20px' }}>
                             <PopupButton
-                                url="https://calendly.com/fayiba2108/meet"
+                                url="https://calendly.com/mohammed-sirat"
                                 rootElement={document.getElementById("root")}
-                                text="Book a slot with our CEO"
+                                text="Book a Meeting with our CEO"
                                 styles={{ border: 'none', background: 'none', color: "#ffffd9" }}
                             />
                         </Box>

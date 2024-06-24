@@ -60,6 +60,7 @@ const Index = () => {
                                 component="img"
                                 image={Room1}
                                 alt="Blog1"
+                                sx={{ height: '100%', objectFit: 'cover' }}
                             />
                         </Grid>
                         <Grid item xs={8}>
@@ -99,6 +100,7 @@ const Index = () => {
                                 component="img"
                                 image={Room2}
                                 alt="Blog2"
+                                sx={{ height: '100%', objectFit: 'cover' }}
                             />
                         </Grid>
                     </Grid>
@@ -110,6 +112,7 @@ const Index = () => {
                                 component="img"
                                 image={Room3}
                                 alt="Blog3"
+                                sx={{ height: '100%', objectFit: 'cover' }}
                             />
                         </Grid>
                         <Grid item xs={8}>

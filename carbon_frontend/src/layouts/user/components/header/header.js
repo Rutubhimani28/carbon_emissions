@@ -26,8 +26,8 @@ import logo from '../../assets/images/logo4.gif';
 const drawerWidth = 240;
 const navItems = [
     { name: 'Home', path: "/" },
+    { name: 'NetZero Platform', path: "/measure-ghg-emissions" },
     { name: 'NetZero Consulting', path: "/netZero-consulting" },
-    { name: 'NetZero Tool', path: "/measure-ghg-emissions" },
     { name: 'News Room', path: '/blogs' },
     { name: 'About Us', path: '/about-us' }];
 
@@ -189,7 +189,7 @@ const Header = (props) => {
                         </Button> */}
                     </Box>
                     <PopupModal
-                        url="https://calendly.com/fayiba2108/meet"
+                        url="https://calendly.com/mohammed-sirat"
                         pageSettings={pageSettings}
                         utm={utm}
 
