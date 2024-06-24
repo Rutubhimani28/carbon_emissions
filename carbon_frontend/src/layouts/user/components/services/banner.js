@@ -19,7 +19,7 @@ const Banner = () => {
             {/* <div>
                 <img src={bannerImg2} alt='Netzero' width={"100%"} style={{ objectFit: 'cover', maxHeight: "650px" }} />
             </div> */}
-            <div style={{ maxWidth: "100%", maxHeight: "750px", overflow: 'hidden' }}>
+            <div style={{maxWidth: "100%", maxHeight: "750px", overflow: "hidden" }}>
                 <video
                     src={BannerVid2}
                     width={"100%"}
