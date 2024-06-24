@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { LoadingButton } from "@mui/lab";
 import { apipost } from "../../../../service/api";
+import Logo from '../../assets/images/logo4.gif';
 
 export default function Bot(props) {
     const { openBot, handleCloseBot } = props;
@@ -72,6 +73,9 @@ export default function Bot(props) {
             >
                 <DialogContent>
                     <DialogContentText>
+                        <div className="d-flex justify-content-center">
+                            <img src={Logo} width={'140vh'} alt="logo" style={{ marginBottom: "10px" }} />
+                        </div>
                         <span className="d-block mb-1" style={{ fontWeight: 750, fontSize: '12px' }}>Do you have a feedback or questions?</span>
                         <span className="d-block mb-3" style={{ fontWeight: 750, fontSize: '12px' }}>Fill out the form below. We'll reply within 24-48 hrs.</span>
                     </DialogContentText>
