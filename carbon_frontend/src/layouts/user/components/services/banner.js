@@ -52,7 +52,7 @@ const Banner = () => {
 
                     {/* <Grid className='fs-5 wow animate__animated animate__fadeInUp animate__slow' item sm={12} >We earnestly delve into the meticulous examination of the <strong>nine diverse categories</strong>   outlined below, aiming to construct a thoughtful framework and cultivate an action plan dedicated to reducing carbon emissions.</Grid> */}
                     {/* <Grid className='fs-5 py-4 wow animate__animated animate__fadeInUp animate__slow' item sm={12} >We earnestly delve into the meticulous examination of the <strong>nine diverse categories</strong> outlined below,</Grid> */}
-                    <Grid className='fs-5 py-4 wow animate__animated animate__fadeInUp animate__slow' item sm={12} style={{ textAlign: 'justify' }}>We earnestly delve into the meticulous examination of the nine diverse categories outlined below,</Grid>
+                    <Grid className='fs-5 py-4 wow animate__animated animate__fadeInUp animate__slow' item sm={12} style={{ textAlign: 'justify' }}>We earnestly delve into the meticulous examination of the nine diverse categories outlined below:</Grid>
                 </Grid>
             </Box>
         </div>
