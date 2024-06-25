@@ -423,7 +423,8 @@ const ContactUsForm = () => {
                   // disableElevation
                   onClick={formik.handleSubmit}
                   type="submit"
-                  className='custom-btn'
+                  // className='custom-btn'
+                  style={{ backgroundColor: "#054723" }}
                 >
                   {isLoading ? <CircularProgress size={27} /> : 'Submit'}
                 </Button>
@@ -433,7 +434,7 @@ const ContactUsForm = () => {
           {/* <Grid item xs={12} sm={6}> </Grid> */}
           <Grid item xs={12} sm={6}>
             <span className="text-center pt-3 fontFamily w-bold fs-5 wow animate__animated animate__fadeInUp animate__slow">
-              You can directly email your queries to <Link to="mailto:info@sirat.earth" style={{ color: "#054723", textDecoration: 'none' }}>Sirāt</Link>
+              You can directly email your queries to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link>
             </span>
           </Grid>
         </Grid>
