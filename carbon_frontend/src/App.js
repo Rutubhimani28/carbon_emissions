@@ -103,7 +103,7 @@ export default function App() {
             }}>
             <RiRobot2Fill style={{ fontSize: '3rem', color: '#007BFF' }} />
           </button>
-          <Bot openBot={openBot} handleCloseBot={handleCloseBot}  />
+          <Bot openBot={openBot} handleCloseBot={handleCloseBot} />
           <Footer />
         </>
 

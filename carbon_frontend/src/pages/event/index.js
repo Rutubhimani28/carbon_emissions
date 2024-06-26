@@ -20,9 +20,9 @@ import Waste from './waste';
 import LocalTranspotation from './localTranspotation';
 import AirTravelComp from './airTravel';
 import Hotel from './hotel';
-import banner from '../../layouts/user/assets/images/home_banner.jpg';
+import banner from '../../layouts/user/assets/images/NetZero Tool Pic.jpeg';
 
-const Calculation = () => {
+const EventCalculation = () => {
 
     const [value, setValue] = useState(0);
 
@@ -33,8 +33,11 @@ const Calculation = () => {
 
     return (
         <div>
+            <div style={{ display: 'flex', marginBottom: "10px", overflow: 'hidden', alignItems: 'center', justifyContent: 'center', height: '600px', marginTop: '14px' }}>
+                <img src={banner} alt="top_img" width="100%" />
+            </div>
             <Container maxWidth className="custom-outer-bg tab-fixed">
-                <Box  className="tab-outer">
+                <Box className="tab-outer">
                     {/* <img src={banner} alt="top_img" width="100%" style={{ marginLeft: 'auto', marginRight: 'auto' }} /> */}
                     {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img src={banner} alt="top_img" width="100%" />
@@ -75,4 +78,4 @@ const Calculation = () => {
     )
 }
 
-export default Calculation
+export default EventCalculation

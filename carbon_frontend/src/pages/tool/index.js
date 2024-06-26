@@ -1,0 +1,183 @@
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { Box, Button, Container, FormHelperText, FormLabel, Grid, TextField, Typography, CircularProgress } from '@mui/material';
+import logo from '../../layouts/user/assets/images/logo4.gif';
+
+const Home = () => {
+
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const initialValues = {
+        name: "",
+        email: "",
+        activityName: "",
+        country: "",
+        budget: "",
+    };
+
+    const validationSchema = yup.object({
+        name: yup.string().required("Name is required"),
+        email: yup.string().email('Invalid Email').required("Business Email is required"),
+        activityName: yup.string().required("Activity Name is required"),
+        country: yup.string().required("Country is required"),
+        budget: yup.number().required("Budget is required"),
+    });
+
+    const AddData = () => {
+
+    };
+
+    const formik = useFormik({
+        initialValues,
+        validationSchema,
+        onSubmit: async (values) => {
+            AddData(values)
+        },
+    });
+
+    console.log("formik values --------- ", formik.values);
+    console.log("formik errors --------- ", formik.errors);
+
+    return (
+        <Container maxWidth="lg" className='text-white'>
+            <Box textAlign="center" mt={4}>
+                <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} />
+                <Typography variant="h2" mt={2} className='text'>
+                    Welcome to Sirat's NetZero Tool,
+                </Typography>
+                {/* <Typography mt={4} className='fs-5'>
+                    To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible. You can save the data and come back later before submitting.
+                </Typography> */}
+                <Typography mt={3} className='fs-5'>
+                    To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
+                </Typography>
+                <Typography className='fs-5'>
+                    You can save the data and come back later before submitting.
+                </Typography>
+            </Box>
+            <Box className="mt-2">
+                <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 4 }} className='d-flex flex-column justify-content-center align-items-center'>
+                    <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }} borderRadius={'10px'}>
+                        <Grid container spacing={2} py={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} style={{ paddingRight: "24px" }}>
+                            <Grid item xs={12} sm={6}>
+                                <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
+                                    Name <span style={{ color: 'red' }}>*</span>
+                                </FormLabel>
+                                <TextField
+                                    name="name"
+                                    type="text"
+                                    size="small"
+                                    fullWidth
+                                    value={formik.values.name}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.name && Boolean(formik.errors.name)}
+                                    helperText={formik.touched.name && formik.errors.name}
+                                    inputProps={{ style: { color: 'white' } }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
+                                    Business Email <span style={{ color: 'red' }}>*</span>
+                                </FormLabel>
+                                <TextField
+                                    name="email"
+                                    type="email"
+                                    size="small"
+                                    fullWidth
+                                    value={formik.values.workEmail}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.email && Boolean(formik.errors.email)}
+                                    helperText={formik.touched.email && formik.errors.email}
+                                    inputProps={{ style: { color: 'white' } }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
+                                    Activity Name <span style={{ color: 'red' }}>*</span>
+                                </FormLabel>
+                                <TextField
+                                    name="activityName"
+                                    type="text"
+                                    size="small"
+                                    fullWidth
+                                    value={formik.values.activityName}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.activityName && Boolean(formik.errors.activityName)}
+                                    helperText={formik.touched.activityName && formik.errors.activityName}
+                                    inputProps={{ style: { color: 'white' } }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
+                                    Country <span style={{ color: 'red' }}>*</span>
+                                </FormLabel>
+                                <TextField
+                                    name="country"
+                                    type="text"
+                                    size="small"
+                                    fullWidth
+                                    value={formik.values.country}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.country && Boolean(formik.errors.country)}
+                                    helperText={formik.touched.country && formik.errors.country}
+                                    inputProps={{ style: { color: 'white' } }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
+                                <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
+                                    Allotted budget for the activity (In $) <span style={{ color: 'red' }}>*</span>
+                                </FormLabel>
+                                <TextField
+                                    name="budget"
+                                    type="number"
+                                    size="small"
+                                    fullWidth
+                                    value={formik.values.budget}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.budget && Boolean(formik.errors.budget)}
+                                    helperText={formik.touched.budget && formik.errors.budget}
+                                    inputProps={{ style: { color: 'white' } }}
+                                />
+                            </Grid>
+                            <Grid item xs={5} sm={8}>
+                                <Button
+                                    id="action"
+                                    variant="contained"
+                                    onClick={formik.handleSubmit}
+                                    type="submit"
+                                    style={{ backgroundColor: "#054723" }}
+                                >
+                                    {isLoading ? <CircularProgress size={27} /> : 'Submit'}
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Box>
+            <Box mt={0} textAlign="center">
+                <Typography className="mb-2 fs-5">Choose your Marketing activity</Typography>
+                <Button variant="contained" color="primary" style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
+                <Button variant="contained" style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
+            </Box>
+            <Box my={3} className="text-center d-flex justify-content-center">
+                <Box textAlign="left" maxWidth="1000px">
+                    <Typography variant="body1" className="text-white mt-2">Note:</Typography>
+                    <Typography variant="body1" className="text-white mt-2 ms-2">The summary page will give you how much Carbon footprint you are generating per $ spent on your activity.</Typography>
+                    <Typography variant="body1" className="text-white ms-2">You can't change the values after submitting the form on the last page.</Typography>
+                    <Typography variant="body1" className="text-white ms-2">All the emissions values are in kgCO2e.</Typography>
+                </Box>
+            </Box>
+            <Typography className='fs-5 text-center my-4'>If you face any problems or have questions, please send your query to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link></Typography>
+        </Container>
+    )
+}
+
+export default Home

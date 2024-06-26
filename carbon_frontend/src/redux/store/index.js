@@ -24,6 +24,7 @@ import wasteSlice from '../slice/wasteSlice';
 import totalAirTravelSlice from '../slice/totalAirTravelSlice';
 import hotelSlice from '../slice/hotelSlice';
 import totalHotelSlice from '../slice/totalHotelSlice';
+import totalDigitalCampaignSlice from '../slice/totalDigitalCampaignSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -72,6 +73,10 @@ const totalLocalTranspotationPersistConfig = {
     key: 'totalLocalTranspotation',
     storage: storageSession,
 };
+const totalDigitalCampaignPersistConfig = {
+    key: 'totalDigitalCampaign',
+    storage: storageSession,
+};
 
 export const store = configureStore({
     reducer: {
@@ -96,6 +101,7 @@ export const store = configureStore({
         totalLocalTranspotationDetails: persistReducer(totalLocalTranspotationPersistConfig, totalLocalTranspotationSlice),
         totalAirTravelDetails: persistReducer(totalAirTravelPersistConfig, totalAirTravelSlice),
         totalHotelDetails: persistReducer(totalHotelPersistConfig, totalHotelSlice),
+        totalDigitalCampaignDetails: persistReducer(totalDigitalCampaignPersistConfig, totalDigitalCampaignSlice),
     },
     middleware,
 });

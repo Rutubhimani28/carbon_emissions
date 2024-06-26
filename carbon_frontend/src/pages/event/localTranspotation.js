@@ -286,6 +286,7 @@ const LocalTranspotation = (props) => {
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
+                                    <Button variant='contained' onClick={() => { }} className='custom-btn'>Save</Button>
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                 </Stack>
                             </Grid>

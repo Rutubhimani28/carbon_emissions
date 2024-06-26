@@ -58,9 +58,9 @@ export default function DashboardLayout() {
       {/* <Nav openNav={open} onCloseNav={() => setOpen(false)} /> */}
 
       <Main>
-        <div style={{ display: 'flex', marginBottom: "10px", overflow: 'hidden', alignItems: 'center', justifyContent: 'center', height: '600px' }}>
+        {/* <div style={{ display: 'flex', marginBottom: "10px", overflow: 'hidden', alignItems: 'center', justifyContent: 'center', height: '600px' }}>
           <img src={banner} alt="top_img" width="100%" />
-        </div>
+        </div> */}
         <Outlet />
       </Main>
     </StyledRoot>

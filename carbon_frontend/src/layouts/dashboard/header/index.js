@@ -1,7 +1,8 @@
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
+import { Box, Stack, AppBar, Toolbar, IconButton, List, ListItemButton, Button, ListItem, ListItemText } from '@mui/material';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // components
@@ -43,6 +44,8 @@ Header.propTypes = {
 };
 
 export default function Header({ onOpenNav }) {
+  const navigate = useNavigate();
+
   return (
     <StyledRoot>
       <StyledToolbar>
@@ -70,6 +73,13 @@ export default function Header({ onOpenNav }) {
         >
           {/* <LanguagePopover /> */}
           {/* <NotificationsPopover /> */}
+          <List>
+            <ListItem key='home'>
+              <ListItemButton onClick={() => navigate('/dashboard/home')} className='text-dark text-capitalize'>
+                <ListItemText primary={'Home'} />
+              </ListItemButton>
+            </ListItem>
+          </List>
           <AccountPopover />
         </Stack>
       </StyledToolbar>
