@@ -1,6 +1,7 @@
 
 import Tool from "../models/tool.js";
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 
 const index = async (req, res) => {
     // const query = req.query
