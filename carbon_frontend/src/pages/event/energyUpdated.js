@@ -1,21 +1,21 @@
+import { useTheme } from '@emotion/react';
 import { Box, Button, Card, Container, FormLabel, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
-import { useTheme } from '@emotion/react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
-import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
-import DigitalImg from '../../assets/Digital.png';
+import EnergyImg from '../../assets/Energy.png';
 import { IconDiv } from '../../components/IconDiv';
+import { addEnergyData, deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 
-const DigitalContent = (props) => {
+const EnergyUpdated = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
 
-    const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
-    const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
+    const allData = useSelector((state) => state?.totalEnergyUpdatedDetails?.data[0]?.data)
+    const totalEmission = useSelector((state) => state?.totalEnergyUpdatedDetails?.totalEmission)
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -24,100 +24,92 @@ const DigitalContent = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        count: 0,
-        MB: 0,
-        noOfAttendees: 0,
-        noOfHours: 0,
-        serviceLifeOfLaptop: 0,
+        kwh: 0,
         emissionOne: 0,
+        gallonsOne: 0,
         emissionTwo: 0,
+        gallonsTwo: 0,
         emissionThree: 0,
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', values?.count * 4 / 1000);
-            formik.setFieldValue('emissionTwo', values?.MB * 50 / 1000);
-            const emission = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
-            formik.setFieldValue('emissionThree', emission || 0);
+            formik.setFieldValue('emissionOne', Number((values?.kwh * 0.43).toFixed(2)));
+            formik.setFieldValue('emissionTwo', Number((values?.gallonsOne * 8.78).toFixed(2)));
+            formik.setFieldValue('emissionThree', Number((values?.gallonsTwo * 10.21).toFixed(2)));
 
             const data = [
                 {
-                    type: 'Emails',
-                    count: values?.count,
-                    emission: Number((values?.count * 4 / 1000).toFixed(2))
+                    type: 'Electricity',
+                    kwh: values?.kwh,
+                    emission: Number((values?.kwh * 0.43).toFixed(2)) || 0
                 },
                 {
-                    type: 'Attachment',
-                    mb: values?.MB,
-                    emission: Number((values?.MB * 50 / 1000).toFixed(2))
+                    type: 'Petrol',
+                    gallonsOne: values?.gallonsOne,
+                    emission: Number((values?.gallonsOne * 8.78).toFixed(2)) || 0
                 },
                 {
-                    type: 'Laptop',
-                    noOfAttendees: values?.noOfAttendees,
-                    noOfHours: values?.noOfHours,
-                    serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
-                    emission: Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0
+                    type: 'Diesel',
+                    gallonsTwo: values?.gallonsTwo,
+                    emission: Number((values?.gallonsTwo * 10.21).toFixed(2)) || 0
                 }
             ];
-
-            dispatch(addData({ data }))
+            dispatch(addEnergyData({ data }))
         },
     });
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("count", allData[0]?.count)
+            formik.setFieldValue("kwh", allData[0]?.kwh)
             formik.setFieldValue("emissionOne", allData[0]?.emission)
-            formik.setFieldValue("MB", allData[1]?.mb)
+            formik.setFieldValue("gallonsOne", allData[1]?.gallonsOne)
             formik.setFieldValue("emissionTwo", allData[1]?.emission)
-            formik.setFieldValue("noOfAttendees", allData[2]?.noOfAttendees)
-            formik.setFieldValue("noOfHours", allData[2]?.noOfHours)
-            formik.setFieldValue("serviceLifeOfLaptop", allData[2]?.serviceLifeOfLaptop)
+            formik.setFieldValue("gallonsTwo", allData[2]?.gallonsTwo)
             formik.setFieldValue("emissionThree", allData[2]?.emission)
         }
     }, [value])
 
     const handeleDelete = () => {
-        dispatch(deleteData())
-    };
+        dispatch(deleteEnergyData())
+    }
 
     return (
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg'>
-                    <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                    <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={DigitalImg} alt="Digital" width={100} />
+                            <img src={EnergyImg} alt="Energy" width={100} />
                         </IconDiv>
                         <Grid
                             container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-                            className='table-custom-inpt-field'
+                            style={{ display: 'flex', justifyContent: 'center' }}
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h4' color='white'>
-                                    Emails
+                                <Typography variant='h4'>
+                                    Electricity
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Count</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Kwh</FormLabel>
                                     <TextField
-                                        id="count"
-                                        name="count"
+                                        id="kwh"
+                                        name="kwh"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.count}
+                                        value={formik.values.kwh}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.count &&
-                                            Boolean(formik.errors.count)
+                                            formik.touched.kwh &&
+                                            Boolean(formik.errors.kwh)
                                         }
                                         helperText={
-                                            formik.touched.count && formik.errors.count
+                                            formik.touched.kwh && formik.errors.kwh
                                         }
                                         inputProps={{ style: { color: 'white' } }}
                                     />
@@ -144,25 +136,25 @@ const DigitalContent = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h4' color='white'>
-                                    Attachment
+                                <Typography variant='h4'>
+                                    Petrol
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>MB</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
                                     <TextField
-                                        id="MB"
-                                        name="MB"
+                                        id="gallonsOne"
+                                        name="gallonsOne"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.MB}
+                                        value={formik.values.gallonsOne}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.MB &&
-                                            Boolean(formik.errors.MB)
+                                            formik.touched.gallonsOne &&
+                                            Boolean(formik.errors.gallonsOne)
                                         }
                                         helperText={
-                                            formik.touched.MB && formik.errors.MB
+                                            formik.touched.gallonsOne && formik.errors.gallonsOne
                                         }
                                         inputProps={{ style: { color: 'white' } }}
                                     />
@@ -189,45 +181,25 @@ const DigitalContent = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h4' color='white'>
-                                    Laptop
+                                <Typography variant='h4'>
+                                    Diesel
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No.of Attendees</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
                                     <TextField
-                                        id="noOfAttendees"
-                                        name="noOfAttendees"
+                                        id="gallonsTwo"
+                                        name="gallonsTwo"
                                         label=""
                                         fullWidth
                                         size="small"
-                                        value={formik.values.noOfAttendees}
+                                        value={formik.values.gallonsTwo}
                                         onChange={formik.handleChange}
                                         error={
-                                            formik.touched.noOfAttendees &&
-                                            Boolean(formik.errors.noOfAttendees)
+                                            formik.touched.gallonsTwo &&
+                                            Boolean(formik.errors.gallonsTwo)
                                         }
                                         helperText={
-                                            formik.touched.noOfAttendees && formik.errors.noOfAttendees
-                                        }
-                                        inputProps={{ style: { color: 'white' } }}
-                                    />
-                                </Grid>
-                                <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No. of hour</FormLabel>
-                                    <TextField
-                                        id="noOfHours"
-                                        name="noOfHours"
-                                        label=""
-                                        fullWidth
-                                        size="small"
-                                        value={formik.values.noOfHours}
-                                        onChange={formik.handleChange}
-                                        error={
-                                            formik.touched.noOfHours &&
-                                            Boolean(formik.errors.noOfHours)
-                                        }
-                                        helperText={
-                                            formik.touched.noOfHours && formik.errors.noOfHours
+                                            formik.touched.gallonsTwo && formik.errors.gallonsTwo
                                         }
                                         inputProps={{ style: { color: 'white' } }}
                                     />
@@ -258,19 +230,20 @@ const DigitalContent = (props) => {
                                 <Stack direction={"row"} spacing={2}>
                                     <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
+                                    <Button variant='contained' onClick={() => { }} className='custom-btn'>Save</Button>
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                 </Stack>
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                                <Typography>{`Total Energy Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
                                     {
                                         allData?.length > 0 && allData?.map((item) => (
 
-                                            <li>
+                                            <li style={{ color: 'white' }}>
                                                 {`${item?.type} : ${item?.emission} tons of kgCO2e`}
                                             </li>
                                         ))
@@ -283,6 +256,6 @@ const DigitalContent = (props) => {
             </Container>
         </div>
     )
-};
+}
 
-export default DigitalContent;
+export default EnergyUpdated;

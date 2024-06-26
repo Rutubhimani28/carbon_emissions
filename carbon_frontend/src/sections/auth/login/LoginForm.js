@@ -38,7 +38,8 @@ export default function LoginForm() {
       sessionStorage.setItem('user', JSON?.stringify(result?.data?.user))
       sessionStorage.setItem('user_id', result?.data?.user?._id)
       sessionStorage.setItem('userRole', result?.data?.user?.role)
-      navigate('/dashboard/calculation')
+      // navigate('/dashboard/event')
+      navigate('/dashboard/home')
     } else {
       navigate('/login')
     }

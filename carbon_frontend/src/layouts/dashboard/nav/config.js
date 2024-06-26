@@ -71,9 +71,9 @@ const navConfig = [
     icon: <img src={wasteimg} alt='Waste' width={30} />,
   },
   {
-    title: 'Calculation',
-    path: '/dashboard/calculation',
-    icon: <img src={Result} alt='Calculation' width={30} />,
+    title: 'Event',
+    path: '/dashboard/event',
+    icon: <img src={Result} alt='Event' width={30} />,
   },
   {
     title: 'contactUs',

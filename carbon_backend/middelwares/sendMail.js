@@ -26,33 +26,35 @@ const sendMail = async ({ receiver, subject, data, templateName, message }) => {
         });
 
         if (message) {            // self message. Usage, bot form
-            mailOptions = {
-                from: process.env.GMAIL_FROM,
-                to: process.env.GMAIL_FROM,  
-                subject: subject,
-                text: message,
-            };
+            mailOptions.from = process.env.GMAIL_FROM;
+            mailOptions.to = process.env.GMAIL_FROM;
+            mailOptions.subject = subject;
+            mailOptions.text = message;
         } else {
             const templatePath = path.join(__dirname, '/email_templates', `${templateName}.ejs`);
             const template = await ejs.renderFile(templatePath, { data: data });
+            const pdfFilePath = path.join(__dirname, 'carbon_footprint.pdf');
+
+            console.log("---- template ", template);
+            console.log("---- receiver ", receiver);
 
             pdf.create(template, options).toFile('./carbon_footprint.pdf', (err, res) => {
-                if (err) return console.log(err);
+                if (err) return console.log("-------- error in pdf create ", err);
 
-                mailOptions = {
-                    from: process.env.GMAIL_FROM,
-                    to: receiver,
-                    subject: subject,
-                    attachments: [
-                        {
-                            filename: 'carbon_footprint.pdf',
-                            path: './carbon_footprint.pdf',
-                            contentType: 'application/pdf'
-                        }
-                    ]
-                };
+                mailOptions.from = process.env.GMAIL_FROM;
+                mailOptions.to = receiver;
+                mailOptions.subject = subject;
+                mailOptions.attachments = [
+                    {
+                        filename: 'carbon_footprint.pdf',
+                        path: pdfFilePath,
+                        contentType: 'application/pdf'
+                    }
+                ];
             });
         }
+
+        console.log("----------- mailOptions ", mailOptions);
 
         // Send email
         transporter.sendMail(mailOptions, (error, info) => {
