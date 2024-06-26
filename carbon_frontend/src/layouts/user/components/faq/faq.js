@@ -6,10 +6,10 @@ const Faq = () => {
     return (
         <div className='main py-5'>
             <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5' >FAQ's</Typography>
-
             <p>
                 <p style={{ fontSize: "20px" }} className=' mb-5'>In candid conversation with our Founder & CEO of <strong>Sirāt</strong>, Mr.Mohammed Shafeeq.</p>
 
+                <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q1: What is Sirat all about? And why now?</strong></p>
                 <p style={{ fontSize: "20px" }} className=' mb-0'>A1: It’s about urging the Chief Marketing Officer (CMO) vertical of organizations to adopt sustainable measures while managing their marketing and corporate affairs operations with the ultimate goal of achieving NetZero.</p>
                 <p style={{ fontSize: "20px" }} className=' mb-5'>For the second question, why now? If not now, then when? Are we going to wait another decade to understand the importance of sustainable marketing, or should we act now?</p>
 
