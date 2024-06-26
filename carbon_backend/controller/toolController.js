@@ -2,6 +2,7 @@
 import Tool from "../models/tool.js";
 import mongoose from 'mongoose';
 
+
 const index = async (req, res) => {
     // const query = req.query
     // let allData = await Tool.find(query)
