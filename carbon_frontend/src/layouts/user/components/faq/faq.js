@@ -6,7 +6,6 @@ const Faq = () => {
     return (
         <div className='main py-5'>
             <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5' >FAQ's</Typography>
-
             <p>
                 <p style={{ fontSize: "20px" }} className=' mb-5'>In candid conversation with our Founder & CEO of <strong>Sirāt</strong>, Mr.Mohammed Shafeeq.</p>
 
