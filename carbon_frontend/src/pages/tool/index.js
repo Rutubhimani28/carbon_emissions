@@ -86,6 +86,7 @@ const Home = () => {
                                     type="text"
                                     size="small"
                                     fullWidth
+                                    className='textborder'
                                     value={formik.values.name}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -102,6 +103,7 @@ const Home = () => {
                                     name="email"
                                     type="email"
                                     size="small"
+                                    className='textborder'
                                     fullWidth
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
@@ -119,6 +121,7 @@ const Home = () => {
                                     name="activityName"
                                     type="text"
                                     size="small"
+                                    className='textborder'
                                     fullWidth
                                     value={formik.values.activityName}
                                     onChange={formik.handleChange}
@@ -137,6 +140,8 @@ const Home = () => {
                                     type="text"
                                     size="small"
                                     fullWidth
+                                    className='textborder'
+
                                     value={formik.values.country}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -153,6 +158,7 @@ const Home = () => {
                                     name="budget"
                                     type="number"
                                     size="small"
+                                    className='textborder'
                                     fullWidth
                                     value={formik.values.budget}
                                     onChange={formik.handleChange}

@@ -37,16 +37,16 @@ const Goal = () => {
             <div className='pb-5'>
                 <Typography variant='h6' className='text-center fs-3 mb-4'>Trusted By</Typography>
                 <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
-                    <Card className='mx-4 my-3'>
+                    <div className='mx-4 my-3'>
                         <CardContent className='justify-content-center'>
-                            <img src={TrustOne} alt='img' width={200} />
+                            <img src={TrustOne} alt='img' width={100} />
                         </CardContent>
-                    </Card>
-                    <Card className='mx-4 my-3'>
+                    </div>
+                    <div className='mx-4 my-3'>
                         <CardContent className='justify-content-center'>
-                            <img src={TrustTwo} alt='img' width={200} />
+                            <img src={TrustTwo} alt='img' width={100} />
                         </CardContent>
-                    </Card>
+                    </div>
                 </div>
             </div>
             {/* collabrate */}

@@ -199,3 +199,7 @@ p {
 .tab-text-color {
   color: #1f9e6d !important;
 }
+.textborder input{
+  border: 1px solid white;
+  border-radius: 6px;
+}

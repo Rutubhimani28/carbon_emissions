@@ -230,7 +230,10 @@ const Food = (props) => {
                                                         type="number"
                                                         name="noOfPaxOne"
                                                         value={formik?.values?.noOfPaxOne}
-                                                        onChange={formik.handleChange}
+                                                        onChange={(e) => {
+                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('emissionOne', Number((1924.06 * e.target.value).toFixed(2)));
+                                                        }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
@@ -253,7 +256,10 @@ const Food = (props) => {
                                                         type="number"
                                                         name="noOfPaxTwo"
                                                         value={formik?.values?.noOfPaxTwo}
-                                                        onChange={formik.handleChange}
+                                                        onChange={(e) => {
+                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('emissionTwo', Number((3825.5 * e.target.value).toFixed(2)));
+                                                        }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
@@ -276,7 +282,10 @@ const Food = (props) => {
                                                         type="number"
                                                         name="noOfPaxThree"
                                                         value={formik?.values?.noOfPaxThree}
-                                                        onChange={formik.handleChange}
+                                                        onChange={(e) => {
+                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('emissionThree', Number((1984.1 * e.target.value).toFixed(2)));
+                                                        }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
@@ -299,7 +308,10 @@ const Food = (props) => {
                                                         type="number"
                                                         name="noOfPaxFour"
                                                         value={formik?.values?.noOfPaxFour}
-                                                        onChange={formik.handleChange}
+                                                        onChange={(e) => {
+                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('emissionFour', Number((2638 * e.target.value).toFixed(2)));
+                                                        }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
@@ -322,7 +334,10 @@ const Food = (props) => {
                                                         type="number"
                                                         name="noOfPaxFive"
                                                         value={formik?.values?.noOfPaxFive}
-                                                        onChange={formik.handleChange}
+                                                        onChange={(e) => {
+                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('emissionFive', Number((642.2 * e.target.value).toFixed(2)));
+                                                        }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
