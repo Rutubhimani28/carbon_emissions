@@ -25,6 +25,7 @@ import totalAirTravelSlice from '../slice/totalAirTravelSlice';
 import hotelSlice from '../slice/hotelSlice';
 import totalHotelSlice from '../slice/totalHotelSlice';
 import totalDigitalCampaignSlice from '../slice/totalDigitalCampaignSlice';
+import toolSlice from "../slice/toolSlice";
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -78,6 +79,11 @@ const totalDigitalCampaignPersistConfig = {
     storage: storageSession,
 };
 
+const toolPersistConfig = {
+    key: 'tool',
+    storage: storageSession,
+};
+
 export const store = configureStore({
     reducer: {
         userDetails: persistReducer(userPersistConfig, userSlice),
@@ -102,6 +108,7 @@ export const store = configureStore({
         totalAirTravelDetails: persistReducer(totalAirTravelPersistConfig, totalAirTravelSlice),
         totalHotelDetails: persistReducer(totalHotelPersistConfig, totalHotelSlice),
         totalDigitalCampaignDetails: persistReducer(totalDigitalCampaignPersistConfig, totalDigitalCampaignSlice),
+        toolDetails: persistReducer(toolPersistConfig, toolSlice),
     },
     middleware,
 });

@@ -256,10 +256,11 @@ const DigitalContent = (props) => {
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
-                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
-                                    <Button variant='contained' onClick={() => { }} className='custom-btn'>Save</Button>
+                                    {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>&lt;&lt;Save and Previous Page</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
 
                             </Grid>

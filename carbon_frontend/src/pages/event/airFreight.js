@@ -31,7 +31,6 @@ const AirFreight = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-
             const emissionOne = values?.noOfKmsOne === 0 || values?.kgsOne === 0 ? 0 : Number((values?.noOfKmsOne * values?.kgsOne * values?.efOne).toFixed(2));
             const emissionTwo = values?.noOfKmsTwo === 0 || values?.kgsTwo === 0 ? 0 : Number((values?.noOfKmsTwo * values?.kgsTwo * values?.efTwo).toFixed(2));
 
@@ -44,13 +43,13 @@ const AirFreight = (props) => {
                     noOfKmsOne: values?.noOfKmsOne,
                     kgsOne: values?.kgsOne,
                     efOne: values?.efOne,
-                    emission: emissionOne
+                    emission: emissionOne,
                 },
                 {
                     type: 'Road',
-                    noOfKmsOne: values?.road,
+                    noOfKmsTwo: values?.noOfKmsTwo,
                     kgsTwo: values?.kgsTwo,
-                    efOne: values?.efTwo,
+                    efTwo: values?.efTwo,
                     emission: emissionTwo,
                 }
             ];
@@ -65,14 +64,15 @@ const AirFreight = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("emissionOne", allData[0]?.emissionOne);
-            formik.setFieldValue("emissionTwo", allData[0]?.emissionTwo);
             formik.setFieldValue("noOfKmsOne", allData[0]?.noOfKmsOne);
-            formik.setFieldValue("noOfKmsTwo", allData[0]?.noOfKmsTwo);
-            formik.setFieldValue("kgsOne", allData[0]?.kgsOne);
-            formik.setFieldValue("kgsTwo", allData[0]?.kgsTwo);
             formik.setFieldValue("efOne", allData[0]?.efOne);
-            formik.setFieldValue("efTwo", allData[0]?.efTwo);
+            formik.setFieldValue("emissionOne", allData[0]?.emission);
+            formik.setFieldValue("kgsOne", allData[0]?.kgsOne);
+
+            formik.setFieldValue("emissionTwo", allData[1]?.emission);
+            formik.setFieldValue("noOfKmsTwo", allData[1]?.noOfKmsTwo);
+            formik.setFieldValue("kgsTwo", allData[1]?.kgsTwo);
+            formik.setFieldValue("efTwo", allData[1]?.efTwo);
         }
     }, [value])
 
@@ -108,10 +108,12 @@ const AirFreight = (props) => {
                         </div>
                         <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"} mt={3}>
                             <Stack direction={"row"} spacing={2}>
-                                <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
-                                <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
-                                <Button variant='contained' onClick={() => { }} className='custom-btn'>Save</Button>
+                                {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
+                                <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>&lt;&lt;Save and Previous Page</Button>
+                                <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
                                 <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
+
                             </Stack>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
