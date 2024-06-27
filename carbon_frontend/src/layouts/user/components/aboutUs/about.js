@@ -29,7 +29,7 @@ const About = () => {
             </div>
             <div>
                 <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow'>Targeted Sustainable Development Goals (SDGs)</Typography>
-                <p className='text-center  py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s'>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs</a>.</p>
+                <p className='text-center  py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow'>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs</a>.</p>
             </div>
             <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
                 <img src={goal1} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />

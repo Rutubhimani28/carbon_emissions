@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { PopupButton } from 'react-calendly'
 import { Box, Card, CardContent, Grid, Typography, makeStyles } from '@mui/material'
 import goal1 from '../../../assets/images/goal1.png'
 import goal2 from '../../../assets/images/goal2.png'
@@ -37,16 +38,16 @@ const Goal = () => {
             <div className='pb-5'>
                 <Typography variant='h6' className='text-center fs-3 mb-4'>Trusted By</Typography>
                 <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
-                    <Card className='mx-4 my-3'>
+                    <div className='mx-4 my-3'>
                         <CardContent className='justify-content-center'>
-                            <img src={TrustOne} alt='img' width={200} />
+                            <img src={TrustOne} alt='img' width={100} />
                         </CardContent>
-                    </Card>
-                    <Card className='mx-4 my-3'>
+                    </div>
+                    <div className='mx-4 my-3'>
                         <CardContent className='justify-content-center'>
-                            <img src={TrustTwo} alt='img' width={200} />
+                            <img src={TrustTwo} alt='img' width={100} />
                         </CardContent>
-                    </Card>
+                    </div>
                 </div>
             </div>
             {/* collabrate */}
@@ -57,7 +58,14 @@ const Goal = () => {
                         <Box className="">
                             <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' >Collaborating for Sustainable Development</Typography>
                             <p className='text-light fs-5'><strong>Sirāt</strong> invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.</p>
-                            <p className='text-light fs-5'><Link className="text-decoration-none" style={{ color: '#ffffd9' }} to="mailto:mohammed.shafeeq@sirat.earth">Reach out to our CEO</Link> to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
+                            <p className='text-light fs-5'>
+                                <PopupButton
+                                    url="https://calendly.com/mohammed-sirat"
+                                    rootElement={document.getElementById("root")}
+                                    text="Reach out to our CEO"
+                                    styles={{ border: 'none', background: 'none', color: "#ffffd9", marginLeft: '-7px' }}
+                                />
+                                to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>

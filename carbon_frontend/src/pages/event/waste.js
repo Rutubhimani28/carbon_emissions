@@ -203,8 +203,6 @@ const Waste = (props) => {
         }
     }, [value]);
 
-    console.log("formik.values ", formik.values);
-
     return (
         <div>
             <Container maxWidth>
