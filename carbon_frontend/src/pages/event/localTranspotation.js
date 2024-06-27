@@ -109,7 +109,7 @@ const LocalTranspotation = (props) => {
                     type: 'Electric Car',
                     electricCarKms: values?.electricCarKms,
                     electricCarNoPasse: values?.electricCarNoPasse,
-                    emission: (values?.electricCarKms === 0) ? 0 : Number((0.047 * values?.electricCarKms).toFixed(2)) || 0
+                    emission: (values?.electricCarKms === 0 || values?.electricCarNoPasse === 0) ? 0 : Number(((0.047 * values?.electricCarKms) / values?.electricCarNoPasse).toFixed(2)) || 0
                 },
                 {
                     type: 'Bus-Diesel',
@@ -182,6 +182,18 @@ const LocalTranspotation = (props) => {
         }
     }, [value]);
 
+    const calclulateModeTransport1 = (e, emmFieldName, firstValue, secondValue, ef) => {
+        formik.handleChange(e);
+        formik.setFieldValue(emmFieldName, (firstValue === 0 || secondValue === 0) ? 0 : Number(((ef * Number(firstValue)) / Number(secondValue)).toFixed(2)));
+    };
+
+    const calclulateModeTransport2 = (e, emmFieldName, firstValue, ef) => {
+        formik.handleChange(e);
+        formik.setFieldValue(emmFieldName, Number(((ef * Number(firstValue)) / 1000).toFixed(2)));
+    };
+
+    const { values } = formik;
+
     return (
         <div>
             <Container maxWidth>
@@ -207,15 +219,40 @@ const LocalTranspotation = (props) => {
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Petrol Car</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='petrolCarKms' value={formik?.values?.petrolCarKms} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='petrolCarNoPasse' value={formik?.values?.petrolCarNoPasse} onChange={formik.handleChange} inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='petrolCarEmission' value={formik?.values?.petrolCarEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='petrolCarKms' value={formik?.values?.petrolCarKms}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport1(e, "petrolCarEmission", e.target.value, values?.petrolCarNoPasse, 0.171)
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                </td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='petrolCarNoPasse' value={formik?.values?.petrolCarNoPasse}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport1(e, "petrolCarEmission", values?.petrolCarKms, e.target.value, 0.171)
+                                                        }}
+                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                </td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" disabled name='petrolCarEmission' value={formik?.values?.petrolCarEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Diesel Car</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='dieselCarKms' value={formik?.values?.dieselCarKms} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='dieselCarNoPasse' value={formik?.values?.dieselCarNoPasse} onChange={formik.handleChange} inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='dieselCarEmission' value={formik?.values?.dieselCarEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='dieselCarKms' value={formik?.values?.dieselCarKms}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport1(e, "dieselCarEmission", e.target.value, values?.dieselCarNoPasse, 0.172)
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                </td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='dieselCarNoPasse' value={formik?.values?.dieselCarNoPasse}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport1(e, "dieselCarEmission", values?.dieselCarKms, e.target.value, 0.172)
+                                                        }}
+                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='dieselCarEmission' value={formik?.values?.dieselCarEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             {/* <tr>
                                                 <td className='ps-2 py-1'>SUV Diesel</td>
@@ -243,14 +280,39 @@ const LocalTranspotation = (props) => {
                                             </tr> */}
                                             <tr>
                                                 <td className='ps-2 py-1'>Hybrid Car</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='hybridCarKms' value={formik?.values?.hybridCarKms} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='hybridCarNoPasse' value={formik?.values?.hybridCarNoPasse} onChange={formik.handleChange} inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='hybridCarEmission' value={formik?.values?.hybridCarEmission} onChange={formik.handleChange} disabled /></td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='hybridCarKms' value={formik?.values?.hybridCarKms}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport1(e, "hybridCarEmission", e.target.value, values?.hybridCarNoPasse, 0.068)
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                </td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='hybridCarNoPasse' value={formik?.values?.hybridCarNoPasse}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport1(e, "hybridCarEmission", values?.hybridCarKms, e.target.value, 0.068)
+                                                        }}
+                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                </td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='hybridCarEmission' value={formik?.values?.hybridCarEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Electric Car </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='electricCarKms' value={formik?.values?.electricCarKms} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='electricCarNoPasse' value={formik?.values?.electricCarNoPasse} onChange={formik.handleChange} inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='electricCarKms' value={formik?.values?.electricCarKms}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport1(e, "electricCarEmission", e.target.value, values?.electricCarNoPasse, 0.047)
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                </td>
+                                                <td className='ps-2 py-1'>
+                                                    <TextField size='small' type="number" name='electricCarNoPasse' value={formik?.values?.electricCarNoPasse}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport1(e, "electricCarEmission", values?.electricCarKms, e.target.value, 0.047)
+                                                        }}
+                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='electricCarEmission' value={formik?.values?.electricCarEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                         </table>
@@ -264,17 +326,28 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <th className='ps-2'>Mode of Transport</th>
                                                 <th className='ps-3'>No of Kms</th>
-                                                {/* <th className='ps-2'>Emission (kg CO2e)</th> */}
                                                 <th className='ps-2'>Emissions per person (kg CO2e)</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Bus- Diesel</td>
-                                                <td className='ps-3 py-1'><TextField size='small' type="number" name='busDieselKms' value={formik?.values?.busDieselKms} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-3 py-1'>
+                                                    <TextField size='small' type="number" name='busDieselKms' value={formik?.values?.busDieselKms}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport2(e, "busDieselEmission", e.target.value, 0.096)
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='busDieselEmission' disabled value={formik?.values?.busDieselEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Metro (Electric)</td>
-                                                <td className='ps-3 py-1'><TextField size='small' type="number" name='metroKms' value={formik?.values?.metroKms} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-3 py-1'>
+                                                    <TextField size='small' type="number" name='metroKms' value={formik?.values?.metroKms}
+                                                        onChange={(e) => {
+                                                            calclulateModeTransport2(e, "metroEmission", e.target.value, 0.029)
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='metroEmission' value={formik?.values?.metroEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                         </table>
