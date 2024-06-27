@@ -128,9 +128,6 @@ const DigitalCampaign = (props) => {
         }
     }, [value]);
 
-    console.log("----- formik.values ", formik.values);
-
-
     useEffect(() => {
         formik.setFieldValue("totalEnergy1", Number(values.deviceEnergy1) + Number(values.somePlatformEnergy1) + Number(values.networkEnergy1));
     }, [values.deviceEnergy1, values.somePlatformEnergy1, values.networkEnergy1])
