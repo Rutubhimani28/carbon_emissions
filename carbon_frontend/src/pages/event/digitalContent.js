@@ -111,7 +111,10 @@ const DigitalContent = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.count}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionOne', Number((e.target.value * 4 / 1000).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.count &&
                                             Boolean(formik.errors.count)
@@ -156,7 +159,10 @@ const DigitalContent = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.MB}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionTwo', Number((e.target.value * 50 / 1000).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.MB &&
                                             Boolean(formik.errors.MB)
@@ -201,7 +207,10 @@ const DigitalContent = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.noOfAttendees}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.noOfAttendees &&
                                             Boolean(formik.errors.noOfAttendees)
@@ -221,7 +230,10 @@ const DigitalContent = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.noOfHours}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionThree', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.noOfHours &&
                                             Boolean(formik.errors.noOfHours)
