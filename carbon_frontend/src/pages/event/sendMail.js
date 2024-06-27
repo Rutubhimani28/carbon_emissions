@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux';
 import ClearIcon from "@mui/icons-material/Clear";
 import { LoadingButton } from "@mui/lab";
 import { Autocomplete, CircularProgress, DialogContentText, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from "@mui/material";
@@ -14,7 +15,6 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -29,6 +29,10 @@ const SendMail = (props) => {
     const [emailInput, setEmailInput] = useState('')
 
     const userid = sessionStorage.getItem('user_id');
+    const userEmail = JSON.parse(sessionStorage.getItem('user'));
+
+    const toolData = useSelector(state => state.toolDetails?.data);
+    const toolFormData = toolData.find((item) => item?.type === "toolForm");
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -38,10 +42,11 @@ const SendMail = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        subject: "",
-        receiver: "",
+        subject: toolFormData?.activityName,
+        receiver: userEmail,
         sender: userid,
-        emails: [],
+        // emails: [],
+        emails: [`${userEmail?.emailAddress}`],
         addEmail: ''
     };
 
@@ -66,7 +71,7 @@ const SendMail = (props) => {
             };
 
             const result = await apipost('api/email/add', data)
-            // setUserAction(result)
+            setUserAction(result)
 
             if (result && result.status === 201) {
                 formik.resetForm();
@@ -84,14 +89,14 @@ const SendMail = (props) => {
     // formik
     const formik = useFormik({
         initialValues,
-        validationSchema,
-        validate: (values) => {
-            const errors = {};
-            if (!Object.prototype.hasOwnProperty.call(formik.errors, 'addEmail') && values.emails.length < 1) {
-                errors.addEmail = 'Add at least one email';
-            }
-            return errors;
-        },
+        // validationSchema,
+        // validate: (values) => {
+        //     const errors = {};
+        //     if (!Object.prototype.hasOwnProperty.call(formik.errors, 'addEmail') && values.emails.length < 1) {
+        //         errors.addEmail = 'Add at least one email';
+        //     }
+        //     return errors;
+        // },
         onSubmit: async (values) => {
             addEmail(values);
         }
@@ -178,6 +183,7 @@ const SendMail = (props) => {
                                         size="small"
                                         value={formik.values.subject}
                                         onChange={formik.handleChange}
+                                        disabled
                                         error={
                                             formik.touched.subject &&
                                             Boolean(formik.errors.subject)
@@ -187,7 +193,27 @@ const SendMail = (props) => {
                                         }
                                     />
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sm={12} md={12}>
+                                    <FormLabel id="demo-row-radio-buttons-group-label">Email <span style={{ color: "red" }}>*</span></FormLabel>
+                                    <TextField
+                                        id="emails"
+                                        name="emails"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        disabled
+                                        value={formik.values.emails[0]}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.emails &&
+                                            Boolean(formik.errors.emails)
+                                        }
+                                        helperText={
+                                            formik.touched.emails && formik.errors.emails
+                                        }
+                                    />
+                                </Grid>
+                                {/* <Grid item xs={12}>
                                     <ul id='tags' style={{ display: "flex", flexWrap: "wrap", width: "100%", border: formik.values.emails?.length > 0 ? '1px solid #dce0e4' : '0', padding: formik.values.emails?.length > 0 ? '5px' : '0' }}>
                                         {formik.values.emails?.map((tag, index) => (
                                             <li key={index} style={{ display: "flex", listStyle: "none", margin: "0 5px 5px 5px", backgroundColor: "grey", padding: "2px 5px 2px 8px", borderRadius: "20px", color: "#fff", fontSize: "14px", alignItems: "center" }}>
@@ -196,8 +222,8 @@ const SendMail = (props) => {
                                             </li>
                                         ))}
                                     </ul>
-                                </Grid>
-                                <Grid item xs={11}>
+                                </Grid> */}
+                                {/* <Grid item xs={11}>
                                     <TextField
                                         name='addEmail'
                                         type='text'
@@ -214,11 +240,11 @@ const SendMail = (props) => {
                                             formik.touched.addEmail && formik.errors.addEmail
                                         }
                                     />
-                                </Grid>
-                                <Grid item xs={1} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                                </Grid> */}
+                                {/* <Grid item xs={1} display={"flex"} justifyContent={"center"} alignItems={"center"}>
 
                                     <AddCircleOutlineIcon onClick={event => addTagsButton(event)} style={{ fontSize: "30px", cursor: "pointer" }} />
-                                </Grid>
+                                </Grid> */}
                                 <Grid item xs={12} style={{ color: "red", paddingTop: "4px", fontSize: "13px" }} >
                                     {/* err */}
                                     {/* {formik.touched.number && (err || formik.errors.number)} */}
