@@ -152,10 +152,11 @@ const Header = (props) => {
                     <Typography
                         variant="h6"
                         component="div"
-                        sx={{ flexGrow: 1, display: { md: 'flex' }, cursor: "pointer" }}
-                        onClick={home}
+                        sx={{ flexGrow: 1, display: 'flex' }}
                     >
-                        <img src={logo} width={"160vh"} alt="logo" />
+                        <Link sx={{ cursor: "pointer" }} to={"/"}>
+                            <img src={logo} width={"160vh"} alt="logo" />
+                        </Link>
                     </Typography>
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         {navItems.map((item) => (
