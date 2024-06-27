@@ -50,12 +50,13 @@ const Hotel = (props) => {
 
             formik.setFieldValue('emissionsOne', (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2)));
             formik.setFieldValue('emissionsTwo', (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2)));
-            formik.setFieldValue('emissionsThree', (values?.energyUtilisedKwh === 0) ? 0 : Number((values?.efThree * values?.energyUtilisedKwh).toFixed(2)));
+            formik.setFieldValue('emissionsThree', (values?.energyUtilisedKwh === 0) ? 0 : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(2)));
 
             const data = [
                 {
                     type: 'Hotel',
                     geography: values?.geography,
+                    country: values?.country,
                     hotelType: values?.hotelType,
                     roomsOccupied: values?.roomsOccupied,
                     filteredCountries: values?.filteredCountries,
@@ -66,14 +67,14 @@ const Hotel = (props) => {
                     type: 'Meeting Room One',
                     totalMeetingRoomArea: values?.totalMeetingRoomArea,
                     meetingDuration: values?.meetingDuration,
-                    emission: (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2))
-                    // ef: values?.efTwo,
+                    emission: (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2)),
+                    efTwo: values?.efTwo,
                 },
                 {
                     type: 'Meeting Room Two',
                     energyUtilisedKwh: values?.energyUtilisedKwh,
-                    emission: (values?.energyUtilisedKwh === 0) ? 0 : Number((values?.efThree * values?.energyUtilisedKwh).toFixed(2))
-                    // ef: values?.efThree,
+                    emission: (values?.energyUtilisedKwh === 0) ? 0 : Number((values?.efThree * values?.energyUtilisedKwh).toFixed(2)),
+                    efThree: values?.efThree,
                 },
             ];
             dispatch(addHotelData({ data }));
@@ -98,11 +99,15 @@ const Hotel = (props) => {
             formik.setFieldValue("totalMeetingRoomArea", allData[1]?.totalMeetingRoomArea)
             formik.setFieldValue("emissionsTwo", allData[1]?.emission)
 
-            formik.setFieldValue("meetingDuration", allData[2]?.meetingDuration)
-            formik.setFieldValue("totalMeetingRoomArea", allData[2]?.totalMeetingRoomArea)
+            formik.setFieldValue("energyUtilisedKwh", allData[2]?.energyUtilisedKwh)
+            formik.setFieldValue("efThree", allData[2]?.efThree)
             formik.setFieldValue("emissionsThree", allData[2]?.emission)
         }
     }, [value]);
+
+    const { values } = formik;
+
+    console.log("formik.values ", formik.values);
 
     return (
         <div>
@@ -283,7 +288,10 @@ const Hotel = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.totalMeetingRoomArea}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.setFieldValue('totalMeetingRoomArea', e.target.value);
+                                            formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.meetingDuration).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.totalMeetingRoomArea &&
                                             Boolean(formik.errors.totalMeetingRoomArea)
@@ -304,7 +312,10 @@ const Hotel = (props) => {
                                         size="small"
                                         type='number'
                                         value={formik.values.meetingDuration}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.setFieldValue('meetingDuration', e.target.value);
+                                            formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.totalMeetingRoomArea === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.totalMeetingRoomArea).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.meetingDuration &&
                                             Boolean(formik.errors.meetingDuration)
@@ -348,7 +359,10 @@ const Hotel = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.energyUtilisedKwh}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.setFieldValue('energyUtilisedKwh', e.target.value);
+                                            formik.setFieldValue('emissionsThree', (e.target.value === 0) ? 0 : Number((values?.efThree * e.target.value).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.energyUtilisedKwh &&
                                             Boolean(formik.errors.energyUtilisedKwh)
