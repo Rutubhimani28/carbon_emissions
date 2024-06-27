@@ -56,7 +56,7 @@ export default function Router() {
       ],
     },
     { path: '/', element: <UserLayout /> },
-    { path: '/measure-ghg-emissions', element: <Services /> },
+    { path: '/netzero-platform', element: <Services /> },
     {
       element: <SimpleLayout />,
       children: [

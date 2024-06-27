@@ -14,7 +14,7 @@ const Organisations = () => {
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5  d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                     <Box className="organise p-3 " style={{ borderRadius: "20px" }}>
-                        <Link to="/netZero-consulting/organisations/esg-consulting/">
+                        <Link to="/netzero-consulting/organisations/esg-consulting/">
                             <img src={service1} alt="img" width={"100%"} />
                         </Link>
                         <Typography variant='h6' className='text-center py-2 pt-4 fontFamily'>ESG consulting</Typography>
@@ -34,7 +34,7 @@ const Organisations = () => {
                 </Grid>
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInRight animate__slow'>
                     <Box className="organise p-3 " style={{ borderRadius: "20px" }}>
-                        <Link to='/netZero-consulting/organisations/sustainable-events/'>
+                        <Link to='/netzero-consulting/organisations/sustainable-events/'>
                             <img src={service2} alt="img" width={"100%"} />
                         </Link>
                         <Typography variant='h6' className='text-center py-2 pt-4 fontFamily'>ESG consulting</Typography>

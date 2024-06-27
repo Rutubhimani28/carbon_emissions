@@ -63,22 +63,22 @@ export default function App() {
           <div className='template-outer-theme'>
             <Routes>
               <Route path="/" element={<UserLayout />} />
-              <Route path="/measure-ghg-emissions" element={<Services />} />
-              <Route path="/netZero-consulting" element={<EsgAdvisory />} />
-              <Route path="/netZero-consulting/organisations/" element={<Organisations />} />
+              <Route path="/netzero-platform" element={<Services />} />
+              <Route path="/netzero-consulting" element={<EsgAdvisory />} />
+              <Route path="/netzero-consulting/organisations/" element={<Organisations />} />
               <Route path="/event-venue" element={<EventVenue />} />
               <Route path="/event-execution-agency" element={<EventExecutionAgency />} />
-              <Route path="/netZero-consulting/organisations/esg-consulting" element={<Counsulting />} />
-              <Route path="/netZero-consulting/organisations/sustainable-events" element={<SustainableEvents />} />
-              <Route path="/netZero-consulting/service-providers/" element={<Agencies />} />
-              <Route path="/netZero-consulting/hospitality-industry/" element={<Hospitality />} />
-              <Route path="/netZero-consulting/exhibition-organiser/" element={<Exhibitions />} />
+              <Route path="/netzero-consulting/organisations/esg-consulting" element={<Counsulting />} />
+              <Route path="/netzero-consulting/organisations/sustainable-events" element={<SustainableEvents />} />
+              <Route path="/netzero-consulting/service-providers/" element={<Agencies />} />
+              <Route path="/netzero-consulting/hospitality-industry/" element={<Hospitality />} />
+              <Route path="/netzero-consulting/exhibition-organiser/" element={<Exhibitions />} />
               <Route path="/about-us" element={<About />} />
-              <Route path="/blogs" element={<NewRoom />} />
-              <Route path="/blogs/blog1" element={<Blog1 />} />
-              <Route path="/blogs/blog2" element={<Blog2 />} />
-              <Route path="/blogs/blog3" element={<Blog3 />} />
-              <Route path="/contact-us" element={<ContactUs />} />
+              <Route path="/news-room" element={<NewRoom />} />
+              <Route path="/news-room/blog1" element={<Blog1 />} />
+              <Route path="/news-room/blog2" element={<Blog2 />} />
+              <Route path="/news-room/blog3" element={<Blog3 />} />
+              <Route path="/contact" element={<ContactUs />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/faqs" element={<Faq />} />
               <Route path="/terms-conditions" element={<TermConditions />} />

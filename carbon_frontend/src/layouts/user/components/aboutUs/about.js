@@ -33,12 +33,12 @@ const About = () => {
             </div>
             <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
                 <img src={goal1} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
-                <img src={goal2} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-1s' />
-                <img src={goal3} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-2s' />
-                <img src={goal4} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-3s' />
-                <img src={goal5} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow animate__delay-4s' />
-                <img src={goal6} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp  animate__delay-5s' />
-                <img src={goal7} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow  animate__delay-5s' />
+                <img src={goal2} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
+                <img src={goal3} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
+                <img src={goal4} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
+                <img src={goal5} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
+                <img src={goal6} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
+                <img src={goal7} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow ' />
             </div>
             {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
