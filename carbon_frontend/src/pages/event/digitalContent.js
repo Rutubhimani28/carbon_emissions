@@ -111,7 +111,10 @@ const DigitalContent = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.count}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionOne', Number((e.target.value * 4 / 1000).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.count &&
                                             Boolean(formik.errors.count)
@@ -156,7 +159,10 @@ const DigitalContent = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.MB}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionTwo', Number((e.target.value * 50 / 1000).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.MB &&
                                             Boolean(formik.errors.MB)
@@ -201,7 +207,10 @@ const DigitalContent = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.noOfAttendees}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.noOfAttendees &&
                                             Boolean(formik.errors.noOfAttendees)
@@ -221,7 +230,10 @@ const DigitalContent = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.noOfHours}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionThree', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.noOfHours &&
                                             Boolean(formik.errors.noOfHours)
@@ -256,10 +268,11 @@ const DigitalContent = (props) => {
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit() }} className='custom-btn'>Calculate and Add To Footprint</Button>
-                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
-                                    <Button variant='contained' onClick={() => { }} className='custom-btn'>Save</Button>
+                                    {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>&lt;&lt;Save and Previous Page</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
 
                             </Grid>

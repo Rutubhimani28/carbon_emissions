@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Box, Button, Container, FormHelperText, FormLabel, Grid, TextField, Typography, CircularProgress } from '@mui/material';
+import { Box, Button, Container, FormLabel, Grid, TextField, Typography, CircularProgress } from '@mui/material';
 import logo from '../../layouts/user/assets/images/logo4.gif';
+import { addToolData, clearToolFormData } from '../../redux/slice/toolSlice';
 
 const Home = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const toolData = useSelector(state => state.toolDetails?.data);
 
     const initialValues = {
         name: "",
@@ -26,20 +30,34 @@ const Home = () => {
         budget: yup.number().required("Budget is required"),
     });
 
-    const AddData = () => {
+    const AddData = (values) => {
+        setIsLoading(true);
+        dispatch(addToolData(values));
+        setIsLoading(false);
+    };
 
+    const handleFormClear = () => {
+        dispatch(clearToolFormData());
     };
 
     const formik = useFormik({
         initialValues,
         validationSchema,
         onSubmit: async (values) => {
-            AddData(values)
+            AddData({ type: "toolForm", ...values })
         },
     });
 
-    console.log("formik values --------- ", formik.values);
-    console.log("formik errors --------- ", formik.errors);
+    useEffect(() => {
+        if (toolData?.length > 0 && ![null, undefined, -1].includes(toolData?.findIndex((item) => item?.type === "toolForm"))) {
+            const formPrevData = toolData.find((item) => item.type === "toolForm");
+            formik.setFieldValue("name", formPrevData?.name);
+            formik.setFieldValue("activityName", formPrevData?.activityName);
+            formik.setFieldValue("country", formPrevData?.country);
+            formik.setFieldValue("budget", formPrevData?.budget);
+            formik.setFieldValue("email", formPrevData?.email);
+        }
+    }, [toolData]);
 
     return (
         <Container maxWidth="lg" className='text-white'>
@@ -48,9 +66,6 @@ const Home = () => {
                 <Typography variant="h2" mt={2} className='text'>
                     Welcome to Sirat's NetZero Tool,
                 </Typography>
-                {/* <Typography mt={4} className='fs-5'>
-                    To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible. You can save the data and come back later before submitting.
-                </Typography> */}
                 <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
                 </Typography>
@@ -88,7 +103,7 @@ const Home = () => {
                                     type="email"
                                     size="small"
                                     fullWidth
-                                    value={formik.values.workEmail}
+                                    value={formik.values.email}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     error={formik.touched.email && Boolean(formik.errors.email)}
@@ -147,7 +162,7 @@ const Home = () => {
                                     inputProps={{ style: { color: 'white' } }}
                                 />
                             </Grid>
-                            <Grid item xs={5} sm={8}>
+                            <Grid item xs={5} sm={3}>
                                 <Button
                                     id="action"
                                     variant="contained"
@@ -155,7 +170,19 @@ const Home = () => {
                                     type="submit"
                                     style={{ backgroundColor: "#054723" }}
                                 >
-                                    {isLoading ? <CircularProgress size={27} /> : 'Submit'}
+                                    {isLoading ? <CircularProgress size={27} /> : 'Save'}
+                                </Button>
+                            </Grid>
+                            <Grid item xs={5} sm={3}>
+                                <Button
+                                    variant="outlined"
+                                    onClick={() => {
+                                        handleFormClear();
+                                        formik.resetForm();
+                                    }}
+                                    color="error"
+                                >
+                                    Clear
                                 </Button>
                             </Grid>
                         </Grid>
@@ -180,4 +207,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Home;

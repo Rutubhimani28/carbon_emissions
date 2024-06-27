@@ -14,11 +14,11 @@ const Footer = () => {
         <div className='text-light text-center py-4 template-inner-theme' style={{ backgroundColor: "#4ABD43" }} >
             <p>
                 <Link to="/" className='px-2 text-decoration-none text-light'>Home </Link> |
-                <Link to="/measure-ghg-emissions" className='px-2 text-decoration-none text-light'>NetZero Platform </Link>|
-                <Link to="/netZero-consulting" className='px-2 text-decoration-none text-light'> NetZero Consulting </Link>|
-                <Link to="/blogs" className='px-2 text-decoration-none text-light'> News Room </Link>|
+                <Link to="/netzero-platform" className='px-2 text-decoration-none text-light'>NetZero Platform </Link>|
+                <Link to="/netzero-consulting" className='px-2 text-decoration-none text-light'> NetZero Consulting </Link>|
+                <Link to="/news-room" className='px-2 text-decoration-none text-light'> News Room </Link>|
                 <Link to="/about-us" className='px-2 text-decoration-none text-light'> About Us </Link>|
-                <Link to="/contact-us" className='px-2 text-decoration-none text-light'> Contact </Link>|
+                <Link to="/contact" className='px-2 text-decoration-none text-light'> Contact </Link>|
                 <Link to="/terms-conditions" className='px-2 text-decoration-none text-light'> Terms & Conditions </Link>|
                 <Link to="/privacy-policy" className='px-2 text-decoration-none text-light'> Privacy Policy </Link>|
                 <Link to="/faqs" className='px-2 text-decoration-none text-light'> FAQs </Link>

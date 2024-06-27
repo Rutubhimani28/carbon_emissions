@@ -54,7 +54,7 @@
 }
 
 .css-11ea04f-MuiButtonBase-root-MuiTab-root.Mui-selected {
-  color: #70ad47;
+  color: red;
 }
 
 .css-6d3pg0-MuiTabs-indicator {
@@ -194,4 +194,8 @@ p {
 .tab-fixed .MuiTabs-scroller {
   display: flex;
   justify-content: center;
+}
+
+.tab-text-color {
+  color: #1f9e6d !important;
 }
