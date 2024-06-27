@@ -16,7 +16,7 @@ const Index = () => {
 
                 {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
                     <Grid item xs={6}>
-                        <Link className='text-decoration-none' to='/blogs/blog1'>
+                        <Link className='text-decoration-none' to='/news-room/blog1'>
                             <div className='roombg1'>
                                 <div className='text-white d-flex justify-content-end flex-column p-3 fontFamily' style={{ height: "500px" }}>
                                     <div className='fs-3 fw-bold'>Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</div>
@@ -28,7 +28,7 @@ const Index = () => {
                     <Grid item xs={6}>
                         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
                             <Grid item xs={12}>
-                                <Link className='text-decoration-none' to="/blogs/blog2">
+                                <Link className='text-decoration-none' to="/news-room/blog2">
                                     <div className='roombg2'>
                                         <div className='text-white d-flex justify-content-end flex-column p-3 fontFamily' style={{ height: "250px" }}>
                                             <div className='fs-3 fw-bold lh-lg'>Empowering organizations: Meeting net-zero through the reduction of single-use plastics</div>
@@ -38,7 +38,7 @@ const Index = () => {
                                 </Link>
                             </Grid>
                             <Grid item xs={12}>
-                                <Link className='text-decoration-none' to="/blogs/blog3">
+                                <Link className='text-decoration-none' to="/news-room/blog3">
                                     <div className='roombg3'>
                                         <div className='text-white d-flex justify-content-end flex-column p-3 fontFamily' style={{ height: "250px" }}>
                                             <div className='fs-3 fw-bold lh-lg'>Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News</div>
@@ -66,7 +66,7 @@ const Index = () => {
                         <Grid item xs={8}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Link className='text-decoration-none' to='/blogs/blog1'>
+                                    <Link className='text-decoration-none' to='/news-room/blog1'>
                                         <Typography component="div" variant="h5">
                                             Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint
                                         </Typography>
@@ -84,7 +84,7 @@ const Index = () => {
                         <Grid item xs={8} className={'order-2'}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Link className='text-decoration-none' to='/blogs/blog2'>
+                                    <Link className='text-decoration-none' to='/news-room/blog2'>
                                         <Typography component="div" variant="h5">
                                             Empowering organizations: Meeting net-zero through the reduction of single-use plastics
                                         </Typography>
@@ -118,7 +118,7 @@ const Index = () => {
                         <Grid item xs={8}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Link className='text-decoration-none' to='/blogs/blog3'>
+                                    <Link className='text-decoration-none' to='/news-room/blog3'>
                                         <Typography component="div" variant="h5">
                                             Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News
                                         </Typography>
