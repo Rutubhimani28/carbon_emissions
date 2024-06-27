@@ -106,9 +106,7 @@ const Hotel = (props) => {
     }, [value]);
 
     const { values } = formik;
-
-    console.log("formik.values ", formik.values);
-
+    
     return (
         <div>
             <Container maxWidth>
@@ -238,7 +236,10 @@ const Hotel = (props) => {
                                             disabled={!formik.values.hotelType}
                                             type="number"
                                             value={formik.values.roomsOccupied || 0}
-                                            onChange={formik.handleChange}
+                                            onChange={(e) => {
+                                                formik.setFieldValue("roomsOccupied", e.target.value);
+                                                formik.setFieldValue("emissionsOne", (e.target.value === 0 || values?.efOne === 0 || !values?.efOne) ? 0 : Number((values?.efOne * e.target.value).toFixed(2)));
+                                            }}
                                             error={
                                                 formik.touched.roomsOccupied &&
                                                 Boolean(formik.errors.roomsOccupied)
