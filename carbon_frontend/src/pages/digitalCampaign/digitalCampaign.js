@@ -128,9 +128,6 @@ const DigitalCampaign = (props) => {
         }
     }, [value]);
 
-    console.log("----- formik.values ", formik.values);
-
-
     useEffect(() => {
         formik.setFieldValue("totalEnergy1", Number(values.deviceEnergy1) + Number(values.somePlatformEnergy1) + Number(values.networkEnergy1));
     }, [values.deviceEnergy1, values.somePlatformEnergy1, values.networkEnergy1])
@@ -168,7 +165,13 @@ const DigitalCampaign = (props) => {
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Emails</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfEmails'} value={values?.noOfEmails} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfEmails'} value={values?.noOfEmails}
+                                                    onChange={(e) => {
+                                                        formik.setFieldValue("noOfEmails", e.target.value);
+                                                        formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number((Number(e.target.value * 4) / 1000)));
+                                                    }}
+                                                    inputProps={{ style: { color: 'white' } }} />
+                                                </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionThree`} value={values?.emissionThree} onChange={formik.handleChange} /></td>
                                             </tr>
                                         </table>
@@ -187,7 +190,13 @@ const DigitalCampaign = (props) => {
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Email Attachment</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'attachmentSize'} value={values?.attachmentSize} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'attachmentSize'} value={values?.attachmentSize}
+                                                    onChange={(e) => {
+                                                        formik.setFieldValue("attachmentSize", e.target.value);
+                                                        formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(((Number(e.target.value) * 50) / 1000)));
+                                                    }}
+                                                    inputProps={{ style: { color: 'white' } }} />
+                                                </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionFour`} value={values?.emissionFour} onChange={formik.handleChange} /></td>
                                             </tr>
                                         </table>
@@ -272,7 +281,7 @@ const DigitalCampaign = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name={'impressionsOne'} value={values?.impressionsOne}
                                                     onChange={(e) => {
                                                         formik.setFieldValue("impressionsOne", Number(e.target.value));
-                                                        // formik.setFieldValue("emissionOne", Number(e.target.value) * Number(values.imgSize) * Number(values.efOne));
+                                                        formik.setFieldValue("emissionOne", Number(e.target.value) * Number(values.imgSize) * Number(values.efOne));
                                                     }}
                                                     inputProps={{ style: { color: 'white' } }}
                                                 />
@@ -368,7 +377,7 @@ const DigitalCampaign = (props) => {
                                                     <TextField size='small' type="number" name={'impressionsTwo'} value={values?.impressionsTwo}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("impressionsTwo", Number(e.target.value));
-                                                            // formik.setFieldValue("emissionTwo", Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo));
+                                                            formik.setFieldValue("emissionTwo", Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo));
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
@@ -381,10 +390,8 @@ const DigitalCampaign = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button>
+                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page&gt;&gt;</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
-                                    <Button variant='contained' onClick={() => { }} className='custom-btn'>Save</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(1)} className='custom-btn'>Go To Result</Button>
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
