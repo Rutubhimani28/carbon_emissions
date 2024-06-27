@@ -103,7 +103,10 @@ const EnergyUpdated = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.kwh}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionOne', Number((e.target.value * 0.43).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.kwh &&
                                             Boolean(formik.errors.kwh)
@@ -148,7 +151,10 @@ const EnergyUpdated = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.gallonsOne}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionTwo', Number((e.target.value * 8.78).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.gallonsOne &&
                                             Boolean(formik.errors.gallonsOne)
@@ -193,7 +199,10 @@ const EnergyUpdated = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.gallonsTwo}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                            formik.handleChange(e);
+                                            formik.setFieldValue('emissionThree', Number((e.target.value * 10.21).toFixed(2)));
+                                        }}
                                         error={
                                             formik.touched.gallonsTwo &&
                                             Boolean(formik.errors.gallonsTwo)
