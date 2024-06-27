@@ -132,27 +132,27 @@ const Waste = (props) => {
                 {
                     type: 'ColouredBrochurePage',
                     colouredBrochurePage: values?.colouredBrochurePage,
-                    emission: Number((4.2 * values?.colouredBrochurePage).toFixed(2)) || 0,
+                    emission: Number((1.56 * values?.colouredBrochurePage).toFixed(2)) || 0,
                 },
                 {
                     type: 'PaperBagsA4Size',
                     paperBagsA4Size: values?.paperBagsA4Size,
-                    emission: Number((4.2 * values?.paperBagsA4Size).toFixed(2)) || 0,
+                    emission: Number((0.3125 * values?.paperBagsA4Size).toFixed(2)) || 0,
                 },
                 {
                     type: 'PaperBagsA5Size',
                     paperBagsA5Size: values?.paperBagsA5Size,
-                    emission: Number((4.2 * values?.paperBagsA5Size).toFixed(2)) || 0,
+                    emission: Number((0.125 * values?.paperBagsA5Size).toFixed(2)) || 0,
                 },
                 {
                     type: 'JuteBagsA4Size',
                     juteBagsA4Size: values?.juteBagsA4Size,
-                    emission: Number((4.2 * values?.juteBagsA4Size).toFixed(2)) || 0,
+                    emission: Number((0.73 * values?.juteBagsA4Size).toFixed(2)) || 0,
                 },
                 {
                     type: 'CottonBagsA4Size',
                     cottonBagsA4Size: values?.cottonBagsA4Size,
-                    emission: Number((4.2 * values?.cottonBagsA4Size).toFixed(2)) || 0,
+                    emission: Number((17 * values?.cottonBagsA4Size).toFixed(2)) || 0,
                 },
             ];
             dispatch(addWasteData({ data }));
@@ -202,6 +202,8 @@ const Waste = (props) => {
             formik.setFieldValue('plasticBadgeHoldersEmission', allData[15]?.emission);
         }
     }, [value]);
+
+    console.log("formik.values ", formik.values);
 
     return (
         <div>
@@ -455,7 +457,7 @@ const Waste = (props) => {
                                                         name="hdpeBanner"
                                                         value={formik?.values?.hdpeBanner}
                                                         onChange={(e) => {
-                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('hdpeBanner', e.target.value);
                                                             // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
                                                             formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(e.target.value)).toFixed(2));
                                                         }}
@@ -482,7 +484,7 @@ const Waste = (props) => {
                                                         name="pvcBanners"
                                                         value={formik?.values?.pvcBanners}
                                                         onChange={(e) => {
-                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('pvcBanners', e.target.value);
                                                             // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
                                                             formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(e.target.value)).toFixed(2));
                                                         }}
@@ -509,7 +511,7 @@ const Waste = (props) => {
                                                         name="cottonBanner"
                                                         value={formik?.values?.cottonBanner}
                                                         onChange={(e) => {
-                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('cottonBanner', e.target.value);
                                                             // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(2));
                                                             formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(e.target.value)).toFixed(2));
                                                         }}
@@ -535,7 +537,10 @@ const Waste = (props) => {
                                                         type="number"
                                                         name="plasticBadgeHolders"
                                                         value={formik?.values?.plasticBadgeHolders}
-                                                        onChange={formik.handleChange}
+                                                        onChange={(e) => {
+                                                            formik.setFieldValue('plasticBadgeHolders', e.target.value);
+                                                            formik.setFieldValue('plasticBadgeHoldersEmission', Number(4.2 * Number(e.target.value)).toFixed(2));
+                                                        }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
@@ -575,8 +580,7 @@ const Waste = (props) => {
                                                         name="colouredBrochurePage"
                                                         value={formik?.values?.colouredBrochurePage}
                                                         onChange={(e) => {
-                                                            formik.handleChange(e);
-                                                            // formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2));
+                                                            formik.setFieldValue('colouredBrochurePage', e.target.value);
                                                             formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(e.target.value)).toFixed(2));
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
@@ -602,8 +606,7 @@ const Waste = (props) => {
                                                         name="paperBagsA4Size"
                                                         value={formik?.values?.paperBagsA4Size}
                                                         onChange={(e) => {
-                                                            formik.handleChange(e);
-                                                            // formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2));
+                                                            formik.setFieldValue('paperBagsA4Size', e.target.value);
                                                             formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(e.target.value)).toFixed(2));
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
@@ -629,8 +632,7 @@ const Waste = (props) => {
                                                         name="paperBagsA5Size"
                                                         value={formik?.values?.paperBagsA5Size}
                                                         onChange={(e) => {
-                                                            formik.handleChange(e);
-                                                            // formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2));
+                                                            formik.setFieldValue('paperBagsA5Size', e.target.value);
                                                             formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(e.target.value)).toFixed(2));
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
@@ -656,8 +658,7 @@ const Waste = (props) => {
                                                         name="juteBagsA4Size"
                                                         value={formik?.values?.juteBagsA4Size}
                                                         onChange={(e) => {
-                                                            formik.handleChange(e);
-                                                            // formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2));
+                                                            formik.setFieldValue('juteBagsA4Size', e.target.value);
                                                             formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(e.target.value)).toFixed(2));
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
@@ -683,8 +684,7 @@ const Waste = (props) => {
                                                         name="cottonBagsA4Size"
                                                         value={formik?.values?.cottonBagsA4Size}
                                                         onChange={(e) => {
-                                                            formik.handleChange(e);
-                                                            // formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2));
+                                                            formik.setFieldValue('cottonBagsA4Size', e.target.value);
                                                             formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(e.target.value)).toFixed(2));
                                                         }}
 
