@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { PopupButton } from 'react-calendly'
 import { Box, Card, CardContent, Grid, Typography, makeStyles } from '@mui/material'
 import goal1 from '../../../assets/images/goal1.png'
 import goal2 from '../../../assets/images/goal2.png'
@@ -57,7 +58,14 @@ const Goal = () => {
                         <Box className="">
                             <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' >Collaborating for Sustainable Development</Typography>
                             <p className='text-light fs-5'><strong>Sirāt</strong> invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.</p>
-                            <p className='text-light fs-5'><Link className="text-decoration-none" style={{ color: '#ffffd9' }} to="mailto:mohammed.shafeeq@sirat.earth">Reach out to our CEO</Link> to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
+                            <p className='text-light fs-5'>
+                                <PopupButton
+                                    url="https://calendly.com/mohammed-sirat"
+                                    rootElement={document.getElementById("root")}
+                                    text="Reach out to our CEO"
+                                    styles={{ border: 'none', background: 'none', color: "#ffffd9", marginLeft: '-7px' }}
+                                />
+                                to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>
