@@ -218,7 +218,7 @@ const Waste = (props) => {
                             flexDirection={'column'}
                         >
                             <IconDiv>
-                                <img src={WasteImg} alt="Waste" width={100} />
+                                <img src={WasteImg} alt="Waste" width={100} className='tabImgWhite' />
                             </IconDiv>
                             <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                                 <Grid item xs={12} sm={6} md={6}>
@@ -230,7 +230,7 @@ const Waste = (props) => {
                                             <table className="table-custom-inpt-field">
                                                 <tr>
                                                     <th className="ps-2" />
-                                                    <th className="ps-2">Kgs</th>
+                                                    <th className="ps-2">In Kgs</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
@@ -323,7 +323,7 @@ const Waste = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th className="ps-2">PET Water bottle</th>
+                                                    <th className="ps-2">PET Water bottles</th>
                                                     <th className="ps-3">No. of PET bottles</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
@@ -564,7 +564,7 @@ const Waste = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Brand Promotional
+                                            Branding Waste
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -746,7 +746,7 @@ const Waste = (props) => {
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                    <Typography color="white">{`Total Waste Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                    <Typography color="white">{`Total Waste Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                                 </Grid>
                             </Grid>
                         </Box>

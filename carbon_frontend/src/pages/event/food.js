@@ -216,7 +216,7 @@ const Food = (props) => {
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
-                                <img width={100} src={FoodImg} alt="Food" />
+                                <img width={100} src={FoodImg} alt="Food" className='tabImgWhite' />
                             </IconDiv>
 
                             <Grid
@@ -285,11 +285,11 @@ const Food = (props) => {
                                         <div className='table-responsive'>
                                             <table className='table-custom-inpt-field'>
                                                 <tr>
-                                                    <th className='ps-2'>Menu</th>
+                                                    <th />
                                                     <th className='ps-2'>Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Customised Food Menu</td>
+                                                    <td className='ps-2 py-1'>Customised Food</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                                 </tr>
                                             </table>
@@ -388,7 +388,7 @@ const Food = (props) => {
                                         <div className='table-responsive'>
                                             <table className='table-custom-inpt-field'>
                                                 <tr>
-                                                    <th className='ps-2'>Menu</th>
+                                                    <th />
                                                     <th className='ps-2'>Emissions</th>
                                                 </tr>
                                                 <tr>

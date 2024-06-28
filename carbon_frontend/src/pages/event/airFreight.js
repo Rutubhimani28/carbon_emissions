@@ -57,14 +57,14 @@ const AirFreight = (props) => {
 
             const data = [
                 {
-                    type: 'Air',
+                    type: 'By Air',
                     noOfKmsOne: values?.noOfKmsOne,
                     kgsOne: values?.kgsOne,
                     efOne: values?.efOne,
                     emission: emissionOne,
                 },
                 {
-                    type: 'Road',
+                    type: 'By Road',
                     noOfKmsTwo: values?.noOfKmsTwo,
                     kgsTwo: values?.kgsTwo,
                     efTwo: values?.efTwo,
@@ -114,19 +114,19 @@ const AirFreight = (props) => {
                     }}>
 
                         <IconDiv>
-                            <img width={100} src={LogisticsImg} alt="Food" />
+                            <img width={100} src={LogisticsImg} alt="Food" className='tabImgWhite' />
                         </IconDiv>
                         <Box>
                             <div className="table-responsive">
                                 <table className="table-custom-inpt-field">
                                     <tr>
-                                        <th className="pe-2">Mode of Transport</th>
+                                        <th className="pe-2">Mode of Freight</th>
                                         <th className="ps-2">No of Kms</th>
                                         <th className="ps-2">Weight in Kgs</th>
                                         <th className="ps-2">Emissions</th>
                                     </tr>
                                     <tr>
-                                        <td className="ps-2 py-1">Air</td>
+                                        <td className="ps-2 py-1">By Air</td>
                                         <td className="ps-2 py-1">
                                             <TextField
                                                 size="small"
@@ -165,7 +165,7 @@ const AirFreight = (props) => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="ps-2 py-1">Road</td>
+                                        <td className="ps-2 py-1">By Road</td>
                                         <td className="ps-2 py-1">
                                             <TextField
                                                 size="small"

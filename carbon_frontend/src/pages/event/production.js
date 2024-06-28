@@ -466,14 +466,14 @@ const Production = (props) => {
                             flexDirection={'column'}
                         >
                             <IconDiv>
-                                <img width={100} src={ProductionImg} alt="Food" />
+                                <img width={100} src={ProductionImg} alt="Food" className='tabImgWhite' />
                             </IconDiv>
 
                             <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Type of Material
+                                            Production Material
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -523,7 +523,7 @@ const Production = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Type of Material
+                                            Production Material
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -573,7 +573,7 @@ const Production = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Screen Type
+                                            Stage Screen
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -749,7 +749,7 @@ const Production = (props) => {
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                    <Typography color="white">{`Total Food and Beverages Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                    <Typography color="white">{`Total Event Production Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                                 </Grid>
                             </Grid>
                         </Box>

@@ -47,12 +47,12 @@ const EnergyUpdated = (props) => {
                     emission: Number((values?.kwh * 0.43).toFixed(2)) || 0
                 },
                 {
-                    type: 'Petrol',
+                    type: 'Petrol (Generator)',
                     gallonsOne: values?.gallonsOne,
                     emission: Number((values?.gallonsOne * 8.78).toFixed(2)) || 0
                 },
                 {
-                    type: 'Diesel',
+                    type: 'Diesel (Generator)',
                     gallonsTwo: values?.gallonsTwo,
                     emission: Number((values?.gallonsTwo * 10.21).toFixed(2)) || 0
                 }
@@ -83,7 +83,7 @@ const EnergyUpdated = (props) => {
                     <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={EnergyImg} alt="Energy" width={100} />
+                            <img src={EnergyImg} alt="Energy" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
                             container
@@ -142,7 +142,7 @@ const EnergyUpdated = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4'>
-                                    Petrol
+                                    Petrol (Generator)
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
@@ -190,7 +190,7 @@ const EnergyUpdated = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4'>
-                                    Diesel
+                                    Diesel (Generator)
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
@@ -248,7 +248,7 @@ const EnergyUpdated = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Energy Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                <Typography>{`Total Energy Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
