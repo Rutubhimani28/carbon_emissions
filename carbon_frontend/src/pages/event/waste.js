@@ -746,7 +746,7 @@ const Waste = (props) => {
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                    <Typography color="white">{`Total Waste Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                    <Typography color="white">{`Total Waste Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                                 </Grid>
                             </Grid>
                         </Box>
