@@ -134,155 +134,157 @@ const AirTravel = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-3 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                <Card className='p-3 custom-inner-bg' style={{ padding: '20px' }}>
                     <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
-                    <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                        <IconDiv>
-                            <img src={AirTravelImg} alt="Waste" width={100} />
-                        </IconDiv>
-                        <Grid
-                            container
-                            rowSpacing={3}
-                            columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-                        >
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant='h4' className='text-center text-white mb-4'>Economy Class</Typography>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th className='ps-2'>Journey Type</th>
-                                                <th className='ps-2'>No of trips</th>
-                                                <th className='ps-2'>Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsOne' value={formik?.values?.noOfTripsOne}
-                                                        onChange={(e) => { calclulateEconomyClass(e, "emissionOne", e.target.value, 200) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsTwo' value={formik?.values?.noOfTripsTwo}
-                                                        onChange={(e) => { calclulateEconomyClass(e, "emissionTwo", e.target.value, 375) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsThree' value={formik?.values?.noOfTripsThree}
-                                                        onChange={(e) => { calclulateEconomyClass(e, "emissionThree", e.target.value, 960) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
+                    <Box style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                            <IconDiv>
+                                <img src={AirTravelImg} alt="Waste" width={100} />
+                            </IconDiv>
+                            <Grid
+                                container
+                                rowSpacing={3}
+                                columnSpacing={{ xs: 0, sm: 5, md: 4 }}
+                            >
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Economy Class</Typography>
+                                        <div className='table-responsive'>
+                                            <table className='table-custom-inpt-field'>
+                                                <tr>
+                                                    <th className='ps-2'>Journey Type</th>
+                                                    <th className='ps-2'>No of trips</th>
+                                                    <th className='ps-2'>Emissions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsOne' value={formik?.values?.noOfTripsOne}
+                                                            onChange={(e) => { calclulateEconomyClass(e, "emissionOne", e.target.value, 200) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsTwo' value={formik?.values?.noOfTripsTwo}
+                                                            onChange={(e) => { calclulateEconomyClass(e, "emissionTwo", e.target.value, 375) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsThree' value={formik?.values?.noOfTripsThree}
+                                                            onChange={(e) => { calclulateEconomyClass(e, "emissionThree", e.target.value, 960) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Business Class</Typography>
+                                        <div className='table-responsive'>
+                                            <table className='table-custom-inpt-field'>
+                                                <tr>
+                                                    <th className='ps-2'>Journey Type</th>
+                                                    <th className='ps-2'>No of trips</th>
+                                                    <th className='ps-2'>Emissions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsFour' value={formik?.values?.noOfTripsFour}
+                                                            onChange={(e) => { calclulateBusinessClass(e, "emissionFour", e.target.value, 400) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsFive' value={formik?.values?.noOfTripsFive}
+                                                            onChange={(e) => { calclulateBusinessClass(e, "emissionFive", e.target.value, 750) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsSix' value={formik?.values?.noOfTripsSix}
+                                                            onChange={(e) => { calclulateBusinessClass(e, "emissionSix", e.target.value, 1920) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSix' value={formik?.values?.emissionSix} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant='h4' className="text-center text-white mb-4">First Class</Typography>
+                                        <div className='table-responsive'>
+                                            <table className='table-custom-inpt-field'>
+                                                <tr>
+                                                    <th className='ps-2'>Journey Type</th>
+                                                    <th className='ps-2'>No of trips</th>
+                                                    <th className='ps-2'>Emissions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsSeven' value={formik?.values?.noOfTripsSeven}
+                                                            onChange={(e) => { calclulateFirstClass(e, "emissionSeven", e.target.value, 600) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionSeven' value={formik?.values?.emissionSeven} onChange={formik.handleChange} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsEight' value={formik?.values?.noOfTripsEight}
+                                                            onChange={(e) => { calclulateFirstClass(e, "emissionEight", e.target.value, 1125) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEight' value={formik?.values?.emissionEight} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
+                                                    <td className='ps-2 py-1'>
+                                                        <TextField size='small' type="number" name='noOfTripsNine' value={formik?.values?.noOfTripsNine}
+                                                            onChange={(e) => { calclulateFirstClass(e, "emissionNine", e.target.value, 2880) }}
+                                                            inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionNine' value={formik?.values?.emissionNine} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                                    <Stack direction={"row"} spacing={2}>
+                                        {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
+                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                        <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} marginTop={2}>
+                                    <Typography color='white'>{`Total Air Travel Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} marginTop={1}>
+                                    <Typography color='white'>Note: For more accurate calculations, please visit ICAO webiste.</Typography>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant='h4' className='text-center text-white mb-4'>Business Class</Typography>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th className='ps-2'>Journey Type</th>
-                                                <th className='ps-2'>No of trips</th>
-                                                <th className='ps-2'>Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsFour' value={formik?.values?.noOfTripsFour}
-                                                        onChange={(e) => { calclulateBusinessClass(e, "emissionFour", e.target.value, 400) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsFive' value={formik?.values?.noOfTripsFive}
-                                                        onChange={(e) => { calclulateBusinessClass(e, "emissionFive", e.target.value, 750) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsSix' value={formik?.values?.noOfTripsSix}
-                                                        onChange={(e) => { calclulateBusinessClass(e, "emissionSix", e.target.value, 1920) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSix' value={formik?.values?.emissionSix} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant='h4' className="text-center text-white mb-4">First Class</Typography>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th className='ps-2'>Journey Type</th>
-                                                <th className='ps-2'>No of trips</th>
-                                                <th className='ps-2'>Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsSeven' value={formik?.values?.noOfTripsSeven}
-                                                        onChange={(e) => { calclulateFirstClass(e, "emissionSeven", e.target.value, 600) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionSeven' value={formik?.values?.emissionSeven} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsEight' value={formik?.values?.noOfTripsEight}
-                                                        onChange={(e) => { calclulateFirstClass(e, "emissionEight", e.target.value, 1125) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEight' value={formik?.values?.emissionEight} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='noOfTripsNine' value={formik?.values?.noOfTripsNine}
-                                                        onChange={(e) => { calclulateFirstClass(e, "emissionNine", e.target.value, 2880) }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionNine' value={formik?.values?.emissionNine} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                <Stack direction={"row"} spacing={2}>
-                                    {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
-                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={2}>
-                                <Typography color='white'>{`Total Air Travel Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={1}>
-                                <Typography color='white'>Note: For more accurate calculations, please visit ICAO webiste.</Typography>
-                            </Grid>
-                        </Grid>
+                        </Box>
                     </Box>
                 </Card>
             </Container>

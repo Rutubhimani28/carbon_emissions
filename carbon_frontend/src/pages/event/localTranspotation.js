@@ -201,35 +201,7 @@ const LocalTranspotation = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Grid container>
-                    <Grid item xs={12} sm={6}>
-                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Scope<span style={{ color: "red" }}>*</span></FormLabel>
-                        <Select
-                            displayEmpty
-                            inputProps={{ 'aria-label': 'Without label' }}
-                            fullWidth
-                            labelId="demo-simple-select-helper-label"
-                            size="small"
-                            name="scope1"
-                            id="demo-simple-select-helper"
-                            value={scope1}
-                            onChange={(e) => {
-                                dispatch(scopeChange({ scope1: Number(e.target.value), scope2 }));
-                            }}
-                            onBlur={formik.handleBlur}
-                        >
-                            <MenuItem value={1}>Scope.1</MenuItem>
-                            <MenuItem value={2}>Scope.2</MenuItem>
-                            <MenuItem value={3}>Scope.3</MenuItem>
-                        </Select>
-                        <FormHelperText error={formik.touched.allocatedBudgetForYourActivity && Boolean(formik.errors.allocatedBudgetForYourActivity)}>
-                            {formik.touched.allocatedBudgetForYourActivity && formik.errors.allocatedBudgetForYourActivity}
-                        </FormHelperText>
-                    </Grid>
-                </Grid>
-
                 <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope1} Emissions`}</Typography>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={LocalTransportImg} alt="Local Transportation" width={100} />
@@ -240,6 +212,34 @@ const LocalTranspotation = (props) => {
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                         >
                             <Grid item xs={12} sm={6} md={6}>
+                                {/* <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}> */}
+                                {/* <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Scope<span style={{ color: "red" }}>*</span></FormLabel> */}
+
+                                <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>
+                                    <Select
+                                        displayEmpty
+                                        inputProps={{ 'aria-label': 'Without label' }}
+                                        labelId="demo-simple-select-helper-label"
+                                        size="small"
+                                        name="scope1"
+                                        className='me-2 text-light'
+                                        id="demo-simple-select-helper"
+                                        value={scope1}
+                                        onChange={(e) => {
+                                            dispatch(scopeChange({ scope1: Number(e.target.value), scope2 }));
+                                        }}
+                                        onBlur={formik.handleBlur}
+                                    >
+                                        <MenuItem value={1}>Scope.1</MenuItem>
+                                        <MenuItem value={2}>Scope.2</MenuItem>
+                                        <MenuItem value={3}>Scope.3</MenuItem>
+                                    </Select>
+                                    <FormHelperText error={formik.touched.allocatedBudgetForYourActivity && Boolean(formik.errors.allocatedBudgetForYourActivity)}>
+                                        {formik.touched.allocatedBudgetForYourActivity && formik.errors.allocatedBudgetForYourActivity}
+                                    </FormHelperText>
+                                    Emissions
+                                </Typography>
+                                {/* </Box> */}
                                 <Box>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
