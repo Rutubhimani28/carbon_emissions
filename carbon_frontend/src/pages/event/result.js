@@ -216,11 +216,11 @@ const Result = () => {
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(2)} tCO<sub>2</sub>e</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</Typography>
                         <Grid container pt={8}>
-                            <Grid item xs={12} sm={4} md={4} >
-                                <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={350} />
-                            </Grid>
                             <Grid item xs={12} sm={8} md={8} >
                                 <CustomBarChart chartData={chartData} />
+                            </Grid>
+                            <Grid item xs={12} sm={4} md={4} >
+                                <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={350} />
                             </Grid>
                         </Grid>
                         <Typography className='text-center py-1 fw-bold mt-4 fs-6'>Note: Source of the calculation will be shared to the designated company representative during the auditing.</Typography>
