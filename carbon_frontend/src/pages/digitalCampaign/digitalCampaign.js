@@ -395,7 +395,7 @@ const DigitalCampaign = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission} kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>

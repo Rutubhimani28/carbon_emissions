@@ -43,12 +43,12 @@ const Result = () => {
                                         <tr>
                                             <th>{item?.type}</th>
                                             <td align='right' className='ps-4'>{item?.totalEmission}</td>
-                                            <td className='ps-1'>kgCO2e<sub>2</sub>e</td>
+                                            <td className='ps-1'>kkgCO<sub>2</sub>e</td>
                                         </tr>
                                     ))
                                 }
                             </table>
-                            <h4 className='text-center py-3 fw-bold mt-1'>Total To Offset = {total}  kgCO2e</h4>
+                            <h4 className='text-center py-3 fw-bold mt-1'>Total To Offset = {total} kgCO<sub>2</sub>e</h4>
                         </Box>
                     </div>
                     <div className='d-flex justify-content-end p-3'>

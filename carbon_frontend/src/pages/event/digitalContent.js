@@ -277,7 +277,7 @@ const DigitalContent = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -285,7 +285,7 @@ const DigitalContent = (props) => {
                                         allData?.length > 0 && allData?.map((item) => (
 
                                             <li>
-                                                {`${item?.type} : ${item?.emission} kgCO2e`}
+                                                {`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e
                                             </li>
                                         ))
                                     }

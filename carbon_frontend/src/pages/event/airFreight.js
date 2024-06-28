@@ -250,7 +250,7 @@ const AirFreight = (props) => {
                             <ul>
                                 {allData?.length > 0 &&
                                     allData?.map((item) => (
-                                        <li style={{ color: 'white' }}>{`${item?.type} : ${item?.emission} kgCO2e`}</li>
+                                        <li style={{ color: 'white' }}>{`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e</li>
                                     ))}
                             </ul>
                         </Grid>

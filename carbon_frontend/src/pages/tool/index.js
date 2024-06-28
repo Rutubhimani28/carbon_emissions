@@ -70,7 +70,7 @@ const Home = () => {
     return (
         <Container maxWidth="lg" className='text-white'>
             <Box textAlign="center" mt={4}>
-                <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} />
+                {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
                 <Typography variant="h2" mt={2} className='text'>
                     Welcome to Sirāt's NetZero Platform Tool
                 </Typography>
@@ -214,7 +214,7 @@ const Home = () => {
                     <Typography variant="body1" className="text-white mt-2">Note:</Typography>
                     <Typography variant="body1" className="text-white mt-2 ms-2">The summary page will give you how much Carbon footprint you are generating per $ spent on your activity.</Typography>
                     <Typography variant="body1" className="text-white ms-2">You can't change the values after submitting the form on the last page.</Typography>
-                    <Typography variant="body1" className="text-white ms-2">All the emissions values are in kgCO2e.</Typography>
+                    <Typography variant="body1" className="text-white ms-2">All the emissions values are in kgCO<sub>2</sub>e.</Typography>
                 </Box>
             </Box>
             <Typography className='fs-5 text-center my-4'>If you face any problems or have questions, please send your query to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link></Typography>

@@ -406,7 +406,7 @@ const Hotel = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginY={2}>
-                                <Typography color='white'>{`Total Hotel Footprint = ${totalEmission} kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Hotel Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>
