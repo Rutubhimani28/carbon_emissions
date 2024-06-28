@@ -210,10 +210,10 @@ const DigitalCampaign = (props) => {
                                             <tr>
                                                 <th />
                                                 <th className='ps-2'>Image Size (in Mb)</th>
-                                                <th className='ps-2'>Device Energy</th>
-                                                <th className='ps-2'>SoMe Platform Energy</th>
-                                                <th className='ps-2'>Network Energy</th>
-                                                <th className='ps-2'>Total Energy</th>
+                                                {/* <th className='ps-2'>Device Energy</th> */}
+                                                {/* <th className='ps-2'>SoMe Platform Energy</th> */}
+                                                {/* <th className='ps-2'>Network Energy</th> */}
+                                                {/* <th className='ps-2'>Total Energy</th> */}
                                                 {/* <th className='ps-2'>Emissions</th> */}
                                                 <th className='ps-2'>Impressions</th>
                                                 <th className='ps-2'>Total Emissions</th>
@@ -232,7 +232,7 @@ const DigitalCampaign = (props) => {
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
-                                                <td className='ps-2 py-1'>
+                                                {/* <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" disabled name={'deviceEnergy1'} value={values?.deviceEnergy1}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("deviceEnergy1", e.target.value);
@@ -269,7 +269,7 @@ const DigitalCampaign = (props) => {
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
-                                                </td>
+                                                </td> */}
                                                 {/* <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={'efOne'} value={values?.efOne}
                                                     onChange={(e) => {
                                                         formik.setFieldValue("efOne", Number(e.target.value));
@@ -300,10 +300,10 @@ const DigitalCampaign = (props) => {
                                                 <th />
                                                 <th className='ps-2'>Video Size (in Mb)</th>
                                                 <th className='ps-2'>Video (in mins)</th>
-                                                <th className='ps-2'>Device Energy</th>
-                                                <th className='ps-2'>SoMe Platform Energy</th>
-                                                <th className='ps-2'>Network Energy</th>
-                                                <th className='ps-2'>Total Energy</th>
+                                                {/* <th className='ps-2'>Device Energy</th> */}
+                                                {/* <th className='ps-2'>SoMe Platform Energy</th> */}
+                                                {/* <th className='ps-2'>Network Energy</th> */}
+                                                {/* <th className='ps-2'>Total Energy</th> */}
                                                 {/* <th className='ps-2'>Emissions</th> */}
                                                 <th className='ps-2'>Impressions</th>
                                                 <th className='ps-2'>Total Emissions</th>
@@ -329,7 +329,7 @@ const DigitalCampaign = (props) => {
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
-                                                <td className='ps-2 py-1'>
+                                                {/* <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" disabled name={'deviceEnergy2'} value={values?.deviceEnergy2}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("deviceEnergy2", Number(e.target.value));
@@ -363,7 +363,7 @@ const DigitalCampaign = (props) => {
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
-                                                </td>
+                                                </td> */}
                                                 {/* <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" disabled name={'efTwo'} value={values?.efTwo}
                                                         onChange={(e) => {
