@@ -213,7 +213,7 @@ const Result = () => {
                             }
                         </table>
                         {/* <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total To Offset = {total} kgCO<sub>2</sub>e</Typography> */}
-                        <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total {total} kgCO<sub>2</sub>e Carbon Footprint generated from your {toolFormData?.activityName} </Typography>
+                        <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total {total} kgCO<sub>2</sub>e Carbon Footprint generated from your {toolFormData?.activityName} activity</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(2)} tCO<sub>2</sub>e</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</Typography>
                         <Grid container pt={8}>
