@@ -16,6 +16,7 @@ const EnergyUpdated = (props) => {
 
     const allData = useSelector((state) => state?.totalEnergyUpdatedDetails?.data[0]?.data)
     const totalEmission = useSelector((state) => state?.totalEnergyUpdatedDetails?.totalEmission)
+    const scope = useSelector((state) => state?.totalEnergyUpdatedDetails?.scope);
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -46,12 +47,12 @@ const EnergyUpdated = (props) => {
                     emission: Number((values?.kwh * 0.43).toFixed(2)) || 0
                 },
                 {
-                    type: 'Petrol',
+                    type: 'Petrol (Generator)',
                     gallonsOne: values?.gallonsOne,
                     emission: Number((values?.gallonsOne * 8.78).toFixed(2)) || 0
                 },
                 {
-                    type: 'Diesel',
+                    type: 'Diesel (Generator)',
                     gallonsTwo: values?.gallonsTwo,
                     emission: Number((values?.gallonsTwo * 10.21).toFixed(2)) || 0
                 }
@@ -79,9 +80,10 @@ const EnergyUpdated = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg'>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={EnergyImg} alt="Energy" width={100} />
+                            <img src={EnergyImg} alt="Energy" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
                             container
@@ -118,7 +120,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -140,7 +142,7 @@ const EnergyUpdated = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4'>
-                                    Petrol
+                                    Petrol (Generator)
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
@@ -166,7 +168,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -188,7 +190,7 @@ const EnergyUpdated = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4'>
-                                    Diesel
+                                    Diesel (Generator)
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
@@ -214,7 +216,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -246,7 +248,7 @@ const EnergyUpdated = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Energy Footprint = ${totalEmission} kgCO2e`}</Typography>
+                                <Typography>{`Total Energy Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -254,7 +256,7 @@ const EnergyUpdated = (props) => {
                                         allData?.length > 0 && allData?.map((item) => (
 
                                             <li style={{ color: 'white' }}>
-                                                {`${item?.type} : ${item?.emission} kgCO2e`}
+                                                {`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e
                                             </li>
                                         ))
                                     }

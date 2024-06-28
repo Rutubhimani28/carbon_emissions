@@ -5,7 +5,8 @@ const totalAirTravelSlice = createSlice({
     name: "totalAirTravel",
     initialState: {
         data: [],
-        totalEmission: 0
+        totalEmission: 0,
+        scope: 3
     },
     reducers: {
         addAirTravelData: (state, action) => {
@@ -37,11 +38,15 @@ const totalAirTravelSlice = createSlice({
         deleteAirTravelData: (state, action) => ({
             ...state,
             data: [],
-            totalEmission: 0
+            totalEmission: 0,
+            scope: 3
         }),
-
+        scopeChange: (state, action) => ({
+            ...state,
+            scope: action.payload.scope
+        })
     },
 });
 
-export const { addAirTravelData, deleteAirTravelData } = totalAirTravelSlice.actions;
+export const { addAirTravelData, deleteAirTravelData, scopeChange } = totalAirTravelSlice.actions;
 export default totalAirTravelSlice.reducer;

@@ -26,6 +26,7 @@ const AirFreight = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalAirFreightDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirFreightDetails?.totalEmission);
+    const scope = useSelector((state) => state?.totalAirFreightDetails?.scope);
 
     // -----------   initialValues
     const initialValues = {
@@ -56,14 +57,14 @@ const AirFreight = (props) => {
 
             const data = [
                 {
-                    type: 'Air',
+                    type: 'By Air',
                     noOfKmsOne: values?.noOfKmsOne,
                     kgsOne: values?.kgsOne,
                     efOne: values?.efOne,
                     emission: emissionOne,
                 },
                 {
-                    type: 'Road',
+                    type: 'By Road',
                     noOfKmsTwo: values?.noOfKmsTwo,
                     kgsTwo: values?.kgsTwo,
                     efTwo: values?.efTwo,
@@ -100,160 +101,167 @@ const AirFreight = (props) => {
                     className="p-4 custom-inner-bg"
                     style={{
                         padding: '20px',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
+
                         flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column',
                     }}
                 >
-                    <IconDiv>
-                        <img width={100} src={LogisticsImg} alt="Food" />
-                    </IconDiv>
-                    <Box>
-                        <div className="table-responsive">
-                            <table className="table-custom-inpt-field">
-                                <tr>
-                                    <th className="pe-2">Mode of Transport</th>
-                                    <th className="ps-2">No of Kms</th>
-                                    <th className="ps-2">Weight in Kgs</th>
-                                    <th className="ps-2">Emissions</th>
-                                </tr>
-                                <tr>
-                                    <td className="ps-2 py-1">Air</td>
-                                    <td className="ps-2 py-1">
-                                        <TextField
-                                            size="small"
-                                            type="number"
-                                            name="noOfKmsOne"
-                                            value={formik?.values?.noOfKmsOne}
-                                            onChange={(e) => {
-                                                formik.handleChange(e);
-                                                formik.setFieldValue('emissionOne', Number((e.target.value * formik?.values?.kgsOne * formik?.values?.efOne).toFixed(2)));
-                                            }}
-                                            inputProps={{ style: { color: 'white' } }}
-                                        />
-                                    </td>
-                                    <td className="ps-2 py-1">
-                                        <TextField
-                                            size="small"
-                                            type="number"
-                                            name="kgsOne"
-                                            value={formik?.values?.kgsOne}
-                                            onChange={(e) => {
-                                                formik.handleChange(e);
-                                                formik.setFieldValue('emissionOne', Number((formik?.values?.noOfKmsOne * e.target.value * formik?.values?.efOne).toFixed(2)));
-                                            }}
-                                            inputProps={{ style: { color: 'white' } }}
-                                        />
-                                    </td>
-                                    <td className="ps-2 py-1">
-                                        <TextField
-                                            size="small"
-                                            type="number"
-                                            disabled
-                                            name="emissionOne"
-                                            value={formik?.values?.emissionOne}
-                                            onChange={formik.handleChange}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="ps-2 py-1">Road</td>
-                                    <td className="ps-2 py-1">
-                                        <TextField
-                                            size="small"
-                                            type="number"
-                                            name="noOfKmsTwo"
-                                            value={formik?.values?.noOfKmsTwo}
-                                            onChange={(e) => {
-                                                formik.handleChange(e);
-                                                formik.setFieldValue('emissionTwo', Number((e.target.value * formik?.values?.kgsTwo * formik?.values?.efTwo).toFixed(2)));
-                                            }}
-                                            inputProps={{ style: { color: 'white' } }}
-                                        />
-                                    </td>
-                                    <td className="ps-2 py-1">
-                                        <TextField
-                                            size="small"
-                                            type="number"
-                                            name="kgsTwo"
-                                            value={formik?.values?.kgsTwo}
-                                            onChange={(e) => {
-                                                formik.handleChange(e);
-                                                formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfKmsTwo * e.target.value * formik?.values?.efTwo).toFixed(2)));
-                                            }}
-                                            inputProps={{ style: { color: 'white' } }}
-                                        />
-                                    </td>
-                                    <td className="ps-2 py-1">
-                                        <TextField
-                                            size="small"
-                                            type="number"
-                                            name="emissionTwo"
-                                            value={formik?.values?.emissionTwo}
-                                            onChange={formik.handleChange}
-                                            disabled
-                                        />
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={3}>
-                            <Stack direction={'row'} spacing={2}>
-                                {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                <Button
-                                    variant="contained"
-                                    onClick={() => {
-                                        formik.handleSubmit();
-                                        setValue(value - 1);
-                                    }}
-                                    className="custom-btn"
-                                >
-                                    &lt;&lt;Save and Previous Page
-                                </Button>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => {
-                                        formik.handleSubmit();
-                                        setValue(value + 1);
-                                    }}
-                                    className="custom-btn"
-                                >
-                                    {' '}
-                                    Save and Next Page&gt;&gt;
-                                </Button>
-                                <Button
-                                    variant="contained"
-                                    endIcon={<FaAngleDoubleRight />}
-                                    onClick={() => setValue(9)}
-                                    className="custom-btn"
-                                >
-                                    Go To Result
-                                </Button>
-                                <Button
-                                    variant="outlined"
-                                    onClick={() => {
-                                        formik.resetForm();
-                                        handeleDelete();
-                                    }}
-                                    color="error"
-                                >
-                                    Clear
-                                </Button>
-                            </Stack>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                            <Typography className="mt-3 text-white">Total Logistics Footprint = {totalEmission}</Typography>
-                        </Grid>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
 
-                        <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
-                            <ul>
-                                {allData?.length > 0 &&
-                                    allData?.map((item) => (
-                                        <li style={{ color: 'white' }}>{`${item?.type} : ${item?.emission} kgCO2e`}</li>
-                                    ))}
-                            </ul>
-                        </Grid>
+                    <Box style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
+
+                        <IconDiv>
+                            <img width={100} src={LogisticsImg} alt="Food" className='tabImgWhite' />
+                        </IconDiv>
+                        <Box>
+                            <div className="table-responsive">
+                                <table className="table-custom-inpt-field">
+                                    <tr>
+                                        <th className="pe-2">Mode of Freight</th>
+                                        <th className="ps-2">No of Kms</th>
+                                        <th className="ps-2">Weight in Kgs</th>
+                                        <th className="ps-2">Emissions</th>
+                                    </tr>
+                                    <tr>
+                                        <td className="ps-2 py-1">By Air</td>
+                                        <td className="ps-2 py-1">
+                                            <TextField
+                                                size="small"
+                                                type="number"
+                                                name="noOfKmsOne"
+                                                value={formik?.values?.noOfKmsOne}
+                                                onChange={(e) => {
+                                                    formik.handleChange(e);
+                                                    formik.setFieldValue('emissionOne', Number((e.target.value * formik?.values?.kgsOne * formik?.values?.efOne).toFixed(2)));
+                                                }}
+                                                inputProps={{ style: { color: 'white' } }}
+                                            />
+                                        </td>
+                                        <td className="ps-2 py-1">
+                                            <TextField
+                                                size="small"
+                                                type="number"
+                                                name="kgsOne"
+                                                value={formik?.values?.kgsOne}
+                                                onChange={(e) => {
+                                                    formik.handleChange(e);
+                                                    formik.setFieldValue('emissionOne', Number((formik?.values?.noOfKmsOne * e.target.value * formik?.values?.efOne).toFixed(2)));
+                                                }}
+                                                inputProps={{ style: { color: 'white' } }}
+                                            />
+                                        </td>
+                                        <td className="ps-2 py-1">
+                                            <TextField
+                                                size="small"
+                                                type="number"
+                                                disabled
+                                                name="emissionOne"
+                                                value={formik?.values?.emissionOne}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="ps-2 py-1">By Road</td>
+                                        <td className="ps-2 py-1">
+                                            <TextField
+                                                size="small"
+                                                type="number"
+                                                name="noOfKmsTwo"
+                                                value={formik?.values?.noOfKmsTwo}
+                                                onChange={(e) => {
+                                                    formik.handleChange(e);
+                                                    formik.setFieldValue('emissionTwo', Number((e.target.value * formik?.values?.kgsTwo * formik?.values?.efTwo).toFixed(2)));
+                                                }}
+                                                inputProps={{ style: { color: 'white' } }}
+                                            />
+                                        </td>
+                                        <td className="ps-2 py-1">
+                                            <TextField
+                                                size="small"
+                                                type="number"
+                                                name="kgsTwo"
+                                                value={formik?.values?.kgsTwo}
+                                                onChange={(e) => {
+                                                    formik.handleChange(e);
+                                                    formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfKmsTwo * e.target.value * formik?.values?.efTwo).toFixed(2)));
+                                                }}
+                                                inputProps={{ style: { color: 'white' } }}
+                                            />
+                                        </td>
+                                        <td className="ps-2 py-1">
+                                            <TextField
+                                                size="small"
+                                                type="number"
+                                                name="emissionTwo"
+                                                value={formik?.values?.emissionTwo}
+                                                onChange={formik.handleChange}
+                                                disabled
+                                            />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={3}>
+                                <Stack direction={'row'} spacing={2}>
+                                    {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
+                                    <Button
+                                        variant="contained"
+                                        onClick={() => {
+                                            formik.handleSubmit();
+                                            setValue(value - 1);
+                                        }}
+                                        className="custom-btn"
+                                    >
+                                        &lt;&lt;Save and Previous Page
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        onClick={() => {
+                                            formik.handleSubmit();
+                                            setValue(value + 1);
+                                        }}
+                                        className="custom-btn"
+                                    >
+                                        {' '}
+                                        Save and Next Page&gt;&gt;
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        endIcon={<FaAngleDoubleRight />}
+                                        onClick={() => setValue(9)}
+                                        className="custom-btn"
+                                    >
+                                        Go To Result
+                                    </Button>
+                                    <Button
+                                        variant="outlined"
+                                        onClick={() => {
+                                            formik.resetForm();
+                                            handeleDelete();
+                                        }}
+                                        color="error"
+                                    >
+                                        Clear
+                                    </Button>
+                                </Stack>
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
+                                <Typography className="mt-3 text-white">Total Logistics Footprint = {totalEmission}</Typography>
+                            </Grid>
+
+                            <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
+                                <ul>
+                                    {allData?.length > 0 &&
+                                        allData?.map((item) => (
+                                            <li style={{ color: 'white' }}>{`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e</li>
+                                        ))}
+                                </ul>
+                            </Grid>
+                        </Box>
                     </Box>
                 </Card>
             </Container>

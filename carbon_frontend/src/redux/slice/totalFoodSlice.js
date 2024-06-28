@@ -5,7 +5,8 @@ const totalFoodSlice = createSlice({
     name: "food",
     initialState: {
         data: [],
-        totalEmission: 0
+        totalEmission: 0,
+        scope: 3
     },
     reducers: {
         addFoodData: (state, action) => {
@@ -28,11 +29,15 @@ const totalFoodSlice = createSlice({
         deleteFoodData: (state, action) => ({
             ...state,
             data: [],
-            totalEmission: 0
+            totalEmission: 0,
+            scope: 3
         }),
-
+        scopeChange: (state, action) => ({
+            ...state,
+            scope: action.payload.scope
+        })
     },
 });
 
-export const { addFoodData, deleteFoodData } = totalFoodSlice.actions;
+export const { addFoodData, deleteFoodData, scopeChange } = totalFoodSlice.actions;
 export default totalFoodSlice.reducer;

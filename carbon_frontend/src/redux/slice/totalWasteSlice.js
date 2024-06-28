@@ -5,7 +5,8 @@ const totalWasteSlice = createSlice({
     name: "waste",
     initialState: {
         data: [],
-        totalEmission: 0
+        totalEmission: 0,
+        scope: 2
     },
     reducers: {
         addWasteData: (state, action) => {
@@ -23,9 +24,13 @@ const totalWasteSlice = createSlice({
         deleteWasteData: (state, action) => ({
             ...state,
             data: [],
-            totalEmission: 0
+            totalEmission: 0,
+            scope: 2
         }),
-
+        scopeChange: (state, action) => ({
+            ...state,
+            scope: action.payload
+        })
     },
 });
 

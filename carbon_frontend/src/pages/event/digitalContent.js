@@ -16,6 +16,7 @@ const DigitalContent = (props) => {
 
     const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
     const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
+    const scope = useSelector((state) => state?.totalDigitalContentDetails?.scope);
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -49,12 +50,12 @@ const DigitalContent = (props) => {
                     emission: Number((values?.count * 4 / 1000).toFixed(2))
                 },
                 {
-                    type: 'Attachment',
+                    type: 'Attachments',
                     mb: values?.MB,
                     emission: Number((values?.MB * 50 / 1000).toFixed(2))
                 },
                 {
-                    type: 'Laptop',
+                    type: 'Laptops used',
                     noOfAttendees: values?.noOfAttendees,
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
@@ -87,9 +88,10 @@ const DigitalContent = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg'>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={DigitalImg} alt="Digital" width={100} />
+                            <img src={DigitalImg} alt="Digital" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
                             container
@@ -148,7 +150,7 @@ const DigitalContent = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4' color='white'>
-                                    Attachment
+                                    Attachments
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>MB</FormLabel>
@@ -196,7 +198,7 @@ const DigitalContent = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4' color='white'>
-                                    Laptop
+                                    Laptops used
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No.of Attendees</FormLabel>
@@ -277,7 +279,7 @@ const DigitalContent = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Digital Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -285,7 +287,7 @@ const DigitalContent = (props) => {
                                         allData?.length > 0 && allData?.map((item) => (
 
                                             <li>
-                                                {`${item?.type} : ${item?.emission} kgCO2e`}
+                                                {`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e
                                             </li>
                                         ))
                                     }

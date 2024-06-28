@@ -5,7 +5,8 @@ const totalEnergyUpdatedSlice = createSlice({
     name: "totalEnergyUpdated",
     initialState: {
         data: [],
-        totalEmission: 0
+        totalEmission: 0,
+        scope: 3
     },
     reducers: {
         addEnergyData: (state, action) => {
@@ -23,11 +24,15 @@ const totalEnergyUpdatedSlice = createSlice({
         deleteEnergyData: (state, action) => ({
             ...state,
             data: [],
-            totalEmission: 0
+            totalEmission: 0,
+            scope: 3
         }),
-
+        scopeChange: (state, action) => ({
+            ...state,
+            scope: action.payload.scope
+        })
     },
 });
 
-export const { addEnergyData, deleteEnergyData } = totalEnergyUpdatedSlice.actions;
+export const { addEnergyData, deleteEnergyData, scopeChange } = totalEnergyUpdatedSlice.actions;
 export default totalEnergyUpdatedSlice.reducer;

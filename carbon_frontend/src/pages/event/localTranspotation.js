@@ -1,10 +1,10 @@
-import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Card, Container, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLocalTranspotationData, deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
+import { addLocalTranspotationData, deleteLocalTranspotationData, scopeChange } from '../../redux/slice/totalLocalTranspotationSlice';
 import LocalTransportImg from '../../assets/Transportation.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -14,6 +14,10 @@ const LocalTranspotation = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalLocalTranspotationDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalLocalTranspotationDetails?.totalEmission);
+    const scope1 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope1);
+    const scope2 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope2);
+
+    console.log("---- scope1 ", scope1);
 
     // -----------   initialValues
     const initialValues = {
@@ -200,7 +204,7 @@ const LocalTranspotation = (props) => {
                 <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={LocalTransportImg} alt="Local Transportation" width={100} />
+                            <img src={LocalTransportImg} alt="Local Transportation" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
                             container
@@ -208,11 +212,39 @@ const LocalTranspotation = (props) => {
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                         >
                             <Grid item xs={12} sm={6} md={6}>
+                                {/* <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}> */}
+                                {/* <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Scope<span style={{ color: "red" }}>*</span></FormLabel> */}
+
+                                <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>
+                                    <Select
+                                        displayEmpty
+                                        inputProps={{ 'aria-label': 'Without label' }}
+                                        labelId="demo-simple-select-helper-label"
+                                        size="small"
+                                        name="scope1"
+                                        className='me-2 text-light'
+                                        id="demo-simple-select-helper"
+                                        value={scope1}
+                                        onChange={(e) => {
+                                            dispatch(scopeChange({ scope1: Number(e.target.value), scope2 }));
+                                        }}
+                                        onBlur={formik.handleBlur}
+                                    >
+                                        <MenuItem value={1}>Scope.1</MenuItem>
+                                        <MenuItem value={2}>Scope.2</MenuItem>
+                                        <MenuItem value={3}>Scope.3</MenuItem>
+                                    </Select>
+                                    <FormHelperText error={formik.touched.allocatedBudgetForYourActivity && Boolean(formik.errors.allocatedBudgetForYourActivity)}>
+                                        {formik.touched.allocatedBudgetForYourActivity && formik.errors.allocatedBudgetForYourActivity}
+                                    </FormHelperText>
+                                    Emissions
+                                </Typography>
+                                {/* </Box> */}
                                 <Box>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Mode of Transport</th>
+                                                <th className='ps-2'>Car Type</th>
                                                 <th className='ps-2'>No of Kms</th>
                                                 <th className='ps-2'>No of Passengers</th>
                                                 <th className='ps-2'>Emissions</th>
@@ -231,7 +263,7 @@ const LocalTranspotation = (props) => {
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "petrolCarEmission", values?.petrolCarKms, e.target.value, 0.171)
                                                         }}
-                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                        inputProps={{ min: 1, max: 4, style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" disabled name='petrolCarEmission' value={values?.petrolCarEmission} onChange={formik.handleChange} /></td>
@@ -250,7 +282,7 @@ const LocalTranspotation = (props) => {
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "dieselCarEmission", values?.dieselCarKms, e.target.value, 0.172)
                                                         }}
-                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} /></td>
+                                                        inputProps={{ min: 1, max: 4, style: { color: 'white' } }} /></td>
                                                 <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" name='dieselCarEmission' value={values?.dieselCarEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
@@ -292,7 +324,7 @@ const LocalTranspotation = (props) => {
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "hybridCarEmission", values?.hybridCarKms, e.target.value, 0.068)
                                                         }}
-                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                        inputProps={{ min: 1, max: 4, style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" name='hybridCarEmission' value={values?.hybridCarEmission} onChange={formik.handleChange} disabled /></td>
@@ -311,7 +343,7 @@ const LocalTranspotation = (props) => {
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "electricCarEmission", values?.electricCarKms, e.target.value, 0.047)
                                                         }}
-                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                        inputProps={{ min: 1, max: 4, style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='electricCarEmission' value={values?.electricCarEmission} onChange={formik.handleChange} /></td>
                                             </tr>
@@ -320,11 +352,12 @@ const LocalTranspotation = (props) => {
                                 </Box>
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
+                                <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope2} Emissions`}</Typography>
                                 <Box>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Mode of Transport</th>
+                                                <th className='ps-2'>Public Transport</th>
                                                 <th className='ps-3'>No of Kms</th>
                                                 <th className='ps-2'>Emissions per person </th>
                                             </tr>
@@ -355,6 +388,9 @@ const LocalTranspotation = (props) => {
 
                                 </Box>
                             </Grid>
+                            <Grid item xs={12} sm={12} md={12} marginY={2}>
+                                <Typography color='white'>Note: No. of passengers limit to max 4. (including driver)</Typography>
+                            </Grid>
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
@@ -365,7 +401,7 @@ const LocalTranspotation = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginY={2}>
-                                <Typography color='white'>{`Total Local Transportation Footprint = ${totalEmission} kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Local Transportation Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>

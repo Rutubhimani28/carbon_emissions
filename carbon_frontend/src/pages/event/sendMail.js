@@ -52,7 +52,8 @@ const SendMail = (props) => {
 
     const handleCancel = () => {
         formik.resetForm();
-        formik.setFieldValue('emails', []);
+        // formik.setFieldValue('emails', []);
+        formik.setFieldValue('emails', formik.values?.[0]);
         setEmailInput('');
         setErr('');
         close();
@@ -64,7 +65,8 @@ const SendMail = (props) => {
 
         try {
             const data = {
-                subject: values?.subject,
+                // subject: values?.subject,
+                subject: `Total Carbon Footprint generated from your ${values?.subject} activity`,
                 receiver: values?.emails,
                 data: datas,
                 sender: values?.sender,
@@ -143,7 +145,7 @@ const SendMail = (props) => {
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
             >
-                <DialogTitle
+                {/* <DialogTitle
                     id="scroll-dialog-title"
                     style={{
                         display: "flex",
@@ -160,9 +162,19 @@ const SendMail = (props) => {
                             style={{ cursor: "pointer" }}
                         />
                     </Typography>
-                </DialogTitle>
+                </DialogTitle> */}
 
-                <DialogContent dividers>
+                {/* <DialogContent dividers> */}
+                <DialogContent>
+                    <Typography>
+                        <ClearIcon
+                            onClick={() => {
+                                formik.resetForm()
+                                close()
+                            }}
+                            style={{ cursor: "pointer", float: 'right' }}
+                        />
+                    </Typography>
                     <form>
                         <DialogContentText
                             id="scroll-dialog-description"
@@ -174,7 +186,7 @@ const SendMail = (props) => {
                                 columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                             >
 
-                                <Grid item xs={12} sm={12} md={12}>
+                                <Grid item xs={12} sm={12} md={12} className='pt-0'>
                                     <FormLabel id="demo-row-radio-buttons-group-label">Subject <span style={{ color: "red" }}>*</span></FormLabel>
                                     <TextField
                                         id="subject"
@@ -257,10 +269,10 @@ const SendMail = (props) => {
                 </DialogContent>
 
                 <DialogActions>
-                    <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading} className="custom-btn">
+                    <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading} className="custom-btn me-2">
                         {isLoading ? <CircularProgress size={27} /> : 'Save'}
                     </LoadingButton>
-                    <Button
+                    {/* <Button
                         type="reset"
                         variant="outlined"
                         style={{ textTransform: "capitalize" }}
@@ -270,7 +282,7 @@ const SendMail = (props) => {
                         }}
                     >
                         Cancle
-                    </Button>
+                    </Button> */}
                 </DialogActions>
             </Dialog>
         </div>

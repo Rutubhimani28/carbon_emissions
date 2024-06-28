@@ -6,6 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
 import CampaignImg from '../../assets/Travel.png';
+import Phone from '../../assets/phone2.png';
 import { IconDiv } from '../../components/IconDiv';
 
 const DigitalCampaign = (props) => {
@@ -150,7 +151,7 @@ const DigitalCampaign = (props) => {
                 <Card className='p-3 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img width={100} src={CampaignImg} alt="Digital Campaign" />
+                            <img width={100} src={Phone} alt="Digital Campaign " className="tabImgWhite" />
                         </IconDiv>
                         <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                             <Grid item xs={12} sm={6} md={6}>
@@ -210,10 +211,10 @@ const DigitalCampaign = (props) => {
                                             <tr>
                                                 <th />
                                                 <th className='ps-2'>Image Size (in Mb)</th>
-                                                <th className='ps-2'>Device Energy</th>
-                                                <th className='ps-2'>SoMe Platform Energy</th>
-                                                <th className='ps-2'>Network Energy</th>
-                                                <th className='ps-2'>Total Energy</th>
+                                                {/* <th className='ps-2'>Device Energy</th> */}
+                                                {/* <th className='ps-2'>SoMe Platform Energy</th> */}
+                                                {/* <th className='ps-2'>Network Energy</th> */}
+                                                {/* <th className='ps-2'>Total Energy</th> */}
                                                 {/* <th className='ps-2'>Emissions</th> */}
                                                 <th className='ps-2'>Impressions</th>
                                                 <th className='ps-2'>Total Emissions</th>
@@ -232,7 +233,7 @@ const DigitalCampaign = (props) => {
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
-                                                <td className='ps-2 py-1'>
+                                                {/* <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" disabled name={'deviceEnergy1'} value={values?.deviceEnergy1}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("deviceEnergy1", e.target.value);
@@ -269,7 +270,7 @@ const DigitalCampaign = (props) => {
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
-                                                </td>
+                                                </td> */}
                                                 {/* <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={'efOne'} value={values?.efOne}
                                                     onChange={(e) => {
                                                         formik.setFieldValue("efOne", Number(e.target.value));
@@ -300,10 +301,10 @@ const DigitalCampaign = (props) => {
                                                 <th />
                                                 <th className='ps-2'>Video Size (in Mb)</th>
                                                 <th className='ps-2'>Video (in mins)</th>
-                                                <th className='ps-2'>Device Energy</th>
-                                                <th className='ps-2'>SoMe Platform Energy</th>
-                                                <th className='ps-2'>Network Energy</th>
-                                                <th className='ps-2'>Total Energy</th>
+                                                {/* <th className='ps-2'>Device Energy</th> */}
+                                                {/* <th className='ps-2'>SoMe Platform Energy</th> */}
+                                                {/* <th className='ps-2'>Network Energy</th> */}
+                                                {/* <th className='ps-2'>Total Energy</th> */}
                                                 {/* <th className='ps-2'>Emissions</th> */}
                                                 <th className='ps-2'>Impressions</th>
                                                 <th className='ps-2'>Total Emissions</th>
@@ -329,7 +330,7 @@ const DigitalCampaign = (props) => {
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
-                                                <td className='ps-2 py-1'>
+                                                {/* <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" disabled name={'deviceEnergy2'} value={values?.deviceEnergy2}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("deviceEnergy2", Number(e.target.value));
@@ -363,7 +364,7 @@ const DigitalCampaign = (props) => {
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
-                                                </td>
+                                                </td> */}
                                                 {/* <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" disabled name={'efTwo'} value={values?.efTwo}
                                                         onChange={(e) => {
@@ -395,7 +396,7 @@ const DigitalCampaign = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission} kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>

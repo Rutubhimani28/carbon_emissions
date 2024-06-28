@@ -3,13 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Box, Button, Container, FormLabel, Grid, TextField, Typography, CircularProgress } from '@mui/material';
+import { Box, Button, Container, FormLabel, Grid, TextField, Typography, CircularProgress, Autocomplete, FormControl } from '@mui/material';
 import logo from '../../layouts/user/assets/images/logo4.gif';
 import { addToolData, clearToolFormData } from '../../redux/slice/toolSlice';
+// import HotelData from '../accomodation/data.json';
 
 const Home = () => {
 
     const [isLoading, setIsLoading] = useState(false);
+    // const [countriesData, setCountriesData] = useState([]);
+    const [isSubmited, setIsSubmited] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const toolData = useSelector(state => state.toolDetails?.data);
@@ -44,14 +47,12 @@ const Home = () => {
         initialValues,
         validationSchema,
         onSubmit: async (values) => {
+            setIsSubmited(true);
             AddData({ type: "toolForm", ...values })
         },
     });
 
     useEffect(() => {
-        console.log("useEffect isValid:", isValid); // Log isValid when the component mounts or when it updates
-        console.log("useEffect Errors:", errors); // L
-
         if (toolData?.length > 0 && ![null, undefined, -1].includes(toolData?.findIndex((item) => item?.type === "toolForm"))) {
             const formPrevData = toolData.find((item) => item.type === "toolForm");
             formik.setFieldValue("name", formPrevData?.name);
@@ -62,15 +63,21 @@ const Home = () => {
         }
     }, [toolData]);
 
-    const { values, errors, touched, isValid } = formik;
+    // useEffect(() => {
+    //     const allCountriesData = HotelData?.map(item => ({
+    //         label: `${item?.country}`,
+    //         value: `${item?.country}`
+    //     }));
+    //     setCountriesData(allCountriesData);
+    // }, []);
 
-    console.log("isValid:", isValid); // Log isValid to check its value
-    console.log("Errors:", errors); // Log errors to verify if they are correctly populated
+
+    const { values, errors, touched, isValid, dirty } = formik;
 
     return (
         <Container maxWidth="lg" className='text-white'>
             <Box textAlign="center" mt={4}>
-                <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} />
+                {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
                 <Typography variant="h2" mt={2} className='text'>
                     Welcome to Sirāt's NetZero Platform Tool
                 </Typography>
@@ -157,6 +164,29 @@ const Home = () => {
                                     helperText={formik.touched.country && formik.errors.country}
                                     inputProps={{ style: { color: 'white' } }}
                                 />
+                                {/* <FormControl fullWidth>
+                                    <Autocomplete
+                                        options={countriesData}
+                                        name="country"
+                                        fullWidth
+                                        getOptionLabel={(item) => item?.label}
+                                        value={formik.values?.country || null}
+                                        onChange={formik.handleChange}
+                                        renderInput={(params) =>
+                                            <TextField {...params}
+                                                size="small"
+                                                name="country"
+                                                placeholder='Select Country'
+                                                error={
+                                                    formik.touched.country &&
+                                                    Boolean(formik.errors.country)
+                                                }
+                                                helperText={
+                                                    formik.touched.country && formik.errors.country
+                                                }
+                                            />}
+                                    />
+                                </FormControl> */}
                             </Grid>
                             <Grid item xs={12} sm={12}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
@@ -206,15 +236,17 @@ const Home = () => {
             </Box>
             <Box mt={0} textAlign="center">
                 <Typography className="mb-2 fs-5">Choose your Marketing activity</Typography>
-                <Button variant="contained" color="primary" className="fs-3" disabled={!isValid || Object.keys(errors).length > 0} style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
-                <Button variant="contained" className="fs-3" disabled={!isValid || Object.keys(errors).length > 0} style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
+                <Button variant="contained" color="primary" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
+                <Button variant="contained" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
             </Box>
             <Box my={3} className="text-center d-flex justify-content-center">
                 <Box textAlign="left" maxWidth="1000px">
                     <Typography variant="body1" className="text-white mt-2">Note:</Typography>
-                    <Typography variant="body1" className="text-white mt-2 ms-2">The summary page will give you how much Carbon footprint you are generating per $ spent on your activity.</Typography>
+                    <Typography variant="body1" className="text-white mt-2 ms-2">To obtain a more accurate Carbon footprint generated from your activity, please input the data in the allotted fields in the subsequent pages.</Typography>
+                    <Typography variant="body1" className="text-white mt-2 ms-2">You can save the data and come back later before submitting.</Typography>
+                    <Typography variant="body1" className="text-white mt-2 ms-2">The summary page will give you how much Carbon footprint you are generating per $ spent on your said activity.</Typography>
                     <Typography variant="body1" className="text-white ms-2">You can't change the values after submitting the form on the last page.</Typography>
-                    <Typography variant="body1" className="text-white ms-2">All the emissions values are in kgCO2e.</Typography>
+                    <Typography variant="body1" className="text-white ms-2">All the emissions values are in kgCO<sub>2</sub>e.</Typography>
                 </Box>
             </Box>
             <Typography className='fs-5 text-center my-4'>If you face any problems or have questions, please send your query to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link></Typography>
