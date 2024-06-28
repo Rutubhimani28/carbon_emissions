@@ -1,17 +1,18 @@
-import { Box, Button, Card, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, Container, Grid, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { useDispatch, useSelector } from 'react-redux';
-import SendMail from './sendMail';
-import { deleteData } from '../../redux/slice/totalDigitalContSlice';
 import { deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
+import { deleteAirTravelData } from '../../redux/slice/totalAirTravelSlice';
+import { deleteData } from '../../redux/slice/totalDigitalContSlice';
 import { deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
 import { deleteFoodData } from '../../redux/slice/totalFoodSlice';
-import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
+import { deleteHotelData } from '../../redux/slice/totalHotelSlice';
 import { deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
 import { deleteProductionData } from '../../redux/slice/totalProductionSlice';
-import { deleteAirTravelData } from '../../redux/slice/totalAirTravelSlice';
-import { deleteHotelData } from '../../redux/slice/totalHotelSlice';
+import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
+import CustomBarChart from './barChart';
+import SendMail from './sendMail';
 
 const Result = () => {
     const [open, setOpen] = useState(false);
@@ -47,6 +48,19 @@ const Result = () => {
 
     const total = Number(allProductionData?.totalEmission) + Number(allFreightData?.totalEmission) + Number(allFoodData?.totalEmission) + Number(allEnergyData?.totalEmission) + Number(allAirTravelData?.totalEmission) + Number(allDigitalContentData?.totalEmission) + Number(allLocalTranspotationData?.totalEmission) + Number(allHotelData?.totalEmission) + Number(allWasteData?.totalEmission)
 
+    const chartData = [
+        Number(allAirTravelData?.totalEmission) || 0,
+        Number(allLocalTranspotationData?.totalEmission) || 0,
+        Number(allHotelData?.totalEmission) || 0,
+        Number(allFoodData?.totalEmission) || 0,
+        Number(allFreightData?.totalEmission) || 0,
+        Number(allProductionData?.totalEmission) || 0,
+        Number(allEnergyData?.totalEmission) || 0,
+        Number(allDigitalContentData?.totalEmission) || 0,
+        Number(allWasteData?.totalEmission) || 0,
+    ];
+
+    console.log(chartData, "chartData")
     const resultData = [
         {
             type: 'Air Travel',
@@ -116,7 +130,9 @@ const Result = () => {
         labels: ['Scope.1', 'Scope.2', 'Scope.3'],
         colors: ['#008FFB', '#00E396', '#FEB019'],
         chart: { type: "donut" },
-        legend: { show: true },
+        legend: {
+            position: 'bottom'
+        },
         dataLabels: { enabled: true },
         tooltip: { enabled: true },
         plotOptions: {
@@ -199,32 +215,20 @@ const Result = () => {
                         <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total To Offset = {total} kgCO<sub>2</sub>e</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(2)} tCO<sub>2</sub>e</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</Typography>
+                        <Grid container pt={8}>
+                            <Grid item xs={12} sm={4} md={4} >
+                                <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={350} />
+                            </Grid>
+                            <Grid item xs={12} sm={8} md={8} >
+                                <CustomBarChart chartData={chartData} />
+                            </Grid>
+                        </Grid>
                         <Typography className='text-center py-1 fw-bold mt-4 fs-6'>Note: Source of the calculation will be shared to the designated company representative during the auditing.</Typography>
                         <Typography className='text-center py-1 fw-bold mt-2 fs-5'>Do you want to change any data? If no, please click on Submit and enter your email id to get the data on your business email.</Typography>
                     </Box>
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
                             <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
-                            <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button>
-                        </Stack>
-                    </div>
-                </Card>
-            </Container>
-
-            <Container maxWidth>
-                {/* <Card className='custom-inner-bg'> */}
-                <Card>
-                    <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
-                        <Box color='white'>
-                            <h3 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h3>
-                            <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={350} />
-                            <h4 className='text-center py-3 fw-bold mt-1'>Total To Offset = {total.toFixed(2)} kgCO<sub>2</sub>e</h4>
-                            <h4 className='text-center py-3 fw-bold mt-1'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</h4>
-                        </Box>
-                    </div>
-                    <div className='d-flex justify-content-end p-3'>
-                        <Stack direction={"row"} spacing={2}>
-                            <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Send Mail</Button>
                             <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button>
                         </Stack>
                     </div>
