@@ -220,7 +220,7 @@ const Result = () => {
                                 <CustomBarChart chartData={chartData} />
                             </Grid>
                             <Grid item xs={12} sm={4} md={4} >
-                                <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={350} />
+                                <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={300} />
                             </Grid>
                         </Grid>
                         <Typography className='text-center py-1 fw-bold mt-4 fs-6'>Note: Source of the calculation will be shared to the designated company representative during the auditing.</Typography>
