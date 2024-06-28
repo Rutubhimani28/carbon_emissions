@@ -50,12 +50,12 @@ const DigitalContent = (props) => {
                     emission: Number((values?.count * 4 / 1000).toFixed(2))
                 },
                 {
-                    type: 'Attachment',
+                    type: 'Attachments',
                     mb: values?.MB,
                     emission: Number((values?.MB * 50 / 1000).toFixed(2))
                 },
                 {
-                    type: 'Laptop',
+                    type: 'Laptops used',
                     noOfAttendees: values?.noOfAttendees,
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
@@ -150,7 +150,7 @@ const DigitalContent = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4' color='white'>
-                                    Attachment
+                                    Attachments
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>MB</FormLabel>
@@ -198,7 +198,7 @@ const DigitalContent = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4' color='white'>
-                                    Laptop
+                                    Laptops used
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No.of Attendees</FormLabel>
@@ -279,7 +279,7 @@ const DigitalContent = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                <Typography color='white'>{`Total Digital Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>

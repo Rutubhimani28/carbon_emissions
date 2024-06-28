@@ -263,7 +263,7 @@ const LocalTranspotation = (props) => {
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "petrolCarEmission", values?.petrolCarKms, e.target.value, 0.171)
                                                         }}
-                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                        inputProps={{ min: 1, max: 4, style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" disabled name='petrolCarEmission' value={values?.petrolCarEmission} onChange={formik.handleChange} /></td>
@@ -282,7 +282,7 @@ const LocalTranspotation = (props) => {
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "dieselCarEmission", values?.dieselCarKms, e.target.value, 0.172)
                                                         }}
-                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} /></td>
+                                                        inputProps={{ min: 1, max: 4, style: { color: 'white' } }} /></td>
                                                 <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" name='dieselCarEmission' value={values?.dieselCarEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
@@ -324,7 +324,7 @@ const LocalTranspotation = (props) => {
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "hybridCarEmission", values?.hybridCarKms, e.target.value, 0.068)
                                                         }}
-                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                        inputProps={{ min: 1, max: 4, style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" name='hybridCarEmission' value={values?.hybridCarEmission} onChange={formik.handleChange} disabled /></td>
@@ -343,7 +343,7 @@ const LocalTranspotation = (props) => {
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "electricCarEmission", values?.electricCarKms, e.target.value, 0.047)
                                                         }}
-                                                        inputProps={{ inputProps: { min: 1 }, style: { color: 'white' } }} />
+                                                        inputProps={{ min: 1, max: 4, style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='electricCarEmission' value={values?.electricCarEmission} onChange={formik.handleChange} /></td>
                                             </tr>
@@ -387,6 +387,9 @@ const LocalTranspotation = (props) => {
                                     </div>
 
                                 </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={12} marginY={2}>
+                                <Typography color='white'>Note: No. of passengers limit to max 4. (including driver)</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
