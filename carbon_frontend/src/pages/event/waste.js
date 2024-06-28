@@ -207,7 +207,7 @@ const Waste = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className="p-3 custom-inner-bg" style={{ padding: '20px' }}>
+                <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
                     <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
 
