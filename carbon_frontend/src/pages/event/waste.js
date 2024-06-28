@@ -218,7 +218,7 @@ const Waste = (props) => {
                             flexDirection={'column'}
                         >
                             <IconDiv>
-                                <img src={WasteImg} alt="Waste" width={100} />
+                                <img src={WasteImg} alt="Waste" width={100} className='tabImgWhite' />
                             </IconDiv>
                             <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                                 <Grid item xs={12} sm={6} md={6}>

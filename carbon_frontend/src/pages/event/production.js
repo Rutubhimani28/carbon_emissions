@@ -466,7 +466,7 @@ const Production = (props) => {
                             flexDirection={'column'}
                         >
                             <IconDiv>
-                                <img width={100} src={ProductionImg} alt="Food" />
+                                <img width={100} src={ProductionImg} alt="Food" className='tabImgWhite' />
                             </IconDiv>
 
                             <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>

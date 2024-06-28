@@ -114,7 +114,7 @@ const AirFreight = (props) => {
                     }}>
 
                         <IconDiv>
-                            <img width={100} src={LogisticsImg} alt="Food" />
+                            <img width={100} src={LogisticsImg} alt="Food" className='tabImgWhite' />
                         </IconDiv>
                         <Box>
                             <div className="table-responsive">

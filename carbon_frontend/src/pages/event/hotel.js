@@ -116,7 +116,7 @@ const Hotel = (props) => {
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
-                                <img src={Accomodation} alt="Hotel" width={100} />
+                                <img src={Accomodation} alt="Hotel" width={100} className='tabImgWhite' />
                             </IconDiv>
                             <Grid
                                 container

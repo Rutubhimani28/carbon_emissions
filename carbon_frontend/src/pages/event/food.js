@@ -216,7 +216,7 @@ const Food = (props) => {
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
-                                <img width={100} src={FoodImg} alt="Food" />
+                                <img width={100} src={FoodImg} alt="Food" className='tabImgWhite' />
                             </IconDiv>
 
                             <Grid
