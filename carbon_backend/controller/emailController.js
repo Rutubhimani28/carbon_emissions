@@ -13,7 +13,7 @@ const addEmail = async (req, res) => {
             receiver: receiver,
             subject: subject,
             data: { ...data },
-            templateName: templateName || "event_grand_total_result_Template"
+            templateName: templateName
         };
 
         await sendMail(sendMailPayload);
