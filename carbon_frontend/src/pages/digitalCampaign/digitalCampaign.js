@@ -6,6 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
 import CampaignImg from '../../assets/Travel.png';
+import Phone from '../../assets/phone2.png';
 import { IconDiv } from '../../components/IconDiv';
 
 const DigitalCampaign = (props) => {
@@ -150,7 +151,7 @@ const DigitalCampaign = (props) => {
                 <Card className='p-3 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img width={100} src={CampaignImg} alt="Digital Campaign" />
+                            <img width={100} src={Phone} alt="Digital Campaign " className="tabImgWhite" />
                         </IconDiv>
                         <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                             <Grid item xs={12} sm={6} md={6}>
