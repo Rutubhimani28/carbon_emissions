@@ -150,7 +150,7 @@ const DigitalCampaign = (props) => {
                 <Card className='p-3 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img width={100} src={CampaignImg} alt="Food" />
+                            <img width={100} src={CampaignImg} alt="Digital Campaign" />
                         </IconDiv>
                         <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                             <Grid item xs={12} sm={6} md={6}>
@@ -161,7 +161,7 @@ const DigitalCampaign = (props) => {
                                             <tr>
                                                 <th />
                                                 <th className='ps-2'>No of Emails</th>
-                                                <th className='ps-2'>Emission (kgCO2e)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Emails</td>
@@ -186,7 +186,7 @@ const DigitalCampaign = (props) => {
                                             <tr>
                                                 <th />
                                                 <th className='ps-2'>Attachment Size</th>
-                                                <th className='ps-2'>Emission (kgCO2e)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Email Attachment</td>
@@ -216,7 +216,7 @@ const DigitalCampaign = (props) => {
                                                 <th className='ps-2'>Total Energy</th>
                                                 {/* <th className='ps-2'>Emissions</th> */}
                                                 <th className='ps-2'>Impressions</th>
-                                                <th className='ps-2'>Total Emissions (kgCO2e)</th>
+                                                <th className='ps-2'>Total Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Image</td>
@@ -306,7 +306,7 @@ const DigitalCampaign = (props) => {
                                                 <th className='ps-2'>Total Energy</th>
                                                 {/* <th className='ps-2'>Emissions</th> */}
                                                 <th className='ps-2'>Impressions</th>
-                                                <th className='ps-2'>Total Emissions (kgCO2e)</th>
+                                                <th className='ps-2'>Total Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Video</td>
@@ -395,7 +395,7 @@ const DigitalCampaign = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission} kgCO2e`}</Typography>
                             </Grid>
                         </Grid>
                     </Box>

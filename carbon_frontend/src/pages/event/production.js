@@ -478,7 +478,7 @@ const Production = (props) => {
                                             <tr>
                                                 <th />
                                                 <th className="ps-2">Total Area (m2)</th>
-                                                <th className="ps-2">Emission (kgCO2e)</th>
+                                                <th className="ps-2">Emissions</th>
                                             </tr>
                                             {fieldDataOne &&
                                                 fieldDataOne?.map((item) => (
@@ -528,7 +528,7 @@ const Production = (props) => {
                                             <tr>
                                                 <th />
                                                 <th className="ps-2">Weight (Kgs)</th>
-                                                <th className="ps-2">Emission (kgCO2e)</th>
+                                                <th className="ps-2">Emissions</th>
                                             </tr>
                                             {fieldDataTwo &&
                                                 fieldDataTwo?.map((ite) => (
@@ -579,7 +579,7 @@ const Production = (props) => {
                                                 <th />
                                                 <th className="ps-2">No of Hours</th>
                                                 <th className="ps-2">No of Devices/ Panels</th>
-                                                <th className="ps-2">Emission (kgCO2e)</th>
+                                                <th className="ps-2">Emissions</th>
                                             </tr>
                                             {fieldDataThree &&
                                                 fieldDataThree?.map((it) => (
@@ -646,7 +646,7 @@ const Production = (props) => {
                                                 <th />
                                                 <th className="ps-2">No of Hours</th>
                                                 <th className="ps-2">No of Lights</th>
-                                                <th className="ps-2">Emission (kgCO2e)</th>
+                                                <th className="ps-2">Emissions</th>
                                             </tr>
                                             {fieldDataFour &&
                                                 fieldDataFour?.map((i) => (
@@ -747,7 +747,7 @@ const Production = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color="white">{`Total Food and Beverages Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
+                                <Typography color="white">{`Total Food and Beverages Footprint = ${totalEmission}  kgCO2e`}</Typography>
                             </Grid>
                         </Grid>
                     </Box>

@@ -49,6 +49,9 @@ const Home = () => {
     });
 
     useEffect(() => {
+        console.log("useEffect isValid:", isValid); // Log isValid when the component mounts or when it updates
+        console.log("useEffect Errors:", errors); // L
+
         if (toolData?.length > 0 && ![null, undefined, -1].includes(toolData?.findIndex((item) => item?.type === "toolForm"))) {
             const formPrevData = toolData.find((item) => item.type === "toolForm");
             formik.setFieldValue("name", formPrevData?.name);
@@ -59,12 +62,17 @@ const Home = () => {
         }
     }, [toolData]);
 
+    const { values, errors, touched, isValid } = formik;
+
+    console.log("isValid:", isValid); // Log isValid to check its value
+    console.log("Errors:", errors); // Log errors to verify if they are correctly populated
+
     return (
         <Container maxWidth="lg" className='text-white'>
             <Box textAlign="center" mt={4}>
                 <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} />
                 <Typography variant="h2" mt={2} className='text'>
-                    Welcome to Sirat's NetZero Tool,
+                    Welcome to Sirāt's NetZero Platform Tool
                 </Typography>
                 <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
@@ -152,7 +160,7 @@ const Home = () => {
                             </Grid>
                             <Grid item xs={12} sm={12}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
-                                    Allotted budget for the activity (In $) <span style={{ color: 'red' }}>*</span>
+                                    Allotted budget for the activity (in $) <span style={{ color: 'red' }}>*</span>
                                 </FormLabel>
                                 <TextField
                                     name="budget"
@@ -179,7 +187,8 @@ const Home = () => {
                                     {isLoading ? <CircularProgress size={27} /> : 'Save'}
                                 </Button>
                             </Grid>
-                            <Grid item xs={5} sm={3}>
+
+                            <Grid item xs={5} sm={3} className='ps-0'>
                                 <Button
                                     variant="outlined"
                                     onClick={() => {
@@ -197,8 +206,8 @@ const Home = () => {
             </Box>
             <Box mt={0} textAlign="center">
                 <Typography className="mb-2 fs-5">Choose your Marketing activity</Typography>
-                <Button variant="contained" color="primary" style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
-                <Button variant="contained" style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
+                <Button variant="contained" color="primary" className="fs-3" disabled={!isValid || Object.keys(errors).length > 0} style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
+                <Button variant="contained" className="fs-3" disabled={!isValid || Object.keys(errors).length > 0} style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
             </Box>
             <Box my={3} className="text-center d-flex justify-content-center">
                 <Box textAlign="left" maxWidth="1000px">

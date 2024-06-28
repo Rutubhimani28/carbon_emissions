@@ -116,7 +116,7 @@ const AirFreight = (props) => {
                                     <th className="pe-2">Mode of Transport</th>
                                     <th className="ps-2">No of Kms</th>
                                     <th className="ps-2">Weight in Kgs</th>
-                                    <th className="ps-2">Emission (kgCO2e)</th>
+                                    <th className="ps-2">Emissions</th>
                                 </tr>
                                 <tr>
                                     <td className="ps-2 py-1">Air</td>
@@ -250,7 +250,7 @@ const AirFreight = (props) => {
                             <ul>
                                 {allData?.length > 0 &&
                                     allData?.map((item) => (
-                                        <li style={{ color: 'white' }}>{`${item?.type} : ${item?.emission} tons of kgCO2e`}</li>
+                                        <li style={{ color: 'white' }}>{`${item?.type} : ${item?.emission} kgCO2e`}</li>
                                     ))}
                             </ul>
                         </Grid>

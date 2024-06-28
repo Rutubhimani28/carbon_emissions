@@ -246,7 +246,7 @@ const EnergyUpdated = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Energy Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                                <Typography>{`Total Energy Footprint = ${totalEmission} kgCO2e`}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -254,7 +254,7 @@ const EnergyUpdated = (props) => {
                                         allData?.length > 0 && allData?.map((item) => (
 
                                             <li style={{ color: 'white' }}>
-                                                {`${item?.type} : ${item?.emission} tons of kgCO2e`}
+                                                {`${item?.type} : ${item?.emission} kgCO2e`}
                                             </li>
                                         ))
                                     }
@@ -268,4 +268,4 @@ const EnergyUpdated = (props) => {
     )
 }
 
-export default EnergyUpdated;
+export default EnergyUpdated;   

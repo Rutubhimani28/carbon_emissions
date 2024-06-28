@@ -227,7 +227,7 @@ const Waste = (props) => {
                                             <tr>
                                                 <th className="ps-2" />
                                                 <th className="ps-2">Kgs</th>
-                                                <th className="ps-2">Emission (kgCO2e)</th>
+                                                <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className="ps-2 py-1">Food Waste (non-meat)</td>
@@ -321,7 +321,7 @@ const Waste = (props) => {
                                             <tr>
                                                 <th className="ps-2">PET Water bottle</th>
                                                 <th className="ps-3">No. of PET bottles</th>
-                                                <th className="ps-2">Emission (kgCO2e)</th>
+                                                <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className="ps-2 py-1">250ml PET bottle</td>
@@ -443,7 +443,7 @@ const Waste = (props) => {
                                             <tr>
                                                 <th className="ps-2">Branding</th>
                                                 <th className="ps-2">Kg</th>
-                                                <th className="ps-2">Emission (kgCO2e)</th>
+                                                <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
                                                 {/* <td className='ps-2 py-1'>PVC HDPE Banner</td> */}
@@ -567,7 +567,7 @@ const Waste = (props) => {
                                             <tr>
                                                 <th>Brand Promotional</th>
                                                 <th className="ps-2">No. of Units</th>
-                                                <th className="ps-2">Emission (kgCO2e)</th>
+                                                <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className="ps-2 py-1">Printing a Coloured Brochure/ Page (&gt;130 GSM)</td>
@@ -742,7 +742,7 @@ const Waste = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color="white">{`Total Waste Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
+                                <Typography color="white">{`Total Waste Footprint = ${totalEmission} kgCO2e`}</Typography>
                             </Grid>
                         </Grid>
                     </Box>

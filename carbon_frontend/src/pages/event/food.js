@@ -229,7 +229,7 @@ const Food = (props) => {
                                             <tr>
                                                 <th className='ps-2'>Food</th>
                                                 <th className='ps-2'>No of Pax</th>
-                                                <th className='ps-2'>Emission (kgCO2e)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Vegetarian (Lunch/ Dinner)</td>
@@ -283,7 +283,7 @@ const Food = (props) => {
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th className='ps-2'>Menu</th>
-                                                <th className='ps-2'>Emission (kgCO2e)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Customised Food Menu</td>
@@ -301,7 +301,7 @@ const Food = (props) => {
                                             <tr>
                                                 <th className='ps-2'>Beverages (1000ml)</th>
                                                 <th className='ps-2'>No of Bottles </th>
-                                                <th className='ps-2'>Emission (kgCO2e)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Soft Drinks</td>
@@ -386,7 +386,7 @@ const Food = (props) => {
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th className='ps-2'>Menu</th>
-                                                <th className='ps-2'>Emission (kgCO2e)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Customised Beverages</td>
@@ -406,7 +406,7 @@ const Food = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Food and BeveragePs Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Food and BeveragePs Footprint = ${totalEmission} kgCO2e`}</Typography>
                             </Grid>
                         </Grid>
                     </Box>
