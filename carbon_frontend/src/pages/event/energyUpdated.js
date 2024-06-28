@@ -47,12 +47,12 @@ const EnergyUpdated = (props) => {
                     emission: Number((values?.kwh * 0.43).toFixed(2)) || 0
                 },
                 {
-                    type: 'Petrol',
+                    type: 'Petrol (Generator)',
                     gallonsOne: values?.gallonsOne,
                     emission: Number((values?.gallonsOne * 8.78).toFixed(2)) || 0
                 },
                 {
-                    type: 'Diesel',
+                    type: 'Diesel (Generator)',
                     gallonsTwo: values?.gallonsTwo,
                     emission: Number((values?.gallonsTwo * 10.21).toFixed(2)) || 0
                 }

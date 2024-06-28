@@ -196,7 +196,7 @@ const Result = () => {
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
                     <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
-                        <h3 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h3>
+                        <h3 className='text-center py-3 fw-bold green'>Total Carbon Footprint :</h3>
                         <table>
                             <tr className='fs-4'>
                                 <th>Category</th>

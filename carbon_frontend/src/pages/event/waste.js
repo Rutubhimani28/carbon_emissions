@@ -230,7 +230,7 @@ const Waste = (props) => {
                                             <table className="table-custom-inpt-field">
                                                 <tr>
                                                     <th className="ps-2" />
-                                                    <th className="ps-2">Kgs</th>
+                                                    <th className="ps-2">In Kgs</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
@@ -323,7 +323,7 @@ const Waste = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th className="ps-2">PET Water bottle</th>
+                                                    <th className="ps-2">PET Water bottles</th>
                                                     <th className="ps-3">No. of PET bottles</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
@@ -564,7 +564,7 @@ const Waste = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Brand Promotional
+                                            Branding Waste
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
