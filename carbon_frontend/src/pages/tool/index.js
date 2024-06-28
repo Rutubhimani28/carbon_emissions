@@ -53,9 +53,6 @@ const Home = () => {
     });
 
     useEffect(() => {
-        console.log("useEffect isValid:", isValid); // Log isValid when the component mounts or when it updates
-        console.log("useEffect Errors:", errors); // L
-
         if (toolData?.length > 0 && ![null, undefined, -1].includes(toolData?.findIndex((item) => item?.type === "toolForm"))) {
             const formPrevData = toolData.find((item) => item.type === "toolForm");
             formik.setFieldValue("name", formPrevData?.name);
@@ -76,10 +73,6 @@ const Home = () => {
 
 
     const { values, errors, touched, isValid, dirty } = formik;
-
-    console.log("isValid:", isValid); // Log isValid to check its value
-    console.log("Errors:", errors); // Log errors to verify if they are correctly populated
-    console.log("dirty:", dirty); // Log errors to verify if they are correctly populated
 
     return (
         <Container maxWidth="lg" className='text-white'>
@@ -249,7 +242,9 @@ const Home = () => {
             <Box my={3} className="text-center d-flex justify-content-center">
                 <Box textAlign="left" maxWidth="1000px">
                     <Typography variant="body1" className="text-white mt-2">Note:</Typography>
-                    <Typography variant="body1" className="text-white mt-2 ms-2">The summary page will give you how much Carbon footprint you are generating per $ spent on your activity.</Typography>
+                    <Typography variant="body1" className="text-white mt-2 ms-2">To obtain a more accurate Carbon footprint generated from your activity, please input the data in the allotted fields in the subsequent pages.</Typography>
+                    <Typography variant="body1" className="text-white mt-2 ms-2">You can save the data and come back later before submitting.</Typography>
+                    <Typography variant="body1" className="text-white mt-2 ms-2">The summary page will give you how much Carbon footprint you are generating per $ spent on your said activity.</Typography>
                     <Typography variant="body1" className="text-white ms-2">You can't change the values after submitting the form on the last page.</Typography>
                     <Typography variant="body1" className="text-white ms-2">All the emissions values are in kgCO<sub>2</sub>e.</Typography>
                 </Box>

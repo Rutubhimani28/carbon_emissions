@@ -248,7 +248,7 @@ const EnergyUpdated = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Energy Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                <Typography>{`Total Energy Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
