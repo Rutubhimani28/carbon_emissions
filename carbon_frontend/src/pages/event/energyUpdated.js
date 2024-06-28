@@ -142,7 +142,7 @@ const EnergyUpdated = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4'>
-                                    Petrol
+                                    Petrol (Generator)
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
@@ -190,7 +190,7 @@ const EnergyUpdated = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4'>
-                                    Diesel
+                                    Diesel (Generator)
                                 </Typography>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>

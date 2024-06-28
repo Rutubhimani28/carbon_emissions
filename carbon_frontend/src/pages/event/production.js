@@ -473,7 +473,7 @@ const Production = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Type of Material
+                                            Production Material
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -523,7 +523,7 @@ const Production = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Type of Material
+                                            Production Material
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -573,7 +573,7 @@ const Production = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Screen Type
+                                            Stage Screen
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
