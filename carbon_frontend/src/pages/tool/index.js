@@ -3,13 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Box, Button, Container, FormLabel, Grid, TextField, Typography, CircularProgress } from '@mui/material';
+import { Box, Button, Container, FormLabel, Grid, TextField, Typography, CircularProgress, Autocomplete, FormControl } from '@mui/material';
 import logo from '../../layouts/user/assets/images/logo4.gif';
 import { addToolData, clearToolFormData } from '../../redux/slice/toolSlice';
+// import HotelData from '../accomodation/data.json';
 
 const Home = () => {
 
     const [isLoading, setIsLoading] = useState(false);
+    // const [countriesData, setCountriesData] = useState([]);
+    const [isSubmited, setIsSubmited] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const toolData = useSelector(state => state.toolDetails?.data);
@@ -44,6 +47,7 @@ const Home = () => {
         initialValues,
         validationSchema,
         onSubmit: async (values) => {
+            setIsSubmited(true);
             AddData({ type: "toolForm", ...values })
         },
     });
@@ -62,10 +66,20 @@ const Home = () => {
         }
     }, [toolData]);
 
-    const { values, errors, touched, isValid } = formik;
+    // useEffect(() => {
+    //     const allCountriesData = HotelData?.map(item => ({
+    //         label: `${item?.country}`,
+    //         value: `${item?.country}`
+    //     }));
+    //     setCountriesData(allCountriesData);
+    // }, []);
+
+
+    const { values, errors, touched, isValid, dirty } = formik;
 
     console.log("isValid:", isValid); // Log isValid to check its value
     console.log("Errors:", errors); // Log errors to verify if they are correctly populated
+    console.log("dirty:", dirty); // Log errors to verify if they are correctly populated
 
     return (
         <Container maxWidth="lg" className='text-white'>
@@ -157,6 +171,29 @@ const Home = () => {
                                     helperText={formik.touched.country && formik.errors.country}
                                     inputProps={{ style: { color: 'white' } }}
                                 />
+                                {/* <FormControl fullWidth>
+                                    <Autocomplete
+                                        options={countriesData}
+                                        name="country"
+                                        fullWidth
+                                        getOptionLabel={(item) => item?.label}
+                                        value={formik.values?.country || null}
+                                        onChange={formik.handleChange}
+                                        renderInput={(params) =>
+                                            <TextField {...params}
+                                                size="small"
+                                                name="country"
+                                                placeholder='Select Country'
+                                                error={
+                                                    formik.touched.country &&
+                                                    Boolean(formik.errors.country)
+                                                }
+                                                helperText={
+                                                    formik.touched.country && formik.errors.country
+                                                }
+                                            />}
+                                    />
+                                </FormControl> */}
                             </Grid>
                             <Grid item xs={12} sm={12}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
@@ -206,8 +243,8 @@ const Home = () => {
             </Box>
             <Box mt={0} textAlign="center">
                 <Typography className="mb-2 fs-5">Choose your Marketing activity</Typography>
-                <Button variant="contained" color="primary" className="fs-3" disabled={!isValid || Object.keys(errors).length > 0} style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
-                <Button variant="contained" className="fs-3" disabled={!isValid || Object.keys(errors).length > 0} style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
+                <Button variant="contained" color="primary" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
+                <Button variant="contained" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
             </Box>
             <Box my={3} className="text-center d-flex justify-content-center">
                 <Box textAlign="left" maxWidth="1000px">

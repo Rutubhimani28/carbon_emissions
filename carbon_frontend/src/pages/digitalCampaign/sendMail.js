@@ -47,7 +47,8 @@ const SendMail = (props) => {
 
     const handleCancel = () => {
         formik.resetForm();
-        formik.setFieldValue('emails', []);
+        // formik.setFieldValue('emails', []);
+        formik.setFieldValue('emails', formik.values?.[0]);
         setEmailInput('');
         setErr('');
         close();
@@ -229,10 +230,10 @@ const SendMail = (props) => {
                 </DialogContent>
 
                 <DialogActions>
-                    <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading} className="custom-btn">
+                    <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading} className="custom-btn me-2">
                         {isLoading ? <CircularProgress size={27} /> : 'Save'}
                     </LoadingButton>
-                    <Button
+                    {/* <Button
                         type="reset"
                         variant="outlined"
                         style={{ textTransform: "capitalize" }}
@@ -242,7 +243,7 @@ const SendMail = (props) => {
                         }}
                     >
                         Cancle
-                    </Button>
+                    </Button> */}
                 </DialogActions>
             </Dialog>
         </div>
