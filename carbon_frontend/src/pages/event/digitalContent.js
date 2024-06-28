@@ -16,6 +16,7 @@ const DigitalContent = (props) => {
 
     const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
     const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
+    const scope = useSelector((state) => state?.totalDigitalContentDetails?.scope);
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -87,6 +88,7 @@ const DigitalContent = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg'>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={DigitalImg} alt="Digital" width={100} />

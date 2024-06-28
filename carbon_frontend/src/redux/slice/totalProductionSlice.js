@@ -5,7 +5,8 @@ const productionSlice = createSlice({
     name: "production",
     initialState: {
         data: [],
-        totalEmission: 0
+        totalEmission: 0,
+        scope: 3
     },
     reducers: {
         addProductionData: (state, action) => {
@@ -28,11 +29,15 @@ const productionSlice = createSlice({
         deleteProductionData: (state, action) => ({
             ...state,
             data: [],
-            totalEmission: 0
+            totalEmission: 0,
+            scope: 3
         }),
-
+        scopeChange: (state, action) => ({
+            ...state,
+            scope: action.payload
+        })
     },
 });
 
-export const { addProductionData, deleteProductionData } = productionSlice.actions;
+export const { addProductionData, deleteProductionData, scopeChange } = productionSlice.actions;
 export default productionSlice.reducer;

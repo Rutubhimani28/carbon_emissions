@@ -16,6 +16,7 @@ const EnergyUpdated = (props) => {
 
     const allData = useSelector((state) => state?.totalEnergyUpdatedDetails?.data[0]?.data)
     const totalEmission = useSelector((state) => state?.totalEnergyUpdatedDetails?.totalEmission)
+    const scope = useSelector((state) => state?.totalEnergyUpdatedDetails?.scope);
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -79,6 +80,7 @@ const EnergyUpdated = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg'>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={EnergyImg} alt="Energy" width={100} />

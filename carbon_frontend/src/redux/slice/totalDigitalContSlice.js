@@ -5,7 +5,8 @@ const totalDigitalContSlice = createSlice({
     name: "totalDigitalContent",
     initialState: {
         data: [],
-        totalEmission: 0
+        totalEmission: 0,
+        scope: 1
     },
     reducers: {
         addData: (state, action) => {
@@ -23,11 +24,15 @@ const totalDigitalContSlice = createSlice({
         deleteData: (state, action) => ({
             ...state,
             data: [],
-            totalEmission: 0
+            totalEmission: 0,
+            scope: 1
         }),
-
+        scopeChange: (state, action) => ({
+            ...state,
+            scope: action.payload.scope
+        })
     },
 });
 
-export const { addData, deleteData } = totalDigitalContSlice.actions;
+export const { addData, deleteData, scopeChange } = totalDigitalContSlice.actions;
 export default totalDigitalContSlice.reducer;

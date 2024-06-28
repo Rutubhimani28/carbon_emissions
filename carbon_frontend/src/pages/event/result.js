@@ -1,5 +1,6 @@
-import { Box, Button, Card, Container, Stack } from '@mui/material';
+import { Box, Button, Card, Container, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
+import ReactApexChart from 'react-apexcharts';
 import { useDispatch, useSelector } from 'react-redux';
 import SendMail from './sendMail';
 import { deleteData } from '../../redux/slice/totalDigitalContSlice';
@@ -24,6 +25,25 @@ const Result = () => {
     const allLocalTranspotationData = useSelector((state) => state?.totalLocalTranspotationDetails);
     const allAirTravelData = useSelector((state) => state?.totalAirTravelDetails);
     const allHotelData = useSelector((state) => state?.totalHotelDetails);
+
+    const toolData = useSelector(state => state.toolDetails?.data);
+    const toolFormData = toolData?.find((item) => item.type === 'toolForm');
+
+    let scope1Count = 0;
+    let scope2Count = 0;
+    let scope3Count = 0;
+
+    const allFieldsData = [allDigitalContentData, allFreightData, allEnergyData, allFoodData, allWasteData, allProductionData, allLocalTranspotationData, allAirTravelData, allHotelData];
+    console.log("allFieldsData ", allFieldsData)
+    allFieldsData?.forEach((item) => {
+        if (item.scope === 1 || item.scope1 === 1 || item.scope2 === 1) {
+            scope1Count += 1;
+        } else if (item.scope === 2 || item.scope1 === 2 || item.scope2 === 2) {
+            scope2Count += 1;
+        } else {
+            scope3Count += 1;
+        }
+    });
 
     const total = Number(allProductionData?.totalEmission) + Number(allFreightData?.totalEmission) + Number(allFoodData?.totalEmission) + Number(allEnergyData?.totalEmission) + Number(allAirTravelData?.totalEmission) + Number(allDigitalContentData?.totalEmission) + Number(allLocalTranspotationData?.totalEmission) + Number(allHotelData?.totalEmission) + Number(allWasteData?.totalEmission)
 
@@ -90,28 +110,116 @@ const Result = () => {
         dispatch(deleteData())
         dispatch(deleteWasteData())
     }
+
+    const chartOptions = {
+        // labels: resultData.map(item => item.type),
+        labels: ['Scope.1', 'Scope.2', 'Scope.3'],
+        colors: ['#008FFB', '#00E396', '#FEB019'],
+        chart: { type: "donut" },
+        legend: { show: true },
+        dataLabels: { enabled: true },
+        tooltip: { enabled: true },
+        plotOptions: {
+            pie: {
+                expandOnClick: false,
+                donut: {
+                    size: "75%",
+                    labels: {
+                        show: false,
+                        name: { show: false },
+                        // total: {
+                        //     show: true,
+                        //     showAlways: true,
+                        //     formatter: (w) => {
+                        //         const totals = w.globals.seriesTotals;
+
+                        //         const result = totals.reduce((a, b) => a + b, 0);
+
+                        //         return (result / 1000).toFixed(3);
+                        //     }
+                        // }
+                    }
+                }
+            }
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    };
+
+    const chartSeries = [
+        // {
+        //     label: 'Scope.1',
+        //     data: [scope1Count || 0]
+        // },
+        // {
+        //     label: 'Scope.2',
+        //     data: [scope2Count || 0]
+        // },
+        // {
+        //     label: 'Scope.3',
+        //     data: [scope3Count || 0]
+        // }
+        scope1Count, scope2Count, scope3Count
+    ];
+    console.log("---- resultData ", resultData);
+    console.log("---- chartSeries ", chartSeries);
+
     return (
         <div>
             <SendMail open={open} close={() => setOpen(false)} datas={data} />
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
-                    <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
+                    <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
+                        <h3 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h3>
+                        <table>
+                            <tr className='fs-4'>
+                                <th>Category</th>
+                                <th className='ps-4'>Emissions (kgCO<sub>2</sub>e)</th>
+                            </tr>
+                            {
+                                resultData?.length > 0 && resultData?.map((item) => (
+                                    <tr>
+                                        <th>{item?.type}</th>
+                                        {/* <td align='right' className='ps-4'>{item?.totalEmission}</td> */}
+                                        <td className='ps-4'>{`${item?.totalEmission || 0}  `}kgCO<sub>2</sub>e</td>
+                                    </tr>
+                                ))
+                            }
+                        </table>
+                        <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total To Offset = {total} kgCO<sub>2</sub>e</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(2)} tCO<sub>2</sub>e</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-4 fs-6'>Note: Source of the calculation will be shared to the designated company representative during the auditing.</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-2 fs-5'>Do you want to change any data? If no, please click on Submit and enter your email id to get the data on your business email.</Typography>
+                    </Box>
+                    <div className='d-flex justify-content-end p-3'>
+                        <Stack direction={"row"} spacing={2}>
+                            <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
+                            <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button>
+                        </Stack>
+                    </div>
+                </Card>
+            </Container>
 
+            <Container maxWidth>
+                {/* <Card className='custom-inner-bg'> */}
+                <Card>
+                    <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
                         <Box color='white'>
                             <h3 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h3>
-                            <table>
-                                {
-                                    resultData?.length > 0 && resultData?.map((item) => (
-                                        <tr>
-                                            <th>{item?.type}</th>
-                                            <td align='right' className='ps-4'>{item?.totalEmission}</td>
-                                            <td className='ps-1'>kgCO<sub>2</sub>e</td>
-                                        </tr>
-                                    ))
-                                }
-                            </table>
-                            <h4 className='text-center py-3 fw-bold mt-1'>Total To Offset = {total} kgCO<sub>2</sub>e</h4>
+                            <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={350} />
+                            <h4 className='text-center py-3 fw-bold mt-1'>Total To Offset = {total.toFixed(2)} kgCO<sub>2</sub>e</h4>
+                            <h4 className='text-center py-3 fw-bold mt-1'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</h4>
                         </Box>
                     </div>
                     <div className='d-flex justify-content-end p-3'>

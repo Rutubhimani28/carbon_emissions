@@ -15,6 +15,7 @@ const Hotel = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalHotelDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
+    const scope = useSelector((state) => state?.totalHotelDetails?.scope);
 
     const hotelType = [
         { label: '4 Stars', value: 4 },
@@ -111,6 +112,7 @@ const Hotel = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={Accomodation} alt="Hotel" width={100} />

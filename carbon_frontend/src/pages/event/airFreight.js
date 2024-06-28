@@ -26,6 +26,7 @@ const AirFreight = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalAirFreightDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirFreightDetails?.totalEmission);
+    const scope = useSelector((state) => state?.totalAirFreightDetails?.scope);
 
     // -----------   initialValues
     const initialValues = {
@@ -106,6 +107,7 @@ const AirFreight = (props) => {
                         flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column',
                     }}
                 >
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <IconDiv>
                         <img width={100} src={LogisticsImg} alt="Food" />
                     </IconDiv>

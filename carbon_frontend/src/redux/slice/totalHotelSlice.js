@@ -5,7 +5,8 @@ const totalHotelSlice = createSlice({
     name: "hotel",
     initialState: {
         data: [],
-        totalEmission: 0
+        totalEmission: 0,
+        scope: 3,
     },
     reducers: {
         addHotelData: (state, action) => {
@@ -23,11 +24,15 @@ const totalHotelSlice = createSlice({
         deleteHotelData: (state, action) => ({
             ...state,
             data: [],
-            totalEmission: 0
+            totalEmission: 0,
+            scope: 3
         }),
-
+        scopeChange: (state, action) => ({
+            ...state,
+            scope: action.payload.scope
+        })
     },
 });
 
-export const { addHotelData, deleteHotelData } = totalHotelSlice.actions;
+export const { addHotelData, deleteHotelData, scopeChange } = totalHotelSlice.actions;
 export default totalHotelSlice.reducer;

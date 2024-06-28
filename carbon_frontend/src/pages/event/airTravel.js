@@ -14,6 +14,7 @@ const AirTravel = (props) => {
     const dispatch = useDispatch()
     const allData = useSelector((state) => state?.totalAirTravelDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirTravelDetails?.totalEmission);
+    const scope = useSelector((state) => state?.totalAirTravelDetails?.scope);
 
     // -----------   initialValues
     const initialValues = {
@@ -134,6 +135,7 @@ const AirTravel = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-3 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={AirTravelImg} alt="Waste" width={100} />

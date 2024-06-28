@@ -1,10 +1,10 @@
-import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Card, Container, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLocalTranspotationData, deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
+import { addLocalTranspotationData, deleteLocalTranspotationData, scopeChange } from '../../redux/slice/totalLocalTranspotationSlice';
 import LocalTransportImg from '../../assets/Transportation.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -14,6 +14,10 @@ const LocalTranspotation = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalLocalTranspotationDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalLocalTranspotationDetails?.totalEmission);
+    const scope1 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope1);
+    const scope2 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope2);
+
+    console.log("---- scope1 ", scope1);
 
     // -----------   initialValues
     const initialValues = {
@@ -197,7 +201,35 @@ const LocalTranspotation = (props) => {
     return (
         <div>
             <Container maxWidth>
+                <Grid container>
+                    <Grid item xs={12} sm={6}>
+                        <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Scope<span style={{ color: "red" }}>*</span></FormLabel>
+                        <Select
+                            displayEmpty
+                            inputProps={{ 'aria-label': 'Without label' }}
+                            fullWidth
+                            labelId="demo-simple-select-helper-label"
+                            size="small"
+                            name="scope1"
+                            id="demo-simple-select-helper"
+                            value={scope1}
+                            onChange={(e) => {
+                                dispatch(scopeChange({ scope1: Number(e.target.value), scope2 }));
+                            }}
+                            onBlur={formik.handleBlur}
+                        >
+                            <MenuItem value={1}>Scope.1</MenuItem>
+                            <MenuItem value={2}>Scope.2</MenuItem>
+                            <MenuItem value={3}>Scope.3</MenuItem>
+                        </Select>
+                        <FormHelperText error={formik.touched.allocatedBudgetForYourActivity && Boolean(formik.errors.allocatedBudgetForYourActivity)}>
+                            {formik.touched.allocatedBudgetForYourActivity && formik.errors.allocatedBudgetForYourActivity}
+                        </FormHelperText>
+                    </Grid>
+                </Grid>
+
                 <Card className='p-4 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope1} Emissions`}</Typography>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={LocalTransportImg} alt="Local Transportation" width={100} />
@@ -320,6 +352,7 @@ const LocalTranspotation = (props) => {
                                 </Box>
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
+                                <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope2} Emissions`}</Typography>
                                 <Box>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>

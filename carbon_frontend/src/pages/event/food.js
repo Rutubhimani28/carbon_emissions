@@ -14,6 +14,7 @@ const Food = (props) => {
     const theme = useTheme();
     const allData = useSelector((state) => state?.totalFoodDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalFoodDetails?.totalEmission);
+    const scope = useSelector((state) => state?.totalFoodDetails?.scope);
 
     // -----------   initialValues
     const initialValues = {
@@ -211,6 +212,7 @@ const Food = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-3 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img width={100} src={FoodImg} alt="Food" />
