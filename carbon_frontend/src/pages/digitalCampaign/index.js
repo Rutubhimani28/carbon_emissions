@@ -28,7 +28,7 @@ const DigitalCampaignCalculation = () => {
                         scrollButtons="auto"
                         aria-label="scrollable auto tabs example"
                     >
-                        <Tab icon={<img src={AirTravel} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Air Travel" className='tab-text' />
+                        <Tab icon={<img src={AirTravel} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Social Media Campaign" className='tab-text' />
                         <Tab icon={<img src={result} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Summary" className='tab-text' />
                     </Tabs>
                 </Box>
