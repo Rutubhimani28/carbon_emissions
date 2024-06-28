@@ -98,7 +98,7 @@ const AirFreight = (props) => {
         <div>
             <Container maxWidth>
                 <Card
-                    className="p-4 custom-inner-bg"
+                    className="p-4 custom-inner-bg textborder"
                     style={{
                         padding: '20px',
 
