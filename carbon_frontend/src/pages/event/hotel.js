@@ -106,7 +106,7 @@ const Hotel = (props) => {
     }, [value]);
 
     const { values } = formik;
-    
+
     return (
         <div>
             <Container maxWidth>
@@ -256,7 +256,7 @@ const Hotel = (props) => {
                                     </FormControl>
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionsOne"
                                         name="emissionsOne"
@@ -328,7 +328,7 @@ const Hotel = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionsTwo"
                                         name="emissionsTwo"
@@ -376,7 +376,7 @@ const Hotel = (props) => {
                                 </Grid>
 
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionsThree"
                                         name="emissionsThree"
@@ -406,7 +406,7 @@ const Hotel = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginY={2}>
-                                <Typography color='white'>{`Total Hotel Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Hotel Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>

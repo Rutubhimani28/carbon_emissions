@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Box, Stack, AppBar, Toolbar, IconButton, List, ListItemButton, Button, ListItem, ListItemText } from '@mui/material';
+import { Box, Stack, AppBar, Toolbar, IconButton, List, ListItemButton, Button, ListItem, ListItemText, Typography } from '@mui/material';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // components
@@ -12,6 +12,7 @@ import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
+import logo from '../../user/assets/images/logo4.gif';
 
 // ----------------------------------------------------------------------
 
@@ -61,6 +62,10 @@ export default function Header({ onOpenNav }) {
         </IconButton> */}
 
         {/* <Searchbar /> */}
+        <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center", cursor: "pointer" }} onClick={() => navigate("/dashboard/home")}>
+          <img src={logo} width={'170vh'} alt="logo" />
+        </Typography>
+
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack

@@ -118,7 +118,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -166,7 +166,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -214,7 +214,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -246,7 +246,7 @@ const EnergyUpdated = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Energy Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                                <Typography>{`Total Energy Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -254,7 +254,7 @@ const EnergyUpdated = (props) => {
                                         allData?.length > 0 && allData?.map((item) => (
 
                                             <li style={{ color: 'white' }}>
-                                                {`${item?.type} : ${item?.emission} tons of kgCO2e`}
+                                                {`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e
                                             </li>
                                         ))
                                     }
@@ -268,4 +268,4 @@ const EnergyUpdated = (props) => {
     )
 }
 
-export default EnergyUpdated;
+export default EnergyUpdated;   

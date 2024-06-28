@@ -67,7 +67,8 @@ const SendMail = (props) => {
                 subject: values?.subject,
                 receiver: values?.emails,
                 data: datas,
-                sender: values?.sender
+                sender: values?.sender,
+                templateName: "event_total_result_Template"
             };
 
             const result = await apipost('api/email/add', data)
@@ -89,14 +90,14 @@ const SendMail = (props) => {
     // formik
     const formik = useFormik({
         initialValues,
-        // validationSchema,
-        // validate: (values) => {
-        //     const errors = {};
-        //     if (!Object.prototype.hasOwnProperty.call(formik.errors, 'addEmail') && values.emails.length < 1) {
-        //         errors.addEmail = 'Add at least one email';
-        //     }
-        //     return errors;
-        // },
+        validationSchema,
+        validate: (values) => {
+            const errors = {};
+            if (!Object.prototype.hasOwnProperty.call(formik.errors, 'addEmail') && values.emails.length < 1) {
+                errors.addEmail = 'Add at least one email';
+            }
+            return errors;
+        },
         onSubmit: async (values) => {
             addEmail(values);
         }
@@ -193,7 +194,7 @@ const SendMail = (props) => {
                                         }
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={12} md={12}>
+                                {/* <Grid item xs={12} sm={12} md={12}>
                                     <FormLabel id="demo-row-radio-buttons-group-label">Email <span style={{ color: "red" }}>*</span></FormLabel>
                                     <TextField
                                         id="emails"
@@ -202,6 +203,7 @@ const SendMail = (props) => {
                                         fullWidth
                                         size="small"
                                         disabled
+                                        // value={formik.values.emails[0]}
                                         value={formik.values.emails[0]}
                                         onChange={formik.handleChange}
                                         error={
@@ -212,18 +214,18 @@ const SendMail = (props) => {
                                             formik.touched.emails && formik.errors.emails
                                         }
                                     />
-                                </Grid>
-                                {/* <Grid item xs={12}>
+                                </Grid> */}
+                                <Grid item xs={12}>
                                     <ul id='tags' style={{ display: "flex", flexWrap: "wrap", width: "100%", border: formik.values.emails?.length > 0 ? '1px solid #dce0e4' : '0', padding: formik.values.emails?.length > 0 ? '5px' : '0' }}>
                                         {formik.values.emails?.map((tag, index) => (
                                             <li key={index} style={{ display: "flex", listStyle: "none", margin: "0 5px 5px 5px", backgroundColor: "grey", padding: "2px 5px 2px 8px", borderRadius: "20px", color: "#fff", fontSize: "14px", alignItems: "center" }}>
                                                 <span >{tag}</span>
-                                                <CloseIcon style={{ fontSize: "14px", color: "#fff", marginLeft: "5px", cursor: "pointer" }} onClick={event => removeTag(index)} />
+                                                {index === 0 ? '' : <CloseIcon style={{ fontSize: "14px", color: "#fff", marginLeft: "5px", cursor: "pointer" }} onClick={event => removeTag(index)} />}
                                             </li>
                                         ))}
                                     </ul>
-                                </Grid> */}
-                                {/* <Grid item xs={11}>
+                                </Grid>
+                                <Grid item xs={11}>
                                     <TextField
                                         name='addEmail'
                                         type='text'
@@ -240,11 +242,11 @@ const SendMail = (props) => {
                                             formik.touched.addEmail && formik.errors.addEmail
                                         }
                                     />
-                                </Grid> */}
-                                {/* <Grid item xs={1} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                                </Grid>
+                                <Grid item xs={1} display={"flex"} justifyContent={"center"} alignItems={"center"}>
 
                                     <AddCircleOutlineIcon onClick={event => addTagsButton(event)} style={{ fontSize: "30px", cursor: "pointer" }} />
-                                </Grid> */}
+                                </Grid>
                                 <Grid item xs={12} style={{ color: "red", paddingTop: "4px", fontSize: "13px" }} >
                                     {/* err */}
                                     {/* {formik.touched.number && (err || formik.errors.number)} */}

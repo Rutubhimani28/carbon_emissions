@@ -215,7 +215,7 @@ const LocalTranspotation = (props) => {
                                                 <th className='ps-2'>Mode of Transport</th>
                                                 <th className='ps-2'>No of Kms</th>
                                                 <th className='ps-2'>No of Passengers</th>
-                                                <th className='ps-2'>Emission (kg CO2e)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Petrol Car</td>
@@ -326,7 +326,7 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <th className='ps-2'>Mode of Transport</th>
                                                 <th className='ps-3'>No of Kms</th>
-                                                <th className='ps-2'>Emissions per person (kg CO2e)</th>
+                                                <th className='ps-2'>Emissions per person </th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Bus- Diesel</td>
@@ -365,7 +365,7 @@ const LocalTranspotation = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginY={2}>
-                                <Typography color='white'>{`Total Local Transportation Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Local Transportation Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>

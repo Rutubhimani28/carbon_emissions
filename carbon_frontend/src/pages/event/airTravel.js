@@ -151,7 +151,7 @@ const AirTravel = (props) => {
                                             <tr>
                                                 <th className='ps-2'>Journey Type</th>
                                                 <th className='ps-2'>No of trips</th>
-                                                <th className='ps-2'>Emissions (Kg CO2e/ km)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
@@ -192,7 +192,7 @@ const AirTravel = (props) => {
                                             <tr>
                                                 <th className='ps-2'>Journey Type</th>
                                                 <th className='ps-2'>No of trips</th>
-                                                <th className='ps-2'>Emissions (Kg CO2e/ km)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
@@ -233,7 +233,7 @@ const AirTravel = (props) => {
                                             <tr>
                                                 <th className='ps-2'>Journey Type</th>
                                                 <th className='ps-2'>No of trips</th>
-                                                <th className='ps-2'>Emissions (Kg CO2e/ km)</th>
+                                                <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
@@ -275,7 +275,7 @@ const AirTravel = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={2}>
-                                <Typography color='white'>{`Total Air Travel Footprint = ${totalEmission}  tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Air Travel Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={1}>
                                 <Typography color='white'>Note: For more accurate calculations, please visit ICAO webiste.</Typography>

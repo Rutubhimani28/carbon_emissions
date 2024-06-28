@@ -13,12 +13,12 @@ const addEmail = async (req, res) => {
             receiver: receiver,
             subject: subject,
             data: { ...data },
-            templateName: templateName || "grand_total_result_Template"
+            templateName: templateName || "event_grand_total_result_Template"
         };
 
         await sendMail(sendMailPayload);
 
-        const newEmail = new Email({ subject, receiver, sender, templateName: templateName || "grand_total_result_Template", data: data });
+        const newEmail = new Email({ subject, receiver, sender, templateName: templateName || "event_grand_total_result_Template", data: data });
         await newEmail.save();
 
         return res.status(201).json({ success: true, message: 'Email Sent successfully' });

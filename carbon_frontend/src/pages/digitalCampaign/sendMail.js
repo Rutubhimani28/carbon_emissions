@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux';
 import ClearIcon from "@mui/icons-material/Clear";
 import { LoadingButton } from "@mui/lab";
-import { CircularProgress, DialogContentText,FormLabel} from "@mui/material";
+import { CircularProgress, DialogContentText, FormLabel } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -25,6 +26,10 @@ const SendMail = (props) => {
     const [emailInput, setEmailInput] = useState('')
 
     const userid = sessionStorage.getItem('user_id');
+    const userEmail = JSON.parse(sessionStorage.getItem('user'));
+
+    const toolData = useSelector(state => state.toolDetails?.data);
+    const toolFormData = toolData.find((item) => item?.type === "toolForm");
 
     const validationSchema = yup.object({
         subject: yup.string().required("Subject is required"),
@@ -32,10 +37,11 @@ const SendMail = (props) => {
     });
 
     const initialValues = {
-        subject: "",
-        receiver: "",
+        subject: toolFormData?.activityName,
+        receiver: userEmail,
         sender: userid,
-        emails: [],
+        // emails: [],
+        emails: [`${userEmail?.emailAddress}`],
         addEmail: ''
     };
 
@@ -55,7 +61,8 @@ const SendMail = (props) => {
                 subject: values?.subject,
                 receiver: values?.emails,
                 data: datas,
-                sender: values?.sender
+                sender: values?.sender,
+                templateName: "digital_campaign_total_result_Template"
             };
 
             const result = await apipost('api/email/add', data);
@@ -123,7 +130,7 @@ const SendMail = (props) => {
         // setEmails(newTags);
         formik.setFieldValue('emails', newTags);
     };
-    
+
     return (
         <div>
             <Dialog
@@ -186,7 +193,7 @@ const SendMail = (props) => {
                                         {formik.values.emails?.map((tag, index) => (
                                             <li key={index} style={{ display: "flex", listStyle: "none", margin: "0 5px 5px 5px", backgroundColor: "grey", padding: "2px 5px 2px 8px", borderRadius: "20px", color: "#fff", fontSize: "14px", alignItems: "center" }}>
                                                 <span >{tag}</span>
-                                                <CloseIcon style={{ fontSize: "14px", color: "#fff", marginLeft: "5px", cursor: "pointer" }} onClick={event => removeTag(index)} />
+                                                {index === 0 ? '' : <CloseIcon style={{ fontSize: "14px", color: "#fff", marginLeft: "5px", cursor: "pointer" }} onClick={event => removeTag(index)} />}
                                             </li>
                                         ))}
                                     </ul>
@@ -210,7 +217,6 @@ const SendMail = (props) => {
                                     />
                                 </Grid>
                                 <Grid item xs={1} display={"flex"} justifyContent={"center"} alignItems={"center"}>
-
                                     <AddCircleOutlineIcon onClick={event => addTagsButton(event)} style={{ fontSize: "30px", cursor: "pointer" }} />
                                 </Grid>
                                 <Grid item xs={12} style={{ color: "red", paddingTop: "4px", fontSize: "13px" }} >

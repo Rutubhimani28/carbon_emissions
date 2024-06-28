@@ -15,11 +15,11 @@ export default function AccountPopover() {
   const user = JSON.parse(sessionStorage.getItem('user'))
 
   const MENU_OPTIONS = [
-    {
-      label: 'Home',
-      icon: 'eva:home-fill',
-      path: "/dashboard/app"
-    },
+    // {
+    //   label: 'Home',
+    //   icon: 'eva:home-fill',
+    //   path: "/dashboard/app"
+    // },
     // {
     //   label: 'Profile',
     //   icon: 'eva:person-fill',

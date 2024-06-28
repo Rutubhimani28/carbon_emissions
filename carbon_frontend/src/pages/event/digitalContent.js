@@ -126,7 +126,7 @@ const DigitalContent = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -174,7 +174,7 @@ const DigitalContent = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -245,7 +245,7 @@ const DigitalContent = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions (kgCO2e)</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -277,7 +277,7 @@ const DigitalContent = (props) => {
 
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} tons of kgCO2e`}</Typography>
+                                <Typography color='white'>{`Total Digital Content Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
@@ -285,7 +285,7 @@ const DigitalContent = (props) => {
                                         allData?.length > 0 && allData?.map((item) => (
 
                                             <li>
-                                                {`${item?.type} : ${item?.emission} tons of kgCO2e`}
+                                                {`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e
                                             </li>
                                         ))
                                     }

@@ -16,10 +16,10 @@ const DigitalCampaignCalculation = () => {
 
     return (
         <div>
-            <div style={{ display: 'flex', marginBottom: "10px", overflow: 'hidden', alignItems: 'center', justifyContent: 'center', height: '600px', marginTop: '14px' }}>
+            {/* <div style={{ display: 'flex', marginBottom: "10px", overflow: 'hidden', alignItems: 'center', justifyContent: 'center', height: '600px', marginTop: '14px' }}>
                 <img src={banner} alt="top_img" width="100%" />
-            </div>
-            <Container maxWidth className="custom-outer-bg tab-fixed">
+            </div> */}
+            <Container maxWidth className="custom-outer-bg tab-fixed mt-2">
                 <Box className="tab-outer">
                     <Tabs
                         value={value}
