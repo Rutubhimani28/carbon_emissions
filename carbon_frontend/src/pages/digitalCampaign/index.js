@@ -2,6 +2,7 @@ import { Box, Container, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import Result from './result';
 import AirTravel from '../../assets/Travel.png';
+import Phone from '../../assets/phone2.png';
 import result from '../../assets/result.png';
 import DigitalCampaignComp from './digitalCampaign';
 import banner from '../../layouts/user/assets/images/NetZero Tool Pic.jpeg';
@@ -28,7 +29,7 @@ const DigitalCampaignCalculation = () => {
                         scrollButtons="auto"
                         aria-label="scrollable auto tabs example"
                     >
-                        <Tab icon={<img src={AirTravel} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Social Media Campaign" className='tab-text' />
+                        <Tab icon={<img src={Phone} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Social Media Campaign" className='tab-text' />
                         <Tab icon={<img src={result} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Summary" className='tab-text' />
                     </Tabs>
                 </Box>
