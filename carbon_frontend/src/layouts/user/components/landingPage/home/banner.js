@@ -87,8 +87,8 @@ const Index = () => {
                             // src="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4"
                             src={CeoVideo}
                             poster={PosterImg}
-                            width="1000"
-                            height="550"
+                            width="100%"
+                            height="100%"
                             loop
                         >
                             <track kind="captions" src="captions.vtt" label="English" />
