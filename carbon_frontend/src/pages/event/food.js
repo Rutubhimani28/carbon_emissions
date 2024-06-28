@@ -211,206 +211,208 @@ const Food = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-3 custom-inner-bg' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                <Card className='p-3 custom-inner-bg' style={{ padding: '20px' }}>
                     <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
-                    <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                        <IconDiv>
-                            <img width={100} src={FoodImg} alt="Food" />
-                        </IconDiv>
+                    <Box style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                            <IconDiv>
+                                <img width={100} src={FoodImg} alt="Food" />
+                            </IconDiv>
 
-                        <Grid
-                            container
-                            rowSpacing={3}
-                            columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-                        >
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant='h4' className='text-center text-white mb-4'>Food Waste</Typography>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th className='ps-2'>Food</th>
-                                                <th className='ps-2'>No of Pax</th>
-                                                <th className='ps-2'>Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Vegetarian (Lunch/ Dinner)</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxOne' value={formik?.values?.noOfPaxOne}
-                                                    onChange={(e) => { handleChangeFoodWaste(e, "emissionOne", e.target.value, 1924.06); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Non-Vegetarian (Lunch/ Dinner)</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo}
-                                                    onChange={(e) => { handleChangeFoodWaste(e, "emissionTwo", e.target.value, 3825.5); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
+                            <Grid
+                                container
+                                rowSpacing={3}
+                                columnSpacing={{ xs: 0, sm: 5, md: 4 }}
+                            >
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Food Waste</Typography>
+                                        <div className='table-responsive'>
+                                            <table className='table-custom-inpt-field'>
+                                                <tr>
+                                                    <th className='ps-2'>Food</th>
+                                                    <th className='ps-2'>No of Pax</th>
+                                                    <th className='ps-2'>Emissions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Vegetarian (Lunch/ Dinner)</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxOne' value={formik?.values?.noOfPaxOne}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionOne", e.target.value, 1924.06); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Non-Vegetarian (Lunch/ Dinner)</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionTwo", e.target.value, 3825.5); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
 
-                                            <tr>
-                                                <td className='ps-2 py-1'>Vegetarian Starter</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree}
-                                                    onChange={(e) => { handleChangeFoodWaste(e, "emissionThree", e.target.value, 1984.1); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Non-Vegetarian Starter</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour}
-                                                    onChange={(e) => { handleChangeFoodWaste(e, "emissionFour", e.target.value, 2638); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>High Tea</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFive' value={formik?.values?.noOfPaxFive}
-                                                    onChange={(e) => { handleChangeFoodWaste(e, "emissionFive", e.target.value, 642.2); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Vegetarian Starter</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionThree", e.target.value, 1984.1); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Non-Vegetarian Starter</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionFour", e.target.value, 2638); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>High Tea</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFive' value={formik?.values?.noOfPaxFive}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionFive", e.target.value, 642.2); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant='h4' className='text-center text-white mb-4' sx={{ opacity: 0 }}>temp</Typography>
+                                        <div className='table-responsive'>
+                                            <table className='table-custom-inpt-field'>
+                                                <tr>
+                                                    <th className='ps-2'>Menu</th>
+                                                    <th className='ps-2'>Emissions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Customised Food Menu</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Breverage Waste</Typography>
+                                        <div className='table-responsive'>
+                                            <table className='table-custom-inpt-field'>
+                                                <tr>
+                                                    <th className='ps-2'>Beverages (1000ml)</th>
+                                                    <th className='ps-2'>No of Bottles </th>
+                                                    <th className='ps-2'>Emissions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Soft Drinks</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesOne' value={formik?.values?.noOfBottlesOne}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionSix", e.target.value, 1.33); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionSix' value={formik?.values?.emissionSix} onChange={formik.handleChange} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Red Wine</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesTwo' value={formik?.values?.noOfBottlesTwo}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionSeven", e.target.value, 3.04); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSeven' value={formik?.values?.emissionSeven} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>White Wine</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesThree' value={formik?.values?.noOfBottlesThree}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionEight", e.target.value, 1.33); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEight' value={formik?.values?.emissionEight} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Whisky</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesFour' value={formik?.values?.noOfBottlesFour}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionNine", e.target.value, 4.29); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionNine' value={formik?.values?.emissionNine} onChange={formik.handleChange} /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Gin</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesFive' value={formik?.values?.noOfBottlesFive}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionTen", e.target.value, 4.29); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTen' value={formik?.values?.emissionTen} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Rum</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesSix' value={formik?.values?.noOfBottlesSix}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionEleven", e.target.value, 2.73); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEleven' value={formik?.values?.emissionEleven} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Vodka</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesSeven' value={formik?.values?.noOfBottlesSeven}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionTwelve", e.target.value, 4.29); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwelve' value={formik?.values?.emissionTwelve} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Fruit Juices</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesEight' value={formik?.values?.noOfBottlesEight}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionThirteen", e.target.value, 1.09); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThirteen' value={formik?.values?.emissionThirteen} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Beer</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesNine' value={formik?.values?.noOfBottlesNine}
+                                                        onChange={(e) => { handleChangeBeveragesWaste(e, "emissionFourteen", e.target.value, 1.06); }}
+                                                        inputProps={{ style: { color: 'white' } }} />
+                                                    </td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFourteen' value={formik?.values?.emissionFourteen} onChange={formik.handleChange} disabled /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant='h4' className='text-center text-white mb-4' sx={{ opacity: 0 }}>temp</Typography>
+                                        <div className='table-responsive'>
+                                            <table className='table-custom-inpt-field'>
+                                                <tr>
+                                                    <th className='ps-2'>Menu</th>
+                                                    <th className='ps-2'>Emissions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td className='ps-2 py-1'>Customised Beverages</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='custBeveragesEmission' value={formik?.values?.custBeveragesEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                                    <Stack direction={"row"} spacing={2}>
+                                        {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
+                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>&lt;&lt;Save and Previous Page</Button>
+                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                        <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                                    <Typography color='white'>{`Total Food and BeveragePs Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant='h4' className='text-center text-white mb-4' sx={{ opacity: 0 }}>temp</Typography>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th className='ps-2'>Menu</th>
-                                                <th className='ps-2'>Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Customised Food Menu</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant='h4' className='text-center text-white mb-4'>Breverage Waste</Typography>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th className='ps-2'>Beverages (1000ml)</th>
-                                                <th className='ps-2'>No of Bottles </th>
-                                                <th className='ps-2'>Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Soft Drinks</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesOne' value={formik?.values?.noOfBottlesOne}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionSix", e.target.value, 1.33); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionSix' value={formik?.values?.emissionSix} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Red Wine</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesTwo' value={formik?.values?.noOfBottlesTwo}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionSeven", e.target.value, 3.04); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSeven' value={formik?.values?.emissionSeven} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>White Wine</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesThree' value={formik?.values?.noOfBottlesThree}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionEight", e.target.value, 1.33); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEight' value={formik?.values?.emissionEight} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Whisky</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesFour' value={formik?.values?.noOfBottlesFour}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionNine", e.target.value, 4.29); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionNine' value={formik?.values?.emissionNine} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Gin</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesFive' value={formik?.values?.noOfBottlesFive}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionTen", e.target.value, 4.29); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTen' value={formik?.values?.emissionTen} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Rum</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesSix' value={formik?.values?.noOfBottlesSix}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionEleven", e.target.value, 2.73); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEleven' value={formik?.values?.emissionEleven} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Vodka</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesSeven' value={formik?.values?.noOfBottlesSeven}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionTwelve", e.target.value, 4.29); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwelve' value={formik?.values?.emissionTwelve} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Fruit Juices</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesEight' value={formik?.values?.noOfBottlesEight}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionThirteen", e.target.value, 1.09); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThirteen' value={formik?.values?.emissionThirteen} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Beer</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesNine' value={formik?.values?.noOfBottlesNine}
-                                                    onChange={(e) => { handleChangeBeveragesWaste(e, "emissionFourteen", e.target.value, 1.06); }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFourteen' value={formik?.values?.emissionFourteen} onChange={formik.handleChange} disabled /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant='h4' className='text-center text-white mb-4' sx={{ opacity: 0 }}>temp</Typography>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th className='ps-2'>Menu</th>
-                                                <th className='ps-2'>Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Customised Beverages</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='custBeveragesEmission' value={formik?.values?.custBeveragesEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                <Stack direction={"row"} spacing={2}>
-                                    {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>&lt;&lt;Save and Previous Page</Button>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
-                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Food and BeveragePs Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
-                            </Grid>
-                        </Grid>
+                        </Box>
                     </Box>
                 </Card>
             </Container>

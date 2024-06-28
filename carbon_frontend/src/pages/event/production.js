@@ -456,301 +456,303 @@ const Production = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className="p-3 custom-inner-bg" style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                <Card className="p-3 custom-inner-bg" style={{ padding: '20px' }}>
                     <Typography variant='h4' className='text-center text-white mb-4'>Scope.3 Emissions</Typography>
-                    <Box
-                        mx={useMediaQuery(theme.breakpoints.up('lg')) && 15}
-                        display={'flex'}
-                        alignItems={'center'}
-                        flexDirection={'column'}
-                    >
-                        <IconDiv>
-                            <img width={100} src={ProductionImg} alt="Food" />
-                        </IconDiv>
+                    <Box style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Box
+                            mx={useMediaQuery(theme.breakpoints.up('lg')) && 15}
+                            display={'flex'}
+                            alignItems={'center'}
+                            flexDirection={'column'}
+                        >
+                            <IconDiv>
+                                <img width={100} src={ProductionImg} alt="Food" />
+                            </IconDiv>
 
-                        <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant="h4" className="text-center text-white mb-4">
-                                        Type of Material
-                                    </Typography>
-                                    <div className="table-responsive">
-                                        <table className="table-custom-inpt-field">
-                                            <tr>
-                                                <th />
-                                                <th className="ps-2">Total Area (m2)</th>
-                                                <th className="ps-2">Emissions</th>
-                                            </tr>
-                                            {fieldDataOne &&
-                                                fieldDataOne?.map((item) => (
-                                                    <>
-                                                        <tr key={`one${item}`}>
-                                                            <td className="ps-2 py-1">{item.name}</td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    name={`${item?.fieldName}Area`}
-                                                                    value={formik.values[`${item?.fieldName}Area`]}
-                                                                    onChange={(e) => {
-                                                                        formik.handleChange(e);
-                                                                        formik.setFieldValue(
-                                                                            `${item?.fieldName}Emission`,
-                                                                            Number((e.target.value * item?.ef).toFixed(2))
-                                                                        );
-                                                                    }}
-                                                                    inputProps={{ style: { color: 'white' } }}
-                                                                />
-                                                            </td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    disabled
-                                                                    name={`${item?.fieldName}Emission`}
-                                                                    value={formik.values[`${item?.fieldName}Emission`]}
-                                                                    onChange={formik.handleChange}
-                                                                />
-                                                            </td>
-                                                        </tr>
-                                                    </>
-                                                ))}
-                                        </table>
-                                    </div>
-                                </Box>
+                            <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant="h4" className="text-center text-white mb-4">
+                                            Type of Material
+                                        </Typography>
+                                        <div className="table-responsive">
+                                            <table className="table-custom-inpt-field">
+                                                <tr>
+                                                    <th />
+                                                    <th className="ps-2">Total Area (m2)</th>
+                                                    <th className="ps-2">Emissions</th>
+                                                </tr>
+                                                {fieldDataOne &&
+                                                    fieldDataOne?.map((item) => (
+                                                        <>
+                                                            <tr key={`one${item}`}>
+                                                                <td className="ps-2 py-1">{item.name}</td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        name={`${item?.fieldName}Area`}
+                                                                        value={formik.values[`${item?.fieldName}Area`]}
+                                                                        onChange={(e) => {
+                                                                            formik.handleChange(e);
+                                                                            formik.setFieldValue(
+                                                                                `${item?.fieldName}Emission`,
+                                                                                Number((e.target.value * item?.ef).toFixed(2))
+                                                                            );
+                                                                        }}
+                                                                        inputProps={{ style: { color: 'white' } }}
+                                                                    />
+                                                                </td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        disabled
+                                                                        name={`${item?.fieldName}Emission`}
+                                                                        value={formik.values[`${item?.fieldName}Emission`]}
+                                                                        onChange={formik.handleChange}
+                                                                    />
+                                                                </td>
+                                                            </tr>
+                                                        </>
+                                                    ))}
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant="h4" className="text-center text-white mb-4">
+                                            Type of Material
+                                        </Typography>
+                                        <div className="table-responsive">
+                                            <table className="table-custom-inpt-field">
+                                                <tr>
+                                                    <th />
+                                                    <th className="ps-2">Weight (Kgs)</th>
+                                                    <th className="ps-2">Emissions</th>
+                                                </tr>
+                                                {fieldDataTwo &&
+                                                    fieldDataTwo?.map((ite) => (
+                                                        <>
+                                                            <tr key={`two${ite}`}>
+                                                                <td className="ps-2 py-1">{ite.name}</td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        name={`${ite?.fieldName}Kgs`}
+                                                                        value={formik.values[`${ite?.fieldName}Kgs`]}
+                                                                        onChange={(e) => {
+                                                                            formik.handleChange(e);
+                                                                            formik.setFieldValue(
+                                                                                `${ite?.fieldName}Emission`,
+                                                                                Number((e.target.value * ite?.ef).toFixed(2))
+                                                                            );
+                                                                        }}
+                                                                        inputProps={{ style: { color: 'white' } }}
+                                                                    />
+                                                                </td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        disabled
+                                                                        name={`${ite?.fieldName}Emission`}
+                                                                        value={formik.values[`${ite?.fieldName}Emission`]}
+                                                                        onChange={formik.handleChange}
+                                                                    />
+                                                                </td>
+                                                            </tr>
+                                                        </>
+                                                    ))}
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant="h4" className="text-center text-white mb-4">
+                                            Screen Type
+                                        </Typography>
+                                        <div className="table-responsive">
+                                            <table className="table-custom-inpt-field">
+                                                <tr>
+                                                    <th />
+                                                    <th className="ps-2">No of Hours</th>
+                                                    <th className="ps-2">No of Devices/ Panels</th>
+                                                    <th className="ps-2">Emissions</th>
+                                                </tr>
+                                                {fieldDataThree &&
+                                                    fieldDataThree?.map((it) => (
+                                                        <>
+                                                            <tr key={`three${it}`}>
+                                                                <td className="ps-2 py-1">{it.name}</td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        name={`${it?.fieldName}NoOfHour`}
+                                                                        value={formik.values[`${it?.fieldName}NoOfHour`]}
+                                                                        onChange={(e) => {
+                                                                            formik.handleChange(e);
+                                                                            formik.setFieldValue(
+                                                                                `${it?.fieldName}Emission`,
+                                                                                Number((e.target.value * formik.values[`${it?.fieldName}NoOfDevice`] * it?.ef).toFixed(2))
+                                                                            );
+                                                                        }}
+                                                                        inputProps={{ style: { color: 'white' } }}
+                                                                    />
+                                                                </td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        name={`${it?.fieldName}NoOfDevice`}
+                                                                        value={formik.values[`${it?.fieldName}NoOfDevice`]}
+                                                                        onChange={(e) => {
+                                                                            formik.handleChange(e);
+                                                                            formik.setFieldValue(
+                                                                                `${it?.fieldName}Emission`,
+                                                                                Number((formik.values[`${it?.fieldName}NoOfHour`] * e.target.value * it?.ef).toFixed(2))
+                                                                            );
+                                                                        }}
+                                                                        inputProps={{ style: { color: 'white' } }}
+                                                                    />
+                                                                </td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        disabled
+                                                                        name={`${it?.fieldName}Emission`}
+                                                                        value={formik.values[`${it?.fieldName}Emission`]}
+                                                                        onChange={formik.handleChange}
+                                                                    />
+                                                                </td>
+                                                            </tr>
+                                                        </>
+                                                    ))}
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <Box>
+                                        <Typography variant="h4" className="text-center text-white mb-4">
+                                            Screen Type
+                                        </Typography>
+                                        <div className="table-responsive">
+                                            <table className="table-custom-inpt-field">
+                                                <tr>
+                                                    <th />
+                                                    <th className="ps-2">No of Hours</th>
+                                                    <th className="ps-2">No of Lights</th>
+                                                    <th className="ps-2">Emissions</th>
+                                                </tr>
+                                                {fieldDataFour &&
+                                                    fieldDataFour?.map((i) => (
+                                                        <>
+                                                            <tr key={`four${i}`}>
+                                                                <td className="ps-2 py-1">{i.name}</td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        name={`${i?.fieldName}NoOfHour`}
+                                                                        value={formik.values[`${i?.fieldName}NoOfHour`]}
+                                                                        onChange={(e) => {
+                                                                            formik.handleChange(e);
+                                                                            formik.setFieldValue(
+                                                                                `${i?.fieldName}Emission`,
+                                                                                Number((e.target.value * formik.values[`${i?.fieldName}NoOfLight`] * i?.ef).toFixed(2))
+                                                                            );
+                                                                        }}
+                                                                        inputProps={{ style: { color: 'white' } }}
+                                                                    />
+                                                                </td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        name={`${i?.fieldName}NoOfLight`}
+                                                                        value={formik.values[`${i?.fieldName}NoOfLight`]}
+                                                                        onChange={(e) => {
+                                                                            formik.handleChange(e);
+                                                                            formik.setFieldValue(
+                                                                                `${i?.fieldName}Emission`,
+                                                                                Number((formik.values[`${i?.fieldName}NoOfHour`] * e.target.value * i?.ef).toFixed(2))
+                                                                            );
+                                                                        }}
+                                                                        inputProps={{ style: { color: 'white' } }}
+                                                                    />
+                                                                </td>
+                                                                <td className="ps-2 py-1">
+                                                                    <TextField
+                                                                        size="small"
+                                                                        type="number"
+                                                                        disabled
+                                                                        name={`${i?.fieldName}Emission`}
+                                                                        value={formik.values[`${i?.fieldName}Emission`]}
+                                                                        onChange={formik.handleChange}
+                                                                    />
+                                                                </td>
+                                                            </tr>
+                                                        </>
+                                                    ))}
+                                            </table>
+                                        </div>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+                                    <Stack direction={'row'} spacing={2}>
+                                        {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
+                                        <Button
+                                            variant="contained"
+                                            onClick={() => {
+                                                formik.handleSubmit();
+                                                setValue(value - 1);
+                                            }}
+                                            className="custom-btn"
+                                        >
+                                            &lt;&lt;Save and Previous Page
+                                        </Button>
+                                        <Button
+                                            variant="contained"
+                                            onClick={() => {
+                                                formik.handleSubmit();
+                                                setValue(value + 1);
+                                            }}
+                                            className="custom-btn"
+                                        >
+                                            {' '}
+                                            Save and Next Page&gt;&gt;
+                                        </Button>
+                                        <Button
+                                            variant="contained"
+                                            endIcon={<FaAngleDoubleRight />}
+                                            onClick={() => setValue(9)}
+                                            className="custom-btn"
+                                        >
+                                            Go To Result
+                                        </Button>
+                                        <Button
+                                            variant="outlined"
+                                            onClick={() => {
+                                                formik.resetForm();
+                                                handeleDelete();
+                                            }}
+                                            color="error"
+                                        >
+                                            Clear
+                                        </Button>
+                                    </Stack>
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                                    <Typography color="white">{`Total Food and Beverages Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant="h4" className="text-center text-white mb-4">
-                                        Type of Material
-                                    </Typography>
-                                    <div className="table-responsive">
-                                        <table className="table-custom-inpt-field">
-                                            <tr>
-                                                <th />
-                                                <th className="ps-2">Weight (Kgs)</th>
-                                                <th className="ps-2">Emissions</th>
-                                            </tr>
-                                            {fieldDataTwo &&
-                                                fieldDataTwo?.map((ite) => (
-                                                    <>
-                                                        <tr key={`two${ite}`}>
-                                                            <td className="ps-2 py-1">{ite.name}</td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    name={`${ite?.fieldName}Kgs`}
-                                                                    value={formik.values[`${ite?.fieldName}Kgs`]}
-                                                                    onChange={(e) => {
-                                                                        formik.handleChange(e);
-                                                                        formik.setFieldValue(
-                                                                            `${ite?.fieldName}Emission`,
-                                                                            Number((e.target.value * ite?.ef).toFixed(2))
-                                                                        );
-                                                                    }}
-                                                                    inputProps={{ style: { color: 'white' } }}
-                                                                />
-                                                            </td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    disabled
-                                                                    name={`${ite?.fieldName}Emission`}
-                                                                    value={formik.values[`${ite?.fieldName}Emission`]}
-                                                                    onChange={formik.handleChange}
-                                                                />
-                                                            </td>
-                                                        </tr>
-                                                    </>
-                                                ))}
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant="h4" className="text-center text-white mb-4">
-                                        Screen Type
-                                    </Typography>
-                                    <div className="table-responsive">
-                                        <table className="table-custom-inpt-field">
-                                            <tr>
-                                                <th />
-                                                <th className="ps-2">No of Hours</th>
-                                                <th className="ps-2">No of Devices/ Panels</th>
-                                                <th className="ps-2">Emissions</th>
-                                            </tr>
-                                            {fieldDataThree &&
-                                                fieldDataThree?.map((it) => (
-                                                    <>
-                                                        <tr key={`three${it}`}>
-                                                            <td className="ps-2 py-1">{it.name}</td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    name={`${it?.fieldName}NoOfHour`}
-                                                                    value={formik.values[`${it?.fieldName}NoOfHour`]}
-                                                                    onChange={(e) => {
-                                                                        formik.handleChange(e);
-                                                                        formik.setFieldValue(
-                                                                            `${it?.fieldName}Emission`,
-                                                                            Number((e.target.value * formik.values[`${it?.fieldName}NoOfDevice`] * it?.ef).toFixed(2))
-                                                                        );
-                                                                    }}
-                                                                    inputProps={{ style: { color: 'white' } }}
-                                                                />
-                                                            </td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    name={`${it?.fieldName}NoOfDevice`}
-                                                                    value={formik.values[`${it?.fieldName}NoOfDevice`]}
-                                                                    onChange={(e) => {
-                                                                        formik.handleChange(e);
-                                                                        formik.setFieldValue(
-                                                                            `${it?.fieldName}Emission`,
-                                                                            Number((formik.values[`${it?.fieldName}NoOfHour`] * e.target.value * it?.ef).toFixed(2))
-                                                                        );
-                                                                    }}
-                                                                    inputProps={{ style: { color: 'white' } }}
-                                                                />
-                                                            </td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    disabled
-                                                                    name={`${it?.fieldName}Emission`}
-                                                                    value={formik.values[`${it?.fieldName}Emission`]}
-                                                                    onChange={formik.handleChange}
-                                                                />
-                                                            </td>
-                                                        </tr>
-                                                    </>
-                                                ))}
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
-                                    <Typography variant="h4" className="text-center text-white mb-4">
-                                        Screen Type
-                                    </Typography>
-                                    <div className="table-responsive">
-                                        <table className="table-custom-inpt-field">
-                                            <tr>
-                                                <th />
-                                                <th className="ps-2">No of Hours</th>
-                                                <th className="ps-2">No of Lights</th>
-                                                <th className="ps-2">Emissions</th>
-                                            </tr>
-                                            {fieldDataFour &&
-                                                fieldDataFour?.map((i) => (
-                                                    <>
-                                                        <tr key={`four${i}`}>
-                                                            <td className="ps-2 py-1">{i.name}</td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    name={`${i?.fieldName}NoOfHour`}
-                                                                    value={formik.values[`${i?.fieldName}NoOfHour`]}
-                                                                    onChange={(e) => {
-                                                                        formik.handleChange(e);
-                                                                        formik.setFieldValue(
-                                                                            `${i?.fieldName}Emission`,
-                                                                            Number((e.target.value * formik.values[`${i?.fieldName}NoOfLight`] * i?.ef).toFixed(2))
-                                                                        );
-                                                                    }}
-                                                                    inputProps={{ style: { color: 'white' } }}
-                                                                />
-                                                            </td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    name={`${i?.fieldName}NoOfLight`}
-                                                                    value={formik.values[`${i?.fieldName}NoOfLight`]}
-                                                                    onChange={(e) => {
-                                                                        formik.handleChange(e);
-                                                                        formik.setFieldValue(
-                                                                            `${i?.fieldName}Emission`,
-                                                                            Number((formik.values[`${i?.fieldName}NoOfHour`] * e.target.value * i?.ef).toFixed(2))
-                                                                        );
-                                                                    }}
-                                                                    inputProps={{ style: { color: 'white' } }}
-                                                                />
-                                                            </td>
-                                                            <td className="ps-2 py-1">
-                                                                <TextField
-                                                                    size="small"
-                                                                    type="number"
-                                                                    disabled
-                                                                    name={`${i?.fieldName}Emission`}
-                                                                    value={formik.values[`${i?.fieldName}Emission`]}
-                                                                    onChange={formik.handleChange}
-                                                                />
-                                                            </td>
-                                                        </tr>
-                                                    </>
-                                                ))}
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
-                                <Stack direction={'row'} spacing={2}>
-                                    {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                    <Button
-                                        variant="contained"
-                                        onClick={() => {
-                                            formik.handleSubmit();
-                                            setValue(value - 1);
-                                        }}
-                                        className="custom-btn"
-                                    >
-                                        &lt;&lt;Save and Previous Page
-                                    </Button>
-                                    <Button
-                                        variant="contained"
-                                        onClick={() => {
-                                            formik.handleSubmit();
-                                            setValue(value + 1);
-                                        }}
-                                        className="custom-btn"
-                                    >
-                                        {' '}
-                                        Save and Next Page&gt;&gt;
-                                    </Button>
-                                    <Button
-                                        variant="contained"
-                                        endIcon={<FaAngleDoubleRight />}
-                                        onClick={() => setValue(9)}
-                                        className="custom-btn"
-                                    >
-                                        Go To Result
-                                    </Button>
-                                    <Button
-                                        variant="outlined"
-                                        onClick={() => {
-                                            formik.resetForm();
-                                            handeleDelete();
-                                        }}
-                                        color="error"
-                                    >
-                                        Clear
-                                    </Button>
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color="white">{`Total Food and Beverages Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
-                            </Grid>
-                        </Grid>
+                        </Box>
                     </Box>
                 </Card>
             </Container>
