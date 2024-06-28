@@ -83,7 +83,7 @@ const EnergyUpdated = (props) => {
                     <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={EnergyImg} alt="Energy" width={100} />
+                            <img src={EnergyImg} alt="Energy" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
                             container

@@ -91,7 +91,7 @@ const DigitalContent = (props) => {
                     <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={DigitalImg} alt="Digital" width={100} />
+                            <img src={DigitalImg} alt="Digital" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
                             container
