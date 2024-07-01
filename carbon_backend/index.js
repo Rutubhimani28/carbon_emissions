@@ -26,6 +26,7 @@ app.set('view engine', 'ejs');
 //API Routes
 app.use('/api', serverRoute);
 app.use("/file", express.static('uploads/'));
+app.use("/logo", express.static('middelwares/email_templates/'));
 
 app.get('/', async (req, res) => {
     res.send('Welcome to my world...')
