@@ -15,7 +15,6 @@ const addEmail = async (req, res) => {
             data: { ...data },
             templateName: templateName
         };
-
         await sendMail(sendMailPayload);
 
         const newEmail = new Email({ subject, receiver, sender, templateName: templateName || "event_grand_total_result_Template", data: data });
