@@ -40,7 +40,7 @@ const StyledContent = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   flexDirection: 'column',
   padding: theme.spacing(18, 0),
-})); space
+}));
 
 // ----------------------------------------------------------------------
 
