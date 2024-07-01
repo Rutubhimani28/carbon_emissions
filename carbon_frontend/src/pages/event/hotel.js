@@ -112,7 +112,7 @@ const Hotel = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
@@ -126,7 +126,7 @@ const Hotel = (props) => {
                             >
                                 <Grid item xs={12} sm={4} md={4}>
                                     <Typography variant='h4'>
-                                        Hotel
+                                        Hotel Stay
                                     </Typography>
                                     <Grid mt={2}>
                                         <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Geography</FormLabel>
@@ -230,7 +230,7 @@ const Hotel = (props) => {
                                         </FormControl>
                                     </Grid>
                                     <Grid mt={2}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Rooms Occupied</FormLabel>
+                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No. of Nights</FormLabel>
                                         <FormControl fullWidth>
                                             <TextField
                                                 size="small"

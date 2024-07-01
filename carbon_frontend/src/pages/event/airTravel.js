@@ -115,7 +115,7 @@ const AirTravel = (props) => {
             formik.setFieldValue("emissionNine", allData[2]?.emissionNine);
         }
     }, [value]);
-
+    console.log(allData, "allData")
     const calclulateEconomyClass = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
@@ -135,7 +135,7 @@ const AirTravel = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-3 custom-inner-bg textborder' style={{ padding: '20px' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
@@ -278,11 +278,11 @@ const AirTravel = (props) => {
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} marginTop={2}>
-                                    <Typography color='white'>{`Total Air Travel Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                    <Typography color='white'>{`Total Air Travel Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                                 </Grid>
-                                <Grid item xs={12} sm={12} md={12} marginTop={1}>
+                                {/* <Grid item xs={12} sm={12} md={12} marginTop={1}>
                                     <Typography color='white'>Note: For more accurate calculations, please visit ICAO webiste.</Typography>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Box>
                     </Box>
