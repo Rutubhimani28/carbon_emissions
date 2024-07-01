@@ -154,9 +154,11 @@ const DigitalCampaign = (props) => {
                             <img width={100} src={Phone} alt="Digital Campaign " className="tabImgWhite" />
                         </IconDiv>
                         <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+                            <Grid item xs={12} sm={12} >
+                                <Typography variant='h6' className='text-center text-white'>Email / Newsletter</Typography>
+                            </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Emails Campaign</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -181,12 +183,11 @@ const DigitalCampaign = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Emails Campaign</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th />
-                                                <th className='ps-2'>Attachment Size</th>
+                                                <th className='ps-2'>Size (in Mb)</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
@@ -396,7 +397,7 @@ const DigitalCampaign = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                <Typography color='white'>{`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>
