@@ -192,18 +192,17 @@ const Waste = (props) => {
             formik.setFieldValue('plasticBadgeHoldersEmission', allData[10]?.emission);
 
             formik.setFieldValue('colouredBrochurePage', allData[11]?.colouredBrochurePage);
-            formik.setFieldValue('hdpeBannerEmission', allData[11]?.emission);
+            formik.setFieldValue('colouredBrochurePageEmission', allData[11]?.emission);
             formik.setFieldValue('paperBagsA4Size', allData[12]?.paperBagsA4Size);
-            formik.setFieldValue('pvcBannersEmission', allData[12]?.emission);
+            formik.setFieldValue('paperBagsA4SizeEmission', allData[12]?.emission);
             formik.setFieldValue('paperBagsA5Size', allData[13]?.paperBagsA5Size);
-            formik.setFieldValue('cottonBannerEmission', allData[13]?.emission);
+            formik.setFieldValue('paperBagsA5SizeEmission', allData[13]?.emission);
             formik.setFieldValue('juteBagsA4Size', allData[14]?.juteBagsA4Size);
-            formik.setFieldValue('plasticBadgeHoldersEmission', allData[14]?.emission);
+            formik.setFieldValue('juteBagsA4SizeEmission', allData[14]?.emission);
             formik.setFieldValue('cottonBagsA4Size', allData[15]?.cottonBagsA4Size);
-            formik.setFieldValue('plasticBadgeHoldersEmission', allData[15]?.emission);
+            formik.setFieldValue('cottonBagsA4SizeEmission', allData[15]?.emission);
         }
     }, [value]);
-
     return (
         <div>
             <Container maxWidth>
