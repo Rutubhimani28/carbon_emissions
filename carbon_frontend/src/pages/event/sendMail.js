@@ -28,6 +28,8 @@ const SendMail = (props) => {
     const [messageType, setMessageType] = useState("template");
     const [emailInput, setEmailInput] = useState('')
 
+    console.log(" datas ", datas);
+
     const userid = sessionStorage.getItem('user_id');
     const userEmail = JSON.parse(sessionStorage.getItem('user'));
 
@@ -70,20 +72,24 @@ const SendMail = (props) => {
                 receiver: values?.emails,
                 data: datas,
                 sender: values?.sender,
-                templateName: "event_grand_total_result_Template"
+                templateName: "event_grand_total_result_Template",
+                activityName: toolFormData?.activityName,
+                name: toolFormData?.name,
+                totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
+                eveydolarCo2: datas?.grandTotal / toolFormData?.budget,
             };
 
             console.log("---- event sendMail payload ", data);
 
-            // const result = await apipost('api/email/add', data)
-            // setUserAction(result)
+            const result = await apipost('api/email/add', data)
+            setUserAction(result)
 
-            // if (result && result.status === 201) {
-            //     formik.resetForm();
-            //     close();
-            //     // setEmails([])
-            //     formik.setFieldValue('emails', []);
-            // }
+            if (result && result.status === 201) {
+                formik.resetForm();
+                close();
+                // setEmails([])
+                formik.setFieldValue('emails', []);
+            }
 
         } catch (error) {
             console.log(error);
