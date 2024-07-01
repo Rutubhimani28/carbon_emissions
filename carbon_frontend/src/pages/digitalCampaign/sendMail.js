@@ -64,7 +64,7 @@ const SendMail = (props) => {
                 receiver: values?.emails,
                 data: datas,
                 sender: values?.sender,
-                templateName: "digital_campaign_total_result_Template"
+                templateName: "digital_campaign_grand_total_result_Template"
             };
 
             const result = await apipost('api/email/add', data);

@@ -70,18 +70,20 @@ const SendMail = (props) => {
                 receiver: values?.emails,
                 data: datas,
                 sender: values?.sender,
-                templateName: "event_total_result_Template"
+                templateName: "event_grand_total_result_Template"
             };
 
-            const result = await apipost('api/email/add', data)
-            setUserAction(result)
+            console.log("---- event sendMail payload ", data);
 
-            if (result && result.status === 201) {
-                formik.resetForm();
-                close();
-                // setEmails([])
-                formik.setFieldValue('emails', []);
-            }
+            // const result = await apipost('api/email/add', data)
+            // setUserAction(result)
+
+            // if (result && result.status === 201) {
+            //     formik.resetForm();
+            //     close();
+            //     // setEmails([])
+            //     formik.setFieldValue('emails', []);
+            // }
 
         } catch (error) {
             console.log(error);
