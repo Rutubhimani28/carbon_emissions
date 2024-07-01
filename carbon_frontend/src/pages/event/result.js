@@ -37,9 +37,9 @@ const Result = () => {
     const allFieldsData = [allDigitalContentData, allFreightData, allEnergyData, allFoodData, allWasteData, allProductionData, allLocalTranspotationData, allAirTravelData, allHotelData];
     console.log("allFieldsData ", allFieldsData)
     allFieldsData?.forEach((item) => {
-        if (item.scope === 1 || item.scope1 === 1 || item.scope2 === 1) {
+        if (item.scope === 1 || item.scope1 === 1 || item.scope2 === 1 || item.scope3 === 1) {
             scope1Count += 1;
-        } else if (item.scope === 2 || item.scope1 === 2 || item.scope2 === 2) {
+        } else if (item.scope === 2 || item.scope1 === 2 || item.scope2 === 2 || item.scope2 === 2) {
             scope2Count += 1;
         } else {
             scope3Count += 1;
@@ -186,8 +186,6 @@ const Result = () => {
         // }
         scope1Count, scope2Count, scope3Count
     ];
-    console.log("---- resultData ", resultData);
-    console.log("---- chartSeries ", chartSeries);
 
     return (
         <div>
