@@ -141,8 +141,7 @@ p {
   justify-content: center;
 }
 
-.table-custom-inpt-field
-  .css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+.table-custom-inpt-field .css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-1c5w2no-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
   border: 1px solid white !important;
   border-radius: 6px;
   color: white !important;
@@ -154,9 +153,7 @@ p {
   color: white !important;
 }
 
-.table-custom-inpt-field
-  .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-u85066-MuiAutocomplete-root
-  .MuiOutlinedInput-root {
+.table-custom-inpt-field .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-u85066-MuiAutocomplete-root .MuiOutlinedInput-root {
   color: white;
 }
 
@@ -202,27 +199,38 @@ p {
 .tab-text-color {
   color: #1f9e6d !important;
 }
+
 .textborder input {
   border: 1px solid white;
   border-radius: 6px;
 }
+
+.textborder svg {
+  color: white !important;
+}
+
 .apexcharts-legend-text,
 tspan,
 title {
   color: #fff !important;
 }
+
 text {
   fill: #fff !important;
 }
+
 .apexcharts-menu {
   background-color: #1f9e6d !important;
 }
+
 .apexcharts-theme-light .apexcharts-menu-item:hover {
   background: #054723 !important;
 }
+
 .apexcharts-tooltip .apexcharts-active {
   color: #054723 !important;
 }
+
 /* .apexcharts-tooltip .apexcharts-tooltip-marker {
   background-color: #054723 !important;
 } */

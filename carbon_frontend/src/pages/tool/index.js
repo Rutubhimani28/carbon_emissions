@@ -1,28 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Box, Button, CircularProgress, Container, FormLabel, Grid, Modal, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
+import InfoIcon from '@mui/icons-material/Info';
+import CloseIcon from '@mui/icons-material/Close';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { Box, Button, Container, FormLabel, Grid, TextField, Typography, CircularProgress, Autocomplete, FormControl } from '@mui/material';
-import logo from '../../layouts/user/assets/images/logo4.gif';
 import { addToolData, clearToolFormData } from '../../redux/slice/toolSlice';
 // import HotelData from '../accomodation/data.json';
 
+
+
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 600,
+    bgcolor: 'background.paper',
+    border: '2px solid #fff',
+    boxShadow: 20,
+    p: 4,
+};
 const Home = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     // const [countriesData, setCountriesData] = useState([]);
+    const [openInfo, setOpenInfo] = React.useState(false);
     const [isSubmited, setIsSubmited] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const toolData = useSelector(state => state.toolDetails?.data);
 
+    const handleOpenInfo = () => setOpenInfo(true);
+    const handleInfoClose = () => setOpenInfo(false);
     const initialValues = {
         name: "",
         email: "",
         activityName: "",
         country: "",
         budget: "",
+        date: "",
     };
 
     const validationSchema = yup.object({
@@ -31,6 +50,7 @@ const Home = () => {
         activityName: yup.string().required("Activity Name is required"),
         country: yup.string().required("Country is required"),
         budget: yup.number().required("Budget is required"),
+        date: yup.string().required("Date is required"),
     });
 
     const AddData = (values) => {
@@ -59,6 +79,7 @@ const Home = () => {
             formik.setFieldValue("activityName", formPrevData?.activityName);
             formik.setFieldValue("country", formPrevData?.country);
             formik.setFieldValue("budget", formPrevData?.budget);
+            formik.setFieldValue("date", formPrevData?.date);
             formik.setFieldValue("email", formPrevData?.email);
         }
     }, [toolData]);
@@ -79,14 +100,14 @@ const Home = () => {
             <Box textAlign="center" mt={4}>
                 {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
                 <Typography variant="h2" mt={2} className='text'>
-                    Welcome to Sirāt's NetZero Platform Tool
+                    Welcome to Sirāt's NetZero Platform <InfoIcon className='fs-3' onClick={() => handleOpenInfo()} />
                 </Typography>
-                <Typography mt={3} className='fs-5'>
+                {/* <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
                 </Typography>
                 <Typography className='fs-5'>
                     You can save the data and come back later before submitting.
-                </Typography>
+                </Typography> */}
             </Box>
             <Box className="mt-2">
                 <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 4 }} className='d-flex flex-column justify-content-center align-items-center'>
@@ -188,9 +209,27 @@ const Home = () => {
                                     />
                                 </FormControl> */}
                             </Grid>
-                            <Grid item xs={12} sm={12}>
+                            <Grid item xs={12} sm={6}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
-                                    Allotted budget for the activity (in $) <span style={{ color: 'red' }}>*</span>
+                                    Date <span style={{ color: 'red' }}>*</span>
+                                </FormLabel>
+                                <TextField
+                                    name="date"
+                                    type="date"
+                                    size="small"
+                                    className='textborder'
+                                    fullWidth
+                                    value={formik.values.date}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    error={formik.touched.date && Boolean(formik.errors.date)}
+                                    helperText={formik.touched.date && formik.errors.date}
+                                    inputProps={{ style: { color: 'white' } }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
+                                    Allotted Budget (in$) <span style={{ color: 'red' }}>*</span>
                                 </FormLabel>
                                 <TextField
                                     name="budget"
@@ -250,6 +289,28 @@ const Home = () => {
                 </Box>
             </Box>
             <Typography className='fs-5 text-center my-4'>If you face any problems or have questions, please send your query to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link></Typography>
+            <Modal
+                open={openInfo}
+                onClose={handleInfoClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <h4 style={{ fontStyle: "italic", textDecoration: "underline" }}>Note</h4>
+                        <CloseIcon onClick={handleInfoClose} style={{ cursor: "pointer" }} />
+                    </div>
+                    <ul>
+                        <li>To obtain an accurate Carbon footprint generated from your activity,
+                            please input the data in the allotted fields</li>
+                        <li>You can save the data and come back later before submitting and you can’t
+                            change the values after submitting.</li>
+                        <li>The summary page will give you how much Carbon footprint you generated per $ spent on your above activity.</li>
+                        <li>All the emissions values are in kgCO2e.</li>
+                        <li>If you face any problems or have questions, please send your query to Sirāt</li>
+                    </ul>
+                </Box>
+            </Modal>
         </Container>
     )
 }

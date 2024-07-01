@@ -59,9 +59,14 @@ export default function App() {
         <Routers />
       ) : (
         <>
-          <Header />
+          {
+            window.location.pathname !== "/login" &&
+            <Header />
+          }
           <div className='template-outer-theme'>
             <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="*" element={<Navigate to="/login" />} />
               <Route path="/" element={<UserLayout />} />
               <Route path="/netzero-platform" element={<Services />} />
               <Route path="/netzero-consulting" element={<EsgAdvisory />} />
@@ -82,8 +87,6 @@ export default function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/faqs" element={<Faq />} />
               <Route path="/terms-conditions" element={<TermConditions />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
           </div>
 

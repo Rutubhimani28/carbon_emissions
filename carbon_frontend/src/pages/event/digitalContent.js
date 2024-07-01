@@ -174,6 +174,7 @@ const DigitalContent = (props) => {
                                         }
                                         inputProps={{ style: { color: 'white' } }}
                                     />
+
                                 </Grid>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
