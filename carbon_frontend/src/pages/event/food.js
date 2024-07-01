@@ -212,7 +212,7 @@ const Food = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-3 custom-inner-bg textborder' style={{ padding: '20px' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
@@ -226,7 +226,7 @@ const Food = (props) => {
                             >
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant='h4' className='text-center text-white mb-4'>Food Waste</Typography>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Food</Typography>
                                         <div className='table-responsive'>
                                             <table className='table-custom-inpt-field'>
                                                 <tr>
@@ -298,7 +298,7 @@ const Food = (props) => {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant='h4' className='text-center text-white mb-4'>Breverage Waste</Typography>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Breverage</Typography>
                                         <div className='table-responsive'>
                                             <table className='table-custom-inpt-field'>
                                                 <tr>
@@ -409,7 +409,7 @@ const Food = (props) => {
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                    <Typography color='white'>{`Total Food and BeveragePs Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                    <Typography color='white'>{`Total Food & Beverages Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                                 </Grid>
                             </Grid>
                         </Box>

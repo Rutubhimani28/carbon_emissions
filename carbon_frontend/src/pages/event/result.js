@@ -215,7 +215,8 @@ const Result = () => {
                         {/* <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total To Offset = {total} kgCO<sub>2</sub>e</Typography> */}
                         <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total {total} kgCO<sub>2</sub>e Carbon Footprint generated from your {toolFormData?.activityName} activity</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(2)} tCO<sub>2</sub>e</Typography>
-                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</Typography>
+                        {/* <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</Typography> */}
+                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${toolFormData.budget}`} $ kgCO<sub>2</sub>e (the {`${toolFormData.budget}`} value needs to be- total emissions in kgCO2e divided by the budget)</Typography>
                         <Grid container pt={8}>
                             <Grid item xs={12} sm={8} md={8} >
                                 <CustomBarChart chartData={chartData} />
@@ -224,13 +225,12 @@ const Result = () => {
                                 <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={300} />
                             </Grid>
                         </Grid>
-                        <Typography className='text-center py-1 fw-bold mt-4 fs-6'>Note: Source of the calculation will be shared to the designated company representative during the auditing.</Typography>
-                        <Typography className='text-center py-1 fw-bold mt-2 fs-5'>Do you want to change any data? If no, please click on Submit and enter your email id to get the data on your business email.</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-2 fs-5'>Do you want to change any data? If no, please click on Submit.</Typography>
                     </Box>
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
                             <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
-                            <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button>
+                            {/* <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button> */}
                         </Stack>
                     </div>
                 </Card>

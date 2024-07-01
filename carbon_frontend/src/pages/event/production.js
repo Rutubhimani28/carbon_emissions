@@ -457,8 +457,9 @@ const Production = (props) => {
         <div>
             <Container maxWidth>
                 <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>Scope.3 Emissions</Typography>
-                    <Box style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant="h4" className="text-center text-white mb-4">
+                        Production Material
+                    </Typography>                    <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box
                             mx={useMediaQuery(theme.breakpoints.up('lg')) && 15}
                             display={'flex'}
@@ -472,14 +473,12 @@ const Production = (props) => {
                             <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant="h4" className="text-center text-white mb-4">
-                                            Production Material
-                                        </Typography>
+
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
                                                     <th />
-                                                    <th className="ps-2">Total Area (m2)</th>
+                                                    <th className="ps-2">Total Area (m<sup>2</sup>)</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 {fieldDataOne &&
@@ -522,9 +521,6 @@ const Production = (props) => {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant="h4" className="text-center text-white mb-4">
-                                            Production Material
-                                        </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>

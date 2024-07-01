@@ -88,7 +88,7 @@ const DigitalContent = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg textborder'>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={DigitalImg} alt="Digital" width={100} className='tabImgWhite' />
@@ -153,7 +153,7 @@ const DigitalContent = (props) => {
                                     Attachments
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>MB</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>In Mb</FormLabel>
                                     <TextField
                                         id="MB"
                                         name="MB"
@@ -224,7 +224,7 @@ const DigitalContent = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No. of hour</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No of Hours</FormLabel>
                                     <TextField
                                         id="noOfHours"
                                         name="noOfHours"

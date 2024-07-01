@@ -215,7 +215,7 @@ const LocalTranspotation = (props) => {
                                 {/* <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}> */}
                                 {/* <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Scope<span style={{ color: "red" }}>*</span></FormLabel> */}
 
-                                <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>
+                                {/* <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>
                                     <Select
                                         displayEmpty
                                         inputProps={{ 'aria-label': 'Without label' }}
@@ -238,7 +238,7 @@ const LocalTranspotation = (props) => {
                                         {formik.touched.allocatedBudgetForYourActivity && formik.errors.allocatedBudgetForYourActivity}
                                     </FormHelperText>
                                     Emissions
-                                </Typography>
+                                </Typography> */}
                                 {/* </Box> */}
                                 <Box>
                                     <div className='table-responsive'>
@@ -352,7 +352,7 @@ const LocalTranspotation = (props) => {
                                 </Box>
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
-                                <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope2} Emissions`}</Typography>
+                                {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope2} Emissions`}</Typography> */}
                                 <Box>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
@@ -401,7 +401,7 @@ const LocalTranspotation = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginY={2}>
-                                <Typography color='white'>{`Total Local Transportation Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                <Typography color='white'>{`Total Local Transportation Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>

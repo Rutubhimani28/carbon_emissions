@@ -272,7 +272,7 @@ const SendMail = (props) => {
 
                 <DialogActions>
                     <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading} className="custom-btn me-2">
-                        {isLoading ? <CircularProgress size={27} /> : 'Save'}
+                        {isLoading ? <CircularProgress size={27} /> : 'Send'}
                     </LoadingButton>
                     {/* <Button
                         type="reset"

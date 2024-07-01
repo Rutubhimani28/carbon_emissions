@@ -80,7 +80,7 @@ const EnergyUpdated = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg textborder'>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={EnergyImg} alt="Energy" width={100} className='tabImgWhite' />

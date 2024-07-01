@@ -105,7 +105,7 @@ const AirFreight = (props) => {
                         flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column',
                     }}
                 >
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
 
                     <Box style={{
                         display: 'flex',
@@ -250,7 +250,7 @@ const AirFreight = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography className="mt-3 text-white">Total Logistics Footprint = {totalEmission}</Typography>
+                                <Typography className="mt-3 text-white">Total Logistics Carbon Footprint = {totalEmission}</Typography>
                             </Grid>
 
                             <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
