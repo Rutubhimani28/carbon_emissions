@@ -100,7 +100,7 @@ const Home = () => {
             <Box textAlign="center" mt={4}>
                 {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
                 <Typography variant="h2" mt={2} className='text'>
-                    Welcome to Sirāt's NetZero Platform <InfoIcon className='fs-3' onClick={() => handleOpenInfo()} />
+                    Welcome to Sirāt's NetZero Platform <InfoIcon className='fs-3' onClick={() => handleOpenInfo()} style={{ cursor: 'pointer' }} />
                 </Typography>
                 {/* <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
@@ -278,16 +278,7 @@ const Home = () => {
                 <Button variant="contained" color="primary" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
                 <Button variant="contained" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
             </Box>
-            <Box my={3} className="text-center d-flex justify-content-center">
-                <Box textAlign="left" maxWidth="1000px">
-                    <Typography variant="body1" className="text-white mt-2">Note:</Typography>
-                    <Typography variant="body1" className="text-white mt-2 ms-2">To obtain a more accurate Carbon footprint generated from your activity, please input the data in the allotted fields in the subsequent pages.</Typography>
-                    <Typography variant="body1" className="text-white mt-2 ms-2">You can save the data and come back later before submitting.</Typography>
-                    <Typography variant="body1" className="text-white mt-2 ms-2">The summary page will give you how much Carbon footprint you are generating per $ spent on your said activity.</Typography>
-                    <Typography variant="body1" className="text-white ms-2">You can't change the values after submitting the form on the last page.</Typography>
-                    <Typography variant="body1" className="text-white ms-2">All the emissions values are in kgCO<sub>2</sub>e.</Typography>
-                </Box>
-            </Box>
+
             <Typography className='fs-5 text-center my-4'>If you face any problems or have questions, please send your query to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link></Typography>
             <Modal
                 open={openInfo}
