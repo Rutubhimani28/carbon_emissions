@@ -68,7 +68,10 @@ export default function AccountPopover() {
 
   return (
     <>
-      <IconButton
+      <Typography sx={{ cursor: "pointer", color: "#212529" }} onClick={logout}>
+        Logout
+      </Typography >
+      {/* <IconButton
         onClick={handleOpen}
         sx={{
           p: 0,
@@ -86,9 +89,9 @@ export default function AccountPopover() {
         }}
       >
         <Avatar src={account.photoURL} alt="photoURL" />
-      </IconButton>
+      </IconButton> */}
 
-      <Popover
+      {/* <Popover
         open={Boolean(open)}
         anchorEl={open}
         onClose={handleClose}
@@ -114,6 +117,7 @@ export default function AccountPopover() {
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
             {user?.emailAddress}
           </Typography>
+          
         </Box>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
@@ -141,7 +145,7 @@ export default function AccountPopover() {
         <MenuItem onClick={logout} sx={{ m: 1 }} >
           Logout
         </MenuItem>
-      </Popover>
+      </Popover> */}
     </>
   );
 }
