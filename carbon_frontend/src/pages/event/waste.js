@@ -2,7 +2,7 @@ import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMe
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addWasteData, deleteWasteData } from '../../redux/slice/totalWasteSlice';
 import { IconDiv } from '../../components/IconDiv';
@@ -717,9 +717,10 @@ const Waste = (props) => {
                                                 formik.handleSubmit();
                                                 setValue(value - 1);
                                             }}
+                                            startIcon={<FaAngleDoubleLeft />}
                                             className="custom-btn"
                                         >
-                                            &lt;&lt;Save and Previous Page
+                                            Save and Previous Page
                                         </Button>
                                         <Button
                                             variant="contained"
@@ -728,9 +729,10 @@ const Waste = (props) => {
                                                 setValue(value + 1);
                                             }}
                                             className="custom-btn"
+                                            endIcon={<FaAngleDoubleRight />}
                                         >
-                                            {' '}
-                                            Save and Next Page&gt;&gt;
+
+                                            Save and Next Page
                                         </Button>
                                         {/* <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button> */}
                                         <Button
@@ -740,6 +742,7 @@ const Waste = (props) => {
                                                 handeleDelete();
                                             }}
                                             color="error"
+
                                         >
                                             Clear
                                         </Button>

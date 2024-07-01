@@ -66,18 +66,18 @@ const AirTravel = (props) => {
                 },
                 {
                     type: 'Business Class',
-                    noOfTripsFour: 0,
-                    noOfTripsFive: 0,
-                    noOfTripsSix: 0,
+                    noOfTripsFour: values?.noOfTripsFour,
+                    noOfTripsFive: values?.noOfTripsFive,
+                    noOfTripsSix: values?.noOfTripsSix,
                     emissionFour: values?.noOfTripsFour === 0 ? 0 : Number((400 * values?.noOfTripsFour).toFixed(2)) || 0,
                     emissionFive: values?.noOfTripsFive === 0 ? 0 : Number((750 * values?.noOfTripsFive).toFixed(2)) || 0,
                     emissionSix: values?.noOfTripsSix === 0 ? 0 : Number((1920 * values?.noOfTripsSix).toFixed(2)) || 0,
                 },
                 {
                     type: 'First Class',
-                    noOfTripsSeven: 0,
-                    noOfTripsEight: 0,
-                    noOfTripsNine: 0,
+                    noOfTripsSeven: values?.noOfTripsSeven,
+                    noOfTripsEight: values?.noOfTripsEight,
+                    noOfTripsNine: values?.noOfTripsNine,
                     emissionSeven: values?.noOfTripsSeven === 0 ? 0 : Number((600 * values?.noOfTripsSeven).toFixed(2)) || 0,
                     emissionEight: values?.noOfTripsEight === 0 ? 0 : Number((1125 * values?.noOfTripsEight).toFixed(2)) || 0,
                     emissionNine: values?.noOfTripsNine === 0 ? 0 : Number((2880 * values?.noOfTripsNine).toFixed(2)) || 0,
@@ -111,11 +111,12 @@ const AirTravel = (props) => {
             formik.setFieldValue("noOfTripsEight", allData[2]?.noOfTripsEight);
             formik.setFieldValue("noOfTripsNine", allData[2]?.noOfTripsNine);
             formik.setFieldValue("emissionSeven", allData[2]?.emissionSeven);
-            formik.setFieldValue("emissionEight", allData[2]?.emissioEight);
+            formik.setFieldValue("emissionEight", allData[2]?.emissionEight);
             formik.setFieldValue("emissionNine", allData[2]?.emissionNine);
         }
     }, [value]);
-    console.log(allData, "allData")
+
+
     const calclulateEconomyClass = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
@@ -272,7 +273,7 @@ const AirTravel = (props) => {
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                     <Stack direction={"row"} spacing={2}>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page  </Button>
                                         <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                         <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
                                     </Stack>

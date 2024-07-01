@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useTheme } from '@emotion/react';
 import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography, useMediaQuery, Autocomplete } from '@mui/material';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHotelData, deleteHotelData } from '../../redux/slice/totalHotelSlice';
 import Accomodation from '../../assets/Accommodation.png';
@@ -415,8 +415,8 @@ const Hotel = (props) => {
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                     <Stack direction={"row"} spacing={2}>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>&lt;&lt;Save and Previous Page</Button>
-                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
+                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
                                         <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                         <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                     </Stack>

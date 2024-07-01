@@ -13,7 +13,7 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconDiv } from '../../components/IconDiv';
 import { addLogisticsData, deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
@@ -215,11 +215,13 @@ const AirFreight = (props) => {
                                             setValue(value - 1);
                                         }}
                                         className="custom-btn"
+                                        startIcon={<FaAngleDoubleLeft />}
                                     >
-                                        &lt;&lt;Save and Previous Page
+                                        Save and Previous Page
                                     </Button>
                                     <Button
                                         variant="contained"
+                                        endIcon={<FaAngleDoubleRight />}
                                         onClick={() => {
                                             formik.handleSubmit();
                                             setValue(value + 1);
@@ -227,7 +229,7 @@ const AirFreight = (props) => {
                                         className="custom-btn"
                                     >
                                         {' '}
-                                        Save and Next Page&gt;&gt;
+                                        Save and Next Page
                                     </Button>
                                     <Button
                                         variant="contained"
