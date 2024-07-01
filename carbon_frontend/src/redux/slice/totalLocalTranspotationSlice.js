@@ -8,7 +8,7 @@ const totalLocalTranspotationSlice = createSlice({
         totalEmission: 0,
         scope1: 2,
         scope2: 3,
-        scope2: 3,
+        scope3: 3,
     },
     reducers: {
         addLocalTranspotationData: (state, action) => {
@@ -29,7 +29,7 @@ const totalLocalTranspotationSlice = createSlice({
             totalEmission: 0,
             scope1: 2,
             scope2: 3,
-            scope2: 3,
+            scope3: 3,
         }),
         scopeChange: (state, action) => ({
             ...state,
