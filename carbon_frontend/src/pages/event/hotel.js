@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useTheme } from '@emotion/react';
 import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography, useMediaQuery, Autocomplete } from '@mui/material';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHotelData, deleteHotelData } from '../../redux/slice/totalHotelSlice';
 import Accomodation from '../../assets/Accommodation.png';
@@ -111,8 +111,8 @@ const Hotel = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                <Card className='p-4 custom-inner-bg ' style={{ padding: '20px' }}>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
@@ -126,7 +126,7 @@ const Hotel = (props) => {
                             >
                                 <Grid item xs={12} sm={4} md={4}>
                                     <Typography variant='h4'>
-                                        Hotel
+                                        Hotel Stay
                                     </Typography>
                                     <Grid mt={2}>
                                         <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Geography</FormLabel>
@@ -229,8 +229,8 @@ const Hotel = (props) => {
                                             />
                                         </FormControl>
                                     </Grid>
-                                    <Grid mt={2}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Rooms Occupied</FormLabel>
+                                    <Grid mt={2} className='textborder'>
+                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No. of Nights</FormLabel>
                                         <FormControl fullWidth>
                                             <TextField
                                                 size="small"
@@ -258,7 +258,7 @@ const Hotel = (props) => {
                                             }>{formik.touched.roomsOccupied && formik.errors.roomsOccupied}</FormHelperText>
                                         </FormControl>
                                     </Grid>
-                                    <Grid mt={2}>
+                                    <Grid mt={2} className='textborder'>
                                         <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
                                         <TextField
                                             id="emissionsOne"
@@ -279,137 +279,150 @@ const Hotel = (props) => {
                                         />
                                     </Grid>
                                 </Grid>
-                                <Grid item xs={12} sm={4} md={4}>
-                                    <Typography variant='h4'>
+                                <Grid item xs={12} sm={8} textAlign={"center"}>
+                                    <Typography variant='h4' justifyContent={"center"}>
                                         Meeting Room Energy Consumption
                                     </Typography>
-                                    <Grid mt={2}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Total Meeting Room Area (Sqft)</FormLabel>
-                                        <TextField
-                                            id="totalMeetingRoomArea"
-                                            name="totalMeetingRoomArea"
-                                            label=""
-                                            fullWidth
-                                            size="small"
-                                            value={formik.values.totalMeetingRoomArea}
-                                            onChange={(e) => {
-                                                formik.setFieldValue('totalMeetingRoomArea', e.target.value);
-                                                formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.meetingDuration).toFixed(2)));
-                                            }}
-                                            error={
-                                                formik.touched.totalMeetingRoomArea &&
-                                                Boolean(formik.errors.totalMeetingRoomArea)
-                                            }
-                                            helperText={
-                                                formik.touched.totalMeetingRoomArea && formik.errors.totalMeetingRoomArea
-                                            }
-                                            inputProps={{ style: { color: 'white' } }}
-                                        />
-                                    </Grid>
-                                    <Grid mt={2}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Meeting Duration(No of Hrs)</FormLabel>
-                                        <TextField
-                                            id="meetingDuration"
-                                            name="meetingDuration"
-                                            label=""
-                                            fullWidth
-                                            size="small"
-                                            type='number'
-                                            value={formik.values.meetingDuration}
-                                            onChange={(e) => {
-                                                formik.setFieldValue('meetingDuration', e.target.value);
-                                                formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.totalMeetingRoomArea === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.totalMeetingRoomArea).toFixed(2)));
-                                            }}
-                                            error={
-                                                formik.touched.meetingDuration &&
-                                                Boolean(formik.errors.meetingDuration)
-                                            }
-                                            helperText={
-                                                formik.touched.meetingDuration && formik.errors.meetingDuration
-                                            }
-                                            inputProps={{ style: { color: 'white' } }}
-                                        />
-                                    </Grid>
-                                    <Grid mt={2}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
-                                        <TextField
-                                            id="emissionsTwo"
-                                            name="emissionsTwo"
-                                            fullWidth
-                                            type='number'
-                                            size="small"
-                                            disabled
-                                            value={formik.values.emissionsTwo}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                formik.touched.emissionsTwo &&
-                                                Boolean(formik.errors.emissionsTwo)
-                                            }
-                                            helperText={
-                                                formik.touched.emissionsTwo && formik.errors.emissionsTwo
-                                            }
-                                        />
-                                    </Grid>
-                                </Grid>
-                                <Grid item xs={12} sm={4} md={4}>
-                                    <Typography variant='h4'>
-                                        Meeting Room Energy Consumption
-                                    </Typography>
-                                    <Grid mt={2}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh)</FormLabel>
-                                        <TextField
-                                            id="energyUtilisedKwh"
-                                            name="energyUtilisedKwh"
-                                            fullWidth
-                                            size="small"
-                                            value={formik.values.energyUtilisedKwh}
-                                            onChange={(e) => {
-                                                formik.setFieldValue('energyUtilisedKwh', e.target.value);
-                                                formik.setFieldValue('emissionsThree', (e.target.value === 0) ? 0 : Number((values?.efThree * e.target.value).toFixed(2)));
-                                            }}
-                                            error={
-                                                formik.touched.energyUtilisedKwh &&
-                                                Boolean(formik.errors.energyUtilisedKwh)
-                                            }
-                                            helperText={
-                                                formik.touched.energyUtilisedKwh && formik.errors.energyUtilisedKwh
-                                            }
-                                            inputProps={{ style: { color: 'white' } }}
-                                        />
+                                    <Grid
+                                        container
+                                        rowSpacing={3}
+                                        textAlign={"left"}
+                                        columnSpacing={{ xs: 0, sm: 5, md: 5 }}
+                                        style={{ justifyContent: 'center' }}
+                                        className='textborder'
+                                    >
+                                        <Grid item xs={12} sm={6} md={6}>
+
+                                            <Grid mt={2}>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Total Meeting Room Area (Sqft)</FormLabel>
+                                                <TextField
+                                                    id="totalMeetingRoomArea"
+                                                    name="totalMeetingRoomArea"
+                                                    label=""
+                                                    fullWidth
+                                                    size="small"
+                                                    value={formik.values.totalMeetingRoomArea}
+                                                    onChange={(e) => {
+                                                        formik.setFieldValue('totalMeetingRoomArea', e.target.value);
+                                                        formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.meetingDuration).toFixed(2)));
+                                                    }}
+                                                    error={
+                                                        formik.touched.totalMeetingRoomArea &&
+                                                        Boolean(formik.errors.totalMeetingRoomArea)
+                                                    }
+                                                    helperText={
+                                                        formik.touched.totalMeetingRoomArea && formik.errors.totalMeetingRoomArea
+                                                    }
+                                                    inputProps={{ style: { color: 'white' } }}
+                                                />
+                                            </Grid>
+                                            <Grid mt={2}>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Meeting Duration (No of Hrs)</FormLabel>
+                                                <TextField
+                                                    id="meetingDuration"
+                                                    name="meetingDuration"
+                                                    label=""
+                                                    fullWidth
+                                                    size="small"
+                                                    type='number'
+                                                    value={formik.values.meetingDuration}
+                                                    onChange={(e) => {
+                                                        formik.setFieldValue('meetingDuration', e.target.value);
+                                                        formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.totalMeetingRoomArea === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.totalMeetingRoomArea).toFixed(2)));
+                                                    }}
+                                                    error={
+                                                        formik.touched.meetingDuration &&
+                                                        Boolean(formik.errors.meetingDuration)
+                                                    }
+                                                    helperText={
+                                                        formik.touched.meetingDuration && formik.errors.meetingDuration
+                                                    }
+                                                    inputProps={{ style: { color: 'white' } }}
+                                                />
+                                            </Grid>
+                                            <Grid mt={2}>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                                <TextField
+                                                    id="emissionsTwo"
+                                                    name="emissionsTwo"
+                                                    fullWidth
+                                                    type='number'
+                                                    size="small"
+                                                    disabled
+                                                    value={formik.values.emissionsTwo}
+                                                    onChange={formik.handleChange}
+                                                    error={
+                                                        formik.touched.emissionsTwo &&
+                                                        Boolean(formik.errors.emissionsTwo)
+                                                    }
+                                                    helperText={
+                                                        formik.touched.emissionsTwo && formik.errors.emissionsTwo
+                                                    }
+                                                />
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6} md={6}>
+                                            <Grid mt={2}>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh)</FormLabel>
+                                                <TextField
+                                                    id="energyUtilisedKwh"
+                                                    name="energyUtilisedKwh"
+                                                    fullWidth
+                                                    size="small"
+                                                    value={formik.values.energyUtilisedKwh}
+                                                    onChange={(e) => {
+                                                        formik.setFieldValue('energyUtilisedKwh', e.target.value);
+                                                        formik.setFieldValue('emissionsThree', (e.target.value === 0) ? 0 : Number((values?.efThree * e.target.value).toFixed(2)));
+                                                    }}
+                                                    error={
+                                                        formik.touched.energyUtilisedKwh &&
+                                                        Boolean(formik.errors.energyUtilisedKwh)
+                                                    }
+                                                    helperText={
+                                                        formik.touched.energyUtilisedKwh && formik.errors.energyUtilisedKwh
+                                                    }
+                                                    inputProps={{ style: { color: 'white' } }}
+                                                />
+                                            </Grid>
+
+                                            <Grid mt={2}>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                                <TextField
+                                                    id="emissionsThree"
+                                                    name="emissionsThree"
+                                                    fullWidth
+                                                    type='number'
+                                                    size="small"
+                                                    disabled
+                                                    value={formik.values.emissionsThree}
+                                                    onChange={formik.handleChange}
+                                                    error={
+                                                        formik.touched.emissionsThree &&
+                                                        Boolean(formik.errors.emissionsThree)
+                                                    }
+                                                    helperText={
+                                                        formik.touched.emissionsThree && formik.errors.emissionsThree
+                                                    }
+                                                />
+                                            </Grid>
+                                            <Grid mt={2}>
+                                                <Typography> Note : If you have the exact energy consumption from hotel</Typography>
+                                            </Grid>
+                                        </Grid>
                                     </Grid>
 
-                                    <Grid mt={2}>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
-                                        <TextField
-                                            id="emissionsThree"
-                                            name="emissionsThree"
-                                            fullWidth
-                                            type='number'
-                                            size="small"
-                                            disabled
-                                            value={formik.values.emissionsThree}
-                                            onChange={formik.handleChange}
-                                            error={
-                                                formik.touched.emissionsThree &&
-                                                Boolean(formik.errors.emissionsThree)
-                                            }
-                                            helperText={
-                                                formik.touched.emissionsThree && formik.errors.emissionsThree
-                                            }
-                                        />
-                                    </Grid>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                     <Stack direction={"row"} spacing={2}>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>&lt;&lt;Save and Previous Page</Button>
-                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
+                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
                                         <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                         <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} marginY={2}>
-                                    <Typography color='white'>{`Total Hotel Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                    <Typography color='white'>{`Total Hotel Carbon Footprint  = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                                 </Grid>
                             </Grid>
                         </Box>

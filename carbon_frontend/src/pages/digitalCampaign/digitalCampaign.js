@@ -46,13 +46,13 @@ const DigitalCampaign = (props) => {
         initialValues,
         onSubmit: async (values) => {
             // formik.setFieldValue('emissionOne', values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2)));
-            formik.setFieldValue('emissionOne', values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne))));
+            formik.setFieldValue('emissionOne', values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne))).toFixed(2));
             // formik.setFieldValue('emissionTwo', values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2)));
-            formik.setFieldValue('emissionTwo', values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo))));
+            formik.setFieldValue('emissionTwo', values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo))).toFixed(2));
             // formik.setFieldValue('emissionThree', values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2)));
-            formik.setFieldValue('emissionThree', values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000)));
+            formik.setFieldValue('emissionThree', values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000)).toFixed(2));
             // formik.setFieldValue('emissionFour', values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2)));
-            formik.setFieldValue('emissionFour', values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000)));
+            formik.setFieldValue('emissionFour', values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000)).toFixed(2));
 
             const data = [
                 {
@@ -65,7 +65,7 @@ const DigitalCampaign = (props) => {
                     efOne: values?.efOne,
                     impressionsOne: values?.impressionsOne,
                     // emission: values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2))
-                    emission: values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)))
+                    emission: values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2))
                 },
                 {
                     type: 'Video',
@@ -78,19 +78,19 @@ const DigitalCampaign = (props) => {
                     efTwo: values?.efTwo,
                     impressionsTwo: values?.impressionsTwo,
                     // emission: values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2))
-                    emission: values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)))
+                    emission: values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2))
                 },
                 {
                     name: 'Emails',
                     noOfEmails: values?.noOfEmails,
                     // emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2))
-                    emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000))
+                    emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2))
                 },
                 {
                     name: 'Email Attachment',
                     attachmentSize: values?.attachmentSize,
                     // emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2))
-                    emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000))
+                    emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2))
                 }
             ];
             dispatch(addCampaignData({ data }));
@@ -154,9 +154,11 @@ const DigitalCampaign = (props) => {
                             <img width={100} src={Phone} alt="Digital Campaign " className="tabImgWhite" />
                         </IconDiv>
                         <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+                            <Grid item xs={12} sm={12} >
+                                <Typography variant='h6' className='text-center text-white'>Email / Newsletter</Typography>
+                            </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Emails Campaign</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -169,7 +171,7 @@ const DigitalCampaign = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfEmails'} value={values?.noOfEmails}
                                                     onChange={(e) => {
                                                         formik.setFieldValue("noOfEmails", e.target.value);
-                                                        formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number((Number(e.target.value * 4) / 1000)));
+                                                        formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number((Number(e.target.value * 4) / 1000)).toFixed(2));
                                                     }}
                                                     inputProps={{ style: { color: 'white' } }} />
                                                 </td>
@@ -181,12 +183,11 @@ const DigitalCampaign = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={6} md={6}>
                                 <Box>
-                                    <Typography variant='h6' className='text-center text-white'>Emails Campaign</Typography>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th />
-                                                <th className='ps-2'>Attachment Size</th>
+                                                <th className='ps-2'>Size (in Mb)</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
@@ -194,7 +195,7 @@ const DigitalCampaign = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name={'attachmentSize'} value={values?.attachmentSize}
                                                     onChange={(e) => {
                                                         formik.setFieldValue("attachmentSize", e.target.value);
-                                                        formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(((Number(e.target.value) * 50) / 1000)));
+                                                        formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(((Number(e.target.value) * 50) / 1000)).toFixed(2));
                                                     }}
                                                     inputProps={{ style: { color: 'white' } }} />
                                                 </td>
@@ -203,6 +204,9 @@ const DigitalCampaign = (props) => {
                                         </table>
                                     </div>
                                 </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={12} >
+                                <Typography variant='h6' className='text-center text-white'>Social Media</Typography>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} className='mt-3'>
                                 <Box>
@@ -282,7 +286,7 @@ const DigitalCampaign = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name={'impressionsOne'} value={values?.impressionsOne}
                                                     onChange={(e) => {
                                                         formik.setFieldValue("impressionsOne", Number(e.target.value));
-                                                        formik.setFieldValue("emissionOne", Number(e.target.value) * Number(values.imgSize) * Number(values.efOne));
+                                                        formik.setFieldValue("emissionOne", (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(2));
                                                     }}
                                                     inputProps={{ style: { color: 'white' } }}
                                                 />
@@ -317,6 +321,7 @@ const DigitalCampaign = (props) => {
                                                             formik.setFieldValue("videoSize", Number(e.target.value));
                                                             formik.setFieldValue("somePlatformEnergy2", Number((Number(e.target.value) / 1000) * 0.4));
                                                             formik.setFieldValue("networkEnergy2", Number((0.2 / 1000) * Number(e.target.value)));
+                                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values?.impressionsTwo) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
@@ -378,7 +383,7 @@ const DigitalCampaign = (props) => {
                                                     <TextField size='small' type="number" name={'impressionsTwo'} value={values?.impressionsTwo}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("impressionsTwo", Number(e.target.value));
-                                                            formik.setFieldValue("emissionTwo", Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo));
+                                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
@@ -391,12 +396,12 @@ const DigitalCampaign = (props) => {
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page&gt;&gt;</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Food and Beverages Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                <Typography color='white'>{`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                         </Grid>
                     </Box>

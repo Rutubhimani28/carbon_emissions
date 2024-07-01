@@ -13,7 +13,7 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconDiv } from '../../components/IconDiv';
 import { addLogisticsData, deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
@@ -105,7 +105,7 @@ const AirFreight = (props) => {
                         flexDirection: useMediaQuery(theme.breakpoints.up('lg')) ? 'row' : 'column',
                     }}
                 >
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
 
                     <Box style={{
                         display: 'flex',
@@ -215,11 +215,13 @@ const AirFreight = (props) => {
                                             setValue(value - 1);
                                         }}
                                         className="custom-btn"
+                                        startIcon={<FaAngleDoubleLeft />}
                                     >
-                                        &lt;&lt;Save and Previous Page
+                                        Save and Previous Page
                                     </Button>
                                     <Button
                                         variant="contained"
+                                        endIcon={<FaAngleDoubleRight />}
                                         onClick={() => {
                                             formik.handleSubmit();
                                             setValue(value + 1);
@@ -227,7 +229,7 @@ const AirFreight = (props) => {
                                         className="custom-btn"
                                     >
                                         {' '}
-                                        Save and Next Page&gt;&gt;
+                                        Save and Next Page
                                     </Button>
                                     <Button
                                         variant="contained"
@@ -250,7 +252,7 @@ const AirFreight = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography className="mt-3 text-white">Total Logistics Footprint = {totalEmission}</Typography>
+                                <Typography className="mt-3 text-white">Total Logistics Carbon Footprint = {totalEmission}</Typography>
                             </Grid>
 
                             <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>

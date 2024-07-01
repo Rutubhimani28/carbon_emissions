@@ -2,7 +2,7 @@ import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMe
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addWasteData, deleteWasteData } from '../../redux/slice/totalWasteSlice';
 import { IconDiv } from '../../components/IconDiv';
@@ -192,23 +192,22 @@ const Waste = (props) => {
             formik.setFieldValue('plasticBadgeHoldersEmission', allData[10]?.emission);
 
             formik.setFieldValue('colouredBrochurePage', allData[11]?.colouredBrochurePage);
-            formik.setFieldValue('hdpeBannerEmission', allData[11]?.emission);
+            formik.setFieldValue('colouredBrochurePageEmission', allData[11]?.emission);
             formik.setFieldValue('paperBagsA4Size', allData[12]?.paperBagsA4Size);
-            formik.setFieldValue('pvcBannersEmission', allData[12]?.emission);
+            formik.setFieldValue('paperBagsA4SizeEmission', allData[12]?.emission);
             formik.setFieldValue('paperBagsA5Size', allData[13]?.paperBagsA5Size);
-            formik.setFieldValue('cottonBannerEmission', allData[13]?.emission);
+            formik.setFieldValue('paperBagsA5SizeEmission', allData[13]?.emission);
             formik.setFieldValue('juteBagsA4Size', allData[14]?.juteBagsA4Size);
-            formik.setFieldValue('plasticBadgeHoldersEmission', allData[14]?.emission);
+            formik.setFieldValue('juteBagsA4SizeEmission', allData[14]?.emission);
             formik.setFieldValue('cottonBagsA4Size', allData[15]?.cottonBagsA4Size);
-            formik.setFieldValue('plasticBadgeHoldersEmission', allData[15]?.emission);
+            formik.setFieldValue('cottonBagsA4SizeEmission', allData[15]?.emission);
         }
     }, [value]);
-
     return (
         <div>
             <Container maxWidth>
                 <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
 
                         <Box
@@ -717,9 +716,10 @@ const Waste = (props) => {
                                                 formik.handleSubmit();
                                                 setValue(value - 1);
                                             }}
+                                            startIcon={<FaAngleDoubleLeft />}
                                             className="custom-btn"
                                         >
-                                            &lt;&lt;Save and Previous Page
+                                            Save and Previous Page
                                         </Button>
                                         <Button
                                             variant="contained"
@@ -728,9 +728,10 @@ const Waste = (props) => {
                                                 setValue(value + 1);
                                             }}
                                             className="custom-btn"
+                                            endIcon={<FaAngleDoubleRight />}
                                         >
-                                            {' '}
-                                            Save and Next Page&gt;&gt;
+
+                                            Save and Next Page
                                         </Button>
                                         {/* <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button> */}
                                         <Button
@@ -740,6 +741,7 @@ const Waste = (props) => {
                                                 handeleDelete();
                                             }}
                                             color="error"
+
                                         >
                                             Clear
                                         </Button>

@@ -2,7 +2,7 @@ import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMe
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
 import ProductionImg from '../../assets/production.png';
@@ -38,10 +38,7 @@ const Production = (props) => {
         { name: 'LED Screen Panel (500mmx500mm)', ef: 0.043, fieldName: 'ledScreenPanel' },
     ];
     const fieldDataFour = [
-        { name: 'LED Parkan (1000W)', ef: 0.43, fieldName: 'ledParkan' },
-        { name: 'Stage Lighting', ef: 0, fieldName: 'stageLighting' }, // ef not given
-        { name: 'Sound & AV', ef: 0, fieldName: 'soundAV' }, // ef not given
-        { name: "Sharpi's", ef: 0, fieldName: 'sharpis' }, // ef not given
+        { name: 'Electricity', ef: 0.43, fieldName: 'electricity' },
     ];
 
     // const initialValues = {
@@ -104,18 +101,8 @@ const Production = (props) => {
         ledScreenPanelNoOfHour: 0,
         ledScreenPanelNoOfDevice: 0,
         ledScreenPanelEmission: 0,
-        ledParkanNoOfHour: 0,
-        ledParkanNoOfLight: 0,
-        ledParkanEmission: 0,
-        stageLightingNoOfHour: 0,
-        stageLightingNoOfLight: 0,
-        stageLightingEmission: 0,
-        soundAVNoOfHour: 0,
-        soundAVNoOfLight: 0,
-        soundAVEmission: 0,
-        sharpisNoOfHour: 0,
-        sharpisNoOfLight: 0,
-        sharpisEmission: 0,
+        kwh: 0,
+        kwhEmission: 0,
     };
 
     const formik = useFormik({
@@ -178,28 +165,8 @@ const Production = (props) => {
             );
 
             formik.setFieldValue(
-                'ledParkanEmission',
-                values?.ledParkanNoOfHour === 0 || values?.ledParkanNoOfLight === 0
-                    ? 0
-                    : Number((values?.ledParkanNoOfHour * values?.ledParkanNoOfLight * 0.43).toFixed(2))
-            );
-            formik.setFieldValue(
-                'stageLightingEmission',
-                values?.stageLightingNoOfHour === 0 || values?.stageLightingNoOfLight === 0
-                    ? 0
-                    : Number((values?.stageLightingNoOfHour * values?.stageLightingNoOfLight * 0).toFixed(2))
-            );
-            formik.setFieldValue(
-                'soundAVEmission',
-                values?.soundAVNoOfHour === 0 || values?.soundAVNoOfLight === 0
-                    ? 0
-                    : Number((values?.soundAVNoOfHour * values?.soundAVNoOfLight * 0).toFixed(2))
-            );
-            formik.setFieldValue(
-                'sharpisEmission',
-                values?.sharpisNoOfHour === 0 || values?.sharpisNoOfLight === 0
-                    ? 0
-                    : Number((values?.sharpisNoOfHour * values?.sharpisNoOfLight * 0).toFixed(2))
+                'kwhEmission',
+                Number((values?.kwh * 0.43).toFixed(2))
             );
 
             // const dataFieldOne = fieldDataOne?.map((item) => {
@@ -287,32 +254,32 @@ const Production = (props) => {
                 {
                     type: 'Steel ',
                     kgs: values?.steelKgs,
-                    emission: values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 1.8).toFixed(2)),
+                    emission: values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 1.36).toFixed(2)),
                 },
                 {
                     type: 'Aluminium',
                     kgs: values?.aluminiumKgs,
-                    emission: values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 1.8).toFixed(2)),
+                    emission: values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 2.663).toFixed(2)),
                 },
                 {
                     type: 'Iron',
                     kgs: values?.ironKgs,
-                    emission: values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 1.8).toFixed(2)),
+                    emission: values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 0.64).toFixed(2)),
                 },
                 {
                     type: 'Paper',
                     kgs: values?.paperKgs,
-                    emission: values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 1.8).toFixed(2)),
+                    emission: values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 0.0005).toFixed(2)),
                 },
                 {
                     type: 'Recycled Paper',
                     kgs: values?.recycledPaperKgs,
-                    emission: values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 1.8).toFixed(2)),
+                    emission: values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 0.02).toFixed(2)),
                 },
                 {
                     type: 'Paint',
                     kgs: values?.paintKgs,
-                    emission: values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.8).toFixed(2)),
+                    emission: values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(2)),
                 },
                 //
                 {
@@ -334,40 +301,10 @@ const Production = (props) => {
                             : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(2)),
                 },
                 {
-                    type: 'LED Parkan (1000W)',
-                    noOfHour: values?.ledParkanNoOfHour,
-                    noOfLight: values?.ledParkanNoOfLight,
+                    type: 'Electricity',
+                    kwh: values?.kwh,
                     emission:
-                        values?.ledParkanNoOfHour === 0 || values?.ledParkanNoOfLight === 0
-                            ? 0
-                            : Number((values?.ledParkanNoOfHour * values?.ledParkanNoOfLight * 0.43).toFixed(2)),
-                },
-                {
-                    type: 'Stage Lighting',
-                    noOfHour: values?.stageLightingNoOfHour,
-                    noOfLight: values?.stageLightingNoOfLight,
-                    emission:
-                        values?.stageLightingNoOfHour === 0 || values?.stageLightingNoOfLight === 0
-                            ? 0
-                            : Number((values?.stageLightingNoOfHour * values?.stageLightingNoOfLight * 0).toFixed(2)),
-                },
-                {
-                    type: 'Sound & AV',
-                    noOfHour: values?.soundAVNoOfHour,
-                    noOfLight: values?.soundAVNoOfLight,
-                    emission:
-                        values?.soundAVNoOfHour === 0 || values?.soundAVNoOfLight === 0
-                            ? 0
-                            : Number((values?.soundAVNoOfHour * values?.soundAVNoOfLight * 0).toFixed(2)),
-                },
-                {
-                    type: "Sharpi's",
-                    noOfHour: values?.sharpisNoOfHour,
-                    noOfLight: values?.sharpisNoOfLight,
-                    emission:
-                        values?.sharpisNoOfHour === 0 || values?.sharpisNoOfLight === 0
-                            ? 0
-                            : Number((values?.sharpisNoOfHour * values?.sharpisNoOfLight * 0).toFixed(2)),
+                        Number((values?.kwh * 0.43).toFixed(2)),
                 },
             ];
 
@@ -425,6 +362,8 @@ const Production = (props) => {
             formik.setFieldValue('aluminiumKgs', allData[9]?.kgs);
             formik.setFieldValue('aluminiumEmission', allData[9]?.emission);
             formik.setFieldValue('ironKgs', allData[10]?.kgs);
+            formik.setFieldValue('ironEmission', allData[10]?.emission);
+            formik.setFieldValue('paperKgs', allData[11]?.kgs);
             formik.setFieldValue('paperEmission', allData[11]?.emission);
             formik.setFieldValue('recycledPaperKgs', allData[12]?.kgs);
             formik.setFieldValue('recycledPaperEmission', allData[12]?.emission);
@@ -438,18 +377,8 @@ const Production = (props) => {
             formik.setFieldValue('ledScreenPanelNoOfDevice', allData[15]?.noOfDevice);
             formik.setFieldValue('ledScreenPanelEmission', allData[15]?.emission);
 
-            formik.setFieldValue('ledParkanNoOfHour', allData[16]?.noOfHour);
-            formik.setFieldValue('ledParkanLight', allData[16]?.light);
-            formik.setFieldValue('ledParkanEmission', allData[16]?.emission);
-            formik.setFieldValue('stageLightingNoOfHour', allData[17]?.noOfHour);
-            formik.setFieldValue('stageLightingLight', allData[17]?.light);
-            formik.setFieldValue('stageLightingEmission', allData[17]?.emission);
-            formik.setFieldValue('soundAVNoOfHour', allData[18]?.noOfHour);
-            formik.setFieldValue('soundAVLight', allData[18]?.light);
-            formik.setFieldValue('soundAVEmission', allData[18]?.emission);
-            formik.setFieldValue('sharpisNoOfHour', allData[19]?.noOfHour);
-            formik.setFieldValue('sharpisLight', allData[19]?.light);
-            formik.setFieldValue('sharpisEmission', allData[19]?.emission);
+            formik.setFieldValue('kwh', allData[16]?.kwh);
+            formik.setFieldValue('kwhEmission', allData[16]?.emission);
         }
     }, [value]);
 
@@ -457,8 +386,9 @@ const Production = (props) => {
         <div>
             <Container maxWidth>
                 <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>Scope.3 Emissions</Typography>
-                    <Box style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant="h4" className="text-center text-white mb-4">
+                        Production Material
+                    </Typography>                    <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box
                             mx={useMediaQuery(theme.breakpoints.up('lg')) && 15}
                             display={'flex'}
@@ -472,14 +402,12 @@ const Production = (props) => {
                             <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant="h4" className="text-center text-white mb-4">
-                                            Production Material
-                                        </Typography>
+
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
                                                     <th />
-                                                    <th className="ps-2">Total Area (m2)</th>
+                                                    <th className="ps-2">Total Area (m<sup>2</sup>)</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 {fieldDataOne &&
@@ -522,9 +450,6 @@ const Production = (props) => {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant="h4" className="text-center text-white mb-4">
-                                            Production Material
-                                        </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
@@ -640,66 +565,49 @@ const Production = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Screen Type
+                                            Stage Lighting & AV
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
                                                     <th />
-                                                    <th className="ps-2">No of Hours</th>
-                                                    <th className="ps-2">No of Lights</th>
+                                                    <th className="ps-2">kwh</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
-                                                {fieldDataFour &&
-                                                    fieldDataFour?.map((i) => (
-                                                        <>
-                                                            <tr key={`four${i}`}>
-                                                                <td className="ps-2 py-1">{i.name}</td>
-                                                                <td className="ps-2 py-1">
-                                                                    <TextField
-                                                                        size="small"
-                                                                        type="number"
-                                                                        name={`${i?.fieldName}NoOfHour`}
-                                                                        value={formik.values[`${i?.fieldName}NoOfHour`]}
-                                                                        onChange={(e) => {
-                                                                            formik.handleChange(e);
-                                                                            formik.setFieldValue(
-                                                                                `${i?.fieldName}Emission`,
-                                                                                Number((e.target.value * formik.values[`${i?.fieldName}NoOfLight`] * i?.ef).toFixed(2))
-                                                                            );
-                                                                        }}
-                                                                        inputProps={{ style: { color: 'white' } }}
-                                                                    />
-                                                                </td>
-                                                                <td className="ps-2 py-1">
-                                                                    <TextField
-                                                                        size="small"
-                                                                        type="number"
-                                                                        name={`${i?.fieldName}NoOfLight`}
-                                                                        value={formik.values[`${i?.fieldName}NoOfLight`]}
-                                                                        onChange={(e) => {
-                                                                            formik.handleChange(e);
-                                                                            formik.setFieldValue(
-                                                                                `${i?.fieldName}Emission`,
-                                                                                Number((formik.values[`${i?.fieldName}NoOfHour`] * e.target.value * i?.ef).toFixed(2))
-                                                                            );
-                                                                        }}
-                                                                        inputProps={{ style: { color: 'white' } }}
-                                                                    />
-                                                                </td>
-                                                                <td className="ps-2 py-1">
-                                                                    <TextField
-                                                                        size="small"
-                                                                        type="number"
-                                                                        disabled
-                                                                        name={`${i?.fieldName}Emission`}
-                                                                        value={formik.values[`${i?.fieldName}Emission`]}
-                                                                        onChange={formik.handleChange}
-                                                                    />
-                                                                </td>
-                                                            </tr>
-                                                        </>
-                                                    ))}
+                                                {/* {fieldDataFour && */}
+                                                {/* fieldDataFour?.map((i) => ( */}
+                                                <>
+                                                    <tr >
+                                                        <td className="ps-2 py-1">Electricity</td>
+                                                        <td className="ps-2 py-1">
+                                                            <TextField
+                                                                size="small"
+                                                                type="number"
+                                                                name={'kwh'}
+                                                                value={formik.values.kwh}
+                                                                onChange={(e) => {
+                                                                    formik.handleChange(e);
+                                                                    formik.setFieldValue(
+                                                                        `kwhEmission`,
+                                                                        Number((e.target.value * 0.43).toFixed(2))
+                                                                    );
+                                                                }}
+                                                                inputProps={{ style: { color: 'white' } }}
+                                                            />
+                                                        </td>
+                                                        <td className="ps-2 py-1">
+                                                            <TextField
+                                                                size="small"
+                                                                type="number"
+                                                                disabled
+                                                                name={`kwhEmission`}
+                                                                value={formik.values.kwhEmission}
+                                                                onChange={formik.handleChange}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                </>
+                                                {/* ))}/ */}
                                             </table>
                                         </div>
                                     </Box>
@@ -714,8 +622,9 @@ const Production = (props) => {
                                                 setValue(value - 1);
                                             }}
                                             className="custom-btn"
+                                            startIcon={<FaAngleDoubleLeft />}
                                         >
-                                            &lt;&lt;Save and Previous Page
+                                            Save and Previous Page
                                         </Button>
                                         <Button
                                             variant="contained"
@@ -724,9 +633,10 @@ const Production = (props) => {
                                                 setValue(value + 1);
                                             }}
                                             className="custom-btn"
+                                            endIcon={<FaAngleDoubleRight />}
                                         >
                                             {' '}
-                                            Save and Next Page&gt;&gt;
+                                            Save and Next Page
                                         </Button>
                                         <Button
                                             variant="contained"

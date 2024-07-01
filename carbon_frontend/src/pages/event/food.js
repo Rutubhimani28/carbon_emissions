@@ -2,7 +2,7 @@ import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMe
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFoodData, deleteFoodData } from '../../redux/slice/totalFoodSlice';
 import { IconDiv } from '../../components/IconDiv';
@@ -55,12 +55,10 @@ const Food = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', Number((1924.06 * values?.noOfPaxOne).toFixed(2)));    // Veg Plate Lunch/ Dinner
-            formik.setFieldValue('emissionTwo', Number((3825.5 * values?.noOfPaxTwo).toFixed(2)));     // Non Veg plate Lunch/ Dinner
-            formik.setFieldValue('emissionThree', Number((1984.1 * values?.noOfPaxThree).toFixed(2))); // Veg Starter
-            formik.setFieldValue('emissionFour', Number((2638 * values?.noOfPaxFour).toFixed(2)));     // Non Veg starter
-            formik.setFieldValue('emissionFive', Number((642.2 * values?.noOfPaxFive).toFixed(2)));    // High Tea
-
+            formik.setFieldValue('emissionOne', Number((2 * values?.noOfPaxOne).toFixed(2)));    // Veg Plate Lunch/ Dinner
+            formik.setFieldValue('emissionTwo', Number((5.76 * values?.noOfPaxTwo).toFixed(2)));     // Non Veg plate Lunch/ Dinner
+            formik.setFieldValue('emissionThree', Number((23.55 * values?.noOfPaxThree).toFixed(2))); // Veg Starter
+            formik.setFieldValue('emissionFour', Number((0.6 * values?.noOfPaxFour).toFixed(2)));     // Non Veg starter
             formik.setFieldValue('emissionSix', Number((1.33 * values?.noOfBottlesOne).toFixed(2)));        // Soft Drinks
             formik.setFieldValue('emissionSeven', Number((3.04 * values?.noOfBottlesTwo).toFixed(2)));       // Red Wine
             formik.setFieldValue('emissionEight', Number((1.33 * values?.noOfBottlesThree).toFixed(2)));     // White Wine
@@ -73,82 +71,77 @@ const Food = (props) => {
 
             const data = [
                 {
-                    type: 'Veg Plate Lunch/ Dinner',
+                    type: 'Vegetarian',
                     noOfPax: values?.noOfPaxOne,
-                    emission: Number((1924.06 * values?.noOfPaxOne).toFixed(2)) || 0
+                    emission: Number((2 * values?.noOfPaxOne).toFixed(2)) || 0
                 },
                 {
-                    type: 'Non Veg plate Lunch/ Dinner',
+                    type: 'Non-Veg (Poultry/ Sea Food)',
                     noOfPax: values?.noOfPaxTwo,
-                    emission: Number((3825.5 * values?.noOfPaxTwo).toFixed(2)) || 0
+                    emission: Number((5.76 * values?.noOfPaxTwo).toFixed(2)) || 0
                 },
                 {
-                    type: 'Veg starter',
+                    type: 'Non-Veg (Red Meat)',
                     noOfPax: values?.noOfPaxThree,
-                    emission: Number((1984.1 * values?.noOfPaxThree).toFixed(2)) || 0
+                    emission: Number((23.55 * values?.noOfPaxThree).toFixed(2)) || 0
                 },
                 {
-                    type: 'Non Veg starter',
+                    type: 'Tea/ Coffee + Cookies',
                     noOfPax: values?.noOfPaxFour,
-                    emission: Number((2638 * values?.noOfPaxFour).toFixed(2)) || 0
-                },
-                {
-                    type: 'High Tea',
-                    noOfPax: values?.noOfPaxFive,
-                    emission: Number((642.2 * values?.noOfPaxFive).toFixed(2)) || 0
+                    emission: Number((0.6 * values?.noOfPaxFour).toFixed(2)) || 0
                 },
                 {
                     type: 'Soft Drinks',
                     noOfBottles: values?.noOfBottlesOne,
-                    emission: Number((1924.06 * values?.noOfBottlesOne).toFixed(2)) || 0
+                    emission: Number((1.33 * values?.noOfBottlesOne).toFixed(2)) || 0
                 },
                 {
                     type: 'Red Wine',
                     noOfBottles: values?.noOfBottlesTwo,
-                    emission: Number((3825.5 * values?.noOfBottlesTwo).toFixed(2)) || 0
+                    emission: Number((3.04 * values?.noOfBottlesTwo).toFixed(2)) || 0
                 },
                 {
                     type: 'White Wine',
                     noOfBottles: values?.noOfBottlesThree,
-                    emission: Number((1984.1 * values?.noOfBottlesThree).toFixed(2)) || 0
+                    emission: Number((1.33 * values?.noOfBottlesThree).toFixed(2)) || 0
                 },
                 {
                     type: 'Whisky',
                     noOfBottles: values?.noOfBottlesFour,
-                    emission: Number((2638 * values?.noOfBottlesFour).toFixed(2)) || 0
+                    emission: Number((4.29 * values?.noOfBottlesFour).toFixed(2)) || 0
                 },
                 {
                     type: 'Gin',
                     noOfBottles: values?.noOfBottlesFive,
-                    emission: Number((642.2 * values?.noOfBottlesFive).toFixed(2)) || 0
+                    emission: Number((4.29 * values?.noOfBottlesFive).toFixed(2)) || 0
                 },
                 {
                     type: 'Rum',
                     noOfBottles: values?.noOfBottlesSix,
-                    emission: Number((642.2 * values?.noOfBottlesSix).toFixed(2)) || 0
+                    emission: Number((2.73 * values?.noOfBottlesSix).toFixed(2)) || 0
                 },
                 {
                     type: 'Vodka',
                     noOfBottles: values?.noOfBottlesSeven,
-                    emission: Number((642.2 * values?.noOfBottlesSeven).toFixed(2)) || 0
+                    emission: Number((4.29 * values?.noOfBottlesSeven).toFixed(2)) || 0
                 },
                 {
                     type: 'Fruit Juices',
                     noOfBottles: values?.noOfBottlesEight,
-                    emission: Number((642.2 * values?.noOfBottlesEight).toFixed(2)) || 0
+                    emission: Number((1.09 * values?.noOfBottlesEight).toFixed(2)) || 0
                 },
                 {
                     type: 'Beer',
                     noOfBottles: values?.noOfBottlesNine,
-                    emission: Number((642.2 * values?.noOfBottlesNine).toFixed(2)) || 0
+                    emission: Number((1.06 * values?.noOfBottlesNine).toFixed(2)) || 0
                 },
                 {
                     type: 'Customised Food Menu',
-                    dynEmission: values?.custFoodMenuEmission
+                    emission: values?.custFoodMenuEmission
                 },
                 {
                     type: 'Customised Beverages',
-                    dynEmission: values?.custBeveragesEmission
+                    emission: values?.custBeveragesEmission
                 },
             ];
             dispatch(addFoodData({ data }))
@@ -169,32 +162,31 @@ const Food = (props) => {
             formik.setFieldValue("emissionThree", allData[2]?.emission)
             formik.setFieldValue("noOfPaxFour", allData[3]?.noOfPax)
             formik.setFieldValue("emissionFour", allData[3]?.emission)
-            formik.setFieldValue("noOfPaxFive", allData[4]?.noOfPax)
-            formik.setFieldValue("emissionFive", allData[4]?.emission)
 
-            formik.setFieldValue("noOfBottlesOne", allData[5]?.noOfBottles)
-            formik.setFieldValue("emissionSix", allData[5]?.emission)
-            formik.setFieldValue("noOfBottlesTwo", allData[6]?.noOfBottles)
-            formik.setFieldValue("emissionSeven", allData[6]?.emission)
-            formik.setFieldValue("noOfBottlesThree", allData[7]?.noOfBottles)
-            formik.setFieldValue("emissionEight", allData[7]?.emission)
-            formik.setFieldValue("noOfBottlesFour", allData[8]?.noOfBottles)
-            formik.setFieldValue("emissionNine", allData[8]?.emission)
-            formik.setFieldValue("noOfBottlesFive", allData[9]?.noOfBottles)
-            formik.setFieldValue("emissionTen", allData[9]?.emission)
-            formik.setFieldValue("noOfBottlesSix", allData[10]?.noOfBottles)
-            formik.setFieldValue("emissionEleven", allData[10]?.emission)
-            formik.setFieldValue("noOfBottlesSeven", allData[11]?.noOfBottles)
-            formik.setFieldValue("emissionTwelve", allData[11]?.emission)
-            formik.setFieldValue("noOfBottlesEight", allData[12]?.noOfBottles)
-            formik.setFieldValue("emissionThirteen", allData[12]?.emission)
-            formik.setFieldValue("noOfBottlesNine", allData[13]?.noOfBottles)
-            formik.setFieldValue("emissionFourteen", allData[13]?.emission)
+            formik.setFieldValue("noOfBottlesOne", allData[4]?.noOfBottles)
+            formik.setFieldValue("emissionSix", allData[4]?.emission)
+            formik.setFieldValue("noOfBottlesTwo", allData[5]?.noOfBottles)
+            formik.setFieldValue("emissionSeven", allData[5]?.emission)
+            formik.setFieldValue("noOfBottlesThree", allData[6]?.noOfBottles)
+            formik.setFieldValue("emissionEight", allData[6]?.emission)
+            formik.setFieldValue("noOfBottlesFour", allData[7]?.noOfBottles)
+            formik.setFieldValue("emissionNine", allData[7]?.emission)
+            formik.setFieldValue("noOfBottlesFive", allData[8]?.noOfBottles)
+            formik.setFieldValue("emissionTen", allData[8]?.emission)
+            formik.setFieldValue("noOfBottlesSix", allData[9]?.noOfBottles)
+            formik.setFieldValue("emissionEleven", allData[9]?.emission)
+            formik.setFieldValue("noOfBottlesSeven", allData[10]?.noOfBottles)
+            formik.setFieldValue("emissionTwelve", allData[10]?.emission)
+            formik.setFieldValue("noOfBottlesEight", allData[11]?.noOfBottles)
+            formik.setFieldValue("emissionThirteen", allData[11]?.emission)
+            formik.setFieldValue("noOfBottlesNine", allData[12]?.noOfBottles)
+            formik.setFieldValue("emissionFourteen", allData[12]?.emission)
 
-            formik.setFieldValue("custFoodMenuEmission", allData[14]?.dynEmission)
-            formik.setFieldValue("custBeveragesEmission", allData[15]?.dynEmission)
+            formik.setFieldValue("custFoodMenuEmission", allData[13]?.emission)
+            formik.setFieldValue("custBeveragesEmission", allData[14]?.emission)
         }
     }, [value]);
+
 
     const { values } = formik;
 
@@ -212,7 +204,7 @@ const Food = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-3 custom-inner-bg textborder' style={{ padding: '20px' }}>
-                    <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography>
+                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
@@ -226,7 +218,7 @@ const Food = (props) => {
                             >
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant='h4' className='text-center text-white mb-4'>Food Waste</Typography>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Food</Typography>
                                         <div className='table-responsive'>
                                             <table className='table-custom-inpt-field'>
                                                 <tr>
@@ -235,46 +227,39 @@ const Food = (props) => {
                                                     <th className='ps-2'>Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Vegetarian (Lunch/ Dinner)</td>
+                                                    <td className='ps-2 py-1'>Vegetarian</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxOne' value={formik?.values?.noOfPaxOne}
-                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionOne", e.target.value, 1924.06); }}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionOne", e.target.value, 2); }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                     </td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Non-Vegetarian (Lunch/ Dinner)</td>
+                                                    <td className='ps-2 py-1'>Non-Veg (Poultry/ Sea Food)</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo}
-                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionTwo", e.target.value, 3825.5); }}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionTwo", e.target.value, 5.76); }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                     </td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Vegetarian Starter</td>
+                                                    <td className='ps-2 py-1'>Non-Veg (Red Meat)</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree}
-                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionThree", e.target.value, 1984.1); }}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionThree", e.target.value, 23.55); }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                     </td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Non-Vegetarian Starter</td>
+                                                    <td className='ps-2 py-1'>Tea/ Coffee + Cookies</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour}
-                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionFour", e.target.value, 2638); }}
+                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionFour", e.target.value, 0.6); }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                     </td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFour' value={formik?.values?.emissionFour} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
-                                                <tr>
-                                                    <td className='ps-2 py-1'>High Tea</td>
-                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFive' value={formik?.values?.noOfPaxFive}
-                                                        onChange={(e) => { handleChangeFoodWaste(e, "emissionFive", e.target.value, 642.2); }}
-                                                        inputProps={{ style: { color: 'white' } }} />
-                                                    </td>
-                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
-                                                </tr>
+
                                             </table>
                                         </div>
                                     </Box>
@@ -298,7 +283,7 @@ const Food = (props) => {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant='h4' className='text-center text-white mb-4'>Breverage Waste</Typography>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Breverage</Typography>
                                         <div className='table-responsive'>
                                             <table className='table-custom-inpt-field'>
                                                 <tr>
@@ -402,14 +387,14 @@ const Food = (props) => {
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                     <Stack direction={"row"} spacing={2}>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>&lt;&lt;Save and Previous Page</Button>
-                                        <Button variant='contained' onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page&gt;&gt;</Button>
+                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
                                         <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
                                         <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                    <Typography color='white'>{`Total Food and BeveragePs Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                    <Typography color='white'>{`Total Food & Beverages Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                                 </Grid>
                             </Grid>
                         </Box>

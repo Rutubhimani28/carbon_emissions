@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
-    <!-- <title>
+    <title>
         Your Carbon Footprint :
-    </title> -->
+    </title> 
     <style>
         table {
             width: 50%;
@@ -36,61 +36,190 @@
         <tr>
             <th>Air Travel</th>
             <td>
-                <%= data.totalAirTravel %> metric CO2e
+                <%= data.totalAirTravel %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Local Transportation</th>
             <td>
-                <%= data.totalLocalTransportation %> metric CO2e
+                <%= data.totalLocalTransportation %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Hotel</th>
             <td>
-                <%= data.totalHotel %> metric CO2e
+                <%= data.totalHotel %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Food</th>
             <td>
-                <%= data.totalFood %> metric CO2e
+                <%= data.totalFood %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Logistics</th>
             <td>
-                <%= data.totalAirFreight %> metric CO2e
+                <%= data.totalAirFreight %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Event Production</th>
             <td>
-                <%= data.totlaProduction %> metric CO2e
+                <%= data.totlaProduction %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Energy</th>
             <td>
-                <%= data.totalEnergyUpdated %> metric CO2e
+                <%= data.totalEnergyUpdated %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Digital</th>
             <td>
-                <%= data.totalDIgitalContent %> metric CO2e
+                <%= data.totalDIgitalContent %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Waste</th>
             <td>
-                <%= data.totalWaste %> metric CO2e
+                <%= data.totalWaste %> kgco<sub>2</sub>
             </td>
         </tr>
     </table>
 
-    <h4 class=''>Total = <%= data.grandTotal %> metric CO2e</h4>
+    <h4 class=''>Total = <%= data.grandTotal %> kgco<sub>2</sub></h4>
 
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <title>
+        Your Carbon Footprint :
+    </title> -->
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            /* Center the table */
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding: 20px 0;">
+
+        <div>
+            <img src="https://carbon-emissions-pnz7.onrender.com/logo/logo4.gif" width="30%" />
+            <!-- <img src="logo4.gif" width="100%" /> -->
+        </div>
+        <h4>Dear <%= name %>,</h4>
+        <p style="font-size: 16px;">Thank you for using Sirat’s<strong>NetZero Platfrom</strong>to measure the carbon
+            footprint generated from
+            your <strong>
+                <%= activityName %>
+            </strong>activity. We deeply value your
+            commitment
+            to
+            sustainability and appreciate your proactive approach in understanding and mitigating your environmental
+            impact.</p>
+        <p style="font-size: 16px;">We're pleased to provide you with the carbon footprint report, detailing the
+            emissions associated with the above
+            mentioned activity.</p>
+        <h2 style="text-align: center;">Total Carbon Footprint :</h2>
+
+        <table>
+            <tr>
+                <th>Air Travel</th>
+                <td>
+                    <%= data.totalAirTravel %> kgco<sub>2</sub>
+                </td>
+            </tr>
+            <tr>
+                <th>Local Transportation</th>
+                <td>
+                    <%= data.totalLocalTransportation %> kgco<sub>2</sub>
+                </td>
+            </tr>
+            <tr>
+                <th>Hotel</th>
+                <td>
+                    <%= data.totalHotel %> kgco<sub>2</sub>
+                </td>
+            </tr>
+            <tr>
+                <th>Food</th>
+                <td>
+                    <%= data.totalFood %> kgco<sub>2</sub>
+                </td>
+            </tr>
+            <tr>
+                <th>Logistics</th>
+                <td>
+                    <%= data.totalAirFreight %> kgco<sub>2</sub>
+                </td>
+            </tr>
+            <tr>
+                <th>Event Production</th>
+                <td>
+                    <%= data.totlaProduction %> kgco<sub>2</sub>
+                </td>
+            </tr>
+            <tr>
+                <th>Energy</th>
+                <td>
+                    <%= data.totalEnergyUpdated %> kgco<sub>2</sub>
+                </td>
+            </tr>
+            <tr>
+                <th>Digital</th>
+                <td>
+                    <%= data.totalDIgitalContent %> kgco<sub>2</sub>
+                </td>
+            </tr>
+            <tr>
+                <th>Waste</th>
+                <td>
+                    <%= data.totalWaste %> kgco<sub>2</sub>
+                </td>
+            </tr>
+        </table>
+        <h4 class=''>Total = <%= data.grandTotal %> kgco<sub>2</sub></h4>
+        <h4 class=''>Total tCO2e = <%= totalTonCo2 %> tCO<sub>2</sub>e</h4>
+
+        <h4>For every $ you spend you are generating <%= eveydolarCo2 %> kgco<sub>2</sub></h4>
+
+        <p>If you have any questions or need further assistance on how to reduce the carbon emissions, please contact at
+            <a href="info@sirat.earth" target="_blank">info@sirat.earth</a>
+            . We are here to help you on your journey towards a more sustainable future.
+        </p>
+        <p>Best regards,</p>
+        <p style="margin-bottom:0;">Team Sirat</p>
+        <a style="text-decoration:underline;color: blue;">Sirat.Earth</a>
+
+    </div>
 </body>
 
 </html>
