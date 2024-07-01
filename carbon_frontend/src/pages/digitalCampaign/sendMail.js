@@ -147,7 +147,7 @@ const SendMail = (props) => {
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6">Add New </Typography>
+                    <Typography variant="h6" />
                     <Typography>
                         <ClearIcon
                             onClick={() => {
@@ -177,6 +177,7 @@ const SendMail = (props) => {
                                         id="subject"
                                         name="subject"
                                         label=""
+                                        disabled
                                         fullWidth
                                         size="small"
                                         value={formik.values.subject}
@@ -232,7 +233,7 @@ const SendMail = (props) => {
 
                 <DialogActions>
                     <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading} className="custom-btn me-2">
-                        {isLoading ? <CircularProgress size={27} /> : 'Save'}
+                        {isLoading ? <CircularProgress size={27} /> : 'Send'}
                     </LoadingButton>
                     {/* <Button
                         type="reset"
