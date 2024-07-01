@@ -205,6 +205,9 @@ const DigitalCampaign = (props) => {
                                     </div>
                                 </Box>
                             </Grid>
+                            <Grid item xs={12} sm={12} >
+                                <Typography variant='h6' className='text-center text-white'>Social Media</Typography>
+                            </Grid>
                             <Grid item xs={12} sm={12} md={12} className='mt-3'>
                                 <Box>
                                     <div className='table-responsive'>
@@ -318,6 +321,7 @@ const DigitalCampaign = (props) => {
                                                             formik.setFieldValue("videoSize", Number(e.target.value));
                                                             formik.setFieldValue("somePlatformEnergy2", Number((Number(e.target.value) / 1000) * 0.4));
                                                             formik.setFieldValue("networkEnergy2", Number((0.2 / 1000) * Number(e.target.value)));
+                                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values?.impressionsTwo) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />

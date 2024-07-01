@@ -214,7 +214,7 @@ const Result = () => {
                         <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total {total} kgCO<sub>2</sub>e Carbon Footprint generated from your {toolFormData?.activityName} activity</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(2)} tCO<sub>2</sub>e</Typography>
                         {/* <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every 1 kgCO<sub>2</sub>e generated you are spending {`${toolFormData.budget}`}$</Typography> */}
-                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${toolFormData.budget}`} $ kgCO<sub>2</sub>e (the {`${toolFormData.budget}`} value needs to be- total emissions in kgCO2e divided by the budget)</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${total / toolFormData?.budget}`} kgCO<sub>2</sub>e</Typography>
                         <Grid container pt={8}>
                             <Grid item xs={12} sm={8} md={8} >
                                 <CustomBarChart chartData={chartData} />
