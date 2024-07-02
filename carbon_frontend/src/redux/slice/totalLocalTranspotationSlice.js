@@ -6,7 +6,7 @@ const totalLocalTranspotationSlice = createSlice({
     initialState: {
         data: [],
         totalEmission: 0,
-        scope1: 2,
+        scope1: 1,
         scope2: 3,
         scope3: 3,
     },
@@ -27,7 +27,7 @@ const totalLocalTranspotationSlice = createSlice({
             ...state,
             data: [],
             totalEmission: 0,
-            scope1: 2,
+            scope1: 1,
             scope2: 3,
             scope3: 3,
         }),
