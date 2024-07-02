@@ -18,21 +18,21 @@ const Waste = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        foodWasteNonMeatKg: 0,
-        foodWasteMeatKg: 0,
-        municipalSolidWasteKg: 0,
-        foodWasteNonMeatEmission: 0,
-        foodWasteMeatEmission: 0,
-        municipalSolidWasteEmission: 0,
+        foodWasteNonMeatKg: null,
+        foodWasteMeatKg: null,
+        municipalSolidWasteKg: null,
+        foodWasteNonMeatEmission: null,
+        foodWasteMeatEmission: null,
+        municipalSolidWasteEmission: null,
 
-        bottleOne: 0,
-        bottleTwo: 0,
-        bottleThree: 0,
-        bottleOneEmission: 0,
-        bottleTwoEmission: 0,
-        bottleThreeEmission: 0,
-        plasticWrapping: 0,
-        plasticWrappingEmission: 0,
+        bottleOne: null,
+        bottleTwo: null,
+        bottleThree: null,
+        bottleOneEmission: null,
+        bottleTwoEmission: null,
+        bottleThreeEmission: null,
+        plasticWrapping: null,
+        plasticWrappingEmission: null,
 
         // hdpeBanner: 0,
         // pvcBanners: 0,
@@ -58,12 +58,19 @@ const Waste = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('foodWasteNonMeatEmission', Number(0.67 * Number(values?.foodWasteNonMeatKg)).toFixed(2));
-            formik.setFieldValue('foodWasteMeatEmission', Number(0.69 * Number(values?.foodWasteMeatKg)).toFixed(2));
-            formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2));
-            formik.setFieldValue('bottleOneEmission', Number(Number(values?.bottleOne) * 6.42 * 0.004032).toFixed(2));
-            formik.setFieldValue('bottleTwoEmission', Number(Number(values?.bottleTwo) * 13 * 0.004032).toFixed(2));
-            formik.setFieldValue('bottleThreeEmission', Number(Number(values?.bottleThree) * 21.5 * 0.004032).toFixed(2));
+            const foodWasteNonMeatEmission = Number(0.67 * Number(values?.foodWasteNonMeatKg)).toFixed(2)
+            const foodWasteMeatEmission = Number(0.69 * Number(values?.foodWasteMeatKg)).toFixed(2)
+            const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2)
+            const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.004032).toFixed(2)
+            const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.004032).toFixed(2)
+            const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.004032).toFixed(2)
+
+            if (foodWasteNonMeatEmission > 0) formik.setFieldValue('foodWasteNonMeatEmission', foodWasteNonMeatEmission);
+            if (foodWasteMeatEmission > 0) formik.setFieldValue('foodWasteMeatEmission', foodWasteMeatEmission);
+            if (municipalSolidWasteEmission > 0) formik.setFieldValue('municipalSolidWasteEmission', municipalSolidWasteEmission);
+            if (bottleOneEmission > 0) formik.setFieldValue('bottleOneEmission', bottleOneEmission);
+            if (bottleTwoEmission > 0) formik.setFieldValue('bottleTwoEmission', bottleTwoEmission);
+            if (bottleThreeEmission > 0) formik.setFieldValue('bottleThreeEmission', bottleThreeEmission);
             // formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2));
             // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
             // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
@@ -78,32 +85,32 @@ const Waste = (props) => {
                 {
                     type: 'FoodWasteNonMeat',
                     foodWasteNonMeatKg: values?.foodWasteNonMeatKg,
-                    emission: Number((0.67 * values?.foodWasteNonMeatKg).toFixed(2)) || 0,
+                    emission: foodWasteNonMeatEmission > 0 ? foodWasteNonMeatEmission : null,
                 },
                 {
                     type: 'FoodWasteMeat',
                     foodWasteMeatKg: values?.foodWasteMeatKg,
-                    emission: Number((0.69 * values?.foodWasteMeatKg).toFixed(2)) || 0,
+                    emission: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : null,
                 },
                 {
                     type: 'MunicipalSolidWaste',
                     municipalSolidWasteKg: values?.municipalSolidWasteKg,
-                    emission: Number((0.902 * values?.municipalSolidWasteKg).toFixed(2)) || 0,
+                    emission: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : null,
                 },
                 {
                     type: '250ml',
                     bottleOne: values?.bottleOne,
-                    emission: Number((values?.bottleOne * 6.42 * 0.004032).toFixed(2)) || 0,
+                    emission: bottleOneEmission > 0 ? bottleOneEmission : null,
                 },
                 {
                     type: '500ml',
                     bottleTwo: values?.bottleTwo,
-                    emission: Number((values?.bottleTwo * 13 * 0.004032).toFixed(2)) || 0,
+                    emission: bottleTwoEmission > 0 ? bottleTwoEmission : null,
                 },
                 {
                     type: '1000ml',
                     bottleThree: values?.bottleThree,
-                    emission: Number((values?.bottleThree * 21.5 * 0.004032).toFixed(2)) || 0,
+                    emission: bottleThreeEmission > 0 ? bottleThreeEmission : null,
                 },
                 // {
                 //     type: 'PlasticWrapping',
