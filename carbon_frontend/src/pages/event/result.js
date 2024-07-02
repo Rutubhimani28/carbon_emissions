@@ -35,7 +35,7 @@ const Result = () => {
     let scope3Count = 0;
 
     const allFieldsData = [allDigitalContentData, allFreightData, allEnergyData, allFoodData, allWasteData, allProductionData, allLocalTranspotationData, allAirTravelData, allHotelData];
-    console.log("allFieldsData ", allFieldsData)
+
     allFieldsData?.forEach((item) => {
         if (item.scope === 1 || item.scope1 === 1 || item.scope2 === 1 || item.scope3 === 1) {
             scope1Count += 1;
@@ -60,7 +60,6 @@ const Result = () => {
         Number(allWasteData?.totalEmission) || 0,
     ];
 
-    console.log(chartData, "chartData")
     const resultData = [
         {
             type: 'Air Travel',
@@ -215,7 +214,7 @@ const Result = () => {
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(3)} tCO<sub>2</sub>e</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${(total / toolFormData?.budget).toFixed(3)}`} kgCO<sub>2</sub>e</Typography>
                         <Grid container pt={8} className='d-flex justify-content-center'>
-                            <Grid item xs={12} sm={8} md={8} style={{ backgroundColor: "red" }}>
+                            <Grid item xs={12} sm={8} md={8}>
                                 <CustomBarChart chartData={chartData} />
                             </Grid>
                             {/* <Grid item xs={12} sm={4} md={4} >
