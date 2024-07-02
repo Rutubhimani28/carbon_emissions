@@ -159,6 +159,10 @@ const Hotel = (props) => {
                                                         helperText={
                                                             formik.touched.geography && formik.errors.geography
                                                         }
+                                                        InputProps={{
+                                                            ...params.InputProps,
+                                                            style: { color: 'white' }, // This sets the text color to white
+                                                        }}
                                                     />}
                                             />
                                         </FormControl>
@@ -192,6 +196,10 @@ const Hotel = (props) => {
                                                         helperText={
                                                             formik.touched.country && formik.errors.country
                                                         }
+                                                        InputProps={{
+                                                            ...params.InputProps,
+                                                            style: { color: 'white' }, // This sets the text color to white
+                                                        }}
                                                     />}
                                             />
                                         </FormControl>
@@ -225,6 +233,10 @@ const Hotel = (props) => {
                                                         helperText={
                                                             formik.touched.hotelType && formik.errors.hotelType
                                                         }
+                                                        InputProps={{
+                                                            ...params.InputProps,
+                                                            style: { color: 'white' }, // This sets the text color to white
+                                                        }}
                                                     />}
                                             />
                                         </FormControl>
