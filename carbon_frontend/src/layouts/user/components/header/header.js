@@ -21,7 +21,8 @@ import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 // import logo from '../../assets/images/logo.png';
 // import logo from '../../assets/images/logo3.gif';
-import logo from '../../assets/images/logo4.gif';
+// import logo from '../../assets/images/logo4.gif';
+import logo from '../../assets/images/logo5.gif';
 
 const drawerWidth = 240;
 const navItems = [

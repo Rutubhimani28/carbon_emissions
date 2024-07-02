@@ -8,7 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { LoadingButton } from "@mui/lab";
 import { apipost } from "../../../../service/api";
-import Logo from '../../assets/images/logo4.gif';
+// import Logo from '../../assets/images/logo4.gif';
+import Logo from '../../assets/images/logo5.gif';
 
 export default function Bot(props) {
     const { openBot, handleCloseBot } = props;

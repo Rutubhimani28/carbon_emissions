@@ -1021,6 +1021,9 @@ const Production = (props) => {
                                     </Box>
                                 </Grid>
 
+                                <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                                    <Typography color="white">Note: Please seek support from your event management agency before filling out the contents of this page.</Typography>
+                                </Grid>
 
                                 <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                     <Stack direction={'row'} spacing={2}>

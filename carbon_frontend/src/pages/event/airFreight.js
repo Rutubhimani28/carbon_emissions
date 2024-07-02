@@ -252,7 +252,7 @@ const AirFreight = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography className="mt-3 text-white">Total Logistics Carbon Footprint = {totalEmission}</Typography>
+                                <Typography className="mt-3 text-white">Total Logistics Carbon Footprint = {totalEmission} kgCO<sub>2</sub>e</Typography>
                             </Grid>
 
                             <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>

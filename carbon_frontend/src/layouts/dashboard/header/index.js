@@ -12,7 +12,8 @@ import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
-import logo from '../../user/assets/images/logo4.gif';
+// import logo from '../../user/assets/images/logo4.gif';
+import logo from '../../user/assets/images/logo5.gif';
 
 // ----------------------------------------------------------------------
 
