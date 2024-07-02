@@ -243,6 +243,7 @@ const Waste = (props) => {
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);
                                                                 formik.setFieldValue('foodWasteNonMeatEmission', Number(0.67 * Number(e?.target?.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -270,6 +271,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('foodWasteMeatEmission', Number(0.69 * Number(values?.foodWasteMeatKg)).toFixed(2));
                                                                 formik.setFieldValue('foodWasteMeatEmission', Number(0.69 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }} inputProps={{ style: { color: 'white' } }}
                                                         />
                                                     </td>
@@ -296,6 +298,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2));
                                                                 formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }} inputProps={{ style: { color: 'white' } }}
                                                         />
                                                     </td>
@@ -338,6 +341,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('bottleOneEmission', Number(Number(values?.bottleOne) * 6.42 * 0.004032).toFixed(2));
                                                                 formik.setFieldValue('bottleOneEmission', Number(Number(e.target.value) * 6.42 * 0.004032).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }} inputProps={{ style: { color: 'white' } }}
                                                         />
                                                     </td>
@@ -364,6 +368,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('bottleTwoEmission', Number(Number(values?.bottleTwo) * 13 * 0.004032).toFixed(2));
                                                                 formik.setFieldValue('bottleTwoEmission', Number(Number(e.target.value) * 13 * 0.004032).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -391,6 +396,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('bottleThreeEmission', Number(Number(values?.bottleThree) * 21.5 * 0.004032).toFixed(2));
                                                                 formik.setFieldValue('bottleThreeEmission', Number(Number(e.target.value) * 21.5 * 0.004032).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }} inputProps={{ style: { color: 'white' } }}
                                                         />
                                                     </td>
@@ -417,6 +423,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2));
                                                                 formik.setFieldValue('plasticWrappingEmission', Number(Number(e.target.value) * 1 * 7.83).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
