@@ -1,198 +1,197 @@
 * {
-    /* font-family: "Josefin Sans", sans-serif !important; */
-    font-family: "Lato", sans-serif !important;
+  /* font-family: "Josefin Sans", sans-serif !important; */
+  font-family: 'Lato', sans-serif !important;
 }
 
 .fontFamily {
-    /* font-family: "Josefin Sans", sans-serif !important; */
-    font-family: "Lato", sans-serif !important;
-
+  /* font-family: "Josefin Sans", sans-serif !important; */
+  font-family: 'Lato', sans-serif !important;
 }
 
 .green {
-    color: #4ABD43;
-    /* color: #1f9e6d */
+  color: #4abd43;
+  /* color: #1f9e6d */
 }
 
 .main {
-    padding: 0 100px;
+  padding: 0 100px;
 }
 
-@media(max-width:500px) {
-    .main {
-        padding: 0 20px;
-    }
+@media (max-width: 500px) {
+  .main {
+    padding: 0 20px;
+  }
 }
 
-@media(max-width:900px) {
-    .main {
-        padding: 0 50px;
-    }
+@media (max-width: 900px) {
+  .main {
+    padding: 0 50px;
+  }
 }
 
 .cadImage {
-    opacity: 0.75;
-    transition: all 0.5s linear;
-    overflow: hidden;
+  opacity: 0.75;
+  transition: all 0.5s linear;
+  overflow: hidden;
 }
 
 .cadImage:hover {
-    opacity: 1;
-    transform: scale(1.1);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .cardBtn {
-    z-index: 99;
-    position: relative;
+  z-index: 99;
+  position: relative;
 }
 
 .bg-img {
-    background: url('../images/bg.png');
+  background: url('../images/bg.png');
+  height: 81.8vh;
 }
 
 .collabrate {
-    background: url('../images/collabrate_bg.jpg');
-    height: 75%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    z-index: 99;
+  background: url('../images/collabrate_bg.jpg');
+  height: 75%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 99;
 }
 
 .collabrate::after {
-    content: '';
-    position: absolute;
-    background-color: #0F0F0F;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    opacity: 0.73;
+  content: '';
+  position: absolute;
+  background-color: #0f0f0f;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.73;
 }
 
 .esg_menu {
-    position: relative;
+  position: relative;
 }
 
 .esg_menu:hover .esg_menuItem {
-    display: block;
-
+  display: block;
 }
 
 .esg_menuItem {
-    position: absolute;
-    top: 100%;
-    left: 5px;
-    background-color: rgb(255, 255, 255);
-    color: #0F0F0F;
-    list-style: none;
-    box-Shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    display: none;
-    padding: 10px;
-    margin-top: 10px;
+  position: absolute;
+  top: 100%;
+  left: 5px;
+  background-color: rgb(255, 255, 255);
+  color: #0f0f0f;
+  list-style: none;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  display: none;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .esgBanner {
-    background-image: url('https: //gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4');
+  background-image: url('https: //gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4');
 }
 
 .organise {
-    background-color: #fff;
-    transition: all 0.4s linear;
-    position: relative;
-    z-index: 99;
-    overflow: hidden;
+  background-color: #fff;
+  transition: all 0.4s linear;
+  position: relative;
+  z-index: 99;
+  overflow: hidden;
 }
 
 .organise:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -850px;
-    height: 100%;
-    width: 100%;
-    transition: all 0.4s linear;
-    /* background-color: #4ABD43; */
-    background-color: rgb(5, 71, 35);
-    color: #fff;
-    z-index: -1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -850px;
+  height: 100%;
+  width: 100%;
+  transition: all 0.4s linear;
+  /* background-color: #4ABD43; */
+  background-color: rgb(5, 71, 35);
+  color: #fff;
+  z-index: -1;
 }
 
 .organise:hover::after {
-    left: 0px;
+  left: 0px;
 }
 
 .organise:hover h6 {
-    color: #fff;
+  color: #fff;
 }
 
 .roombg1 {
-    background-image: url('../images/room1.jpeg');
-    height: 510px;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-image: url('../images/room1.jpeg');
+  height: 510px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .roombg2 {
-    background-image: url('../images/room2.jpeg');
-    height: 250px;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-image: url('../images/room2.jpeg');
+  height: 250px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .roombg3 {
-    background-image: url('../images/room3.jpg');
-    height: 250px;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-image: url('../images/room3.jpg');
+  height: 250px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .blogImageRadius {
-    border-top-right-radius: 40px;
-    border-bottom-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
 }
 
 .nextBlog {
-    position: relative;
-    transition: all 0.4s linear;
+  position: relative;
+  transition: all 0.4s linear;
 }
 
 .nextBlogContent {
-    position: absolute;
-    left: -200px;
-    background-color: #ffffff;
-    width: 200px;
+  position: absolute;
+  left: -200px;
+  background-color: #ffffff;
+  width: 200px;
 
-    transition: all 0.4s linear;
+  transition: all 0.4s linear;
 }
 
 .nextBlog:hover .nextBlogContent {
-    left: 137px;
+  left: 137px;
 }
 
 .nextBlogRight {
-    position: relative;
-    transition: all 0.4s linear;
+  position: relative;
+  transition: all 0.4s linear;
 }
 
 .nextBlogContentRight {
-    position: absolute;
-    background-color: #ffffff;
-    width: 200px;
-    left: 137px;
+  position: absolute;
+  background-color: #ffffff;
+  width: 200px;
+  left: 137px;
 
-    transition: all 0.4s linear;
+  transition: all 0.4s linear;
 }
 
 .nextBlogRight:hover .nextBlogContentRight {
-    left: -200px;
+  left: -200px;
 }

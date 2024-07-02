@@ -36,60 +36,60 @@
         <tr>
             <th>Air Travel</th>
             <td>
-                <%= data.totalAirTravel %> metric CO2e
+                <%= data.totalAirTravel %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Local Transportation</th>
             <td>
-                <%= data.totalLocalTransportation %> metric CO2e
+                <%= data.totalLocalTransportation %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Hotel</th>
             <td>
-                <%= data.totalHotel %> metric CO2e
+                <%= data.totalHotel %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Food</th>
             <td>
-                <%= data.totalFood %> metric CO2e
+                <%= data.totalFood %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Logistics</th>
             <td>
-                <%= data.totalAirFreight %> metric CO2e
+                <%= data.totalAirFreight %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Event Production</th>
             <td>
-                <%= data.totlaProduction %> metric CO2e
+                <%= data.totlaProduction %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Energy</th>
             <td>
-                <%= data.totalEnergyUpdated %> metric CO2e
+                <%= data.totalEnergyUpdated %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Digital</th>
             <td>
-                <%= data.totalDIgitalContent %> metric CO2e
+                <%= data.totalDIgitalContent %> kgco<sub>2</sub>
             </td>
         </tr>
         <tr>
             <th>Waste</th>
             <td>
-                <%= data.totalWaste %> metric CO2e
+                <%= data.totalWaste %> kgco<sub>2</sub>
             </td>
         </tr>
     </table>
 
-    <h4 class=''>Total = <%= data.grandTotal %> metric CO2e</h4>
+    <h4 class=''>Total = <%= data.grandTotal %> kgco<sub>2</sub></h4>
 
 </body>
 
@@ -135,12 +135,12 @@
             <img src="https://carbon-emissions-pnz7.onrender.com/logo/logo4.gif" width="30%" />
             <!-- <img src="logo4.gif" width="100%" /> -->
         </div>
-        <h4>Dear XX [Client's Name, to be picked from the Home page of the tool],</h4>
+        <h4>Dear <%= name %>,</h4>
         <p style="font-size: 16px;">Thank you for using Sirat’s<strong>NetZero Platfrom</strong>to measure the carbon
             footprint generated from
-            your <strong> (pick the
-                activity name
-                from the tool, which the client have added in the tool home page)</strong>activity. We deeply value your
+            your <strong>
+                <%= activityName %>
+            </strong>activity. We deeply value your
             commitment
             to
             sustainability and appreciate your proactive approach in understanding and mitigating your environmental
@@ -154,64 +154,62 @@
             <tr>
                 <th>Air Travel</th>
                 <td>
-                    <%= data.totalAirTravel %> metric CO2e
+                    <%= data.totalAirTravel %> kgco<sub>2</sub>
                 </td>
             </tr>
             <tr>
                 <th>Local Transportation</th>
                 <td>
-                    <%= data.totalLocalTransportation %> metric CO2e
+                    <%= data.totalLocalTransportation %> kgco<sub>2</sub>
                 </td>
             </tr>
             <tr>
                 <th>Hotel</th>
                 <td>
-                    <%= data.totalHotel %> metric CO2e
+                    <%= data.totalHotel %> kgco<sub>2</sub>
                 </td>
             </tr>
             <tr>
                 <th>Food</th>
                 <td>
-                    <%= data.totalFood %> metric CO2e
+                    <%= data.totalFood %> kgco<sub>2</sub>
                 </td>
             </tr>
             <tr>
                 <th>Logistics</th>
                 <td>
-                    <%= data.totalAirFreight %> metric CO2e
+                    <%= data.totalAirFreight %> kgco<sub>2</sub>
                 </td>
             </tr>
             <tr>
                 <th>Event Production</th>
                 <td>
-                    <%= data.totlaProduction %> metric CO2e
+                    <%= data.totlaProduction %> kgco<sub>2</sub>
                 </td>
             </tr>
             <tr>
                 <th>Energy</th>
                 <td>
-                    <%= data.totalEnergyUpdated %> metric CO2e
+                    <%= data.totalEnergyUpdated %> kgco<sub>2</sub>
                 </td>
             </tr>
             <tr>
                 <th>Digital</th>
                 <td>
-                    <%= data.totalDIgitalContent %> metric CO2e
+                    <%= data.totalDIgitalContent %> kgco<sub>2</sub>
                 </td>
             </tr>
             <tr>
                 <th>Waste</th>
                 <td>
-                    <%= data.totalWaste %> metric CO2e
+                    <%= data.totalWaste %> kgco<sub>2</sub>
                 </td>
             </tr>
         </table>
-        <h4 class=''>Total = <%= data.grandTotal %> metric CO2e</h4>
-        <h4 class=''>Total tCO2e = 0.00 tCO2e</h4>
+        <h4 class=''>Total = <%= data.grandTotal %> kgco<sub>2</sub></h4>
+        <h4 class=''>Total tCO2e = <%= totalTonCo2 %> tCO<sub>2</sub>e</h4>
 
-        <h4>For every $ you spend you are generating 23 kgCO2e (the 23 value needs to be- total emissions in kgCO2e
-            divided by the
-            budget)</h4>
+        <h4>For every $ you spend you are generating <%= eveydolarCo2 %> kgco<sub>2</sub></h4>
 
         <p>If you have any questions or need further assistance on how to reduce the carbon emissions, please contact at
             <a href="info@sirat.earth" target="_blank">info@sirat.earth</a>

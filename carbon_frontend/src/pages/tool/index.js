@@ -257,7 +257,7 @@ const Home = () => {
                                 </Button>
                             </Grid>
 
-                            <Grid item xs={5} sm={3} className='ps-0'>
+                            {/* <Grid item xs={5} sm={3} className='ps-0'>
                                 <Button
                                     variant="outlined"
                                     onClick={() => {
@@ -268,7 +268,7 @@ const Home = () => {
                                 >
                                     Clear
                                 </Button>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </Grid>
                 </Grid>
@@ -279,7 +279,6 @@ const Home = () => {
                 <Button variant="contained" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
             </Box>
 
-            <Typography className='fs-5 text-center my-4'>If you face any problems or have questions, please send your query to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link></Typography>
             <Modal
                 open={openInfo}
                 onClose={handleInfoClose}
@@ -297,7 +296,6 @@ const Home = () => {
                         <li>You can save the data and come back later before submitting and you can’t
                             change the values after submitting.</li>
                         <li>The summary page will give you how much Carbon footprint you generated per $ spent on your above activity.</li>
-                        <li>All the emissions values are in kgCO2e.</li>
                         <li>If you face any problems or have questions, please send your query to Sirāt</li>
                     </ul>
                 </Box>

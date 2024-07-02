@@ -85,7 +85,7 @@ const __dirname = path.dirname(__filename);
 
 const options = { format: 'Letter' };
 
-const sendMail = async ({ receiver, subject, data, templateName, message }) => {
+const sendMail = async ({ receiver, subject, data, templateName, message, activityName, name, totalTonCo2, eveydolarCo2 }) => {
     try {
         let mailOptions = {};
 
@@ -109,7 +109,7 @@ const sendMail = async ({ receiver, subject, data, templateName, message }) => {
             };
         } else {
             const templatePath = path.join(__dirname, '/email_templates', `${templateName}.ejs`);
-            const template = await ejs.renderFile(templatePath, { data: data });
+            const template = await ejs.renderFile(templatePath, { data: data, name, activityName, totalTonCo2, eveydolarCo2 });
             const pdfFilePath = path.join(__dirname, 'carbon_footprint.pdf');
 
             await new Promise((resolve, reject) => {
