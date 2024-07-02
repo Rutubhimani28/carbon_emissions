@@ -19,7 +19,7 @@ const digitalCampaignSlice = createSlice({
             });
             state.totalEmission = state.data[0].data.reduce((total, item) => {
                 if (item?.emission) {
-                    return total + item.emission;
+                    return total + Number(item.emission);
                 }
                 return total;
             }, 0).toFixed(2);
