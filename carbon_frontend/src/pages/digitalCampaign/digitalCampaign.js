@@ -17,42 +17,47 @@ const DigitalCampaign = (props) => {
     const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails?.totalEmission);
 
     const initialValues = {
-        imgSize: 0,
-        deviceEnergy1: 0,   // 0.01(1/60)
-        somePlatformEnergy1: 0, // =(0.4/1000)*imgSize
-        networkEnergy1: 0,      // =(0.2/1000)*imgSize
-        totalEnergy1: 0,        // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
-        efOne: 0,               // = totalEnergy1*0.43
-        impressionsOne: 0,      // 
-        emissionOne: 0,
-        videoSize: 0,
-        videoMins: 0,
-        deviceEnergy2: 0,       // = 0.01*( videoMins/60)
-        somePlatformEnergy2: 0, // = ( videoSize/1000)*0.4
-        networkEnergy2: 0,      // = (0.2/1000)* videoSize
-        totalEnergy2: 0,        // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
-        efTwo: 0,               // = totalEnergy2*0.43
-        impressionsTwo: 0,
-        emissionTwo: 0,         // videoSize * videoMins * impressionsTwo * efTwo
-        noOfEmails: 0,
-        // efThree: 0,
-        emissionThree: 0,
-        attachmentSize: 0,
-        // efFour: 0,
-        emissionFour: 0,
+        imgSize: null,
+        deviceEnergy1: null,   // 0.01(1/60)
+        somePlatformEnergy1: null, // =(0.4/1000)*imgSize
+        networkEnergy1: null,      // =(0.2/1000)*imgSize
+        totalEnergy1: null,        // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
+        efOne: null,               // = totalEnergy1*0.43
+        impressionsOne: null,      // 
+        emissionOne: null,
+        videoSize: null,
+        videoMins: null,
+        deviceEnergy2: null,       // = 0.01*( videoMins/60)
+        somePlatformEnergy2: null, // = ( videoSize/1000)*0.4
+        networkEnergy2: null,      // = (0.2/1000)* videoSize
+        totalEnergy2: null,        // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
+        efTwo: null,               // = totalEnergy2*0.43
+        impressionsTwo: null,
+        emissionTwo: null,         // videoSize * videoMins * impressionsTwo * efTwo
+        noOfEmails: null,
+        // efThree: null,
+        emissionThree: null,
+        attachmentSize: null,
+        // efFour: null,
+        emissionFour: null,
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
+            const emissionOne = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne))).toFixed(2)
+            const emissionTwo = values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo))).toFixed(2)
+            const emissionThree = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000)).toFixed(2)
+            const emissionFour = values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000)).toFixed(2)
+
             // formik.setFieldValue('emissionOne', values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2)));
-            formik.setFieldValue('emissionOne', values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne))).toFixed(2));
+            if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
             // formik.setFieldValue('emissionTwo', values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2)));
-            formik.setFieldValue('emissionTwo', values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo))).toFixed(2));
+            if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
             // formik.setFieldValue('emissionThree', values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2)));
-            formik.setFieldValue('emissionThree', values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000)).toFixed(2));
+            if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
             // formik.setFieldValue('emissionFour', values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2)));
-            formik.setFieldValue('emissionFour', values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000)).toFixed(2));
+            if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);
 
             const data = [
                 {
@@ -65,7 +70,7 @@ const DigitalCampaign = (props) => {
                     efOne: values?.efOne,
                     impressionsOne: values?.impressionsOne,
                     // emission: values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2))
-                    emission: values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2))
+                    emission: emissionOne > 0 ? emissionOne : null
                 },
                 {
                     type: 'Video',
@@ -78,19 +83,19 @@ const DigitalCampaign = (props) => {
                     efTwo: values?.efTwo,
                     impressionsTwo: values?.impressionsTwo,
                     // emission: values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2))
-                    emission: values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2))
+                    emission: emissionTwo > 0 ? emissionTwo : null
                 },
                 {
                     name: 'Emails',
                     noOfEmails: values?.noOfEmails,
                     // emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2))
-                    emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2))
+                    emission: emissionThree > 0 ? emissionThree : null
                 },
                 {
                     name: 'Email Attachment',
                     attachmentSize: values?.attachmentSize,
                     // emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2))
-                    emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2))
+                    emission: emissionFour > 0 ? emissionFour : null
                 }
             ];
             dispatch(addCampaignData({ data }));
