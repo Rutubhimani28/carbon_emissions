@@ -108,6 +108,7 @@ const EnergyUpdated = (props) => {
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionOne', Number((e.target.value * 0.43).toFixed(2)));
+                                            formik.handleSubmit();
                                         }}
                                         error={
                                             formik.touched.kwh &&
@@ -156,6 +157,7 @@ const EnergyUpdated = (props) => {
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 8.78).toFixed(2)));
+                                            formik.handleSubmit();
                                         }}
                                         error={
                                             formik.touched.gallonsOne &&
@@ -204,6 +206,7 @@ const EnergyUpdated = (props) => {
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionThree', Number((e.target.value * 10.21).toFixed(2)));
+                                            formik.handleSubmit();
                                         }}
                                         error={
                                             formik.touched.gallonsTwo &&
@@ -250,7 +253,7 @@ const EnergyUpdated = (props) => {
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
                                 <Typography>{`Total Energy Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginLeft={3}>
+                            {/* <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
                                     {
                                         allData?.length > 0 && allData?.map((item) => (
@@ -261,7 +264,7 @@ const EnergyUpdated = (props) => {
                                         ))
                                     }
                                 </ul>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </Box>
                 </Card>

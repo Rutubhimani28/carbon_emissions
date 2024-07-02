@@ -562,6 +562,7 @@ const Production = (props) => {
                                                                                 `${ite?.fieldName}Emission`,
                                                                                 Number((e.target.value * ite?.ef).toFixed(2))
                                                                             );
+                                                                            formik.handleSubmit();
                                                                         }}
                                                                         inputProps={{ style: { color: 'white' } }}
                                                                     />
@@ -611,6 +612,7 @@ const Production = (props) => {
                                                                                 `${item?.fieldName}Emission`,
                                                                                 Number((e.target.value * item?.ef).toFixed(2))
                                                                             );
+                                                                            formik.handleSubmit();
                                                                         }}
                                                                         inputProps={{ style: { color: 'white' } }}
                                                                     />
@@ -657,6 +659,7 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('hdpeBanner', e.target.value);
                                                                 formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -683,6 +686,7 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('pvcBanners', e.target.value);
                                                                 formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -709,6 +713,7 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('cottonBanner', e.target.value);
                                                                 formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -735,6 +740,7 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('plasticBadgeHolders', e.target.value);
                                                                 formik.setFieldValue('plasticBadgeHoldersEmission', Number(4.2 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -778,6 +784,8 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('colouredBrochurePage', e.target.value);
                                                                 formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -804,6 +812,8 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('paperBagsA4Size', e.target.value);
                                                                 formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -830,6 +840,8 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('paperBagsA5Size', e.target.value);
                                                                 formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -856,6 +868,8 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('juteBagsA4Size', e.target.value);
                                                                 formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -882,6 +896,8 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('cottonBagsA4Size', e.target.value);
                                                                 formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
+                                                                formik.handleSubmit();
                                                             }}
 
                                                             inputProps={{ style: { color: 'white' } }}
@@ -933,6 +949,7 @@ const Production = (props) => {
                                                                                 `${it?.fieldName}Emission`,
                                                                                 Number((e.target.value * formik.values[`${it?.fieldName}NoOfDevice`] * it?.ef).toFixed(2))
                                                                             );
+                                                                            formik.handleSubmit();
                                                                         }}
                                                                         inputProps={{ style: { color: 'white' } }}
                                                                     />
@@ -949,6 +966,7 @@ const Production = (props) => {
                                                                                 `${it?.fieldName}Emission`,
                                                                                 Number((formik.values[`${it?.fieldName}NoOfHour`] * e.target.value * it?.ef).toFixed(2))
                                                                             );
+                                                                            formik.handleSubmit();
                                                                         }}
                                                                         inputProps={{ style: { color: 'white' } }}
                                                                     />
@@ -999,6 +1017,7 @@ const Production = (props) => {
                                                                         `kwhEmission`,
                                                                         Number((e.target.value * 0.43).toFixed(2))
                                                                     );
+                                                                    formik.handleSubmit();
                                                                 }}
                                                                 inputProps={{ style: { color: 'white' } }}
                                                             />

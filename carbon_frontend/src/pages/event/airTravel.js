@@ -120,16 +120,19 @@ const AirTravel = (props) => {
     const calclulateEconomyClass = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+        formik.handleSubmit();
     };
 
     const calclulateBusinessClass = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+        formik.handleSubmit();
     };
 
     const calclulateFirstClass = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+        formik.handleSubmit();
     };
 
     return (

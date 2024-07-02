@@ -249,11 +249,13 @@ const LocalTranspotation = (props) => {
     const calclulateModeTransport1 = (e, emmFieldName, firstValue, secondValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, (e.target?.value?.valuealue === 0 || secondValue === 0) ? 0 : Number(((ef * Number(firstValue)) / Number(secondValue)).toFixed(2)));
+        formik.handleSubmit();
     };
 
     const calclulateModeTransport2 = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, Number(((ef * Number(firstValue))).toFixed(2)));
+        formik.handleSubmit();
     };
 
     const calclulateModeTransport3 = (e, emmFieldName, firstValue, secondValue, ef, maxCheck) => {
@@ -264,6 +266,7 @@ const LocalTranspotation = (props) => {
             formik.setFieldValue(e.target?.name, e.target?.value);
         }
         formik.setFieldValue(emmFieldName, (firstValue === 0 || secondValue === 0) ? 0 : Number(((ef * Number(firstValue)) / Number(secondValue)).toFixed(2)));
+        formik.handleSubmit();
     };
 
     const { values } = formik;

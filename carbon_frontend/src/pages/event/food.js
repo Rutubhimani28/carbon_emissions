@@ -137,11 +137,11 @@ const Food = (props) => {
                 },
                 {
                     type: 'Customised Food Menu',
-                    emission: values?.custFoodMenuEmission
+                    emission: values?.custFoodMenuEmission || 0
                 },
                 {
                     type: 'Customised Beverages',
-                    emission: values?.custBeveragesEmission
+                    emission: values?.custBeveragesEmission || 0
                 },
             ];
             dispatch(addFoodData({ data }))
@@ -193,11 +193,13 @@ const Food = (props) => {
     const handleChangeFoodWaste = (e, fieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(2)));
+        formik.handleSubmit();
     };
 
     const handleChangeBeveragesWaste = (e, fieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(2)));
+        formik.handleSubmit();
     };
 
     return (
@@ -275,7 +277,10 @@ const Food = (props) => {
                                                 </tr>
                                                 <tr>
                                                     <td className='ps-2 py-1' width="182">Customised Food</td>
-                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission}
+                                                        onChange={formik.handleChange}
+                                                        // onChange={(e) => { formik.setFieldValue("custFoodMenuEmission", e.target.value); formik.handleSubmit(); }} 
+                                                        inputProps={{ style: { color: 'white' } }} /></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -378,7 +383,10 @@ const Food = (props) => {
                                                 </tr>
                                                 <tr>
                                                     <td className='ps-2 py-1'>Customised Beverages</td>
-                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='custBeveragesEmission' value={formik?.values?.custBeveragesEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='custBeveragesEmission' value={formik?.values?.custBeveragesEmission}
+                                                        onChange={formik.handleChange}
+                                                        // onChange={(e) => { formik.setFieldValue("custBeveragesEmission", e.target.value); formik.handleSubmit(); }} 
+                                                        inputProps={{ style: { color: 'white' } }} /></td>
                                                 </tr>
                                             </table>
                                         </div>

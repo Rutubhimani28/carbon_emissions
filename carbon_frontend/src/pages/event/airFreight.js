@@ -136,6 +136,7 @@ const AirFreight = (props) => {
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
                                                     formik.setFieldValue('emissionOne', Number((e.target.value * formik?.values?.kgsOne * formik?.values?.efOne).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
@@ -149,6 +150,7 @@ const AirFreight = (props) => {
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
                                                     formik.setFieldValue('emissionOne', Number((formik?.values?.noOfKmsOne * e.target.value * formik?.values?.efOne).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
@@ -175,6 +177,7 @@ const AirFreight = (props) => {
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
                                                     formik.setFieldValue('emissionTwo', Number((e.target.value * formik?.values?.kgsTwo * formik?.values?.efTwo).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
@@ -188,6 +191,7 @@ const AirFreight = (props) => {
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
                                                     formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfKmsTwo * e.target.value * formik?.values?.efTwo).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
@@ -255,14 +259,14 @@ const AirFreight = (props) => {
                                 <Typography className="mt-3 text-white">Total Logistics Carbon Footprint = {totalEmission} kgCO<sub>2</sub>e</Typography>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
+                            {/* <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
                                 <ul>
                                     {allData?.length > 0 &&
                                         allData?.map((item) => (
                                             <li style={{ color: 'white' }}>{`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e</li>
                                         ))}
                                 </ul>
-                            </Grid>
+                            </Grid> */}
                         </Box>
                     </Box>
                 </Card>

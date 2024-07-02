@@ -172,6 +172,7 @@ const DigitalCampaign = (props) => {
                                                     onChange={(e) => {
                                                         formik.setFieldValue("noOfEmails", e.target.value);
                                                         formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number((Number(e.target.value * 4) / 1000)).toFixed(2));
+                                                        formik.handleSubmit();
                                                     }}
                                                     inputProps={{ style: { color: 'white' } }} />
                                                 </td>
@@ -196,6 +197,7 @@ const DigitalCampaign = (props) => {
                                                     onChange={(e) => {
                                                         formik.setFieldValue("attachmentSize", e.target.value);
                                                         formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(((Number(e.target.value) * 50) / 1000)).toFixed(2));
+                                                        formik.handleSubmit();
                                                     }}
                                                     inputProps={{ style: { color: 'white' } }} />
                                                 </td>
@@ -233,6 +235,7 @@ const DigitalCampaign = (props) => {
                                                             formik.setFieldValue("somePlatformEnergy1", (0.4 / 1000) * Number(e.target.value));
                                                             formik.setFieldValue("networkEnergy1", (0.2 / 1000) * Number(e.target.value));
                                                             formik.setFieldValue("totalEnergy1", (0.01 * (Number(e.target.value) / 60)) + ((0.4 / 1000) * Number(e.target.value)) + ((0.2 / 1000) + Number(e.target.value)));     // maybe
+                                                            formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
@@ -287,6 +290,7 @@ const DigitalCampaign = (props) => {
                                                     onChange={(e) => {
                                                         formik.setFieldValue("impressionsOne", Number(e.target.value));
                                                         formik.setFieldValue("emissionOne", (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(2));
+                                                        formik.handleSubmit();
                                                     }}
                                                     inputProps={{ style: { color: 'white' } }}
                                                 />
@@ -322,6 +326,7 @@ const DigitalCampaign = (props) => {
                                                             formik.setFieldValue("somePlatformEnergy2", Number((Number(e.target.value) / 1000) * 0.4));
                                                             formik.setFieldValue("networkEnergy2", Number((0.2 / 1000) * Number(e.target.value)));
                                                             formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values?.impressionsTwo) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
+                                                            formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
@@ -331,6 +336,7 @@ const DigitalCampaign = (props) => {
                                                         onChange={(e) => {
                                                             formik.setFieldValue("videoMins", Number(e.target.value));
                                                             formik.setFieldValue("deviceEnergy2", Number(0.01 * (Number(e.target.value) / 60)));
+                                                            formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
@@ -384,6 +390,7 @@ const DigitalCampaign = (props) => {
                                                         onChange={(e) => {
                                                             formik.setFieldValue("impressionsTwo", Number(e.target.value));
                                                             formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
+                                                            formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />

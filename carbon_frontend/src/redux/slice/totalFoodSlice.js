@@ -19,7 +19,7 @@ const totalFoodSlice = createSlice({
                     state.data.push(newItem);
                 }
             });
-            state.totalEmission = state.data[0].data.reduce((total, item) => {
+            state.totalEmission = state.data[0]?.data?.reduce((total, item) => {
                 if (item?.emission) {
                     return total + item.emission;
                 }

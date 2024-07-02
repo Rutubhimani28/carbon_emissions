@@ -116,6 +116,7 @@ const DigitalContent = (props) => {
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionOne', Number((e.target.value * 4 / 1000).toFixed(2)));
+                                            formik.handleSubmit();
                                         }}
                                         error={
                                             formik.touched.count &&
@@ -164,6 +165,7 @@ const DigitalContent = (props) => {
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 50 / 1000).toFixed(2)));
+                                            formik.handleSubmit();
                                         }}
                                         error={
                                             formik.touched.MB &&
@@ -213,6 +215,7 @@ const DigitalContent = (props) => {
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
+                                            formik.handleSubmit();
                                         }}
                                         error={
                                             formik.touched.noOfAttendees &&
@@ -236,6 +239,7 @@ const DigitalContent = (props) => {
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionThree', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(2)));
+                                            formik.handleSubmit();
                                         }}
                                         error={
                                             formik.touched.noOfHours &&
@@ -282,7 +286,7 @@ const DigitalContent = (props) => {
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
                                 <Typography color='white'>{`Total Digital Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginLeft={3}>
+                            {/* <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>
                                     {
                                         allData?.length > 0 && allData?.map((item) => (
@@ -293,7 +297,7 @@ const DigitalContent = (props) => {
                                         ))
                                     }
                                 </ul>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </Box>
                 </Card>
