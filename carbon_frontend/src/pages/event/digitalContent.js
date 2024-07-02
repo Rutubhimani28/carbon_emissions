@@ -25,41 +25,53 @@ const DigitalContent = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        count: 0,
-        MB: 0,
-        noOfAttendees: 0,
-        noOfHours: 0,
-        serviceLifeOfLaptop: 0,
-        emissionOne: 0,
-        emissionTwo: 0,
-        emissionThree: 0,
+        // count: 0,
+        // MB: 0''
+        // noOfAttendees: 0,
+        // noOfHours: 0,
+        // serviceLifeOfLaptop: 0,
+        // emissionOne: 0,
+        // emissionTwo: 0,
+        // emissionThree: 0,
+
+        count: '',
+        MB: '',
+        noOfAttendees: '',
+        noOfHours: '',
+        serviceLifeOfLaptop: '',
+        emissionOne: '',
+        emissionTwo: '',
+        emissionThree: '',
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', values?.count * 4 / 1000);
-            formik.setFieldValue('emissionTwo', values?.MB * 50 / 1000);
-            const emission = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
-            formik.setFieldValue('emissionThree', emission || 0);
+            const emissionOne = Number(values?.count) * 4 / 1000;
+            const emissionTwo = Number(values?.MB) * 50 / 1000;
+            const emissionThree = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
+
+            if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
+            if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
+            if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
 
             const data = [
                 {
                     type: 'Emails',
                     count: values?.count,
-                    emission: Number((values?.count * 4 / 1000).toFixed(2))
+                    emission: (emissionOne > 0) ? emissionOne : ''
                 },
                 {
                     type: 'Attachments',
                     mb: values?.MB,
-                    emission: Number((values?.MB * 50 / 1000).toFixed(2))
+                    emission: (emissionTwo > 0) ? emissionTwo : ''
                 },
                 {
                     type: 'Laptops used',
                     noOfAttendees: values?.noOfAttendees,
                     noOfHours: values?.noOfHours,
                     serviceLifeOfLaptop: values?.serviceLifeOfLaptop,
-                    emission: Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0
+                    emission: (emissionThree > 0) ? emissionThree : ''
                 }
             ];
 
