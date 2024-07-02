@@ -25,23 +25,41 @@ const Hotel = (props) => {
 
     // -----------   initialValues
     const initialValues = {
+        // // Hotel
+        // geography: '',
+        // country: '',
+        // hotelType: '',
+        // roomsOccupied: 0,
+        // efOne: null,
+        // emissionsOne: 0,
+        // filteredCountries: [],
+        // totalMeetingRoomArea: 0,
+        // // Meeting Room1
+        // meetingDuration: 0,
+        // efTwo: 0.00104,
+        // emissionsTwo: 0,
+        // // Meeting Room2  
+        // energyUtilisedKwh: 0,
+        // efThree: 0.43,
+        // emissionsThree: 0,
+
         // Hotel
         geography: '',
         country: '',
         hotelType: '',
-        roomsOccupied: 0,
+        roomsOccupied: '',
         efOne: null,
-        emissionsOne: 0,
+        emissionsOne: '',
         filteredCountries: [],
-        totalMeetingRoomArea: 0,
+        totalMeetingRoomArea: '',
         // Meeting Room1
-        meetingDuration: 0,
+        meetingDuration: '',
         efTwo: 0.00104,
-        emissionsTwo: 0,
+        emissionsTwo: '',
         // Meeting Room2  
-        energyUtilisedKwh: 0,
+        energyUtilisedKwh: '',
         efThree: 0.43,
-        emissionsThree: 0,
+        emissionsThree: '',
     };
 
     const formik = useFormik({
@@ -49,9 +67,13 @@ const Hotel = (props) => {
         enableReinitialize: true,
         onSubmit: async (values) => {
 
-            formik.setFieldValue('emissionsOne', (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2)));
-            formik.setFieldValue('emissionsTwo', (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2)));
-            formik.setFieldValue('emissionsThree', (values?.energyUtilisedKwh === 0) ? 0 : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(2)));
+            const emissionsOne = (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2))
+            const emissionsTwo = (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2))
+            const emissionsThree = (values?.energyUtilisedKwh === 0) ? 0 : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(2))
+
+            if (emissionsOne > 0) formik.setFieldValue('emissionsOne', emissionsOne);
+            if (emissionsTwo > 0) formik.setFieldValue('emissionsTwo', emissionsTwo);
+            if (emissionsThree > 0) formik.setFieldValue('emissionsThree', emissionsThree);
 
             const data = [
                 {
@@ -62,19 +84,19 @@ const Hotel = (props) => {
                     roomsOccupied: values?.roomsOccupied,
                     filteredCountries: values?.filteredCountries,
                     efOne: values?.efOne,
-                    emission: (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2))
+                    emission: emissionsOne > 0 ? emissionsOne : '',
                 },
                 {
                     type: 'Meeting Room One',
                     totalMeetingRoomArea: values?.totalMeetingRoomArea,
                     meetingDuration: values?.meetingDuration,
-                    emission: (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2)),
+                    emission: emissionsTwo > 0 ? emissionsTwo : '',
                     efTwo: values?.efTwo,
                 },
                 {
                     type: 'Meeting Room Two',
                     energyUtilisedKwh: values?.energyUtilisedKwh,
-                    emission: (values?.energyUtilisedKwh === 0) ? 0 : Number((values?.efThree * values?.energyUtilisedKwh).toFixed(2)),
+                    emission: emissionsThree > 0 ? emissionsThree : '',
                     efThree: values?.efThree,
                 },
             ];
@@ -146,6 +168,7 @@ const Hotel = (props) => {
                                                     formik.setFieldValue("hotelType", '');
                                                     formik.setFieldValue("efOne", null);
                                                     formik.setFieldValue("emissionsOne", 0);
+                                                    formik.handleSubmit();
                                                 }}
                                                 renderInput={(params) =>
                                                     <TextField {...params}
@@ -159,6 +182,10 @@ const Hotel = (props) => {
                                                         helperText={
                                                             formik.touched.geography && formik.errors.geography
                                                         }
+                                                        InputProps={{
+                                                            ...params.InputProps,
+                                                            style: { color: 'white' }, // This sets the text color to white
+                                                        }}
                                                     />}
                                             />
                                         </FormControl>
@@ -179,6 +206,7 @@ const Hotel = (props) => {
                                                     formik.setFieldValue("hotelType", '');
                                                     formik.setFieldValue("emissionsOne", 0);
                                                     formik.setFieldValue("efOne", null);
+                                                    formik.handleSubmit();
                                                 }}
                                                 renderInput={(params) =>
                                                     <TextField {...params}
@@ -192,6 +220,10 @@ const Hotel = (props) => {
                                                         helperText={
                                                             formik.touched.country && formik.errors.country
                                                         }
+                                                        InputProps={{
+                                                            ...params.InputProps,
+                                                            style: { color: 'white' }, // This sets the text color to white
+                                                        }}
                                                     />}
                                             />
                                         </FormControl>
@@ -212,6 +244,7 @@ const Hotel = (props) => {
                                                     const selectedHotelTypeData = formik.values?.filteredCountries?.find((item) => item.country === formik.values?.country);
                                                     const hotellTypeEf = newValue?.value === 4 || newValue?.value === 4.5 ? selectedHotelTypeData?.stars_four_fourPointHalf : selectedHotelTypeData?.stars_five;
                                                     formik.setFieldValue("efOne", hotellTypeEf);
+                                                    formik.handleSubmit();
                                                 }}
                                                 renderInput={(params) =>
                                                     <TextField {...params}
@@ -225,6 +258,10 @@ const Hotel = (props) => {
                                                         helperText={
                                                             formik.touched.hotelType && formik.errors.hotelType
                                                         }
+                                                        InputProps={{
+                                                            ...params.InputProps,
+                                                            style: { color: 'white' }, // This sets the text color to white
+                                                        }}
                                                     />}
                                             />
                                         </FormControl>
@@ -242,6 +279,7 @@ const Hotel = (props) => {
                                                 onChange={(e) => {
                                                     formik.setFieldValue("roomsOccupied", e.target.value);
                                                     formik.setFieldValue("emissionsOne", (e.target.value === 0 || values?.efOne === 0 || !values?.efOne) ? 0 : Number((values?.efOne * e.target.value).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 error={
                                                     formik.touched.roomsOccupied &&
@@ -301,10 +339,12 @@ const Hotel = (props) => {
                                                     label=""
                                                     fullWidth
                                                     size="small"
+                                                    type="number"
                                                     value={formik.values.totalMeetingRoomArea}
                                                     onChange={(e) => {
                                                         formik.setFieldValue('totalMeetingRoomArea', e.target.value);
                                                         formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.meetingDuration).toFixed(2)));
+                                                        formik.handleSubmit();
                                                     }}
                                                     error={
                                                         formik.touched.totalMeetingRoomArea &&
@@ -329,6 +369,7 @@ const Hotel = (props) => {
                                                     onChange={(e) => {
                                                         formik.setFieldValue('meetingDuration', e.target.value);
                                                         formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.totalMeetingRoomArea === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.totalMeetingRoomArea).toFixed(2)));
+                                                        formik.handleSubmit();
                                                     }}
                                                     error={
                                                         formik.touched.meetingDuration &&
@@ -363,16 +404,18 @@ const Hotel = (props) => {
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={6}>
                                             <Grid mt={2}>
-                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh)</FormLabel>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh) *</FormLabel>
                                                 <TextField
                                                     id="energyUtilisedKwh"
                                                     name="energyUtilisedKwh"
                                                     fullWidth
                                                     size="small"
+                                                    type="number"
                                                     value={formik.values.energyUtilisedKwh}
                                                     onChange={(e) => {
                                                         formik.setFieldValue('energyUtilisedKwh', e.target.value);
                                                         formik.setFieldValue('emissionsThree', (e.target.value === 0) ? 0 : Number((values?.efThree * e.target.value).toFixed(2)));
+                                                        formik.handleSubmit();
                                                     }}
                                                     error={
                                                         formik.touched.energyUtilisedKwh &&
@@ -406,7 +449,7 @@ const Hotel = (props) => {
                                                 />
                                             </Grid>
                                             <Grid mt={2}>
-                                                <Typography> Note : If you have the exact energy consumption from hotel</Typography>
+                                                <Typography> * If you have the exact energy consumption from hotel</Typography>
                                             </Grid>
                                         </Grid>
                                     </Grid>

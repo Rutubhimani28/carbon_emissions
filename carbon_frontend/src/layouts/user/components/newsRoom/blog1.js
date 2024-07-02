@@ -4,6 +4,7 @@ import { FaChevronLeft, FaChevronRight, FaXTwitter } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import blog1 from '../../assets/images/room1.jpeg';
 import blog2 from '../../assets/images/room2.jpeg';
+import blog4 from '../../assets/images/room4.png';
 
 
 const Blog1 = () => {
@@ -12,7 +13,7 @@ const Blog1 = () => {
             <div className='container'>
 
                 <div className='container pt-5 d-flex justify-content-center'>
-                    <img src={blog1} alt="blog2" width={'85%'} className='blogImageRadius' />
+                    <img src={blog1} alt="blog1" width={'85%'} className='blogImageRadius' />
                 </div>
                 <Typography variant='h6' className='text-center fs-2 pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
                 <ul className='p-5 wow animate__animated animate__fadeInUp animate__slow'>
@@ -42,14 +43,26 @@ const Blog1 = () => {
                 <span className='mx-2 fs-5' ><Link style={{ color: "#1e149d" }} to='https://pinterest.com/pin/find/?url=https%3A%2F%2Fgosustainable.ai%2F2024%2F03%2F18%2Fgoing-eco-friendly-with-go-sustainable-aster-cmi-hospital-bangalore%2F'><FaPinterestP /></Link></span>
             </div>
             <div style={{ position: "fixed", bottom: "70px", left: "0", }} >
-                <Link to='/news-room/blog2' className='d-flex nextBlog'>
+                <Link to='/news-room/blog4' className='d-flex nextBlog'>
                     <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
                         <FaChevronLeft />
                     </div>
-                    <img src={blog2} alt="blog2" height={"80px"} width={"100px"} />
+                    <img src={blog4} alt="blog4" height={"80px"} width={"100px"} />
                     <div className='nextBlogContent'>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>
+                            Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing
+                        </Typography>
+                    </div>
+                </Link>
+            </div>
+            <div style={{ position: "fixed", bottom: "70px", right: "0", }}>
+                <Link to='/news-room/blog2' className='d-flex nextBlogRight'>
+                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
+                        <FaChevronRight />
+                    </div>
+                    <img src={blog2} alt="blog2" height={"80px"} width={"100px"} />
+                    <div className='nextBlogContentRight'>
                         <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>Empowering organizations: Meeting net-zero through the reduction of single-use plastics</Typography>
-
                     </div>
                 </Link>
             </div>

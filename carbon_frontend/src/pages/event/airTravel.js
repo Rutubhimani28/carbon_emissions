@@ -18,41 +18,73 @@ const AirTravel = (props) => {
 
     // -----------   initialValues
     const initialValues = {
+        // // Economy Class
+        // noOfTripsOne: 0,   // Short Haul      
+        // noOfTripsTwo: 0,   // Medium haul
+        // noOfTripsThree: 0, // Long haul
+        // emissionOne: 0,    // Short Haul  200
+        // emissionTwo: 0,    // Medium haul 375
+        // emissionThree: 0,  // Long haul   960
+        // // Business Class
+        // noOfTripsFour: 0,
+        // noOfTripsFive: 0,
+        // noOfTripsSix: 0,
+        // emissionFour: 0,  // 400
+        // emissionFive: 0,  // 750
+        // emissionSix: 0,   // 1920
+        // // First Class
+        // noOfTripsSeven: 0,
+        // noOfTripsEight: 0,
+        // noOfTripsNine: 0,
+        // emissionSeven: 0,   // 600 
+        // emissionEight: 0,   // 1125
+        // emissionNine: 0,    // 2880
+
         // Economy Class
-        noOfTripsOne: 0,   // Short Haul      
-        noOfTripsTwo: 0,   // Medium haul
-        noOfTripsThree: 0, // Long haul
-        emissionOne: 0,    // Short Haul  200
-        emissionTwo: 0,    // Medium haul 375
-        emissionThree: 0,  // Long haul   960
+        noOfTripsOne: '',   // Short Haul      
+        noOfTripsTwo: '',   // Medium haul
+        noOfTripsThree: '', // Long haul
+        emissionOne: '',    // Short Haul  200
+        emissionTwo: '',    // Medium haul 375
+        emissionThree: '',  // Long haul   960
         // Business Class
-        noOfTripsFour: 0,
-        noOfTripsFive: 0,
-        noOfTripsSix: 0,
-        emissionFour: 0,  // 400
-        emissionFive: 0,  // 750
-        emissionSix: 0,   // 1920
+        noOfTripsFour: '',
+        noOfTripsFive: '',
+        noOfTripsSix: '',
+        emissionFour: '',  // 400
+        emissionFive: '',  // 750
+        emissionSix: '',   // 1920
         // First Class
-        noOfTripsSeven: 0,
-        noOfTripsEight: 0,
-        noOfTripsNine: 0,
-        emissionSeven: 0,   // 600 
-        emissionEight: 0,   // 1125
-        emissionNine: 0,    // 2880
+        noOfTripsSeven: '',
+        noOfTripsEight: '',
+        noOfTripsNine: '',
+        emissionSeven: '',   // 600 
+        emissionEight: '',   // 1125
+        emissionNine: '',    // 288
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', values?.noOfTripsOne === 0 ? 0 : (200 * values?.noOfTripsOne).toFixed(2));
-            formik.setFieldValue('emissionTwo', values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(2));
-            formik.setFieldValue('emissionThree', values?.noOfTripsThree === 0 ? 0 : (960 * values?.noOfTripsThree).toFixed(2));
-            formik.setFieldValue('emissionFour', values?.noOfTripsFour === 0 ? 0 : (400 * values?.noOfTripsFour).toFixed(2));
-            formik.setFieldValue('emissionFive', values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(2));
-            formik.setFieldValue('emissionSix', values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(2));
-            formik.setFieldValue('emissionSeven', values?.noOfTripsSeven === 0 ? 0 : (600 * values?.noOfTripsSeven).toFixed(2));
-            formik.setFieldValue('emissionEight', values?.noOfTripsEight === 0 ? 0 : (1125 * values?.noOfTripsEight).toFixed(2));
-            formik.setFieldValue('emissionNine', values?.noOfTripsNine === 0 ? 0 : (2880 * values?.noOfTripsNine).toFixed(2));
+            const emissionOne = values?.noOfTripsOne === 0 ? 0 : (200 * values?.noOfTripsOne).toFixed(2)
+            const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(2)
+            const emissionThree = values?.noOfTripsThree === 0 ? 0 : (960 * values?.noOfTripsThree).toFixed(2)
+            const emissionFour = values?.noOfTripsFour === 0 ? 0 : (400 * values?.noOfTripsFour).toFixed(2)
+            const emissionFive = values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(2)
+            const emissionSix = values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(2)
+            const emissionSeven = values?.noOfTripsSeven === 0 ? 0 : (600 * values?.noOfTripsSeven).toFixed(2)
+            const emissionEight = values?.noOfTripsEight === 0 ? 0 : (1125 * values?.noOfTripsEight).toFixed(2)
+            const emissionNine = values?.noOfTripsNine === 0 ? 0 : (2880 * values?.noOfTripsNine).toFixed(2)
+
+            if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
+            if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
+            if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
+            if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);
+            if (emissionFive > 0) formik.setFieldValue('emissionFive', emissionFive);
+            if (emissionSix > 0) formik.setFieldValue('emissionSix', emissionSix);
+            if (emissionSeven > 0) formik.setFieldValue('emissionSeven', emissionSeven);
+            if (emissionEight > 0) formik.setFieldValue('emissionEight', emissionEight);
+            if (emissionNine > 0) formik.setFieldValue('emissionNine', emissionNine);
 
             const data = [
                 {
@@ -60,27 +92,27 @@ const AirTravel = (props) => {
                     noOfTripsOne: values?.noOfTripsOne,
                     noOfTripsTwo: values?.noOfTripsTwo,
                     noOfTripsThree: values?.noOfTripsThree,
-                    emissionOne: values?.noOfTripsOne === 0 ? 0 : Number((200 * values?.noOfTripsOne).toFixed(2)) || 0,
-                    emissionTwo: values?.noOfTripsTwo === 0 ? 0 : Number((375 * values?.noOfTripsTwo).toFixed(2)) || 0,
-                    emissionThree: values?.noOfTripsThree === 0 ? 0 : Number((960 * values?.noOfTripsThree).toFixed(2)) || 0,
+                    emissionOne: emissionOne > 0 ? emissionOne : '',
+                    emissionTwo: emissionTwo > 0 ? emissionTwo : '',
+                    emissionThree: emissionThree > 0 ? emissionThree : ''
                 },
                 {
                     type: 'Business Class',
                     noOfTripsFour: values?.noOfTripsFour,
                     noOfTripsFive: values?.noOfTripsFive,
                     noOfTripsSix: values?.noOfTripsSix,
-                    emissionFour: values?.noOfTripsFour === 0 ? 0 : Number((400 * values?.noOfTripsFour).toFixed(2)) || 0,
-                    emissionFive: values?.noOfTripsFive === 0 ? 0 : Number((750 * values?.noOfTripsFive).toFixed(2)) || 0,
-                    emissionSix: values?.noOfTripsSix === 0 ? 0 : Number((1920 * values?.noOfTripsSix).toFixed(2)) || 0,
+                    emissionFour: emissionFour > 0 ? emissionFour : '',
+                    emissionFive: emissionFive > 0 ? emissionFive : '',
+                    emissionSix: emissionSix > 0 ? emissionSix : ''
                 },
                 {
                     type: 'First Class',
                     noOfTripsSeven: values?.noOfTripsSeven,
                     noOfTripsEight: values?.noOfTripsEight,
                     noOfTripsNine: values?.noOfTripsNine,
-                    emissionSeven: values?.noOfTripsSeven === 0 ? 0 : Number((600 * values?.noOfTripsSeven).toFixed(2)) || 0,
-                    emissionEight: values?.noOfTripsEight === 0 ? 0 : Number((1125 * values?.noOfTripsEight).toFixed(2)) || 0,
-                    emissionNine: values?.noOfTripsNine === 0 ? 0 : Number((2880 * values?.noOfTripsNine).toFixed(2)) || 0,
+                    emissionSeven: emissionSeven > 0 ? emissionSeven : '',
+                    emissionEight: emissionEight > 0 ? emissionEight : '',
+                    emissionNine: emissionNine > 0 ? emissionNine : ''
                 }
             ];
             dispatch(addAirTravelData({ data }));
@@ -120,16 +152,19 @@ const AirTravel = (props) => {
     const calclulateEconomyClass = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+        formik.handleSubmit();
     };
 
     const calclulateBusinessClass = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+        formik.handleSubmit();
     };
 
     const calclulateFirstClass = (e, emmFieldName, firstValue, ef) => {
         formik.handleChange(e);
         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+        formik.handleSubmit();
     };
 
     return (

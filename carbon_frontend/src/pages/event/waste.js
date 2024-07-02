@@ -18,143 +18,150 @@ const Waste = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        foodWasteNonMeatKg: 0,
-        foodWasteMeatKg: 0,
-        municipalSolidWasteKg: 0,
-        foodWasteNonMeatEmission: 0,
-        foodWasteMeatEmission: 0,
-        municipalSolidWasteEmission: 0,
+        foodWasteNonMeatKg: null,
+        foodWasteMeatKg: null,
+        municipalSolidWasteKg: null,
+        foodWasteNonMeatEmission: null,
+        foodWasteMeatEmission: null,
+        municipalSolidWasteEmission: null,
 
-        bottleOne: 0,
-        bottleTwo: 0,
-        bottleThree: 0,
-        bottleOneEmission: 0,
-        bottleTwoEmission: 0,
-        bottleThreeEmission: 0,
-        plasticWrapping: 0,
-        plasticWrappingEmission: 0,
+        bottleOne: null,
+        bottleTwo: null,
+        bottleThree: null,
+        bottleOneEmission: null,
+        bottleTwoEmission: null,
+        bottleThreeEmission: null,
+        plasticWrapping: null,
+        plasticWrappingEmission: null,
 
-        hdpeBanner: 0,
-        pvcBanners: 0,
-        cottonBanner: 0,
-        plasticBadgeHolders: 0,
-        hdpeBannerEmission: 0,
-        pvcBannersEmission: 0,
-        cottonBannerEmission: 0,
-        plasticBadgeHoldersEmission: 0,
+        // hdpeBanner: 0,
+        // pvcBanners: 0,
+        // cottonBanner: 0,
+        // plasticBadgeHolders: 0,
+        // hdpeBannerEmission: 0,
+        // pvcBannersEmission: 0,
+        // cottonBannerEmission: 0,
+        // plasticBadgeHoldersEmission: 0,
 
-        colouredBrochurePage: 0,
-        paperBagsA4Size: 0,
-        paperBagsA5Size: 0,
-        juteBagsA4Size: 0,
-        cottonBagsA4Size: 0,
-        colouredBrochurePageEmission: 0,
-        paperBagsA4SizeEmission: 0,
-        paperBagsA5SizeEmission: 0,
-        juteBagsA4SizeEmission: 0,
-        cottonBagsA4SizeEmission: 0,
+        // colouredBrochurePage: 0,
+        // paperBagsA4Size: 0,
+        // paperBagsA5Size: 0,
+        // juteBagsA4Size: 0,
+        // cottonBagsA4Size: 0,
+        // colouredBrochurePageEmission: 0,
+        // paperBagsA4SizeEmission: 0,
+        // paperBagsA5SizeEmission: 0,
+        // juteBagsA4SizeEmission: 0,
+        // cottonBagsA4SizeEmission: 0,
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('foodWasteNonMeatEmission', Number(0.67 * Number(values?.foodWasteNonMeatKg)).toFixed(2));
-            formik.setFieldValue('foodWasteMeatEmission', Number(0.69 * Number(values?.foodWasteMeatKg)).toFixed(2));
-            formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2));
-            formik.setFieldValue('bottleOneEmission', Number(Number(values?.bottleOne) * 6.42 * 0.004032).toFixed(2));
-            formik.setFieldValue('bottleTwoEmission', Number(Number(values?.bottleTwo) * 13 * 0.004032).toFixed(2));
-            formik.setFieldValue('bottleThreeEmission', Number(Number(values?.bottleThree) * 21.5 * 0.004032).toFixed(2));
-            formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2));
-            formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
-            formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
-            formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(2));
-            formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2));
-            formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2));
-            formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2));
-            formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2));
-            formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2));
+            const foodWasteNonMeatEmission = Number(0.67 * Number(values?.foodWasteNonMeatKg)).toFixed(2)
+            const foodWasteMeatEmission = Number(0.69 * Number(values?.foodWasteMeatKg)).toFixed(2)
+            const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2)
+            const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.004032).toFixed(2)
+            const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.004032).toFixed(2)
+            const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.004032).toFixed(2)
+
+            if (foodWasteNonMeatEmission > 0) formik.setFieldValue('foodWasteNonMeatEmission', foodWasteNonMeatEmission);
+            if (foodWasteMeatEmission > 0) formik.setFieldValue('foodWasteMeatEmission', foodWasteMeatEmission);
+            if (municipalSolidWasteEmission > 0) formik.setFieldValue('municipalSolidWasteEmission', municipalSolidWasteEmission);
+            if (bottleOneEmission > 0) formik.setFieldValue('bottleOneEmission', bottleOneEmission);
+            if (bottleTwoEmission > 0) formik.setFieldValue('bottleTwoEmission', bottleTwoEmission);
+            if (bottleThreeEmission > 0) formik.setFieldValue('bottleThreeEmission', bottleThreeEmission);
+            // formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2));
+            // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
+            // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
+            // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(2));
+            // formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2));
+            // formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2));
+            // formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2));
+            // formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2));
+            // formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2));
 
             const data = [
                 {
                     type: 'FoodWasteNonMeat',
                     foodWasteNonMeatKg: values?.foodWasteNonMeatKg,
-                    emission: Number((0.67 * values?.foodWasteNonMeatKg).toFixed(2)) || 0,
+                    emission: foodWasteNonMeatEmission > 0 ? foodWasteNonMeatEmission : null,
                 },
                 {
                     type: 'FoodWasteMeat',
                     foodWasteMeatKg: values?.foodWasteMeatKg,
-                    emission: Number((0.69 * values?.foodWasteMeatKg).toFixed(2)) || 0,
+                    emission: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : null,
                 },
                 {
                     type: 'MunicipalSolidWaste',
                     municipalSolidWasteKg: values?.municipalSolidWasteKg,
-                    emission: Number((0.902 * values?.municipalSolidWasteKg).toFixed(2)) || 0,
+                    emission: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : null,
                 },
                 {
                     type: '250ml',
                     bottleOne: values?.bottleOne,
-                    emission: Number((values?.bottleOne * 6.42 * 0.004032).toFixed(2)) || 0,
+                    emission: bottleOneEmission > 0 ? bottleOneEmission : null,
                 },
                 {
                     type: '500ml',
                     bottleTwo: values?.bottleTwo,
-                    emission: Number((values?.bottleTwo * 13 * 0.004032).toFixed(2)) || 0,
+                    emission: bottleTwoEmission > 0 ? bottleTwoEmission : null,
                 },
                 {
                     type: '1000ml',
                     bottleThree: values?.bottleThree,
-                    emission: Number((values?.bottleThree * 21.5 * 0.004032).toFixed(2)) || 0,
+                    emission: bottleThreeEmission > 0 ? bottleThreeEmission : null,
                 },
-                {
-                    type: 'PlasticWrapping',
-                    plasticWrapping: values?.plasticWrapping,
-                    emission: Number((1 * values?.plasticWrapping * 7.83).toFixed(2)) || 0,
-                },
-                {
-                    type: 'PolethyleneHDPEBanner',
-                    hdpeBanner: values?.hdpeBanner,
-                    emission: Number((3.11 * values?.hdpeBanner).toFixed(2)) || 0,
-                },
-                {
-                    type: 'PVCBanners',
-                    pvcBanners: values?.pvcBanners,
-                    emission: Number((7.83 * values?.pvcBanners).toFixed(2)) || 0,
-                },
-                {
-                    type: 'CottonBanner',
-                    cottonBanner: values?.cottonBanner,
-                    emission: Number((14.5 * values?.cottonBanner).toFixed(2)) || 0,
-                },
-                {
-                    type: 'PlasticBadgeHolders',
-                    plasticBadgeHolders: values?.plasticBadgeHolders,
-                    emission: Number((4.2 * values?.plasticBadgeHolders).toFixed(2)) || 0,
-                },
-                {
-                    type: 'ColouredBrochurePage',
-                    colouredBrochurePage: values?.colouredBrochurePage,
-                    emission: Number((1.56 * values?.colouredBrochurePage).toFixed(2)) || 0,
-                },
-                {
-                    type: 'PaperBagsA4Size',
-                    paperBagsA4Size: values?.paperBagsA4Size,
-                    emission: Number((0.3125 * values?.paperBagsA4Size).toFixed(2)) || 0,
-                },
-                {
-                    type: 'PaperBagsA5Size',
-                    paperBagsA5Size: values?.paperBagsA5Size,
-                    emission: Number((0.125 * values?.paperBagsA5Size).toFixed(2)) || 0,
-                },
-                {
-                    type: 'JuteBagsA4Size',
-                    juteBagsA4Size: values?.juteBagsA4Size,
-                    emission: Number((0.73 * values?.juteBagsA4Size).toFixed(2)) || 0,
-                },
-                {
-                    type: 'CottonBagsA4Size',
-                    cottonBagsA4Size: values?.cottonBagsA4Size,
-                    emission: Number((17 * values?.cottonBagsA4Size).toFixed(2)) || 0,
-                },
+                // {
+                //     type: 'PlasticWrapping',
+                //     plasticWrapping: values?.plasticWrapping,
+                //     emission: Number((1 * values?.plasticWrapping * 7.83).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'PolethyleneHDPEBanner',
+                //     hdpeBanner: values?.hdpeBanner,
+                //     emission: Number((3.11 * values?.hdpeBanner).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'PVCBanners',
+                //     pvcBanners: values?.pvcBanners,
+                //     emission: Number((7.83 * values?.pvcBanners).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'CottonBanner',
+                //     cottonBanner: values?.cottonBanner,
+                //     emission: Number((14.5 * values?.cottonBanner).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'PlasticBadgeHolders',
+                //     plasticBadgeHolders: values?.plasticBadgeHolders,
+                //     emission: Number((4.2 * values?.plasticBadgeHolders).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'ColouredBrochurePage',
+                //     colouredBrochurePage: values?.colouredBrochurePage,
+                //     emission: Number((1.56 * values?.colouredBrochurePage).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'PaperBagsA4Size',
+                //     paperBagsA4Size: values?.paperBagsA4Size,
+                //     emission: Number((0.3125 * values?.paperBagsA4Size).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'PaperBagsA5Size',
+                //     paperBagsA5Size: values?.paperBagsA5Size,
+                //     emission: Number((0.125 * values?.paperBagsA5Size).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'JuteBagsA4Size',
+                //     juteBagsA4Size: values?.juteBagsA4Size,
+                //     emission: Number((0.73 * values?.juteBagsA4Size).toFixed(2)) || 0,
+                // },
+                // {
+                //     type: 'CottonBagsA4Size',
+                //     cottonBagsA4Size: values?.cottonBagsA4Size,
+                //     emission: Number((17 * values?.cottonBagsA4Size).toFixed(2)) || 0,
+                // },
             ];
             dispatch(addWasteData({ data }));
         },
@@ -219,7 +226,7 @@ const Waste = (props) => {
                             <IconDiv>
                                 <img src={WasteImg} alt="Waste" width={100} className='tabImgWhite' />
                             </IconDiv>
-                            <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+                            <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 5 }}>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
@@ -243,6 +250,7 @@ const Waste = (props) => {
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);
                                                                 formik.setFieldValue('foodWasteNonMeatEmission', Number(0.67 * Number(e?.target?.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -270,6 +278,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('foodWasteMeatEmission', Number(0.69 * Number(values?.foodWasteMeatKg)).toFixed(2));
                                                                 formik.setFieldValue('foodWasteMeatEmission', Number(0.69 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }} inputProps={{ style: { color: 'white' } }}
                                                         />
                                                     </td>
@@ -296,6 +305,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2));
                                                                 formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(e.target.value)).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }} inputProps={{ style: { color: 'white' } }}
                                                         />
                                                     </td>
@@ -322,12 +332,12 @@ const Waste = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th className="ps-2">PET Water bottles</th>
+                                                    <th />
                                                     <th className="ps-3">No. of PET bottles</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">250ml PET bottle</td>
+                                                    <td className="ps-2 py-1">250ml</td>
                                                     <td className="ps-3 py-1">
                                                         <TextField
                                                             size="small"
@@ -338,6 +348,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('bottleOneEmission', Number(Number(values?.bottleOne) * 6.42 * 0.004032).toFixed(2));
                                                                 formik.setFieldValue('bottleOneEmission', Number(Number(e.target.value) * 6.42 * 0.004032).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }} inputProps={{ style: { color: 'white' } }}
                                                         />
                                                     </td>
@@ -353,7 +364,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">500ml PET bottle</td>
+                                                    <td className="ps-2 py-1">500ml</td>
                                                     <td className="ps-3 py-1">
                                                         <TextField
                                                             size="small"
@@ -364,6 +375,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('bottleTwoEmission', Number(Number(values?.bottleTwo) * 13 * 0.004032).toFixed(2));
                                                                 formik.setFieldValue('bottleTwoEmission', Number(Number(e.target.value) * 13 * 0.004032).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -380,7 +392,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">1000ml PET bottle</td>
+                                                    <td className="ps-2 py-1">1000ml</td>
                                                     <td className="ps-3 py-1">
                                                         <TextField
                                                             size="small"
@@ -391,6 +403,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('bottleThreeEmission', Number(Number(values?.bottleThree) * 21.5 * 0.004032).toFixed(2));
                                                                 formik.setFieldValue('bottleThreeEmission', Number(Number(e.target.value) * 21.5 * 0.004032).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }} inputProps={{ style: { color: 'white' } }}
                                                         />
                                                     </td>
@@ -417,6 +430,7 @@ const Waste = (props) => {
                                                                 formik.handleChange(e);
                                                                 // formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2));
                                                                 formik.setFieldValue('plasticWrappingEmission', Number(Number(e.target.value) * 1 * 7.83).toFixed(2));
+                                                                formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
                                                         />
@@ -436,20 +450,19 @@ const Waste = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+                                {/* <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Marketing Waste
+                                            Marketing
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
                                                     <th className="ps-2">Branding</th>
-                                                    <th className="ps-2">Kg</th>
+                                                    <th className="ps-2">In Kgs</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    {/* <td className='ps-2 py-1'>PVC HDPE Banner</td> */}
                                                     <td className="ps-2 py-1">Polethylene HDPE Banner</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
@@ -563,7 +576,7 @@ const Waste = (props) => {
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
-                                            Branding Waste
+                                            Branding
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -706,10 +719,9 @@ const Waste = (props) => {
                                             </table>
                                         </div>
                                     </Box>
-                                </Grid>
+                                </Grid> */}
                                 <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                     <Stack direction={'row'} spacing={2}>
-                                        {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                         <Button
                                             variant="contained"
                                             onClick={() => {

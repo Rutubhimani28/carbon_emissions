@@ -12,7 +12,8 @@ import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
-import logo from '../../user/assets/images/logo4.gif';
+// import logo from '../../user/assets/images/logo4.gif';
+import logo from '../../user/assets/images/logo5.gif';
 
 // ----------------------------------------------------------------------
 
@@ -25,6 +26,7 @@ const HEADER_DESKTOP = 92;
 const StyledRoot = styled(AppBar)(({ theme }) => ({
   ...bgBlur({ color: theme.palette.background.default }),
   boxShadow: 'none',
+  backgroundColor: 'white'
   // [theme.breakpoints.up('lg')]: {
   //   width: `calc(100% - ${NAV_WIDTH + 1}px)`,
   // },

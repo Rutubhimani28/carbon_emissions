@@ -6,7 +6,7 @@ const totalLocalTranspotationSlice = createSlice({
     initialState: {
         data: [],
         totalEmission: 0,
-        scope1: 2,
+        scope1: 1,
         scope2: 3,
         scope3: 3,
     },
@@ -21,13 +21,13 @@ const totalLocalTranspotationSlice = createSlice({
                     state.data.push(newItem);
                 }
             });
-            state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
+            state.totalEmission = state.data[0].data.reduce((total, item) => item.emission ? total + Number(item.emission) : total, 0).toFixed(2);
         },
         deleteLocalTranspotationData: (state, action) => ({
             ...state,
             data: [],
             totalEmission: 0,
-            scope1: 2,
+            scope1: 1,
             scope2: 3,
             scope3: 3,
         }),

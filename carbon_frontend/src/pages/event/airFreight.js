@@ -30,30 +30,33 @@ const AirFreight = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        noOfKmsOne: 0,
-        noOfKmsTwo: 0,
-        kgsOne: 0,
-        kgsTwo: 0,
+        // noOfKmsOne: 0,
+        // noOfKmsTwo: 0,
+        // kgsOne: 0,
+        // kgsTwo: 0,
+        // efOne: 0.005,
+        // efTwo: 0.18,
+        // emissionOne: 0,
+        // emissionTwo: 0,
+
+        noOfKmsOne: '',
+        noOfKmsTwo: '',
+        kgsOne: '',
+        kgsTwo: '',
         efOne: 0.005,
         efTwo: 0.18,
-        emissionOne: 0,
-        emissionTwo: 0,
+        emissionOne: '',
+        emissionTwo: ''
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            const emissionOne =
-                values?.noOfKmsOne === 0 || values?.kgsOne === 0
-                    ? 0
-                    : Number((values?.noOfKmsOne * values?.kgsOne * values?.efOne).toFixed(2));
-            const emissionTwo =
-                values?.noOfKmsTwo === 0 || values?.kgsTwo === 0
-                    ? 0
-                    : Number((values?.noOfKmsTwo * values?.kgsTwo * values?.efTwo).toFixed(2));
+            const emissionOne = values?.noOfKmsOne === 0 || values?.kgsOne === 0 ? 0 : Number((values?.noOfKmsOne * values?.kgsOne * values?.efOne).toFixed(2));
+            const emissionTwo = values?.noOfKmsTwo === 0 || values?.kgsTwo === 0 ? 0 : Number((values?.noOfKmsTwo * values?.kgsTwo * values?.efTwo).toFixed(2));
 
-            formik.setFieldValue('emissionOne', emissionOne);
-            formik.setFieldValue('emissionTwo', emissionTwo);
+            if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
+            if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
 
             const data = [
                 {
@@ -61,14 +64,14 @@ const AirFreight = (props) => {
                     noOfKmsOne: values?.noOfKmsOne,
                     kgsOne: values?.kgsOne,
                     efOne: values?.efOne,
-                    emission: emissionOne,
+                    emission: (emissionOne > 0) ? emissionOne : '',
                 },
                 {
                     type: 'By Road',
                     noOfKmsTwo: values?.noOfKmsTwo,
                     kgsTwo: values?.kgsTwo,
                     efTwo: values?.efTwo,
-                    emission: emissionTwo,
+                    emission: (emissionTwo > 0) ? emissionTwo : '',
                 },
             ];
 
@@ -136,6 +139,7 @@ const AirFreight = (props) => {
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
                                                     formik.setFieldValue('emissionOne', Number((e.target.value * formik?.values?.kgsOne * formik?.values?.efOne).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
@@ -149,6 +153,7 @@ const AirFreight = (props) => {
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
                                                     formik.setFieldValue('emissionOne', Number((formik?.values?.noOfKmsOne * e.target.value * formik?.values?.efOne).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
@@ -175,6 +180,7 @@ const AirFreight = (props) => {
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
                                                     formik.setFieldValue('emissionTwo', Number((e.target.value * formik?.values?.kgsTwo * formik?.values?.efTwo).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
@@ -188,6 +194,7 @@ const AirFreight = (props) => {
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
                                                     formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfKmsTwo * e.target.value * formik?.values?.efTwo).toFixed(2)));
+                                                    formik.handleSubmit();
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
@@ -252,17 +259,17 @@ const AirFreight = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography className="mt-3 text-white">Total Logistics Carbon Footprint = {totalEmission}</Typography>
+                                <Typography className="mt-3 text-white">Total Logistics Carbon Footprint = {totalEmission} kgCO<sub>2</sub>e</Typography>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
+                            {/* <Grid item xs={12} sm={12} md={12} marginLeft={3} mt={3}>
                                 <ul>
                                     {allData?.length > 0 &&
                                         allData?.map((item) => (
                                             <li style={{ color: 'white' }}>{`${item?.type} : ${item?.emission} `}kgCO<sub>2</sub>e</li>
                                         ))}
                                 </ul>
-                            </Grid>
+                            </Grid> */}
                         </Box>
                     </Box>
                 </Card>

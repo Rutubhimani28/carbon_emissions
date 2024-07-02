@@ -67,12 +67,14 @@ p {
 
 .custom-btn {
   color: white;
-  background: #4abd43;
+  /* background: #4abd43; */
+  background: #1f9e6d;
 }
 
 .custom-btn:hover {
   color: white;
-  background: #4abd43;
+  /* background: #4abd43; */
+  background: #1f9e6d;
 }
 
 .css-e5dh6b .MuiDataGrid-columnHeaders {
