@@ -375,7 +375,7 @@ const Hotel = (props) => {
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={6}>
                                             <Grid mt={2}>
-                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh)</FormLabel>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh) *</FormLabel>
                                                 <TextField
                                                     id="energyUtilisedKwh"
                                                     name="energyUtilisedKwh"
@@ -418,7 +418,7 @@ const Hotel = (props) => {
                                                 />
                                             </Grid>
                                             <Grid mt={2}>
-                                                <Typography> Note : If you have the exact energy consumption from hotel</Typography>
+                                                <Typography> * If you have the exact energy consumption from hotel</Typography>
                                             </Grid>
                                         </Grid>
                                     </Grid>

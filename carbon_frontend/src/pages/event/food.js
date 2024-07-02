@@ -222,7 +222,7 @@ const Food = (props) => {
                                         <div className='table-responsive'>
                                             <table className='table-custom-inpt-field'>
                                                 <tr>
-                                                    <th className='ps-2'>Food</th>
+                                                    <th className='ps-2' width="150">Food</th>
                                                     <th className='ps-2'>No of Pax</th>
                                                     <th className='ps-2'>Emissions</th>
                                                 </tr>
@@ -274,7 +274,7 @@ const Food = (props) => {
                                                     <th className='ps-2'>Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Customised Food</td>
+                                                    <td className='ps-2 py-1' width="182">Customised Food</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission} onChange={formik.handleChange} inputProps={{ style: { color: 'white' } }} /></td>
                                                 </tr>
                                             </table>
