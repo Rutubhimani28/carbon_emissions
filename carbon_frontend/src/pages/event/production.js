@@ -996,7 +996,7 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th />
+                                                    <th width="250" />
                                                     <th className="ps-2">kwh</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>

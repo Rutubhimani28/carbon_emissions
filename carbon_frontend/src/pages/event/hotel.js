@@ -317,6 +317,7 @@ const Hotel = (props) => {
                                                     label=""
                                                     fullWidth
                                                     size="small"
+                                                    type="number"
                                                     value={formik.values.totalMeetingRoomArea}
                                                     onChange={(e) => {
                                                         formik.setFieldValue('totalMeetingRoomArea', e.target.value);
@@ -387,6 +388,7 @@ const Hotel = (props) => {
                                                     name="energyUtilisedKwh"
                                                     fullWidth
                                                     size="small"
+                                                    type="number"
                                                     value={formik.values.energyUtilisedKwh}
                                                     onChange={(e) => {
                                                         formik.setFieldValue('energyUtilisedKwh', e.target.value);

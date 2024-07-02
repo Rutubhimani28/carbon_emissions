@@ -105,6 +105,7 @@ const EnergyUpdated = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.kwh}
+                                        type="number"
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionOne', Number((e.target.value * 0.43).toFixed(2)));
@@ -154,6 +155,7 @@ const EnergyUpdated = (props) => {
                                         fullWidth
                                         size="small"
                                         value={formik.values.gallonsOne}
+                                        type="number"
                                         onChange={(e) => {
                                             formik.handleChange(e);
                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 8.78).toFixed(2)));
@@ -201,6 +203,7 @@ const EnergyUpdated = (props) => {
                                         name="gallonsTwo"
                                         label=""
                                         fullWidth
+                                        type="number"
                                         size="small"
                                         value={formik.values.gallonsTwo}
                                         onChange={(e) => {
