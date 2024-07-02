@@ -20,35 +20,65 @@ const LocalTranspotation = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        petrolCarKms: 0,
-        petrolCarNoPasse: 1,
-        petrolCarEmission: 0,
-        dieselCarKms: 0,
-        dieselCarNoPasse: 1,
-        dieselCarEmission: 0,
-        electricCarKms: 0,
-        electricCarNoPasse: 1,
-        electricCarEmission: 0,
-        busDieselKms: 0,
-        busDieselEmission: 0,
-        metroKms: 0,
-        metroEmission: 0,
-        hybridCarKms: 0,
-        hybridCarNoPasse: 1,
-        hybridCarEmission: 0,
+        // petrolCarKms: 0,
+        // petrolCarNoPasse: 1,
+        // petrolCarEmission: 0,
+        // dieselCarKms: 0,
+        // dieselCarNoPasse: 1,
+        // dieselCarEmission: 0,
+        // electricCarKms: 0,
+        // electricCarNoPasse: 1,
+        // electricCarEmission: 0,
+        // busDieselKms: 0,
+        // busDieselEmission: 0,
+        // metroKms: 0,
+        // metroEmission: 0,
+        // hybridCarKms: 0,
+        // hybridCarNoPasse: 1,
+        // hybridCarEmission: 0,
 
-        petrolCarKms2: 0,
+        // petrolCarKms2: 0,
+        // petrolCarNoPasse2: 1,
+        // petrolCarEmission2: 0,
+        // dieselCarKms2: 0,
+        // dieselCarNoPasse2: 1,
+        // dieselCarEmission2: 0,
+        // electricCarKms2: 0,
+        // electricCarNoPasse2: 1,
+        // electricCarEmission2: 0,
+        // hybridCarKms2: 0,
+        // hybridCarNoPasse2: 1,
+        // hybridCarEmission2: 0,
+
+        petrolCarKms: '',
+        petrolCarNoPasse: 1,
+        petrolCarEmission: '',
+        dieselCarKms: '',
+        dieselCarNoPasse: 1,
+        dieselCarEmission: '',
+        electricCarKms: '',
+        electricCarNoPasse: 1,
+        electricCarEmission: '',
+        busDieselKms: '',
+        busDieselEmission: '',
+        metroKms: '',
+        metroEmission: '',
+        hybridCarKms: '',
+        hybridCarNoPasse: 1,
+        hybridCarEmission: '',
+
+        petrolCarKms2: '',
         petrolCarNoPasse2: 1,
-        petrolCarEmission2: 0,
-        dieselCarKms2: 0,
+        petrolCarEmission2: '',
+        dieselCarKms2: '',
         dieselCarNoPasse2: 1,
-        dieselCarEmission2: 0,
-        electricCarKms2: 0,
+        dieselCarEmission2: '',
+        electricCarKms2: '',
         electricCarNoPasse2: 1,
-        electricCarEmission2: 0,
-        hybridCarKms2: 0,
+        electricCarEmission2: '',
+        hybridCarKms2: '',
         hybridCarNoPasse2: 1,
-        hybridCarEmission2: 0,
+        hybridCarEmission2: '',
 
         // suvDieselKms: 0,
         // suvDieselNoPasse: 1,
@@ -68,18 +98,29 @@ const LocalTranspotation = (props) => {
         initialValues,
         onSubmit: async (values) => {
 
-            formik.setFieldValue('petrolCarEmission', values?.petrolCarKms === 0 ? 0 : Number((0.171 * values?.petrolCarKms) / values?.petrolCarNoPasse).toFixed(2));
-            formik.setFieldValue('dieselCarEmission', values?.dieselCarKms === 0 ? 0 : Number((0.172 * values?.dieselCarKms) / values?.dieselCarNoPasse).toFixed(2));
-            formik.setFieldValue('hybridCarEmission', values?.hybridCarKms === 0 ? 0 : Number((0.068 * values?.hybridCarKms) / values?.hybridCarNoPasse).toFixed(2));
-            formik.setFieldValue('electricCarEmission', values?.electricCarKms === 0 ? 0 : Number(0.047 * values?.electricCarKms).toFixed(2));
+            const petrolCarEmission = values?.petrolCarKms === 0 ? 0 : Number((0.171 * values?.petrolCarKms) / values?.petrolCarNoPasse).toFixed(2)
+            const dieselCarEmission = values?.dieselCarKms === 0 ? 0 : Number((0.172 * values?.dieselCarKms) / values?.dieselCarNoPasse).toFixed(2)
+            const hybridCarEmission = values?.hybridCarKms === 0 ? 0 : Number((0.068 * values?.hybridCarKms) / values?.hybridCarNoPasse).toFixed(2)
+            const electricCarEmission = values?.electricCarKms === 0 ? 0 : Number(0.047 * values?.electricCarKms).toFixed(2)
+            const petrolCarEmission2 = values?.petrolCarKms2 === 0 ? 0 : Number((0.171 * values?.petrolCarKms2) / values?.petrolCarNoPasse2).toFixed(2)
+            const dieselCarEmission2 = values?.dieselCarKms2 === 0 ? 0 : Number((0.172 * values?.dieselCarKms2) / values?.dieselCarNoPasse2).toFixed(2)
+            const hybridCarEmission2 = values?.hybridCarKms2 === 0 ? 0 : Number((0.068 * values?.hybridCarKms2) / values?.hybridCarNoPasse2).toFixed(2)
+            const electricCarEmission2 = values?.electricCarKms2 === 0 ? 0 : Number(0.047 * values?.electricCarKms2).toFixed(2)
+            const busDieselEmission = values?.busDieselKms === 0 ? 0 : Number((0.096 * values?.busDieselKms)).toFixed(2)
+            const metroEmission = values?.metroKms === 0 ? 0 : Number((0.029 * values?.metroKms)).toFixed(2)
 
-            formik.setFieldValue('petrolCarEmission2', values?.petrolCarKms2 === 0 ? 0 : Number((0.171 * values?.petrolCarKms2) / values?.petrolCarNoPasse2).toFixed(2));
-            formik.setFieldValue('dieselCarEmission2', values?.dieselCarKms2 === 0 ? 0 : Number((0.172 * values?.dieselCarKms2) / values?.dieselCarNoPasse2).toFixed(2));
-            formik.setFieldValue('hybridCarEmission2', values?.hybridCarKms2 === 0 ? 0 : Number((0.068 * values?.hybridCarKms2) / values?.hybridCarNoPasse2).toFixed(2));
-            formik.setFieldValue('electricCarEmission2', values?.electricCarKms2 === 0 ? 0 : Number(0.047 * values?.electricCarKms2).toFixed(2));
+            if (petrolCarEmission > 0) formik.setFieldValue('petrolCarEmission', petrolCarEmission);
+            if (dieselCarEmission > 0) formik.setFieldValue('dieselCarEmission', dieselCarEmission);
+            if (hybridCarEmission > 0) formik.setFieldValue('hybridCarEmission', hybridCarEmission);
+            if (electricCarEmission > 0) formik.setFieldValue('electricCarEmission', electricCarEmission);
 
-            formik.setFieldValue('busDieselEmission', values?.busDieselKms === 0 ? 0 : Number((0.096 * values?.busDieselKms)).toFixed(2));
-            formik.setFieldValue('metroEmission', values?.metroKms === 0 ? 0 : Number((0.029 * values?.metroKms)).toFixed(2));
+            if (petrolCarEmission2 > 0) formik.setFieldValue('petrolCarEmission2', petrolCarEmission2);
+            if (dieselCarEmission2 > 0) formik.setFieldValue('dieselCarEmission2', dieselCarEmission2);
+            if (hybridCarEmission2 > 0) formik.setFieldValue('hybridCarEmission2', hybridCarEmission2);
+            if (electricCarEmission2 > 0) formik.setFieldValue('electricCarEmission2', electricCarEmission2);
+
+            if (busDieselEmission > 0) formik.setFieldValue('busDieselEmission', busDieselEmission);
+            if (metroEmission > 0) formik.setFieldValue('metroEmission', metroEmission);
 
             // formik.setFieldValue('suvDieselEmission', values?.suvDieselKms === 0 ? 0 : Number((220 * values?.suvDieselKms) / values?.suvDieselNoPasse).toFixed(2));
             // formik.setFieldValue('suvPetrolEmission', values?.suvPetrolKms === 0 ? 0 : Number((181 * values?.suvPetrolKms) / values?.suvPetrolNoPasse).toFixed(2));
@@ -89,15 +130,15 @@ const LocalTranspotation = (props) => {
             const data = [
                 {
                     type: 'Petrol Car',
-                    petrolCarKms: values?.petrolCarKms,
+                    petrolCarKms: value?.petrolCarKms,
                     petrolCarNoPasse: values?.petrolCarNoPasse,
-                    emission: (values?.petrolCarKms === 0 || values?.petrolCarNoPasse === 0) ? 0 : Number(((0.171 * values?.petrolCarKms) / values?.petrolCarNoPasse).toFixed(2)) || 0
+                    emission: petrolCarEmission > 0 ? petrolCarEmission : ''
                 },
                 {
                     type: 'Diesel Car',
                     dieselCarKms: values?.dieselCarKms,
                     dieselCarNoPasse: values?.dieselCarNoPasse,
-                    emission: (values?.dieselCarNoPasse === 0 || values?.dieselCarKms === 0) ? 0 : Number(((0.172 * values?.dieselCarKms) / values?.dieselCarNoPasse).toFixed(2)) || 0
+                    emission: dieselCarEmission > 0 ? dieselCarEmission : ''
                 },
                 // {
                 //     type: 'SUV Diesel',
@@ -127,47 +168,47 @@ const LocalTranspotation = (props) => {
                     type: 'Hybrid Car',
                     hybridCarKms: values?.hybridCarKms,
                     hybridCarNoPasse: values?.hybridCarNoPasse,
-                    emission: (values?.hybridCarKms === 0 || values?.hybridCarNoPasse === 0) ? 0 : Number(((0.068 * values?.hybridCarKms) / values?.hybridCarNoPasse).toFixed(2)) || 0
+                    emission: hybridCarEmission > 0 ? hybridCarEmission : ''
                 },
                 {
                     type: 'Electric Car',
                     electricCarKms: values?.electricCarKms,
                     electricCarNoPasse: values?.electricCarNoPasse,
-                    emission: (values?.electricCarKms === 0 || values?.electricCarNoPasse === 0) ? 0 : Number(((0.047 * values?.electricCarKms) / values?.electricCarNoPasse).toFixed(2)) || 0
+                    emission: electricCarEmission > 0 ? electricCarEmission : ''
                 },
                 {
                     type: 'Bus-Diesel',
                     busDieselKms: values?.busDieselKms,
-                    emission: (values?.busDieselKms === 0) ? 0 : Number((0.096 * values?.busDieselKms).toFixed(2)) || 0
+                    emission: petrolCarEmission2 > 0 ? petrolCarEmission2 : ''
                 },
                 {
                     type: 'Metro',
                     metroKms: values?.metroKms,
-                    emission: (values?.metroKms === 0) ? 0 : Number((0.029 * values?.metroKms).toFixed(2)) || 0
+                    emission: dieselCarEmission2 > 0 ? dieselCarEmission2 : ''
                 },
                 {
                     type: 'Petrol Car2',
                     petrolCarKms2: values?.petrolCarKms2,
                     petrolCarNoPasse2: values?.petrolCarNoPasse2,
-                    emission: (values?.petrolCarKms2 === 0 || values?.petrolCarNoPasse2 === 0) ? 0 : Number(((0.171 * values?.petrolCarKms2) / values?.petrolCarNoPasse2).toFixed(2)) || 0
+                    emission: hybridCarEmission2 > 0 ? hybridCarEmission2 : ''
                 },
                 {
                     type: 'Diesel Car2',
                     dieselCarKms2: values?.dieselCarKms2,
                     dieselCarNoPasse2: values?.dieselCarNoPasse2,
-                    emission: (values?.dieselCarNoPasse2 === 0 || values?.dieselCarKms2 === 0) ? 0 : Number(((0.172 * values?.dieselCarKms2) / values?.dieselCarNoPasse2).toFixed(2)) || 0
+                    emission: electricCarEmission2 > 0 ? electricCarEmission2 : ''
                 },
                 {
                     type: 'Hybrid Car2',
                     hybridCarKms2: values?.hybridCarKms2,
                     hybridCarNoPasse2: values?.hybridCarNoPasse2,
-                    emission: (values?.hybridCarKms2 === 0 || values?.hybridCarNoPasse2 === 0) ? 0 : Number(((0.068 * values?.hybridCarKms2) / values?.hybridCarNoPasse2).toFixed(2)) || 0
+                    emission: busDieselEmission > 0 ? busDieselEmission : ''
                 },
                 {
                     type: 'Electric Car2',
                     electricCarKms2: values?.electricCarKms2,
                     electricCarNoPasse2: values?.electricCarNoPasse2,
-                    emission: (values?.electricCarKms2 === 0 || values?.electricCarNoPasse2 === 0) ? 0 : Number(((0.047 * values?.electricCarKms2) / values?.electricCarNoPasse2).toFixed(2)) || 0
+                    emission: metroEmission > 0 ? metroEmission : ''
                 },
             ];
             dispatch(addLocalTranspotationData({ data }))
