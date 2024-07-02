@@ -18,56 +18,105 @@ const Food = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        noOfPaxOne: 0,
-        noOfPaxTwo: 0,
-        noOfPaxThree: 0,
-        noOfPaxFour: 0,
-        noOfPaxFive: 0,
-        emissionOne: 0,
-        emissionTwo: 0,
-        emissionThree: 0,
-        emissionFour: 0,
-        emissionFive: 0,
+        // noOfPaxOne: 0,
+        // noOfPaxTwo: 0,
+        // noOfPaxThree: 0,
+        // noOfPaxFour: 0,
+        // noOfPaxFive: 0,
+        // emissionOne: 0,
+        // emissionTwo: 0,
+        // emissionThree: 0,
+        // emissionFour: 0,
+        // emissionFive: 0,
 
-        noOfBottlesOne: 0,
-        noOfBottlesTwo: 0,
-        noOfBottlesThree: 0,
-        noOfBottlesFour: 0,
-        noOfBottlesFive: 0,
-        noOfBottlesSix: 0,
-        noOfBottlesSeven: 0,
-        noOfBottlesEight: 0,
-        noOfBottlesNine: 0,
-        emissionSix: 0,
-        emissionSeven: 0,
-        emissionEight: 0,
-        emissionNine: 0,
-        emissionTen: 0,
-        emissionEleven: 0,
-        emissionTwelve: 0,
-        emissionThirteen: 0,
-        emissionFourteen: 0,
+        // noOfBottlesOne: 0,
+        // noOfBottlesTwo: 0,
+        // noOfBottlesThree: 0,
+        // noOfBottlesFour: 0,
+        // noOfBottlesFive: 0,
+        // noOfBottlesSix: 0,
+        // noOfBottlesSeven: 0,
+        // noOfBottlesEight: 0,
+        // noOfBottlesNine: 0,
+        // emissionSix: 0,
+        // emissionSeven: 0,
+        // emissionEight: 0,
+        // emissionNine: 0,
+        // emissionTen: 0,
+        // emissionEleven: 0,
+        // emissionTwelve: 0,
+        // emissionThirteen: 0,
+        // emissionFourteen: 0,
 
-        custBeveragesEmission: 0,
-        custFoodMenuEmission: 0,
+        // custBeveragesEmission: 0,
+        // custFoodMenuEmission: 0,
+
+
+        noOfPaxOne: '',
+        noOfPaxTwo: '',
+        noOfPaxThree: '',
+        noOfPaxFour: '',
+        noOfPaxFive: '',
+        emissionOne: '',
+        emissionTwo: '',
+        emissionThree: '',
+        emissionFour: '',
+        emissionFive: '',
+
+        noOfBottlesOne: '',
+        noOfBottlesTwo: '',
+        noOfBottlesThree: '',
+        noOfBottlesFour: '',
+        noOfBottlesFive: '',
+        noOfBottlesSix: '',
+        noOfBottlesSeven: '',
+        noOfBottlesEight: '',
+        noOfBottlesNine: '',
+        emissionSix: '',
+        emissionSeven: '',
+        emissionEight: '',
+        emissionNine: '',
+        emissionTen: '',
+        emissionEleven: '',
+        emissionTwelve: '',
+        emissionThirteen: '',
+        emissionFourteen: '',
+
+        custBeveragesEmission: '',
+        custFoodMenuEmission: '',
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue('emissionOne', Number((2 * values?.noOfPaxOne).toFixed(2)));    // Veg Plate Lunch/ Dinner
-            formik.setFieldValue('emissionTwo', Number((5.76 * values?.noOfPaxTwo).toFixed(2)));     // Non Veg plate Lunch/ Dinner
-            formik.setFieldValue('emissionThree', Number((23.55 * values?.noOfPaxThree).toFixed(2))); // Veg Starter
-            formik.setFieldValue('emissionFour', Number((0.6 * values?.noOfPaxFour).toFixed(2)));     // Non Veg starter
-            formik.setFieldValue('emissionSix', Number((1.33 * values?.noOfBottlesOne).toFixed(2)));        // Soft Drinks
-            formik.setFieldValue('emissionSeven', Number((3.04 * values?.noOfBottlesTwo).toFixed(2)));       // Red Wine
-            formik.setFieldValue('emissionEight', Number((1.33 * values?.noOfBottlesThree).toFixed(2)));     // White Wine
-            formik.setFieldValue('emissionNine', Number((4.29 * values?.noOfBottlesFour).toFixed(2)));       // Whisky
-            formik.setFieldValue('emissionTen', Number((4.29 * values?.noOfBottlesFive).toFixed(2)));        // Gin
-            formik.setFieldValue('emissionEleven', Number((2.73 * values?.noOfBottlesSix).toFixed(2)));      // Rum
-            formik.setFieldValue('emissionTwelve', Number((4.29 * values?.noOfBottlesSeven).toFixed(2)));    // Vodka
-            formik.setFieldValue('emissionThirteen', Number((1.09 * values?.noOfBottlesEight).toFixed(2)));  // Fruit Juices
-            formik.setFieldValue('emissionFourteen', Number((1.06 * values?.noOfBottlesNine).toFixed(2)));   // Beer
+
+            const emissionOne = Number((2 * values?.noOfPaxOne).toFixed(2))
+            const emissionTwo = Number((5.76 * values?.noOfPaxTwo).toFixed(2))
+            const emissionThree = Number((23.55 * values?.noOfPaxThree).toFixed(2))
+            const emissionFour = Number((0.6 * values?.noOfPaxFour).toFixed(2))
+            const emissionSix = Number((1.33 * values?.noOfBottlesOne).toFixed(2))
+            const emissionSeven = Number((3.04 * values?.noOfBottlesTwo).toFixed(2))
+            const emissionEight = Number((1.33 * values?.noOfBottlesThree).toFixed(2))
+            const emissionNine = Number((4.29 * values?.noOfBottlesFour).toFixed(2))
+            const emissionTen = Number((4.29 * values?.noOfBottlesFive).toFixed(2))
+            const emissionEleven = Number((2.73 * values?.noOfBottlesSix).toFixed(2))
+            const emissionTwelve = Number((4.29 * values?.noOfBottlesSeven).toFixed(2))
+            const emissionThirteen = Number((1.09 * values?.noOfBottlesEight).toFixed(2))
+            const emissionFourteen = Number((1.06 * values?.noOfBottlesNine).toFixed(2))
+
+            if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);    // Veg Plate Lunch/ Dinner
+            if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);     // Non Veg plate Lunch/ Dinner
+            if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree); // Veg Starter
+            if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);     // Non Veg starter
+            if (emissionSix > 0) formik.setFieldValue('emissionSix', emissionSix);        // Soft Drinks
+            if (emissionSeven > 0) formik.setFieldValue('emissionSeven', emissionSeven);       // Red Wine
+            if (emissionEight > 0) formik.setFieldValue('emissionEight', emissionEight);     // White Wine
+            if (emissionNine > 0) formik.setFieldValue('emissionNine', emissionNine);       // Whisky
+            if (emissionTen > 0) formik.setFieldValue('emissionTen', emissionTen);        // Gin
+            if (emissionEleven > 0) formik.setFieldValue('emissionEleven', emissionEleven);      // Rum
+            if (emissionTwelve > 0) formik.setFieldValue('emissionTwelve', emissionTwelve);    // Vodka
+            if (emissionThirteen > 0) formik.setFieldValue('emissionThirteen', emissionThirteen);  // Fruit Juices
+            if (emissionFourteen > 0) formik.setFieldValue('emissionFourteen', emissionFourteen);   // Beer
 
             const data = [
                 {
@@ -278,8 +327,8 @@ const Food = (props) => {
                                                 <tr>
                                                     <td className='ps-2 py-1' width="182">Customised Food</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='custFoodMenuEmission' value={formik?.values?.custFoodMenuEmission}
-                                                        onChange={formik.handleChange}
-                                                        // onChange={(e) => { formik.setFieldValue("custFoodMenuEmission", e.target.value); formik.handleSubmit(); }} 
+                                                        // onChange={formik.handleChange}
+                                                        onChange={(e) => { formik.setFieldValue("custFoodMenuEmission", e.target.value); formik.handleSubmit(); }}
                                                         inputProps={{ style: { color: 'white' } }} /></td>
                                                 </tr>
                                             </table>
@@ -384,8 +433,8 @@ const Food = (props) => {
                                                 <tr>
                                                     <td className='ps-2 py-1'>Customised Beverages</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='custBeveragesEmission' value={formik?.values?.custBeveragesEmission}
-                                                        onChange={formik.handleChange}
-                                                        // onChange={(e) => { formik.setFieldValue("custBeveragesEmission", e.target.value); formik.handleSubmit(); }} 
+                                                        // onChange={formik.handleChange}
+                                                        onChange={(e) => { formik.setFieldValue("custBeveragesEmission", e.target.value); formik.handleSubmit(); }}
                                                         inputProps={{ style: { color: 'white' } }} /></td>
                                                 </tr>
                                             </table>
