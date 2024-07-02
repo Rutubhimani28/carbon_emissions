@@ -5,6 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import Room1 from '../../assets/images/room1.jpeg';
 import Room2 from '../../assets/images/room2.jpeg';
 import Room3 from '../../assets/images/room3.jpg';
+import Room4 from '../../assets/images/room4.png';
 
 const Index = () => {
     const theme = useTheme();
@@ -53,6 +54,32 @@ const Index = () => {
                     </Grid>
                 </Grid> */}
 
+                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4 }}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={8} className={'order-2'}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                                <CardContent sx={{ flex: '1 0 auto' }}>
+                                    <Link className='text-decoration-none' to='/news-room/blog4'>
+                                        <Typography component="div" variant="h5">
+                                            Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing
+                                        </Typography>
+                                    </Link>
+                                    <Typography variant="subtitle1" color="text.secondary" component="div" className='mt-1'>
+                                        July 02, 2024
+                                    </Typography>
+                                </CardContent>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <CardMedia
+                                component="img"
+                                image={Room4}
+                                alt="Blog2"
+                                sx={{ height: '100%', objectFit: 'cover' }}
+                            />
+                        </Grid>
+                    </Grid>
+                </Card>
                 <Card sx={{ display: 'flex', width: '80%', marginBottom: 4 }}>
                     <Grid container spacing={0}>
                         <Grid item xs={4} className={'order-1'}>
