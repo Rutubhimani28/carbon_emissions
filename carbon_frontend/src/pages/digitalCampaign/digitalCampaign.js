@@ -18,7 +18,7 @@ const DigitalCampaign = (props) => {
 
     const initialValues = {
         imgSize: 0,
-        deviceEnergy1: 0,   // 0.01(imgSize/60
+        deviceEnergy1: 0,   // 0.01(1/60)
         somePlatformEnergy1: 0, // =(0.4/1000)*imgSize
         networkEnergy1: 0,      // =(0.2/1000)*imgSize
         totalEnergy1: 0,        // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
@@ -229,7 +229,7 @@ const DigitalCampaign = (props) => {
                                                     <TextField size='small' type="number" name={'imgSize'} value={values?.imgSize}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("imgSize", Number(e.target.value));
-                                                            formik.setFieldValue("deviceEnergy1", 0.01 * (Number(e.target.value) / 60));     // maybe
+                                                            formik.setFieldValue("deviceEnergy1", 0.01 * (1 / 60));     // maybe
                                                             formik.setFieldValue("somePlatformEnergy1", (0.4 / 1000) * Number(e.target.value));
                                                             formik.setFieldValue("networkEnergy1", (0.2 / 1000) * Number(e.target.value));
                                                             formik.setFieldValue("totalEnergy1", (0.01 * (Number(e.target.value) / 60)) + ((0.4 / 1000) * Number(e.target.value)) + ((0.2 / 1000) + Number(e.target.value)));     // maybe
