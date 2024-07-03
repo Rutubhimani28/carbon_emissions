@@ -101,12 +101,7 @@ const Home = () => {
         }
         handleError();
 
-        // const interval = setTimeout(async () => {
-        //     await formik.validateForm();
-        // }, 1);
-
-        // return () => clearInterval(interval);
-    }, [])
+    }, [formik.values]);
 
     // useEffect(() => {
     //     const allCountriesData = HotelData?.map(item => ({
@@ -328,19 +323,20 @@ const Home = () => {
                     className="fs-3"
                     // disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
                     // disabled={!isValid || !dirty}
-                    disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
+                    // disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
+                    disabled={!isSubmited}
                     style={{ marginRight: '10px', backgroundColor: '#054723' }}
                     onClick={() => navigate('/dashboard/event')}
                 >
                     Event
                 </Button>
-                {console.log("--- dirty,  values?.isValidData,  (!dirty && values?.isValidData)", errors, dirty)}
                 <Button
                     variant="contained"
                     className="fs-3"
                     // disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
                     // disabled={!isValid || !dirty}
-                    disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
+                    // disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
+                    disabled={!isSubmited}
                     style={{ backgroundColor: '#054723' }}
                     onClick={() => navigate('/dashboard/campaign')}
                 >
