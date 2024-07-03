@@ -68,7 +68,7 @@ const SendMail = (props) => {
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
-                eveydolarCo2: datas?.grandTotal / toolFormData?.budget,
+                eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
             };
 
             const result = await apipost('api/email/add', data);

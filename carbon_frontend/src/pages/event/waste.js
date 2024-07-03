@@ -18,21 +18,21 @@ const Waste = (props) => {
 
     // -----------   initialValues
     const initialValues = {
-        foodWasteNonMeatKg: null,
-        foodWasteMeatKg: null,
-        municipalSolidWasteKg: null,
-        foodWasteNonMeatEmission: null,
-        foodWasteMeatEmission: null,
-        municipalSolidWasteEmission: null,
+        foodWasteNonMeatKg: '',
+        foodWasteMeatKg: '',
+        municipalSolidWasteKg: '',
+        foodWasteNonMeatEmission: '',
+        foodWasteMeatEmission: '',
+        municipalSolidWasteEmission: '',
 
-        bottleOne: null,
-        bottleTwo: null,
-        bottleThree: null,
-        bottleOneEmission: null,
-        bottleTwoEmission: null,
-        bottleThreeEmission: null,
-        plasticWrapping: null,
-        plasticWrappingEmission: null,
+        bottleOne: '',
+        bottleTwo: '',
+        bottleThree: '',
+        bottleOneEmission: '',
+        bottleTwoEmission: '',
+        bottleThreeEmission: '',
+        plasticWrapping: '',
+        plasticWrappingEmission: '',
 
         // hdpeBanner: 0,
         // pvcBanners: 0,
@@ -64,6 +64,7 @@ const Waste = (props) => {
             const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.004032).toFixed(2)
             const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.004032).toFixed(2)
             const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.004032).toFixed(2)
+            const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2)
 
             if (foodWasteNonMeatEmission > 0) formik.setFieldValue('foodWasteNonMeatEmission', foodWasteNonMeatEmission);
             if (foodWasteMeatEmission > 0) formik.setFieldValue('foodWasteMeatEmission', foodWasteMeatEmission);
@@ -71,7 +72,7 @@ const Waste = (props) => {
             if (bottleOneEmission > 0) formik.setFieldValue('bottleOneEmission', bottleOneEmission);
             if (bottleTwoEmission > 0) formik.setFieldValue('bottleTwoEmission', bottleTwoEmission);
             if (bottleThreeEmission > 0) formik.setFieldValue('bottleThreeEmission', bottleThreeEmission);
-            // formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2));
+            if (plasticWrappingEmission > 0) formik.setFieldValue('plasticWrappingEmission', plasticWrappingEmission);
             // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
             // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
             // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(2));
@@ -85,38 +86,38 @@ const Waste = (props) => {
                 {
                     type: 'FoodWasteNonMeat',
                     foodWasteNonMeatKg: values?.foodWasteNonMeatKg,
-                    emission: foodWasteNonMeatEmission > 0 ? foodWasteNonMeatEmission : null,
+                    emission: foodWasteNonMeatEmission > 0 ? foodWasteNonMeatEmission : '',
                 },
                 {
                     type: 'FoodWasteMeat',
                     foodWasteMeatKg: values?.foodWasteMeatKg,
-                    emission: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : null,
+                    emission: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : '',
                 },
                 {
                     type: 'MunicipalSolidWaste',
                     municipalSolidWasteKg: values?.municipalSolidWasteKg,
-                    emission: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : null,
+                    emission: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : '',
                 },
                 {
                     type: '250ml',
                     bottleOne: values?.bottleOne,
-                    emission: bottleOneEmission > 0 ? bottleOneEmission : null,
+                    emission: bottleOneEmission > 0 ? bottleOneEmission : '',
                 },
                 {
                     type: '500ml',
                     bottleTwo: values?.bottleTwo,
-                    emission: bottleTwoEmission > 0 ? bottleTwoEmission : null,
+                    emission: bottleTwoEmission > 0 ? bottleTwoEmission : '',
                 },
                 {
                     type: '1000ml',
                     bottleThree: values?.bottleThree,
-                    emission: bottleThreeEmission > 0 ? bottleThreeEmission : null,
+                    emission: bottleThreeEmission > 0 ? bottleThreeEmission : '',
                 },
-                // {
-                //     type: 'PlasticWrapping',
-                //     plasticWrapping: values?.plasticWrapping,
-                //     emission: Number((1 * values?.plasticWrapping * 7.83).toFixed(2)) || 0,
-                // },
+                {
+                    type: 'PlasticWrapping',
+                    plasticWrapping: values?.plasticWrapping,
+                    emission: plasticWrappingEmission > 0 ? plasticWrappingEmission : '',
+                },
                 // {
                 //     type: 'PolethyleneHDPEBanner',
                 //     hdpeBanner: values?.hdpeBanner,

@@ -337,7 +337,7 @@ const Food = (props) => {
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant='h4' className='text-center text-white mb-4'>Breverage</Typography>
+                                        <Typography variant='h4' className='text-center text-white mb-4'>Beverages</Typography>
                                         <div className='table-responsive'>
                                             <table className='table-custom-inpt-field'>
                                                 <tr>

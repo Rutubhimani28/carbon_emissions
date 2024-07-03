@@ -28,8 +28,6 @@ const SendMail = (props) => {
     const [messageType, setMessageType] = useState("template");
     const [emailInput, setEmailInput] = useState('')
 
-    console.log(" datas ", datas);
-
     const userid = sessionStorage.getItem('user_id');
     const userEmail = JSON.parse(sessionStorage.getItem('user'));
 
@@ -76,10 +74,8 @@ const SendMail = (props) => {
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
-                eveydolarCo2: datas?.grandTotal / toolFormData?.budget,
+                eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
             };
-
-            console.log("---- event sendMail payload ", data);
 
             const result = await apipost('api/email/add', data)
             setUserAction(result)

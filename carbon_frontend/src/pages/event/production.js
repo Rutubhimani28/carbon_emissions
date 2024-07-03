@@ -104,138 +104,186 @@ const Production = (props) => {
     // };
 
     const initialValues = {
-        sawnTimberArea: 0,
-        sawnTimberEmission: 0,
-        mdfArea: 0,
-        mdfEmission: 0,
-        openPanelTimberFrameArea: 0,
-        openPanelTimberFrameEmission: 0,
-        carpetArea: 0,
-        carpetEmission: 0,
-        adhesiveVinylArea: 0,
-        adhesiveVinylEmission: 0,
-        cardboardArea: 0,
-        cardboardEmission: 0,
-        nylonArea: 0,
-        nylonEmission: 0,
-        woodKgs: 0,
-        woodEmission: 0,
-        steelKgs: 0,
-        steelEmission: 0,
-        aluminiumKgs: 0,
-        aluminiumEmission: 0,
-        ironKgs: 0,
-        ironEmission: 0,
-        paperKgs: 0,
-        paperEmission: 0,
-        recycledPaperKgs: 0,
-        recycledPaperEmission: 0,
-        paintKgs: 0,
-        paintEmission: 0,
-        projectorNoOfHour: 0,
-        projectorNoOfDevice: 0,
-        projectorEmission: 0,
-        ledScreenPanelNoOfHour: 0,
-        ledScreenPanelNoOfDevice: 0,
-        ledScreenPanelEmission: 0,
-        kwh: 0,
-        kwhEmission: 0,
+        // sawnTimberArea: 0,
+        // sawnTimberEmission: 0,
+        // mdfArea: 0,
+        // mdfEmission: 0,
+        // openPanelTimberFrameArea: 0,
+        // openPanelTimberFrameEmission: 0,
+        // carpetArea: 0,
+        // carpetEmission: 0,
+        // adhesiveVinylArea: 0,
+        // adhesiveVinylEmission: 0,
+        // cardboardArea: 0,
+        // cardboardEmission: 0,
+        // nylonArea: 0,
+        // nylonEmission: 0,
+        // woodKgs: 0,
+        // woodEmission: 0,
+        // steelKgs: 0,
+        // steelEmission: 0,
+        // aluminiumKgs: 0,
+        // aluminiumEmission: 0,
+        // ironKgs: 0,
+        // ironEmission: 0,
+        // paperKgs: 0,
+        // paperEmission: 0,
+        // recycledPaperKgs: 0,
+        // recycledPaperEmission: 0,
+        // paintKgs: 0,
+        // paintEmission: 0,
+        // projectorNoOfHour: 0,
+        // projectorNoOfDevice: 0,
+        // projectorEmission: 0,
+        // ledScreenPanelNoOfHour: 0,
+        // ledScreenPanelNoOfDevice: 0,
+        // ledScreenPanelEmission: 0,
+        // kwh: 0,
+        // kwhEmission: 0,
 
-        hdpeBanner: 0,
-        pvcBanners: 0,
-        cottonBanner: 0,
-        plasticBadgeHolders: 0,
-        hdpeBannerEmission: 0,
-        pvcBannersEmission: 0,
-        cottonBannerEmission: 0,
-        plasticBadgeHoldersEmission: 0,
+        // hdpeBanner: 0,
+        // pvcBanners: 0,
+        // cottonBanner: 0,
+        // plasticBadgeHolders: 0,
+        // hdpeBannerEmission: 0,
+        // pvcBannersEmission: 0,
+        // cottonBannerEmission: 0,
+        // plasticBadgeHoldersEmission: 0,
 
-        colouredBrochurePage: 0,
-        paperBagsA4Size: 0,
-        paperBagsA5Size: 0,
-        juteBagsA4Size: 0,
-        cottonBagsA4Size: 0,
-        colouredBrochurePageEmission: 0,
-        paperBagsA4SizeEmission: 0,
-        paperBagsA5SizeEmission: 0,
-        juteBagsA4SizeEmission: 0,
-        cottonBagsA4SizeEmission: 0,
+        // colouredBrochurePage: 0,
+        // paperBagsA4Size: 0,
+        // paperBagsA5Size: 0,
+        // juteBagsA4Size: 0,
+        // cottonBagsA4Size: 0,
+        // colouredBrochurePageEmission: 0,
+        // paperBagsA4SizeEmission: 0,
+        // paperBagsA5SizeEmission: 0,
+        // juteBagsA4SizeEmission: 0,
+        // cottonBagsA4SizeEmission: 0,
+
+        sawnTimberArea: '',
+        sawnTimberEmission: '',
+        mdfArea: '',
+        mdfEmission: '',
+        openPanelTimberFrameArea: '',
+        openPanelTimberFrameEmission: '',
+        carpetArea: '',
+        carpetEmission: '',
+        adhesiveVinylArea: '',
+        adhesiveVinylEmission: '',
+        cardboardArea: '',
+        cardboardEmission: '',
+        nylonArea: '',
+        nylonEmission: '',
+        woodKgs: '',
+        woodEmission: '',
+        steelKgs: '',
+        steelEmission: '',
+        aluminiumKgs: '',
+        aluminiumEmission: '',
+        ironKgs: '',
+        ironEmission: '',
+        paperKgs: '',
+        paperEmission: '',
+        recycledPaperKgs: '',
+        recycledPaperEmission: '',
+        paintKgs: '',
+        paintEmission: '',
+        projectorNoOfHour: '',
+        projectorNoOfDevice: '',
+        projectorEmission: '',
+        ledScreenPanelNoOfHour: '',
+        ledScreenPanelNoOfDevice: '',
+        ledScreenPanelEmission: '',
+        kwh: '',
+        kwhEmission: '',
+
+        hdpeBanner: '',
+        pvcBanners: '',
+        cottonBanner: '',
+        plasticBadgeHolders: '',
+        hdpeBannerEmission: '',
+        pvcBannersEmission: '',
+        cottonBannerEmission: '',
+        plasticBadgeHoldersEmission: '',
+
+        colouredBrochurePage: '',
+        paperBagsA4Size: '',
+        paperBagsA5Size: '',
+        juteBagsA4Size: '',
+        cottonBagsA4Size: '',
+        colouredBrochurePageEmission: '',
+        paperBagsA4SizeEmission: '',
+        paperBagsA5SizeEmission: '',
+        juteBagsA4SizeEmission: '',
+        cottonBagsA4SizeEmission: ''
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            formik.setFieldValue(
-                'sawnTimberEmission',
-                values?.sawnTimberArea === 0 ? 0 : Number((values?.sawnTimberArea * 0.263).toFixed(2))
-            );
-            formik.setFieldValue('mdfEmission', values?.mdfArea === 0 ? 0 : Number((values?.mdfArea * 0.856).toFixed(2)));
-            formik.setFieldValue(
-                'openPanelTimberFrameEmission',
-                values?.openPanelTimberFrameArea === 0 ? 0 : Number((values?.openPanelTimberFrameArea * 0.345).toFixed(2))
-            );
-            formik.setFieldValue(
-                'carpetEmission',
-                values?.carpetArea === 0 ? 0 : Number((values?.carpetArea * 6.7).toFixed(2))
-            );
-            formik.setFieldValue(
-                'adhesiveVinylEmission',
-                values?.adhesiveVinylArea === 0 ? 0 : Number((values?.adhesiveVinylArea * 3.1).toFixed(2))
-            );
-            formik.setFieldValue(
-                'cardboardEmission',
-                values?.cardboardArea === 0 ? 0 : Number((values?.cardboardArea * 0.94).toFixed(2))
-            );
-            formik.setFieldValue(
-                'nylonEmission',
-                values?.nylonArea === 0 ? 0 : Number((values?.nylonArea * 12.7).toFixed(2))
-            );
 
-            formik.setFieldValue('woodEmission', values?.woodKgs === 0 ? 0 : Number((values?.woodKgs * 1.8).toFixed(2)));
-            formik.setFieldValue('steelEmission', values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 1.36).toFixed(2)));
-            formik.setFieldValue(
-                'aluminiumEmission',
-                values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 2.663).toFixed(2))
-            );
-            formik.setFieldValue('ironEmission', values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 0.64).toFixed(2)));
-            formik.setFieldValue(
-                'paperEmission',
-                values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 0.0005).toFixed(2))
-            );
-            formik.setFieldValue(
-                'recycledPaperEmission',
-                values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 0.02).toFixed(2))
-            );
-            formik.setFieldValue('paintEmission', values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(2)));
+            const sawnTimberEmission = values?.sawnTimberArea === 0 ? 0 : Number((values?.sawnTimberArea * 0.263).toFixed(2))
+            const mdfEmission = values?.mdfArea === 0 ? 0 : Number((values?.mdfArea * 0.856).toFixed(2))
+            const openPanelTimberFrameEmission = values?.openPanelTimberFrameArea === 0 ? 0 : Number((values?.openPanelTimberFrameArea * 0.345).toFixed(2))
+            const carpetEmission = values?.carpetArea === 0 ? 0 : Number((values?.carpetArea * 6.7).toFixed(2))
+            const adhesiveVinylEmission = values?.adhesiveVinylArea === 0 ? 0 : Number((values?.adhesiveVinylArea * 3.1).toFixed(2))
+            const cardboardEmission = values?.cardboardArea === 0 ? 0 : Number((values?.cardboardArea * 0.94).toFixed(2))
+            const nylonEmission = values?.nylonArea === 0 ? 0 : Number((values?.nylonArea * 12.7).toFixed(2))
+            const woodEmission = values?.woodKgs === 0 ? 0 : Number((values?.woodKgs * 1.8).toFixed(2))
+            const steelEmission = values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 1.36).toFixed(2))
+            const aluminiumEmission = values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 2.663).toFixed(2))
+            const ironEmission = values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 0.64).toFixed(2))
+            const paperEmission = values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 0.0005).toFixed(2))
+            const recycledPaperEmission = values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 0.02).toFixed(2))
+            const paintEmission = values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(2))
+            const projectorEmission = values?.projectorNoOfHour === 0 || values?.projectorNoOfDevice === 0 ? 0 : Number((values?.projectorNoOfHour * values?.projectorNoOfDevice * 0.215).toFixed(2))
+            const ledScreenPanelEmission = values?.ledScreenPanelNoOfHour === 0 || values?.ledScreenPanelNoOfDevice === 0 ? 0 : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(2))
+            const kwhEmission = Number((values?.kwh * 0.43).toFixed(2))
+            // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2)
+            const hdpeBannerEmission = Number(3.11 * Number(values?.hdpeBanner)).toFixed(2)
+            const pvcBannersEmission = Number(7.83 * Number(values?.pvcBanners)).toFixed(2)
+            const cottonBannerEmission = Number(14.5 * Number(values?.cottonBanner)).toFixed(2)
+            const plasticBadgeHoldersEmission = Number(4.2 * Number(values?.plasticBadgeHolders)).toFixed(2);
+            const colouredBrochurePageEmission = Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2)
+            const paperBagsA4SizeEmission = Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2)
+            const paperBagsA5SizeEmission = Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2)
+            const juteBagsA4SizeEmission = Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2)
+            const cottonBagsA4SizeEmission = Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2)
 
-            formik.setFieldValue(
-                'projectorEmission',
-                values?.projectorNoOfHour === 0 || values?.projectorNoOfDevice === 0
-                    ? 0
-                    : Number((values?.projectorNoOfHour * values?.projectorNoOfDevice * 0.215).toFixed(2))
-            );
-            formik.setFieldValue(
-                'ledScreenPanelEmission',
-                values?.ledScreenPanelNoOfHour === 0 || values?.ledScreenPanelNoOfDevice === 0
-                    ? 0
-                    : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(2))
-            );
 
-            formik.setFieldValue(
-                'kwhEmission',
-                Number((values?.kwh * 0.43).toFixed(2))
-            );
+            if (sawnTimberEmission > 0) formik.setFieldValue('sawnTimberEmission', sawnTimberEmission);
+            if (mdfEmission > 0) formik.setFieldValue('mdfEmission', mdfEmission);
+            if (openPanelTimberFrameEmission > 0) formik.setFieldValue('openPanelTimberFrameEmission', openPanelTimberFrameEmission);
+            if (carpetEmission > 0) formik.setFieldValue('carpetEmission', carpetEmission);
+            if (adhesiveVinylEmission > 0) formik.setFieldValue('adhesiveVinylEmission', adhesiveVinylEmission);
+            if (cardboardEmission > 0) formik.setFieldValue('cardboardEmission', cardboardEmission);
+            if (nylonEmission > 0) formik.setFieldValue('nylonEmission', nylonEmission);
 
-            formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2));
-            formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
-            formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
-            formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(2));
+            if (woodEmission > 0) formik.setFieldValue('woodEmission', woodEmission);
+            if (steelEmission > 0) formik.setFieldValue('steelEmission', steelEmission);
+            if (aluminiumEmission > 0) formik.setFieldValue('aluminiumEmission', aluminiumEmission);
+            if (ironEmission > 0) formik.setFieldValue('ironEmission', ironEmission);
+            if (paperEmission > 0) formik.setFieldValue('paperEmission', paperEmission);
+            if (recycledPaperEmission > 0) formik.setFieldValue('recycledPaperEmission', recycledPaperEmission);
+            if (paintEmission > 0) formik.setFieldValue('paintEmission', paintEmission);
 
-            formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2));
-            formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2));
-            formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2));
-            formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2));
-            formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2));
+            if (projectorEmission > 0) formik.setFieldValue('projectorEmission', projectorEmission);
+            if (ledScreenPanelEmission > 0) formik.setFieldValue('ledScreenPanelEmission', ledScreenPanelEmission);
+
+            if (kwhEmission > 0) formik.setFieldValue('kwhEmission', kwhEmission);
+
+            // if (plasticWrappingEmission > 0) formik.setFieldValue('plasticWrappingEmission', plasticWrappingEmission);
+            if (hdpeBannerEmission > 0) formik.setFieldValue('hdpeBannerEmission', hdpeBannerEmission);
+            if (pvcBannersEmission > 0) formik.setFieldValue('pvcBannersEmission', pvcBannersEmission);
+            if (cottonBannerEmission > 0) formik.setFieldValue('cottonBannerEmission', cottonBannerEmission);
+            if (plasticBadgeHoldersEmission > 0) formik.setFieldValue('plasticBadgeHoldersEmission', plasticBadgeHoldersEmission);
+
+            if (colouredBrochurePageEmission > 0) formik.setFieldValue('colouredBrochurePageEmission', colouredBrochurePageEmission);
+            if (paperBagsA4SizeEmission > 0) formik.setFieldValue('paperBagsA4SizeEmission', paperBagsA4SizeEmission);
+            if (paperBagsA5SizeEmission > 0) formik.setFieldValue('paperBagsA5SizeEmission', paperBagsA5SizeEmission);
+            if (juteBagsA4SizeEmission > 0) formik.setFieldValue('juteBagsA4SizeEmission', juteBagsA4SizeEmission);
+            if (cottonBagsA4SizeEmission > 0) formik.setFieldValue('cottonBagsA4SizeEmission', cottonBagsA4SizeEmission);
 
             // const dataFieldOne = fieldDataOne?.map((item) => {
             //     const emission = values?.[`${item?.fieldName}Area`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Area`] * item?.ef).toFixed(2)) || 0;
@@ -281,145 +329,137 @@ const Production = (props) => {
                 {
                     type: 'Sawn Timber',
                     area: values?.sawnTimberArea,
-                    emission: values?.sawnTimberArea === 0 ? 0 : Number((values?.sawnTimberArea * 0.263).toFixed(2)),
+                    emission: sawnTimberEmission > 0 ? sawnTimberEmission : ''
                 },
                 {
                     type: 'MDF',
                     area: values?.mdfArea,
-                    emission: values?.mdfArea === 0 ? 0 : Number((values?.mdfArea * 0.312).toFixed(2)),
+                    emission: mdfEmission > 0 ? mdfEmission : ''
                 },
                 {
                     name: 'Open Panel Timber Frame',
                     area: values?.openPanelTimberFrameArea,
-                    emission:
-                        values?.openPanelTimberFrameArea === 0 ? 0 : Number((values?.openPanelTimberFrameArea * 0.345).toFixed(2)),
+                    emission: openPanelTimberFrameEmission > 0 ? openPanelTimberFrameEmission : ''
                 },
                 {
                     name: 'Carpet',
                     area: values?.carpetArea,
-                    emission: values?.carpetArea === 0 ? 0 : Number((values?.carpetArea * 6.7).toFixed(2)),
+                    emission: carpetEmission > 0 ? carpetEmission : ''
                 },
                 {
                     name: 'Adhesive Vinyl',
                     area: values?.adhesiveVinylArea,
-                    emission: values?.adhesiveVinylArea === 0 ? 0 : Number((values?.adhesiveVinylArea * 3.1).toFixed(2)),
+                    emission: adhesiveVinylEmission > 0 ? adhesiveVinylEmission : ''
                 },
                 {
                     name: 'Cardboard',
                     area: values?.cardboardArea,
-                    emission: values?.cardboardArea === 0 ? 0 : Number((values?.cardboardArea * 0.94).toFixed(2)),
+                    emission: cardboardEmission > 0 ? cardboardEmission : ''
                 },
                 {
                     name: 'Nylon',
                     area: values?.nylonArea,
-                    emission: values?.nylonArea === 0 ? 0 : Number((values?.nylonArea * 12.7).toFixed(2)),
+                    emission: nylonEmission > 0 ? nylonEmission : ''
                 },
                 {
                     type: 'Wood',
                     kgs: values?.woodKgs,
-                    emission: values?.woodKgs === 0 ? 0 : Number((values?.woodKgs * 1.8).toFixed(2)),
+                    emission: woodEmission > 0 ? woodEmission : ''
                 },
                 {
                     type: 'Steel ',
                     kgs: values?.steelKgs,
-                    emission: values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 1.36).toFixed(2)),
+                    emission: steelEmission > 0 ? steelEmission : ''
                 },
                 {
                     type: 'Aluminium',
                     kgs: values?.aluminiumKgs,
-                    emission: values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 2.663).toFixed(2)),
+                    emission: aluminiumEmission > 0 ? aluminiumEmission : ''
                 },
                 {
                     type: 'Iron',
                     kgs: values?.ironKgs,
-                    emission: values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 0.64).toFixed(2)),
+                    emission: ironEmission > 0 ? ironEmission : ''
                 },
                 {
                     type: 'Paper',
                     kgs: values?.paperKgs,
-                    emission: values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 0.0005).toFixed(2)),
+                    emission: paperEmission > 0 ? paperEmission : ''
                 },
                 {
                     type: 'Recycled Paper',
                     kgs: values?.recycledPaperKgs,
-                    emission: values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 0.02).toFixed(2)),
+                    emission: recycledPaperEmission > 0 ? recycledPaperEmission : ''
                 },
                 {
                     type: 'Paint',
                     kgs: values?.paintKgs,
-                    emission: values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(2)),
+                    emission: paintEmission > 0 ? paintEmission : ''
                 },
                 //
                 {
                     type: 'Projector',
                     noOfHour: values?.projectorNoOfHour,
                     noOfDevice: values?.projectorNoOfDevice,
-                    emission:
-                        values?.projectorNoOfHour === 0 || values?.projectorNoOfDevice === 0
-                            ? 0
-                            : Number((values?.projectorNoOfHour * values?.projectorNoOfDevice * 0.215).toFixed(2)),
+                    emission: projectorEmission > 0 ? projectorEmission : ''
                 },
                 {
                     type: 'LED Screen Panel (500mmx500mm)',
                     noOfHour: values?.ledScreenPanelNoOfHour,
                     noOfDevice: values?.ledScreenPanelNoOfDevice,
-                    emission:
-                        values?.ledScreenPanelNoOfHour === 0 || values?.ledScreenPanelNoOfDevice === 0
-                            ? 0
-                            : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(2)),
+                    emission: ledScreenPanelEmission > 0 ? ledScreenPanelEmission : ''
                 },
                 {
                     type: 'Electricity',
                     kwh: values?.kwh,
-                    emission:
-                        Number((values?.kwh * 0.43).toFixed(2)),
+                    emission: kwhEmission > 0 ? kwhEmission : ''
                 },
 
                 {
                     type: 'PolethyleneHDPEBanner',
                     hdpeBanner: values?.hdpeBanner,
-                    emission: Number((3.11 * values?.hdpeBanner).toFixed(2)) || 0,
+                    emission: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                 },
                 {
                     type: 'PVCBanners',
                     pvcBanners: values?.pvcBanners,
-                    emission: Number((7.83 * values?.pvcBanners).toFixed(2)) || 0,
+                    emission: pvcBannersEmission > 0 ? pvcBannersEmission : ''
                 },
                 {
                     type: 'CottonBanner',
                     cottonBanner: values?.cottonBanner,
-                    emission: Number((14.5 * values?.cottonBanner).toFixed(2)) || 0,
+                    emission: cottonBannerEmission > 0 ? cottonBannerEmission : ''
                 },
                 {
                     type: 'PlasticBadgeHolders',
                     plasticBadgeHolders: values?.plasticBadgeHolders,
-                    emission: Number((4.2 * values?.plasticBadgeHolders).toFixed(2)) || 0,
+                    emission: plasticBadgeHoldersEmission > 0 ? plasticBadgeHoldersEmission : ''
                 },
 
                 {
                     type: 'ColouredBrochurePage',
                     colouredBrochurePage: values?.colouredBrochurePage,
-                    emission: Number((1.56 * values?.colouredBrochurePage).toFixed(2)) || 0,
+                    emission: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
                 },
                 {
                     type: 'PaperBagsA4Size',
                     paperBagsA4Size: values?.paperBagsA4Size,
-                    emission: Number((0.3125 * values?.paperBagsA4Size).toFixed(2)) || 0,
+                    emission: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
                 },
                 {
                     type: 'PaperBagsA5Size',
                     paperBagsA5Size: values?.paperBagsA5Size,
-                    emission: Number((0.125 * values?.paperBagsA5Size).toFixed(2)) || 0,
+                    emission: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
                 },
                 {
                     type: 'JuteBagsA4Size',
                     juteBagsA4Size: values?.juteBagsA4Size,
-                    emission: Number((0.73 * values?.juteBagsA4Size).toFixed(2)) || 0,
+                    emission: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
                 },
                 {
                     type: 'CottonBagsA4Size',
                     cottonBagsA4Size: values?.cottonBagsA4Size,
-                    emission: Number((17 * values?.cottonBagsA4Size).toFixed(2)) || 0,
+                    emission: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
                 },
             ];
 
@@ -635,12 +675,13 @@ const Production = (props) => {
                                     </Box>
                                 </Grid>
 
-
+                                <Grid item xs={12} sm={12} md={12}>
+                                    <Typography variant='h4' className='text-center text-white mb-4'>
+                                        Branding
+                                    </Typography>
+                                </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant="h4" className="text-center text-white mb-4">
-                                            Marketing
-                                        </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
@@ -758,14 +799,10 @@ const Production = (props) => {
                                                 </tr>
                                             </table>
                                         </div>
-                                        <Typography color="white" className='mt-1 ms-1'>* 100% Recyclable/ Biodegradable</Typography>
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12} sm={6} md={6}>
                                     <Box>
-                                        <Typography variant="h4" className="text-center text-white mb-4">
-                                            Branding
-                                        </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
@@ -784,7 +821,6 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('colouredBrochurePage', e.target.value);
                                                                 formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(e.target.value)).toFixed(2));
-                                                                formik.handleSubmit();
                                                                 formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
@@ -812,7 +848,7 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('paperBagsA4Size', e.target.value);
                                                                 formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(e.target.value)).toFixed(2));
-                                                                formik.handleSubmit();
+
                                                                 formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
@@ -840,7 +876,7 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('paperBagsA5Size', e.target.value);
                                                                 formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(e.target.value)).toFixed(2));
-                                                                formik.handleSubmit();
+
                                                                 formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
@@ -868,7 +904,7 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('juteBagsA4Size', e.target.value);
                                                                 formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(e.target.value)).toFixed(2));
-                                                                formik.handleSubmit();
+
                                                                 formik.handleSubmit();
                                                             }}
                                                             inputProps={{ style: { color: 'white' } }}
@@ -896,7 +932,7 @@ const Production = (props) => {
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('cottonBagsA4Size', e.target.value);
                                                                 formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(e.target.value)).toFixed(2));
-                                                                formik.handleSubmit();
+
                                                                 formik.handleSubmit();
                                                             }}
 
@@ -1041,9 +1077,10 @@ const Production = (props) => {
                                 </Grid>
 
                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                    <Typography color="white">Note: Please seek support from your event management agency before filling out the contents of this page.</Typography>
+                                    <Typography color="white">Note:</Typography>
+                                    <li className="text-white ms-3">Please seek support from your event management agency before filling out the contents of this page.</li>
+                                    <li className="text-white ms-3">100% Recyclable/ Biodegradable</li>
                                 </Grid>
-
                                 <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                     <Stack direction={'row'} spacing={2}>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}

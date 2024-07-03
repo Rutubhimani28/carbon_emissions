@@ -38,6 +38,8 @@ const Home = () => {
         country: '',
         budget: '',
         date: '',
+        isValidData: false,
+        isDirtyData: false
     };
 
     const validationSchema = yup.object({
@@ -61,10 +63,13 @@ const Home = () => {
 
     const formik = useFormik({
         initialValues,
+        enableReinitialize: true,
         validationSchema,
         onSubmit: async (values) => {
             setIsSubmited(true);
-            AddData({ type: 'toolForm', ...values });
+            formik.setFieldValue('isDirtyData', formik?.dirty);
+            formik.setFieldValue('isValidData', formik?.isValid);
+            AddData({ type: 'toolForm', ...values, isDirtyData: formik?.dirty, isValidData: formik?.isValid, isSubmited: true });
         },
     });
 
@@ -80,8 +85,28 @@ const Home = () => {
             formik.setFieldValue('budget', formPrevData?.budget);
             formik.setFieldValue('date', formPrevData?.date);
             formik.setFieldValue('email', formPrevData?.email);
+            // formik.setFieldValue('isDirtyData', formPrevData?.isDirtyData);
+            setIsSubmited(formPrevData.isSubmited);
         }
     }, [toolData]);
+
+    useEffect(() => {
+        const handleError = async () => {
+            const msg = await formik.validateForm();
+            if (Object.keys(msg)?.length > 0) {
+                setIsSubmited(false);
+            } else {
+                setIsSubmited(true);
+            }
+        }
+        handleError();
+
+        // const interval = setTimeout(async () => {
+        //     await formik.validateForm();
+        // }, 1);
+
+        // return () => clearInterval(interval);
+    }, [])
 
     // useEffect(() => {
     //     const allCountriesData = HotelData?.map(item => ({
@@ -95,11 +120,11 @@ const Home = () => {
 
     return (
         <Container maxWidth="lg" className="text-white">
+            <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
             <Box textAlign="center" mt={4}>
                 {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
                 <Typography variant="h2" mt={2} className="text">
                     Welcome to Sirāt's NetZero Platform
-                    <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer' }} />
                 </Typography>
                 {/* <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
@@ -257,13 +282,22 @@ const Home = () => {
                                     inputProps={{ style: { color: 'white' } }}
                                 />
                             </Grid>
-                            <Grid item xs={5} sm={3}>
+                            <Grid item xs={12} sm={12}>
+                                <p className="pt-2">
+                                    <span style={{ color: "white", fontSize: "14px" }}>By clicking on Save you agree to Sirāt’s {' '}</span>
+                                    <Link style={{ color: '#ffffd9', textDecoration: 'none', fontSize: "14px" }} to="/dashboard/terms-conditions">
+                                        {' '}
+                                        Terms & Conditions.
+                                    </Link>
+                                </p>
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
                                 <Button
                                     id="action"
                                     variant="contained"
                                     onClick={formik.handleSubmit}
                                     type="submit"
-                                    style={{ backgroundColor: '#054723' }}
+                                    style={{ backgroundColor: '#054723', width: "100px" }}
                                 >
                                     {isLoading ? <CircularProgress size={27} /> : 'Save'}
                                 </Button>
@@ -286,21 +320,27 @@ const Home = () => {
                 </Grid>
             </Box>
             <Box mt={0} textAlign="center">
+                { }
                 <Typography className="mb-2 fs-5">Choose your Marketing activity</Typography>
                 <Button
                     variant="contained"
                     color="primary"
                     className="fs-3"
-                    disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    // disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    // disabled={!isValid || !dirty}
+                    disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
                     style={{ marginRight: '10px', backgroundColor: '#054723' }}
                     onClick={() => navigate('/dashboard/event')}
                 >
                     Event
                 </Button>
+                {console.log("--- dirty,  values?.isValidData,  (!dirty && values?.isValidData)", errors, dirty)}
                 <Button
                     variant="contained"
                     className="fs-3"
-                    disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    // disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    // disabled={!isValid || !dirty}
+                    disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
                     style={{ backgroundColor: '#054723' }}
                     onClick={() => navigate('/dashboard/campaign')}
                 >

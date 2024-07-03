@@ -3,7 +3,7 @@ import React from 'react'
 
 const TermConditions = () => {
     return (
-        <div className='main py-5'>
+        <div className='main py-5 text-white'>
             <Typography variant='h6' className='text-center fs-1 mb-3 fontFamily fw-bold py-5' >Terms & Conditions</Typography>
 
             <ol>

@@ -121,9 +121,10 @@ const AirFreight = (props) => {
                         </IconDiv>
                         <Box>
                             <div className="table-responsive">
+                                <Typography variant="h4" className="text-center text-white mb-4">Mode of Freight</Typography>
                                 <table className="table-custom-inpt-field">
                                     <tr>
-                                        <th className="pe-2">Mode of Freight</th>
+                                        <th />
                                         <th className="ps-2">No of Kms</th>
                                         <th className="ps-2">Weight in Kgs</th>
                                         <th className="ps-2">Emissions</th>

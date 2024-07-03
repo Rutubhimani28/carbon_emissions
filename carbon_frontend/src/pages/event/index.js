@@ -52,7 +52,7 @@ const EventCalculation = () => {
                         <Tab icon={<img src={AirTravel} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Air Travel" className='tab-text' />
                         <Tab icon={<img src={Transportation} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Local Transportation" className='tab-text' />
                         <Tab icon={<img src={Accommodation} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Hotel" className='tab-text' />
-                        <Tab icon={<img src={food} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Food" className='tab-text' />
+                        <Tab icon={<img src={food} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Food & Beverages" className='tab-text' />
                         <Tab icon={<img src={Logistics} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Logistics" className='tab-text' />
                         <Tab icon={<img src={production} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Event Production" className='tab-text' />
                         <Tab icon={<img src={Energy} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Energy" className='tab-text' />

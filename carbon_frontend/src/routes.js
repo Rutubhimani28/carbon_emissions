@@ -23,6 +23,7 @@ import Accomodation from './pages/accomodation';
 import Waste from './pages/waste';
 import ToolHome from './pages/tool';
 import DigitalCampaign from './pages/digitalCampaign/index';
+import TermConditions from './layouts/user/components/termCondition/termConditions';
 
 // ----------------------------------------------------------------------
 
@@ -51,6 +52,7 @@ export default function Router() {
         { path: 'home', element: <ToolHome /> },
         { path: 'event', element: <Event /> },
         { path: 'campaign', element: <DigitalCampaign /> },
+        { path: 'terms-conditions', element: <TermConditions /> },
         // { path: 'contactUs', element: <ContactUs /> },
         // { path: 'events', element: <Events /> },
       ],
@@ -64,6 +66,7 @@ export default function Router() {
         // { path: 'home', element: <Navigate to="/dashboard/home" />, index: true },
         { path: 'event', element: <Navigate to="/dashboard/event" />, index: true },
         { path: 'campaign', element: <Navigate to="/dashboard/campaign" />, index: true },
+        { path: 'terms-conditions', element: <Navigate to="/dashboard/terms-conditions" />, index: true },
         // { path: '404', element: <Page404 /> },
         // { path: '*', element: <Navigate to="/404" /> },
       ],
