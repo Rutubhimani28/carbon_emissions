@@ -38,6 +38,7 @@ import Blog2 from './layouts/user/components/newsRoom/blog2';
 import Blog3 from './layouts/user/components/newsRoom/blog3';
 import Bot from './layouts/user/components/bot';
 import Blog4 from './layouts/user/components/newsRoom/blog4';
+import DashboardLayout from './layouts/dashboard/DashboardLayout';
 // ----------------------------------------------------------------------
 
 export default function App() {
@@ -55,9 +56,11 @@ export default function App() {
     <ThemeProvider>
       <ScrollToTop />
       <StyledChart />
+      {/* <Routers /> */}
       <ToastContainer />
       {token && user ? (
-        <Routers />
+        <DashboardLayout />
+
       ) : (
         <>
           {
@@ -66,9 +69,9 @@ export default function App() {
           }
           <div className='template-outer-theme'>
             <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="*" element={<Navigate to="/login" />} />
+              <Route path="*" element={<Navigate to="/" />} />
               <Route path="/" element={<UserLayout />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/netzero-platform" element={<Services />} />
               <Route path="/netzero-consulting" element={<EsgAdvisory />} />
               <Route path="/netzero-consulting/organisations/" element={<Organisations />} />

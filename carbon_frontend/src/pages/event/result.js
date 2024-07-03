@@ -74,7 +74,7 @@ const Result = () => {
             totalEmission: allHotelData?.totalEmission
         },
         {
-            type: 'Food',
+            type: 'Food & Beverages',
             totalEmission: allFoodData?.totalEmission
         },
         {

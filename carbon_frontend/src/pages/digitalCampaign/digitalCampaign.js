@@ -17,29 +17,29 @@ const DigitalCampaign = (props) => {
     const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails?.totalEmission);
 
     const initialValues = {
-        imgSize: null,
-        deviceEnergy1: null,   // 0.01(1/60)
-        somePlatformEnergy1: null, // =(0.4/1000)*imgSize
-        networkEnergy1: null,      // =(0.2/1000)*imgSize
-        totalEnergy1: null,        // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
-        efOne: null,               // = totalEnergy1*0.43
-        impressionsOne: null,      // 
-        emissionOne: null,
-        videoSize: null,
-        videoMins: null,
-        deviceEnergy2: null,       // = 0.01*( videoMins/60)
-        somePlatformEnergy2: null, // = ( videoSize/1000)*0.4
-        networkEnergy2: null,      // = (0.2/1000)* videoSize
-        totalEnergy2: null,        // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
-        efTwo: null,               // = totalEnergy2*0.43
-        impressionsTwo: null,
-        emissionTwo: null,         // videoSize * videoMins * impressionsTwo * efTwo
-        noOfEmails: null,
-        // efThree: null,
-        emissionThree: null,
-        attachmentSize: null,
-        // efFour: null,
-        emissionFour: null,
+        imgSize: '',
+        deviceEnergy1: '',   // 0.01(1/60)
+        somePlatformEnergy1: '', // =(0.4/1000)*imgSize
+        networkEnergy1: '',      // =(0.2/1000)*imgSize
+        totalEnergy1: '',        // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
+        efOne: '',               // = totalEnergy1*0.43
+        impressionsOne: '',      // 
+        emissionOne: '',
+        videoSize: '',
+        videoMins: '',
+        deviceEnergy2: '',       // = 0.01*( videoMins/60)
+        somePlatformEnergy2: '', // = ( videoSize/1000)*0.4
+        networkEnergy2: '',      // = (0.2/1000)* videoSize
+        totalEnergy2: '',        // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
+        efTwo: '',               // = totalEnergy2*0.43
+        impressionsTwo: '',
+        emissionTwo: '',         // videoSize * videoMins * impressionsTwo * efTwo
+        noOfEmails: '',
+        // efThree: '',
+        emissionThree: '',
+        attachmentSize: '',
+        // efFour: '',
+        emissionFour: '',
     };
 
     const formik = useFormik({
@@ -70,7 +70,7 @@ const DigitalCampaign = (props) => {
                     efOne: values?.efOne,
                     impressionsOne: values?.impressionsOne,
                     // emission: values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2))
-                    emission: emissionOne > 0 ? emissionOne : null
+                    emission: emissionOne > 0 ? emissionOne : ''
                 },
                 {
                     type: 'Video',
@@ -83,19 +83,19 @@ const DigitalCampaign = (props) => {
                     efTwo: values?.efTwo,
                     impressionsTwo: values?.impressionsTwo,
                     // emission: values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2))
-                    emission: emissionTwo > 0 ? emissionTwo : null
+                    emission: emissionTwo > 0 ? emissionTwo : ''
                 },
                 {
                     name: 'Emails',
                     noOfEmails: values?.noOfEmails,
                     // emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2))
-                    emission: emissionThree > 0 ? emissionThree : null
+                    emission: emissionThree > 0 ? emissionThree : ''
                 },
                 {
                     name: 'Email Attachment',
                     attachmentSize: values?.attachmentSize,
                     // emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2))
-                    emission: emissionFour > 0 ? emissionFour : null
+                    emission: emissionFour > 0 ? emissionFour : ''
                 }
             ];
             dispatch(addCampaignData({ data }));

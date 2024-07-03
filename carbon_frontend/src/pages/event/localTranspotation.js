@@ -130,7 +130,7 @@ const LocalTranspotation = (props) => {
             const data = [
                 {
                     type: 'Petrol Car',
-                    petrolCarKms: value?.petrolCarKms,
+                    petrolCarKms: values?.petrolCarKms,
                     petrolCarNoPasse: values?.petrolCarNoPasse,
                     emission: petrolCarEmission > 0 ? petrolCarEmission : ''
                 },
@@ -179,36 +179,36 @@ const LocalTranspotation = (props) => {
                 {
                     type: 'Bus-Diesel',
                     busDieselKms: values?.busDieselKms,
-                    emission: petrolCarEmission2 > 0 ? petrolCarEmission2 : ''
+                    emission: busDieselEmission > 0 ? busDieselEmission : ''
                 },
                 {
                     type: 'Metro',
                     metroKms: values?.metroKms,
-                    emission: dieselCarEmission2 > 0 ? dieselCarEmission2 : ''
+                    emission: metroEmission > 0 ? metroEmission : ''
                 },
                 {
                     type: 'Petrol Car2',
                     petrolCarKms2: values?.petrolCarKms2,
                     petrolCarNoPasse2: values?.petrolCarNoPasse2,
-                    emission: hybridCarEmission2 > 0 ? hybridCarEmission2 : ''
+                    emission: petrolCarEmission2 > 0 ? petrolCarEmission2 : ''
                 },
                 {
                     type: 'Diesel Car2',
                     dieselCarKms2: values?.dieselCarKms2,
                     dieselCarNoPasse2: values?.dieselCarNoPasse2,
-                    emission: electricCarEmission2 > 0 ? electricCarEmission2 : ''
+                    emission: dieselCarEmission2 > 0 ? dieselCarEmission2 : ''
                 },
                 {
                     type: 'Hybrid Car2',
                     hybridCarKms2: values?.hybridCarKms2,
                     hybridCarNoPasse2: values?.hybridCarNoPasse2,
-                    emission: busDieselEmission > 0 ? busDieselEmission : ''
+                    emission: hybridCarEmission2 > 0 ? hybridCarEmission2 : ''
                 },
                 {
                     type: 'Electric Car2',
                     electricCarKms2: values?.electricCarKms2,
                     electricCarNoPasse2: values?.electricCarNoPasse2,
-                    emission: metroEmission > 0 ? metroEmission : ''
+                    emission: electricCarEmission2 > 0 ? electricCarEmission2 : ''
                 },
             ];
             dispatch(addLocalTranspotationData({ data }))
@@ -221,6 +221,7 @@ const LocalTranspotation = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
+            console.log("useeffect allData[0] ", allData[0]);
             formik.setFieldValue("petrolCarKms", allData[0]?.petrolCarKms)
             formik.setFieldValue("petrolCarNoPasse", allData[0]?.petrolCarNoPasse)
             formik.setFieldValue("petrolCarEmission", allData[0]?.emission)
@@ -313,7 +314,7 @@ const LocalTranspotation = (props) => {
     const { values } = formik;
 
     return (
-        <div>
+     <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
@@ -367,6 +368,7 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Petrol</td>
                                                 <td className='ps-2 py-1'>
+                                                    {console.log("----- values?.petrolCarKms ", values?.petrolCarKms)}
                                                     <TextField size='small' type="number" name='petrolCarKms' value={values?.petrolCarKms}
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "petrolCarEmission", e.target.value, values?.petrolCarNoPasse, 0.171)
