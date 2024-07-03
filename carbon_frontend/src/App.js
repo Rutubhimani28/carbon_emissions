@@ -66,9 +66,9 @@ export default function App() {
           }
           <div className='template-outer-theme'>
             <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="*" element={<Navigate to="/login" />} />
+              <Route path="*" element={<Navigate to="/" />} />
               <Route path="/" element={<UserLayout />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/netzero-platform" element={<Services />} />
               <Route path="/netzero-consulting" element={<EsgAdvisory />} />
               <Route path="/netzero-consulting/organisations/" element={<Organisations />} />
