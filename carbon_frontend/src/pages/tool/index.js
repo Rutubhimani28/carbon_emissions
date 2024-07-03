@@ -1,16 +1,13 @@
+import React, { useEffect, useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, CircularProgress, Container, FormLabel, Grid, Modal, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import InfoIcon from '@mui/icons-material/Info';
-import CloseIcon from '@mui/icons-material/Close';
-import React, { useEffect, useState } from 'react';
+import { TiInfoLarge } from 'react-icons/ti';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { addToolData, clearToolFormData } from '../../redux/slice/toolSlice';
 // import HotelData from '../accomodation/data.json';
-
-
-
 
 const style = {
     position: 'absolute',
@@ -24,33 +21,32 @@ const style = {
     p: 4,
 };
 const Home = () => {
-
     const [isLoading, setIsLoading] = useState(false);
     // const [countriesData, setCountriesData] = useState([]);
     const [openInfo, setOpenInfo] = React.useState(false);
     const [isSubmited, setIsSubmited] = useState(false);
     const navigate = useNavigate();
-    const dispatch = useDispatch()
-    const toolData = useSelector(state => state.toolDetails?.data);
+    const dispatch = useDispatch();
+    const toolData = useSelector((state) => state.toolDetails?.data);
 
     const handleOpenInfo = () => setOpenInfo(true);
     const handleInfoClose = () => setOpenInfo(false);
     const initialValues = {
-        name: "",
-        email: "",
-        activityName: "",
-        country: "",
-        budget: "",
-        date: "",
+        name: '',
+        email: '',
+        activityName: '',
+        country: '',
+        budget: '',
+        date: '',
     };
 
     const validationSchema = yup.object({
-        name: yup.string().required("Name is required"),
-        email: yup.string().email('Invalid Email').required("Business Email is required"),
-        activityName: yup.string().required("Activity Name is required"),
-        country: yup.string().required("Country is required"),
-        budget: yup.number().required("Budget is required"),
-        date: yup.string().required("Date is required"),
+        name: yup.string().required('Name is required'),
+        email: yup.string().email('Invalid Email').required('Business Email is required'),
+        activityName: yup.string().required('Activity Name is required'),
+        country: yup.string().required('Country is required'),
+        budget: yup.number().required('Budget is required'),
+        date: yup.string().required('Date is required'),
     });
 
     const AddData = (values) => {
@@ -68,19 +64,22 @@ const Home = () => {
         validationSchema,
         onSubmit: async (values) => {
             setIsSubmited(true);
-            AddData({ type: "toolForm", ...values })
+            AddData({ type: 'toolForm', ...values });
         },
     });
 
     useEffect(() => {
-        if (toolData?.length > 0 && ![null, undefined, -1].includes(toolData?.findIndex((item) => item?.type === "toolForm"))) {
-            const formPrevData = toolData.find((item) => item.type === "toolForm");
-            formik.setFieldValue("name", formPrevData?.name);
-            formik.setFieldValue("activityName", formPrevData?.activityName);
-            formik.setFieldValue("country", formPrevData?.country);
-            formik.setFieldValue("budget", formPrevData?.budget);
-            formik.setFieldValue("date", formPrevData?.date);
-            formik.setFieldValue("email", formPrevData?.email);
+        if (
+            toolData?.length > 0 &&
+            ![null, undefined, -1].includes(toolData?.findIndex((item) => item?.type === 'toolForm'))
+        ) {
+            const formPrevData = toolData.find((item) => item.type === 'toolForm');
+            formik.setFieldValue('name', formPrevData?.name);
+            formik.setFieldValue('activityName', formPrevData?.activityName);
+            formik.setFieldValue('country', formPrevData?.country);
+            formik.setFieldValue('budget', formPrevData?.budget);
+            formik.setFieldValue('date', formPrevData?.date);
+            formik.setFieldValue('email', formPrevData?.email);
         }
     }, [toolData]);
 
@@ -92,15 +91,15 @@ const Home = () => {
     //     setCountriesData(allCountriesData);
     // }, []);
 
-
     const { values, errors, touched, isValid, dirty } = formik;
 
     return (
-        <Container maxWidth="lg" className='text-white'>
+        <Container maxWidth="lg" className="text-white">
             <Box textAlign="center" mt={4}>
                 {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
-                <Typography variant="h2" mt={2} className='text'>
-                    Welcome to Sirāt's NetZero Platform <InfoIcon className='fs-3' onClick={() => handleOpenInfo()} style={{ cursor: 'pointer' }} />
+                <Typography variant="h2" mt={2} className="text">
+                    Welcome to Sirāt's NetZero Platform{' '}
+                    <TiInfoLarge className="fs-3" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer' }} />
                 </Typography>
                 {/* <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
@@ -110,9 +109,23 @@ const Home = () => {
                 </Typography> */}
             </Box>
             <Box className="mt-2">
-                <Grid container spacing={2} p={4} columnSpacing={{ xs: 1, sm: 2, md: 4 }} className='d-flex flex-column justify-content-center align-items-center'>
-                    <Grid item xs={12} sm={6} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }} borderRadius={'10px'}>
-                        <Grid container spacing={2} py={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} style={{ paddingRight: "24px" }}>
+                <Grid
+                    container
+                    spacing={2}
+                    p={4}
+                    columnSpacing={{ xs: 1, sm: 2, md: 4 }}
+                    className="d-flex flex-column justify-content-center align-items-center"
+                >
+                    <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        border={2}
+                        borderColor={'#e2e2e2'}
+                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        borderRadius={'10px'}
+                    >
+                        <Grid container spacing={2} py={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} style={{ paddingRight: '24px' }}>
                             <Grid item xs={12} sm={6}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                                     Name <span style={{ color: 'red' }}>*</span>
@@ -122,7 +135,7 @@ const Home = () => {
                                     type="text"
                                     size="small"
                                     fullWidth
-                                    className='textborder'
+                                    className="textborder"
                                     value={formik.values.name}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -139,7 +152,7 @@ const Home = () => {
                                     name="email"
                                     type="email"
                                     size="small"
-                                    className='textborder'
+                                    className="textborder"
                                     fullWidth
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
@@ -157,7 +170,7 @@ const Home = () => {
                                     name="activityName"
                                     type="text"
                                     size="small"
-                                    className='textborder'
+                                    className="textborder"
                                     fullWidth
                                     value={formik.values.activityName}
                                     onChange={formik.handleChange}
@@ -176,8 +189,7 @@ const Home = () => {
                                     type="text"
                                     size="small"
                                     fullWidth
-                                    className='textborder'
-
+                                    className="textborder"
                                     value={formik.values.country}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -217,7 +229,7 @@ const Home = () => {
                                     name="date"
                                     type="date"
                                     size="small"
-                                    className='textborder'
+                                    className="textborder"
                                     fullWidth
                                     value={formik.values.date}
                                     onChange={formik.handleChange}
@@ -235,7 +247,7 @@ const Home = () => {
                                     name="budget"
                                     type="number"
                                     size="small"
-                                    className='textborder'
+                                    className="textborder"
                                     fullWidth
                                     value={formik.values.budget}
                                     onChange={formik.handleChange}
@@ -251,13 +263,13 @@ const Home = () => {
                                     variant="contained"
                                     onClick={formik.handleSubmit}
                                     type="submit"
-                                    style={{ backgroundColor: "#054723" }}
+                                    style={{ backgroundColor: '#054723' }}
                                 >
                                     {isLoading ? <CircularProgress size={27} /> : 'Save'}
                                 </Button>
                             </Grid>
 
-                            <Grid item xs={5} sm={3} className='ps-0'>
+                            <Grid item xs={5} sm={3} className="ps-0">
                                 {/* <Button
                                     variant="outlined"
                                     onClick={() => {
@@ -275,11 +287,33 @@ const Home = () => {
             </Box>
             <Box mt={0} textAlign="center">
                 <Typography className="mb-2 fs-5">Choose your Marketing activity</Typography>
-                <Button variant="contained" color="primary" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ marginRight: '10px', backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/event')}>Event</Button>
-                <Button variant="contained" className="fs-3" disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0} style={{ backgroundColor: "#054723" }} onClick={() => navigate('/dashboard/campaign')}>Digital Campaign</Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    className="fs-3"
+                    disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    style={{ marginRight: '10px', backgroundColor: '#054723' }}
+                    onClick={() => navigate('/dashboard/event')}
+                >
+                    Event
+                </Button>
+                <Button
+                    variant="contained"
+                    className="fs-3"
+                    disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    style={{ backgroundColor: '#054723' }}
+                    onClick={() => navigate('/dashboard/campaign')}
+                >
+                    Digital Campaign
+                </Button>
             </Box>
 
-            <Typography className='fs-5 text-center my-4'>If you face any problems or have questions, please send your query to <Link to="mailto:info@sirat.earth" style={{ color: "#ffffd9", textDecoration: 'none' }}>Sirāt</Link></Typography>
+            <Typography className="fs-5 text-center my-4">
+                If you face any problems or have questions, please send your query to{' '}
+                <Link to="mailto:info@sirat.earth" style={{ color: '#ffffd9', textDecoration: 'none' }}>
+                    Sirāt
+                </Link>
+            </Typography>
             <Modal
                 open={openInfo}
                 onClose={handleInfoClose}
@@ -287,23 +321,29 @@ const Home = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <h4 style={{ fontStyle: "italic", textDecoration: "underline", marginLeft: '-18px' }}>Note</h4>
-                        <CloseIcon onClick={handleInfoClose} style={{ cursor: "pointer" }} />
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <h4 style={{ fontStyle: 'italic', textDecoration: 'underline', marginLeft: '-18px' }}>Note</h4>
+                        <CloseIcon onClick={handleInfoClose} style={{ cursor: 'pointer' }} />
                     </div>
                     <ul>
-                        <li>To obtain an accurate Carbon footprint generated from your activity,
-                            please input the data in the allotted fields</li>
-                        <li>You can save the data and come back later before submitting and you can’t
-                            change the values after submitting.</li>
-                        <li>The summary page will give you how much Carbon footprint you generated per $ spent on your above activity.</li>
+                        <li>
+                            To obtain an accurate Carbon footprint generated from your activity, please input the data in the allotted
+                            fields
+                        </li>
+                        <li>
+                            You can save the data and come back later before submitting and you can’t change the values after
+                            submitting.
+                        </li>
+                        <li>
+                            The summary page will give you how much Carbon footprint you generated per $ spent on your above activity.
+                        </li>
                         {/* <li>All the emissions values are in kgCO2e.</li>
                         <li>If you face any problems or have questions, please send your query to Sirāt</li> */}
                     </ul>
                 </Box>
             </Modal>
         </Container>
-    )
-}
+    );
+};
 
 export default Home;
