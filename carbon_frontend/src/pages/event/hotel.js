@@ -275,7 +275,7 @@ const Hotel = (props) => {
                                                 fullWidth
                                                 disabled={!formik.values.hotelType}
                                                 type="number"
-                                                value={formik.values.roomsOccupied || 0}
+                                                value={formik.values.roomsOccupied || ""}
                                                 onChange={(e) => {
                                                     formik.setFieldValue("roomsOccupied", e.target.value);
                                                     formik.setFieldValue("emissionsOne", (e.target.value === 0 || values?.efOne === 0 || !values?.efOne) ? 0 : Number((values?.efOne * e.target.value).toFixed(2)));
