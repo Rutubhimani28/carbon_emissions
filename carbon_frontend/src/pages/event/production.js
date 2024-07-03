@@ -592,7 +592,7 @@ const Production = (props) => {
                                             <table className="table-custom-inpt-field">
                                                 <tr>
                                                     <th width="250" />
-                                                    <th className="ps-2">Total Area (m<sup>2</sup>)</th>
+                                                    <th className="ps-2" width="150">Total Area (m<sup>2</sup>)</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 {fieldDataOne &&
@@ -770,7 +770,7 @@ const Production = (props) => {
                                             <table className="table-custom-inpt-field">
                                                 <tr>
                                                     <th width="250" />
-                                                    <th className="ps-2">No. of Units</th>
+                                                    <th className="ps-2" width="150">No. of Units</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>

@@ -19,12 +19,13 @@ const totalFoodSlice = createSlice({
                     state.data.push(newItem);
                 }
             });
-            state.totalEmission = state.data[0]?.data?.reduce((total, item) => {
-                if (item?.emission) {
-                    return total + item.emission;
-                }
-                return total;
-            }, 0).toFixed(2);
+            // state.totalEmission = state.data[0]?.data?.reduce((total, item) => {
+            //     if (item?.emission) {
+            //         return total + item.emission;
+            //     }
+            //     return total;
+            // }, 0).toFixed(2);
+            state.totalEmission = state.data[0].data.reduce((total, item) => item.emission ? total + Number(item.emission) : total, 0).toFixed(2);
         },
         deleteFoodData: (state, action) => ({
             ...state,

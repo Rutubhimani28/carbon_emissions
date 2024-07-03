@@ -25,23 +25,41 @@ const Hotel = (props) => {
 
     // -----------   initialValues
     const initialValues = {
+        // // Hotel
+        // geography: '',
+        // country: '',
+        // hotelType: '',
+        // roomsOccupied: 0,
+        // efOne: null,
+        // emissionsOne: 0,
+        // filteredCountries: [],
+        // totalMeetingRoomArea: 0,
+        // // Meeting Room1
+        // meetingDuration: 0,
+        // efTwo: 0.00104,
+        // emissionsTwo: 0,
+        // // Meeting Room2  
+        // energyUtilisedKwh: 0,
+        // efThree: 0.43,
+        // emissionsThree: 0,
+
         // Hotel
         geography: '',
         country: '',
         hotelType: '',
-        roomsOccupied: 0,
+        roomsOccupied: '',
         efOne: null,
-        emissionsOne: 0,
+        emissionsOne: '',
         filteredCountries: [],
-        totalMeetingRoomArea: 0,
+        totalMeetingRoomArea: '',
         // Meeting Room1
-        meetingDuration: 0,
+        meetingDuration: '',
         efTwo: 0.00104,
-        emissionsTwo: 0,
+        emissionsTwo: '',
         // Meeting Room2  
-        energyUtilisedKwh: 0,
+        energyUtilisedKwh: '',
         efThree: 0.43,
-        emissionsThree: 0,
+        emissionsThree: '',
     };
 
     const formik = useFormik({
@@ -49,9 +67,13 @@ const Hotel = (props) => {
         enableReinitialize: true,
         onSubmit: async (values) => {
 
-            formik.setFieldValue('emissionsOne', (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2)));
-            formik.setFieldValue('emissionsTwo', (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2)));
-            formik.setFieldValue('emissionsThree', (values?.energyUtilisedKwh === 0) ? 0 : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(2)));
+            const emissionsOne = (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2))
+            const emissionsTwo = (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2))
+            const emissionsThree = (values?.energyUtilisedKwh === 0) ? 0 : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(2))
+
+            if (emissionsOne > 0) formik.setFieldValue('emissionsOne', emissionsOne);
+            if (emissionsTwo > 0) formik.setFieldValue('emissionsTwo', emissionsTwo);
+            if (emissionsThree > 0) formik.setFieldValue('emissionsThree', emissionsThree);
 
             const data = [
                 {
@@ -62,19 +84,19 @@ const Hotel = (props) => {
                     roomsOccupied: values?.roomsOccupied,
                     filteredCountries: values?.filteredCountries,
                     efOne: values?.efOne,
-                    emission: (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2))
+                    emission: emissionsOne > 0 ? emissionsOne : '',
                 },
                 {
                     type: 'Meeting Room One',
                     totalMeetingRoomArea: values?.totalMeetingRoomArea,
                     meetingDuration: values?.meetingDuration,
-                    emission: (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2)),
+                    emission: emissionsTwo > 0 ? emissionsTwo : '',
                     efTwo: values?.efTwo,
                 },
                 {
                     type: 'Meeting Room Two',
                     energyUtilisedKwh: values?.energyUtilisedKwh,
-                    emission: (values?.energyUtilisedKwh === 0) ? 0 : Number((values?.efThree * values?.energyUtilisedKwh).toFixed(2)),
+                    emission: emissionsThree > 0 ? emissionsThree : '',
                     efThree: values?.efThree,
                 },
             ];
