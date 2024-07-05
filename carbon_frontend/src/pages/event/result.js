@@ -30,6 +30,8 @@ const Result = () => {
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
 
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+
     let scope1Count = 0;
     let scope2Count = 0;
     let scope3Count = 0;
@@ -192,6 +194,188 @@ const Result = () => {
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
+                    {/* 1 in row */}
+                    {/* <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
+                        {resultTableData?.data?.map((page, pageIndex) => (
+                            <div key={pageIndex}>
+                                <h3>{page?.tabTitle}</h3>
+                                {page?.tabData?.map((flightClass, classIndex) => (
+                                    <div key={classIndex}>
+                                        <h4>{flightClass?.subType}</h4>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    {flightClass?.subTypeData?.th?.map((header, headerIndex) => (
+                                                        <th key={headerIndex}>{header}</th>
+                                                    ))}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                    <tr key={rowIndex}>
+                                                        <td>{rowData?.journeyType}</td>
+                                                        <td>{rowData?.noOfTrips}</td>
+                                                        <td>{rowData?.emmissions}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </Box> */}
+
+                    {/* more in 1 row */}
+                    {/* <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", alignItems: 'center' }}>
+                        <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
+                            {resultTableData?.data?.map((page, pageIndex) => (
+                                <div key={pageIndex} style={{ margin: "20px" }}>
+                                    <h3>{page.tabTitle}</h3>
+                                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                                        {page.tabData.map((flightClass, classIndex) => (
+                                            <div key={classIndex} style={{ margin: "10px", width: "45%" }}>
+                                                <h4>{flightClass.subType}</h4>
+                                                <table style={{ width: "100%" }}>
+                                                    <thead>
+                                                        <tr>
+                                                            {flightClass.subTypeData.th.map((header, headerIndex) => (
+                                                                <th key={headerIndex}>{header}</th>
+                                                            ))}
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {flightClass.subTypeData.td.map((rowData, rowIndex) => (
+                                                            <tr key={rowIndex}>
+                                                                <td>{rowData.journeyType}</td>
+                                                                <td>{rowData.noOfTrips}</td>
+                                                                <td>{rowData.emmissions}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </Box> */}
+
+                    {/* more in 1 row, html */}
+                    {/* <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "space-around", alignItems: 'center' }}>
+                        <div style={{ display: "flex", justifyContent: "space-around", width: "100%" }}>
+                            {resultTableData?.data?.map((page, pageIndex) => (
+                                <div key={pageIndex} style={{ margin: "20px" }}>
+                                    {page?.tabData.some(flightClass =>
+                                        flightClass?.subTypeData?.td?.some(rowData =>
+                                            rowData.noOfTrips !== "" && rowData.emmissions !== ""
+                                        )
+                                    ) && (
+                                            <>
+                                                <h3>{page.tabTitle}</h3>
+                                                <div style={{ display: "flex", justifyContent: "space-around" }}>
+                                                    {page?.tabData?.map((flightClass, classIndex) => (
+                                                        <div key={classIndex} style={{ margin: "10px", width: "45%" }}>
+                                                            {flightClass?.subTypeData?.td?.some(rowData =>
+                                                                rowData.noOfTrips !== "" && rowData.emmissions !== ""
+                                                            ) && (
+                                                                    <>
+                                                                        <h4>{flightClass.subType}</h4>
+                                                                        <table style={{ width: "100%" }}>
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    {flightClass?.subTypeData?.th?.map((header, headerIndex) => (
+                                                                                        <th key={headerIndex}>{header}</th>
+                                                                                    ))}
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                {flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                    rowData.noOfTrips !== "" && rowData.emmissions !== "" && (
+                                                                                        <tr key={rowIndex}>
+                                                                                            <td>{rowData.journeyType}</td>
+                                                                                            <td>{rowData.noOfTrips}</td>
+                                                                                            <td>{rowData.emmissions}</td>
+                                                                                        </tr>
+                                                                                    )
+                                                                                ))}
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </>
+                                                                )}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </>
+                                        )}
+                                </div>
+                            ))}
+                        </div>
+                    </Box> */}
+
+                    {/* <Box style={{ display: "flex", justifyContent: "space-around", width: "100%", color: 'white' }}> */}
+                    <Box style={{ width: "100%", color: 'white' }}>
+                        {resultTableData?.data?.map((page, pageIndex) => (
+                            <Box key={pageIndex} style={{ margin: "20px" }}>
+                                {page?.tabData.some(flightClass =>
+                                    flightClass?.subTypeData?.td?.some(rowData =>
+                                        rowData.noOfTrips !== "" && rowData.emmissions !== ""
+                                    )
+                                ) && (
+                                        <>
+                                            <Typography className='fs-3 text-center mt-1'>{page.tabTitle}</Typography>
+                                            <Box className="d-flex justify-content-around">
+                                                {page?.tabData?.map((flightClass, classIndex) => (
+                                                    <Box key={classIndex} style={{ margin: "10px", width: "45%" }}>
+                                                        {flightClass?.subTypeData?.td?.some(rowData =>
+                                                            rowData.noOfTrips !== "" && rowData.emmissions !== ""
+                                                        ) && (
+                                                                <>
+                                                                    <Typography className='fs-5 mb-1'>{flightClass.subType}</Typography>
+                                                                    <table style={{ width: "100%", border: '1px solid white' }}>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                {flightClass?.subTypeData?.th?.map((header, headerIndex) => (
+                                                                                    <th key={headerIndex}>{header}</th>
+                                                                                ))}
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {page.tabTitle === "Air Travel" &&
+                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                    rowData.noOfTrips !== "" && rowData.emmissions !== "" && (
+                                                                                        <tr key={rowIndex}>
+                                                                                            <td>{rowData.journeyType}</td>
+                                                                                            <td>{rowData.noOfTrips}</td>
+                                                                                            <td>{rowData.emmissions}</td>
+                                                                                        </tr>
+                                                                                    )
+                                                                                ))}
+                                                                        {page.tabTitle === "Local Transportation" &&
+                                                                            flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                rowData.noOfTrips !== "" && rowData.emmissions !== "" && (
+                                                                                    <tr key={rowIndex}>
+                                                                                        <td>{rowData.journeyType}</td>
+                                                                                        <td>{rowData.noOfKms}</td>
+                                                                                        <td>{rowData.emmissions}</td>
+                                                                                    </tr>
+                                                                                )
+                                                                            ))}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </>
+                                                            )}
+                                                    </Box>
+                                                ))}
+                                            </Box>
+                                        </>
+                                    )}
+                            </Box>
+                        ))}
+                    </Box>
+
+
                     <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
                         <h3 className='text-center py-3 fw-bold text-white'>Total Carbon Footprint :</h3>
                         <table>

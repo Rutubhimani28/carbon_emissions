@@ -5,6 +5,7 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAirTravelData, deleteAirTravelData } from '../../redux/slice/totalAirTravelSlice';
+import { addResultTableData, deleteResTabAirTravelData } from '../../redux/slice/resultTableDataSlice';
 import { IconDiv } from '../../components/IconDiv';
 import AirTravelImg from '../../assets/Travel.png';
 
@@ -65,7 +66,7 @@ const AirTravel = (props) => {
 
     const formik = useFormik({
         initialValues,
-        onSubmit: async (values) => {
+        onSubmit: (values) => {
             const emissionOne = values?.noOfTripsOne === 0 ? 0 : (200 * values?.noOfTripsOne).toFixed(2)
             const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(2)
             const emissionThree = values?.noOfTripsThree === 0 ? 0 : (960 * values?.noOfTripsThree).toFixed(2)
@@ -115,12 +116,87 @@ const AirTravel = (props) => {
                     emissionNine: emissionNine > 0 ? emissionNine : ''
                 }
             ];
+
+            const tableData = [
+                {
+                    subType: "Economy Class",
+                    subTypeData: {
+                        th: ["Journey Type", "No of trips", "Emissions"],
+                        td: [
+                            {
+                                journeyType: "Short Haul Flight (<3hrs)",
+                                noOfTrips: values?.noOfTripsOne,
+                                emmissions: emissionOne > 0 ? emissionOne : ''
+                            },
+                            {
+                                journeyType: "Medium Haul Flight (3-6hrs)",
+                                noOfTrips: values?.noOfTripsTwo,
+                                emmissions: emissionTwo > 0 ? emissionTwo : ''
+                            },
+                            {
+                                journeyType: "Long Haul Flight (>6hrs)",
+                                noOfTrips: values?.noOfTripsThree,
+                                emmissions: emissionThree > 0 ? emissionThree : ''
+                            }
+                        ]
+                    }
+                },
+                {
+                    subType: "Business Class",
+                    subTypeData: {
+                        th: ["Journey Type", "No of trips", "Emissions"],
+                        td: [
+                            {
+                                journeyType: "Short Haul Flight (<3hrs)",
+                                noOfTrips: values?.noOfTripsFour,
+                                emmissions: emissionFour > 0 ? emissionFour : ''
+                            },
+                            {
+                                journeyType: "Medium Haul Flight (3-6hrs)",
+                                noOfTrips: values?.noOfTripsFive,
+                                emmissions: emissionFive > 0 ? emissionFive : ''
+                            },
+                            {
+                                journeyType: "Long Haul Flight (>6hrs)",
+                                noOfTrips: values?.noOfTripsSix,
+                                emmissions: emissionSix > 0 ? emissionSix : ''
+                            }
+                        ]
+                    }
+                },
+                {
+                    subType: "First Class",
+                    subTypeData: {
+                        th: ["Journey Type", "No of trips", "Emissions"],
+                        td: [
+                            {
+                                journeyType: "Short Haul Flight (<3hrs)",
+                                noOfTrips: values?.noOfTripsSeven,
+                                emmissions: emissionSeven > 0 ? emissionSeven : ''
+                            },
+                            {
+                                journeyType: "Medium Haul Flight (3-6hrs)",
+                                noOfTrips: values?.noOfTripsEight,
+                                emmissions: emissionEight > 0 ? emissionEight : ''
+                            },
+                            {
+                                journeyType: "Long Haul Flight (>6hrs)",
+                                noOfTrips: values?.noOfTripsNine,
+                                emmissions: emissionNine > 0 ? emissionNine : ''
+                            }
+                        ]
+                    }
+                },
+            ];
+
             dispatch(addAirTravelData({ data }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Air Travel" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteAirTravelData());
+        dispatch(deleteResTabAirTravelData());
     };
 
     useEffect(() => {

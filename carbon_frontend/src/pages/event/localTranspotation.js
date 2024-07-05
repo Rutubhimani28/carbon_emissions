@@ -5,6 +5,7 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLocalTranspotationData, deleteLocalTranspotationData, scopeChange } from '../../redux/slice/totalLocalTranspotationSlice';
+import { addResultTableData, deleteResTabLocalTransData } from '../../redux/slice/resultTableDataSlice';
 import LocalTransportImg from '../../assets/Transportation.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -211,17 +212,98 @@ const LocalTranspotation = (props) => {
                     emission: electricCarEmission2 > 0 ? electricCarEmission2 : ''
                 },
             ];
+
+
+            const tableData = [
+                {
+                    subType: "Company Car",
+                    subTypeData: {
+                        th: ["Car Type", "No of Kms", "Emissions"],
+                        td: [
+                            {
+                                journeyType: "Petrol",
+                                noOfKms: values?.petrolCarKms,
+                                emmissions: petrolCarEmission > 0 ? petrolCarEmission : ''
+                            },
+                            {
+                                journeyType: "Diesel",
+                                noOfKms: values?.dieselCarKms,
+                                emmissions: dieselCarEmission > 0 ? dieselCarEmission : ''
+                            },
+                            {
+                                journeyType: "Hybrid",
+                                noOfKms: values?.hybridCarKms,
+                                emmissions: hybridCarEmission > 0 ? hybridCarEmission : ''
+                            },
+                            {
+                                journeyType: "EV",
+                                noOfKms: values?.electricCarKms,
+                                emmissions: electricCarEmission > 0 ? electricCarEmission : ''
+                            },
+                        ]
+                    }
+                },
+                {
+                    subType: "Taxi",
+                    subTypeData: {
+                        th: ["Car Type", "No of Kms", "Emissions"],
+                        td: [
+                            {
+                                journeyType: "Petrol",
+                                noOfKms: values?.petrolCarKms2,
+                                emmissions: petrolCarEmission2 > 0 ? petrolCarEmission2 : ''
+                            },
+                            {
+                                journeyType: "Diesel",
+                                noOfKms: values?.dieselCarKms2,
+                                emmissions: dieselCarEmission2 > 0 ? dieselCarEmission2 : ''
+                            },
+                            {
+                                journeyType: "Hybrid",
+                                noOfKms: values?.hybridCarKms2,
+                                emmissions: hybridCarEmission2 > 0 ? hybridCarEmission2 : ''
+                            },
+                            {
+                                journeyType: "EV",
+                                noOfKms: values?.electricCarKms2,
+                                emmissions: electricCarEmission2 > 0 ? electricCarEmission2 : ''
+                            },
+                        ]
+                    }
+                },
+                {
+                    subType: "Public Transport",
+                    subTypeData: {
+                        th: ["Transport Via", "No of Kms", "Emissions per person"],
+                        td: [
+                            {
+                                journeyType: "Bus-Diesel",
+                                noOfKms: values?.busDieselKms,
+                                emmissions: busDieselEmission > 0 ? busDieselEmission : ''
+                            },
+                            {
+                                journeyType: "Metro (EV)",
+                                noOfKms: values?.metroKms,
+                                emmissions: metroEmission > 0 ? metroEmission : ''
+                            }
+                        ]
+                    }
+                },
+            ];
+
             dispatch(addLocalTranspotationData({ data }))
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Local Transportation" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteLocalTranspotationData());
+        dispatch(deleteResTabLocalTransData());
     };
 
     useEffect(() => {
         if (allData?.length > 0) {
-            console.log("useeffect allData[0] ", allData[0]);
+
             formik.setFieldValue("petrolCarKms", allData[0]?.petrolCarKms)
             formik.setFieldValue("petrolCarNoPasse", allData[0]?.petrolCarNoPasse)
             formik.setFieldValue("petrolCarEmission", allData[0]?.emission)
@@ -314,7 +396,7 @@ const LocalTranspotation = (props) => {
     const { values } = formik;
 
     return (
-     <div>
+        <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
@@ -368,7 +450,6 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Petrol</td>
                                                 <td className='ps-2 py-1'>
-                                                    {console.log("----- values?.petrolCarKms ", values?.petrolCarKms)}
                                                     <TextField size='small' type="number" name='petrolCarKms' value={values?.petrolCarKms}
                                                         onChange={(e) => {
                                                             calclulateModeTransport1(e, "petrolCarEmission", e.target.value, values?.petrolCarNoPasse, 0.171)
