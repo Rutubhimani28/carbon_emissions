@@ -18,7 +18,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { apipost } from "../../service/api";
 
 const SendMail = (props) => {
-    const { open, close, setUserAction, datas } = props;
+    const { open, close, setUserAction, datas, setOpen } = props;
     const [isLoading, setIsLoading] = useState(false);
     const [emails, setEmails] = useState([])
     const [err, setErr] = useState('')
@@ -77,6 +77,7 @@ const SendMail = (props) => {
             if (result && result.status === 201) {
                 formik.resetForm();
                 close();
+                setOpen(false);
                 // setEmails([])
                 formik.setFieldValue('emails', []);
             }

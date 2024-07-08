@@ -14,16 +14,24 @@
         th,
         td {
             border: 1px solid black;
+            color: #000 !important;
         }
 
         th,
         td {
             padding: 8px;
             text-align: left;
+
         }
 
         th {
             background-color: #f2f2f2;
+        }
+
+        p,
+        h4,
+        h2 {
+            color: #000 !important;
         }
     </style>
 </head>
@@ -38,13 +46,13 @@
             </strong>activity.</p>
         <p style="font-size: 16px;">We're pleased to provide you with the carbon footprint report, detailing the
             emissions associated with the mentioned activity.</p>
-        <h2 style="text-align: center;">Total Carbon Footprint :</h2>
+        <h2 style="text-align: center; font-weight: 900">Total Carbon Footprint :</h2>
 
         <table>
             <tr>
                 <th>Digital Campaign</th>
                 <td>
-                    <%= data.totalDigitalCampaign %> metric CO2e
+                    <%= data.totalDigitalCampaign %> kgCO<sub>2</sub>e
                 </td>
             </tr>
         </table>
@@ -57,14 +65,13 @@
             mitigating your environmental impact.</p>
         <p>If you have any questions or need further assistance on how to reduce the carbon emissions from your
             activity, please contact at
-            <a href="info@sirat.earth" target="_blank">info@sirat.earth</a>
-            . We are here to help you on your journey towards a more sustainable future.
+            <a href="info@sirat.earth" target="_blank">info@sirat.earth</a>.
         </p>
         <p>Best regards,</p>
         <p style="margin-bottom:0;">Team Sirāt</p>
         <!-- <a style="text-decoration:underline;color: blue;">Sirat.Earth</a> -->
         <div>
-            <img src="https://carbon-emissions-pnz7.onrender.com/logo/logo.png" width="20%" />
+            <img src="https://carbon-emissions-pnz7.onrender.com/logo/logo.png" width="10%" />
         </div>
     </div>
 </body>

@@ -188,7 +188,7 @@ const Result = () => {
 
     return (
         <div>
-            <SendMail open={open} close={() => setOpen(false)} datas={data} />
+            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen />
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
@@ -214,7 +214,7 @@ const Result = () => {
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(3)} tCO<sub>2</sub>e</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${(total / toolFormData?.budget).toFixed(3)}`} kgCO<sub>2</sub>e</Typography>
                         <Grid container pt={8} className='d-flex justify-content-center'>
-                            <Grid item xs={12} sm={8} md={8}>
+                            <Grid item xs={12} sm={10} md={10}>
                                 <CustomBarChart chartData={chartData} />
                             </Grid>
                             {/* <Grid item xs={12} sm={4} md={4} >
