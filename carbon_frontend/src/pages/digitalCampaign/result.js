@@ -31,7 +31,7 @@ const Result = () => {
 
     return (
         <div>
-            <SendMail open={open} close={() => setOpen(false)} datas={data} />
+            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen />
 
             {/* <Container maxWidth>
                 <Card className='custom-inner-bg'>
