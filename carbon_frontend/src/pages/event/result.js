@@ -90,7 +90,7 @@ const Result = () => {
             totalEmission: allEnergyData?.totalEmission
         },
         {
-            type: 'Digital',
+            type: 'Digital Comms',
             totalEmission: allDigitalContentData?.totalEmission
         },
         {
