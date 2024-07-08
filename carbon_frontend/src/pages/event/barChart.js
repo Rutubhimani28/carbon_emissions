@@ -90,7 +90,7 @@ const CustomBarChart = ({ chartData }) => {
         plotOptions: {
             bar: {
                 horizontal: false,
-                columnWidth: '55%',
+                columnWidth: '70%', // Increase the width of the bars
                 endingShape: 'rounded',
             },
         },
