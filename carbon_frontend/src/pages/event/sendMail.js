@@ -65,7 +65,6 @@ const SendMail = (props) => {
 
         try {
             const data = {
-                // subject: values?.subject,
                 subject: `Total Carbon Footprint generated from your ${values?.subject} activity`,
                 receiver: values?.emails,
                 data: datas,
