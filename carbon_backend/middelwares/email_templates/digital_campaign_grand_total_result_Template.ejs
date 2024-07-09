@@ -3,6 +3,11 @@
 
 <head>
     <style>
+        body {
+            font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Calibri is preferred, fallback to other sans-serif fonts */
+        }
+
         table {
             width: 50%;
             border-collapse: collapse;
@@ -38,15 +43,15 @@
 
 <body>
     <div style="padding: 20px 0;">
-        <h4>Dear <%= name %>,</h4>
-        <p style="font-size: 16px;">Thank you for using our<strong> NetZero Platform </strong>to measure the carbon
+        <h4  style="font-size: 11px;">Dear <%= name %>,</h4>
+        <p style="font-size: 11px;">Thank you for using our<strong> NetZero Platform </strong>to measure the carbon
             footprint generated from
             your <strong>
                 <%= activityName %>
             </strong>activity.</p>
-        <p style="font-size: 16px;">We're pleased to provide you with the carbon footprint report, detailing the
+        <p style="font-size: 11px;">We're pleased to provide you with the carbon footprint report, detailing the
             emissions associated with the mentioned activity.</p>
-        <h2 style="font-weight: 900">Total Carbon Footprint :</h2>
+        <h2 style="font-size: 11px; font-weight: 900">Total Carbon Footprint :</h2>
 
         <table>
             <tr>
@@ -68,8 +73,8 @@
             <a href="info@sirat.earth" target="_blank">info@sirat.earth</a>.
         </p>
         <br />
-        <p>Best regards,</p>
-        <p style="margin-bottom:0; font-weight: bold;">Team Sirāt</p>
+        <p  style="font-size: 11px;">Best regards,</p>
+        <p style="margin-bottom:0; font-size: 11px; font-weight: bold;">Team Sirāt</p>
         <!-- <a style="text-decoration:underline;color: blue;">Sirat.Earth</a> -->
 
     </div>
