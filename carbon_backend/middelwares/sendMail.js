@@ -90,7 +90,8 @@ const sendMail = async ({ receiver, subject, data, templateName, message, activi
         let mailOptions = {};
 
         const transporter = nodemailer.createTransport({
-            host: 'smtp.office365.com',
+            // host: 'smtp.office365.com',
+            host: 'smtpout.secureserver.net',
             port: 587,
             secure: false,
             auth: {
@@ -110,30 +111,37 @@ const sendMail = async ({ receiver, subject, data, templateName, message, activi
         } else {
             const templatePath = path.join(__dirname, '/email_templates', `${templateName}.ejs`);
             const template = await ejs.renderFile(templatePath, { data: data, name, activityName, totalTonCo2, eveydolarCo2 });
-            const pdfFilePath = path.join(__dirname, 'carbon_footprint.pdf');
+            // const pdfFilePath = path.join(__dirname, 'carbon_footprint.pdf');
 
-            await new Promise((resolve, reject) => {
-                pdf.create(template, options).toFile(pdfFilePath, (err, res) => {
-                    if (err) {
-                        console.log("-------- error in pdf create ", err);
-                        reject(err);
-                    } else {
-                        mailOptions = {
-                            from: process.env.GMAIL_FROM,
-                            to: receiver,
-                            subject: subject,
-                            attachments: [
-                                {
-                                    filename: 'carbon_footprint.pdf',
-                                    path: pdfFilePath,
-                                    contentType: 'application/pdf'
-                                }
-                            ]
-                        };
-                        resolve();
-                    }
-                });
-            });
+            // await new Promise((resolve, reject) => {
+            //     pdf.create(template, options).toFile(pdfFilePath, (err, res) => {
+            //         if (err) {
+            //             console.log("-------- error in pdf create ", err);
+            //             reject(err);
+            //         } else {
+            //             mailOptions = {
+            //                 from: process.env.GMAIL_FROM,
+            //                 to: receiver,
+            //                 subject: subject,
+            //                 attachments: [
+            //                     {
+            //                         filename: 'carbon_footprint.pdf',
+            //                         path: pdfFilePath,
+            //                         contentType: 'application/pdf'
+            //                     }
+            //                 ]
+            //             };
+            //             resolve();
+            //         }
+            //     });
+            // });
+
+            mailOptions = {
+                from: process.env.GMAIL_FROM,
+                to: receiver,
+                subject: subject,
+                html: template
+            };
         }
 
         // Send email
