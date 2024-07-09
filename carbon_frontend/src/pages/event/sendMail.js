@@ -43,7 +43,8 @@ const SendMail = (props) => {
     // -----------   initialValues
     const initialValues = {
         subject: toolFormData?.activityName,
-        receiver: userEmail,
+        // receiver: userEmail,
+        receiver: toolFormData?.email,
         sender: userid,
         // emails: [],
         emails: [`${toolFormData?.email}`],
