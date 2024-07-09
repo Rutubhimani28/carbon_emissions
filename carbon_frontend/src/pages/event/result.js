@@ -352,12 +352,44 @@ const Result = () => {
                                                                                         </tr>
                                                                                     )
                                                                                 ))}
-                                                                        {page.tabTitle === "Local Transportation" &&
+                                                                            {page.tabTitle === "Local Transportation" &&
+                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                    rowData.noOfTrips !== "" && rowData.emmissions !== "" && (
+                                                                                        <tr key={rowIndex}>
+                                                                                            <td>{rowData.journeyType}</td>
+                                                                                            <td>{rowData.noOfKms}</td>
+                                                                                            <td>{rowData.emmissions}</td>
+                                                                                        </tr>
+                                                                                    )
+                                                                                ))}
+                                                                            {page.tabTitle === "Food & Beverages" &&
+                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                    rowData.noOfTrips !== "" && rowData.emmissions !== "" && (
+                                                                                        <tr key={rowIndex}>
+                                                                                            <td>{rowData.fBType}</td>
+                                                                                            <td>{rowData.noOfPax || rowData.noOfBottles}</td>
+                                                                                            <td>{rowData.emmissions}</td>
+                                                                                        </tr>
+                                                                                    )
+                                                                                ))}
+                                                                            {page.tabTitle === "Logistics" &&
+                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                    rowData.noOfTrips !== "" && rowData.emmissions !== "" && (
+                                                                                        <tr key={rowIndex}>
+                                                                                            <td>{rowData.frType}</td>
+                                                                                            <td>{rowData.noOfKms}</td>
+                                                                                            <td>{rowData.kgs}</td>
+                                                                                            <td>{rowData.emmissions}</td>
+                                                                                        </tr>
+                                                                                    )
+                                                                                ))}
+                                                                        {page.tabTitle === "Event Production" &&
                                                                             flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
                                                                                 rowData.noOfTrips !== "" && rowData.emmissions !== "" && (
                                                                                     <tr key={rowIndex}>
-                                                                                        <td>{rowData.journeyType}</td>
-                                                                                        <td>{rowData.noOfKms}</td>
+                                                                                        <td>{rowData.pType}</td>
+                                                                                        <td>{rowData.kgs || rowData.area || rowData.noofUnits || rowData.kwh}</td>
+                                                                                        { rowData.noOfDevice &&  <td>{rowData.kgs}</td>}
                                                                                         <td>{rowData.emmissions}</td>
                                                                                     </tr>
                                                                                 )

@@ -5,6 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
+import { addResultTableData, deleteResTabProductionData } from '../../redux/slice/resultTableDataSlice';
 import ProductionImg from '../../assets/production.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -463,12 +464,232 @@ const Production = (props) => {
                 },
             ];
 
+
+            // const tableData = [
+            //     {
+            //         subType: "Production Material",
+            //         subTypeData: {
+            //             th: ["", "Weight (Kgs)", "Emissions"],
+            //             td: [
+            //                 {
+            //                     journeyType: "Wood",
+            //                     kgs: values?.wood,
+            //                     // emmissions: emissionOne > 0 ? emissionOne : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Steel",
+            //                     kgs: values?.noOfTripsTwo,
+            //                     // emmissions: emissionTwo > 0 ? emissionTwo : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Aluminium",
+            //                     kgs: values?.noOfTripsThree,
+            //                     // emmissions: emissionThree > 0 ? emissionThree : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Iron",
+            //                     kgs: values?.noOfTripsOne,
+            //                     // emmissions: emissionOne > 0 ? emissionOne : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Paper",
+            //                     kgs: values?.noOfTripsTwo,
+            //                     // emmissions: emissionTwo > 0 ? emissionTwo : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Recycled Paper",
+            //                     kgs: values?.noOfTripsThree,
+            //                     // emmissions: emissionThree > 0 ? emissionThree : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Paint",
+            //                     kgs: values?.noOfTripsThree,
+            //                     // emmissions: emissionThree > 0 ? emissionThree : ''
+            //                 }
+            //             ]
+            //         }
+            //     },
+            //     {
+            //         subType: "Production Material",
+            //         subTypeData: {
+            //             th: ["", "Total Area (m2)", "Emissions"],
+            //             td: [
+            //                 {
+            //                     journeyType: "Sawn Timber",
+            //                     area: values?.sawnTimberArea,
+            //                     // emmissions: emissionFour > 0 ? emissionFour : ''
+            //                 },
+            //                 {
+            //                     journeyType: "MDF",
+            //                     area: values?.mdfArea,
+            //                     // emmissions: emissionFive > 0 ? emissionFive : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Open Panel Timber Frame",
+            //                     area: values?.openPanelTimberFrameArea,
+            //                     // emmissions: emissionSix > 0 ? emissionSix : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Carpet",
+            //                     area: values?.carpetArea,
+            //                     // emmissions: emissionFour > 0 ? emissionFour : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Adhesive Vinyl",
+            //                     area: values?.adhesiveVinylArea, 
+            //                     // emmissions: emissionFour > 0 ? emissionFour : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Cardboard",
+            //                     area: values?.cardboardArea,
+            //                     // emmissions: emissionFive > 0 ? emissionFive : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Nylon",
+            //                     area: values?.nylonArea,
+            //                     // emmissions: emissionSix > 0 ? emissionSix : ''
+            //                 },
+            //             ]
+            //         }
+            //     },
+            //     {
+            //         subType: "Branding",
+            //         subTypeData: {
+            //             th: ["", "In Kgs", "Emissions"],
+            //             td: [
+            //                 {
+            //                     journeyType: "Polethylene HDPE Banner",
+            //                     kgs: values?.noOfTripsSeven,
+            //                     // emmissions: emissionSeven > 0 ? emissionSeven : ''
+            //                 },
+            //                 {
+            //                     journeyType: "PVC Banners",
+            //                     kgs: values?.noOfTripsEight,
+            //                     // emmissions: emissionEight > 0 ? emissionEight : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Cotton Banner",
+            //                     kgs: values?.noOfTripsNine,
+            //                     // emmissions: emissionNine > 0 ? emissionNine : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Plastic Badge Holders (Polycorbonate)",
+            //                     kgs: values?.noOfTripsNine,
+            //                     // emmissions: emissionNine > 0 ? emissionNine : ''
+            //                 },
+            //             ]
+            //         }
+            //     },
+            //     {
+            //         subType: "Branding",
+            //         subTypeData: {
+            //             th: ["", "No. of Units", "Emissions"],
+            //             td: [
+            //                 {
+            //                     journeyType: "Printing a Coloured Brochure/ Page (>130 GSM)",
+            //                     kgs: values?.noOfTripsSeven,
+            //                     // emmissions: emissionSeven > 0 ? emissionSeven : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Paper bags (200 GSM)- A4 Size",
+            //                     kgs: values?.noOfTripsEight,
+            //                     // emmissions: emissionEight > 0 ? emissionEight : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Paper bags (200 GSM)- A5 Size",
+            //                     kgs: values?.noOfTripsNine,
+            //                     // emmissions: emissionNine > 0 ? emissionNine : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Jute bags*- A4 Size",
+            //                     kgs: values?.noOfTripsEight,
+            //                     // emmissions: emissionEight > 0 ? emissionEight : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Cotton bags- A4 Size",
+            //                     kgs: values?.noOfTripsNine,
+            //                     // emmissions: emissionNine > 0 ? emissionNine : ''
+            //                 },
+            //             ]
+            //         }
+            //     },
+            //     {
+            //         subType: "Stage Screen",
+            //         subTypeData: {
+            //             th: ["", "No of Hours", "No of Devices/ Panels", "Emissions"],
+            //             td: [
+            //                 {
+            //                     journeyType: "Printing a Coloured Brochure/ Page (>130 GSM)",
+            //                     kgs: values?.noOfTripsSeven,
+            //                     // emmissions: emissionSeven > 0 ? emissionSeven : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Paper bags (200 GSM)- A4 Size",
+            //                     kgs: values?.noOfTripsEight,
+            //                     // emmissions: emissionEight > 0 ? emissionEight : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Paper bags (200 GSM)- A5 Size",
+            //                     kgs: values?.noOfTripsNine,
+            //                     // emmissions: emissionNine > 0 ? emissionNine : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Jute bags*- A4 Size",
+            //                     kgs: values?.noOfTripsEight,
+            //                     // emmissions: emissionEight > 0 ? emissionEight : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Cotton bags- A4 Size",
+            //                     kgs: values?.noOfTripsNine,
+            //                     // emmissions: emissionNine > 0 ? emissionNine : ''
+            //                 },
+            //             ]
+            //         }
+            //     },
+            //     {
+            //         subType: "Stage Lighting & AV",
+            //         subTypeData: {
+            //             th: ["", "kwh", "Emissions"],
+            //             td: [
+            //                 {
+            //                     journeyType: "Printing a Coloured Brochure/ Page (>130 GSM)",
+            //                     kgs: values?.noOfTripsSeven,
+            //                     // emmissions: emissionSeven > 0 ? emissionSeven : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Paper bags (200 GSM)- A4 Size",
+            //                     kgs: values?.noOfTripsEight,
+            //                     // emmissions: emissionEight > 0 ? emissionEight : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Paper bags (200 GSM)- A5 Size",
+            //                     kgs: values?.noOfTripsNine,
+            //                     // emmissions: emissionNine > 0 ? emissionNine : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Jute bags*- A4 Size",
+            //                     kgs: values?.noOfTripsEight,
+            //                     // emmissions: emissionEight > 0 ? emissionEight : ''
+            //                 },
+            //                 {
+            //                     journeyType: "Giveway Cotton bags- A4 Size",
+            //                     kgs: values?.noOfTripsNine,
+            //                     // emmissions: emissionNine > 0 ? emissionNine : ''
+            //                 },
+            //             ]
+            //         }
+            //     },
+            // ];
+
+
             dispatch(addProductionData({ data }));
+            // dispatch(addResultTableData({ data: tableData, tabTitle: "Event Production" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteProductionData());
+        // dispatch(deleteResTabProductionData());
     };
 
     useEffect(() => {

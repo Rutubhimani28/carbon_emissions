@@ -27,14 +27,26 @@ const resultTableDataSlice = createSlice({
         }),
         deleteResTabAirTravelData: (state, action) => ({
             ...state,
-           data: state.data.filter(item => item.tabTitle !== 'Air Travel'),
+            data: state.data.filter(item => item.tabTitle !== 'Air Travel'),
         }),
         deleteResTabLocalTransData: (state, action) => ({
             ...state,
             data: state.data.filter(item => item.tabTitle !== 'Local Transportation'),
         }),
+        deleteResTabFBData: (state, action) => ({
+            ...state,
+            data: state.data.filter(item => item.tabTitle !== 'Food & Beverages'),
+        }),
+        deleteResTabLogisticsData: (state, action) => ({
+            ...state,
+            data: state.data.filter(item => item.tabTitle !== 'Logistics'),
+        }),
+        deleteResTabProductionData: (state, action) => ({
+            ...state,
+            data: state.data.filter(item => item.tabTitle !== 'Event Production'),
+        }),
     },
 });
 
-export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData } = resultTableDataSlice.actions;
+export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData } = resultTableDataSlice.actions;
 export default resultTableDataSlice.reducer;
