@@ -5,6 +5,7 @@ import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMe
 import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
+import { addResultTableData, deleteResTabDgCampaignData } from '../../redux/slice/resultTableDataSlice';
 import CampaignImg from '../../assets/Travel.png';
 import Phone from '../../assets/phone2.png';
 import { IconDiv } from '../../components/IconDiv';
@@ -98,7 +99,67 @@ const DigitalCampaign = (props) => {
                     emission: emissionFour > 0 ? emissionFour : ''
                 }
             ];
+
+            const tableData = [
+                {
+                    subType: "Email / Newsletter",
+                    subTypeData: {
+                        th: ["", "No of Emails", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Emails",
+                                noOfEmails: values?.noOfEmails,
+                                emmissions: emissionThree > 0 ? emissionThree : ''
+                            },
+                        ]
+                    }
+                },
+                {
+                    subType: "Email / Newsletter",
+                    subTypeData: {
+                        th: ["", "Size (in Mb)", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Email Attachment",
+                                attachmentSize: values?.attachmentSize,
+                                emmissions: emissionFour > 0 ? emissionFour : '',
+                            },
+                        ]
+                    }
+                },
+                {
+                    subType: "Social Media",
+                    subTypeData: {
+                        th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Image",
+                                imgSize: values?.imgSize,
+                                impressions1: values?.impressionsOne,
+                                emmissions: emissionOne > 0 ? emissionOne : '',
+                            },
+                        ]
+                    }
+                },
+                {
+                    subType: "Social Media",
+                    subTypeData: {
+                        th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Video",
+                                videoSize: values?.videoSize,
+                                videoMins: values?.videoMins,
+                                impressions2: values?.impressionsTwo,
+                                emmissions: emissionTwo > 0 ? emissionTwo : '',
+                            },
+                        ]
+                    }
+                },
+            ];
+
             dispatch(addCampaignData({ data }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Campaign" }));
         },
     });
 
@@ -106,6 +167,7 @@ const DigitalCampaign = (props) => {
 
     const handeleDelete = () => {
         dispatch(deleteCampaignData());
+        dispatch(deleteResTabDgCampaignData());
     };
 
     useEffect(() => {
@@ -133,6 +195,8 @@ const DigitalCampaign = (props) => {
             formik.setFieldValue('emissionFour', allData[3]?.emission);
         }
     }, [value]);
+
+    console.log("----- allData ", allData)
 
     useEffect(() => {
         formik.setFieldValue("totalEnergy1", Number(values.deviceEnergy1) + Number(values.somePlatformEnergy1) + Number(values.networkEnergy1));

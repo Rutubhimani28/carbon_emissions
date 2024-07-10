@@ -61,8 +61,12 @@ const resultTableDataSlice = createSlice({
             ...state,
             data: state.data.filter(item => item.tabTitle !== 'Hotel'),
         }),
+        deleteResTabDgCampaignData: (state, action) => ({
+            ...state,
+            data: state.data.filter(item => item.tabTitle !== 'Digital Campaign'),
+        }),
     },
 });
 
-export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData } = resultTableDataSlice.actions;
+export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData } = resultTableDataSlice.actions;
 export default resultTableDataSlice.reducer;

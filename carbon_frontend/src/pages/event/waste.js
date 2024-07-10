@@ -5,6 +5,7 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addWasteData, deleteWasteData } from '../../redux/slice/totalWasteSlice';
+import { addResultTableData, deleteResTabWasteData } from '../../redux/slice/resultTableDataSlice';
 import { IconDiv } from '../../components/IconDiv';
 import WasteImg from '../../assets/Waste.png';
 
@@ -165,11 +166,69 @@ const Waste = (props) => {
                 // },
             ];
             dispatch(addWasteData({ data }));
+
+
+            const tableData = [
+                {
+                    subType: "Food Waste",
+                    subTypeData: {
+                        th: ["", "Weight (Kgs)", "Emissions"],
+                        td: [
+                            {
+                                wsType: "Food Waste (non-meat)",
+                                kgs: values?.foodWasteNonMeatKg,
+                                emmissions: foodWasteNonMeatEmission > 0 ? foodWasteNonMeatEmission : ''
+                            },
+                            {
+                                wsType: "Food Waste (meat)",
+                                kgs: values?.foodWasteMeatKg,
+                                emmissions: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : ''
+                            },
+                            {
+                                wsType: "Municipal Solid Waste",
+                                kgs: values?.municipalSolidWasteKg,
+                                emmissions: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : ''
+                            },
+                        ]
+                    }
+                },
+                {
+                    subType: "Plastic Waste",
+                    subTypeData: {
+                        th: ["", "Total Area (m2)", "Emissions"],
+                        td: [
+                            {
+                                wsType: "250ml",
+                                bottle: values?.bottleOne,
+                                emmissions: bottleOneEmission > 0 ? bottleOneEmission : ''
+                            },
+                            {
+                                wsType: "500ml",
+                                bottle: values?.bottleTwo,
+                                emmissions: bottleTwoEmission > 0 ? bottleTwoEmission : ''
+                            },
+                            {
+                                wsType: "1000ml",
+                                bottle: values?.bottleThreeEmission,
+                                emmissions: bottleThreeEmission > 0 ? bottleThreeEmission : ''
+                            },
+                            {
+                                wsType: "Plastic Wrapping",
+                                bottle: values?.plasticWrapping,
+                                emmissions: plasticWrappingEmission > 0 ? plasticWrappingEmission : ''
+                            },
+                        ]
+                    }
+                },
+            ];
+
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Waste" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteWasteData());
+        dispatch(deleteResTabWasteData());
     };
 
     useEffect(() => {
@@ -211,6 +270,7 @@ const Waste = (props) => {
             formik.setFieldValue('cottonBagsA4SizeEmission', allData[15]?.emission);
         }
     }, [value]);
+
     return (
         <div>
             <Container maxWidth>

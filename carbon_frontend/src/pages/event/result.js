@@ -29,7 +29,6 @@ const Result = () => {
 
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
-
     const resultTableData = useSelector(state => state.resultTableDataDetails);
 
     let scope1Count = 0;
@@ -188,7 +187,7 @@ const Result = () => {
         scope1Count, scope2Count, scope3Count
     ];
 
-    console.log("---- resultTableData ", resultTableData);
+    console.log("---- resultTableData?.data ", resultTableData?.data);
 
     return (
         <div>
@@ -427,20 +426,19 @@ const Result = () => {
                                                                                         </tr>
                                                                                     )
                                                                                 ))}
-                                                                            {/* {page.tabTitle === "Hotel" &&
+                                                                            {page.tabTitle === "Hotel" &&
                                                                                 flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    rowData.emmissions !== "" && (
+                                                                                    (rowData.hType !== "" || rowData.bottle !== "") && rowData.emmissions !== "" && (
                                                                                         <tr key={rowIndex}>
                                                                                             <td>{rowData.hType}</td>
                                                                                             <td>{rowData.geography || rowData.totalMeetingRoomArea || rowData.energyUtilisedKwh}</td>
-                                                                                            {(rowData.country || rowData.meetingDuration) && <td>{rowData.country || rowData.meetingDuration}</td>}
+                                                                                            <td>{rowData.country || rowData.meetingDuration}</td>
                                                                                             {rowData.hotelType && <td>{rowData.hotelType}</td>}
                                                                                             {rowData.roomsOccupied && <td>{rowData.roomsOccupied}</td>}
                                                                                             <td>{rowData.emmissions}</td>
                                                                                         </tr>
                                                                                     )
-                                                                                ))
-                                                                            } */}
+                                                                                ))}
                                                                         </tbody>
                                                                     </table>
                                                                 </>

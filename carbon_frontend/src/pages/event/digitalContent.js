@@ -6,6 +6,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
 import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
+import { addResultTableData, deleteResTableDigitalContData } from '../../redux/slice/resultTableDataSlice';
 import DigitalImg from '../../assets/Digital.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -75,7 +76,51 @@ const DigitalContent = (props) => {
                 }
             ];
 
+            const tableData = [
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "Count", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Emails",
+                                count: values?.count,
+                                emmissions: emissionOne > 0 ? emissionOne : ''
+                            },
+                        ]
+                    }
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "In Mb", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Attachments",
+                                mb: values?.MB,
+                                emmissions: emissionTwo > 0 ? emissionTwo : ''
+                            },
+                        ]
+                    }
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "No. of Attendees", "No. of Hours", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Laptops used",
+                                noOfHours: values?.noOfHours,
+                                noOfAttendees: values?.noOfAttendees,
+                                emmissions: emissionThree > 0 ? emissionThree : ''
+                            },
+                        ]
+                    }
+                },
+            ];
+
             dispatch(addData({ data }))
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Waste" }));
         },
     });
 
@@ -94,6 +139,7 @@ const DigitalContent = (props) => {
 
     const handeleDelete = () => {
         dispatch(deleteData())
+        dispatch(deleteResTableDigitalContData())
     };
 
     return (

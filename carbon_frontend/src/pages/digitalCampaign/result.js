@@ -12,6 +12,7 @@ const Result = () => {
     const total = Number(allDigitalCampaignData?.totalEmission);
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
 
     const resultData = [
         {
@@ -85,6 +86,58 @@ const Result = () => {
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${(total / toolFormData?.budget).toFixed(3)}`} kgCO<sub>2</sub>e</Typography>
                         {/* <Typography className='text-center py-1 fw-bold mt-4 fs-6'>Note: Source of the calculation will be shared to the designated company representative during the auditing.</Typography> */}
                         <Typography className='text-center py-1 fw-bold mt-2 fs-5'>Do you want to change any data? If no, please click on Submit.</Typography>
+                    </Box>
+                    <Box style={{ width: "100%", color: 'white' }}>
+                        {console.log("--- digitalCamoaign resultTableData ---- ", resultTableData)}
+                        {resultTableData?.data?.filter((item) => item.tabTitle === "Digital Campaign")?.map((page, pageIndex) => (
+                            <Box key={pageIndex} style={{ margin: "20px" }}>
+                                {page?.tabData.some(flightClass =>
+                                    flightClass?.subTypeData?.td?.some(rowData =>
+                                        rowData.noOfTrips !== "" && rowData.emmissions !== ""
+                                    )
+                                ) && (
+                                        <>
+                                            <Typography className='fs-3 text-center mt-1'>{page.tabTitle}</Typography>
+                                            <Box className="d-flex justify-content-around">
+                                                {page?.tabData?.map((flightClass, classIndex) => (
+                                                    <Box key={classIndex} style={{ margin: "10px", width: "45%" }}>
+                                                        {flightClass?.subTypeData?.td?.some(rowData =>
+                                                            rowData.noOfTrips !== "" && rowData.emmissions !== ""
+                                                        ) && (
+                                                                <>
+                                                                    <Typography className='fs-5 mb-1'>{flightClass.subType}</Typography>
+                                                                    <table style={{ width: "100%", border: '1px solid white' }}>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                {flightClass?.subTypeData?.th?.map((header, headerIndex) => (
+                                                                                    <th key={headerIndex}>{header}</th>
+                                                                                ))}
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {page.tabTitle === "Digital Campaign" &&
+                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                    (rowData.noOfTrips !== "" || rowData.noOfEmails !== "" || rowData.attachmentSize !== "" || rowData.imgSize !== "" || rowData.videoMins !== "" || rowData.impressions1 !== "" || rowData.impressions2 !== "") && rowData.emmissions !== "" && (
+                                                                                        <tr key={rowIndex}>
+                                                                                            <td>{rowData.dgType}</td>
+                                                                                            <td>{rowData.noOfEmails || rowData.attachmentSize || rowData.imgSize}</td>
+                                                                                            {(rowData.videoMins || rowData.impressions1) && <td>{rowData.videoMins || rowData.impressions1}</td>}
+                                                                                            {(rowData.impressions2) && <td>{rowData.impressions2}</td>}
+                                                                                            <td>{rowData.emmissions}</td>
+                                                                                        </tr>
+                                                                                    )
+                                                                                ))}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </>
+                                                            )}
+                                                    </Box>
+                                                ))}
+                                            </Box>
+                                        </>
+                                    )}
+                            </Box>
+                        ))}
                     </Box>
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
