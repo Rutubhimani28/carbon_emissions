@@ -115,7 +115,7 @@ const Hotel = (props) => {
                                 country: values?.country,
                                 hotelType: values?.hotelType,
                                 roomsOccupied: values?.roomsOccupied,
-                                emmissions: emissionsOne > 0 ? emissionsOne : ''
+                                emissions: emissionsOne > 0 ? emissionsOne : ''
                             },
                         ]
                     }
@@ -129,7 +129,7 @@ const Hotel = (props) => {
                                 hType: "Meeting Room Energy Consumption",
                                 totalMeetingRoomArea: values?.totalMeetingRoomArea,
                                 meetingDuration: values?.meetingDuration,
-                                emmissions: emissionsTwo > 0 ? emissionsTwo : '',
+                                emissions: emissionsTwo > 0 ? emissionsTwo : '',
                             },
                         ]
                     }
@@ -142,13 +142,13 @@ const Hotel = (props) => {
                             {
                                 hType: "Meeting Room Energy Consumption",
                                 energyUtilisedKwh: values?.energyUtilisedKwh,
-                                emmissions: emissionsThree > 0 ? emissionsThree : '',
+                                emissions: emissionsThree > 0 ? emissionsThree : '',
                             },
                         ]
                     }
                 },
             ];
-            
+
             dispatch(addHotelData({ data }));
             dispatch(addResultTableData({ data: tableData, tabTitle: "Hotel" }));
         },

@@ -223,25 +223,26 @@ const LocalTranspotation = (props) => {
                             {
                                 journeyType: "Petrol",
                                 noOfKms: values?.petrolCarKms,
-                                emmissions: petrolCarEmission > 0 ? petrolCarEmission : ''
+                                emissions: petrolCarEmission > 0 ? petrolCarEmission : ''
                             },
                             {
                                 journeyType: "Diesel",
                                 noOfKms: values?.dieselCarKms,
-                                emmissions: dieselCarEmission > 0 ? dieselCarEmission : ''
+                                emissions: dieselCarEmission > 0 ? dieselCarEmission : ''
                             },
                             {
                                 journeyType: "Hybrid",
                                 noOfKms: values?.hybridCarKms,
-                                emmissions: hybridCarEmission > 0 ? hybridCarEmission : ''
+                                emissions: hybridCarEmission > 0 ? hybridCarEmission : ''
                             },
                             {
                                 journeyType: "EV",
                                 noOfKms: values?.electricCarKms,
-                                emmissions: electricCarEmission > 0 ? electricCarEmission : ''
+                                emissions: electricCarEmission > 0 ? electricCarEmission : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 1
                 },
                 {
                     subType: "Taxi",
@@ -251,25 +252,26 @@ const LocalTranspotation = (props) => {
                             {
                                 journeyType: "Petrol",
                                 noOfKms: values?.petrolCarKms2,
-                                emmissions: petrolCarEmission2 > 0 ? petrolCarEmission2 : ''
+                                emissions: petrolCarEmission2 > 0 ? petrolCarEmission2 : ''
                             },
                             {
                                 journeyType: "Diesel",
                                 noOfKms: values?.dieselCarKms2,
-                                emmissions: dieselCarEmission2 > 0 ? dieselCarEmission2 : ''
+                                emissions: dieselCarEmission2 > 0 ? dieselCarEmission2 : ''
                             },
                             {
                                 journeyType: "Hybrid",
                                 noOfKms: values?.hybridCarKms2,
-                                emmissions: hybridCarEmission2 > 0 ? hybridCarEmission2 : ''
+                                emissions: hybridCarEmission2 > 0 ? hybridCarEmission2 : ''
                             },
                             {
                                 journeyType: "EV",
                                 noOfKms: values?.electricCarKms2,
-                                emmissions: electricCarEmission2 > 0 ? electricCarEmission2 : ''
+                                emissions: electricCarEmission2 > 0 ? electricCarEmission2 : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "Public Transport",
@@ -279,15 +281,16 @@ const LocalTranspotation = (props) => {
                             {
                                 journeyType: "Bus-Diesel",
                                 noOfKms: values?.busDieselKms,
-                                emmissions: busDieselEmission > 0 ? busDieselEmission : ''
+                                emissions: busDieselEmission > 0 ? busDieselEmission : ''
                             },
                             {
                                 journeyType: "Metro (EV)",
                                 noOfKms: values?.metroKms,
-                                emmissions: metroEmission > 0 ? metroEmission : ''
+                                emissions: metroEmission > 0 ? metroEmission : ''
                             }
                         ]
-                    }
+                    },
+                    scope: 3
                 },
             ];
 

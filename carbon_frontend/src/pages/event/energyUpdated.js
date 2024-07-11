@@ -77,10 +77,11 @@ const EnergyUpdated = (props) => {
                             {
                                 eType: "Electricity",
                                 kwh: values?.kwh,
-                                emmissions: emissionOne > 0 ? emissionOne : ''
+                                emissions: emissionOne > 0 ? emissionOne : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "",
@@ -90,20 +91,21 @@ const EnergyUpdated = (props) => {
                             {
                                 eType: "Petrol (Generator)",
                                 gallons: values?.gallonsOne,
-                                emmissions: emissionTwo > 0 ? emissionTwo : ''
+                                emissions: emissionTwo > 0 ? emissionTwo : ''
                             },
                             {
                                 eType: "Diesel (Generator)",
                                 gallons: values?.gallonsTwo,
-                                emmissions: emissionThree > 0 ? emissionThree : ''
+                                emissions: emissionThree > 0 ? emissionThree : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 2
                 },
             ];
 
             dispatch(addEnergyData({ data }))
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Waste" }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Energy" }));
         },
     });
 

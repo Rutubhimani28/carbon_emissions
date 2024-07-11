@@ -126,20 +126,21 @@ const AirTravel = (props) => {
                             {
                                 journeyType: "Short Haul Flight (<3hrs)",
                                 noOfTrips: values?.noOfTripsOne,
-                                emmissions: emissionOne > 0 ? emissionOne : ''
+                                emissions: emissionOne > 0 ? emissionOne : ''
                             },
                             {
                                 journeyType: "Medium Haul Flight (3-6hrs)",
                                 noOfTrips: values?.noOfTripsTwo,
-                                emmissions: emissionTwo > 0 ? emissionTwo : ''
+                                emissions: emissionTwo > 0 ? emissionTwo : ''
                             },
                             {
                                 journeyType: "Long Haul Flight (>6hrs)",
                                 noOfTrips: values?.noOfTripsThree,
-                                emmissions: emissionThree > 0 ? emissionThree : ''
+                                emissions: emissionThree > 0 ? emissionThree : ''
                             }
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "Business Class",
@@ -149,20 +150,21 @@ const AirTravel = (props) => {
                             {
                                 journeyType: "Short Haul Flight (<3hrs)",
                                 noOfTrips: values?.noOfTripsFour,
-                                emmissions: emissionFour > 0 ? emissionFour : ''
+                                emissions: emissionFour > 0 ? emissionFour : ''
                             },
                             {
                                 journeyType: "Medium Haul Flight (3-6hrs)",
                                 noOfTrips: values?.noOfTripsFive,
-                                emmissions: emissionFive > 0 ? emissionFive : ''
+                                emissions: emissionFive > 0 ? emissionFive : ''
                             },
                             {
                                 journeyType: "Long Haul Flight (>6hrs)",
                                 noOfTrips: values?.noOfTripsSix,
-                                emmissions: emissionSix > 0 ? emissionSix : ''
+                                emissions: emissionSix > 0 ? emissionSix : ''
                             }
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "First Class",
@@ -172,20 +174,21 @@ const AirTravel = (props) => {
                             {
                                 journeyType: "Short Haul Flight (<3hrs)",
                                 noOfTrips: values?.noOfTripsSeven,
-                                emmissions: emissionSeven > 0 ? emissionSeven : ''
+                                emissions: emissionSeven > 0 ? emissionSeven : ''
                             },
                             {
                                 journeyType: "Medium Haul Flight (3-6hrs)",
                                 noOfTrips: values?.noOfTripsEight,
-                                emmissions: emissionEight > 0 ? emissionEight : ''
+                                emissions: emissionEight > 0 ? emissionEight : ''
                             },
                             {
                                 journeyType: "Long Haul Flight (>6hrs)",
                                 noOfTrips: values?.noOfTripsNine,
-                                emmissions: emissionNine > 0 ? emissionNine : ''
+                                emissions: emissionNine > 0 ? emissionNine : ''
                             }
                         ]
-                    }
+                    },
+                    scope: 3
                 },
             ];
 

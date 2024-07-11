@@ -93,7 +93,7 @@ const Result = () => {
                             <Box key={pageIndex} style={{ margin: "20px" }}>
                                 {page?.tabData.some(flightClass =>
                                     flightClass?.subTypeData?.td?.some(rowData =>
-                                        rowData.noOfTrips !== "" && rowData.emmissions !== ""
+                                        rowData.noOfTrips !== "" && rowData.emissions !== ""
                                     )
                                 ) && (
                                         <>
@@ -102,7 +102,7 @@ const Result = () => {
                                                 {page?.tabData?.map((flightClass, classIndex) => (
                                                     <Box key={classIndex} style={{ margin: "10px", width: "45%" }}>
                                                         {flightClass?.subTypeData?.td?.some(rowData =>
-                                                            rowData.noOfTrips !== "" && rowData.emmissions !== ""
+                                                            rowData.noOfTrips !== "" && rowData.emissions !== ""
                                                         ) && (
                                                                 <>
                                                                     <Typography className='fs-5 mb-1'>{flightClass.subType}</Typography>
@@ -117,13 +117,13 @@ const Result = () => {
                                                                         <tbody>
                                                                             {page.tabTitle === "Digital Campaign" &&
                                                                                 flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    (rowData.noOfTrips !== "" || rowData.noOfEmails !== "" || rowData.attachmentSize !== "" || rowData.imgSize !== "" || rowData.videoMins !== "" || rowData.impressions1 !== "" || rowData.impressions2 !== "") && rowData.emmissions !== "" && (
+                                                                                    (rowData.noOfTrips !== "" || rowData.noOfEmails !== "" || rowData.attachmentSize !== "" || rowData.imgSize !== "" || rowData.videoMins !== "" || rowData.impressions1 !== "" || rowData.impressions2 !== "") && rowData.emissions !== "" && (
                                                                                         <tr key={rowIndex}>
                                                                                             <td>{rowData.dgType}</td>
                                                                                             <td>{rowData.noOfEmails || rowData.attachmentSize || rowData.imgSize}</td>
                                                                                             {(rowData.videoMins || rowData.impressions1) && <td>{rowData.videoMins || rowData.impressions1}</td>}
                                                                                             {(rowData.impressions2) && <td>{rowData.impressions2}</td>}
-                                                                                            <td>{rowData.emmissions}</td>
+                                                                                            <td>{rowData.emissions}</td>
                                                                                         </tr>
                                                                                     )
                                                                                 ))}

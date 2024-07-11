@@ -473,40 +473,41 @@ const Production = (props) => {
                             {
                                 pType: "Wood",
                                 kgs: values?.woodKgs,
-                                emmissions: woodEmission > 0 ? woodEmission : ''
+                                emissions: woodEmission > 0 ? woodEmission : ''
                             },
                             {
                                 pType: "Steel",
                                 kgs: values?.steelKgs,
-                                emmissions: steelEmission > 0 ? steelEmission : ''
+                                emissions: steelEmission > 0 ? steelEmission : ''
                             },
                             {
                                 pType: "Aluminium",
                                 kgs: values?.aluminiumKgs,
-                                emmissions: aluminiumEmission > 0 ? aluminiumEmission : ''
+                                emissions: aluminiumEmission > 0 ? aluminiumEmission : ''
                             },
                             {
                                 pType: "Iron",
                                 kgs: values?.ironKgs,
-                                emmissions: ironEmission > 0 ? ironEmission : ''
+                                emissions: ironEmission > 0 ? ironEmission : ''
                             },
                             {
                                 pType: "Paper",
                                 kgs: values?.paperKgs,
-                                emmissions: paperEmission > 0 ? paperEmission : ''
+                                emissions: paperEmission > 0 ? paperEmission : ''
                             },
                             {
                                 pType: "Recycled Paper",
                                 kgs: values?.recycledPaperKgs,
-                                emmissions: recycledPaperEmission > 0 ? recycledPaperEmission : ''
+                                emissions: recycledPaperEmission > 0 ? recycledPaperEmission : ''
                             },
                             {
                                 pType: "Paint",
                                 kgs: values?.paintKgs,
-                                emmissions: paintEmission > 0 ? paintEmission : ''
+                                emissions: paintEmission > 0 ? paintEmission : ''
                             }
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "Production Material",
@@ -516,40 +517,41 @@ const Production = (props) => {
                             {
                                 pType: "Sawn Timber",
                                 area: values?.sawnTimberArea,
-                                emmissions: sawnTimberEmission > 0 ? sawnTimberEmission : ''
+                                emissions: sawnTimberEmission > 0 ? sawnTimberEmission : ''
                             },
                             {
                                 pType: "MDF",
                                 area: values?.mdfArea,
-                                emmissions: mdfEmission > 0 ? mdfEmission : ''
+                                emissions: mdfEmission > 0 ? mdfEmission : ''
                             },
                             {
                                 pType: "Open Panel Timber Frame",
                                 area: values?.openPanelTimberFrameArea,
-                                emmissions: openPanelTimberFrameEmission > 0 ? openPanelTimberFrameEmission : ''
+                                emissions: openPanelTimberFrameEmission > 0 ? openPanelTimberFrameEmission : ''
                             },
                             {
                                 pType: "Carpet",
                                 area: values?.carpetArea,
-                                emmissions: carpetEmission > 0 ? carpetEmission : ''
+                                emissions: carpetEmission > 0 ? carpetEmission : ''
                             },
                             {
                                 pType: "Adhesive Vinyl",
                                 area: values?.adhesiveVinylArea,
-                                emmissions: adhesiveVinylEmission > 0 ? adhesiveVinylEmission : ''
+                                emissions: adhesiveVinylEmission > 0 ? adhesiveVinylEmission : ''
                             },
                             {
                                 pType: "Cardboard",
                                 area: values?.cardboardArea,
-                                emmissions: cardboardEmission > 0 ? cardboardEmission : ''
+                                emissions: cardboardEmission > 0 ? cardboardEmission : ''
                             },
                             {
                                 pType: "Nylon",
                                 area: values?.nylonArea,
-                                emmissions: nylonEmission > 0 ? nylonEmission : ''
+                                emissions: nylonEmission > 0 ? nylonEmission : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "Branding",
@@ -559,25 +561,26 @@ const Production = (props) => {
                             {
                                 pType: "Polethylene HDPE Banner",
                                 kgs: values?.hdpeBanner,
-                                emmissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
+                                emissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
                             },
                             {
                                 pType: "PVC Banners",
                                 kgs: values?.pvcBanners,
-                                emmissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
+                                emissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
                             },
                             {
                                 pType: "Cotton Banner",
                                 kgs: values?.cottonBanner,
-                                emmissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
+                                emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
                             },
                             {
                                 pType: "Plastic Badge Holders (Polycorbonate)",
                                 kgs: values?.plasticBadgeHolders,
-                                emmissions: plasticBadgeHoldersEmission > 0 ? plasticBadgeHoldersEmission : ''
+                                emissions: plasticBadgeHoldersEmission > 0 ? plasticBadgeHoldersEmission : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 2
                 },
                 {
                     subType: "Branding",
@@ -587,30 +590,31 @@ const Production = (props) => {
                             {
                                 pType: "Printing a Coloured Brochure/ Page (>130 GSM)",
                                 noOfUnits: values?.colouredBrochurePage,
-                                emmissions: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
+                                emissions: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
                             },
                             {
                                 pType: "Giveway Paper bags (200 GSM)- A4 Size",
                                 noOfUnits: values?.paperBagsA4Size,
-                                emmissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
+                                emissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
                             },
                             {
                                 pType: "Giveway Paper bags (200 GSM)- A5 Size",
                                 noOfUnits: values?.paperBagsA5Size,
-                                emmissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
+                                emissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
                             },
                             {
                                 pType: "Giveway Jute bags*- A4 Size",
                                 noOfUnits: values?.juteBagsA4Size,
-                                emmissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
+                                emissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
                             },
                             {
                                 pType: "Giveway Cotton bags- A4 Size",
                                 noOfUnits: values?.cottonBagsA4Size,
-                                emmissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
+                                emissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 2
                 },
                 {
                     subType: "Stage Screen",
@@ -621,16 +625,17 @@ const Production = (props) => {
                                 pType: "Projector",
                                 noOfHour: values?.projectorNoOfHour,
                                 noOfDevice: values?.projectorNoOfDevice,
-                                emmissions: projectorEmission > 0 ? projectorEmission : ''
+                                emissions: projectorEmission > 0 ? projectorEmission : ''
                             },
                             {
                                 pType: "LED Screen Panel (500mmx500mm)",
                                 noOfHour: values?.ledScreenPanelNoOfHour,
                                 noOfDevice: values?.ledScreenPanelNoOfDevice,
-                                emmissions: ledScreenPanelEmission > 0 ? ledScreenPanelEmission : ''
+                                emissions: ledScreenPanelEmission > 0 ? ledScreenPanelEmission : ''
                             }
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "Stage Lighting & AV",
@@ -640,10 +645,11 @@ const Production = (props) => {
                             {
                                 pType: "Electricity",
                                 kwh: values?.kwh,
-                                emmissions: kwhEmission > 0 ? kwhEmission : ''
+                                emissions: kwhEmission > 0 ? kwhEmission : ''
                             }
                         ]
-                    }
+                    },
+                    scope: 3
                 },
             ];
 

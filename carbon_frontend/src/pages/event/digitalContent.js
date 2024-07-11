@@ -85,10 +85,11 @@ const DigitalContent = (props) => {
                             {
                                 dgType: "Emails",
                                 count: values?.count,
-                                emmissions: emissionOne > 0 ? emissionOne : ''
+                                emissions: emissionOne > 0 ? emissionOne : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 1
                 },
                 {
                     subType: "",
@@ -98,10 +99,11 @@ const DigitalContent = (props) => {
                             {
                                 dgType: "Attachments",
                                 mb: values?.MB,
-                                emmissions: emissionTwo > 0 ? emissionTwo : ''
+                                emissions: emissionTwo > 0 ? emissionTwo : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 1
                 },
                 {
                     subType: "",
@@ -112,15 +114,16 @@ const DigitalContent = (props) => {
                                 dgType: "Laptops used",
                                 noOfHours: values?.noOfHours,
                                 noOfAttendees: values?.noOfAttendees,
-                                emmissions: emissionThree > 0 ? emissionThree : ''
+                                emissions: emissionThree > 0 ? emissionThree : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 1
                 },
             ];
 
             dispatch(addData({ data }))
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Waste" }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Comms" }));
         },
     });
 

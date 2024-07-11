@@ -177,20 +177,21 @@ const Waste = (props) => {
                             {
                                 wsType: "Food Waste (non-meat)",
                                 kgs: values?.foodWasteNonMeatKg,
-                                emmissions: foodWasteNonMeatEmission > 0 ? foodWasteNonMeatEmission : ''
+                                emissions: foodWasteNonMeatEmission > 0 ? foodWasteNonMeatEmission : ''
                             },
                             {
                                 wsType: "Food Waste (meat)",
                                 kgs: values?.foodWasteMeatKg,
-                                emmissions: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : ''
+                                emissions: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : ''
                             },
                             {
                                 wsType: "Municipal Solid Waste",
                                 kgs: values?.municipalSolidWasteKg,
-                                emmissions: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : ''
+                                emissions: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "Plastic Waste",
@@ -200,25 +201,26 @@ const Waste = (props) => {
                             {
                                 wsType: "250ml",
                                 bottle: values?.bottleOne,
-                                emmissions: bottleOneEmission > 0 ? bottleOneEmission : ''
+                                emissions: bottleOneEmission > 0 ? bottleOneEmission : ''
                             },
                             {
                                 wsType: "500ml",
                                 bottle: values?.bottleTwo,
-                                emmissions: bottleTwoEmission > 0 ? bottleTwoEmission : ''
+                                emissions: bottleTwoEmission > 0 ? bottleTwoEmission : ''
                             },
                             {
                                 wsType: "1000ml",
                                 bottle: values?.bottleThreeEmission,
-                                emmissions: bottleThreeEmission > 0 ? bottleThreeEmission : ''
+                                emissions: bottleThreeEmission > 0 ? bottleThreeEmission : ''
                             },
                             {
                                 wsType: "Plastic Wrapping",
                                 bottle: values?.plasticWrapping,
-                                emmissions: plasticWrappingEmission > 0 ? plasticWrappingEmission : ''
+                                emissions: plasticWrappingEmission > 0 ? plasticWrappingEmission : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
             ];
 

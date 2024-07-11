@@ -86,16 +86,17 @@ const AirFreight = (props) => {
                                 frType: "By Air",
                                 noOfKms: values?.noOfKmsOne,
                                 kgs: values?.kgsOne,
-                                emmissions: emissionOne > 0 ? emissionOne : ''
+                                emissions: emissionOne > 0 ? emissionOne : ''
                             },
                             {
                                 frType: "By Road",
                                 noOfKms: values?.noOfKmsTwo,
                                 kgs: values?.kgsTwo,
-                                emmissions: emissionTwo > 0 ? emissionTwo : ''
+                                emissions: emissionTwo > 0 ? emissionTwo : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 }
             ];
 

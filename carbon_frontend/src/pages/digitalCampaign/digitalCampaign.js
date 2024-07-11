@@ -109,7 +109,7 @@ const DigitalCampaign = (props) => {
                             {
                                 dgType: "Emails",
                                 noOfEmails: values?.noOfEmails,
-                                emmissions: emissionThree > 0 ? emissionThree : ''
+                                emissions: emissionThree > 0 ? emissionThree : ''
                             },
                         ]
                     }
@@ -122,7 +122,7 @@ const DigitalCampaign = (props) => {
                             {
                                 dgType: "Email Attachment",
                                 attachmentSize: values?.attachmentSize,
-                                emmissions: emissionFour > 0 ? emissionFour : '',
+                                emissions: emissionFour > 0 ? emissionFour : '',
                             },
                         ]
                     }
@@ -136,7 +136,7 @@ const DigitalCampaign = (props) => {
                                 dgType: "Image",
                                 imgSize: values?.imgSize,
                                 impressions1: values?.impressionsOne,
-                                emmissions: emissionOne > 0 ? emissionOne : '',
+                                emissions: emissionOne > 0 ? emissionOne : '',
                             },
                         ]
                     }
@@ -151,7 +151,7 @@ const DigitalCampaign = (props) => {
                                 videoSize: values?.videoSize,
                                 videoMins: values?.videoMins,
                                 impressions2: values?.impressionsTwo,
-                                emmissions: emissionTwo > 0 ? emissionTwo : '',
+                                emissions: emissionTwo > 0 ? emissionTwo : '',
                             },
                         ]
                     }

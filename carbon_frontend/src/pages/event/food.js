@@ -204,30 +204,31 @@ const Food = (props) => {
                             {
                                 fBType: "Vegetarian",
                                 noOfPax: values?.noOfPaxOne,
-                                emmissions: emissionOne > 0 ? emissionOne : ''
+                                emissions: emissionOne > 0 ? emissionOne : ''
                             },
                             {
                                 fBType: "Non-Veg (Poultry/ Sea Food)",
                                 noOfPax: values?.noOfPaxTwo,
-                                emmissions: emissionTwo > 0 ? emissionTwo : ''
+                                emissions: emissionTwo > 0 ? emissionTwo : ''
                             },
                             {
                                 fBType: "Non-Veg (Red Meat)",
                                 noOfPax: values?.noOfPaxThree,
-                                emmissions: emissionThree > 0 ? emissionThree : ''
+                                emissions: emissionThree > 0 ? emissionThree : ''
                             },
                             {
                                 fBType: "Tea/ Coffee + Cookies",
                                 noOfPax: values?.noOfPaxFour,
-                                emmissions: emissionFour > 0 ? emissionFour : ''
+                                emissions: emissionFour > 0 ? emissionFour : ''
                             },
                             {
                                 fBType: "Customised Food",
                                 noOfPax: '-',
-                                emmissions: values?.custFoodMenuEmission > 0 ? values?.custFoodMenuEmission : ''
+                                emissions: values?.custFoodMenuEmission > 0 ? values?.custFoodMenuEmission : ''
                             }
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "Beverages",
@@ -237,60 +238,60 @@ const Food = (props) => {
                             {
                                 fBType: "Soft Drinks",
                                 noOfBottles: values?.noOfBottlesOne,
-                                emmissions: emissionSix > 0 ? emissionSix : ''
+                                emissions: emissionSix > 0 ? emissionSix : ''
                             },
                             {
                                 fBType: "Red Wine",
                                 noOfBottles: values?.noOfBottlesTwo,
-                                emmissions: emissionSeven > 0 ? emissionSeven : ''
+                                emissions: emissionSeven > 0 ? emissionSeven : ''
                             },
                             {
                                 fBType: "White Wine",
                                 noOfBottles: values?.noOfBottlesThree,
-                                emmissions: emissionEight > 0 ? emissionEight : ''
+                                emissions: emissionEight > 0 ? emissionEight : ''
                             },
                             {
                                 fBType: "Whisky",
                                 noOfBottles: values?.noOfBottlesFour,
-                                emmissions: emissionNine > 0 ? emissionNine : ''
+                                emissions: emissionNine > 0 ? emissionNine : ''
                             },
                             {
                                 fBType: "Gin",
                                 noOfBottles: values?.noOfBottlesFive,
-                                emmissions: emissionTen > 0 ? emissionTen : ''
+                                emissions: emissionTen > 0 ? emissionTen : ''
                             },
                             {
                                 fBType: "Rum",
                                 noOfBottles: values?.noOfBottlesSix,
-                                emmissions: emissionEleven > 0 ? emissionEleven : ''
+                                emissions: emissionEleven > 0 ? emissionEleven : ''
                             },
                             {
                                 fBType: "Vodka",
                                 noOfBottles: values?.noOfBottlesSeven,
-                                emmissions: emissionTwelve > 0 ? emissionTwelve : ''
+                                emissions: emissionTwelve > 0 ? emissionTwelve : ''
                             },
                             {
                                 fBType: "Fruit Juices",
                                 noOfBottles: values?.noOfBottlesEight,
-                                emmissions: emissionThirteen > 0 ? emissionThirteen : ''
+                                emissions: emissionThirteen > 0 ? emissionThirteen : ''
                             },
                             {
                                 fBType: "Beer",
                                 noOfBottles: values?.noOfBottlesNine,
-                                emmissions: emissionFourteen > 0 ? emissionFourteen : ''
+                                emissions: emissionFourteen > 0 ? emissionFourteen : ''
                             },
                             {
                                 fBType: "Customised Beverages",
                                 noOfBottles: '-',
-                                emmissions: values?.custBeveragesEmission > 0 ? values?.custBeveragesEmission : ''
+                                emissions: values?.custBeveragesEmission > 0 ? values?.custBeveragesEmission : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
             ];
 
             dispatch(addFoodData({ data }))
-            console.log("--- tableData ", tableData);
             dispatch(addResultTableData({ data: tableData, tabTitle: "Food & Beverages" }));
         },
     });
