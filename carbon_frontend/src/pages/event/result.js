@@ -102,10 +102,10 @@ const Result = () => {
 
     const data = {
         "totalAirTravel": Number(allAirTravelData?.totalEmission).toFixed(2),
-        "totalLocalTransportation": Number(allLocalTranspotationData?.totalEmission).toFixed(2 ),
+        "totalLocalTransportation": Number(allLocalTranspotationData?.totalEmission).toFixed(2),
         "totalHotel": Number(allHotelData?.totalEmission).toFixed(2),
         "totalFood": Number(allFoodData?.totalEmission).toFixed(2),
-        "totalAirFreight": Number(allFreightData?.totalEmission).toFixed(2 ),
+        "totalAirFreight": Number(allFreightData?.totalEmission).toFixed(2),
         "totlaProduction": Number(allProductionData?.totalEmission).toFixed(2),
         "totalEnergyUpdated": Number(allEnergyData?.totalEmission).toFixed(2),
         "totalDIgitalContent": Number(allDigitalContentData?.totalEmission).toFixed(2),
