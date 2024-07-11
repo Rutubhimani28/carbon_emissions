@@ -100,16 +100,16 @@ const Result = () => {
     ]
 
     const data = {
-        "totalAirTravel": allAirTravelData?.totalEmission,
-        "totalLocalTransportation": allLocalTranspotationData?.totalEmission,
-        "totalHotel": allHotelData?.totalEmission,
-        "totalFood": allFoodData?.totalEmission,
-        "totalAirFreight": allFreightData?.totalEmission,
-        "totlaProduction": allProductionData?.totalEmission,
-        "totalEnergyUpdated": allEnergyData?.totalEmission,
-        "totalDIgitalContent": allDigitalContentData?.totalEmission,
-        "totalWaste": allWasteData?.totalEmission,
-        "grandTotal": total
+        "totalAirTravel": Number(allAirTravelData?.totalEmission).toFixed(2),
+        "totalLocalTransportation": Number(allLocalTranspotationData?.totalEmission).toFixed(2),
+        "totalHotel": Number(allHotelData?.totalEmission).toFixed(2),
+        "totalFood": Number(allFoodData?.totalEmission).toFixed(2),
+        "totalAirFreight": Number(allFreightData?.totalEmission).toFixed(2),
+        "totlaProduction": Number(allProductionData?.totalEmission).toFixed(2),
+        "totalEnergyUpdated": Number(allEnergyData?.totalEmission).toFixed(2),
+        "totalDIgitalContent": Number(allDigitalContentData?.totalEmission).toFixed(2),
+        "totalWaste": Number(allWasteData?.totalEmission).toFixed(2),
+        "grandTotal": Number(total).toFixed(2)
     }
 
     const handeleDelete = () => {

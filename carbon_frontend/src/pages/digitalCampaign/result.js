@@ -21,8 +21,8 @@ const Result = () => {
     ];
 
     const data = {
-        "totalDigitalCampaign": allDigitalCampaignData?.totalEmission,
-        "grandTotal": total
+        "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(2),
+        "grandTotal": Number(total).toFixed(2)
     };
 
     const handeleDelete = () => {
