@@ -84,6 +84,8 @@ const resultTableDataSlice = createSlice({
                         tabData: [
                             { subType: "Food", scope: 3 },
                             { subType: "Beverages", scope: 3 },
+                            { subType: "Food", scope: 3 },
+                            { subType: "Beverages", scope: 3 },
                         ]
                     };
                 }

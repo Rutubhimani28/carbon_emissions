@@ -14,7 +14,7 @@ import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
 import CustomBarChart from './barChart';
 import SendMail from './sendMail';
 
-const Result = () => {
+const Result = ({ value }) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails)
@@ -191,52 +191,20 @@ const Result = () => {
     //     scope1Count, scope2Count, scope3Count
     // ];
 
-    console.log("---- resultTableData?.data ", resultTableData?.data);
+    // console.log("---- outside resultTableData?.data ", resultTableData?.data);
 
     useEffect(() => {
         let sc1Count = 0;
         let sc2Count = 0;
         let sc3Count = 0;
 
-        // resultTableData?.data.forEach(page => {
-        //     page.tabData.forEach(flightClass => {
-        //         // Check if there is at least one correctly filled row
-        //         const hasFilledRow = flightClass.subTypeData.td.some(rowData => rowData.noOfTrips && rowData.emissions);
-        //         if (hasFilledRow) {
-        //             if (flightClass.scope === 1) {
-        //                 sc1Count += 1;
-        //             } else if (flightClass.scope === 2) {
-        //                 sc2Count += 1;
-        //             } else if (flightClass.scope === 3) {
-        //                 sc3Count += 1;
-        //             }
-        //         }
-        //     });
-        // });
-
         resultTableData?.data.forEach(page => {
             page.tabData.forEach(flightClass => {
                 const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
-                    // if (page.tabTitle === "Air Travel") {
-                    //     return rowData.noOfTrips && rowData.emissions;
-                    // } else if (page.tabTitle === "Local Transportation") {
-                    //     return rowData.noOfKms && rowData.emissions;
-                    // } else if (page.tabTitle === "Food & Beverages") {
-                    //     return (rowData.noOfPax || rowData.noOfBottles) && rowData.emissions;
-                    // } else if (page.tabTitle === "Logistics") {
-                    //     return (rowData.noOfKms || rowData.kgs) && rowData.emissions;
-                    // } else if (page.tabTitle === "Event Production") {
-                    //     return (rowData.kgs || rowData.area || rowData.noOfUnits || rowData.kwh || rowData.noOfHour) && rowData.emissions;
-                    // } else if (page.tabTitle === "Energy") {
-                    //     return (rowData.kwh || rowData.noOfUnits) && rowData.emissions;
-                    // } else if (page.tabTitle === "Digital Comms") {
-                    //     return (rowData.noOfHours || rowData.noOfPersons) && rowData.emissions;
-                    // } else if (page.tabTitle === "Waste") {
-                    //     return (rowData.wasteType || rowData.noOfKg) && rowData.emissions;
-                    // } 
 
-                    const { noOfTrips, emissions, noOfKms, noOfPax, noOfBottles, kgs, area, noOfUnits, kwh, noOfHour, noOfHours, noOfAttendees, bottle, mb, count } = rowData;
-                    
+                    const rowData2 = rowData;
+                    const { noOfTrips, emissions, noOfKms, noOfPax, noOfBottles, kgs, area, noOfUnits, kwh, noOfHour, noOfHours, noOfAttendees, bottle, mb, count, fBType } = rowData2;
+
                     if (page.tabTitle === "Air Travel") {
                         return noOfTrips && emissions;
                     }
@@ -244,7 +212,12 @@ const Result = () => {
                         return noOfKms && emissions;
                     }
                     if (page.tabTitle === "Food & Beverages") {
-                        return (noOfPax || noOfBottles) && emissions;
+                        if ((fBType === "Customised Food" && rowData?.emissions) || (fBType === "Customised Beverages" && rowData?.emissions)) {
+                            return true;
+                        }
+                        if (fBType !== "Customised Food" && fBType !== "Customised Beverages") {
+                            return (noOfPax || noOfBottles) && emissions;
+                        }
                     }
                     if (page.tabTitle === "Logistics") {
                         return (noOfKms || kgs) && emissions;
@@ -290,7 +263,7 @@ const Result = () => {
         setSc1(sc1Count);
         setSc2(sc2Count);
         setSc3(sc3Count);
-    }, [resultTableData])
+    }, [resultTableData, value])
 
     console.log("----- sc1", sc1);
     console.log("----- sc2", sc2);

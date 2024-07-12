@@ -221,11 +221,24 @@ const Food = (props) => {
                                 noOfPax: values?.noOfPaxFour,
                                 emissions: emissionFour > 0 ? emissionFour : ''
                             },
+                            // {
+                            //     fBType: "Customised Food",
+                            //     noOfPax: '',
+                            //     emissions: values?.custFoodMenuEmission > 0 ? values?.custFoodMenuEmission : ''
+                            // }
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "Food",
+                    subTypeData: {
+                        th: ["", "Emissions"],
+                        td: [
                             {
                                 fBType: "Customised Food",
-                                noOfPax: '-',
                                 emissions: values?.custFoodMenuEmission > 0 ? values?.custFoodMenuEmission : ''
-                            }
+                            },
                         ]
                     },
                     scope: 3
@@ -280,9 +293,22 @@ const Food = (props) => {
                                 noOfBottles: values?.noOfBottlesNine,
                                 emissions: emissionFourteen > 0 ? emissionFourteen : ''
                             },
+                            // {
+                            //     fBType: "Customised Beverages",
+                            //     noOfBottles: '',
+                            //     emissions: values?.custBeveragesEmission > 0 ? values?.custBeveragesEmission : ''
+                            // },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "Beverages",
+                    subTypeData: {
+                        th: ["", "Emissions"],
+                        td: [
                             {
                                 fBType: "Customised Beverages",
-                                noOfBottles: '-',
                                 emissions: values?.custBeveragesEmission > 0 ? values?.custBeveragesEmission : ''
                             },
                         ]
