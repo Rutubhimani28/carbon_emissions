@@ -561,7 +561,7 @@ const Production = (props) => {
                             {
                                 pType: "Polethylene HDPE Banner",
                                 kgs: values?.hdpeBanner,
-                                emissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
+                                emissions: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                             },
                             {
                                 pType: "PVC Banners",

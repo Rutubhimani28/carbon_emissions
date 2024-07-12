@@ -86,7 +86,7 @@ const EnergyUpdated = (props) => {
                 {
                     subType: "",
                     subTypeData: {
-                        th: ["", "No. of PET bottles", "Emissions"],
+                        th: ["", "Gallons", "Emissions"],
                         td: [
                             {
                                 eType: "Petrol (Generator)",

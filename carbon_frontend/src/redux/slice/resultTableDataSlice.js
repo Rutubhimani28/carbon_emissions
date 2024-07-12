@@ -216,10 +216,30 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        deleteResTabHotelData: (state, action) => ({
-            ...state,
-            data: state.data.filter(item => item.tabTitle !== 'Hotel'),
-        }),
+        // deleteResTabHotelData: (state, action) => ({
+        //     ...state,
+        //     data: state.data.filter(item => item.tabTitle !== 'Hotel'),
+        // }),
+        deleteResTabHotelData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'Hotel') {
+                    return {
+                        tabTitle: "Hotel",
+                        tabData: [
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
+        },
         deleteResTabDgCampaignData: (state, action) => ({
             ...state,
             data: state.data.filter(item => item.tabTitle !== 'Digital Campaign'),

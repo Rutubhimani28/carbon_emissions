@@ -118,7 +118,8 @@ const Hotel = (props) => {
                                 emissions: emissionsOne > 0 ? emissionsOne : ''
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "",
@@ -132,7 +133,8 @@ const Hotel = (props) => {
                                 emissions: emissionsTwo > 0 ? emissionsTwo : '',
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
                 {
                     subType: "",
@@ -145,7 +147,8 @@ const Hotel = (props) => {
                                 emissions: emissionsThree > 0 ? emissionsThree : '',
                             },
                         ]
-                    }
+                    },
+                    scope: 3
                 },
             ];
 
