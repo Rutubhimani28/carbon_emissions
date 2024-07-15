@@ -236,3 +236,31 @@ text {
 /* .apexcharts-tooltip .apexcharts-tooltip-marker {
   background-color: #054723 !important;
 } */
+
+.box-with-border {
+  position: relative;
+  padding-right: 5px;
+}
+
+.box-with-border::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 75%;
+  background-color: #054723;
+  margin: auto;
+}
+
+.credit {
+  background: url('../layouts/user/assets/images/buyCredit.png');
+  height: 450px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 99;
+}
