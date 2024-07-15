@@ -126,7 +126,7 @@ export default function Bot(props) {
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <LoadingButton type="submit" onClick={handleSubmit} variant='contained' color="error" disabled={!!isLoading} size="small">
+                    <LoadingButton type="submit" onClick={handleSubmit} variant='contained' disabled={!!isLoading} size="small" style={{ background: "#054723" }}>
                         {isLoading ? <CircularProgress size={27} /> : 'Submit'}
                     </LoadingButton>
                     <Button variant="contained" onClick={() => { resetForm(); handleCloseBot(); }} size="small">Cancel</Button>

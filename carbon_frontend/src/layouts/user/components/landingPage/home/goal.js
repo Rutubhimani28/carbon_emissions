@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { PopupButton } from 'react-calendly'
-import { Box, Card, CardContent, Grid, Typography, makeStyles } from '@mui/material'
+import { Box, Card, CardContent, CardMedia, Grid, Typography, makeStyles } from '@mui/material'
 import goal1 from '../../../assets/images/goal1.png'
 import goal2 from '../../../assets/images/goal2.png'
 import TrustOne from '../../../assets/images/Aster CMI Logo.png';
+import bgImg from '../../../assets/images/bg.png';
 import TrustTwo from '../../../assets/images/GoFig.png';
 import mission from '../../../assets/images/mission.png'
 import vision from '../../../assets/images/visionary.png'
-import collbrate from '../../../assets/images/Collaborat.jpeg'
+import collbrate from '../../../assets/images/Collaborat.jpeg';
 
 const Goal = () => {
 
@@ -35,21 +36,20 @@ const Goal = () => {
                     <Grid item xs={0} md={2.1} />
                 </Grid>
             </div>
-            <div className='pb-5'>
-                <Typography variant='h6' className='text-center fs-3 mb-4'>Trusted By</Typography>
-                <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
-                    <div className='mx-4 my-3'>
-                        <CardContent className='justify-content-center'>
-                            <img src={TrustOne} alt='img' width={100} />
-                        </CardContent>
-                    </div>
-                    <div className='mx-4 my-3'>
-                        <CardContent className='justify-content-center'>
-                            <img src={TrustTwo} alt='img' width={100} />
-                        </CardContent>
-                    </div>
-                </div>
-            </div>
+            <Grid container justifyContent="center" className='wow animate__animated animate__fadeInRight animate__slow pb-3 bg-light mx-auto' color="#054723" style={{ marginBottom: '50px' }}>
+                <Grid item sm={12} md={12} className="d-flex justify-content-center pt-3">
+                    <Typography className='fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow' item sm={12} md={12}>Trusted By</Typography>
+                </Grid>
+                <Grid item sm={12} md={8} className="d-flex justify-content-center">
+                    <Box className="box-with-border d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
+                        <img src={TrustOne} alt='img' width={100} />
+                    </Box>
+                    <Box className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
+                        <img src={TrustTwo} alt='img' width={100} />
+                    </Box>
+                </Grid>
+            </Grid>
+
             {/* collabrate */}
             <div className='collabrate '>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
