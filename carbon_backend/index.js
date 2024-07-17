@@ -13,7 +13,8 @@ import db from './db/connectDB.js';
 import serverRoute from './routes/serverRoutes.js';
 import 'dotenv/config';
 
-const port = 8000
+// const port = 8000
+const port = 443
 
 //Setup Express App
 const app = express();
