@@ -209,7 +209,7 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${constant.chat_key1 + constant.chat_key2}`,
+                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
                     },
                 }
             );
