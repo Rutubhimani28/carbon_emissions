@@ -35,7 +35,6 @@ const Result = ({ value }) => {
         dispatch(deleteCampaignData());
     };
 
-    const OPENAI_API_KEY = constant.OPENAI_API_KEY;
     const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
     const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
     const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
@@ -64,7 +63,7 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${OPENAI_API_KEY}`,
+                        Authorization: `Bearer ${constant.OPENAI_API_KEY}`,
                     },
                 }
             );
