@@ -42,13 +42,22 @@ const options = {
     cert: fs.readFileSync("./openSSL/server.cert"),
 };
 
-const server = https.createServer(options, app)
-    .listen(process.env.PORT || port, function (req, res) {
+if ((process.env.HTTPS === true || process.env.NODE_ENV === 'production')) {
+    const server = https.createServer(options, app)
+        .listen(process.env.PORT || port, function (req, res) {
+            const protocol = (process.env.HTTPS === true || process.env.NODE_ENV === 'production') ? 'https' : 'http';
+            const { address, port } = server.address();
+            const host = address === '::' ? '127.0.0.1' : address;
+            console.log(`------- if Server listening at ${protocol}://${host}:${port}/`);
+        });
+} else {
+    const server = app.listen(process.env.PORT || port, () => {
         const protocol = (process.env.HTTPS === true || process.env.NODE_ENV === 'production') ? 'https' : 'http';
         const { address, port } = server.address();
         const host = address === '::' ? '127.0.0.1' : address;
-        console.log(`------- Server listening at ${protocol}://${host}:${port}/`);
+        console.log(`------- else Server listening at ${protocol}://${host}:${port}/`);
     });
+}
 
 // http
 // const server = app.listen(process.env.PORT || port, () => {
