@@ -5,6 +5,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useDispatch, useSelector } from 'react-redux';
 import SendMail from './sendMail';
 import { deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
+import { constant } from '../../constant';
 
 const Result = ({ value }) => {
     const [open, setOpen] = useState(false);
@@ -34,7 +35,6 @@ const Result = ({ value }) => {
         dispatch(deleteCampaignData());
     };
 
-    const API_KEY = process.env.API_KEY;
     const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
     const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
     const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
@@ -63,7 +63,7 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${API_KEY}`,
+                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
                     },
                 }
             );

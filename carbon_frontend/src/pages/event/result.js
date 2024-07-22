@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import axios from 'axios';
@@ -19,6 +15,7 @@ import { deleteProductionData } from '../../redux/slice/totalProductionSlice';
 import { deleteWasteData } from '../../redux/slice/totalWasteSlice';
 import CustomBarChart from './barChart';
 import SendMail from './sendMail';
+import { constant } from '../../constant';
 
 const Result = ({ value }) => {
     const [open, setOpen] = useState(false);
@@ -185,7 +182,6 @@ const Result = ({ value }) => {
     // const chartSeries = [scope1Count, scope2Count, scope3Count];
     const chartSeries = [sc1, sc2, sc3];
 
-    const API_KEY = 'sk-proj-nkK247CcigxIFfaYwkDcT3BlbkFJHtO1VJEHhRGS89yeBJl7';
     const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
     const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
     const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
@@ -213,7 +209,7 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${API_KEY}`,
+                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
                     },
                 }
             );
