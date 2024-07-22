@@ -209,7 +209,7 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${constant.OPENAI_API_KEY}`,
+                        Authorization: `Bearer ${constant.OPENAI_API_KEY1 + constant.OPENAI_API_KEY2}`,
                     },
                 }
             );
