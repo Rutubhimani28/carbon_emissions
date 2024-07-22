@@ -181,7 +181,7 @@ const Result = ({ value }) => {
     // const chartSeries = [scope1Count, scope2Count, scope3Count];
     const chartSeries = [sc1, sc2, sc3];
 
-    const API_KEY = process.env.API_KEY;
+    const API_KEY = 'sk-proj-nkK247CcigxIFfaYwkDcT3BlbkFJHtO1VJEHhRGS89yeBJl7';
     const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
     const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
     const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
