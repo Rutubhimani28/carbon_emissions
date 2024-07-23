@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useTheme } from '@emotion/react';
-import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography, useMediaQuery, Autocomplete } from '@mui/material';
+import Select from 'react-select';
+// import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Select, Stack, TextField, Typography, useMediaQuery, Autocomplete } from '@mui/material';
+import { Box, Button, Card, Container, FormControl, FormHelperText, FormLabel, Grid, MenuItem, Stack, TextField, Typography, useMediaQuery, Autocomplete } from '@mui/material';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHotelData, deleteHotelData } from '../../redux/slice/totalHotelSlice';
@@ -16,6 +18,41 @@ const Hotel = (props) => {
     const allData = useSelector((state) => state?.totalHotelDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
     const scope = useSelector((state) => state?.totalHotelDetails?.scope);
+    const geographyOptions = HotelData?.map((item) => ({ value: item?.geography, label: item?.geography }))
+    
+    const customStyles = {
+        control: (provided) => ({
+            ...provided,
+            backgroundColor: 'transparent', // Sets the background color of the control to transparent
+            border: '2px solid #ced4da', // border style
+            borderRadius: '6px', // border radius
+            padding: '1px',
+            '&:hover': {
+                border: '2px solid #6c757d', // border style on hover
+            },
+        }),
+        menu: (provided) => ({
+            ...provided,
+            backgroundColor: 'white', // bg color of the dropdown menu
+            color: 'black',
+        }),
+        option: (provided, state) => ({
+            ...provided,
+            color: 'black', // Text color of options in the dropdown menu
+            '&:hover': {
+                backgroundColor: '#6c757d', // bg color on hover
+                color: 'white', // text color on hover
+            },
+        }),
+        input: (provided) => ({
+            ...provided,
+            color: 'white', // Sets the text color while searching
+        }),
+        singleValue: (provided) => ({
+            ...provided,
+            color: 'white', // Text color of the selected value
+        }),
+    };
 
     const hotelType = [
         { label: '4 Stars', value: 4 },
@@ -153,7 +190,7 @@ const Hotel = (props) => {
                                     <Grid mt={2}>
                                         <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Geography</FormLabel>
                                         <FormControl fullWidth>
-                                            <Autocomplete
+                                            {/* <Autocomplete
                                                 options={HotelData}
                                                 name="geography"
                                                 fullWidth
@@ -187,13 +224,39 @@ const Hotel = (props) => {
                                                             style: { color: 'white' }, // This sets the text color to white
                                                         }}
                                                     />}
+                                            /> */}
+                                            <Select
+                                                className="basic-single"
+                                                classNamePrefix="select###"
+                                                isDisabled={false}
+                                                isClearable={Boolean(true)}
+                                                isRtl={false}
+                                                isSearchable
+                                                name="geography"
+                                                options={geographyOptions}
+                                                styles={customStyles}
+                                                value={formik?.values?.geography || null}
+                                                onChange={(event) => {
+                                                    formik.setFieldValue("geography", event || {});
+                                                    if (event === null) {
+                                                        formik.setFieldValue("filteredCountries", []);
+                                                    } else {
+                                                        formik.setFieldValue("filteredCountries", HotelData?.filter((item) => item?.geography === event.value)?.map((item) => ({ ...item, value: item?.country, label: item?.country })) || []);
+                                                    }
+                                                    // reset fields
+                                                    formik.setFieldValue("country", '');
+                                                    formik.setFieldValue("hotelType", '');
+                                                    formik.setFieldValue("efOne", null);
+                                                    formik.setFieldValue("emissionsOne", 0);
+                                                    formik.handleSubmit();
+                                                }}
                                             />
                                         </FormControl>
                                     </Grid>
                                     <Grid mt={2}>
                                         <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Country</FormLabel>
                                         <FormControl fullWidth>
-                                            <Autocomplete
+                                            {/* <Autocomplete
                                                 options={formik.values?.filteredCountries}
                                                 name="country"
                                                 fullWidth
@@ -225,13 +288,33 @@ const Hotel = (props) => {
                                                             style: { color: 'white' }, // This sets the text color to white
                                                         }}
                                                     />}
+                                            /> */}
+                                            <Select
+                                                className="basic-single"
+                                                classNamePrefix="select"
+                                                isDisabled={!formik.values.geography}
+                                                isClearable={Boolean(true)}
+                                                isRtl={false}
+                                                isSearchable
+                                                name="country"
+                                                options={formik.values?.filteredCountries}
+                                                styles={customStyles}
+                                                value={formik.values?.country || null}
+                                                onChange={(event) => {
+                                                    formik.setFieldValue("country", event);
+                                                    // reset fields
+                                                    formik.setFieldValue("hotelType", '');
+                                                    formik.setFieldValue("emissionsOne", 0);
+                                                    formik.setFieldValue("efOne", null);
+                                                    formik.handleSubmit();
+                                                }}
                                             />
                                         </FormControl>
                                     </Grid>
                                     <Grid mt={2}>
                                         <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Hotel Type</FormLabel>
                                         <FormControl fullWidth>
-                                            <Autocomplete
+                                            {/* <Autocomplete
                                                 options={hotelType}
                                                 name="hotelType"
                                                 fullWidth
@@ -263,6 +346,26 @@ const Hotel = (props) => {
                                                             style: { color: 'white' }, // This sets the text color to white
                                                         }}
                                                     />}
+                                            /> */}
+                                            <Select
+                                                className="basic-single"
+                                                classNamePrefix="select"
+                                                isDisabled={!formik.values.country}
+                                                isClearable={Boolean(true)}
+                                                isRtl={false}
+                                                isSearchable
+                                                name="hotelType"
+                                                options={hotelType}
+                                                styles={customStyles}
+                                                value={formik.values?.hotelType || null}
+                                                onChange={(event) => {
+                                                    formik.setFieldValue("hotelType", event);
+                                                    // reset fields
+                                                    const selectedHotelTypeData = formik.values?.filteredCountries?.find((item) => item.country === formik.values?.country.country);
+                                                    const hotellTypeEf = event?.value === 4 || event?.value === 4.5 ? selectedHotelTypeData?.stars_four_fourPointHalf : selectedHotelTypeData?.stars_five;
+                                                    formik.setFieldValue("efOne", hotellTypeEf);
+                                                    formik.handleSubmit();
+                                                }}
                                             />
                                         </FormControl>
                                     </Grid>
