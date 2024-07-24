@@ -41,7 +41,7 @@ const options = {
     // key: fs.readFileSync("./openSSL/server.key"),
     // cert: fs.readFileSync("./openSSL/server.cert"),
     key: fs.readFileSync('./openSSL/generated-private-key.txt'),
-    cert: fs.readFileSync('./openSSL/generated-certificate.crt'),
+    cert: fs.readFileSync('./openSSL/generated-csr.txt'),
 };
 
 if ((process.env.HTTPS === true || process.env.NODE_ENV === 'production')) {
