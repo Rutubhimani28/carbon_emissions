@@ -343,7 +343,7 @@ const User = () => {
                                     pagination
                                     pageSizeOptions={[5, 10, 25, 50, 100]}
                                     initialState={{
-                                        ...data.initialState,
+                                        ...data?.initialState,
                                         pagination: { paginationModel: { pageSize: 10 } },
                                     }}
                                 // rowsPerPageOptions={[5, 10, 25, 50, 100]}
