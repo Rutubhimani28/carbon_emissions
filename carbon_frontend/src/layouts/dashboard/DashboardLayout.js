@@ -11,6 +11,8 @@ import ToolHome from '../../pages/tool';
 import Event from '../../pages/event';
 import DigitalCampaign from '../../pages/digitalCampaign';
 import TermConditions from '../user/components/termCondition/termConditions';
+import User from '../../pages/user/User';
+// import User from '../../pages/user/index';
 
 // import banner from '../user/assets/images/home_banner.jpg';
 import banner from '../user/assets/images/NetZero Tool Pic.jpeg';
@@ -50,6 +52,7 @@ export default function DashboardLayout() {
 
   const toolData = useSelector((state) => state.toolDetails?.data);
   const toolFormData = toolData.find((item) => item?.type === "toolForm");
+  const userdata = JSON.parse(sessionStorage.getItem('user'));
 
   // const dispatch = useDispatch();
 
@@ -79,6 +82,12 @@ export default function DashboardLayout() {
             <>
               <Route path="/dashboard/event" element={<Event />} />
               <Route path="/dashboard/campaign" element={<DigitalCampaign />} />
+            </>
+          }
+          {
+            (userdata?.role === 'admin') &&
+            <>
+              <Route path="/dashboard/user" element={<User />} />
             </>
           }
         </Routes>

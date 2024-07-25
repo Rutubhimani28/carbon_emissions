@@ -32,6 +32,8 @@ import NewRoom from './layouts/user/components/newsRoom';
 import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
 import TermConditions from './layouts/user/components/termCondition/termConditions';
 import LoginPage from './pages/LoginPage';
+import ForgotPswdPage from './pages/ForgotPswdPage';
+import ResetPswdPage from './pages/ResetPswdPage';
 import ThemeProvider from './theme';
 import Blog1 from './layouts/user/components/newsRoom/blog1';
 import Blog2 from './layouts/user/components/newsRoom/blog2';
@@ -64,7 +66,7 @@ export default function App() {
       ) : (
         <>
           {
-            window.location.pathname !== "/login" &&
+            window.location.pathname !== "/login" && window.location.pathname !== "/forgot-password" && window.location.pathname !== "/reset-password" &&
             <Header />
           }
           <div className='template-outer-theme'>
@@ -72,6 +74,8 @@ export default function App() {
               <Route path="*" element={<Navigate to="/" />} />
               <Route path="/" element={<UserLayout />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/forgot-password" element={<ForgotPswdPage />} />
+              <Route path="/reset-password" element={<ResetPswdPage />} />
               <Route path="/netzero-platform" element={<Services />} />
               <Route path="/netzero-consulting" element={<EsgAdvisory />} />
               <Route path="/netzero-consulting/organisations/" element={<Organisations />} />
