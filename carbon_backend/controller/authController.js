@@ -48,7 +48,7 @@ const register = async (req, res) => {
         const newUser = new User({ role, loginId, isVerified: false, password: hashedPassword, companyName, companyWebsite, regOffAddrs, regOffCountry, regOffPhoneNo, cnctPerson, cnctPersonBusEmail, cnctPersonMob, altCnctPerson, altCnctPersonBusEmail, altCnctPersonMob, escCnctPerson, escCnctPersonBusEmail, escCnctPersonMob, subscriptionType, subscriptionStart, subscriptionEnd, paymentReceivedDate, paymentRemainderDate, logo: logoCloudinaryUrl });
         await newUser.save();
 
-        const verificationToken = jwt.sign({ userId: newUser?._id }, 'secret_key', { expiresIn: '1d' });        // change secret key
+        const verificationToken = jwt.sign({ userId: newUser?._id }, process.env.SECRET_KEY, { expiresIn: '1d' });        // change secret key
 
         const sendMailPayload = {
             receiver: loginId,            // altCnctPersonBusEmail
@@ -72,7 +72,7 @@ const verifyRegister = async (req, res) => {
     const { token } = req.params;
 
     // Verifying the JWT token 
-    jwt.verify(token, 'secret_key', async function (err, decoded) {
+    jwt.verify(token, process.env.SECRET_KEY, async function (err, decoded) {
         if (err) {
             console.log("Register Email Verification error ", err);
             return res.render('register_email_verification_result_Template', { message: 'Email verification failed, possibly the link is invalid or expired' });
@@ -114,7 +114,7 @@ const login = async (req, res) => {
         }
 
         if (user && !user?.isVerified) {
-            const verificationToken = jwt.sign({ userId: user?._id }, 'secret_key', { expiresIn: '1d' });        // change secret key
+            const verificationToken = jwt.sign({ userId: user?._id }, process.env.SECRET_KEY, { expiresIn: '1d' });        // change secret key
 
             const sendMailPayload = {
                 receiver: user?.loginId,            // altCnctPersonBusEmail
@@ -130,7 +130,7 @@ const login = async (req, res) => {
         }
 
         // Create a JWT token
-        const token = jwt.sign({ userId: user._id }, 'secret_key', { expiresIn: '1d' });
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1d' });
         res.setHeader('Authorization', token);
         return res.status(200).json({ token: token, user, message: 'Login successfully' });
     } catch (error) {
@@ -145,7 +145,7 @@ const forgotPassword = async (req, res) => {
         const user = await User.findOne({ loginId: loginId })    // altCnctPersonBusEmail
 
         if (user) {
-            const resetPswdToken = jwt.sign({ userId: user?._id }, 'secret_key', { expiresIn: '5m' });        // change secret key
+            const resetPswdToken = jwt.sign({ userId: user?._id }, process.env.SECRET_KEY, { expiresIn: '5m' });        // change secret key
 
             user.resetPswdToken = resetPswdToken;
             await user.save();
@@ -178,7 +178,7 @@ const resetForgotPassword = async (req, res) => {
         const { newPassword, confirmPassword, token } = req.body;
 
         // Verify if the token is valid and find the user
-        jwt.verify(token, 'secret_key', async function (err, decoded) {         // change secret key
+        jwt.verify(token, process.env.SECRET_KEY, async function (err, decoded) {         // change secret key
             if (err) {
                 console.log("Reset Password Token Verification Error:", err);
                 return res.status(400).json({ message: 'Invalid or expired token' });
