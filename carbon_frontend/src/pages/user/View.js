@@ -6,7 +6,7 @@ import { CustomTabPanel, a11yProps } from '../../components/CustomTabPanel';
 import DeleteModel from '../../components/Deletemodle';
 import Header from '../../components/Header';
 import { apidelete, apiget } from '../../service/api';
-import AddUser from './Add';
+import AddUser from './AddEdit';
 import EditUser from './Edit';
 import Other from './Other';
 import Overview from './Overview';

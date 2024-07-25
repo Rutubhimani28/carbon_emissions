@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
+import { Link } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Container, Typography } from '@mui/material';
@@ -73,6 +74,7 @@ export default function LoginPage() {
                 </Typography>
               </div>
               <LoginForm />
+              <Link to="/forgot-password" className='text-center text-decoration-none'>Forgot Password?</Link>
             </StyledContent>
           </Container>
         </StyledRoot>

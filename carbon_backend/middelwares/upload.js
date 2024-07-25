@@ -5,7 +5,8 @@ import path from 'path'
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            const uploadDir = 'uploads/';
+            // const uploadDir = 'uploads/';
+            const uploadDir = 'uploads/images';
             fs.mkdirSync(uploadDir, { recursive: true });
             cb(null, uploadDir);
         },
@@ -17,8 +18,10 @@ const upload = multer({
             if (fs.existsSync(filePath)) {
                 // For example, you can append a timestamp to the filename to make it unique
                 const timestamp = Date.now() + Math.floor(Math.random() * 90);
+                req.body.logo = file.originalname.split('.')[0] + '-' + timestamp + '.' + file.originalname.split('.')[1];
                 cb(null, file.originalname.split('.')[0] + '-' + timestamp + '.' + file.originalname.split('.')[1]);
             } else {
+                req.body.logo = file.originalname;
                 cb(null, file.originalname);
             }
         },

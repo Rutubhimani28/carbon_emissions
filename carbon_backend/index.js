@@ -25,10 +25,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.set('view engine', 'ejs');
+app.set('views', 'middelwares/email_templates/');
 
 //API Routes
 app.use('/api', serverRoute);
-app.use("/file", express.static('uploads/'));
+// app.use("/file", express.static('uploads/'));
+app.use("/file", express.static('uploads/images/'));
 app.use("/logo", express.static('middelwares/email_templates/'));
 
 app.get('/', async (req, res) => {

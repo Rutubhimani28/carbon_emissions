@@ -1,5 +1,5 @@
 import express from 'express';
-import userRoutes from './authRoutes.js';
+import authRoutes from './authRoutes.js';
 import customFieldRoutes from './customFieldRoutes.js';
 import digitalContentRoutes from './digitalContentRoutes.js'
 import emailRoutes from './emailRoutes.js'
@@ -9,10 +9,11 @@ import airFreightRoutes from './airFreightRoutes.js'
 import botRoutes from './botRoutes.js'
 import toolRoutes from './toolRoutes.js'
 import buyCreditsRoutes from './buyCreditsRoutes.js'
+import userRoutes from './userRoutes.js'
 
 const router = express.Router();
 
-router.use('/auth', userRoutes);
+router.use('/auth', authRoutes);
 router.use('/custom-field', customFieldRoutes);
 router.use('/digitalContent', digitalContentRoutes);
 router.use('/email', emailRoutes);
@@ -22,5 +23,6 @@ router.use('/airFreight', airFreightRoutes);
 router.use('/bot', botRoutes);
 router.use('/tool', toolRoutes);
 router.use('/buyCredits', buyCreditsRoutes);
+router.use('/user', userRoutes);
 
 export default router
