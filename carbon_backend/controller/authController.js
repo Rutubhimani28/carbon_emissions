@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
+import 'dotenv/config';
 import User from '../models/user.js'
 import sendMail from '../middelwares/sendMail.js';
 
@@ -80,7 +82,7 @@ const verifyRegister = async (req, res) => {
 
         // Update user's verification status in the database
         try {
-            const userId = decoded.userId;
+            const userId = new mongoose.Types.ObjectId(decoded.userId);
             const user = await User.findById(userId);
             if (!user) {
                 return res.render('register_email_verification_result_Template', { message: 'User not found' });
@@ -90,7 +92,7 @@ const verifyRegister = async (req, res) => {
             return res.render('register_email_verification_result_Template', { message: 'Email verified successfully' });
         } catch (error) {
             console.log("Error verifying email:", error);
-            return res.render('register_email_verification_result_Template', { message: 'An error occurred during email verification' });
+            return res.render('register_email_verification_result_Template', { message: 'An error occurred during email verification', error });
         }
     });
 };
@@ -135,7 +137,7 @@ const login = async (req, res) => {
         return res.status(200).json({ token: token, user, message: 'Login successfully' });
     } catch (error) {
         console.log("catch error ", error)
-        res.status(500).json({ message: 'An error occurred' });
+        res.status(500).json({ message: 'An error occurred', error });
     }
 };
 
@@ -168,7 +170,7 @@ const forgotPassword = async (req, res) => {
         }
     } catch (err) {
         console.log("---- forgotPassword catch err ", err);
-        res.status(500).json({ message: 'An error occurred' });
+        res.status(500).json({ message: 'An error occurred', error: err });
     }
 };
 
@@ -184,7 +186,7 @@ const resetForgotPassword = async (req, res) => {
                 return res.status(400).json({ message: 'Invalid or expired token' });
             }
 
-            const userId = decoded.userId;
+            const userId = new mongoose.Types.ObjectId(decoded.userId);
 
             const user = await User.findOne({ _id: userId });
 
@@ -215,7 +217,7 @@ const resetForgotPassword = async (req, res) => {
 
     } catch (error) {
         console.log("Reset Password Error:", error);
-        res.status(500).json({ message: 'An error occurred' });
+        res.status(500).json({ message: 'An error occurred', error });
     }
 };
 
