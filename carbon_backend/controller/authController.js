@@ -156,7 +156,7 @@ const forgotPassword = async (req, res) => {
                 receiver: user?.loginId,                // altCnctPersonBusEmail
                 subject: 'Reset Password | Sirat.earth',
                 // resetPswdLink: `${process.env.FRONTEND_LIVE}/resetPassword?id=${user?._id}&token=${resetPswdToken}`,
-                resetPswdLink: `http://localhost:3000/reset-password?id=${user?._id}&token=${resetPswdToken}`,                  // add env variable
+                resetPswdLink: `${process.env.FRONTEND_LIVE}reset-password?id=${user?._id}&token=${resetPswdToken}`,                  // add env variable
                 templateName: 'forgot_password_Template',
             };
 
