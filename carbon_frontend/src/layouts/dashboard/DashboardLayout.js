@@ -8,8 +8,7 @@ import { styled } from '@mui/material/styles';
 import Header from './header';
 import Nav from './nav';
 import ToolHome from '../../pages/tool';
-import F2fEvent from '../../pages/f2fEvent';
-import VirtualEvent from '../../pages/virtualEvent';
+import Event from '../../pages/event';
 import DigitalCampaign from '../../pages/digitalCampaign';
 import TermConditions from '../user/components/termCondition/termConditions';
 import User from '../../pages/user/User';
@@ -81,8 +80,7 @@ export default function DashboardLayout() {
           {
             (toolFormData?.isSubmited) &&
             <>
-              <Route path="/dashboard/f2f-event" element={<F2fEvent />} />
-              <Route path="/dashboard/virtual-event" element={<VirtualEvent />} />
+              <Route path="/dashboard/event" element={<Event />} />
               <Route path="/dashboard/campaign" element={<DigitalCampaign />} />
             </>
           }

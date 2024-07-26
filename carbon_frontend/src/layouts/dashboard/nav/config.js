@@ -72,7 +72,7 @@ const navConfig = [
   },
   {
     title: 'Event',
-    path: '/dashboard/f2f-event',
+    path: '/dashboard/event',
     icon: <img src={Result} alt='Event' width={30} />,
   },
   {

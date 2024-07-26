@@ -11,8 +11,7 @@ import ImportView from './components/Import/ImportView';
 import UserLayout from './layouts/user';
 import Services from './layouts/user/components/services/index'
 import DigitalContent from './pages/digitalContent';
-import F2fEvent from './pages/f2fEvent';
-import VirtualEvent from './pages/virtualEvent';
+import Event from './pages/event';
 import AirFreight from './pages/airFreight';
 import ContactUs from './pages/contactUs/ContactUs';
 import Events from './pages/events/Events';
@@ -36,8 +35,7 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/home" />, index: true },
-        { element: <Navigate to="/dashboard/f2f-event" />, index: true },
-        { element: <Navigate to="/dashboard/virtual-event" />, index: true },
+        { element: <Navigate to="/dashboard/event" />, index: true },
         { element: <Navigate to="/dashboard/campaign" />, index: true },
         { element: <Navigate to="/dashboard/user" />, index: true },
         // { path: 'app', element: <DashboardAppPage /> },
@@ -54,8 +52,7 @@ export default function Router() {
         // { path: 'waste', element: <Waste /> },
         // { path: 'airFreight', element: <AirFreight /> },
         { path: 'home', element: <ToolHome /> },
-        { path: 'f2f-event', element: <F2fEvent /> },
-        { path: 'virtual-event', element: <VirtualEvent /> },
+        { path: 'event', element: <Event /> },
         { path: 'campaign', element: <DigitalCampaign /> },
         { path: 'user', element: <User /> },
         { path: 'terms-conditions', element: <TermConditions /> },
@@ -68,10 +65,9 @@ export default function Router() {
     {
       element: <SimpleLayout />,
       children: [
-        // { path: '*', element: <Navigate to="/dashboard/f2f-event" />, index: true },  // Prev
+        // { path: '*', element: <Navigate to="/dashboard/event" />, index: true },  // Prev
         // { path: 'home', element: <Navigate to="/dashboard/home" />, index: true },
-        { path: 'f2f-event', element: <Navigate to="/dashboard/f2f-event" />, index: true },
-        { path: 'virtual-event', element: <Navigate to="/dashboard/virtual-event" />, index: true },
+        { path: 'event', element: <Navigate to="/dashboard/event" />, index: true },
         { path: 'campaign', element: <Navigate to="/dashboard/campaign" />, index: true },
         { path: 'user', element: <Navigate to="/dashboard/user" />, index: true },
         { path: 'terms-conditions', element: <Navigate to="/dashboard/terms-conditions" />, index: true },

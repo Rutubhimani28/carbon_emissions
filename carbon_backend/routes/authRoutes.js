@@ -2,10 +2,9 @@ import express from 'express';
 import multer from 'multer';
 import auth from '../controller/authController.js';
 import upload from '../middelwares/upload.js';
-// import storage from '../middelwares/uploadCloudinary.js';
-// const uploadCloudinary = multer({ storage: storage.storage });
+import storage from '../middelwares/uploadCloudinary.js';
 
-import uploadCloudinary from '../middelwares/uploadCloudinary.js'; 
+const uploadCloudinary = multer({ storage });
 
 const router = express.Router();
 
