@@ -82,8 +82,8 @@ const verifyRegister = async (req, res) => {
 
         // Update user's verification status in the database
         try {
-            const userId = decoded.userId;
-            const user = await User.findById(mongoose.Types.ObjectId(userId));
+            const userId = new mongoose.Types.ObjectId(decoded.userId);
+            const user = await User.findById(userId);
             if (!user) {
                 return res.render('register_email_verification_result_Template', { message: 'User not found' });
             }
@@ -186,9 +186,9 @@ const resetForgotPassword = async (req, res) => {
                 return res.status(400).json({ message: 'Invalid or expired token' });
             }
 
-            const userId = decoded.userId;
+            const userId = new mongoose.Types.ObjectId(decoded.userId);
 
-            const user = await User.findOne({ _id: mongoose.Types.ObjectId(userId) });
+            const user = await User.findOne({ _id: userId });
 
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
