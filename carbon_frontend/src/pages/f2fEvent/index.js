@@ -22,7 +22,7 @@ import AirTravelComp from './airTravel';
 import Hotel from './hotel';
 import banner from '../../layouts/user/assets/images/NetZero Tool Pic.jpeg';
 
-const EventCalculation = () => {
+const F2fEventCalculation = () => {
 
     const [value, setValue] = useState(0);
 
@@ -78,4 +78,4 @@ const EventCalculation = () => {
     )
 }
 
-export default EventCalculation
+export default F2fEventCalculation

@@ -326,9 +326,22 @@ const Home = () => {
                     // disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
                     disabled={!isSubmited}
                     style={{ marginRight: '10px', backgroundColor: '#054723' }}
-                    onClick={() => navigate('/dashboard/event')}
+                    onClick={() => navigate('/dashboard/f2f-event')}
                 >
-                    Event
+                    F2F Events
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    className="fs-3"
+                    // disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    // disabled={!isValid || !dirty}
+                    // disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
+                    disabled={!isSubmited}
+                    style={{ marginRight: '10px', backgroundColor: '#054723' }}
+                    onClick={() => navigate('/dashboard/virtual-event')}
+                >
+                    Virtual Event
                 </Button>
                 <Button
                     variant="contained"
