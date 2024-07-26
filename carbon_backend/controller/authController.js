@@ -188,7 +188,7 @@ const resetForgotPassword = async (req, res) => {
 
             const userId = decoded.userId;
 
-            const user = await User.findOne({ _id: userId });
+            const user = await User.findOne({ _id: mongoose.Types.ObjectId(userId) });
 
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
