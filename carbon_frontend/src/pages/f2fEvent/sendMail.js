@@ -73,7 +73,7 @@ const SendMail = (props) => {
                 data: datas,
                 sender: values?.sender,
                 // templateName: "event_grand_total_result_Template",
-                templateName: "event_filled_fields_Template",
+                templateName: "f2f_event_filled_fields_Template",
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
