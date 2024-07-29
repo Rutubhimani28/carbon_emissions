@@ -1,11 +1,23 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Card, Container, Grid, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, ButtonGroup, Card, CardActions, CardContent, Container, Grid, Stack, TextField, Typography, useMediaQuery, Icon } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+// Twitch as TwitchIcon,
+// Snapchat as SnapchatIcon,
+import {
+    Facebook as FacebookIcon,
+    Instagram as InstagramIcon,
+    Twitter as TwitterIcon,
+    YouTube as YouTubeIcon,
+    Pinterest as PinterestIcon,
+    LinkedIn as LinkedInIcon,
+    Reddit as RedditIcon,
+} from '@mui/icons-material';
+import { FaSnapchat, FaTwitch, FaTiktok, FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
+import { GiVideoConference } from "react-icons/gi";
 import { addVirtualEventData, deleteVirtualEventData } from '../../redux/slice/totalVirtualEventSlice';
-import Phone from '../../assets/phone2.png';
+import VirtualEventImg from '../../layouts/user/assets/images/virtualEvent.png';
 import { IconDiv } from '../../components/IconDiv';
 
 const VirtualEvent = (props) => {
@@ -248,7 +260,7 @@ const VirtualEvent = (props) => {
         dispatch(deleteVirtualEventData());
     };
 
-    console.log("----- formik.values ", formik.values);
+    console.log("----- formik.values ", formik.values.noOfMinsOne);
 
     useEffect(() => {
         if (allData?.length > 0) {
@@ -347,374 +359,625 @@ const VirtualEvent = (props) => {
     return (
         <div>
             <Container maxWidth>
-                <Card className='p-3 custom-inner-bg textborder' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
+                <Card className='p-3 custom-inner-bg'>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                        <IconDiv>
-                            <img width={100} src={Phone} alt="Virtual Event " className="tabImgWhite" />
-                        </IconDiv>
-                        <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-                            <Grid item xs={12} sm={12} >
-                                <Typography variant='h6' className='text-center text-white mt-4'>Live Broadcasting</Typography>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12}>
-                                <Box>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th />
-                                                <th className='ps-2'>No of Minutes</th>
-                                                <th className='ps-2'>No of People</th>
-                                                <th className='ps-2'>Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Tiktok</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsOne'} value={values?.noOfMinsOne}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsOne", e.target.value);
-                                                        formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleOne) * 2.63).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleOne'} value={values?.noOfPeopleOne}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleOne", e.target.value);
-                                                        formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsOne) * 2.63).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionThree`} value={values?.emissionThree} onChange={formik.handleChange} /></td>
-                                            </tr>
+                        <IconDiv><img width={100} src={VirtualEventImg} alt="Virtual Event " className="tabImgWhite" /></IconDiv>
 
-                                            <tr>
-                                                <td className='ps-2 py-1'>Reditt</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsTwo'} value={values?.noOfMinsTwo}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsTwo", e.target.value);
-                                                        formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleTwo) * 2.48).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleTwo'} value={values?.noOfPeopleTwo}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleTwo", e.target.value);
-                                                        formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsTwo) * 2.48).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionFour`} value={values?.emissionFour} onChange={formik.handleChange} /></td>
-                                            </tr>
+                        <Typography variant="h4" className="text-center text-white mt-4">Event Promotion on Social Media</Typography>
+                        <Box style={{ padding: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaImage} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Image</Typography>
+                                    <TextField size='small' type="number" name={'imgSize'} value={values?.imgSize}
+                                        label="Iamge Size (in Mb)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("imgSize", Number(e.target.value));
+                                            formik.setFieldValue("deviceEnergy1", 0.01 * (1 / 60));
+                                            formik.setFieldValue("somePlatformEnergy1", (0.4 / 1000) * Number(e.target.value));
+                                            formik.setFieldValue("networkEnergy1", (0.2 / 1000) * Number(e.target.value));
+                                            formik.setFieldValue("totalEnergy1", (0.01 * (Number(e.target.value) / 60)) + ((0.4 / 1000) * Number(e.target.value)) + ((0.2 / 1000) + Number(e.target.value)));     // maybe
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" name={'impressionsOne'} value={values?.impressionsOne}
+                                        label="Impressions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("impressionsOne", Number(e.target.value));
+                                            formik.setFieldValue("emissionOne", (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={'emissionOne'}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={values?.emissionOne} onChange={formik.handleChange} sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Video</Typography>
+                                    <TextField size='small' type="number" name={'videoSize'} value={values?.videoSize}
+                                        label="Video Size (in Mb)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("videoSize", Number(e.target.value));
+                                            formik.setFieldValue("somePlatformEnergy2", Number((Number(e.target.value) / 1000) * 0.4));
+                                            formik.setFieldValue("networkEnergy2", Number((0.2 / 1000) * Number(e.target.value)));
+                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values?.impressionsTwo) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" name={'videoMins'} value={values?.videoMins}
+                                        label="Video (in mins)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("videoMins", Number(e.target.value));
+                                            formik.setFieldValue("deviceEnergy2", Number(0.01 * (Number(e.target.value) / 60)));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" name={'impressionsTwo'} value={values?.impressionsTwo}
+                                        label="Impressions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("impressionsTwo", Number(e.target.value));
+                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionTwo'}
+                                        value={values?.emissionTwo} onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                        </Box>
 
-                                            <tr>
-                                                <td className='ps-2 py-1'>Pinterest</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsThree'} value={values?.noOfMinsThree}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsThree", e.target.value);
-                                                        formik.setFieldValue("emissionFive", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleThree) * 1.3).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleThree'} value={values?.noOfPeopleThree}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleThree", e.target.value);
-                                                        formik.setFieldValue("emissionFive", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsThree) * 1.3).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionFive`} value={values?.emissionFive} onChange={formik.handleChange} /></td>
-                                            </tr>
+                        <Typography variant="h4" className="text-center text-white mt-4">Live Broadcasting</Typography>
+                        <Box style={{ padding: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaTiktok} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Tiktok</Typography>
+                                    <TextField
+                                        size="small"
+                                        type="number"
+                                        name="noOfMinsOne"
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={values?.noOfMinsOne}
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsOne", e.target.value);
+                                            formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleOne) * 0.46).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField
+                                        size="small"
+                                        type="number"
+                                        name="noOfPeopleOne"
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={values?.noOfPeopleOne}
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleOne", e.target.value);
+                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsOne) * 0.46).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField
+                                        size="small"
+                                        type="number"
+                                        name={`emissionThree`}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        disabled
+                                        value={values?.emissionThree}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={RedditIcon} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Reddit</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsTwo'} value={values?.noOfMinsTwo}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsTwo", e.target.value);
+                                            formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleTwo) * 2.48).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleTwo'} value={values?.noOfPeopleTwo}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleTwo", e.target.value);
+                                            formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsTwo) * 2.48).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionFour`}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth value={values?.emissionFour} onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={PinterestIcon} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Pinterest</Typography><TextField size='small' type="number" name={'noOfMinsThree'} value={values?.noOfMinsThree}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsThree", e.target.value);
+                                            formik.setFieldValue("emissionFive", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleThree) * 1.3).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleThree'} value={values?.noOfPeopleThree}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleThree", e.target.value);
+                                            formik.setFieldValue("emissionFive", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsThree) * 1.3).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionFive`}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={values?.emissionFive} onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={InstagramIcon} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Instagram Live</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsFour'} value={values?.noOfMinsFour}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsFour", e.target.value);
+                                            formik.setFieldValue("emissionSix", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFour) * 1.05).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleFour'} value={values?.noOfPeopleFour}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleFour", e.target.value);
+                                            formik.setFieldValue("emissionSix", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsFour) * 1.05).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionSix`} value={values?.emissionSix}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
 
-                                            <tr>
-                                                <td className='ps-2 py-1'>Instagram Live</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsFour'} value={values?.noOfMinsFour}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsFour", e.target.value);
-                                                        formik.setFieldValue("emissionSix", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFour) * 1.05).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleFour'} value={values?.noOfPeopleFour}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleFour", e.target.value);
-                                                        formik.setFieldValue("emissionSix", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsFour) * 1.05).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionSix`} value={values?.emissionSix} onChange={formik.handleChange} /></td>
-                                            </tr>
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaSnapchat} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Snapchat</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsFive'} value={values?.noOfMinsFive}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsFive", e.target.value);
+                                            formik.setFieldValue("emissionSeven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFive) * 0.87).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleFive'} value={values?.noOfPeopleFive}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleFive", e.target.value);
+                                            formik.setFieldValue("emissionSeven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsFive) * 0.87).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionSeven`} value={values?.emissionSeven}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FacebookIcon} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Facebook Live</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsSix'} value={values?.noOfMinsSix}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsSix", e.target.value);
+                                            formik.setFieldValue("emissionEight", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleSix) * 0.79).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleSix'} value={values?.noOfPeopleSix}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleSix", e.target.value);
+                                            formik.setFieldValue("emissionEight", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSix) * 0.79).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionEight`} value={values?.emissionEight}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
 
-                                            <tr>
-                                                <td className='ps-2 py-1'>Snapchat</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsFive'} value={values?.noOfMinsFive}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsFive", e.target.value);
-                                                        formik.setFieldValue("emissionSeven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFive) * 0.87).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleFive'} value={values?.noOfPeopleFive}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleFive", e.target.value);
-                                                        formik.setFieldValue("emissionSeven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsFive) * 0.87).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionSeven`} value={values?.emissionSeven} onChange={formik.handleChange} /></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td className='ps-2 py-1'>Facebook Live</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsSix'} value={values?.noOfMinsSix}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsSix", e.target.value);
-                                                        formik.setFieldValue("emissionEight", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleSix) * 0.79).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleSix'} value={values?.noOfPeopleSix}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleSix", e.target.value);
-                                                        formik.setFieldValue("emissionEight", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSix) * 0.79).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionEight`} value={values?.emissionEight} onChange={formik.handleChange} /></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td className='ps-2 py-1'>LinkedIn Live</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsSeven'} value={values?.noOfMinsSeven}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsSeven", e.target.value);
-                                                        formik.setFieldValue("emissionNine", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.emissionNine) * 0.71).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleSeven'} value={values?.noOfPeopleSeven}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleSeven", e.target.value);
-                                                        formik.setFieldValue("emissionNine", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSeven) * 0.71).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionNine`} value={values?.emissionNine} onChange={formik.handleChange} /></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td className='ps-2 py-1'>Twitter Live</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsEight'} value={values?.noOfMinsEight}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsEight", e.target.value);
-                                                        formik.setFieldValue("emissionTen", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleEight) * 0.6).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleEight'} value={values?.noOfPeopleEight}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleEight", e.target.value);
-                                                        formik.setFieldValue("emissionTen", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSix) * 0.6).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionTen`} value={values?.emissionTen} onChange={formik.handleChange} /></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td className='ps-2 py-1'>Twitch</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsNine'} value={values?.noOfMinsNine}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsNine", e.target.value);
-                                                        formik.setFieldValue("emissionEleven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleNine) * 0.55).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleNine'} value={values?.noOfPeopleNine}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleNine", e.target.value);
-                                                        formik.setFieldValue("emissionEleven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsNine) * 0.55).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionEleven`} value={values?.emissionEleven} onChange={formik.handleChange} /></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td className='ps-2 py-1'>Youtube</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsTen'} value={values?.noOfMinsTen}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsTen", e.target.value);
-                                                        formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFive) * 0.46).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleTen'} value={values?.noOfPeopleTen}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleTen", e.target.value);
-                                                        formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsTen) * 0.46).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionTwelve`} value={values?.emissionTwelve} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} className='mt-3'>
-                                <Box>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th />
-                                                <th className='ps-2'>Image Size (in Mb)</th>
-                                                <th className='ps-2'>Impressions</th>
-                                                <th className='ps-2'>Total Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Image</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name={'imgSize'} value={values?.imgSize}
-                                                        onChange={(e) => {
-                                                            formik.setFieldValue("imgSize", Number(e.target.value));
-                                                            formik.setFieldValue("deviceEnergy1", 0.01 * (1 / 60));
-                                                            formik.setFieldValue("somePlatformEnergy1", (0.4 / 1000) * Number(e.target.value));
-                                                            formik.setFieldValue("networkEnergy1", (0.2 / 1000) * Number(e.target.value));
-                                                            formik.setFieldValue("totalEnergy1", (0.01 * (Number(e.target.value) / 60)) + ((0.4 / 1000) * Number(e.target.value)) + ((0.2 / 1000) + Number(e.target.value)));     // maybe
-                                                            formik.handleSubmit();
-                                                        }}
-                                                        inputProps={{ style: { color: 'white' } }}
-                                                    />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'impressionsOne'} value={values?.impressionsOne}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("impressionsOne", Number(e.target.value));
-                                                        formik.setFieldValue("emissionOne", (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }}
-                                                />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={'emissionOne'} value={values?.emissionOne} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} className='mt-3'>
-                                <Box>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th />
-                                                <th className='ps-2'>Video Size (in Mb)</th>
-                                                <th className='ps-2'>Video (in mins)</th>
-                                                <th className='ps-2'>Impressions</th>
-                                                <th className='ps-2'>Total Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Video</td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name={'videoSize'} value={values?.videoSize}
-                                                        onChange={(e) => {
-                                                            formik.setFieldValue("videoSize", Number(e.target.value));
-                                                            formik.setFieldValue("somePlatformEnergy2", Number((Number(e.target.value) / 1000) * 0.4));
-                                                            formik.setFieldValue("networkEnergy2", Number((0.2 / 1000) * Number(e.target.value)));
-                                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values?.impressionsTwo) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
-                                                            formik.handleSubmit();
-                                                        }}
-                                                        inputProps={{ style: { color: 'white' } }}
-                                                    />
-                                                </td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name={'videoMins'} value={values?.videoMins}
-                                                        onChange={(e) => {
-                                                            formik.setFieldValue("videoMins", Number(e.target.value));
-                                                            formik.setFieldValue("deviceEnergy2", Number(0.01 * (Number(e.target.value) / 60)));
-                                                            formik.handleSubmit();
-                                                        }}
-                                                        inputProps={{ style: { color: 'white' } }}
-                                                    />
-                                                </td>
-                                                <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name={'impressionsTwo'} value={values?.impressionsTwo}
-                                                        onChange={(e) => {
-                                                            formik.setFieldValue("impressionsTwo", Number(e.target.value));
-                                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
-                                                            formik.handleSubmit();
-                                                        }}
-                                                        inputProps={{ style: { color: 'white' } }}
-                                                    />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={'emissionTwo'} value={values?.emissionTwo} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} className='mt-3'>
-                                <Box>
-                                    <div className='table-responsive'>
-                                        <table className='table-custom-inpt-field'>
-                                            <tr>
-                                                <th />
-                                                <th className='ps-2'>No of Minutes</th>
-                                                <th className='ps-2'>No of People</th>
-                                                <th className='ps-2'>Total Emissions</th>
-                                            </tr>
-                                            <tr>
-                                                <td className='ps-2 py-1'>Video Conferencing</td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfMinsEleven'} value={values?.noOfMinsEleven}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfMinsEleven", e.target.value);
-                                                        formik.setFieldValue("emissionThirteen", e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.noOfPeopleEleven) * 2.7) / 1000).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfPeopleEleven'} value={values?.noOfPeopleEleven}
-                                                    onChange={(e) => {
-                                                        formik.setFieldValue("noOfPeopleEleven", e.target.value);
-                                                        formik.setFieldValue("emissionThirteen", e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.noOfPeopleEleven) * 2.7) / 1000).toFixed(2));
-                                                        formik.handleSubmit();
-                                                    }}
-                                                    inputProps={{ style: { color: 'white' } }} />
-                                                </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionThirteen`} value={values?.emissionThirteen} onChange={formik.handleChange} /></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                <Stack direction={"row"} spacing={2}>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button>
-                                    <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button>
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                                <Typography color='white'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
-                            </Grid>
-                        </Grid>
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={LinkedInIcon} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>LinkedIn Live</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsSeven'} value={values?.noOfMinsSeven}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsSeven", e.target.value);
+                                            formik.setFieldValue("emissionNine", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.emissionNine) * 0.71).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleSeven'} value={values?.noOfPeopleSeven}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleSeven", e.target.value);
+                                            formik.setFieldValue("emissionNine", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSeven) * 0.71).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionNine`} value={values?.emissionNine}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={TwitterIcon} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Twitter Live</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsEight'} value={values?.noOfMinsEight}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsEight", e.target.value);
+                                            formik.setFieldValue("emissionTen", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleEight) * 0.6).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleEight'} value={values?.noOfPeopleEight}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleEight", e.target.value);
+                                            formik.setFieldValue("emissionTen", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSix) * 0.6).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionTen`} value={values?.emissionTen}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaTwitch} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Twitch</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsNine'} value={values?.noOfMinsNine}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsNine", e.target.value);
+                                            formik.setFieldValue("emissionEleven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleNine) * 0.55).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleNine'} value={values?.noOfPeopleNine}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleNine", e.target.value);
+                                            formik.setFieldValue("emissionEleven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsNine) * 0.55).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionEleven`} value={values?.emissionEleven}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={YouTubeIcon} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Youtube</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsTen'} value={values?.noOfMinsTen}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsTen", e.target.value);
+                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFive) * 0.46).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleTen'} value={values?.noOfPeopleTen}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleTen", e.target.value);
+                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsTen) * 0.46).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionTwelve`} value={values?.emissionTwelve}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 330,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={GiVideoConference} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Video Conferencing</Typography>
+                                    <TextField size='small' type="number" name={'noOfMinsEleven'} value={values?.noOfMinsEleven}
+                                        label="No of Minutes"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfMinsEleven", e.target.value);
+                                            formik.setFieldValue("emissionThirteen", e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.noOfPeopleEleven) * 2.7) / 1000).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfPeopleEleven'} value={values?.noOfPeopleEleven}
+                                        label="No of People"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPeopleEleven", e.target.value);
+                                            formik.setFieldValue("emissionThirteen", e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.noOfPeopleEleven) * 2.7) / 1000).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={`emissionThirteen`} value={values?.emissionThirteen}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                        </Box>
                     </Box>
+                    <Grid>
+                        <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button><Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
+                    </Grid>
                 </Card>
             </Container>
         </div>

@@ -2,7 +2,7 @@ import { Box, Container, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import VirtualEvent from './VirtualEvent';
 import Result from './result';
-import virtualEventImg from '../../assets/Travel.png';
+import virtualEventImg from '../../layouts/user/assets/images/virtualEvent.png';
 import result from '../../assets/result.png';
 
 const VirtualEventCalculation = () => {
@@ -24,7 +24,7 @@ const VirtualEventCalculation = () => {
                         scrollButtons="auto"
                         aria-label="scrollable auto tabs example"
                     >
-                        <Tab icon={<img src={virtualEventImg} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Virtual Event" className='tab-text' />
+                        <Tab icon={<img src={virtualEventImg} alt='' width={60} className='tabImgZoomIn tabImgWhite' />} label="Virtual Event" className='tab-text' />
                         <Tab icon={<img src={result} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Summary" className='tab-text' />
                     </Tabs>
                 </Box>
