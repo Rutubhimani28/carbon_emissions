@@ -34,12 +34,20 @@ const DigitalCampaign = (props) => {
         efTwo: '',               // = totalEnergy2*0.43
         impressionsTwo: '',
         emissionTwo: '',         // videoSize * videoMins * impressionsTwo * efTwo
+        // noOfEmails: '',
+        // // efThree: '',
+        // emissionThree: '',
+        // attachmentSize: '',
+        // // efFour: '',
+        // emissionFour: '',
         noOfEmails: '',
-        // efThree: '',
-        emissionThree: '',
+        emialEfOne: 4,
+        emialEfTwo: 50,
+        emailEmissionOne: '',         // (noOfEmails * emialEfOne) / 1000
+        emailEmissionTwo: '',         // (totalAttachmentSize * emialEfTwo) / 1000
         attachmentSize: '',
-        // efFour: '',
-        emissionFour: '',
+        totalAttachmentSize: '',      // noOfEmails * attachmentSize
+        emissionThree: ''             // emailEmissionOne + emailEmissionTwo          // emissions
     };
 
     const formik = useFormik({
@@ -47,17 +55,19 @@ const DigitalCampaign = (props) => {
         onSubmit: async (values) => {
             const emissionOne = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne))).toFixed(2)
             const emissionTwo = values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo))).toFixed(2)
-            const emissionThree = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000)).toFixed(2)
-            const emissionFour = values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000)).toFixed(2)
+            // const emissionThree = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000)).toFixed(2)
+            // const emissionFour = values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000)).toFixed(2)
+            const emissionThree = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2)
 
             // formik.setFieldValue('emissionOne', values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2)));
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
             // formik.setFieldValue('emissionTwo', values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2)));
             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
-            // formik.setFieldValue('emissionThree', values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2)));
+            // // formik.setFieldValue('emissionThree', values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2)));
+            // if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
+            // // formik.setFieldValue('emissionFour', values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2)));
+            // if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);
             if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
-            // formik.setFieldValue('emissionFour', values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2)));
-            if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);
 
             const data = [
                 {
@@ -85,18 +95,29 @@ const DigitalCampaign = (props) => {
                     // emission: values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2))
                     emission: emissionTwo > 0 ? emissionTwo : ''
                 },
+                // {
+                //     name: 'Emails',
+                //     noOfEmails: values?.noOfEmails,
+                //     // emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2))
+                //     emission: emissionThree > 0 ? emissionThree : ''
+                // },
+                // {
+                //     name: 'Email Attachment',
+                //     attachmentSize: values?.attachmentSize,
+                //     // emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2))
+                //     emission: emissionFour > 0 ? emissionFour : ''
+                // }
                 {
                     name: 'Emails',
                     noOfEmails: values?.noOfEmails,
-                    // emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2))
-                    emission: emissionThree > 0 ? emissionThree : ''
-                },
-                {
-                    name: 'Email Attachment',
+                    emialEfOne: values?.emialEfOne,
+                    emialEfTwo: values?.emialEfTwo,
+                    emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
+                    emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
                     attachmentSize: values?.attachmentSize,
-                    // emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2))
-                    emission: emissionFour > 0 ? emissionFour : ''
-                }
+                    totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
+                    emissionThree: emissionThree > 0 ? emissionThree : '',
+                },
             ];
             dispatch(addCampaignData({ data }));
         },
@@ -127,10 +148,18 @@ const DigitalCampaign = (props) => {
             formik.setFieldValue('efTwo', allData[1]?.efTwo);
             formik.setFieldValue('impressionsTwo', allData[1]?.impressionsTwo);
             formik.setFieldValue('emissionTwo', allData[1]?.emission);
+            // formik.setFieldValue('noOfEmails', allData[2]?.noOfEmails);
+            // formik.setFieldValue('emissionThree', allData[2]?.emission);
+            // formik.setFieldValue('attachmentSize', allData[3]?.attachmentSize);
+            // formik.setFieldValue('emissionFour', allData[3]?.emission);
             formik.setFieldValue('noOfEmails', allData[2]?.noOfEmails);
-            formik.setFieldValue('emissionThree', allData[2]?.emission);
-            formik.setFieldValue('attachmentSize', allData[3]?.attachmentSize);
-            formik.setFieldValue('emissionFour', allData[3]?.emission);
+            formik.setFieldValue('emialEfOne', allData[2]?.emialEfOne);
+            formik.setFieldValue('emialEfTwo', allData[2]?.emialEfTwo); 
+            formik.setFieldValue('emailEmissionOne', allData[2]?.emailEmissionOne); 
+            formik.setFieldValue('emailEmissionTwo', allData[2]?.emailEmissionTwo); 
+            formik.setFieldValue('attachmentSize', allData[2]?.attachmentSize); 
+            formik.setFieldValue('totalAttachmentSize', allData[2]?.totalAttachmentSize); 
+            formik.setFieldValue('emissionThree', allData[2]?.emissionThree); 
         }
     }, [value]);
 
@@ -162,8 +191,8 @@ const DigitalCampaign = (props) => {
                             <Grid item xs={12} sm={12} >
                                 <Typography variant='h6' className='text-center text-white'>Email / Newsletter</Typography>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
-                                <Box>
+                            <Grid item xs={12} sm={12} md={12} className='mt-3'>
+                                {/* <Box>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
@@ -185,9 +214,55 @@ const DigitalCampaign = (props) => {
                                             </tr>
                                         </table>
                                     </div>
+                                </Box> */}
+                                <Box>
+                                    <div className='table-responsive'>
+                                        <table className='table-custom-inpt-field'>
+                                            <tr>
+                                                <th />
+                                                <th className='ps-2'>No of Emails</th>
+                                                <th className='ps-2'>Attachment Size (Mb)</th>
+                                                <th className='ps-2'>Emissions</th>
+                                            </tr>
+                                            <tr>
+                                                <td className='ps-2 py-1'>Emails</td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'noOfEmails'} value={values?.noOfEmails}
+                                                    onChange={(e) => {
+                                                        const emailEmissionOne = e.target.value === 0 ? 0 : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(2));
+                                                        const totalAttachmentSize = e.target.value === 0 || values?.attachmentSize === 0 ? 0 : Number((e.target.value * values?.attachmentSize).toFixed(2));
+                                                        const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+
+                                                        formik.setFieldValue("noOfEmails", e.target.value);
+                                                        formik.setFieldValue("emailEmissionOne", emailEmissionOne);
+                                                        formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
+                                                        formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
+                                                        formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
+                                                        formik.handleSubmit();
+                                                    }}
+                                                    inputProps={{ style: { color: 'white' } }} />
+                                                </td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name={'attachmentSize'} value={values?.attachmentSize}
+                                                    onChange={(e) => {
+                                                        const emailEmissionOne = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2));
+                                                        const totalAttachmentSize = e.target.value === 0 || values?.noOfEmails === 0 ? 0 : Number((e.target.value * values?.noOfEmails).toFixed(2));
+                                                        const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+
+                                                        formik.setFieldValue("attachmentSize", e.target.value);
+                                                        formik.setFieldValue("emailEmissionOne", emailEmissionOne);
+                                                        formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
+                                                        formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
+                                                        formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
+                                                        formik.handleSubmit();
+                                                    }}
+                                                    inputProps={{ style: { color: 'white' } }} />
+                                                </td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" disabled name={`emissionThree`} value={values?.emissionThree} onChange={formik.handleChange} /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+                            {/* <Grid item xs={12} sm={6} md={6}>
                                 <Box>
                                     <div className='table-responsive'>
                                         <table className='table-custom-inpt-field'>
@@ -211,7 +286,7 @@ const DigitalCampaign = (props) => {
                                         </table>
                                     </div>
                                 </Box>
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12} sm={12} >
                                 <Typography variant='h6' className='text-center text-white'>Social Media</Typography>
                             </Grid>

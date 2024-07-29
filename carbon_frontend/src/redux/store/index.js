@@ -25,6 +25,7 @@ import totalAirTravelSlice from '../slice/totalAirTravelSlice';
 import hotelSlice from '../slice/hotelSlice';
 import totalHotelSlice from '../slice/totalHotelSlice';
 import totalDigitalCampaignSlice from '../slice/totalDigitalCampaignSlice';
+import totalVirtualEventSlice from '../slice/totalVirtualEventSlice';
 import toolSlice from "../slice/toolSlice";
 
 const middleware = (getDefaultMiddleware) => {
@@ -78,6 +79,10 @@ const totalDigitalCampaignPersistConfig = {
     key: 'totalDigitalCampaign',
     storage: storageSession,
 };
+const totalVirtualEventPersistConfig = {
+    key: 'totalVirtualEvent',
+    storage: storageSession,
+};
 
 const toolPersistConfig = {
     key: 'tool',
@@ -108,8 +113,8 @@ export const store = configureStore({
         totalAirTravelDetails: persistReducer(totalAirTravelPersistConfig, totalAirTravelSlice),
         totalHotelDetails: persistReducer(totalHotelPersistConfig, totalHotelSlice),
         totalDigitalCampaignDetails: persistReducer(totalDigitalCampaignPersistConfig, totalDigitalCampaignSlice),
-        toolDetails: persistReducer(toolPersistConfig, toolSlice),
-    },
+        totalVirtualEventDetails: persistReducer(totalVirtualEventPersistConfig, totalVirtualEventSlice),
+        toolDetails: persistReducer(toolPersistConfig, toolSlice),    },
     middleware,
 });
 
