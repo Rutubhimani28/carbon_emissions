@@ -5,6 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
+import { addResultTableData, deleteResTabProductionData } from '../../redux/slice/resultTableDataSlice';
 import ProductionImg from '../../assets/production.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -463,12 +464,203 @@ const Production = (props) => {
                 },
             ];
 
+            const tableData = [
+                {
+                    subType: "Production Material",
+                    subTypeData: {
+                        th: ["", "Weight (Kgs)", "Emissions"],
+                        td: [
+                            {
+                                pType: "Wood",
+                                kgs: values?.woodKgs,
+                                emissions: woodEmission > 0 ? woodEmission : ''
+                            },
+                            {
+                                pType: "Steel",
+                                kgs: values?.steelKgs,
+                                emissions: steelEmission > 0 ? steelEmission : ''
+                            },
+                            {
+                                pType: "Aluminium",
+                                kgs: values?.aluminiumKgs,
+                                emissions: aluminiumEmission > 0 ? aluminiumEmission : ''
+                            },
+                            {
+                                pType: "Iron",
+                                kgs: values?.ironKgs,
+                                emissions: ironEmission > 0 ? ironEmission : ''
+                            },
+                            {
+                                pType: "Paper",
+                                kgs: values?.paperKgs,
+                                emissions: paperEmission > 0 ? paperEmission : ''
+                            },
+                            {
+                                pType: "Recycled Paper",
+                                kgs: values?.recycledPaperKgs,
+                                emissions: recycledPaperEmission > 0 ? recycledPaperEmission : ''
+                            },
+                            {
+                                pType: "Paint",
+                                kgs: values?.paintKgs,
+                                emissions: paintEmission > 0 ? paintEmission : ''
+                            }
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "Production Material",
+                    subTypeData: {
+                        th: ["", "Total Area (m2)", "Emissions"],
+                        td: [
+                            {
+                                pType: "Sawn Timber",
+                                area: values?.sawnTimberArea,
+                                emissions: sawnTimberEmission > 0 ? sawnTimberEmission : ''
+                            },
+                            {
+                                pType: "MDF",
+                                area: values?.mdfArea,
+                                emissions: mdfEmission > 0 ? mdfEmission : ''
+                            },
+                            {
+                                pType: "Open Panel Timber Frame",
+                                area: values?.openPanelTimberFrameArea,
+                                emissions: openPanelTimberFrameEmission > 0 ? openPanelTimberFrameEmission : ''
+                            },
+                            {
+                                pType: "Carpet",
+                                area: values?.carpetArea,
+                                emissions: carpetEmission > 0 ? carpetEmission : ''
+                            },
+                            {
+                                pType: "Adhesive Vinyl",
+                                area: values?.adhesiveVinylArea,
+                                emissions: adhesiveVinylEmission > 0 ? adhesiveVinylEmission : ''
+                            },
+                            {
+                                pType: "Cardboard",
+                                area: values?.cardboardArea,
+                                emissions: cardboardEmission > 0 ? cardboardEmission : ''
+                            },
+                            {
+                                pType: "Nylon",
+                                area: values?.nylonArea,
+                                emissions: nylonEmission > 0 ? nylonEmission : ''
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "Branding",
+                    subTypeData: {
+                        th: ["", "In Kgs", "Emissions"],
+                        td: [
+                            {
+                                pType: "Polethylene HDPE Banner",
+                                kgs: values?.hdpeBanner,
+                                emissions: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
+                            },
+                            {
+                                pType: "PVC Banners",
+                                kgs: values?.pvcBanners,
+                                emissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
+                            },
+                            {
+                                pType: "Cotton Banner",
+                                kgs: values?.cottonBanner,
+                                emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
+                            },
+                            {
+                                pType: "Plastic Badge Holders (Polycorbonate)",
+                                kgs: values?.plasticBadgeHolders,
+                                emissions: plasticBadgeHoldersEmission > 0 ? plasticBadgeHoldersEmission : ''
+                            },
+                        ]
+                    },
+                    scope: 2
+                },
+                {
+                    subType: "Branding",
+                    subTypeData: {
+                        th: ["", "No. of Units", "Emissions"],
+                        td: [
+                            {
+                                pType: "Printing a Coloured Brochure/ Page (>130 GSM)",
+                                noOfUnits: values?.colouredBrochurePage,
+                                emissions: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
+                            },
+                            {
+                                pType: "Giveway Paper bags (200 GSM)- A4 Size",
+                                noOfUnits: values?.paperBagsA4Size,
+                                emissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
+                            },
+                            {
+                                pType: "Giveway Paper bags (200 GSM)- A5 Size",
+                                noOfUnits: values?.paperBagsA5Size,
+                                emissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
+                            },
+                            {
+                                pType: "Giveway Jute bags*- A4 Size",
+                                noOfUnits: values?.juteBagsA4Size,
+                                emissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
+                            },
+                            {
+                                pType: "Giveway Cotton bags- A4 Size",
+                                noOfUnits: values?.cottonBagsA4Size,
+                                emissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
+                            },
+                        ]
+                    },
+                    scope: 2
+                },
+                {
+                    subType: "Stage Screen",
+                    subTypeData: {
+                        th: ["", "No of Hours", "No of Devices/ Panels", "Emissions"],
+                        td: [
+                            {
+                                pType: "Projector",
+                                noOfHour: values?.projectorNoOfHour,
+                                noOfDevice: values?.projectorNoOfDevice,
+                                emissions: projectorEmission > 0 ? projectorEmission : ''
+                            },
+                            {
+                                pType: "LED Screen Panel (500mmx500mm)",
+                                noOfHour: values?.ledScreenPanelNoOfHour,
+                                noOfDevice: values?.ledScreenPanelNoOfDevice,
+                                emissions: ledScreenPanelEmission > 0 ? ledScreenPanelEmission : ''
+                            }
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "Stage Lighting & AV",
+                    subTypeData: {
+                        th: ["", "kwh", "Emissions"],
+                        td: [
+                            {
+                                pType: "Electricity",
+                                kwh: values?.kwh,
+                                emissions: kwhEmission > 0 ? kwhEmission : ''
+                            }
+                        ]
+                    },
+                    scope: 3
+                },
+            ];
+
             dispatch(addProductionData({ data }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Event Production" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteProductionData());
+        dispatch(deleteResTabProductionData());
     };
 
     useEffect(() => {

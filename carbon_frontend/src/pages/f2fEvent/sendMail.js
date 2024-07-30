@@ -50,7 +50,8 @@ const SendMail = (props) => {
         sender: userid,
         // emails: [],
         emails: [`${toolFormData?.email}`],
-        addEmail: ''
+        addEmail: '',
+        isAttachment: true   // attach filled fields value as pdf attachment
     };
 
     const handleCancel = () => {
@@ -73,7 +74,8 @@ const SendMail = (props) => {
                 data: datas,
                 sender: values?.sender,
                 // templateName: "event_grand_total_result_Template",
-                templateName: "f2f_event_filled_fields_Template",
+                emailBodyTemplateName: "event_grand_total_result_Template",
+                attachmentTemplateName: "f2f_event_filled_fields_Template",
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,

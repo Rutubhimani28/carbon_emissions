@@ -10,6 +10,7 @@ import { addHotelData, deleteHotelData } from '../../redux/slice/totalHotelSlice
 import Accomodation from '../../assets/Accommodation.png';
 import { IconDiv } from '../../components/IconDiv';
 import HotelData from '../accomodation/data.json';
+import { addResultTableData, deleteResTabHotelData } from '../../redux/slice/resultTableDataSlice';
 
 const Hotel = (props) => {
     const { setValue, value } = props;
@@ -19,7 +20,7 @@ const Hotel = (props) => {
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
     const scope = useSelector((state) => state?.totalHotelDetails?.scope);
     const geographyOptions = HotelData?.map((item) => ({ value: item?.geography, label: item?.geography }))
-    
+
     const customStyles = {
         control: (provided) => ({
             ...provided,
@@ -137,12 +138,72 @@ const Hotel = (props) => {
                     efThree: values?.efThree,
                 },
             ];
+
+            const tableData = [
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "Geography", "Country", "Hotel Type", "No. of Nights", "Emissions"],
+                        td: [
+                            // {
+                            //     hType: "Hotel Stay",
+                            //     geography: values?.geography,
+                            //     country: values?.country,
+                            //     hotelType: values?.hotelType,
+                            //     roomsOccupied: values?.roomsOccupied,
+                            //     emissions: emissionsOne > 0 ? emissionsOne : ''
+                            // },
+                            {
+                                hType: "Hotel Stay",
+                                geography: values.geography?.label,
+                                country: values.country?.country,
+                                hotelType: values.hotelType?.label,
+                                roomsOccupied: values?.roomsOccupied,
+                                emissions: emissionsOne > 0 ? emissionsOne : ''
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "Total Meeting Room Area (Sqft)", "Meeting Duration (No of Hrs)", "Emissions"],
+                        td: [
+                            {
+                                hType: "Meeting Room Energy Consumption",
+                                totalMeetingRoomArea: values?.totalMeetingRoomArea,
+                                meetingDuration: values?.meetingDuration,
+                                emissions: emissionsTwo > 0 ? emissionsTwo : '',
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "Energy Utilised (kwh)", "Emissions"],
+                        td: [
+                            {
+                                hType: "Meeting Room Energy Consumption",
+                                energyUtilisedKwh: values?.energyUtilisedKwh,
+                                emissions: emissionsThree > 0 ? emissionsThree : '',
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+            ];
+
             dispatch(addHotelData({ data }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Hotel" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteHotelData());
+        dispatch(deleteResTabHotelData());
     };
 
     useEffect(() => {
