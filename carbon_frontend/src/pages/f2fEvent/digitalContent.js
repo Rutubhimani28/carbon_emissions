@@ -41,11 +41,10 @@ const DigitalContent = (props) => {
         emailEmissionTwo: '',         // (totalAttachmentSize * emialEfTwo) / 1000
         attachmentSize: '',
         totalAttachmentSize: '',      // noOfEmails * attachmentSize
-        emissionThree: '',             // emailEmissionOne + emailEmissionTwo          // emissions
+        emissionOne: '',             // emailEmissionOne + emailEmissionTwo          // emissions
         noOfAttendees: '',
         noOfHours: '',
         serviceLifeOfLaptop: '',
-        emissionOne: '',
         emissionTwo: ''
     };
 
@@ -301,7 +300,8 @@ const DigitalContent = (props) => {
                                             formik.setFieldValue("emailEmissionOne", emailEmissionOne);
                                             formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
                                             formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
-                                            formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
+                                            // formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
+                                            formik.setFieldValue("emissionOne", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
                                             formik.handleSubmit();
                                         }}
                                         error={
@@ -350,7 +350,8 @@ const DigitalContent = (props) => {
                                         value={formik.values.noOfAttendees}
                                         onChange={(e) => {
                                             formik.handleChange(e);
-                                            formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
+                                            // formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
+                                            formik.setFieldValue('emissionTwo', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
                                             formik.handleSubmit();
                                         }}
                                         error={
@@ -374,7 +375,8 @@ const DigitalContent = (props) => {
                                         value={formik.values.noOfHours}
                                         onChange={(e) => {
                                             formik.handleChange(e);
-                                            formik.setFieldValue('emissionThree', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(2)));
+                                            // formik.setFieldValue('emissionThree', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(2)));
+                                            formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(2)));
                                             formik.handleSubmit();
                                         }}
                                         error={
@@ -389,7 +391,7 @@ const DigitalContent = (props) => {
                                 </Grid>
                                 <Grid mt={2}>
                                     <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
-                                    <TextField
+                                    {/* <TextField
                                         id="emissionThree"
                                         name="emissionThree"
                                         label=""
@@ -404,6 +406,23 @@ const DigitalContent = (props) => {
                                         }
                                         helperText={
                                             formik.touched.emissionThree && formik.errors.emissionThree
+                                        }
+                                    /> */}
+                                    <TextField
+                                        id="emissionTwo"
+                                        name="emissionTwo"
+                                        label=""
+                                        fullWidth
+                                        size="small"
+                                        disabled
+                                        value={formik.values.emissionTwo}
+                                        onChange={formik.handleChange}
+                                        error={
+                                            formik.touched.emissionTwo &&
+                                            Boolean(formik.errors.emissionTwo)
+                                        }
+                                        helperText={
+                                            formik.touched.emissionTwo && formik.errors.emissionTwo
                                         }
                                     />
                                 </Grid>

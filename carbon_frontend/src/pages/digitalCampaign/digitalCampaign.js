@@ -116,7 +116,7 @@ const DigitalCampaign = (props) => {
                     emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
                     attachmentSize: values?.attachmentSize,
                     totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
-                    emissionThree: emissionThree > 0 ? emissionThree : '',
+                    emission: emissionThree > 0 ? emissionThree : '',
                 },
             ];
             dispatch(addCampaignData({ data }));
@@ -154,12 +154,12 @@ const DigitalCampaign = (props) => {
             // formik.setFieldValue('emissionFour', allData[3]?.emission);
             formik.setFieldValue('noOfEmails', allData[2]?.noOfEmails);
             formik.setFieldValue('emialEfOne', allData[2]?.emialEfOne);
-            formik.setFieldValue('emialEfTwo', allData[2]?.emialEfTwo); 
-            formik.setFieldValue('emailEmissionOne', allData[2]?.emailEmissionOne); 
-            formik.setFieldValue('emailEmissionTwo', allData[2]?.emailEmissionTwo); 
-            formik.setFieldValue('attachmentSize', allData[2]?.attachmentSize); 
-            formik.setFieldValue('totalAttachmentSize', allData[2]?.totalAttachmentSize); 
-            formik.setFieldValue('emissionThree', allData[2]?.emissionThree); 
+            formik.setFieldValue('emialEfTwo', allData[2]?.emialEfTwo);
+            formik.setFieldValue('emailEmissionOne', allData[2]?.emailEmissionOne);
+            formik.setFieldValue('emailEmissionTwo', allData[2]?.emailEmissionTwo);
+            formik.setFieldValue('attachmentSize', allData[2]?.attachmentSize);
+            formik.setFieldValue('totalAttachmentSize', allData[2]?.totalAttachmentSize);
+            formik.setFieldValue('emissionThree', allData[2]?.emission);
         }
     }, [value]);
 
