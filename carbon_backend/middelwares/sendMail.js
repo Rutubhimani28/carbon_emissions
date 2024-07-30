@@ -194,7 +194,7 @@ const sendMail = async ({ receiver, subject, data, emailBodyTemplateName, attach
         }
 
         // Send email
-        // await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptions);
         console.log('Email sent successfully');
 
     } catch (error) {
