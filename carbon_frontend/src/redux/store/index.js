@@ -27,6 +27,7 @@ import totalHotelSlice from '../slice/totalHotelSlice';
 import totalDigitalCampaignSlice from '../slice/totalDigitalCampaignSlice';
 import totalVirtualEventSlice from '../slice/totalVirtualEventSlice';
 import toolSlice from "../slice/toolSlice";
+import resultTableDataSlice from "../slice/resultTableDataSlice";
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -88,6 +89,10 @@ const toolPersistConfig = {
     key: 'tool',
     storage: storageSession,
 };
+const resultTableDataPersistConfig = {
+    key: 'resultTableDataDetails',
+    storage: storageSession,
+};
 
 export const store = configureStore({
     reducer: {
@@ -114,7 +119,9 @@ export const store = configureStore({
         totalHotelDetails: persistReducer(totalHotelPersistConfig, totalHotelSlice),
         totalDigitalCampaignDetails: persistReducer(totalDigitalCampaignPersistConfig, totalDigitalCampaignSlice),
         totalVirtualEventDetails: persistReducer(totalVirtualEventPersistConfig, totalVirtualEventSlice),
-        toolDetails: persistReducer(toolPersistConfig, toolSlice),    },
+        toolDetails: persistReducer(toolPersistConfig, toolSlice),
+        resultTableDataDetails: persistReducer(resultTableDataPersistConfig, resultTableDataSlice),
+    },
     middleware,
 });
 

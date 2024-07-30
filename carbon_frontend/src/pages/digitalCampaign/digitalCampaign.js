@@ -119,7 +119,67 @@ const DigitalCampaign = (props) => {
                     emission: emissionThree > 0 ? emissionThree : '',
                 },
             ];
+            
+            // const tableData = [
+            //     {
+            //         subType: "Email / Newsletter",
+            //         subTypeData: {
+            //             th: ["", "No of Emails", "Emissions"],
+            //             td: [
+            //                 {
+            //                     dgType: "Emails",
+            //                     noOfEmails: values?.noOfEmails,
+            //                     emissions: emissionThree > 0 ? emissionThree : ''
+            //                 },
+            //             ]
+            //         }
+            //     },
+            //     {
+            //         subType: "Email / Newsletter",
+            //         subTypeData: {
+            //             th: ["", "Size (in Mb)", "Emissions"],
+            //             td: [
+            //                 {
+            //                     dgType: "Email Attachment",
+            //                     attachmentSize: values?.attachmentSize,
+            //                     emissions: emissionFour > 0 ? emissionFour : '',
+            //                 },
+            //             ]
+            //         }
+            //     },
+            //     {
+            //         subType: "Social Media",
+            //         subTypeData: {
+            //             th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
+            //             td: [
+            //                 {
+            //                     dgType: "Image",
+            //                     imgSize: values?.imgSize,
+            //                     impressions1: values?.impressionsOne,
+            //                     emissions: emissionOne > 0 ? emissionOne : '',
+            //                 },
+            //             ]
+            //         }
+            //     },
+            //     {
+            //         subType: "Social Media",
+            //         subTypeData: {
+            //             th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+            //             td: [
+            //                 {
+            //                     dgType: "Video",
+            //                     videoSize: values?.videoSize,
+            //                     videoMins: values?.videoMins,
+            //                     impressions2: values?.impressionsTwo,
+            //                     emissions: emissionTwo > 0 ? emissionTwo : '',
+            //                 },
+            //             ]
+            //         }
+            //     },
+            // ];
+
             dispatch(addCampaignData({ data }));
+            // dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Campaign" }));
         },
     });
 

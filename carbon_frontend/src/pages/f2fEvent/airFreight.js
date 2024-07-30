@@ -17,6 +17,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconDiv } from '../../components/IconDiv';
 import { addLogisticsData, deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
+import { addResultTableData, deleteResTabLogisticsData } from '../../redux/slice/resultTableDataSlice';
 import LogisticsImg from '../../assets/Logistics.png';
 
 const AirFreight = (props) => {
@@ -75,12 +76,38 @@ const AirFreight = (props) => {
                 },
             ];
 
+            const tableData = [
+                {
+                    subType: "Mode of Freight",
+                    subTypeData: {
+                        th: ["", "No of Kms", "Weight in Kgs", "Emissions"],
+                        td: [
+                            {
+                                frType: "By Air",
+                                noOfKms: values?.noOfKmsOne,
+                                kgs: values?.kgsOne,
+                                emissions: emissionOne > 0 ? emissionOne : ''
+                            },
+                            {
+                                frType: "By Road",
+                                noOfKms: values?.noOfKmsTwo,
+                                kgs: values?.kgsTwo,
+                                emissions: emissionTwo > 0 ? emissionTwo : ''
+                            },
+                        ]
+                    },
+                    scope: 3
+                }
+            ];
+
             dispatch(addLogisticsData({ data }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Logistics" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteLogisticsData());
+        dispatch(deleteResTabLogisticsData());
     };
 
     useEffect(() => {

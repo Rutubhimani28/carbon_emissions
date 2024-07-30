@@ -6,6 +6,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
 import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
+import { addResultTableData, deleteResTableDigitalContData } from '../../redux/slice/resultTableDataSlice';
 import DigitalImg from '../../assets/Digital.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -91,8 +92,47 @@ const DigitalContent = (props) => {
                     emission: (emissionTwo > 0) ? emissionTwo : ''
                 }
             ];
+            dispatch(addData({ data }));
 
-            dispatch(addData({ data }))
+            const tableData = [
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "No of Emails", "Attachment Size (Mb)", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Emails",
+                                noOfEmails: values?.noOfEmails,
+                                // emialEfOne: values?.emialEfOne,
+                                // emialEfTwo: values?.emialEfTwo,
+                                // emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
+                                // emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
+                                attachmentSize: values?.attachmentSize,
+                                // totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
+                                emissions: emissionOne > 0 ? emissionOne : '',
+                            },
+                        ]
+                    },
+                    scope: 1
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "No. of Attendees", "No. of Hours", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Laptops used",
+                                noOfHours: values?.noOfHours,
+                                noOfAttendees: values?.noOfAttendees,
+                                emissions: emissionTwo > 0 ? emissionTwo : ''
+                            },
+                        ]
+                    },
+                    scope: 1
+                },
+            ];
+
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Comms" }));
         },
     });
 
@@ -126,7 +166,8 @@ const DigitalContent = (props) => {
     }, [value])
 
     const handeleDelete = () => {
-        dispatch(deleteData())
+        dispatch(deleteData());
+        dispatch(deleteResTableDigitalContData());
     };
 
     console.log("----- digitalContent formik.values ", formik.values);

@@ -8,6 +8,7 @@ import * as yup from "yup";
 import EnergyImg from '../../assets/Energy.png';
 import { IconDiv } from '../../components/IconDiv';
 import { addEnergyData, deleteEnergyData } from '../../redux/slice/totalEnergyUpdatedSlice';
+import { addResultTableData, deleteResTabEnergyData } from '../../redux/slice/resultTableDataSlice';
 
 const EnergyUpdated = (props) => {
     const { setValue, value } = props;
@@ -66,7 +67,45 @@ const EnergyUpdated = (props) => {
                     emission: emissionThree > 0 ? Number((values?.gallonsTwo * 10.21).toFixed(2)) : ''
                 }
             ];
+
+            const tableData = [
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "In Kgs", "Emissions"],
+                        td: [
+                            {
+                                eType: "Electricity",
+                                kwh: values?.kwh,
+                                emissions: emissionOne > 0 ? emissionOne : ''
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "Gallons", "Emissions"],
+                        td: [
+                            {
+                                eType: "Petrol (Generator)",
+                                gallons: values?.gallonsOne,
+                                emissions: emissionTwo > 0 ? emissionTwo : ''
+                            },
+                            {
+                                eType: "Diesel (Generator)",
+                                gallons: values?.gallonsTwo,
+                                emissions: emissionThree > 0 ? emissionThree : ''
+                            },
+                        ]
+                    },
+                    scope: 2
+                },
+            ];
+
             dispatch(addEnergyData({ data }))
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Energy" }));
         },
     });
 
@@ -83,6 +122,7 @@ const EnergyUpdated = (props) => {
 
     const handeleDelete = () => {
         dispatch(deleteEnergyData())
+        dispatch(deleteResTabEnergyData())
     }
 
     return (
