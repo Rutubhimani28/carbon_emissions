@@ -34,7 +34,6 @@ const SendMail = (props) => {
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData.find((item) => item?.type === "toolForm");
     const resultTableData = useSelector(state => state.resultTableDataDetails);
-    console.log("----- sendMail event  resultTableData ", resultTableData);
 
     // -----------  validationSchema
     const validationSchema = yup.object({
