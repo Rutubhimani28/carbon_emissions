@@ -30,6 +30,7 @@ const SendMail = (props) => {
 
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData.find((item) => item?.type === "toolForm");
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
 
     const validationSchema = yup.object({
         subject: yup.string().required("Subject is required"),
@@ -65,11 +66,14 @@ const SendMail = (props) => {
                 receiver: values?.emails,
                 data: datas,
                 sender: values?.sender,
-                templateName: "digital_campaign_grand_total_result_Template",
+                // templateName: "digital_campaign_grand_total_result_Template",
+                emailBodyTemplateName: "digital_campaign_grand_total_result_Template",
+                attachmentTemplateName: "digital_campaign_filled_fields_Template",
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
                 eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
+                resultTableData
             };
 
             const result = await apipost('api/email/add', data);

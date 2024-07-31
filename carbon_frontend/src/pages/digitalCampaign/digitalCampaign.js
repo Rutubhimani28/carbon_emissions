@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Card, CardContent, Container, Grid, Icon, Stack, TextField, Typography, useMediaQuery } from '@mui/material';
 import { FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
+import { MdEmail } from "react-icons/md";
 import { useTheme } from '@mui/material/styles';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
+import { addResultTableData, deleteResTabDgCampaignData } from '../../redux/slice/resultTableDataSlice';
 import Phone from '../../assets/phone2.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -119,66 +121,60 @@ const DigitalCampaign = (props) => {
                 },
             ];
 
-            // const tableData = [
-            //     {
-            //         subType: "Email / Newsletter",
-            //         subTypeData: {
-            //             th: ["", "No of Emails", "Emissions"],
-            //             td: [
-            //                 {
-            //                     dgType: "Emails",
-            //                     noOfEmails: values?.noOfEmails,
-            //                     emissions: emissionThree > 0 ? emissionThree : ''
-            //                 },
-            //             ]
-            //         }
-            //     },
-            //     {
-            //         subType: "Email / Newsletter",
-            //         subTypeData: {
-            //             th: ["", "Size (in Mb)", "Emissions"],
-            //             td: [
-            //                 {
-            //                     dgType: "Email Attachment",
-            //                     attachmentSize: values?.attachmentSize,
-            //                     emissions: emissionFour > 0 ? emissionFour : '',
-            //                 },
-            //             ]
-            //         }
-            //     },
-            //     {
-            //         subType: "Social Media",
-            //         subTypeData: {
-            //             th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
-            //             td: [
-            //                 {
-            //                     dgType: "Image",
-            //                     imgSize: values?.imgSize,
-            //                     impressions1: values?.impressionsOne,
-            //                     emissions: emissionOne > 0 ? emissionOne : '',
-            //                 },
-            //             ]
-            //         }
-            //     },
-            //     {
-            //         subType: "Social Media",
-            //         subTypeData: {
-            //             th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
-            //             td: [
-            //                 {
-            //                     dgType: "Video",
-            //                     videoSize: values?.videoSize,
-            //                     videoMins: values?.videoMins,
-            //                     impressions2: values?.impressionsTwo,
-            //                     emissions: emissionTwo > 0 ? emissionTwo : '',
-            //                 },
-            //             ]
-            //         }
-            //     },
-            // ];
+            const tableData = [
+                {
+                    subType: "Social Media",
+                    subTypeData: {
+                        // th: ["Image", "Image Size (in Mb)", "Impressions", "Emissions"],
+                        th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Image",
+                                imgSize: values?.imgSize,
+                                impressions1: values?.impressionsOne,
+                                emissions: emissionOne > 0 ? emissionOne : '',
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        // th: ["Video", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                        th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Video",
+                                videoSize: values?.videoSize,
+                                videoMins: values?.videoMins,
+                                impressions2: values?.impressionsTwo,
+                                emissions: emissionTwo > 0 ? emissionTwo : '',
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "Email / Newsletter",
+                    subTypeData: {
+                        // th: ["Email", "No of Emails", "Attachment Size (in Mb)", "Emissions"],
+                        th: ["", "No of Emails", "Attachment Size (in Mb)", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Emails",
+                                noOfEmails: values?.noOfEmails,
+                                attachmentSize: values?.attachmentSize,
+                                emissions: emissionThree > 0 ? emissionThree : ''
+                            },
+                        ]
+                    },
+                    scope: 1
+                },
+            ];
 
             dispatch(addCampaignData({ data }));
-            // dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Campaign" }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Campaign" }));
         },
     });
 
@@ -186,6 +182,7 @@ const DigitalCampaign = (props) => {
 
     const handeleDelete = () => {
         dispatch(deleteCampaignData());
+        dispatch(deleteResTabDgCampaignData());
     };
 
     useEffect(() => {
@@ -365,8 +362,8 @@ const DigitalCampaign = (props) => {
                                 }}
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={FaImage} sx={{ fontSize: 60, color: 'black' }} />
-
+                                    <Icon component={MdEmail} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Email</Typography>
                                     <TextField size='small' type="number" name={'noOfEmails'} value={values?.noOfEmails}
                                         label="No of Emails"
                                         variant="outlined"

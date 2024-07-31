@@ -239,10 +239,30 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        deleteResTabDgCampaignData: (state, action) => ({
-            ...state,
-            data: state.data.filter(item => item.tabTitle !== 'Digital Campaign'),
-        }),
+        // deleteResTabDgCampaignData: (state, action) => ({
+        //     ...state,
+        //     data: state.data.filter(item => item.tabTitle !== 'Digital Campaign'),
+        // }),
+        deleteResTabDgCampaignData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'Digital Campaign') {
+                    return {
+                        tabTitle: "Digital Campaign",
+                        tabData: [
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 1 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
+        },
     },
 });
 

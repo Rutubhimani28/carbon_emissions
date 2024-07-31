@@ -107,7 +107,19 @@ const Result = ({ value }) => {
             type: 'Waste',
             totalEmission: allWasteData?.totalEmission
         },
-    ]
+    ];
+
+    const validTitles = [
+        "Air Travel",
+        "Local Transportation",
+        "Food & Beverages",
+        "Logistics",
+        "Event Production",
+        "Energy",
+        "Digital Comms",
+        "Waste",
+        "Hotel"
+    ];
 
     const data = {
         "totalAirTravel": Number(allAirTravelData?.totalEmission).toFixed(2),
@@ -310,137 +322,139 @@ const Result = ({ value }) => {
                     {/* <Box style={{ display: "flex", justifyContent: "space-around", width: "100%", color: 'white' }}> */}
                     {/* <Box style={{ width: "100%", color: 'white' }}>
                         {resultTableData?.data?.map((page, pageIndex) => (
-                            <Box key={pageIndex} style={{ margin: "20px" }}>
-                                {page?.tabData.some(flightClass =>
-                                    flightClass?.subTypeData?.td?.some(rowData =>
-                                        rowData.noOfTrips !== "" && rowData.emissions !== ""
-                                    )
-                                ) && (
-                                        <>
-                                            <Typography className='fs-3 text-center mt-1'>{page.tabTitle}</Typography>
-                                            <Box className="d-flex justify-content-around">
-                                                {page?.tabData?.map((flightClass, classIndex) => (
-                                                    <Box key={classIndex} style={{ margin: "10px", width: "45%" }}>
-                                                        {flightClass?.subTypeData?.td?.some(rowData =>
-                                                            rowData.noOfTrips !== "" && rowData.emissions !== ""
-                                                        ) && (
-                                                                <>
-                                                                    <Typography className='fs-5 mb-1'>{flightClass.subType}</Typography>
-                                                                    <table style={{ width: "100%", border: '1px solid white' }}>
-                                                                        <thead>
-                                                                            <tr>
-                                                                                {flightClass?.subTypeData?.th?.map((header, headerIndex) => (
-                                                                                    <th key={headerIndex}>{header}</th>
-                                                                                ))}
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            {page.tabTitle === "Air Travel" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    rowData.noOfTrips !== "" && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.journeyType}</td>
-                                                                                            <td>{rowData.noOfTrips}</td>
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                            {page.tabTitle === "Local Transportation" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    rowData.noOfKms !== "" && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.journeyType}</td>
-                                                                                            <td>{rowData.noOfKms}</td>
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                            {page.tabTitle === "Food & Beverages" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    (rowData.noOfPax !== "" || rowData.noOfBottles !== "") && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.fBType}</td>
-                                                                                            <td>{rowData.noOfPax || rowData.noOfBottles}</td>
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                            {page.tabTitle === "Logistics" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    (rowData.noOfKms !== "" || rowData.kgs !== "") && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.frType}</td>
-                                                                                            <td>{rowData.noOfKms}</td>
-                                                                                            <td>{rowData.kgs}</td>
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                            {page.tabTitle === "Event Production" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    (rowData.kgs !== "" || rowData.area !== "" || rowData.noOfUnits !== "" || rowData.kwh !== "" || rowData.noOfHour !== "") && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.pType}</td>
-                                                                                            <td>{rowData.kgs || rowData.area || rowData.noOfUnits || rowData.kwh || rowData.noOfHour}</td>
-                                                                                            {rowData.noOfDevice && <td>{rowData.noOfDevice}</td>}
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                            {page.tabTitle === "Energy" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    (rowData.kwh !== "" || rowData.gallons !== "") && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.eType}</td>
-                                                                                            <td>{rowData.kwh || rowData.gallons}</td>
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                            {page.tabTitle === "Digital Comms" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    (rowData.noOfEmails !== "" || rowData.attachmentSize !== "" || rowData.noOfHours !== "" || rowData.noOfAttendees !== "") && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.dgType}</td>
-                                                                                            <td>{rowData.noOfEmails || rowData.noOfAttendees}</td>
-                                                                                            {rowData.noOfHours || rowData.attachmentSize && <td>{rowData.noOfHours || rowData.attachmentSize}</td>}
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                            {page.tabTitle === "Waste" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    (rowData.kgs !== "" || rowData.bottle !== "") && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.wsType}</td>
-                                                                                            <td>{rowData.kgs || rowData.bottle}</td>
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                            {page.tabTitle === "Hotel" &&
-                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                    (rowData.hType !== "" || rowData.bottle !== "") && rowData.emissions !== "" && (
-                                                                                        <tr key={rowIndex}>
-                                                                                            <td>{rowData.hType}</td>
-                                                                                            <td>{rowData.geography || rowData.totalMeetingRoomArea || rowData.energyUtilisedKwh}</td>
-                                                                                            <td>{rowData.country || rowData.meetingDuration}</td>
-                                                                                            {rowData.hotelType && <td>{rowData.hotelType}</td>}
-                                                                                            {rowData.roomsOccupied && <td>{rowData.roomsOccupied}</td>}
-                                                                                            <td>{rowData.emissions}</td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                ))}
-                                                                        </tbody>
-                                                                    </table>
-                                                                </>
-                                                            )}
-                                                    </Box>
-                                                ))}
-                                            </Box>
-                                        </>
-                                    )}
-                            </Box>
+                            validTitles.includes(page.tabTitle) && (
+                                <Box key={pageIndex} style={{ margin: "20px" }}>
+                                    {page?.tabData.some(flightClass =>
+                                        flightClass?.subTypeData?.td?.some(rowData =>
+                                            rowData.noOfTrips !== "" && rowData.emissions !== ""
+                                        )
+                                    ) && (
+                                            <>
+                                                <Typography className='fs-3 text-center mt-1'>{page.tabTitle}</Typography>
+                                                <Box className="d-flex justify-content-around">
+                                                    {page?.tabData?.map((flightClass, classIndex) => (
+                                                        <Box key={classIndex} style={{ margin: "10px", width: "45%" }}>
+                                                            {flightClass?.subTypeData?.td?.some(rowData =>
+                                                                rowData.noOfTrips !== "" && rowData.emissions !== ""
+                                                            ) && (
+                                                                    <>
+                                                                        <Typography className='fs-5 mb-1'>{flightClass.subType}</Typography>
+                                                                        <table style={{ width: "100%", border: '1px solid white' }}>
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    {flightClass?.subTypeData?.th?.map((header, headerIndex) => (
+                                                                                        <th key={headerIndex}>{header}</th>
+                                                                                    ))}
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                {page.tabTitle === "Air Travel" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        rowData.noOfTrips !== "" && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.journeyType}</td>
+                                                                                                <td>{rowData.noOfTrips}</td>
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                                {page.tabTitle === "Local Transportation" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        rowData.noOfKms !== "" && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.journeyType}</td>
+                                                                                                <td>{rowData.noOfKms}</td>
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                                {page.tabTitle === "Food & Beverages" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        (rowData.noOfPax !== "" || rowData.noOfBottles !== "") && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.fBType}</td>
+                                                                                                <td>{rowData.noOfPax || rowData.noOfBottles}</td>
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                                {page.tabTitle === "Logistics" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        (rowData.noOfKms !== "" || rowData.kgs !== "") && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.frType}</td>
+                                                                                                <td>{rowData.noOfKms}</td>
+                                                                                                <td>{rowData.kgs}</td>
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                                {page.tabTitle === "Event Production" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        (rowData.kgs !== "" || rowData.area !== "" || rowData.noOfUnits !== "" || rowData.kwh !== "" || rowData.noOfHour !== "") && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.pType}</td>
+                                                                                                <td>{rowData.kgs || rowData.area || rowData.noOfUnits || rowData.kwh || rowData.noOfHour}</td>
+                                                                                                {rowData.noOfDevice && <td>{rowData.noOfDevice}</td>}
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                                {page.tabTitle === "Energy" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        (rowData.kwh !== "" || rowData.gallons !== "") && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.eType}</td>
+                                                                                                <td>{rowData.kwh || rowData.gallons}</td>
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                                {page.tabTitle === "Digital Comms" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        (rowData.noOfEmails !== "" || rowData.attachmentSize !== "" || rowData.noOfHours !== "" || rowData.noOfAttendees !== "") && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.dgType}</td>
+                                                                                                <td>{rowData.noOfEmails || rowData.noOfAttendees}</td>
+                                                                                                {rowData.noOfHours || rowData.attachmentSize && <td>{rowData.noOfHours || rowData.attachmentSize}</td>}
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                                {page.tabTitle === "Waste" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        (rowData.kgs !== "" || rowData.bottle !== "") && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.wsType}</td>
+                                                                                                <td>{rowData.kgs || rowData.bottle}</td>
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                                {page.tabTitle === "Hotel" &&
+                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                        (rowData.hType !== "" || rowData.bottle !== "") && rowData.emissions !== "" && (
+                                                                                            <tr key={rowIndex}>
+                                                                                                <td>{rowData.hType}</td>
+                                                                                                <td>{rowData.geography || rowData.totalMeetingRoomArea || rowData.energyUtilisedKwh}</td>
+                                                                                                <td>{rowData.country || rowData.meetingDuration}</td>
+                                                                                                {rowData.hotelType && <td>{rowData.hotelType}</td>}
+                                                                                                {rowData.roomsOccupied && <td>{rowData.roomsOccupied}</td>}
+                                                                                                <td>{rowData.emissions}</td>
+                                                                                            </tr>
+                                                                                        )
+                                                                                    ))}
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </>
+                                                                )}
+                                                        </Box>
+                                                    ))}
+                                                </Box>
+                                            </>
+                                        )}
+                                </Box>
+                            )
                         ))}
                     </Box> */}
 

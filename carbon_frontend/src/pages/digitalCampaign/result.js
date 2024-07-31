@@ -19,6 +19,10 @@ const Result = ({ value }) => {
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
     const resultTableData = useSelector(state => state.resultTableDataDetails);
 
+    const [sc1, setSc1] = useState(0);
+    const [sc2, setSc2] = useState(0);
+    const [sc3, setSc3] = useState(0);
+
     const resultData = [
         {
             type: 'Digital Campaign',
@@ -79,8 +83,42 @@ const Result = ({ value }) => {
     };
 
     useEffect(() => {
+        let sc1Count = 0;
+        let sc2Count = 0;
+        let sc3Count = 0;
+
+        resultTableData?.data?.forEach(page => {
+            page?.tabData?.forEach(flightClass => {
+                const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+
+                    const rowData2 = rowData;
+                    const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
+
+                    if (page?.tabTitle === "Digital Campaign") {
+                        return ((impressions1 && imgSize) || (impressions2 && videoMins && videoSize) || (noOfEmails && attachmentSize)) && emissions;
+                    }
+
+                    return false;
+                });
+
+                if (hasFilledRow) {
+                    if (flightClass?.scope === 1) {
+                        sc1Count += 1;
+                    } else if (flightClass?.scope === 2) {
+                        sc2Count += 1;
+                    } else if (flightClass?.scope === 3) {
+                        sc3Count += 1;
+                    }
+                }
+            });
+        });
+
         chat();
-    }, [resultTableData, value])
+
+        setSc1(sc1Count);
+        setSc2(sc2Count);
+        setSc3(sc3Count);
+    }, [resultTableData, value]);
 
     return (
         <div>
