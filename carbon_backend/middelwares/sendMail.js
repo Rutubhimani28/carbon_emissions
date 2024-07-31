@@ -128,7 +128,7 @@ const sendMail = async ({
         }
 
         // Send email
-        // await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptions);
         console.log('Email sent successfully');
 
         // if (fs.existsSync(pdfFilePath)) {
