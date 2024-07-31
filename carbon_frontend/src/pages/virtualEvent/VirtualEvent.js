@@ -377,7 +377,7 @@ const VirtualEvent = (props) => {
                                     <Icon component={FaImage} sx={{ fontSize: 60, color: 'black' }} />
                                     <Typography variant="h6" sx={{ marginY: 1 }}>Image</Typography>
                                     <TextField size='small' type="number" name={'imgSize'} value={values?.imgSize}
-                                        label="Iamge Size (in Mb)"
+                                        label="Image Size (in Mb)"
                                         variant="outlined"
                                         fullWidth
                                         onChange={(e) => {
