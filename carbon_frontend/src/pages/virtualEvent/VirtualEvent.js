@@ -17,6 +17,7 @@ import {
 import { FaSnapchat, FaTwitch, FaTiktok, FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
 import { GiVideoConference } from "react-icons/gi";
 import { addVirtualEventData, deleteVirtualEventData } from '../../redux/slice/totalVirtualEventSlice';
+import { addResultTableData, deleteResTabVrtEventData } from '../../redux/slice/resultTableDataSlice';
 import VirtualEventImg from '../../layouts/user/assets/images/virtualEvent.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -110,24 +111,23 @@ const VirtualEvent = (props) => {
         initialValues,
         onSubmit: async (values) => {
             // Image
-            const emissionOne = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne))).toFixed(2)
+            const emissionOne = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : (Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2));
             // Video
-            const emissionTwo = values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo))).toFixed(2)
+            const emissionTwo = values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : (Number(Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2));
 
             // Socail Media Platforms
-            const emissionThree = values?.noOfMinsOne === 0 || values?.noOfPeopleOne === 0 ? 0 : Number((Number(values?.noOfMinsOne) * Number(values?.noOfPeopleOne) * Number(values?.efThree)) / 1000);
-            const emissionFour = values?.noOfMinsTwo === 0 || values?.noOfPeopleTwo === 0 ? 0 : Number((Number(values?.noOfMinsTwo) * Number(values?.noOfPeopleTwo) * Number(values?.efFour)) / 1000);
-            const emissionFive = values?.noOfMinsThree === 0 || values?.noOfPeopleThree === 0 ? 0 : Number((Number(values?.noOfMinsThree) * Number(values?.noOfPeopleThree) * Number(values?.efFive)) / 1000);
-            const emissionSix = values?.noOfMinsFour === 0 || values?.noOfPeopleFour === 0 ? 0 : Number((Number(values?.noOfMinsFour) * Number(values?.noOfPeopleFour) * Number(values?.efSix)) / 1000);
-            const emissionSeven = values?.noOfMinsFive === 0 || values?.noOfPeopleFive === 0 ? 0 : Number((Number(values?.noOfMinsFive) * Number(values?.noOfPeopleFive) * Number(values?.efSeven)) / 1000);
-            const emissionEight = values?.noOfMinsSix === 0 || values?.noOfPeopleSix === 0 ? 0 : Number((Number(values?.noOfMinsSix) * Number(values?.noOfPeopleSix) * Number(values?.efEight)) / 1000);
-            const emissionNine = values?.noOfMinsSeven === 0 || values?.noOfPeopleSeven === 0 ? 0 : Number((Number(values?.noOfMinsSeven) * Number(values?.noOfPeopleSeven) * Number(values?.efNine)) / 1000);
-            const emissionTen = values?.noOfMinsEight === 0 || values?.noOfPeopleEight === 0 ? 0 : Number((Number(values?.noOfMinsEight) * Number(values?.noOfPeopleEight) * Number(values?.efTen)) / 1000);
-            const emissionEleven = values?.noOfMinsNine === 0 || values?.noOfPeopleNine === 0 ? 0 : Number(((Number(values?.noOfMinsNine) * Number(values?.noOfPeopleNine) * Number(values?.efEleven)) / 1000)).toFixed(2);
-            const emissionTwelve = values?.noOfMinsTen === 0 || values?.noOfPeopleTen === 0 ? 0 : Number(((Number(values?.noOfMinsTen) * Number(values?.noOfPeopleTen) * Number(values?.efTwelve)) / 1000)).toFixed(2);
+            const emissionThree = values?.noOfMinsOne === 0 || values?.noOfPeopleOne === 0 ? 0 : (Number(Number(values?.noOfMinsOne) * Number(values?.noOfPeopleOne) * Number(values?.efThree) / 1000).toFixed(2));
+            const emissionFour = values?.noOfMinsTwo === 0 || values?.noOfPeopleTwo === 0 ? 0 : (Number(Number(values?.noOfMinsTwo) * Number(values?.noOfPeopleTwo) * Number(values?.efFour) / 1000).toFixed(2));
+            const emissionFive = values?.noOfMinsThree === 0 || values?.noOfPeopleThree === 0 ? 0 : (Number(Number(values?.noOfMinsThree) * Number(values?.noOfPeopleThree) * Number(values?.efFive) / 1000).toFixed(2));
+            const emissionSix = values?.noOfMinsFour === 0 || values?.noOfPeopleFour === 0 ? 0 : (Number(Number(values?.noOfMinsFour) * Number(values?.noOfPeopleFour) * Number(values?.efSix) / 1000).toFixed(2));
+            const emissionSeven = values?.noOfMinsFive === 0 || values?.noOfPeopleFive === 0 ? 0 : (Number(Number(values?.noOfMinsFive) * Number(values?.noOfPeopleFive) * Number(values?.efSeven) / 1000).toFixed(2));
+            const emissionEight = values?.noOfMinsSix === 0 || values?.noOfPeopleSix === 0 ? 0 : (Number(Number(values?.noOfMinsSix) * Number(values?.noOfPeopleSix) * Number(values?.efEight) / 1000).toFixed(2));
+            const emissionNine = values?.noOfMinsSeven === 0 || values?.noOfPeopleSeven === 0 ? 0 : (Number(Number(values?.noOfMinsSeven) * Number(values?.noOfPeopleSeven) * Number(values?.efNine) / 1000).toFixed(2));
+            const emissionTen = values?.noOfMinsEight === 0 || values?.noOfPeopleEight === 0 ? 0 : (Number(Number(values?.noOfMinsEight) * Number(values?.noOfPeopleEight) * Number(values?.efTen) / 1000).toFixed(2));
+            const emissionEleven = values?.noOfMinsNine === 0 || values?.noOfPeopleNine === 0 ? 0 : (Number(Number(values?.noOfMinsNine) * Number(values?.noOfPeopleNine) * Number(values?.efEleven) / 1000).toFixed(2));
+            const emissionTwelve = values?.noOfMinsTen === 0 || values?.noOfPeopleTen === 0 ? 0 : (Number(Number(values?.noOfMinsTen) * Number(values?.noOfPeopleTen) * Number(values?.efTwelve) / 1000).toFixed(2));
             // Video Conferencing
-            const emissionThirteen = values?.noOfMinsEleven === 0 || values?.noOfPeopleEleven === 0 ? 0 : Number(((Number(values?.noOfMinsEleven) * Number(values?.noOfPeopleEleven) * Number(values?.efThirteen)) / 1000)).toFixed(2);
-
+            const emissionThirteen = values?.noOfMinsEleven === 0 || values?.noOfPeopleEleven === 0 ? 0 : (Number(Number(values?.noOfMinsEleven) * Number(values?.noOfPeopleEleven) * Number(values?.efThirteen) / 1000).toFixed(2));
 
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 
@@ -251,6 +251,119 @@ const VirtualEvent = (props) => {
                 }
             ];
             dispatch(addVirtualEventData({ data }));
+
+            const tableData = [
+                {
+                    subType: "Event Promotion on Social Media",
+                    subTypeData: {
+                        // th: ["Image", "Image Size (in Mb)", "Impressions", "Emissions"],
+                        th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
+                        td: [
+                            {
+                                vtType: "Image",
+                                imgSize: values?.imgSize,
+                                impressionsOne: values?.impressionsOne,
+                                emissions: emissionOne > 0 ? emissionOne : '',
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        // th: ["Video", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                        th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                        td: [
+                            {
+                                vtType: "Video",
+                                videoSize: values?.videoSize,
+                                videoMins: values?.videoMins,
+                                impressionsTwo: values?.impressionsTwo,
+                                emissions: emissionTwo > 0 ? emissionTwo : '',
+                            },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "Live Broadcasting",
+                    subTypeData: {
+                        th: ["", "No of Minutes", "No of People", "Emissions"],
+                        td: [
+                            {
+                                vtType: "Tiktok",
+                                noOfMins: values?.noOfMinsOne,
+                                noOfPeople: values?.noOfPeopleOne,
+                                emissions: emissionThree > 0 ? emissionThree : '',
+                            },
+                            {
+                                vtType: "Reddit",
+                                noOfMins: values?.noOfMinsTwo,
+                                noOfPeople: values?.noOfPeopleTwo,
+                                emissions: emissionFour > 0 ? emissionFour : '',
+                            },
+                            {
+                                vtType: "Pinterest",
+                                noOfMins: values?.noOfMinsThree,
+                                noOfPeople: values?.noOfPeopleThree,
+                                emissions: emissionFive > 0 ? emissionFive : '',
+                            },
+                            {
+                                vtType: "Instagram Live",
+                                noOfMins: values?.noOfMinsFour,
+                                noOfPeople: values?.noOfPeopleFour,
+                                emissions: emissionSix > 0 ? emissionSix : '',
+                            },
+                            {
+                                vtType: "Snapchat",
+                                noOfMins: values?.noOfMinsFive,
+                                noOfPeople: values?.noOfPeopleFive,
+                                emissions: emissionSeven > 0 ? emissionSeven : '',
+                            },
+                            {
+                                vtType: "Facebook Live",
+                                noOfMins: values?.noOfMinsSix,
+                                noOfPeople: values?.noOfPeopleSix,
+                                emissions: emissionEight > 0 ? emissionEight : '',
+                            },
+                            {
+                                vtType: "LinkedIn Live",
+                                noOfMins: values?.noOfMinsSeven,
+                                noOfPeople: values?.noOfPeopleSeven,
+                                emissions: emissionNine > 0 ? emissionNine : '',
+                            },
+                            {
+                                vtType: "Twitter Live",
+                                noOfMins: values?.noOfMinsEight,
+                                noOfPeople: values?.noOfPeopleEight,
+                                emissions: emissionTen > 0 ? emissionTen : '',
+                            },
+                            {
+                                vtType: "Twitch",
+                                noOfMins: values?.noOfMinsNine,
+                                noOfPeople: values?.noOfPeopleNine,
+                                emissions: emissionEleven > 0 ? emissionEleven : '',
+                            },
+                            {
+                                vtType: "Youtube",
+                                noOfMins: values?.noOfMinsTen,
+                                noOfPeople: values?.noOfPeopleTen,
+                                emissions: emissionTwelve > 0 ? emissionTwelve : '',
+                            },
+                            {
+                                vtType: "Video Conferencing",
+                                noOfMins: values?.noOfMinsEleven,
+                                noOfPeople: values?.noOfPeopleEleven,
+                                emissions: emissionThirteen > 0 ? emissionThirteen : '',
+                            },
+                        ]
+                    },
+                    scope: 1
+                },
+            ];
+
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Virtual Event" }));
         },
     });
 
@@ -258,9 +371,8 @@ const VirtualEvent = (props) => {
 
     const handeleDelete = () => {
         dispatch(deleteVirtualEventData());
+        dispatch(deleteResTabVrtEventData());
     };
-
-    console.log("----- formik.values ", formik.values.noOfMinsOne);
 
     useEffect(() => {
         if (allData?.length > 0) {
@@ -323,7 +435,7 @@ const VirtualEvent = (props) => {
             formik.setFieldValue('efTen', allData[9]?.ef);
             formik.setFieldValue('emissionTen', allData[9]?.emission);
 
-            formik.setFieldValue('noOfPeopleNine', allData[10]?.noOfMins);
+            formik.setFieldValue('noOfMinsNine', allData[10]?.noOfMins);
             formik.setFieldValue('noOfPeopleNine', allData[10]?.noOfPeople);
             formik.setFieldValue('efEleven', allData[10]?.ef);
             formik.setFieldValue('emissionEleven', allData[10]?.emission);
@@ -377,7 +489,7 @@ const VirtualEvent = (props) => {
                                     <Icon component={FaImage} sx={{ fontSize: 60, color: 'black' }} />
                                     <Typography variant="h6" sx={{ marginY: 1 }}>Image</Typography>
                                     <TextField size='small' type="number" name={'imgSize'} value={values?.imgSize}
-                                        label="Iamge Size (in Mb)"
+                                        label="Image Size (in Mb)"
                                         variant="outlined"
                                         fullWidth
                                         onChange={(e) => {

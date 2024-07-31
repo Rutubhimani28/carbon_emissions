@@ -8,17 +8,22 @@ import SendMail from './sendMail';
 import { constant } from '../../constant';
 
 const Result = ({ value }) => {
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [suggestion, setSuggestion] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const dispatch = useDispatch();
+
+    const [sc1, setSc1] = useState(0);
+    const [sc2, setSc2] = useState(0);
+    const [sc3, setSc3] = useState(0);
+
     const allVirtualEventData = useSelector((state) => state?.totalVirtualEventDetails)
+    const total = Number(allVirtualEventData?.totalEmission);
 
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
     const resultTableData = useSelector(state => state.resultTableDataDetails);
 
-    const total = Number(allVirtualEventData?.totalEmission);
 
     const chartData = [
         Number(allVirtualEventData?.totalEmission) || 0,
@@ -83,14 +88,99 @@ const Result = ({ value }) => {
     };
 
     useEffect(() => {
+        let sc1Count = 0;
+        let sc2Count = 0;
+        let sc3Count = 0;
+
+        resultTableData?.data?.forEach(page => {
+            page?.tabData?.forEach(flightClass => {
+                const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+
+                    const rowData2 = rowData;
+                    const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
+
+                    if (page?.tabTitle === "Digital Campaign") {
+                        return ((impressions1 && imgSize) || (impressions2 && videoMins && videoSize) || (noOfEmails && attachmentSize)) && emissions;
+                    }
+
+                    return false;
+                });
+
+                if (hasFilledRow) {
+                    if (flightClass?.scope === 1) {
+                        sc1Count += 1;
+                    } else if (flightClass?.scope === 2) {
+                        sc2Count += 1;
+                    } else if (flightClass?.scope === 3) {
+                        sc3Count += 1;
+                    }
+                }
+            });
+        });
+
         chat();
-    }, [value]);
+
+        setSc1(sc1Count);
+        setSc2(sc2Count);
+        setSc3(sc3Count);
+    }, [resultTableData, value]);
 
     return (
         <div>
             <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen />
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
+                    {/* <Box style={{ width: "100%", color: 'white' }}>
+                        {resultTableData?.data?.filter((item) => item.tabTitle === "Virtual Event")?.map((page, pageIndex) => (
+                            <Box key={pageIndex} style={{ margin: "20px" }}>
+                                {page?.tabData.some(flightClass =>
+                                    flightClass?.subTypeData?.td?.some(rowData =>
+                                        rowData.noOfTrips !== "" && rowData.emissions !== ""
+                                    )
+                                ) && (
+                                        <>
+                                            <Typography className='fs-3 text-center mt-1'>{page.tabTitle}</Typography>
+                                            <Box className="d-flex justify-content-around">
+                                                {page?.tabData?.map((flightClass, classIndex) => (
+                                                    <Box key={classIndex} style={{ margin: "10px", width: "45%" }}>
+                                                        {flightClass?.subTypeData?.td?.some(rowData =>
+                                                            rowData.noOfTrips !== "" && rowData.emissions !== ""
+                                                        ) && (
+                                                                <>
+                                                                    <Typography className='fs-5 mb-1'>{flightClass.subType}</Typography>
+                                                                    <table style={{ width: "100%", border: '1px solid white' }}>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                {flightClass?.subTypeData?.th?.map((header, headerIndex) => (
+                                                                                    <th key={headerIndex}>{header}</th>
+                                                                                ))}
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {page.tabTitle === "Virtual Event" &&
+                                                                                flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
+                                                                                    (rowData.imgSize !== "" || rowData.impressionsOne !== "" || rowData.impressionsTwo !== "" || rowData.videoSize !== "" || rowData.videoMins !== "" || rowData.noOfPeople !== "" || rowData.noOfMins !== "") && rowData.emissions !== "" && (
+                                                                                        <tr key={rowIndex}>
+                                                                                            <td>{rowData.vtType}</td>
+                                                                                            <td>{rowData.imgSize || rowData.videoSize || rowData.noOfMins}</td>
+                                                                                            <td>{rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople}</td>
+                                                                                            {(rowData.impressionsTwo) && <td>{rowData.impressionsTwo}</td>}
+                                                                                            <td>{rowData.emissions}</td>
+                                                                                        </tr>
+                                                                                    )
+                                                                                ))}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </>
+                                                            )}
+                                                    </Box>
+                                                ))}
+                                            </Box>
+                                        </>
+                                    )}
+                            </Box>
+                        ))}
+                    </Box> */}
                     <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
                         <h3 className='text-center py-3 fw-bold text-white'>Total Carbon Footprint :</h3>
                         <table>
