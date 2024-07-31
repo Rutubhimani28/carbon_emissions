@@ -130,7 +130,7 @@ const Result = ({ value }) => {
             <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen />
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
-                    <Box style={{ width: "100%", color: 'white' }}>
+                    {/* <Box style={{ width: "100%", color: 'white' }}>
                         {resultTableData?.data?.filter((item) => item.tabTitle === "Virtual Event")?.map((page, pageIndex) => (
                             <Box key={pageIndex} style={{ margin: "20px" }}>
                                 {page?.tabData.some(flightClass =>
@@ -180,7 +180,7 @@ const Result = ({ value }) => {
                                     )}
                             </Box>
                         ))}
-                    </Box>
+                    </Box> */}
                     <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
                         <h3 className='text-center py-3 fw-bold text-white'>Total Carbon Footprint :</h3>
                         <table>
