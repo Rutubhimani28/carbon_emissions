@@ -67,11 +67,14 @@ const SendMail = (props) => {
                 receiver: values?.emails,
                 data: datas,
                 sender: values?.sender,
-                templateName: "virtual_event_grand_total_result_Template",
+                // templateName: "virtual_event_grand_total_result_Template",
+                emailBodyTemplateName: "virtual_event_grand_total_result_Template",
+                attachmentTemplateName: "virtual_event_filled_fields_Template",
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
                 eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
+                resultTableData
             };
 
             const result = await apipost('api/email/add', data)

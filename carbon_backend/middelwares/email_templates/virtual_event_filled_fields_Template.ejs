@@ -34,23 +34,6 @@
             border-collapse: collapse;
             border: 1px solid #ddd;
             margin: 0;
-            page-break-inside: auto;
-        }
-
-        thead {
-            display: table-header-group;
-        }
-
-        tfoot {
-            display: table-footer-group;
-        }
-
-        tbody {
-            display: table-row-group;
-        }
-
-        tr {
-            page-break-inside: avoid;
         }
 
         th,
@@ -76,11 +59,6 @@
             margin-top: 20px;
             margin-bottom: 10px;
         }
-
-        div {
-            page-break-inside: avoid;
-        }
-    </style>
     </style>
 </head>
 
@@ -98,9 +76,9 @@
         <h2>Total Carbon Footprint:</h2>
         <table>
             <tr>
-                <th>Digital Campaign</th>
+                <th>Virtual Event</th>
                 <td>
-                    <%= data.totalDigitalCampaign %> kgCO<sub>2</sub>e
+                    <%= data.totalVirtualEvent %> kgCO<sub>2</sub>e
                 </td>
             </tr>
         </table>
@@ -110,7 +88,7 @@
         <% if (resultTableData && resultTableData.data) { %>
             <% resultTableData.data.forEach(function(page) { %>
                 <% if (page.tabData && page.tabData.length> 0) { %>
-                    <% if (page.tabTitle==="Digital Campaign" ) { %>
+                    <% if (page.tabTitle==="Virtual Event" ) { %>
                         <div class="page">
                             <h3 class="title">
                                 <%= page.tabTitle %>
@@ -138,22 +116,22 @@
                                                         <% flightClass.subTypeData.td.forEach(function(rowData) { %>
                                                             <% if (rowData.emissions !=="" ) { %>
                                                                 <tr>
-                                                                    <% if (page.tabTitle==="Digital Campaign" ) { %>
+                                                                    <% if (page.tabTitle==="Virtual Event" ) { %>
                                                                         <td>
-                                                                            <%= rowData.dgType %>
+                                                                            <%= rowData.vtType %>
                                                                         </td>
                                                                         <td>
                                                                             <%= rowData.imgSize || rowData.videoSize ||
-                                                                                rowData.noOfEmails %>
+                                                                                rowData.noOfMins %>
                                                                         </td>
                                                                         <td>
-                                                                            <%= rowData.impressions1 ||
-                                                                                rowData.videoMins ||
-                                                                                rowData.attachmentSize %>
+                                                                            <%= rowData.videoMins ||
+                                                                                rowData.impressionsOne ||
+                                                                                rowData.noOfPeople %>
                                                                         </td>
-                                                                        <% if (rowData.impressions2) { %>
+                                                                        <% if (rowData.impressionsTwo) { %>
                                                                             <td>
-                                                                                <%= rowData.impressions2 %>
+                                                                                <%= rowData.impressionsTwo %>
                                                                             </td>
                                                                             <% } %>
                                                                                 <td>

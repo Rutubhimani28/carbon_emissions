@@ -249,9 +249,9 @@ const resultTableDataSlice = createSlice({
                     return {
                         tabTitle: "Digital Campaign",
                         tabData: [
+                            { subType: "Event Promotion on Social Media", scope: 3 },
                             { subType: "", scope: 3 },
-                            { subType: "", scope: 3 },
-                            { subType: "", scope: 1 },
+                            { subType: "Live Broadcasting", scope: 1 },
                         ]
                     };
                 }
@@ -263,8 +263,28 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
+        deleteResTabVrtEventData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'Virtual Event') {
+                    return {
+                        tabTitle: "Virtual Event",
+                        tabData: [
+                            { subType: "Event Promotion on Social Media", scope: 3 },
+                            { subType: "", scope: 3 },
+                            { subType: "Live Broadcasting", scope: 1 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
+        }
     },
 });
 
-export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData } = resultTableDataSlice.actions;
+export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData } = resultTableDataSlice.actions;
 export default resultTableDataSlice.reducer;
