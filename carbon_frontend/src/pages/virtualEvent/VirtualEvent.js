@@ -476,10 +476,10 @@ const VirtualEvent = (props) => {
                         <IconDiv><img width={100} src={VirtualEventImg} alt="Virtual Event " className="tabImgWhite" /></IconDiv>
 
                         <Typography variant="h4" className="text-center text-white mt-4">Event Promotion on Social Media</Typography>
-                        <Box style={{ padding: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
+                        <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 280,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -525,7 +525,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -588,7 +588,7 @@ const VirtualEvent = (props) => {
                         <Box style={{ padding: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -644,7 +644,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -687,7 +687,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -730,7 +730,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -775,7 +775,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -819,7 +819,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -864,7 +864,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -908,7 +908,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -952,7 +952,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -996,7 +996,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -1040,7 +1040,7 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
