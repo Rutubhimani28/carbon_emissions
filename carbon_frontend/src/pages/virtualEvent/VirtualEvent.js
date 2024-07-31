@@ -1,10 +1,10 @@
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, ButtonGroup, Card, CardActions, CardContent, Container, Grid, Stack, TextField, Typography, useMediaQuery, Icon } from '@mui/material';
+import { Box, Button, ButtonGroup, Card, CardActions, CardContent, Container, Grid, Stack, TextField, Typography, useMediaQuery, Icon, Modal } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-// Twitch as TwitchIcon,
-// Snapchat as SnapchatIcon,
+import { TiInfoLarge } from 'react-icons/ti';
+import CloseIcon from '@mui/icons-material/Close';
 import {
     Facebook as FacebookIcon,
     Instagram as InstagramIcon,
@@ -21,12 +21,27 @@ import { addResultTableData, deleteResTabVrtEventData } from '../../redux/slice/
 import VirtualEventImg from '../../layouts/user/assets/images/virtualEvent.png';
 import { IconDiv } from '../../components/IconDiv';
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 650,
+    height: 650,
+    bgcolor: 'background.paper',
+    // border: '2px solid #fff',
+    boxShadow: 20,
+    p: 4
+};
+
+
 const VirtualEvent = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalVirtualEventDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalVirtualEventDetails?.totalEmission);
+    const [openInfo, setOpenInfo] = useState(false);
 
     const initialValues = {
         imgSize: '',
@@ -374,6 +389,9 @@ const VirtualEvent = (props) => {
         dispatch(deleteResTabVrtEventData());
     };
 
+    const handleOpenInfo = () => setOpenInfo(true);
+    const handleInfoClose = () => setOpenInfo(false);
+
     useEffect(() => {
         if (allData?.length > 0) {
             formik.setFieldValue('imgSize', allData[0]?.imgSize);
@@ -472,8 +490,11 @@ const VirtualEvent = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-3 custom-inner-bg'>
-                    <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                    {/* <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}> */}
+                    <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv><img width={100} src={VirtualEventImg} alt="Virtual Event " className="tabImgWhite" /></IconDiv>
+
+                        <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
 
                         <Typography variant="h4" className="text-center text-white mt-4">Event Promotion on Social Media</Typography>
                         <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
@@ -1091,6 +1112,154 @@ const VirtualEvent = (props) => {
                         <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
                     </Grid>
                 </Card>
+
+                <Modal
+                    open={openInfo}
+                    onClose={handleInfoClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Box style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Typography variant="h5" style={{ fontStyle: 'italic', textDecoration: 'underline', marginLeft: '-18px' }}>
+                                Note
+                            </Typography>
+                            <CloseIcon onClick={handleInfoClose} style={{ cursor: 'pointer' }} />
+                        </Box>
+                        <Box style={{ overflowY: 'auto', maxHeight: 'calc(100% - 40px)', marginTop: '16px' }}>
+                            <Box>
+                                <Typography variant="h5" style={{ fontStyle: 'italic', textDecoration: 'underline', marginBottom: '10px' }}>
+                                    Platform Comparisons and Recommendations
+                                </Typography>
+                                <ol className="strong-ol">
+                                    <li>
+                                        <strong>YouTube</strong>
+                                        <ul>
+                                            <li>Pros: Widely accessible, high video quality, excellent CDN, robust analytics, investments in renewable energy.</li>
+                                            <li>Cons: High data usage due to high-definition streaming.</li>
+                                            <li>Best For: Large audiences, public events, and educational content.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>LinkedIn</strong>
+                                        <ul>
+                                            <li>Pros: Professional audience, good for B2B events, webinars, and professional networking, improving energy efficiency in data centers.</li>
+                                            <li>Cons: Limited interactive features.</li>
+                                            <li>Best For: Professional events, industry conferences, and networking.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Facebook</strong>
+                                        <ul>
+                                            <li>Pros: Large user base, diverse audience, integrated event features, interactive options, commitment to 100% renewable energy.</li>
+                                            <li>Cons: Potential data privacy concerns.</li>
+                                            <li>Best For: Community events, diverse audience reach, and interactive sessions.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Instagram</strong>
+                                        <ul>
+                                            <li>Pros: Highly visual platform, good for engaging younger audiences, strong live streaming features.</li>
+                                            <li>Cons: Limited in-depth interaction and longer video formats.</li>
+                                            <li>Best For: Visual-centric events, influencer partnerships, and short interactive sessions.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Twitter</strong>
+                                        <ul>
+                                            <li>Pros: Real-time interaction, good for quick updates and engagement, trending topics.</li>
+                                            <li>Cons: Limited video hosting capabilities.</li>
+                                            <li>Best For: Real-time updates, discussions, and live chats.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>TikTok</strong>
+                                        <ul>
+                                            <li>Pros: Popular with younger audiences, highly engaging short video format.</li>
+                                            <li>Cons: Limited long-form content capabilities, higher energy usage due to high engagement.</li>
+                                            <li>Best For: Short, engaging, and viral content.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Snapchat</strong>
+                                        <ul>
+                                            <li>Pros: Strong among younger demographics, good for short, interactive content.</li>
+                                            <li>Cons: Limited reach beyond its core audience.</li>
+                                            <li>Best For: Short, interactive, and visually engaging content.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Reddit</strong>
+                                        <ul>
+                                            <li>Pros: Community-driven, good for niche audiences, and in-depth discussions.</li>
+                                            <li>Cons: Limited live event features.</li>
+                                            <li>Best For: Niche community engagement and in-depth discussions.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Pinterest</strong>
+                                        <ul>
+                                            <li>Pros: Excellent for visual discovery, long-tail engagement, audience interested in DIY, lifestyle, and creative ideas, commitments to carbon neutrality.</li>
+                                            <li>Cons: Limited live streaming features.</li>
+                                            <li>Best For: Visual content, long-term engagement, and discovery-focused events.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Twitch</strong>
+                                        <ul>
+                                            <li>Pros: Real-time interaction, strong community-building tools, high-performance live streaming, various monetization options.</li>
+                                            <li>Cons: Niche audience, higher data usage, steeper learning curve for hosts.</li>
+                                            <li>Best For: Live, interactive events with high engagement levels.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </Box>
+                            <Box>
+                                <Typography variant="h5" style={{ fontStyle: 'italic', textDecoration: 'underline', marginBottom: '10px' }}>
+                                    Recommendations for Lower Emissions and Effective Hosting
+                                </Typography>
+                                <ol className="strong-ol">
+                                    <li>
+                                        <strong>YouTube and LinkedIn:</strong>
+                                        <ul>
+                                            <li>Both platforms are good choices due to their energy-efficient data centers and robust infrastructure. YouTube is ideal for large, public events, while LinkedIn is better for professional and B2B events.</li>
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Facebook</strong>
+                                        <ul>
+                                            <li>Suitable for community events and diverse audience reach. Its commitment to renewable energy makes it an environmentally friendly choice.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Facebook</strong>
+                                        <ul>
+                                            <li>Pros: Large user base, diverse audience, integrated event features, interactive options, commitment to 100% renewable energy.</li>
+                                            <li>Cons: Potential data privacy concerns.</li>
+                                            <li>Best For: Community events, diverse audience reach, and interactive sessions.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Twitch</strong>
+                                        <ul>
+                                            <li>Ideal for highly interactive events despite higher energy usage. Great for gaming, live performances, and community-driven events.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>Pinterest</strong>
+                                        <ul>
+                                            <li>Best for visual-centric and long-term engagement events. Its sustainability initiatives align well with a focus on reducing carbon footprints.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <Typography>
+                                    The choice of platform should balance your event's interactivity needs, audience engagement, and environmental impact. YouTube, LinkedIn, and Facebook offer a good mix of accessibility, features, and sustainability. Twitch and Pinterest can also be effective based on the nature of your event and target audience.
+                                </Typography>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Modal>
             </Container>
         </div>
     );
