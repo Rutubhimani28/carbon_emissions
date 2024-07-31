@@ -13,6 +13,9 @@ import cat6 from '../../assets/images/cat6.png'
 import cat7 from '../../assets/images/cat7.png'
 import cat8 from '../../assets/images/cat8.png'
 import cat9 from '../../assets/images/cat9.png'
+import cat10 from '../../assets/images/public_relations.JPEG'
+import cat11 from '../../assets/images/digital campaigns.JPEG'
+import cat12 from '../../assets/images/virtual_events.JPEG'
 
 const Category = () => {
 
@@ -54,13 +57,28 @@ const Category = () => {
         },
         {
             img: cat9,
-            title: "Digital",
-            subTitle: "Digital marketing, content & communications"
+            title: "Communications",
+            subTitle: "Emails & Newsletters"
         },
         {
             img: cat8,
             title: "Waste",
             subTitle: "Waste generated & disposal method"
+        },
+        {
+            img: cat10,
+            title: "Public Relations",
+            subTitle: "PR/ Joint PR activities & Announcements"
+        },
+        {
+            img: cat11,
+            title: "Digital Campaigns",
+            subTitle: "Digital Marketing and Social Media"
+        },
+        {
+            img: cat12,
+            title: "Virtual Events",
+            subTitle: "Events, workshops & key notes"
         },
     ];
 
