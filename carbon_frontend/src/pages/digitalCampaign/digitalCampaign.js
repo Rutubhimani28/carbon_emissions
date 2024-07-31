@@ -246,7 +246,7 @@ const DigitalCampaign = (props) => {
                         <Box style={{ padding: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -292,7 +292,7 @@ const DigitalCampaign = (props) => {
                             </Card>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
@@ -355,7 +355,7 @@ const DigitalCampaign = (props) => {
                         <Box style={{ padding: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
                             <Card
                                 sx={{
-                                    width: 330,
+                                    width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
                                     marginY: '16px'
