@@ -160,7 +160,7 @@ const Index = () => {
                             <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a>
                             and watch it with your favorite video player!
                         </video> */}
-                        <video autoPlay loop muted playsInline poster={posterImg} src={ceoVideo}>
+                        <video autoPlay loop muted playsInline poster={posterImg} src={ceoVideo} width="100%" height="100%">
                             {/* <source src={ceoVideo} type="video/mp4"></source> */}
                             {/* <source src={ceoVideo2} type="video/webm"></source> */}
                             {/* <source src={ceoVideo3} type="video/mov"></source> */}
