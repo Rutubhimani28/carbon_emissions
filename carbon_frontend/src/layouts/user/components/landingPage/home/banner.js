@@ -7,8 +7,9 @@ import { LoadingButton } from '@mui/lab';
 import banner from '../../../assets/images/home_banner.jpg';
 import posterImg from '../../../assets/images/Still Image for CEO Video.png';
 import bannerVideo from '../../../assets/images/Home2.mp4'
-// import ceoVideo from '../../../assets/images/CEO Video-Updates.mp4';
-import ceoVideo from '../../../assets/images/Ceo Video-Updates 2.mp4';
+import ceoVideo from '../../../assets/images/CEO Video-Updates.mp4';
+// import ceoVideo2 from '../../../assets/images/CEO Video-Updates.webm';
+import ceoVideo3 from '../../../assets/images/CEO Video-Updates3.mov';
 import tailored1 from '../../../assets/images/tailored1.png';
 import tailored2 from '../../../assets/images/tailored2.png';
 import tailored3 from '../../../assets/images/tailored3.png';
@@ -159,11 +160,10 @@ const Index = () => {
                             <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a>
                             and watch it with your favorite video player!
                         </video> */}
-                        <video loop autoPlay muted controls="true" width='100%' height='100%' src={ceoVideo} type='video/mp4' playsInline poster={posterImg}>
-                            <track kind="captions" src="captions.vtt" label="English" />
-                            Sorry, your browser doesn't support embedded videos, but don't worry, you can
-                            <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a>
-                            and watch it with your favorite video player!
+                        <video autoplay loop muted playsinline poster={posterImg} src={ceoVideo}>
+                            <source src={ceoVideo} type="video/mp4"></source>
+                            {/* <source src={ceoVideo2} type="video/webm"></source> */}
+                            <source src={ceoVideo3} type="video/mov"></source>
                         </video>
                     </div>
                 </Grid>
