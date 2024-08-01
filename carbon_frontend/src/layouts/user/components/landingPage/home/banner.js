@@ -142,7 +142,7 @@ const Index = () => {
                 <Grid className='fs-5' item xs={12} sm={2} md={2} /> */}
                 <Grid className='fs-5 d-flex justify-content-center wow animate__animated animate__fadeInLeft animate__slow' item sm={8} md={8}>
                     <div className='video-responsive' style={{ position: 'relative', paddingTop: "42px" }}>
-                        <video
+                        {/* <video
                             controls
                             // src="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4"
                             src={ceoVideo}
@@ -154,6 +154,12 @@ const Index = () => {
                             autoPlay
                             muted
                         >
+                            <track kind="captions" src="captions.vtt" label="English" />
+                            Sorry, your browser doesn't support embedded videos, but don't worry, you can
+                            <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a>
+                            and watch it with your favorite video player!
+                        </video> */}
+                        <video loop autoPlay muted controls="true" width='100%' height='100%' src={ceoVideo} type='video/mp4' playsInline poster={posterImg}>
                             <track kind="captions" src="captions.vtt" label="English" />
                             Sorry, your browser doesn't support embedded videos, but don't worry, you can
                             <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a>
