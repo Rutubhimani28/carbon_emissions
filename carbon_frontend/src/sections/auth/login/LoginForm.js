@@ -35,6 +35,9 @@ export default function LoginForm() {
     const result = await apipost('api/auth/login', data)
 
     if (result && result.status === 200) {
+      if (!result?.data?.user) {         // if User not verified
+        return;
+      }
       sessionStorage.setItem('user', JSON?.stringify(result?.data?.user))
       sessionStorage.setItem('user_id', result?.data?.user?._id)
       sessionStorage.setItem('userRole', result?.data?.user?.role)
