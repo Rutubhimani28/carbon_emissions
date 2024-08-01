@@ -118,7 +118,7 @@ const Result = ({ value }) => {
             });
         });
 
-        chat();
+        // chat();
 
         setSc1(sc1Count);
         setSc2(sc2Count);
