@@ -7,7 +7,8 @@ import { LoadingButton } from '@mui/lab';
 import banner from '../../../assets/images/home_banner.jpg';
 import posterImg from '../../../assets/images/Still Image for CEO Video.png';
 import bannerVideo from '../../../assets/images/Home2.mp4'
-import ceoVideo from '../../../assets/images/CEO Video-Updates.mp4';
+// import ceoVideo from '../../../assets/images/CEO Video-Updates.mp4';
+import ceoVideo from '../../../assets/images/Ceo Video-Updates 2.mp4';
 import tailored1 from '../../../assets/images/tailored1.png';
 import tailored2 from '../../../assets/images/tailored2.png';
 import tailored3 from '../../../assets/images/tailored3.png';
