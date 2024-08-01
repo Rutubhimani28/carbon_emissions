@@ -150,6 +150,9 @@ const Index = () => {
                             width="100%"
                             height="100%"
                             loop
+                            playsinline
+                            autoPlay
+                            muted
                         >
                             <track kind="captions" src="captions.vtt" label="English" />
                             Sorry, your browser doesn't support embedded videos, but don't worry, you can
