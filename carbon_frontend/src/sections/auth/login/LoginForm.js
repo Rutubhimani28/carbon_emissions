@@ -36,6 +36,7 @@ export default function LoginForm() {
 
     if (result && result.status === 200) {
       if (!result?.data?.user) {         // if User not verified
+        setIsLogin(false);
         return;
       }
       sessionStorage.setItem('user', JSON?.stringify(result?.data?.user))
