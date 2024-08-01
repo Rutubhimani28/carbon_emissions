@@ -150,7 +150,7 @@ const Index = () => {
                             width="100%"
                             height="100%"
                             loop
-                            playsinline
+                            playsInline
                             autoPlay
                             muted
                         >
