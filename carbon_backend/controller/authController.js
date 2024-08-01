@@ -56,7 +56,8 @@ const register = async (req, res) => {
             receiver: loginId,            // altCnctPersonBusEmail
             subject: 'Email Verification',
             mailVerifiLink: `${process.env.BACKEND_LIVE}api/auth/verifyEmail/${verificationToken}`,
-            templateName: 'register_email_verification_Template',
+            // templateName: 'register_email_verification_Template',
+            emailBodyTemplateName: 'register_email_verification_Template',
         };
 
         console.log("----- register sendMailPayload ----- ", sendMailPayload);
@@ -122,7 +123,8 @@ const login = async (req, res) => {
                 receiver: user?.loginId,            // altCnctPersonBusEmail
                 subject: 'Email Verification',
                 mailVerifiLink: `${process.env.BACKEND_LIVE}api/auth/verifyEmail/${verificationToken}`,
-                templateName: 'register_email_verification_Template',
+                // templateName: 'register_email_verification_Template',
+                emailBodyTemplateName: 'register_email_verification_Template',
             };
 
             console.log("----- login sendMailPayload ----- ", sendMailPayload);
@@ -157,7 +159,8 @@ const forgotPassword = async (req, res) => {
                 subject: 'Reset Password | Sirat.earth',
                 // resetPswdLink: `${process.env.FRONTEND_LIVE}/resetPassword?id=${user?._id}&token=${resetPswdToken}`,
                 resetPswdLink: `${process.env.FRONTEND_LIVE}reset-password?id=${user?._id}&token=${resetPswdToken}`,                  // add env variable
-                templateName: 'forgot_password_Template',
+                // templateName: 'forgot_password_Template',
+                emailBodyTemplateName: 'forgot_password_Template',
             };
 
             console.log("----- Forgot pswd sendMailPayload ----- ", sendMailPayload);
