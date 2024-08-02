@@ -108,7 +108,8 @@ const Index = () => {
 
                 <Grid className='fs-5 d-flex justify-content-center wow animate__animated animate__fadeInLeft animate__slow' item sm={8} md={8}>
                     <div className='video-responsive' style={{ position: 'relative', paddingTop: "42px" }}>
-                        <video loop muted playsInline controls poster={posterImg} width="100%" height="100%">
+                        {/* <video loop muted playsInline controls poster={posterImg} width="100%" height="100%"> */}
+                        <video loop muted controls poster={posterImg} width="100%" height="100%" style={{ objectFit: 'cover' }}>
                             <source src={appCodeName === "Safari" ? ceoVideo2 : ceoVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} />
                             <p>Sorry, your browser doesn't support embedded videos, but don't worry, you can <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a> and watch it with your favorite video player!</p>
                             <track kind="captions" src="captions.vtt" label="English" default />
