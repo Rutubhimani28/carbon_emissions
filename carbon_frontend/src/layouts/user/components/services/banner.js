@@ -23,7 +23,7 @@ const Banner = () => {
                     preload
                     ref={videoRef}
                     loop
-                    // playsInline
+                    playsInline
                     style={{ objectFit: 'fill', height: '75vh' }}
                 >
                     <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} width={"100%"} />
