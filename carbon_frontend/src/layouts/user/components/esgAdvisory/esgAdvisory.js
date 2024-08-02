@@ -81,7 +81,7 @@ const EsgAdvisory = () => {
                     playsInline
                     style={{ objectFit: 'fill', height: '75vh' }}
                 >
-                    <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} />
+                    <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} width={"100%"} />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
@@ -93,7 +93,7 @@ const EsgAdvisory = () => {
                     <p className='pb-4 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5' style={{ textAlign: 'justify' }}>We provide NetZero Consulting to develop sustainable business strategies for industries. Our objective is to foster collaboration and support within these industries to collectively meet climate goals. By adopting sustainable measures, industries can reduce their operational costs while creating added value and acting responsibly. With NetZero Consulting you can improve efficiency, control costs, and achieve your sustainability goals.</p>
                 </div>
                 <div>
-                   <img src={Services} alt="services" className='pb-5 pb-5 wow animate__animated animate__fadeInUp animate__slow' />
+                    <img src={Services} alt="services" className='pb-5 pb-5 wow animate__animated animate__fadeInUp animate__slow' />
                 </div>
                 <div>
                     <Typography variant='h6' className=' fs-1 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-center' >Industries</Typography>
