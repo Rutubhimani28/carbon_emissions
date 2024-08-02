@@ -86,7 +86,7 @@ const Index = () => {
                     preload
                     ref={videoRef}
                     muted
-                    playsInline
+                // playsInline
                 // controls
                 >
                     <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} />
