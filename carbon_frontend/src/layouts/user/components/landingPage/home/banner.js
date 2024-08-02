@@ -18,6 +18,9 @@ import { apipost } from '../../../../../service/api';
 
 const Index = () => {
 
+    console.log("------  isSafari ", navigator.userAgent);
+    console.log("------  isSafari appCodeName ", navigator?.appCodeName);
+
     const [openCredit, setOpenCredit] = useState(false);
     const [isLoading, setLoading] = React.useState(false);
     const videoRef = useRef();
@@ -160,13 +163,19 @@ const Index = () => {
                             <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a>
                             and watch it with your favorite video player!
                         </video> */}
-                        <video autoPlay loop muted playsInline poster={posterImg} src={ceoVideo} width="100%" height="100%">
-                            {/* <source src={ceoVideo} type="video/mp4"></source> */}
-                            {/* <source src={ceoVideo2} type="video/webm"></source> */}
-                            {/* <source src={ceoVideo3} type="video/mov"></source> */}
-                            <source src={ceoVideo} type="video/mp4" />
-                            <source src={ceoVideo3} type="video/mov" />
-                        </video>
+                        {/* <video autoPlay loop muted playsInline poster={posterImg} src={ceoVideo} width="100%" height="100%"> */}
+                        {/* <source src={ceoVideo2} type="video/webm"></source> */}
+                        {navigator.appCodeName === 'Safari' ?
+                            <video autoPlay loop muted playsInline poster={posterImg} width="100%" height="100%">
+                                <source src={ceoVideo3} type="video/mov" />
+                                <p>Your browser does not support the video tag. Please update your browser or use a different one.</p>
+                            </video>
+                            :
+                            <video autoPlay loop muted playsInline poster={posterImg} width="100%" height="100%">
+                                <source src={ceoVideo} type="video/mp4" />
+                                <p>Your browser does not support the video tag. Please update your browser or use a different one.</p>
+                            </video>
+                        }
                     </div>
                 </Grid>
                 <Grid className='fs-5' item xs={12} sm={2} md={2} />
