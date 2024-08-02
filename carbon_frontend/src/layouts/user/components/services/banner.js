@@ -26,7 +26,7 @@ const Banner = () => {
                     playsInline
                     style={{ objectFit: 'fill', height: '75vh' }}
                 >
-                    <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} />
+                    <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} width={"100%"} />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
