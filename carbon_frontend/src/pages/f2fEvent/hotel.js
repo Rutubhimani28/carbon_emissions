@@ -89,8 +89,8 @@ const Hotel = (props) => {
         efOne: null,
         emissionsOne: '',
         filteredCountries: [],
-        totalMeetingRoomArea: '',
         // Meeting Room1
+        totalMeetingRoomArea: '',
         meetingDuration: '',
         efTwo: 0.00104,
         emissionsTwo: '',
