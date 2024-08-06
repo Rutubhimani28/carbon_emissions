@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const resultTableDataSlice = createSlice({
     name: "totalResultTableData",
     initialState: {
@@ -49,9 +48,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabLocalTransData: (state, action) => ({
-        //     ...state,
-        // }),
         deleteResTabLocalTransData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Local Transportation') {
@@ -72,10 +68,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabFBData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Food & Beverages'),
-        // }),
         deleteResTabFBData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Food & Beverages') {
@@ -97,10 +89,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabLogisticsData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Logistics'),
-        // }),
         deleteResTabLogisticsData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Logistics') {
@@ -119,10 +107,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabProductionData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Event Production'),
-        // }),
         deleteResTabProductionData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Event Production') {
@@ -146,10 +130,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabEnergyData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Energy'),
-        // }),
         deleteResTabEnergyData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Energy') {
@@ -169,10 +149,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTableDigitalContData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Digital Comms'),
-        // }),
         deleteResTableDigitalContData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Digital Comms') {
@@ -192,10 +168,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabWasteData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Waste'),
-        // }),
         deleteResTabWasteData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Waste') {
@@ -215,10 +187,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabHotelData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Hotel'),
-        // }),
         deleteResTabHotelData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Hotel') {
@@ -239,10 +207,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabDgCampaignData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Digital Campaign'),
-        // }),
         deleteResTabDgCampaignData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Digital Campaign') {
@@ -282,9 +246,72 @@ const resultTableDataSlice = createSlice({
                 ...state,
                 data: filteredData,
             };
+        },
+        deleteResTabCommsData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'Comms') {
+                    return {
+                        tabTitle: "Comms",
+                        tabData: [
+                            { subType: "Email Invitations", scope: 1 },
+                            { subType: "PR Assets", scope: 2 },
+                            { subType: "Social Media", scope: 3 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
+        },
+        deleteResTabHospitalityData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'Hospitality') {
+                    return {
+                        tabTitle: "Hospitality",
+                        tabData: [
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
+        },
+        deleteResTabPrAgencyData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'PR Agency') {
+                    return {
+                        tabTitle: "PR Agency",
+                        tabData: [
+                            { subType: "Meeting / Ball Room", scope: 3 },
+                            { subType: "Projector", scope: 3 },
+                            { subType: "Branding", scope: 3 },
+                            { subType: "PR Assets", scope: 3 },
+                            { subType: "Transportation", scope: 3 },
+                            { subType: "Energy", scope: 3 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
         }
     },
 });
 
-export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData } = resultTableDataSlice.actions;
+export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData, deleteResTabCommsData, deleteResTabHospitalityData, deleteResTabPrAgencyData } = resultTableDataSlice.actions;
 export default resultTableDataSlice.reducer;

@@ -13,6 +13,7 @@ import Services from './layouts/user/components/services/index'
 import DigitalContent from './pages/digitalContent';
 import F2fEvent from './pages/f2fEvent';
 import VirtualEvent from './pages/virtualEvent';
+import PrEvent from './pages/prEvent';
 import AirFreight from './pages/airFreight';
 import ContactUs from './pages/contactUs/ContactUs';
 import Events from './pages/events/Events';
@@ -38,6 +39,7 @@ export default function Router() {
         { element: <Navigate to="/dashboard/home" />, index: true },
         { element: <Navigate to="/dashboard/f2f-event" />, index: true },
         { element: <Navigate to="/dashboard/virtual-event" />, index: true },
+        { element: <Navigate to="/dashboard/pr-event" />, index: true },
         { element: <Navigate to="/dashboard/campaign" />, index: true },
         { element: <Navigate to="/dashboard/user" />, index: true },
         // { path: 'app', element: <DashboardAppPage /> },
@@ -56,6 +58,7 @@ export default function Router() {
         { path: 'home', element: <ToolHome /> },
         { path: 'f2f-event', element: <F2fEvent /> },
         { path: 'virtual-event', element: <VirtualEvent /> },
+        { path: 'p2-event', element: <PrEvent /> },
         { path: 'campaign', element: <DigitalCampaign /> },
         { path: 'user', element: <User /> },
         { path: 'terms-conditions', element: <TermConditions /> },
@@ -72,6 +75,7 @@ export default function Router() {
         // { path: 'home', element: <Navigate to="/dashboard/home" />, index: true },
         { path: 'f2f-event', element: <Navigate to="/dashboard/f2f-event" />, index: true },
         { path: 'virtual-event', element: <Navigate to="/dashboard/virtual-event" />, index: true },
+        { path: 'pr-event', element: <Navigate to="/dashboard/pr-event" />, index: true },
         { path: 'campaign', element: <Navigate to="/dashboard/campaign" />, index: true },
         { path: 'user', element: <Navigate to="/dashboard/user" />, index: true },
         { path: 'terms-conditions', element: <Navigate to="/dashboard/terms-conditions" />, index: true },
