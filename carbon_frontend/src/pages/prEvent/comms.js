@@ -6,7 +6,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCommsData, deleteCommsData, scopeChange } from '../../redux/slice/totalCommsSlice';
 import { addResultTableData, deleteResTabCommsData } from '../../redux/slice/resultTableDataSlice';
-import LocalTransportImg from '../../assets/Transportation.png';
+import commsImg from '../../assets/comms.png';
 import { IconDiv } from '../../components/IconDiv';
 
 const Comms = (props) => {
@@ -144,7 +144,7 @@ const Comms = (props) => {
             th: ["", "No of Emails", "Attachment Size (Mb)", "Emissions"],
             td: [
               {
-                dgType: "Emails",
+                cmType: "Emails",
                 noOfEmails: values?.noOfEmails,
                 attachmentSize: values?.attachmentSize,
                 emissions: emissionOne > 0 ? emissionOne : '',
@@ -156,7 +156,7 @@ const Comms = (props) => {
         {
           subType: "PR Assets",
           subTypeData: {
-            th: ["Production File Size", "Final File Size", "Sending To Media(No of Emails)", "Emissions"],
+            th: ["", "Production File Size", "Final File Size", "Sending To Media(No of Emails)", "Emissions"],
             td: [
               {
                 cmType: "Video Byte",
@@ -182,7 +182,7 @@ const Comms = (props) => {
             th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
             td: [
               {
-                vtType: "Image",
+                cmType: "Image",
                 imgSize: values?.imgSize,
                 impressionsOne: values?.impressionsOne,
                 emissions: emissionFour > 0 ? emissionFour : '',
@@ -197,7 +197,7 @@ const Comms = (props) => {
             th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
             td: [
               {
-                vtType: "Video",
+                cmType: "Video",
                 videoSize: values?.videoSize,
                 videoMins: values?.videoMins,
                 impressionsTwo: values?.impressionsTwo,
@@ -292,7 +292,7 @@ const Comms = (props) => {
         <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
           <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
             <IconDiv>
-              <img src={LocalTransportImg} alt="Local Transportation" width={100} className='tabImgWhite' />
+              <img src={commsImg} alt="Local Transportation" width={100} className='tabImgWhite' />
             </IconDiv>
             <Grid
               container

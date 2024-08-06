@@ -6,7 +6,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPrAgencyData, deletePrAgencyData } from '../../redux/slice/totalPrAgencySlice';
 import { addResultTableData, deleteResTabPrAgencyData } from '../../redux/slice/resultTableDataSlice';
-import LocalTransportImg from '../../assets/Transportation.png';
+import LocalTransportImg from '../../assets/pr agency.png';
 import { IconDiv } from '../../components/IconDiv';
 
 const PrAgency = (props) => {
@@ -187,13 +187,13 @@ const PrAgency = (props) => {
                 {
                     subType: "Meeting / Ball Room",
                     subTypeData: {
-                        th: ["Meeting Room", "Meeting Room Area (SqFt)", "Meeting Duration (No of Hrs)", "Emissions"],
+                        th: ["", "Meeting Room Area (SqFt)", "Meeting Duration (No of Hrs)", "Emissions"],
                         td: [
                             {
                                 prType: "Energy Consumption",
                                 meetingRoomArea: values?.meetingRoomArea,
                                 meetingDuration: values?.meetingDuration,
-                                emission: meetingRoomEmission > 0 ? meetingRoomEmission : '',
+                                emissions: meetingRoomEmission > 0 ? meetingRoomEmission : '',
                             },
                         ]
                     },
@@ -207,7 +207,7 @@ const PrAgency = (props) => {
                             {
                                 prType: "Projector",
                                 kgs: values?.noOfHours,
-                                emission: projectorEmission > 0 ? projectorEmission : '',
+                                emissions: projectorEmission > 0 ? projectorEmission : '',
                             },
                         ]
                     },
@@ -216,42 +216,42 @@ const PrAgency = (props) => {
                 {
                     subType: "Branding",
                     subTypeData: {
-                        th: ["Branding", "Weight (Kgs)", "Emissions"],
+                        th: ["", "Weight (Kgs)", "Emissions"],
                         td: [
                             {
                                 prType: "Polethylene HDPE Banner/ Standee*",
                                 kgs: values?.hdpeBanner,
-                                emission: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
+                                emissions: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                             },
                             {
                                 prType: "PVC Banners/ Standee",
                                 kgs: values?.pvcBanners,
-                                emission: pvcBannersEmission > 0 ? pvcBannersEmission : ''
+                                emissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
                             },
                             {
                                 prType: "Cotton Banner/ Standee",
                                 kgs: values?.cottonBanner,
-                                emission: cottonBannerEmission > 0 ? cottonBannerEmission : ''
+                                emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
                             },
                             {
                                 prType: "Giveway Paper bags (200 GSM)- A4 Size",
                                 kgs: values?.paperBagsA4Size,
-                                emission: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
+                                emissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
                             },
                             {
                                 prType: "Giveway Paper bags (200 GSM)- A5 Size",
                                 kgs: values?.paperBagsA5Size,
-                                emission: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
+                                emissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
                             },
                             {
                                 prType: "Giveway Jute bags*- A4 Size",
                                 kgs: values?.juteBagsA4Size,
-                                emission: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
+                                emissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
                             },
                             {
                                 prType: "Giveway Cotton bags- A4 Size",
                                 kgs: values?.cottonBagsA4Size,
-                                emission: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
+                                emissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
                             }
                         ]
                     },
@@ -260,17 +260,17 @@ const PrAgency = (props) => {
                 {
                     subType: "PR Assets",
                     subTypeData: {
-                        th: ["No. of Pages", "Emissions"],
+                        th: ["", "No. of Pages", "Emissions"],
                         td: [
                             {
                                 prType: "Printing a Coloured Brochure/ Page (<130 GSM)",
                                 noOfPages: values?.colouredBrochurePage,
-                                emission: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
+                                emissions: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
                             },
                             {
                                 prType: "A4 Size (75GSM)",
                                 noOfPages: values?.a4Size75Gsm,
-                                emission: a4Size75GsmEmission > 0 ? a4Size75GsmEmission : ''
+                                emissions: a4Size75GsmEmission > 0 ? a4Size75GsmEmission : ''
                             },
                         ]
                     },
@@ -284,22 +284,22 @@ const PrAgency = (props) => {
                             {
                                 prType: "Petrol",
                                 noOfKms: values?.petrolKms,
-                                emission: petrolEmission > 0 ? petrolEmission : ''
+                                emissions: petrolEmission > 0 ? petrolEmission : ''
                             },
                             {
                                 prType: "Diesel",
                                 noOfKms: values?.dieselKms,
-                                emission: dieselEmission > 0 ? dieselEmission : ''
+                                emissions: dieselEmission > 0 ? dieselEmission : ''
                             },
                             {
                                 prType: "Hybrid",
                                 noOfKms: values?.hybridKms,
-                                emission: hybridEmission > 0 ? hybridEmission : ''
+                                emissions: hybridEmission > 0 ? hybridEmission : ''
                             },
                             {
                                 prType: "Electric",
                                 noOfKms: values?.electricKms,
-                                emission: electricEmission > 0 ? electricEmission : ''
+                                emissions: electricEmission > 0 ? electricEmission : ''
                             },
                         ]
                     },
@@ -313,7 +313,7 @@ const PrAgency = (props) => {
                             {
                                 prType: "Electricity",
                                 kwh: values?.electricityKwh,
-                                emission: electricityEmission > 0 ? electricityEmission : ''
+                                emissions: electricityEmission > 0 ? electricityEmission : ''
                             },
                         ]
                     },

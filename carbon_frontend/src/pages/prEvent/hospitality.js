@@ -6,7 +6,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHospitalityData, deleteHospitalityData, scopeChange } from '../../redux/slice/totalHospitalitySlice';
 import { addResultTableData, deleteResTabHospitalityData } from '../../redux/slice/resultTableDataSlice';
-import LocalTransportImg from '../../assets/Transportation.png';
+import hospitalityImg from '../../assets/hospitality.png';
 import { IconDiv } from '../../components/IconDiv';
 
 const Hospitality = (props) => {
@@ -131,7 +131,7 @@ const Hospitality = (props) => {
 
             const tableData = [
                 {
-                    subType: "Lunch",
+                    subType: "",
                     subTypeData: {
                         th: ["Lunch", "No of Pax", "Emissions"],
                         td: [
@@ -160,7 +160,7 @@ const Hospitality = (props) => {
                     scope: 3
                 },
                 {
-                    subType: "Food",
+                    subType: "",
                     subTypeData: {
                         th: ["Food Wate", "kgs", "Emissions"],
                         td: [
@@ -184,7 +184,7 @@ const Hospitality = (props) => {
                     scope: 3
                 },
                 {
-                    subType: "Plastic",
+                    subType: "",
                     subTypeData: {
                         th: ["Plastic Waste", "No. of PET bottles", "Emissions"],
                         td: [
@@ -263,7 +263,7 @@ const Hospitality = (props) => {
                 <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={LocalTransportImg} alt="Local Transportation" width={100} className='tabImgWhite' />
+                            <img src={hospitalityImg} alt="Local Transportation" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
                             container

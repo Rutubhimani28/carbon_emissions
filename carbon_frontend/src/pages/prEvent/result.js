@@ -4,11 +4,9 @@ import ReactApexChart from 'react-apexcharts';
 import { Box, Button, Card, CircularProgress, Container, Grid, Stack, Typography, Accordion, AccordionDetails, AccordionSummary, } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
 import { deleteCommsData } from '../../redux/slice/totalCommsSlice';
 import { deleteHospitalityData } from '../../redux/slice/totalHospitalitySlice';
 import { deletePrAgencyData } from '../../redux/slice/totalPrAgencySlice';
-import { deleteProductionData } from '../../redux/slice/totalProductionSlice';
 import CustomBarChart from './barChart';
 import SendMail from './sendMail';
 import { constant } from '../../constant';
@@ -171,49 +169,44 @@ const Result = ({ value }) => {
                 const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
 
                     const rowData2 = rowData;
-                    const { noOfTrips, emissions, noOfKms, noOfPax, noOfBottles, kgs, area, noOfUnits, kwh, noOfHour, noOfHours, noOfAttendees, bottle, noOfEmails, attachmentSize, fBType, gallons, dgType, hType, country, energyUtilisedKwh, hotelType, geography, roomsOccupied, meetingDuration, totalMeetingRoomArea } = rowData2;
+                    const { noOfEmails, attachmentSize, prFileSize, finalFileSize, sendingToMedia, imgSize, impressionsOne, videoSize, videoMins, impressionsTwo, meetingRoomArea, meetingDuration, kgs, noOfPages, noOfKms, emissions, kwh, noOfPax, bottle } = rowData2;
 
                     if (page?.tabTitle === "Comms") {
-                        return noOfEmails && emissions;
-                    }
-                    if (page?.tabTitle === "Hotel") {
-                        if (hType !== "Hotel Stay") {
-                            // "Meeting Room Energy Consumption"
-                            if (totalMeetingRoomArea && meetingDuration) {
-                                return (totalMeetingRoomArea && meetingDuration) && emissions;
-                            }
-                            return (energyUtilisedKwh) && emissions;
-                        }
-                        return (geography?.label && country?.country && hotelType?.value && roomsOccupied) && emissions;
-                    }
-                    if (page?.tabTitle === "Local Transportation") {
-                        return noOfKms && emissions;
-                    }
-                    if (page?.tabTitle === "Food & Beverages") {
-                        if ((fBType === "Customised Food" && rowData?.emissions) || (fBType === "Customised Beverages" && rowData?.emissions)) {
+                        if (noOfEmails && attachmentSize && emissions) {
                             return true;
                         }
-                        return (noOfPax || noOfBottles) && emissions;
+                        if (prFileSize && finalFileSize && sendingToMedia && emissions) {
+                            return true;
+                        }
+                        if (videoSize && videoMins && impressionsTwo && emissions) {
+                            return true;
+                        }
+                        return (imgSize && impressionsOne) && emissions;
                     }
-                    if (page?.tabTitle === "Logistics") {
-                        return (noOfKms || kgs) && emissions;
+                    if (page?.tabTitle === "PR Agency") {
+                        if (meetingRoomArea && meetingDuration && emissions) {
+                            return true;
+                        }
+                        if (kgs && emissions) {
+                            return true;
+                        }
+                        if (noOfPages && emissions) {
+                            return true;
+                        }
+                        if (noOfKms && emissions) {
+                            return true;
+                        }
+                        return kwh && emissions;
                     }
-                    if (page?.tabTitle === "Event Production") {
-                        return (kgs || area || noOfUnits || kwh || noOfHour) && emissions;
+                    if (page?.tabTitle === "Hospitality") {
+                        if (kgs && emissions) {
+                            return true;
+                        }
+                        if (noOfPax && emissions) {
+                            return true;
+                        }
+                        return bottle && emissions;
                     }
-                    if (page?.tabTitle === "Energy") {
-                        return (kwh || gallons) && emissions;
-                    }
-                    if (page?.tabTitle === "Digital Comms") {
-                        if (dgType !== "Laptops used") {
-                            return (noOfEmails && attachmentSize) && emissions;
-                        };
-                        return (noOfHours && noOfAttendees) && emissions;
-                    }
-                    if (page?.tabTitle === "Waste") {
-                        return (kgs || bottle) && emissions;
-                    }
-
                     return false;
                 });
 
@@ -229,17 +222,16 @@ const Result = ({ value }) => {
             });
         });
 
-        // chat();
+        chat();
 
         setSc1(sc1Count);
         setSc2(sc2Count);
         setSc3(sc3Count);
     }, [resultTableData, value])
 
-    console.log("---- sc1 ", sc1);
-    console.log("---- sc2 ", sc2);
-    console.log("---- sc3 ", sc3);
-
+    console.log("---- PR Event sc1 ", sc1);
+    console.log("---- PR Event sc2 ", sc2);
+    console.log("---- PR Event sc3 ", sc3);
 
     return (
         <div>
@@ -248,7 +240,7 @@ const Result = ({ value }) => {
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
                     {/* <Box style={{ display: "flex", justifyContent: "space-around", width: "100%", color: 'white' }}> */}
-                    <Box style={{ width: "100%", color: 'white' }}>
+                    {/* <Box style={{ width: "100%", color: 'white' }}>
                         {resultTableData?.data?.map((page, pageIndex) => (
                             validTitles.includes(page.tabTitle) && (
                                 <Box key={pageIndex} style={{ margin: "20px" }}>
@@ -276,98 +268,35 @@ const Result = ({ value }) => {
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                {page.tabTitle === "Air Travel" &&
+                                                                                {page.tabTitle === "Comms" &&
                                                                                     flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        rowData.noOfTrips !== "" && rowData.emissions !== "" && (
+                                                                                        rowData.noOfEmails !== "" && rowData.attachmentSize !== "" && rowData.sendingToMedia !== "" && rowData.emissions !== "" && (
                                                                                             <tr key={rowIndex}>
-                                                                                                <td>{rowData.journeyType}</td>
-                                                                                                <td>{rowData.noOfTrips}</td>
+                                                                                                <td>{rowData.cmType}</td>
+                                                                                                <td>{rowData.noOfEmails || rowData.prFileSize || rowData.videoSize || rowData.imgSize}</td>
+                                                                                                <td>{rowData.attachmentSize || rowData.finalFileSize || rowData.videoMins || rowData.impressionsOne}</td>
+                                                                                                {rowData.sendingToMedia || rowData.impressionsTwo && <td>{rowData.attachmentSize || rowData.finalFileSize || rowData.videoMins || rowData.impressionsOne}</td>}
                                                                                                 <td>{rowData.emissions}</td>
                                                                                             </tr>
                                                                                         )
                                                                                     ))}
-                                                                                {page.tabTitle === "Local Transportation" &&
+                                                                                {page.tabTitle === "PR Agency" &&
                                                                                     flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        rowData.noOfKms !== "" && rowData.emissions !== "" && (
+                                                                                        rowData.meetingRoomArea !== "" && rowData.meetingDuration !== "" && rowData.emissions !== "" && (
                                                                                             <tr key={rowIndex}>
-                                                                                                <td>{rowData.journeyType}</td>
-                                                                                                <td>{rowData.noOfKms}</td>
+                                                                                                <td>{rowData.prType}</td>
+                                                                                                <td>{rowData.meetingRoomArea || rowData.kgs || rowData.noOfPages || rowData.kwh || rowData.noOfKms}</td>
+                                                                                                <td>{rowData.meetingDuration}</td>
                                                                                                 <td>{rowData.emissions}</td>
                                                                                             </tr>
                                                                                         )
                                                                                     ))}
-                                                                                {page.tabTitle === "Food & Beverages" &&
+                                                                                {page.tabTitle === "Hospitality" &&
                                                                                     flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        (rowData.noOfPax !== "" || rowData.noOfBottles !== "") && rowData.emissions !== "" && (
+                                                                                        (rowData.kgs !== "" || rowData.noOfPax !== "" || rowData.bottle !== "") && rowData.emissions !== "" && (
                                                                                             <tr key={rowIndex}>
-                                                                                                <td>{rowData.fBType}</td>
-                                                                                                <td>{rowData.noOfPax || rowData.noOfBottles}</td>
-                                                                                                <td>{rowData.emissions}</td>
-                                                                                            </tr>
-                                                                                        )
-                                                                                    ))}
-                                                                                {page.tabTitle === "Logistics" &&
-                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        (rowData.noOfKms !== "" || rowData.kgs !== "") && rowData.emissions !== "" && (
-                                                                                            <tr key={rowIndex}>
-                                                                                                <td>{rowData.frType}</td>
-                                                                                                <td>{rowData.noOfKms}</td>
-                                                                                                <td>{rowData.kgs}</td>
-                                                                                                <td>{rowData.emissions}</td>
-                                                                                            </tr>
-                                                                                        )
-                                                                                    ))}
-                                                                                {page.tabTitle === "Event Production" &&
-                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        (rowData.kgs !== "" || rowData.area !== "" || rowData.noOfUnits !== "" || rowData.kwh !== "" || rowData.noOfHour !== "") && rowData.emissions !== "" && (
-                                                                                            <tr key={rowIndex}>
-                                                                                                <td>{rowData.pType}</td>
-                                                                                                <td>{rowData.kgs || rowData.area || rowData.noOfUnits || rowData.kwh || rowData.noOfHour}</td>
-                                                                                                {rowData.noOfDevice && <td>{rowData.noOfDevice}</td>}
-                                                                                                <td>{rowData.emissions}</td>
-                                                                                            </tr>
-                                                                                        )
-                                                                                    ))}
-                                                                                {page.tabTitle === "Energy" &&
-                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        (rowData.kwh !== "" || rowData.gallons !== "") && rowData.emissions !== "" && (
-                                                                                            <tr key={rowIndex}>
-                                                                                                <td>{rowData.eType}</td>
-                                                                                                <td>{rowData.kwh || rowData.gallons}</td>
-                                                                                                <td>{rowData.emissions}</td>
-                                                                                            </tr>
-                                                                                        )
-                                                                                    ))}
-                                                                                {page.tabTitle === "Digital Comms" &&
-                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        (rowData.noOfEmails !== "" || rowData.attachmentSize !== "" || rowData.noOfHours !== "" || rowData.noOfAttendees !== "") && rowData.emissions !== "" && (
-                                                                                            <tr key={rowIndex}>
-                                                                                                <td>{rowData.dgType}</td>
-                                                                                                <td>{rowData.noOfEmails || rowData.noOfAttendees}</td>
-                                                                                                {rowData.noOfHours || rowData.attachmentSize && <td>{rowData.noOfHours || rowData.attachmentSize}</td>}
-                                                                                                <td>{rowData.emissions}</td>
-                                                                                            </tr>
-                                                                                        )
-                                                                                    ))}
-                                                                                {page.tabTitle === "Waste" &&
-                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        (rowData.kgs !== "" || rowData.bottle !== "") && rowData.emissions !== "" && (
-                                                                                            <tr key={rowIndex}>
-                                                                                                <td>{rowData.wsType}</td>
-                                                                                                <td>{rowData.kgs || rowData.bottle}</td>
-                                                                                                <td>{rowData.emissions}</td>
-                                                                                            </tr>
-                                                                                        )
-                                                                                    ))}
-                                                                                {page.tabTitle === "Hotel" &&
-                                                                                    flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
-                                                                                        (rowData.hType !== "" || rowData.bottle !== "") && rowData.emissions !== "" && (
-                                                                                            <tr key={rowIndex}>
-                                                                                                <td>{rowData.hType}</td>
-                                                                                                <td>{rowData.geography || rowData.totalMeetingRoomArea || rowData.energyUtilisedKwh}</td>
-                                                                                                <td>{rowData.country || rowData.meetingDuration}</td>
-                                                                                                {rowData.hotelType && <td>{rowData.hotelType}</td>}
-                                                                                                {rowData.roomsOccupied && <td>{rowData.roomsOccupied}</td>}
+                                                                                                <td>{rowData.hstType}</td>
+                                                                                                <td>{rowData.kgs || rowData.noOfPax || rowData.bottle}</td>
                                                                                                 <td>{rowData.emissions}</td>
                                                                                             </tr>
                                                                                         )
@@ -384,7 +313,7 @@ const Result = ({ value }) => {
                                 </Box>
                             )
                         ))}
-                    </Box>
+                    </Box> */}
 
                     <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
                         <h3 className='text-center py-3 fw-bold text-white'>Total Carbon Footprint :</h3>
