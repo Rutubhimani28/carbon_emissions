@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const resultTableDataSlice = createSlice({
     name: "totalResultTableData",
     initialState: {
@@ -282,9 +281,72 @@ const resultTableDataSlice = createSlice({
                 ...state,
                 data: filteredData,
             };
+        },
+        deleteResTabCommsData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'Comms') {
+                    return {
+                        tabTitle: "Comms",
+                        tabData: [
+                            { subType: "Email Invitations", scope: 1 },
+                            { subType: "PR Assets", scope: 2 },
+                            { subType: "Social Media", scope: 3 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
+        },
+        deleteResTabHospitalityData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'Hospitality') {
+                    return {
+                        tabTitle: "Hospitality",
+                        tabData: [
+                            { subType: "Lunch", scope: 3 },
+                            { subType: "Food", scope: 3 },
+                            { subType: "Plastic", scope: 3 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
+        },
+        deleteResTabPrAgencyData: (state, action) => {
+            const filteredData = state.data.map(item => {
+                if (item.tabTitle === 'PR Agency') {
+                    return {
+                        tabTitle: "PR Agency",
+                        tabData: [
+                            { subType: "Meeting / Ball Room", scope: 3 },
+                            { subType: "Projector", scope: 3 },
+                            { subType: "Branding", scope: 3 },
+                            { subType: "PR Assets", scope: 3 },
+                            { subType: "Transportation", scope: 3 },
+                            { subType: "Energy", scope: 3 },
+                        ]
+                    };
+                }
+                return item;
+            });
+
+            return {
+                ...state,
+                data: filteredData,
+            };
         }
     },
 });
 
-export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData } = resultTableDataSlice.actions;
+export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData, deleteResTabCommsData, deleteResTabHospitalityData, deleteResTabPrAgencyData } = resultTableDataSlice.actions;
 export default resultTableDataSlice.reducer;

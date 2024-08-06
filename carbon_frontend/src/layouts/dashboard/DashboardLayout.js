@@ -10,6 +10,7 @@ import Nav from './nav';
 import ToolHome from '../../pages/tool';
 import F2fEvent from '../../pages/f2fEvent';
 import VirtualEvent from '../../pages/virtualEvent';
+import PrEvent from '../../pages/prEvent';
 import DigitalCampaign from '../../pages/digitalCampaign';
 import TermConditions from '../user/components/termCondition/termConditions';
 import User from '../../pages/user/User';
@@ -83,6 +84,7 @@ export default function DashboardLayout() {
             <>
               <Route path="/dashboard/f2f-event" element={<F2fEvent />} />
               <Route path="/dashboard/virtual-event" element={<VirtualEvent />} />
+              <Route path="/dashboard/pr-event" element={<PrEvent />} />
               <Route path="/dashboard/campaign" element={<DigitalCampaign />} />
             </>
           }
