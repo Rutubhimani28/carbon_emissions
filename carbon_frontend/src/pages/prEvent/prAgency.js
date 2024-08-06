@@ -377,19 +377,20 @@ const PrAgency = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
-                    <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                    {/* <Box mx={useMediaQuery(theme.breakpoints.up('lg')) } display={'flex'} alignItems={'center'} flexDirection={'column'}> */}
+                    <Box mx={useMediaQuery(theme.breakpoints.up('lg'))} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={LocalTransportImg} alt="Local Transportation" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
-                            container
+                            // container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                         >
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
-                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>Meeting / Ball Room</Typography>
+                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Meeting / Ball Room</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th className='ps-2' />
@@ -432,10 +433,10 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
-                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>Projector</Typography>
+                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Projector</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th className='ps-2' />
@@ -465,10 +466,10 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
-                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>Branding</Typography>
+                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Branding</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th className='ps-2' />
@@ -580,10 +581,10 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
-                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>PR Assets</Typography>
+                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>PR Assets</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th className='ps-2' />
@@ -621,10 +622,10 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
-                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>Transportation</Typography>
+                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Transportation</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th className='ps-2'>Model of Transport</th>
@@ -688,9 +689,9 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
-                                    <div className='table-responsive'>
+                                    <div className='table-responsive my-4'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>Energy</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>

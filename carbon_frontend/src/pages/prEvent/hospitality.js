@@ -16,9 +16,6 @@ const Hospitality = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalHospitalityDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHospitalityDetails?.totalEmission);
-    const scope1 = useSelector((state) => state?.totalHospitalityDetails?.scope1);
-    const scope2 = useSelector((state) => state?.totalHospitalityDetails?.scope2);
-    const scope3 = useSelector((state) => state?.totalHospitalityDetails?.scope3);
 
     // -----------   initialValues
     const initialValues = {
@@ -270,12 +267,12 @@ const Hospitality = (props) => {
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                         >
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive my-3'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Lunch</th>
+                                                <th className='ps-2' width={220}>Lunch</th>
                                                 <th className='ps-3'>No of Pax</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
@@ -320,12 +317,12 @@ const Hospitality = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive my-3'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Food Waste</th>
+                                                <th className='ps-2' width={220}>Food Waste</th>
                                                 <th className='ps-2'>Kgs</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
@@ -376,12 +373,12 @@ const Hospitality = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive my-3'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Plastic Waste</th>
+                                                <th className='ps-2' width={220}>Plastic Waste</th>
                                                 <th className='ps-2'>No. of PET bottles</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>

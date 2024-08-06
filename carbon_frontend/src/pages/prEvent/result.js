@@ -229,10 +229,6 @@ const Result = ({ value }) => {
         setSc3(sc3Count);
     }, [resultTableData, value])
 
-    console.log("---- PR Event sc1 ", sc1);
-    console.log("---- PR Event sc2 ", sc2);
-    console.log("---- PR Event sc3 ", sc3);
-
     return (
         <div>
             <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen />
@@ -240,7 +236,7 @@ const Result = ({ value }) => {
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
                     {/* <Box style={{ display: "flex", justifyContent: "space-around", width: "100%", color: 'white' }}> */}
-                    {/* <Box style={{ width: "100%", color: 'white' }}>
+                    <Box style={{ width: "100%", color: 'white' }}>
                         {resultTableData?.data?.map((page, pageIndex) => (
                             validTitles.includes(page.tabTitle) && (
                                 <Box key={pageIndex} style={{ margin: "20px" }}>
@@ -313,7 +309,7 @@ const Result = ({ value }) => {
                                 </Box>
                             )
                         ))}
-                    </Box> */}
+                    </Box>
 
                     <Box color='white' style={{ padding: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
                         <h3 className='text-center py-3 fw-bold text-white'>Total Carbon Footprint :</h3>

@@ -16,9 +16,6 @@ const Comms = (props) => {
   const dispatch = useDispatch();
   const allData = useSelector((state) => state?.totalCommsDetails?.data[0]?.data);
   const totalEmission = useSelector((state) => state?.totalCommsDetails?.totalEmission);
-  const scope1 = useSelector((state) => state?.totalCommsDetails?.scope1);
-  const scope2 = useSelector((state) => state?.totalCommsDetails?.scope2);
-  const scope3 = useSelector((state) => state?.totalCommsDetails?.scope3);
 
   // -----------   initialValues
   const initialValues = {
@@ -73,7 +70,6 @@ const Comms = (props) => {
 
       const emissionOne = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2);
       const emissionTwo = values?.prFileSizeOne === 0 || values?.finalFileSizeOne === 0 || values?.sendingToMediaOne === 0 ? 0 : Number(Number(values?.prFileSizeOne) * Number(values?.finalFileSizeOne) * Number(values?.sendingToMediaOne) * Number(values?.efTwo)).toFixed(2);
-      console.log("------- emissionTwo ", emissionTwo);
       const emissionThree = values?.prFileSizeTwo === 0 || values?.finalFileSizeTwo === 0 || values?.sendingToMediaTwo === 0 || values?.sendingToMediaTwo === 0 ? 0 : Number((Number(values?.prFileSizeTwo) * Number(values?.finalFileSizeTwo) * Number(values?.sendingToMediaTwo) * Number(values?.efThree))).toFixed(2);
       const emissionFour = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efFour === 0 ? 0 : (Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efFour)).toFixed(2));
       const emissionFive = values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efFive === 0 ? 0 : (Number(Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efFive)).toFixed(2));
@@ -284,8 +280,6 @@ const Comms = (props) => {
     formik.setFieldValue("efFive", Number(values.totalEnergy2) * 0.43);
   }, [values.totalEnergy2]);
 
-  console.log("---- comms formik.values ", formik.values)
-
   return (
     <div>
       <Container maxWidth>
@@ -295,15 +289,15 @@ const Comms = (props) => {
               <img src={commsImg} alt="Local Transportation" width={100} className='tabImgWhite' />
             </IconDiv>
             <Grid
-              container
+              // container
               rowSpacing={3}
               columnSpacing={{ xs: 0, sm: 5, md: 4 }}
             >
 
-              <Grid item xs={12} sm={12} md={12}>
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                 <Box>
                   <div className='table-responsive'>
-                    <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>Email Invitations</Typography>
+                    <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4'>Email Invitations</Typography>
                     <table className='table-custom-inpt-field'>
                       <tr>
                         <th className='ps-2' />
@@ -355,7 +349,7 @@ const Comms = (props) => {
 
               <Grid item xs={12} sm={12} md={12}>
                 <Box>
-                  <div className='table-responsive'>
+                  <div className='table-responsive mt-4'>
                     <table className='table-custom-inpt-field'>
                       <tr>
                         <th className='ps-2' />
@@ -437,10 +431,10 @@ const Comms = (props) => {
                 </Box>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={12}>
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                 <Box>
                   <div className='table-responsive'>
-                    <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>Social Media</Typography>
+                    <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4'>Social Media</Typography>
                     <table className='table-custom-inpt-field'>
                       <tr>
                         <th className='ps-2' />
@@ -480,9 +474,9 @@ const Comms = (props) => {
                 </Box>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={12}>
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                 <Box>
-                  <div className='table-responsive'>
+                  <div className='table-responsive my-4'>
                     <table className='table-custom-inpt-field'>
                       <tr>
                         <th className='ps-2' />

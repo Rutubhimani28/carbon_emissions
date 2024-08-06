@@ -72,7 +72,6 @@ const SendMail = (props) => {
                 receiver: values?.emails,
                 data: datas,
                 sender: values?.sender,
-                // templateName: "event_grand_total_result_Template",
                 emailBodyTemplateName: "pr_event_grand_total_result_Template",
                 attachmentTemplateName: "pr_event_filled_fields_Template",
                 activityName: toolFormData?.activityName,
