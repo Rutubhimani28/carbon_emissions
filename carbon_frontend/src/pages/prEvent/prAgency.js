@@ -459,7 +459,8 @@ const PrAgency = (props) => {
                                                     />
                                                 </td>
                                                 <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" disabled name='projectorEmission' value={values?.projectorEmission} onChange={formik.handleChange} /></td>
+                                                    <TextField size='small' type="number" disabled name='projectorEmission' value={values?.projectorEmission} onChange={formik.handleChange} />
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>
