@@ -13,8 +13,8 @@ import cat6 from '../../assets/images/cat6.png'
 import cat7 from '../../assets/images/cat7.png'
 import cat8 from '../../assets/images/cat8.png'
 import cat9 from '../../assets/images/cat9.png'
-import cat10 from '../../assets/images/public_relations.JPEG'
-import cat11 from '../../assets/images/digital campaigns.JPEG'
+import cat10 from '../../assets/images/PR Event.jpg'
+import cat11 from '../../assets/images/Digital Campaign.jpg'
 import cat12 from '../../assets/images/virtual_events.JPEG'
 
 const Category = () => {

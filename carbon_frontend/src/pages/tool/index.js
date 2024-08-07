@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Button, CircularProgress, Container, FormLabel, Grid, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Container, FormLabel, Grid, Modal, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { TiInfoLarge } from 'react-icons/ti';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { addToolData, clearToolFormData } from '../../redux/slice/toolSlice';
 // import HotelData from '../accomodation/data.json';
+import f2FEvent from "../../layouts/user/assets/images/F2F Event.jpg"
+import virtualEvent from "../../layouts/user/assets/images/Virtual Event.jpg"
+import prEvent from "../../layouts/user/assets/images/PR Event.jpg"
+import digitalCampaign from "../../layouts/user/assets/images/Digital Campaign.jpg"
 
 const style = {
     position: 'absolute',
@@ -29,11 +33,15 @@ const Home = () => {
     const dispatch = useDispatch();
     const toolData = useSelector((state) => state.toolDetails?.data);
 
+    const userSessionData = sessionStorage.getItem('user');
+    const userData = JSON.parse(userSessionData);
+
     const handleOpenInfo = () => setOpenInfo(true);
     const handleInfoClose = () => setOpenInfo(false);
     const initialValues = {
-        name: '',
-        email: '',
+        name: userData?.companyName,
+        email: userData?.loginId,
+        // email: userData?.altCnctPersonBusEmail,
         activityName: '',
         country: '',
         budget: '',
@@ -315,9 +323,27 @@ const Home = () => {
                 </Grid>
             </Box>
             <Box mt={0} textAlign="center">
-                { }
                 <Typography className="mb-2 fs-5">Choose your Marketing activity</Typography>
-                <Button
+                <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
+                    <Box onClick={() => isSubmited && navigate('/dashboard/f2f-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                        <img src={f2FEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">F2F Event</Typography>
+                    </Box>
+                    <Box onClick={() => isSubmited && navigate('/dashboard/virtual-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                        <img src={virtualEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Virtual Event</Typography>
+                    </Box>
+                    <Box onClick={() => isSubmited && navigate('/dashboard/pr-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                        <img src={prEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">PR Event</Typography>
+                    </Box>
+                    <Box onClick={() => isSubmited && navigate('/dashboard/campaign')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                        <img src={digitalCampaign} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Agencies</Typography>
+                    </Box>
+                </Box>
+
+                {/* <Button
                     variant="contained"
                     color="primary"
                     className="fs-3"
@@ -367,7 +393,7 @@ const Home = () => {
                     onClick={() => navigate('/dashboard/campaign')}
                 >
                     Digital Campaign
-                </Button>
+                </Button> */}
             </Box>
 
             <Typography className="fs-5 text-center my-4">
