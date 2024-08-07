@@ -120,7 +120,7 @@ const Home = () => {
     // }, []);
 
     const { values, errors, touched, isValid, dirty } = formik;
-    console.log(userData)
+
     return (
         <Container maxWidth="lg" className="text-white">
             <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
