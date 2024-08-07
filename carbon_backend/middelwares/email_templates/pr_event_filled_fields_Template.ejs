@@ -167,12 +167,17 @@
                                                                                     <%= rowData.cmType %>
                                                                                 </td>
                                                                                 <% } %>
-                                                                                    <td>
+                                                                                    <!-- <td>
                                                                                         <%= rowData.noOfEmails ||
-                                                                                            rowData.prFileSize ||
                                                                                             rowData.videoSize ||
                                                                                             rowData.imgSize %>
-                                                                                    </td>
+                                                                                    </td> -->
+                                                                                    <% if (rowData.noOfEmails || rowData.videoSize || rowData.imgSize) { %>
+                                                                                        <td>
+                                                                                            <%= rowData.noOfEmails || rowData.videoSize || rowData.imgSize %>
+                                                                                        </td>
+                                                                                        <% } %>
+
                                                                                     <td>
                                                                                         <%= rowData.attachmentSize ||
                                                                                             rowData.finalFileSize ||

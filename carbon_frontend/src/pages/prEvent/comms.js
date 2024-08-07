@@ -206,7 +206,8 @@ const Comms = (props) => {
         {
           subType: 'PR Assets',
           subTypeData: {
-            th: ['', 'Production File Size', 'Final File Size', 'Sending To Media(No of Emails)', 'Emissions'],
+            // th: ['', 'Production File Size', 'Final File Size', 'Sending To Media(No of Emails)', 'Emissions'],
+            th: ['', 'File Size (in Mb)', 'Sending to Media (No of Emails)', 'Emissions'],
             td: [
               {
                 cmType: 'Video Byte',
