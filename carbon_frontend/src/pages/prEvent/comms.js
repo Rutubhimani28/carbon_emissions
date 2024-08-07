@@ -379,7 +379,7 @@ const Comms = (props) => {
                         <td className="ps-2" width="100">
                           Emails{' '}
                         </td>
-                        <td className="ps-2 py-1">
+                        <td className="ps-2 py-1 ">
                           <TextField
                             size="small"
                             type="number"
@@ -472,8 +472,8 @@ const Comms = (props) => {
                       <tr>
                         <th className="ps-2" />
                         {/* <th className='ps-3'>Production File Size (in Mb)</th> */}
-                        <th className="ps-3">File Size (in Mb)</th>
-                        <th className="ps-3"> Sending to Media (No of Emails)</th>
+                        <th className="ps-2">File Size (in Mb)</th>
+                        <th className="ps-2" style={{ width: "246px" }}> Sending to Media (No of Emails)</th>
                         <th className="ps-2">Emissions</th>
                       </tr>
                       <tr>
@@ -490,7 +490,7 @@ const Comms = (props) => {
                             }}
                             inputProps={{ style: { color: 'white' } }} />
                         </td> */}
-                        <td className="ps-3 py-1">
+                        <td className="ps-2 py-1">
                           <TextField
                             size="small"
                             type="number"
@@ -513,7 +513,7 @@ const Comms = (props) => {
                             inputProps={{ style: { color: 'white' } }}
                           />
                         </td>
-                        <td className="ps-3 py-1">
+                        <td className="ps-2 py-1">
                           <TextField
                             size="small"
                             type="number"
@@ -559,7 +559,7 @@ const Comms = (props) => {
                             }}
                             inputProps={{ style: { color: 'white' } }} />
                         </td> */}
-                        <td className="ps-3 py-1">
+                        <td className="ps-2 py-1">
                           <TextField
                             size="small"
                             type="number"
@@ -583,7 +583,7 @@ const Comms = (props) => {
                             inputProps={{ style: { color: 'white' } }}
                           />
                         </td>
-                        <td className="ps-3 py-1">
+                        <td className="ps-2 py-1">
                           <TextField
                             size="small"
                             type="number"
@@ -628,17 +628,17 @@ const Comms = (props) => {
                   <div className="table-responsive">
                     <Typography
                       variant="h4"
-                      className="text-white mb-4 d-flex justify-content-center align-items-center my-4"
+                      className="text-white d-flex justify-content-center align-items-center my-4"
                     >
                       Social Media
                     </Typography>
                     <Box
                       style={{
-                        padding: '20px',
                         display: 'flex',
                         justifyContent: 'center',
                         flexWrap: 'wrap',
                         gap: '16px',
+                        marginBottom: "40px"
                       }}
                     >
                       <Card
