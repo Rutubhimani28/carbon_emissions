@@ -181,8 +181,6 @@ const PrAgency = (props) => {
                 }
             ];
 
-            console.log("------ data ", data);
-
             const tableData = [
                 {
                     subType: "Meeting / Ball Room",

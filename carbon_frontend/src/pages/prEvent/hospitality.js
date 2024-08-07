@@ -206,9 +206,6 @@ const Hospitality = (props) => {
                 }
             ];
 
-            console.log("---- data ", data);
-            console.log("---- resultTableData ", tableData);
-
             dispatch(addHospitalityData({ data }));
             dispatch(addResultTableData({ data: tableData, tabTitle: "Hospitality" }));
         },
