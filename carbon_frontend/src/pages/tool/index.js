@@ -51,8 +51,8 @@ const Home = () => {
     };
 
     const validationSchema = yup.object({
-        name: yup.string().required('Name is required'),
-        email: yup.string().email('Invalid Email').required('Business Email is required'),
+        // name: yup.string().required('Name is required'),
+        // email: yup.string().email('Invalid Email').required('Business Email is required'),
         activityName: yup.string().required('Activity Name is required'),
         country: yup.string().required('Country is required'),
         budget: yup.number().required('Budget is required'),
@@ -120,14 +120,15 @@ const Home = () => {
     // }, []);
 
     const { values, errors, touched, isValid, dirty } = formik;
-
+    console.log(userData)
     return (
         <Container maxWidth="lg" className="text-white">
             <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
             <Box textAlign="center" mt={4}>
                 {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
                 <Typography variant="h2" mt={2} className="text">
-                    Welcome to Sirāt's NetZero Platform
+                    {/* Welcome to Sirāt's NetZero Platform */}
+                    {`Welcome ${userData?.altCnctPerson} to Sirāt's NetZero Platform `}
                 </Typography>
                 {/* <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
@@ -154,7 +155,7 @@ const Home = () => {
                         borderRadius={'10px'}
                     >
                         <Grid container spacing={2} py={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} style={{ paddingRight: '24px' }}>
-                            <Grid item xs={12} sm={6}>
+                            {/* <Grid item xs={12} sm={6}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                                     Name <span style={{ color: 'red' }}>*</span>
                                 </FormLabel>
@@ -189,7 +190,7 @@ const Home = () => {
                                     helperText={formik.touched.email && formik.errors.email}
                                     inputProps={{ style: { color: 'white' } }}
                                 />
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12} sm={6}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                                     Activity Name <span style={{ color: 'red' }}>*</span>
@@ -225,29 +226,6 @@ const Home = () => {
                                     helperText={formik.touched.country && formik.errors.country}
                                     inputProps={{ style: { color: 'white' } }}
                                 />
-                                {/* <FormControl fullWidth>
-                                    <Autocomplete
-                                        options={countriesData}
-                                        name="country"
-                                        fullWidth
-                                        getOptionLabel={(item) => item?.label}
-                                        value={formik.values?.country || null}
-                                        onChange={formik.handleChange}
-                                        renderInput={(params) =>
-                                            <TextField {...params}
-                                                size="small"
-                                                name="country"
-                                                placeholder='Select Country'
-                                                error={
-                                                    formik.touched.country &&
-                                                    Boolean(formik.errors.country)
-                                                }
-                                                helperText={
-                                                    formik.touched.country && formik.errors.country
-                                                }
-                                            />}
-                                    />
-                                </FormControl> */}
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
