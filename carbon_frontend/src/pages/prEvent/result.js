@@ -31,9 +31,9 @@ const Result = ({ value }) => {
     const total = Number(allPrAgencyData?.totalEmission) + Number(allHospitalityData?.totalEmission) + Number(allCommsData?.totalEmission);
 
     const chartData = [
+        Number(allCommsData?.totalEmission) || 0,
         Number(allPrAgencyData?.totalEmission) || 0,
         Number(allHospitalityData?.totalEmission) || 0,
-        Number(allCommsData?.totalEmission) || 0,
     ];
 
     const resultData = [
