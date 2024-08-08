@@ -317,7 +317,7 @@ const Home = () => {
                     </Box>
                     <Box onClick={() => isSubmited && navigate('/dashboard/campaign')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
                         <img src={digitalCampaign} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
-                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Agencies</Typography>
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Digital Campaign</Typography>
                     </Box>
                 </Box>
 

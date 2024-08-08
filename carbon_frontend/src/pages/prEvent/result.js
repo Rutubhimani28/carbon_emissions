@@ -126,6 +126,20 @@ const Result = ({ value }) => {
         return suggestions.split('\n').map((line, index) => (
             <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line.replaceAll("kgCO2e", "kgCO<sub>2</sub>e") }} />
         ));
+        // let formattedSuggestions = suggestions.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        // formattedSuggestions = formattedSuggestions.replaceAll("Target Reduction:", "<strong>Target Reduction:</strong>");
+        // formattedSuggestions = formattedSuggestions.replaceAll("Steps:", "<strong>Steps:</strong>");
+        // formattedSuggestions = formattedSuggestions.replaceAll("kgCO2e", "kgCO<sub>2</sub>e");
+        // formattedSuggestions = formattedSuggestions.split('\n').map(line => {
+        //     if (line.startsWith('### ')) {
+        //         return `<strong>${line.slice(4)}</strong>`;
+        //     }
+        //     return line;
+        // }).join('\n');
+
+        // return formattedSuggestions.split('\n').map((line, index) => (
+        //     <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line }} />
+        // ));
     };
 
     const chat = async () => {
