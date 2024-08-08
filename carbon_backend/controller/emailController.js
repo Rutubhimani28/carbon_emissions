@@ -4,7 +4,7 @@ import Email from '../models/email.js';
 const addEmail = async (req, res) => {
     try {
         // const { subject, receiver, sender, data, templateName, activityName, name, totalTonCo2, eveydolarCo2, resultTableData } = req.body;
-        const { subject, receiver, sender, data, emailBodyTemplateName, attachmentTemplateName, activityName, name, totalTonCo2, eveydolarCo2, resultTableData } = req.body;
+        const { subject, receiver, sender, data, emailBodyTemplateName, attachmentTemplateName, attachmentPdfName, activityName, name, totalTonCo2, eveydolarCo2, resultTableData, chatSuggestion} = req.body;
 
         if (!receiver || receiver?.length < 1) {
             return res.status(400).json({ success: false, message: 'Receiver is required' });
@@ -17,11 +17,13 @@ const addEmail = async (req, res) => {
             // templateName: templateName,
             emailBodyTemplateName: emailBodyTemplateName,
             attachmentTemplateName: attachmentTemplateName,
+            attachmentPdfName: attachmentPdfName,
             activityName: activityName,
             name: name,       // client entered name
             eveydolarCo2,
             totalTonCo2,
-            resultTableData
+            resultTableData,
+            chatSuggestion
         };
         await sendMail(sendMailPayload);
 

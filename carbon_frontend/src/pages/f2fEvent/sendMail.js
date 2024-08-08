@@ -21,7 +21,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { apipost } from "../../service/api";
 
 const SendMail = (props) => {
-    const { open, close, setUserAction, datas, setOpen } = props;
+    const { open, close, setUserAction, datas, setOpen, chatSuggestion } = props;
     const [isLoading, setIsLoading] = useState(false);
     const [emails, setEmails] = useState([])
     const [err, setErr] = useState('')
@@ -75,11 +75,13 @@ const SendMail = (props) => {
                 // templateName: "event_grand_total_result_Template",
                 emailBodyTemplateName: "f2f_event_grand_total_result_Template",
                 attachmentTemplateName: "f2f_event_filled_fields_Template",
+                attachmentPdfName: "F2F DB- Product Launch",
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
                 eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
-                resultTableData
+                resultTableData,
+                chatSuggestion
             };
 
             const result = await apipost('api/email/add', data)

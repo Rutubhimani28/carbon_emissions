@@ -467,6 +467,7 @@ const sendMail = async ({
     data,
     emailBodyTemplateName,
     attachmentTemplateName,
+    attachmentPdfName,
     message,
     activityName,
     name,
@@ -474,13 +475,14 @@ const sendMail = async ({
     eveydolarCo2,
     mailVerifiLink,
     resetPswdLink,
-    resultTableData
+    resultTableData,
+    chatSuggestion
 }) => {
     try {
         let mailOptions = {};
         const transporter = nodemailer.createTransport({
             // host: 'smtp.office365.com', 
-            host: 'smtpout.secureserver.net', 
+            host: 'smtpout.secureserver.net',
             port: 587,
             secure: false,
             auth: {
@@ -498,9 +500,11 @@ const sendMail = async ({
                 text: message
             };
         } else {
-            if (attachmentTemplateName && emailBodyTemplateName) {
+            // if (attachmentTemplateName && emailBodyTemplateName) {
+            if (attachmentTemplateName && emailBodyTemplateName && chatSuggestion) {
                 const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
                 const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`);
+
 
                 const [attachmentTemplate, emailBodyTemplate] = await Promise.all([
                     ejs.renderFile(attachmentTemplatePath, {
@@ -527,9 +531,11 @@ const sendMail = async ({
                     })
                 ]);
 
-                const attachmentPdfFilePath = path.join(__dirname, 'carbon_footprint.pdf');
+                const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf');
+                const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
 
                 await createPDF(attachmentTemplate, attachmentPdfFilePath);
+                await createPDF(chatSuggestion, chatPdfFilePath);
 
                 mailOptions = {
                     from: process.env.GMAIL_FROM,
@@ -538,10 +544,15 @@ const sendMail = async ({
                     html: emailBodyTemplate,
                     attachments: [
                         {
-                            filename: 'carbon_footprint.pdf',
+                            filename: attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf',
                             path: attachmentPdfFilePath,
                             contentType: 'application/pdf'
-                        }
+                        },
+                        {
+                            filename: 'carbon_reduction_suggestions.pdf',
+                            path: chatPdfFilePath,
+                            contentType: 'application/pdf'
+                        },
                     ]
                 };
 
@@ -558,7 +569,7 @@ const sendMail = async ({
                     resultTableData
                 });
 
-                const attachmentPdfFilePath = path.join(__dirname, 'carbon_footprint.pdf');
+                const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf');
 
                 await createPDF(attachmentTemplate, attachmentPdfFilePath);
 
@@ -568,7 +579,7 @@ const sendMail = async ({
                     subject: subject,
                     attachments: [
                         {
-                            filename: 'carbon_footprint.pdf',
+                            filename: attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf',
                             path: attachmentPdfFilePath,
                             contentType: 'application/pdf'
                         }

@@ -15,6 +15,7 @@ const Result = ({ value }) => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [suggestion, setSuggestion] = useState('');
+    const [suggestionForPdf, setSuggestionForPdf] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const allCommsData = useSelector((state) => state?.totalCommsDetails);
     const allPrAgencyData = useSelector((state) => state?.totalPrAgencyDetails);
@@ -123,23 +124,31 @@ const Result = ({ value }) => {
     const carbonPerDollar = `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`;
 
     const formatSuggestions = (suggestions) => {
-        return suggestions.split('\n').map((line, index) => (
-            <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line.replaceAll("kgCO2e", "kgCO<sub>2</sub>e") }} />
-        ));
-        // let formattedSuggestions = suggestions.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-        // formattedSuggestions = formattedSuggestions.replaceAll("Target Reduction:", "<strong>Target Reduction:</strong>");
-        // formattedSuggestions = formattedSuggestions.replaceAll("Steps:", "<strong>Steps:</strong>");
-        // formattedSuggestions = formattedSuggestions.replaceAll("kgCO2e", "kgCO<sub>2</sub>e");
-        // formattedSuggestions = formattedSuggestions.split('\n').map(line => {
-        //     if (line.startsWith('### ')) {
-        //         return `<strong>${line.slice(4)}</strong>`;
-        //     }
-        //     return line;
-        // }).join('\n');
-
-        // return formattedSuggestions.split('\n').map((line, index) => (
-        //     <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line }} />
+        // return suggestions.split('\n').map((line, index) => (
+        //     <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line.replaceAll("kgCO2e", "kgCO<sub>2</sub>e") }} />
         // ));
+
+        let formattedSuggestions = suggestions.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        formattedSuggestions = formattedSuggestions.replaceAll("Target Reduction:", "<strong>Target Reduction:</strong>");
+        formattedSuggestions = formattedSuggestions.replaceAll("Steps:", "<strong>Steps:</strong>");
+        formattedSuggestions = formattedSuggestions.replaceAll("kgCO2e", "kgCO<sub>2</sub>e");
+        formattedSuggestions = formattedSuggestions.split('\n').map(line => {
+            if (line.startsWith('### ')) {
+                return `<strong>${line.slice(4)}</strong>`;
+            }
+            return line;
+        }).join('\n');
+
+        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From PR Event: </h3> `;
+
+        formattedSuggestions.split('\n').forEach((line, index) => {
+            pdfData += `${line}<br />`;
+        });
+        setSuggestionForPdf(pdfData);
+
+        return formattedSuggestions.split('\n').map((line, index) => (
+            <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line }} />
+        ));
     };
 
     const chat = async () => {
@@ -247,7 +256,7 @@ const Result = ({ value }) => {
 
     return (
         <div>
-            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen />
+            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen chatSuggestion={suggestionForPdf} />
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
@@ -361,7 +370,7 @@ const Result = ({ value }) => {
                     </Box>
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
-                            <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
+                            <Button variant='contained' disabled={isLoading} onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
                             {/* <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button> */}
                         </Stack>
                     </div>

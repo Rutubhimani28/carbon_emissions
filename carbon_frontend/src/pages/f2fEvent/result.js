@@ -21,6 +21,7 @@ const Result = ({ value }) => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [suggestion, setSuggestion] = useState('');
+    const [suggestionForPdf, setSuggestionForPdf] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails)
     const allFreightData = useSelector((state) => state?.totalAirFreightDetails)
@@ -205,13 +206,6 @@ const Result = ({ value }) => {
         //     <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line.replaceAll("kgCO2e", "kgCO<sub>2</sub>e") }} />
         // ));
 
-        // const s2 = suggestions.replaceAll("Target Reduction:", "<strong>Target Reduction:</strong>");
-        // const s3 = s2.replaceAll("Steps:", "<strong>Steps:</strong>");
-        // const s4 = suggestions.replaceAll("Target Reduction:", "<strong>Target Reduction:</strong>");
-        // return s3.split('\n').map((line, index) => (
-        //     <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line.replaceAll("kgCO2e", "kgCO<sub>2</sub>e") }} />
-        // ));
-
         let formattedSuggestions = suggestions.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
         formattedSuggestions = formattedSuggestions.replaceAll("Target Reduction:", "<strong>Target Reduction:</strong>");
         formattedSuggestions = formattedSuggestions.replaceAll("Steps:", "<strong>Steps:</strong>");
@@ -222,6 +216,13 @@ const Result = ({ value }) => {
             }
             return line;
         }).join('\n');
+
+        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From F2F Event : </h3> `;
+
+        formattedSuggestions.split('\n').forEach((line, index) => {
+            pdfData += `${line}<br />`;
+        });
+        setSuggestionForPdf(pdfData);
 
         return formattedSuggestions.split('\n').map((line, index) => (
             <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line }} />
@@ -348,7 +349,7 @@ const Result = ({ value }) => {
 
     return (
         <div>
-            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen />
+            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen chatSuggestion={suggestionForPdf} />
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
@@ -525,7 +526,7 @@ const Result = ({ value }) => {
                     </Box>
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
-                            <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
+                            <Button variant='contained' disabled={isLoading} onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
                             {/* <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button> */}
                         </Stack>
                     </div>
