@@ -84,6 +84,9 @@ const Index = () => {
     console.log("--- isChrome ", isChrome);
     console.log("--- isSafari ", isSafari);
 
+    const bannerVideo3 = 'https://carbon-emissions-sigma.vercel.app/static/media/Home2.69b541e3251c33325f07.mp4';
+    const bannerVideo4 = 'https://carbon-emissions-sigma.vercel.app/static/media/Home2.be01049ec23c63b9ce2d.mov';
+
     return (
         <div>
             <div style={{ maxHeight: "700px", overflow: 'hidden', position: "relative" }}>
@@ -102,8 +105,10 @@ const Index = () => {
                     {/* <source src={isSafari ? bannerVideo2 : bannerVideo1} type={isSafari ? "video/mov" : "video/mp4"} /> */}
                     {/* <source src={bannerVideo1} type={"video/mp4"} />
                     <source src={bannerVideo2} type={"video/mov"} /> */}
-                    <source src={bannerVideo1} type={"video/mp4"} />
-                    <source src={bannerVideo2} type={"video/quicktime"} />
+                    {/* <source src={bannerVideo1} type={"video/mp4"} />
+                    <source src={bannerVideo2} type={"video/quicktime"} /> */}
+                    <source src={bannerVideo3} type={"video/mp4"} />
+                    <source src={bannerVideo4} type="video/quicktime" />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
