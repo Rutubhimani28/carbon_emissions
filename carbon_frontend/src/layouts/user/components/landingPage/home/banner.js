@@ -90,6 +90,7 @@ const Index = () => {
                 >
                     {/* <source src={"https://sirat.earth/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
                     <source src={"https://sirat.earth/static/media/Home2.be01049ec23c63b9ce2d.mov"} type="video/mov" /> */}
+
                     <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
                     <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.be01049ec23c63b9ce2d.mov"} type="video/mov" />
                     <track kind="captions" src="captions.vtt" label="English" />
