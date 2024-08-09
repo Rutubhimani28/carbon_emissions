@@ -126,9 +126,9 @@ const Home = () => {
             <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
             <Box textAlign="center" mt={4}>
                 {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
-                <Typography variant="h2" mt={2} className="text">
+                <Typography variant='h2' mt={2} className="text fs-1">
                     {/* Welcome to Sirāt's NetZero Platform */}
-                    {`Welcome ${userData?.altCnctPerson} to Sirāt's NetZero Platform `}
+                    {`Welcome ${userData?.cnctPerson} to Sirāt's NetZero Platform `}
                 </Typography>
                 {/* <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.

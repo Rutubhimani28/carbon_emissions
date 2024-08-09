@@ -48,10 +48,7 @@ const edit = async (req, res) => {
             if (userPrevData.logo) {
                 const parts = userPrevData.logo.split('/');
                 const publicId = parts[parts.length - 1].split('.')[0]; // Extract public ID from URL
-                console.log("---- parts ", parts);
-                console.log("---- publicId ", publicId);
                 const deleteRes = await cloudinary.uploader.destroy(`carbon_emission/${publicId}`); // Delete previous image from Cloudinary
-                console.log("---- deleteRes ", deleteRes);
             }
 
             // Set new logo url
