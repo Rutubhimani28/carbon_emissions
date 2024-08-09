@@ -21,6 +21,10 @@ const Index = () => {
     const videoRef = useRef();
     const appCodeName = navigator?.appCodeName;
 
+    const userAgent = navigator.userAgent;
+    const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
+    const isChrome = /Chrome/.test(userAgent) && /Google Inc/.test(navigator.vendor);
+
     const initialValues = {
         cName: "",
         name: "",
@@ -75,8 +79,10 @@ const Index = () => {
         videoRef.current.playbackRate = 0.5;
     }, [])
 
-    console.log("--- appCodeName ", appCodeName)
-    console.log("--- appCodeName ", typeof appCodeName)
+    console.log("--- appCodeName ", appCodeName);
+    console.log("--- appCodeName ", typeof appCodeName);
+    console.log("--- isChrome ", isChrome);
+    console.log("--- isSafari ", isSafari);
 
     return (
         <div>
@@ -92,7 +98,8 @@ const Index = () => {
                     playsInline
                 // controls
                 >
-                    <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} />
+                    {/* <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} /> */}
+                    <source src={isSafari ? bannerVideo2 : bannerVideo1} type={isSafari ? "video/mov" : "video/mp4"} />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
