@@ -81,10 +81,10 @@ const Index = () => {
                     width="100%"
                     height="100%"
                     autoPlay
-                    loop
+                    muted
                     preload
                     ref={videoRef}
-                    muted
+                    loop
                     playsInline
                 // controls
                 >
