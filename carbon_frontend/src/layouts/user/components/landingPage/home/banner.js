@@ -100,8 +100,10 @@ const Index = () => {
                 >
                     {/* <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} /> */}
                     {/* <source src={isSafari ? bannerVideo2 : bannerVideo1} type={isSafari ? "video/mov" : "video/mp4"} /> */}
+                    {/* <source src={bannerVideo1} type={"video/mp4"} />
+                    <source src={bannerVideo2} type={"video/mov"} /> */}
                     <source src={bannerVideo1} type={"video/mp4"} />
-                    <source src={bannerVideo2} type={"video/mov"} />
+                    <source src={bannerVideo2} type={"video/quicktime"} />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
