@@ -75,6 +75,9 @@ const Index = () => {
         videoRef.current.playbackRate = 0.5;
     }, [])
 
+    console.log("--- appCodeName ", appCodeName)
+    console.log("--- appCodeName ", typeof appCodeName)
+
     return (
         <div>
             <div style={{ maxHeight: "700px", overflow: 'hidden', position: "relative" }}>
@@ -86,7 +89,7 @@ const Index = () => {
                     preload
                     ref={videoRef}
                     muted
-                playsInline
+                    playsInline
                 // controls
                 >
                     <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} />
