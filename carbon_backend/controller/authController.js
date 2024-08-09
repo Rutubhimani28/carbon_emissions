@@ -60,7 +60,6 @@ const register = async (req, res) => {
             emailBodyTemplateName: 'register_email_verification_Template',
         };
 
-        console.log("----- register sendMailPayload ----- ", sendMailPayload);
         await sendMail(sendMailPayload);
 
         // res.status(201).json({ message: 'User created successfully' });
@@ -127,7 +126,6 @@ const login = async (req, res) => {
                 emailBodyTemplateName: 'register_email_verification_Template',
             };
 
-            console.log("----- login sendMailPayload ----- ", sendMailPayload);
             await sendMail(sendMailPayload);
             // return res.status(200).json({ success: true, message: 'Please check your email to verify your email address' });
             return res.status(200).json({ success: true, message: 'Verification email sent. Plz verify your email to login' });
@@ -163,7 +161,6 @@ const forgotPassword = async (req, res) => {
                 emailBodyTemplateName: 'forgot_password_Template',
             };
 
-            console.log("----- Forgot pswd sendMailPayload ----- ", sendMailPayload);
             await sendMail(sendMailPayload);
 
             return res.status(200).json({ message: 'Password reset email sent. Please check your email.' });
@@ -185,7 +182,7 @@ const resetForgotPassword = async (req, res) => {
         // Verify if the token is valid and find the user
         jwt.verify(token, process.env.SECRET_KEY, async function (err, decoded) {         // change secret key
             if (err) {
-                console.log("Reset Password Token Verification Error:", err);
+                console.log("---- Reset Password Token Verification Error:", err);
                 return res.status(400).json({ message: 'Invalid or expired token' });
             }
 

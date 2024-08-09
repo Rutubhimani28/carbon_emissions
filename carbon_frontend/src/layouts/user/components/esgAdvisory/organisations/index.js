@@ -4,7 +4,6 @@ import Footer from '../../footer/footer'
 import Organisations from './organisations';
 
 const Index = () => {
-    console.log("esdrftgyhu");
 
     return (
         <div>

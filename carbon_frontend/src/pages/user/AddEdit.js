@@ -219,8 +219,6 @@ const Add = (props) => {
     },
   });
 
-  console.log("------ formik.errors ", formik.errors);
-
   useEffect(() => {
     if (selectedUser) {
       setInitialValues(prevData => ({

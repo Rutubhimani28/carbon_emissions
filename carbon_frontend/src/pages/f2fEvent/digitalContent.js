@@ -170,8 +170,6 @@ const DigitalContent = (props) => {
         dispatch(deleteResTableDigitalContData());
     };
 
-    console.log("----- digitalContent formik.values ", formik.values);
-
     return (
         <div>
             <Container maxWidth>
