@@ -39,7 +39,7 @@ const Home = () => {
     const handleOpenInfo = () => setOpenInfo(true);
     const handleInfoClose = () => setOpenInfo(false);
     const initialValues = {
-        name: userData?.companyName,
+        name: userData?.cnctPerson,
         email: userData?.loginId,
         // email: userData?.altCnctPersonBusEmail,
         activityName: '',
