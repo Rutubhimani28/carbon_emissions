@@ -29,8 +29,9 @@ app.set('views', 'middelwares/email_templates/');
 
 //API Routes
 app.use('/api', serverRoute);
-// app.use("/file", express.static('uploads/'));
 app.use("/file", express.static('uploads/images/'));
+// app.use("/file", express.static('uploads/'));
+app.use("/videos", express.static('uploads/videos/'));
 app.use("/logo", express.static('middelwares/email_templates/'));
 
 app.get('/', async (req, res) => {
