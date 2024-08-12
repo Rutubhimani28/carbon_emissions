@@ -50,7 +50,8 @@ const Result = ({ value }) => {
     const sentenceParts = [];
     const liveBroadcastParts = [];
     // const wantInResult = 'We are calculating carbon emissions. based on data we have given generate a report on - What are the top three measures to reduce this footprint by more than 70 %, and how do the original and reduced footprints compare percentagewise ? And which social media is preferable for me based on saving the carbon footprint ?';
-    const wantInResult = 'What are the top three measures to reduce this footprint by more than 70 %, and how do the original and reduced footprints compare percentagewise ? And which social media is preferable for me based on saving the carbon footprint ?';
+    // const wantInResult = 'What are the top three measures to reduce this footprint by more than 70 %, and how do the original and reduced footprints compare percentagewise ? And which social media is preferable for me based on saving the carbon footprint ?';
+    const wantInResult = `What are the top three ways to reduce my Virtual Event’s carbon footprint by over 50%, and how do the original and reduced footprints compare? Which social media platform saves the most carbon, and how much cost reduction can I expect, knowing it's not directly proportional to the carbon savings?`;
 
     const imgSize = allVirtualEventData?.data?.[0]?.data?.[0]?.imgSize || 0;
     const videoSize = allVirtualEventData?.data?.[0]?.data?.[1]?.videoSize || 0;
@@ -113,7 +114,7 @@ const Result = ({ value }) => {
         }
 
         const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my virtual event of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
-        const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} \n\n${wantInResult}`;
+        const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} ${carbonPerDollar} \n\n${wantInResult}`;
         setContent(finalSentence);
     };
 
