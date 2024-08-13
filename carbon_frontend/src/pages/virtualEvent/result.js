@@ -52,7 +52,7 @@ const Result = ({ value }) => {
     // const wantInResult = 'We are calculating carbon emissions. based on data we have given generate a report on - What are the top three measures to reduce this footprint by more than 70 %, and how do the original and reduced footprints compare percentagewise ? And which social media is preferable for me based on saving the carbon footprint ?';
     // const wantInResult = 'What are the top three measures to reduce this footprint by more than 70 %, and how do the original and reduced footprints compare percentagewise ? And which social media is preferable for me based on saving the carbon footprint ?';
     // const wantInResult = `What are the top three ways to reduce my Virtual Event’s carbon footprint by over 50%, and how do the original and reduced footprints compare? Which social media platform saves the most carbon, and how much cost reduction can I expect, knowing it's not directly proportional to the carbon savings?`;
-    const wantInResult = `What are the top three ways to reduce my Virtual Event's carbon footprint by over 50%? How do the original and reduced footprints compare? Which social media platform saves the most carbon, and how can adopting sustainable measures lead to a 10-20% cost reduction?`;
+    const wantInResult = `What are the top three ways to reduce my Virtual Event’s carbon footprint by over 50%? How do the original and reduced footprints compare? Which social media platform saves the most carbon, and how can adopting sustainable measures lead to a 10-20% cost reduction?`;
 
     const imgSize = allVirtualEventData?.data?.[0]?.data?.[0]?.imgSize || 0;
     const videoSize = allVirtualEventData?.data?.[0]?.data?.[1]?.videoSize || 0;
