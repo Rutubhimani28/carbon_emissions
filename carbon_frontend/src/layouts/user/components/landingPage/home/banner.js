@@ -115,8 +115,10 @@ const Index = () => {
                         <video loop muted controls playsInline poster={posterImg} width="100%" height="100%" style={{ objectFit: 'cover' }}>
                             {/* <source src={"https://sirat.earth/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
                             <source src={"https://sirat.earth/static/media/CEO Video-Updates3.b10a4ac41f4b0d1d500d.mov"} type={"video/mov"} /> */}
-                            <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
-                            <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates3.b10a4ac41f4b0d1d500d.mov"} type={"video/mov"} />
+                            {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
+                            <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates3.b10a4ac41f4b0d1d500d.mov"} type={"video/mov"} />  */}
+                            <source src={"https://sirat.earth:8000/videos/CEO Video-Updates.mp4"} type={"video/mp4"} />
+                            <source src={"https://sirat.earth:8000/videos/CEO Video-Updates3.mov"} type={"video/mov"} />
                             <p>Sorry, your browser doesn't support embedded videos, but don't worry, you can <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a> and watch it with your favorite video player!</p>
                             <track kind="captions" src="captions.vtt" label="English" default />
                         </video>
