@@ -27,8 +27,10 @@ const Banner = () => {
                 >
                     {/* <source src={"https://sirat.earth/static/media/NetZero Platform 3.be3922de36ac58785f94.mp4"} type={"video/mp4"} width={"100%"} />
                     <source src={"https://sirat.earth/static/media/NetZero Platform 3.6d1780745e82c9e0401c.mov"} type={"video/mov"} width={"100%"} /> */}
-                    <source src={"https://carbon-emissions-sigma.vercel.app/static/media/NetZero Platform 3.be3922de36ac58785f94.mp4"} type={"video/mp4"} width={"100%"} />
-                    <source src={"https://carbon-emissions-sigma.vercel.app/static/media/NetZero Platform 3.6d1780745e82c9e0401c.mov"} type={"video/mov"} width={"100%"} />
+                    {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/NetZero Platform 3.be3922de36ac58785f94.mp4"} type={"video/mp4"} width={"100%"} />
+                    <source src={"https://carbon-emissions-sigma.vercel.app/static/media/NetZero Platform 3.6d1780745e82c9e0401c.mov"} type={"video/mov"} width={"100%"} /> */}
+                    <source src={"https://sirat.earth:8000/videos/NetZero Platform 3.mp4"} type={"video/mp4"} />
+                    <source src={"https://sirat.earth:8000/videos/NetZero Platform 3.mov"} type={"video/mov"} />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
