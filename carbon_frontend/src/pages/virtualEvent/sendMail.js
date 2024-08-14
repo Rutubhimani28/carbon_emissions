@@ -69,7 +69,7 @@ const SendMail = (props) => {
                 // templateName: "virtual_event_grand_total_result_Template",
                 emailBodyTemplateName: "virtual_event_grand_total_result_Template",
                 attachmentTemplateName: "virtual_event_filled_fields_Template",
-                attachmentPdfName: "Virtual Event DB- Product Launch",
+                attachmentPdfName: `Virtual Event- ${values?.subject}`,
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
