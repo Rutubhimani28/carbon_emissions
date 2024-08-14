@@ -56,26 +56,26 @@ const Comms = (props) => {
     efThree: 50,
     emissionThree: '',
 
-    // Social Media
-    // image
-    imgSize: '',
-    deviceEnergy1: '', // 0.01(1/60)
-    somePlatformEnergy1: '', // =(0.4/1000)*imgSize
-    networkEnergy1: '', // =(0.2/1000)*imgSize
-    totalEnergy1: '', // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
-    efFour: '', // = totalEnergy1*0.43
-    impressionsOne: '', //
-    emissionFour: '',
-    // Video
-    videoSize: '',
-    videoMins: '',
-    deviceEnergy2: '', // = 0.01*( videoMins/60)
-    somePlatformEnergy2: '', // = ( videoSize/1000)*0.4
-    networkEnergy2: '', // = (0.2/1000)* videoSize
-    totalEnergy2: '', // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
-    efFive: '', // = totalEnergy2*0.43
-    impressionsTwo: '',
-    emissionFive: '', // videoSize * videoMins * impressionsTwo * efTwo
+    // // Social Media
+    // // image
+    // imgSize: '',
+    // deviceEnergy1: '', // 0.01(1/60)
+    // somePlatformEnergy1: '', // =(0.4/1000)*imgSize
+    // networkEnergy1: '', // =(0.2/1000)*imgSize
+    // totalEnergy1: '', // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
+    // efFour: '', // = totalEnergy1*0.43
+    // impressionsOne: '', //
+    // emissionFour: '',
+    // // Video
+    // videoSize: '',
+    // videoMins: '',
+    // deviceEnergy2: '', // = 0.01*( videoMins/60)
+    // somePlatformEnergy2: '', // = ( videoSize/1000)*0.4
+    // networkEnergy2: '', // = (0.2/1000)* videoSize
+    // totalEnergy2: '', // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
+    // efFive: '', // = totalEnergy2*0.43
+    // impressionsTwo: '',
+    // emissionFive: '', // videoSize * videoMins * impressionsTwo * efTwo
   };
 
   const formik = useFormik({
@@ -124,8 +124,8 @@ const Comms = (props) => {
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
       if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
       if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
-      if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);
-      if (emissionFive > 0) formik.setFieldValue('emissionFive', emissionFive);
+      // if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);
+      // if (emissionFive > 0) formik.setFieldValue('emissionFive', emissionFive);
 
       const data = [
         {
@@ -162,29 +162,29 @@ const Comms = (props) => {
           ef: values?.efThree,
           emission: emissionThree > 0 ? emissionThree : '',
         },
-        {
-          type: 'Image',
-          imgSize: values?.imgSize,
-          deviceEnergy1: values?.deviceEnergy1,
-          somePlatformEnergy1: values?.somePlatformEnergy1,
-          networkEnergy1: values?.networkEnergy1,
-          totalEnergy1: values?.totalEnergy1,
-          ef: values?.efFour,
-          impressionsOne: values?.impressionsOne,
-          emission: emissionFour > 0 ? emissionFour : '',
-        },
-        {
-          type: 'Video',
-          videoSize: values?.videoSize,
-          videoMins: values?.videoMins,
-          deviceEnergy2: values?.deviceEnergy2,
-          somePlatformEnergy2: values?.somePlatformEnergy2,
-          networkEnergy2: values?.networkEnergy2,
-          totalEnergy2: values?.totalEnergy2,
-          ef: values?.efFive,
-          impressionsTwo: values?.impressionsTwo,
-          emission: emissionFive > 0 ? emissionFive : '',
-        },
+        // {
+        //   type: 'Image',
+        //   imgSize: values?.imgSize,
+        //   deviceEnergy1: values?.deviceEnergy1,
+        //   somePlatformEnergy1: values?.somePlatformEnergy1,
+        //   networkEnergy1: values?.networkEnergy1,
+        //   totalEnergy1: values?.totalEnergy1,
+        //   ef: values?.efFour,
+        //   impressionsOne: values?.impressionsOne,
+        //   emission: emissionFour > 0 ? emissionFour : '',
+        // },
+        // {
+        //   type: 'Video',
+        //   videoSize: values?.videoSize,
+        //   videoMins: values?.videoMins,
+        //   deviceEnergy2: values?.deviceEnergy2,
+        //   somePlatformEnergy2: values?.somePlatformEnergy2,
+        //   networkEnergy2: values?.networkEnergy2,
+        //   totalEnergy2: values?.totalEnergy2,
+        //   ef: values?.efFive,
+        //   impressionsTwo: values?.impressionsTwo,
+        //   emission: emissionFive > 0 ? emissionFive : '',
+        // },
       ];
 
       const tableData = [
@@ -227,37 +227,37 @@ const Comms = (props) => {
             scope: 3,
           },
         },
-        {
-          subType: 'Social Media',
-          subTypeData: {
-            th: ['', 'Image Size (in Mb)', 'Impressions', 'Emissions'],
-            td: [
-              {
-                cmType: 'Image',
-                imgSize: values?.imgSize,
-                impressionsOne: values?.impressionsOne,
-                emissions: emissionFour > 0 ? emissionFour : '',
-              },
-            ],
-          },
-          scope: 3,
-        },
-        {
-          subType: '',
-          subTypeData: {
-            th: ['', 'Video Size (in Mb)', 'Video (in mins)', 'Impressions', 'Emissions'],
-            td: [
-              {
-                cmType: 'Video',
-                videoSize: values?.videoSize,
-                videoMins: values?.videoMins,
-                impressionsTwo: values?.impressionsTwo,
-                emissions: emissionFive > 0 ? emissionFive : '',
-              },
-            ],
-          },
-          scope: 3,
-        },
+        // {
+        //   subType: 'Social Media',
+        //   subTypeData: {
+        //     th: ['', 'Image Size (in Mb)', 'Impressions', 'Emissions'],
+        //     td: [
+        //       {
+        //         cmType: 'Image',
+        //         imgSize: values?.imgSize,
+        //         impressionsOne: values?.impressionsOne,
+        //         emissions: emissionFour > 0 ? emissionFour : '',
+        //       },
+        //     ],
+        //   },
+        //   scope: 3,
+        // },
+        // {
+        //   subType: '',
+        //   subTypeData: {
+        //     th: ['', 'Video Size (in Mb)', 'Video (in mins)', 'Impressions', 'Emissions'],
+        //     td: [
+        //       {
+        //         cmType: 'Video',
+        //         videoSize: values?.videoSize,
+        //         videoMins: values?.videoMins,
+        //         impressionsTwo: values?.impressionsTwo,
+        //         emissions: emissionFive > 0 ? emissionFive : '',
+        //       },
+        //     ],
+        //   },
+        //   scope: 3,
+        // },
       ];
 
       dispatch(addCommsData({ data }));
@@ -294,24 +294,24 @@ const Comms = (props) => {
       formik.setFieldValue('sendingToMediaTwo', allData[2]?.sendingToMediaTwo);
       formik.setFieldValue('emissionThree', allData[2]?.emission);
 
-      formik.setFieldValue('imgSize', allData[3]?.imgSize);
-      formik.setFieldValue('deviceEnergy1', allData[3]?.deviceEnergy1);
-      formik.setFieldValue('somePlatformEnergy1', allData[3]?.somePlatformEnergy1);
-      formik.setFieldValue('networkEnergy1', allData[3]?.networkEnergy1);
-      formik.setFieldValue('totalEnergy1', allData[3]?.totalEnergy1);
-      formik.setFieldValue('efFour', allData[3]?.ef);
-      formik.setFieldValue('impressionsOne', allData[3]?.impressionsOne);
-      formik.setFieldValue('emissionFour', allData[3]?.emission);
+      // formik.setFieldValue('imgSize', allData[3]?.imgSize);
+      // formik.setFieldValue('deviceEnergy1', allData[3]?.deviceEnergy1);
+      // formik.setFieldValue('somePlatformEnergy1', allData[3]?.somePlatformEnergy1);
+      // formik.setFieldValue('networkEnergy1', allData[3]?.networkEnergy1);
+      // formik.setFieldValue('totalEnergy1', allData[3]?.totalEnergy1);
+      // formik.setFieldValue('efFour', allData[3]?.ef);
+      // formik.setFieldValue('impressionsOne', allData[3]?.impressionsOne);
+      // formik.setFieldValue('emissionFour', allData[3]?.emission);
 
-      formik.setFieldValue('videoSize', allData[4]?.videoSize);
-      formik.setFieldValue('videoMins', allData[4]?.videoMins);
-      formik.setFieldValue('deviceEnergy2', allData[4]?.deviceEnergy2);
-      formik.setFieldValue('somePlatformEnergy2', allData[4]?.somePlatformEnergy2);
-      formik.setFieldValue('networkEnergy2', allData[4]?.networkEnergy2);
-      formik.setFieldValue('totalEnergy2', allData[4]?.totalEnergy2);
-      formik.setFieldValue('efFive', allData[4]?.ef);
-      formik.setFieldValue('impressionsTwo', allData[4]?.impressionsTwo);
-      formik.setFieldValue('emissionFive', allData[4]?.emission);
+      // formik.setFieldValue('videoSize', allData[4]?.videoSize);
+      // formik.setFieldValue('videoMins', allData[4]?.videoMins);
+      // formik.setFieldValue('deviceEnergy2', allData[4]?.deviceEnergy2);
+      // formik.setFieldValue('somePlatformEnergy2', allData[4]?.somePlatformEnergy2);
+      // formik.setFieldValue('networkEnergy2', allData[4]?.networkEnergy2);
+      // formik.setFieldValue('totalEnergy2', allData[4]?.totalEnergy2);
+      // formik.setFieldValue('efFive', allData[4]?.ef);
+      // formik.setFieldValue('impressionsTwo', allData[4]?.impressionsTwo);
+      // formik.setFieldValue('emissionFive', allData[4]?.emission);
     }
   }, [value]);
 
@@ -468,7 +468,7 @@ const Comms = (props) => {
 
               <Grid item xs={12} sm={12} md={12}>
                 <Box>
-                  <div className="table-responsive mt-4">
+                  <div className="table-responsive my-4">
                     <table className="table-custom-inpt-field">
                       <tr>
                         <th className="ps-2" />
@@ -624,7 +624,7 @@ const Comms = (props) => {
                 </Box>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+              {/* <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                 <Box>
                   <div className="table-responsive">
                     <Typography
@@ -651,7 +651,6 @@ const Comms = (props) => {
                         }}
                       >
                         <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                          {/* <Icon component={FaImage} sx={{ fontSize: 60, color: 'black' }} /> */}
                           <Typography variant="h6" sx={{ marginY: 1 }}>
                             Image
                           </Typography>
@@ -673,7 +672,7 @@ const Comms = (props) => {
                                 0.01 * (Number(e.target.value) / 60) +
                                 (0.4 / 1000) * Number(e.target.value) +
                                 (0.2 / 1000 + Number(e.target.value))
-                              ); // maybe
+                              );
                               formik.handleSubmit();
                             }}
                             sx={{ marginTop: 2 }}
@@ -721,7 +720,6 @@ const Comms = (props) => {
                         }}
                       >
                         <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                          {/* <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} /> */}
                           <Typography variant="h6" sx={{ marginY: 1 }}>
                             Video
                           </Typography>
@@ -809,73 +807,9 @@ const Comms = (props) => {
                         </CardContent>
                       </Card>
                     </Box>
-
-                    {/* <table className="table-custom-inpt-field">
-                      <tr>
-                        <th className="ps-2" />
-                        <th className="ps-3">Image Size (in Mb)</th>
-                        <th className="ps-3">Impressions</th>
-
-                        <th className="ps-2">Emissions</th>
-                      </tr>
-                      <tr>
-                        <td className="ps-2 py-1" width="100">
-                          Image
-                        </td>
-                        <td className="ps-3 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="imgSize"
-                            value={values?.imgSize}
-                            onChange={(e) => {
-                              formik.setFieldValue('imgSize', Number(e.target.value));
-                              formik.setFieldValue('deviceEnergy1', 0.01 * (1 / 60));
-                              formik.setFieldValue('somePlatformEnergy1', (0.4 / 1000) * Number(e.target.value));
-                              formik.setFieldValue('networkEnergy1', (0.2 / 1000) * Number(e.target.value));
-                              formik.setFieldValue(
-                                'totalEnergy1',
-                                0.01 * (Number(e.target.value) / 60) +
-                                (0.4 / 1000) * Number(e.target.value) +
-                                (0.2 / 1000 + Number(e.target.value))
-                              ); // maybe
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-3 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="impressionsOne"
-                            value={values?.impressionsOne}
-                            onChange={(e) => {
-                              formik.setFieldValue('impressionsOne', Number(e.target.value));
-                              formik.setFieldValue(
-                                'emissionFour',
-                                (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(2)
-                              );
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-2 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="emissionFour "
-                            disabled
-                            value={values?.emissionFour}
-                            onChange={formik.handleChange}
-                          />
-                        </td>
-                      </tr>
-                    </table> */}
                   </div>
                 </Box>
-              </Grid>
+              </Grid> */}
 
               {/* <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                 <Box>
