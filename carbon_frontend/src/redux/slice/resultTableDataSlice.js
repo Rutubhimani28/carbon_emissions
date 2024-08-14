@@ -254,8 +254,9 @@ const resultTableDataSlice = createSlice({
                         tabTitle: "Comms",
                         tabData: [
                             { subType: "Email Invitations", scope: 1 },
-                            { subType: "PR Assets", scope: 2 },
+                            { subType: "", scope: 2 },
                             // { subType: "Social Media", scope: 3 },
+                            { subType: "PR Assets", scope: 3 },
                         ]
                     };
                 }
