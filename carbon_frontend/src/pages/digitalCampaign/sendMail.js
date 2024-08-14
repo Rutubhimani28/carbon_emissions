@@ -69,7 +69,7 @@ const SendMail = (props) => {
                 // templateName: "digital_campaign_grand_total_result_Template",
                 emailBodyTemplateName: "digital_campaign_grand_total_result_Template",
                 attachmentTemplateName: "digital_campaign_filled_fields_Template",
-                attachmentPdfName: "Digital Campaign DB- Product Launch",
+                attachmentPdfName: `Digital Campaign- ${values?.subject}`,
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
