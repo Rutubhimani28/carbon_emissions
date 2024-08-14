@@ -310,7 +310,7 @@ const Result = ({ value }) => {
                                                                                             <tr key={rowIndex}>
                                                                                                 <td>{rowData.prType}</td>
                                                                                                 <td>{rowData.meetingRoomArea || rowData.kgs || rowData.kwh || rowData.noOfKms}</td>
-                                                                                                <td>{rowData.meetingDuration}</td>
+                                                                                                {rowData.meetingDuration || rowData.noOfDevice && <td>{rowData.meetingDuration || rowData.noOfDevice}</td>}
                                                                                                 <td>{rowData.emissions}</td>
                                                                                             </tr>
                                                                                         )

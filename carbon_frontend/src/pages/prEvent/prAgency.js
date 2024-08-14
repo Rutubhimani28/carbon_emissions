@@ -23,6 +23,7 @@ const PrAgency = (props) => {
         meetingRoomEmission: '',
 
         noOfHours: '',
+        projectorNoOfDevice: '',
         projectorEmission: '',
 
         hdpeBanner: '',
@@ -64,7 +65,8 @@ const PrAgency = (props) => {
         onSubmit: async (values) => {
 
             const meetingRoomEmission = (values?.meetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((0.00104 * values?.meetingRoomArea * values?.meetingDuration).toFixed(2));
-            const projectorEmission = values?.noOfHours === 0 ? 0 : Number(Number(values?.noOfHours) * Number(0.215)).toFixed(2);
+            // const projectorEmission = values?.noOfHours === 0 ? 0 : Number(Number(values?.noOfHours) * Number(0.215)).toFixed(2);
+            const projectorEmission = values?.noOfHours === 0 || values?.projectorNoOfDevice === 0 ? 0 : Number((values?.noOfHours * values?.projectorNoOfDevice * 0.215).toFixed(2))
             const hdpeBannerEmission = Number(3.11 * Number(values?.hdpeBanner)).toFixed(2);
             const pvcBannersEmission = Number(7.83 * Number(values?.pvcBanners)).toFixed(2);
             const cottonBannerEmission = Number(14.5 * Number(values?.cottonBanner)).toFixed(2);
@@ -107,6 +109,7 @@ const PrAgency = (props) => {
                 {
                     type: 'Projector',
                     noOfHours: values?.noOfHours,
+                    projectorNoOfDevice: values?.projectorNoOfDevice,
                     emission: projectorEmission > 0 ? projectorEmission : '',
                 },
                 {
@@ -200,11 +203,12 @@ const PrAgency = (props) => {
                 {
                     subType: "Projector",
                     subTypeData: {
-                        th: ["", "No. of Hours", "Emissions"],
+                        th: ["", "No of Hours", "No of Devices", "Emissions"],
                         td: [
                             {
                                 prType: "Projector",
                                 kgs: values?.noOfHours,
+                                noOfDevice: values?.projectorNoOfDevice,
                                 emissions: projectorEmission > 0 ? projectorEmission : '',
                             },
                         ]
@@ -336,6 +340,7 @@ const PrAgency = (props) => {
             formik.setFieldValue("meetingRoomEmission", allData[0]?.emission);
 
             formik.setFieldValue("noOfHours", allData[1]?.noOfHours);
+            formik.setFieldValue("projectorNoOfDevice", allData[1]?.projectorNoOfDevice);
             formik.setFieldValue("projectorEmission", allData[1]?.emission);
 
             formik.setFieldValue("hdpeBanner", allData[2]?.hdpeBanner);
@@ -371,7 +376,7 @@ const PrAgency = (props) => {
 
     const { values } = formik;
 
-     
+
     return (
         <div className='containResponsive'>
             <Container maxWidth>
@@ -387,14 +392,15 @@ const PrAgency = (props) => {
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                         >
 
-                            <Grid   item xs={12} sm={6} md={6} display={'flex'}  justifyContent={'center'}>
+                            <Grid item xs={12} sm={6} md={6} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Projector</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
                                                 <th className='ps-2' />
-                                                <th className='ps-5 '>No of Hours</th>
+                                                <th className='ps-5'>No of Hours</th>
+                                                <th className='ps-5'>No of Devices</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
@@ -406,7 +412,20 @@ const PrAgency = (props) => {
                                                         value={formik.values.noOfHours}
                                                         onChange={(e) => {
                                                             formik.setFieldValue('noOfHours', e.target.value);
-                                                            formik.setFieldValue('projectorEmission', (e.target.value === 0 || values?.noOfHours === 0) ? 0 : Number((0.215 * e.target.value).toFixed(2)));
+                                                            formik.setFieldValue('projectorEmission', (e.target.value === 0 || values?.noOfDevice === 0) ? 0 : Number((0.215 * Number(values?.noOfDevice) * e.target.value).toFixed(2)));
+                                                            formik.handleSubmit();
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }}
+                                                    />
+                                                </td>
+                                                <td className='ps-2 py-1 setallignment'>
+                                                    <TextField size='small' type="number"
+                                                        name="projectorNoOfDevice"
+                                                        fullWidth
+                                                        value={formik.values.projectorNoOfDevice}
+                                                        onChange={(e) => {
+                                                            formik.setFieldValue('projectorNoOfDevice', e.target.value);
+                                                            formik.setFieldValue('projectorEmission', (e.target.value === 0 || values?.noOfHours === 0) ? 0 : Number((0.215 * Number(values?.noOfHours) * e.target.value).toFixed(2)));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
@@ -464,7 +483,7 @@ const PrAgency = (props) => {
                             </Grid>
 
 
-                            <Grid   item xs={12} sm={6} md={6} display={'flex'} justifyContent={'center'}>
+                            <Grid item xs={12} sm={6} md={6} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex   justify-content-center align-items-center my-4 '>Branding</Typography>
@@ -578,9 +597,7 @@ const PrAgency = (props) => {
                                     </div>
                                 </Box>
                             </Grid>
-
-                          
-
+                            
                             <Grid item xs={12} sm={6} md={6} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
@@ -682,7 +699,7 @@ const PrAgency = (props) => {
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Meeting / Ball Room</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'/>
+                                                <th className='ps-2' />
                                                 <th className='ps-2'>Meeting Room Area (Sqft)</th>
                                                 <th className='ps-2'>Meeting Duration (No of Hrs)</th>
                                                 <th className='ps-2'>Emissions</th>
