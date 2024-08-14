@@ -76,56 +76,36 @@ const Comms = (props) => {
     // efFive: '', // = totalEnergy2*0.43
     // impressionsTwo: '',
     // emissionFive: '', // videoSize * videoMins * impressionsTwo * efTwo
+
+    colouredBrochurePage: '',
+    emissionSix: '',
+    a4Size75Gsm: '',
+    emissionSeven: '',
   };
 
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      const emissionOne =
-        values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0
-          ? 0
-          : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2);
-      const emissionTwo =
-        // values?.prFileSizeOne === 0 ||
-        values?.finalFileSizeOne === 0 || values?.sendingToMediaOne === 0
-          ? 0
-          : Number(
-            // Number(values?.prFileSizeOne) *
-            Number(values?.finalFileSizeOne) *
-            Number(values?.sendingToMediaOne) *
-            Number(values?.efTwo)
-          ).toFixed(2);
-      const emissionThree =
-        // values?.prFileSizeTwo === 0 ||
-        values?.finalFileSizeTwo === 0 ||
-          values?.sendingToMediaTwo === 0 ||
-          values?.sendingToMediaTwo === 0
-          ? 0
-          : Number(
-            // Number(values?.prFileSizeTwo) *
-            Number(values?.finalFileSizeTwo) *
-            Number(values?.sendingToMediaTwo) *
-            Number(values?.efThree)
-          ).toFixed(2);
-      const emissionFour =
-        values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efFour === 0
-          ? 0
-          : Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efFour)).toFixed(2);
-      const emissionFive =
-        values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efFive === 0
-          ? 0
-          : Number(
-            Number(values?.videoSize) *
-            Number(values?.videoMins) *
-            Number(values?.impressionsTwo) *
-            Number(values?.efFive)
-          ).toFixed(2);
+      const emissionOne = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2);
+
+      // const emissionTwo = values?.prFileSizeOne === 0 || values?.finalFileSizeOne === 0 || values?.sendingToMediaOne === 0 ? 0 : Number(Number(values?.prFileSizeOne) * Number(values?.finalFileSizeOne) * Number(values?.sendingToMediaOne) * Number(values?.efTwo) ).toFixed(2);
+      const emissionTwo = values?.finalFileSizeOne === 0 || values?.sendingToMediaOne === 0 ? 0 : Number(Number(values?.finalFileSizeOne) * Number(values?.sendingToMediaOne) * Number(values?.efTwo)).toFixed(2);
+
+      // const emissionThree = values?.prFileSizeTwo === 0 || values?.finalFileSizeTwo === 0 ||values?.sendingToMediaTwo === 0 ||values?.sendingToMediaTwo === 0? 0: Number( Number(values?.prFileSizeTwo) * Number(values?.finalFileSizeTwo) * Number(values?.sendingToMediaTwo) * Number(values?.efThree)).toFixed(2);
+      const emissionThree = values?.finalFileSizeTwo === 0 || values?.sendingToMediaTwo === 0 || values?.sendingToMediaTwo === 0 ? 0 : Number(Number(values?.finalFileSizeTwo) * Number(values?.sendingToMediaTwo) * Number(values?.efThree)).toFixed(2);
+
+      const emissionFour = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efFour === 0 ? 0 : Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efFour)).toFixed(2);
+      const emissionFive = values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efFive === 0 ? 0 : Number(Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efFive)).toFixed(2);
+      const emissionSix = Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2);
+      const emissionSeven = Number(0.0047 * Number(values?.a4Size75Gsm)).toFixed(2);
 
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
       if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
       if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
       // if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);
       // if (emissionFive > 0) formik.setFieldValue('emissionFive', emissionFive);
+      if (emissionSix > 0) formik.setFieldValue('emissionSix', emissionSix);
+      if (emissionSeven > 0) formik.setFieldValue('emissionSeven', emissionSeven);
 
       const data = [
         {
@@ -133,17 +113,10 @@ const Comms = (props) => {
           noOfEmails: values?.noOfEmails,
           emialEfOne: values?.emialEfOne,
           emialEfTwo: values?.emialEfTwo,
-          emailEmissionOne:
-            values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
-          emailEmissionTwo:
-            values?.totalAttachmentSize === 0
-              ? 0
-              : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
+          emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
+          emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
           attachmentSize: values?.attachmentSize,
-          totalAttachmentSize:
-            values?.noOfEmails === 0 || values?.attachmentSize === 0
-              ? 0
-              : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
+          totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
           emission: emissionOne > 0 ? emissionOne : '',
         },
         {
@@ -185,6 +158,16 @@ const Comms = (props) => {
         //   impressionsTwo: values?.impressionsTwo,
         //   emission: emissionFive > 0 ? emissionFive : '',
         // },
+        {
+          type: 'ColouredBrochurePage',
+          colouredBrochurePage: values?.colouredBrochurePage,
+          emission: emissionSix > 0 ? emissionSix : ''
+        },
+        {
+          type: 'A4Size75Gsm',
+          a4Size75Gsm: values?.a4Size75Gsm,
+          emission: emissionSeven > 0 ? emissionSeven : ''
+        },
       ];
 
       const tableData = [
@@ -204,7 +187,7 @@ const Comms = (props) => {
           scope: 1,
         },
         {
-          subType: 'PR Assets',
+          subType: '',
           subTypeData: {
             // th: ['', 'Production File Size', 'Final File Size', 'Sending To Media(No of Emails)', 'Emissions'],
             th: ['', 'File Size (in Mb)', 'Sending to Media (No of Emails)', 'Emissions'],
@@ -258,6 +241,25 @@ const Comms = (props) => {
         //   },
         //   scope: 3,
         // },
+        {
+          subType: "PR Assets",
+          subTypeData: {
+            th: ["", "No. of Pages", "Emissions"],
+            td: [
+              {
+                cmType: "Printing a Coloured Brochure",
+                noOfPages: values?.colouredBrochurePage,
+                emissions: emissionSix > 0 ? emissionSix : ''
+              },
+              {
+                cmType: "A4 Size (75GSM)",
+                noOfPages: values?.a4Size75Gsm,
+                emissions: emissionSeven > 0 ? emissionSeven : ''
+              },
+            ]
+          },
+          scope: 3
+        },
       ];
 
       dispatch(addCommsData({ data }));
@@ -286,7 +288,7 @@ const Comms = (props) => {
       // formik.setFieldValue('prFileSizeOne', allData[1]?.prFileSizeOne);
       formik.setFieldValue('finalFileSizeOne', allData[1]?.finalFileSizeOne);
       formik.setFieldValue('sendingToMediaOne', allData[1]?.sendingToMediaOne);
-      formik.setFieldValue('efTwo', allData[1]?.efTwo);
+      formik.setFieldValue('efTwo', allData[1]?.ef);
       formik.setFieldValue('emissionTwo', allData[1]?.emission);
 
       // formik.setFieldValue('prFileSizeTwo', allData[2]?.prFileSizeTwo);
@@ -312,6 +314,11 @@ const Comms = (props) => {
       // formik.setFieldValue('efFive', allData[4]?.ef);
       // formik.setFieldValue('impressionsTwo', allData[4]?.impressionsTwo);
       // formik.setFieldValue('emissionFive', allData[4]?.emission);
+
+      formik.setFieldValue("colouredBrochurePage", allData[3]?.colouredBrochurePage);
+      formik.setFieldValue("emissionSix", allData[3]?.emission);
+      formik.setFieldValue("a4Size75Gsm", allData[4]?.a4Size75Gsm);
+      formik.setFieldValue("emissionSeven", allData[4]?.emission);
     }
   }, [value]);
 
@@ -618,6 +625,47 @@ const Comms = (props) => {
                             onChange={formik.handleChange}
                           />
                         </td>
+                      </tr>
+                    </table>
+                  </div>
+                </Box>
+              </Grid>
+
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+                <Box>
+                  <div className='table-responsive my-4'>
+                    <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>PR Assets</Typography>
+                    <table className='table-custom-inpt-field'>
+                      <tr>
+                        <th className='ps-2' />
+                        <th className='ps-3'>No. of Pages</th>
+                        <th className='ps-2'>Emissions</th>
+                      </tr>
+                      <tr>
+                        <td className='ps-2 py-1 me-5 mb-xl-1 mb-md-5 SETPrinting'>Printing a Coloured Brochure</td>
+                        <td className='ps-3 py-1'>
+                          <TextField size='small' type="number" name="colouredBrochurePage"
+                            value={formik?.values?.colouredBrochurePage}
+                            onChange={(e) => {
+                              formik.setFieldValue('colouredBrochurePage', e.target.value);
+                              formik.setFieldValue('emissionSix', Number(1.56 * Number(e.target.value)).toFixed(2));
+                              formik.handleSubmit();
+                            }}
+                            inputProps={{ style: { color: 'white' } }} />
+                        </td>
+                        <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} /></td>
+                      </tr>
+                      <tr>
+                        <td className='ps-2 py-1 setPosition '>A4 Size (75GSM)</td>
+                        <td className='ps-3 py-1 '>
+                          <TextField size='small' type="number" name='a4Size75Gsm' value={values?.a4Size75Gsm}
+                            onChange={(e) => {
+                              formik.setFieldValue("a4Size75Gsm", Number(e.target.value));
+                              formik.handleSubmit();
+                            }}
+                            inputProps={{ style: { color: 'white' } }} />
+                        </td>
+                        <td className='ps-2 py-1 '><TextField size='small' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} /></td>
                       </tr>
                     </table>
                   </div>

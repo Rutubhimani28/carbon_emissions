@@ -172,31 +172,55 @@
                                                                                             rowData.videoSize ||
                                                                                             rowData.imgSize %>
                                                                                     </td> -->
-                                                                                    <% if (rowData.noOfEmails || rowData.videoSize || rowData.imgSize) { %>
+                                                                                    <% if (rowData.noOfEmails ||
+                                                                                        rowData.videoSize ||
+                                                                                        rowData.imgSize ||
+                                                                                        rowData.noOfPages ) { %>
                                                                                         <td>
-                                                                                            <%= rowData.noOfEmails || rowData.videoSize || rowData.imgSize %>
+                                                                                            <%= rowData.noOfEmails ||
+                                                                                                rowData.videoSize ||
+                                                                                                rowData.imgSize ||
+                                                                                                rowData.noOfPages %>
                                                                                         </td>
                                                                                         <% } %>
 
-                                                                                    <td>
-                                                                                        <%= rowData.attachmentSize ||
-                                                                                            rowData.finalFileSize ||
-                                                                                            rowData.videoMins ||
-                                                                                            rowData.impressionsOne %>
-                                                                                    </td>
-                                                                                    <% if (rowData.sendingToMedia ||
-                                                                                        rowData.impressionsTwo) { %>
-                                                                                        <td>
-                                                                                            <%= rowData.attachmentSize
+                                                                                            <% if
+                                                                                                (rowData.attachmentSize
                                                                                                 || rowData.finalFileSize
                                                                                                 || rowData.videoMins ||
-                                                                                                rowData.impressionsOne
-                                                                                                %>
-                                                                                        </td>
-                                                                                        <% } %>
-                                                                                            <td>
-                                                                                                <%= rowData.emissions %>
-                                                                                            </td>
+                                                                                                rowData.impressionsOne)
+                                                                                                { %>
+                                                                                                <td>
+                                                                                                    <%= rowData.attachmentSize
+                                                                                                        ||
+                                                                                                        rowData.finalFileSize
+                                                                                                        ||
+                                                                                                        rowData.videoMins
+                                                                                                        ||
+                                                                                                        rowData.impressionsOne
+                                                                                                        %>
+                                                                                                </td>
+                                                                                                <% } %>
+                                                                                                    <% if
+                                                                                                        (rowData.sendingToMedia
+                                                                                                        ||
+                                                                                                        rowData.impressionsTwo)
+                                                                                                        { %>
+                                                                                                        <td>
+                                                                                                            <%= rowData.attachmentSize
+                                                                                                                ||
+                                                                                                                rowData.finalFileSize
+                                                                                                                ||
+                                                                                                                rowData.videoMins
+                                                                                                                ||
+                                                                                                                rowData.impressionsOne
+                                                                                                                %>
+                                                                                                        </td>
+                                                                                                        <% } %>
+                                                                                                            <td>
+                                                                                                                <%= rowData.emissions
+                                                                                                                    %>
+                                                                                                            </td>
                                                                         </tr>
                                                                         <% } %>
                                                                             <% }); %>
