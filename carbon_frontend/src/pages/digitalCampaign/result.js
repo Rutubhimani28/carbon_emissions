@@ -43,7 +43,8 @@ const Result = ({ value }) => {
 
     const sentenceParts = [];
     const liveBroadcastParts = [];
-    const wantInResult = 'What are the top three measures to reduce this footprint by more than 50 %, and how do the original and reduced footprints compare percentagewise ?';
+    // const wantInResult = 'What are the top three measures to reduce this footprint by more than 50 %, and how do the original and reduced footprints compare percentagewise ?';
+    const wantInResult = 'What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
 
     const imgSize = allDigitalCampaignData?.data?.[0]?.data?.[0]?.imgSize || 0;
     const videoSize = allDigitalCampaignData?.data?.[0]?.data?.[1]?.videoSize || 0;
