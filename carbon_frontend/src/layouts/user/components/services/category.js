@@ -89,7 +89,7 @@ const Category = () => {
                 {
                     data.map((item, i) => {
                         return (
-                            <Grid item sm={12} md={4} className='wow animate__animated animate__fadeInUp animate__slow'>
+                            <Grid item sm={12} md={4} key={i} className='wow animate__animated animate__fadeInUp animate__slow'>
                                 <Card className='bg-bg-transparent shadow-none'>
                                     <CardActionArea>
                                         <CardMedia

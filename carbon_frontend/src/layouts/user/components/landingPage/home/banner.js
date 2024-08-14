@@ -160,7 +160,7 @@ const Index = () => {
                         <Typography className='text-light fs-5' style={{ paddingLeft: '100px' }}>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
                         <Button style={{ marginLeft: '100px' }} className="custom-btn my-4" onClick={() => { setOpenCredit(true) }}>Buy Credits</Button>
                     </Grid>
-                    <Grid item xs={12} md={6} />
+                    <Grid item xs={12} md={6}/>
                 </Grid>
             </Box>
 
