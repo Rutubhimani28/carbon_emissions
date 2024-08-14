@@ -633,7 +633,7 @@ const Comms = (props) => {
 
               <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                 <Box>
-                  <div className='table-responsive my-4'>
+                  <div className='table-responsive mb-4'>
                     <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>PR Assets</Typography>
                     <table className='table-custom-inpt-field'>
                       <tr>
