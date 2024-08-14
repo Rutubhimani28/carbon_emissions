@@ -74,7 +74,7 @@ const SendMail = (props) => {
                 sender: values?.sender,
                 emailBodyTemplateName: "pr_event_grand_total_result_Template",
                 attachmentTemplateName: "pr_event_filled_fields_Template",
-                attachmentPdfName: "PR Event DB- Product Launch",
+                attachmentPdfName: `PR Event- ${values?.subject}`,
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
