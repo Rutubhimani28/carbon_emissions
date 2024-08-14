@@ -31,6 +31,7 @@ import Services from './layouts/user/components/services/index';
 import NewRoom from './layouts/user/components/newsRoom';
 import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
 import TermConditions from './layouts/user/components/termCondition/termConditions';
+import Team from './layouts/user/components/team/team';
 import LoginPage from './pages/LoginPage';
 import ForgotPswdPage from './pages/ForgotPswdPage';
 import ResetPswdPage from './pages/ResetPswdPage';
@@ -96,6 +97,7 @@ export default function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/faqs" element={<Faq />} />
               <Route path="/terms-conditions" element={<TermConditions />} />
+              <Route path="/team" element={<Team />} />
             </Routes>
           </div>
 
