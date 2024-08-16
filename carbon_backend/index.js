@@ -29,8 +29,9 @@ app.set('views', 'middelwares/email_templates/');
 
 //API Routes
 app.use('/api', serverRoute);
-// app.use("/file", express.static('uploads/'));
 app.use("/file", express.static('uploads/images/'));
+// app.use("/file", express.static('uploads/'));
+app.use("/videos", express.static('uploads/videos/'));
 app.use("/logo", express.static('middelwares/email_templates/'));
 
 app.get('/', async (req, res) => {
@@ -40,10 +41,10 @@ app.get('/', async (req, res) => {
 
 // Creating object of key and certificate  // for SSL
 const options = {
-    // key: fs.readFileSync("./openSSL/server.key"),
-    // cert: fs.readFileSync("./openSSL/server.cert"),
-    key: fs.readFileSync('./openSSL/generated-private-key.txt'),
-    cert: fs.readFileSync('./openSSL/generated-csr.txt'),
+    key: fs.readFileSync("./openSSL/server.key"),
+    cert: fs.readFileSync("./openSSL/server.cert"),
+    // key: fs.readFileSync('./openSSL/generated-private-key.txt'),
+    // cert: fs.readFileSync('./openSSL/generated-csr.txt'),
 };
 
 if ((process.env.HTTPS === true || process.env.NODE_ENV === 'production')) {

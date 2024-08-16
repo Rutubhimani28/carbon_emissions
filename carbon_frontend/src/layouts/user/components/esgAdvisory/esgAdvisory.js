@@ -14,7 +14,6 @@ import bannerVideo2 from '../../assets/images/NetZero Consulting.mov';
 const EsgAdvisory = () => {
 
     const videoRef = useRef();
-    const appCodeName = navigator?.appCodeName;
 
     useEffect(() => {
         videoRef.current.playbackRate = 0.5;
@@ -81,7 +80,12 @@ const EsgAdvisory = () => {
                     playsInline
                     style={{ objectFit: 'fill', height: '75vh' }}
                 >
-                    <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} width={"100%"} />
+                    {/* <source src={"https://sirat.earth/static/media/NetZero Consulting.76cf997a4ada4ef7a99c.mp4"} type={"video/mp4"} width={"100%"} />
+                    <source src={"https://sirat.earth/static/media/NetZero Consulting.55c11663218fe2bac3f1.mov"} type={"video/mov"} width={"100%"} /> */}
+                    {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/NetZero Consulting.76cf997a4ada4ef7a99c.mp4"} type={"video/mp4"} width={"100%"} />
+                    <source src={"https://carbon-emissions-sigma.vercel.app/static/media/NetZero Consulting.55c11663218fe2bac3f1.mov"} type={"video/mov"} width={"100%"} /> */}
+                    <source src={"https://sirat.earth:8000/videos/NetZero Consulting.mp4"} type={"video/mp4"} />
+                    <source src={"https://sirat.earth:8000/videos/NetZero Consulting.mov"} type={"video/mov"} />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>

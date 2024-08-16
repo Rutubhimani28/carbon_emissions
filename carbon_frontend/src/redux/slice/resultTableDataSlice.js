@@ -48,9 +48,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabLocalTransData: (state, action) => ({
-        //     ...state,
-        // }),
         deleteResTabLocalTransData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Local Transportation') {
@@ -71,10 +68,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabFBData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Food & Beverages'),
-        // }),
         deleteResTabFBData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Food & Beverages') {
@@ -96,10 +89,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabLogisticsData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Logistics'),
-        // }),
         deleteResTabLogisticsData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Logistics') {
@@ -118,10 +107,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabProductionData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Event Production'),
-        // }),
         deleteResTabProductionData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Event Production') {
@@ -145,10 +130,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabEnergyData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Energy'),
-        // }),
         deleteResTabEnergyData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Energy') {
@@ -168,10 +149,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTableDigitalContData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Digital Comms'),
-        // }),
         deleteResTableDigitalContData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Digital Comms') {
@@ -191,10 +168,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabWasteData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Waste'),
-        // }),
         deleteResTabWasteData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Waste') {
@@ -214,10 +187,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabHotelData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Hotel'),
-        // }),
         deleteResTabHotelData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Hotel') {
@@ -238,10 +207,6 @@ const resultTableDataSlice = createSlice({
                 data: filteredData,
             };
         },
-        // deleteResTabDgCampaignData: (state, action) => ({
-        //     ...state,
-        //     data: state.data.filter(item => item.tabTitle !== 'Digital Campaign'),
-        // }),
         deleteResTabDgCampaignData: (state, action) => {
             const filteredData = state.data.map(item => {
                 if (item.tabTitle === 'Digital Campaign') {
@@ -289,8 +254,9 @@ const resultTableDataSlice = createSlice({
                         tabTitle: "Comms",
                         tabData: [
                             { subType: "Email Invitations", scope: 1 },
-                            { subType: "PR Assets", scope: 2 },
-                            { subType: "Social Media", scope: 3 },
+                            { subType: "", scope: 2 },
+                            // { subType: "Social Media", scope: 3 },
+                            { subType: "PR Assets", scope: 3 },
                         ]
                     };
                 }
@@ -308,9 +274,9 @@ const resultTableDataSlice = createSlice({
                     return {
                         tabTitle: "Hospitality",
                         tabData: [
-                            { subType: "Lunch", scope: 3 },
-                            { subType: "Food", scope: 3 },
-                            { subType: "Plastic", scope: 3 },
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
                         ]
                     };
                 }

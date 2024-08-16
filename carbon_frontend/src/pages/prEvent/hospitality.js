@@ -6,7 +6,7 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHospitalityData, deleteHospitalityData, scopeChange } from '../../redux/slice/totalHospitalitySlice';
 import { addResultTableData, deleteResTabHospitalityData } from '../../redux/slice/resultTableDataSlice';
-import LocalTransportImg from '../../assets/Transportation.png';
+import hospitalityImg from '../../assets/hospitality.png';
 import { IconDiv } from '../../components/IconDiv';
 
 const Hospitality = (props) => {
@@ -16,9 +16,6 @@ const Hospitality = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalHospitalityDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHospitalityDetails?.totalEmission);
-    const scope1 = useSelector((state) => state?.totalHospitalityDetails?.scope1);
-    const scope2 = useSelector((state) => state?.totalHospitalityDetails?.scope2);
-    const scope3 = useSelector((state) => state?.totalHospitalityDetails?.scope3);
 
     // -----------   initialValues
     const initialValues = {
@@ -131,7 +128,7 @@ const Hospitality = (props) => {
 
             const tableData = [
                 {
-                    subType: "Lunch",
+                    subType: "",
                     subTypeData: {
                         th: ["Lunch", "No of Pax", "Emissions"],
                         td: [
@@ -160,7 +157,7 @@ const Hospitality = (props) => {
                     scope: 3
                 },
                 {
-                    subType: "Food",
+                    subType: "",
                     subTypeData: {
                         th: ["Food Wate", "kgs", "Emissions"],
                         td: [
@@ -184,7 +181,7 @@ const Hospitality = (props) => {
                     scope: 3
                 },
                 {
-                    subType: "Plastic",
+                    subType: "",
                     subTypeData: {
                         th: ["Plastic Waste", "No. of PET bottles", "Emissions"],
                         td: [
@@ -208,9 +205,6 @@ const Hospitality = (props) => {
                     scope: 3
                 }
             ];
-
-            console.log("---- data ", data);
-            console.log("---- resultTableData ", tableData);
 
             dispatch(addHospitalityData({ data }));
             dispatch(addResultTableData({ data: tableData, tabTitle: "Hospitality" }));
@@ -263,19 +257,19 @@ const Hospitality = (props) => {
                 <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
-                            <img src={LocalTransportImg} alt="Local Transportation" width={100} className='tabImgWhite' />
+                            <img src={hospitalityImg} alt="Local Transportation" width={100} className='tabImgWhite' />
                         </IconDiv>
                         <Grid
                             container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                         >
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive my-3'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Lunch</th>
+                                                <th className='ps-2' width={220}>Lunch</th>
                                                 <th className='ps-3'>No of Pax</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
@@ -320,12 +314,12 @@ const Hospitality = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive my-3'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Food Waste</th>
+                                                <th className='ps-2' width={220}>Food Waste</th>
                                                 <th className='ps-2'>Kgs</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
@@ -376,12 +370,12 @@ const Hospitality = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={12} md={12}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive my-3'>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Plastic Waste</th>
+                                                <th className='ps-2' width={220}>Plastic Waste</th>
                                                 <th className='ps-2'>No. of PET bottles</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>

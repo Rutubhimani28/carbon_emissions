@@ -19,7 +19,6 @@ const Index = () => {
     const [openCredit, setOpenCredit] = useState(false);
     const [isLoading, setLoading] = React.useState(false);
     const videoRef = useRef();
-    const appCodeName = navigator?.appCodeName;
 
     const initialValues = {
         cName: "",
@@ -82,14 +81,21 @@ const Index = () => {
                     width="100%"
                     height="100%"
                     autoPlay
-                    loop
+                    muted
                     preload
                     ref={videoRef}
-                    muted
-                playsInline
+                    loop
+                    playsInline
                 // controls
                 >
-                    <source src={appCodeName === "Safari" ? bannerVideo2 : bannerVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} />
+                    {/* <source src={"https://sirat.earth/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
+                    <source src={"https://sirat.earth/static/media/Home2.be01049ec23c63b9ce2d.mov"} type="video/mov" /> */}
+
+                    {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
+                    <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.be01049ec23c63b9ce2d.mov"} type="video/mov" /> */}
+
+                    <source src={"https://sirat.earth:8000/videos/Home2.mp4"} type={"video/mp4"} />
+                    <source src={"https://sirat.earth:8000/videos/Home2.mov"} type="video/mov" />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
@@ -110,7 +116,12 @@ const Index = () => {
                     <div className='video-responsive' style={{ position: 'relative', paddingTop: "42px" }}>
                         {/* <video loop muted playsInline controls poster={posterImg} width="100%" height="100%"> */}
                         <video loop muted controls playsInline poster={posterImg} width="100%" height="100%" style={{ objectFit: 'cover' }}>
-                            <source src={appCodeName === "Safari" ? ceoVideo2 : ceoVideo1} type={appCodeName === "Safari" ? "video/mov" : "video/mp4"} />
+                            {/* <source src={"https://sirat.earth/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
+                            <source src={"https://sirat.earth/static/media/CEO Video-Updates3.b10a4ac41f4b0d1d500d.mov"} type={"video/mov"} /> */}
+                            {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
+                            <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates3.b10a4ac41f4b0d1d500d.mov"} type={"video/mov"} />  */}
+                            <source src={"https://sirat.earth:8000/videos/CEO Video-Updates.mp4"} type={"video/mp4"} />
+                            <source src={"https://sirat.earth:8000/videos/CEO Video-Updates3.mov"} type={"video/mov"} />
                             <p>Sorry, your browser doesn't support embedded videos, but don't worry, you can <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Shafeeq-Video.mp4">download it</a> and watch it with your favorite video player!</p>
                             <track kind="captions" src="captions.vtt" label="English" default />
                         </video>
@@ -149,7 +160,7 @@ const Index = () => {
                         <Typography className='text-light fs-5' style={{ paddingLeft: '100px' }}>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
                         <Button style={{ marginLeft: '100px' }} className="custom-btn my-4" onClick={() => { setOpenCredit(true) }}>Buy Credits</Button>
                     </Grid>
-                    <Grid item xs={12} md={6} />
+                    <Grid item xs={12} md={6}/>
                 </Grid>
             </Box>
 

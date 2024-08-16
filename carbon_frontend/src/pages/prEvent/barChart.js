@@ -36,7 +36,7 @@ const CustomBarChart = ({ chartData }) => {
             colors: ['transparent'],
         },
         xaxis: {
-            categories: ['Air Travel', 'Local Transportation', 'Hotel', 'Food & Beverages', 'Logistics', 'Event Production', 'Energy', 'Digital Comms', 'Waste'],
+            categories: ['Comms', 'PR Agency', 'Hospitality'],
         },
         fill: {
             opacity: 1,

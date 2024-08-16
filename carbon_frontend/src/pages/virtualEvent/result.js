@@ -10,7 +10,9 @@ import { constant } from '../../constant';
 const Result = ({ value }) => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
+    const [content, setContent] = useState('');
     const [suggestion, setSuggestion] = useState('');
+    const [suggestionForPdf, setSuggestionForPdf] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     const [sc1, setSc1] = useState(0);
@@ -19,11 +21,6 @@ const Result = ({ value }) => {
 
     const allVirtualEventData = useSelector((state) => state?.totalVirtualEventDetails)
     const total = Number(allVirtualEventData?.totalEmission);
-
-    const toolData = useSelector(state => state.toolDetails?.data);
-    const toolFormData = toolData?.find((item) => item.type === 'toolForm');
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
-
 
     const chartData = [
         Number(allVirtualEventData?.totalEmission) || 0,
@@ -34,39 +31,134 @@ const Result = ({ value }) => {
             type: 'Virtual Event',
             totalEmission: allVirtualEventData?.totalEmission
         },
-    ]
+    ];
 
     const data = {
         "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(2),
         "grandTotal": Number(total).toFixed(2)
-    }
+    };
 
-    const handeleDelete = () => {
-        dispatch(deleteVirtualEventData());
-    }
+    const toolData = useSelector(state => state.toolDetails?.data);
+    const toolFormData = toolData?.find((item) => item.type === 'toolForm');
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
 
-    const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
+    const contentData = resultData?.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
     const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
     const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
     const carbonPerDollar = `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`;
 
+    const sentenceParts = [];
+    const liveBroadcastParts = [];
+    const wantInResult = `What are the top three ways to cut this by over 50 %? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.`;
+
+    const imgSize = allVirtualEventData?.data?.[0]?.data?.[0]?.imgSize || 0;
+    const videoSize = allVirtualEventData?.data?.[0]?.data?.[1]?.videoSize || 0;
+    const videoMins = allVirtualEventData?.data?.[0]?.data?.[1]?.videoMins || 0;
+    const noOfMinsOne = allVirtualEventData?.data?.[0]?.data?.[2]?.noOfMins || 0;
+    const emissionThree = allVirtualEventData?.data?.[0]?.data?.[2]?.emission || 0;
+    const emissionFour = allVirtualEventData?.data?.[0]?.data?.[3]?.emission || 0;
+    const emissionFive = allVirtualEventData?.data?.[0]?.data?.[4]?.emission || 0;
+    const emissionSix = allVirtualEventData?.data?.[0]?.data?.[5]?.emission || 0;
+    const emissionSeven = allVirtualEventData?.data?.[0]?.data?.[6]?.emission || 0;
+    const emissionEight = allVirtualEventData?.data?.[0]?.data?.[7]?.emission || 0;
+    const emissionNine = allVirtualEventData?.data?.[0]?.data?.[8]?.emission || 0;
+    const emissionTen = allVirtualEventData?.data?.[0]?.data?.[9]?.emission || 0;
+    const emissionEleven = allVirtualEventData?.data?.[0]?.data?.[10]?.emission || 0;
+    const emissionTwelve = allVirtualEventData?.data?.[0]?.data?.[11]?.emission || 0;
+
+    const handeleDelete = () => {
+        dispatch(deleteVirtualEventData());
+    };
+
+    const generatePrompt = async () => {
+        if (totalCarbonFootprint) {
+            sentenceParts.push(`My Virtual Event has a carbon footprint of ${totalCarbonFootprint}`);
+        }
+        if (imgSize) {
+            sentenceParts.push(`with a ${imgSize} MB image`);
+        }
+        if (videoSize && videoMins) {
+            sentenceParts.push(`and a ${videoSize} MB, ${videoMins}-minute video.`);
+        }
+        if (noOfMinsOne && emissionThree) {
+            liveBroadcastParts.push(`TikTok generating ${emissionThree} kgCO2e`);
+        }
+        if (emissionFour) {
+            liveBroadcastParts.push(`Reddit generating ${emissionFour} kgCO2e`);
+        }
+        if (emissionFive) {
+            liveBroadcastParts.push(`Pinterest generating ${emissionFive} kgCO2e`);
+        }
+        if (emissionSix) {
+            liveBroadcastParts.push(`Instagram Live generating ${emissionSix} kgCO2e`);
+        }
+        if (emissionSeven) {
+            liveBroadcastParts.push(`Snapchat generating ${emissionSeven} kgCO2e`);
+        }
+        if (emissionEight) {
+            liveBroadcastParts.push(`Facebook Live generating ${emissionEight} kgCO2e`);
+        }
+        if (emissionNine) {
+            liveBroadcastParts.push(`LinkedIn Live generating ${emissionNine} kgCO2e`);
+        }
+        if (emissionTen) {
+            liveBroadcastParts.push(`Twitter Live generating ${emissionTen} kgCO2e`);
+        }
+        if (emissionEleven) {
+            liveBroadcastParts.push(`Twitch generating ${emissionEleven} kgCO2e`);
+        }
+        if (emissionTwelve) {
+            liveBroadcastParts.push(`YouTube generating ${emissionTwelve} kgCO2e`);
+        }
+
+        const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my virtual event of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
+        const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} ${carbonPerDollar} \n\n${wantInResult}`;
+        setContent(finalSentence);
+    };
+
     const formatSuggestions = (suggestions) => {
-        return suggestions.split('\n').map((line, index) => (
-            <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line.replaceAll("kgCO2e", "kgCO<sub>2</sub>e") }} />
+        // return suggestions.split('\n').map((line, index) => (
+        //     <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line.replaceAll("kgCO2e", "kgCO<sub>2</sub>e") }} />
+        // ));
+
+        let formattedSuggestions = suggestions.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        formattedSuggestions = formattedSuggestions.replaceAll("Target Reduction:", "<strong>Target Reduction:</strong>");
+        formattedSuggestions = formattedSuggestions.replaceAll("Steps:", "<strong>Steps:</strong>");
+        formattedSuggestions = formattedSuggestions.replaceAll("kgCO2e", "kgCO<sub>2</sub>e");
+        formattedSuggestions = formattedSuggestions.split('\n').map(line => {
+            if (line.startsWith('### ') || line.startsWith('#### ')) {
+                return `<strong>${line.slice(4)}</strong>`;
+            }
+            return line;
+        }).join('\n');
+
+        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Virtual Event : </h3> `;
+
+        formattedSuggestions.split('\n').forEach((line, index) => {
+            pdfData += `${line}<br />`;
+        });
+        setSuggestionForPdf(pdfData);
+
+        return formattedSuggestions.split('\n').map((line, index) => (
+            <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line }} />
         ));
     };
 
     const chat = async () => {
         setIsLoading(true);
         try {
+            await generatePrompt();
+
             const response = await axios.post(
                 "https://api.openai.com/v1/chat/completions",
                 {
-                    model: "gpt-3.5-turbo",
-                    messages: [{
-                        "role": "user",
-                        "content": `${contentData}\n${totalCarbonFootprint}\n${totalTCO2e}\n${carbonPerDollar} \n This is the carbon footprint getting generated from my event, For data i have given, key is 'Category Name' and value is the 'Emissions generated by each category in (kgCO2e). I have only 1 category. \nhow to reduce from category and bring down the overall carbon footprint of our event? Plz assign target reductions and practical steps for each category.`
-                    }],
+                    // model: "gpt-3.5-turbo",
+                    model: "gpt-4o",
+                    messages: [
+                        {
+                            "role": "user",
+                            "content": content
+                        }],
                     temperature: 0.7,
                 },
                 {
@@ -118,16 +210,22 @@ const Result = ({ value }) => {
             });
         });
 
-        chat();
-
         setSc1(sc1Count);
         setSc2(sc2Count);
         setSc3(sc3Count);
-    }, [resultTableData, value]);
+
+        generatePrompt();
+    }, [resultTableData, value, allVirtualEventData]);
+
+    useEffect(() => {
+        if (content) {
+            chat();
+        }
+    }, [content]);
 
     return (
         <div>
-            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen />
+            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen chatSuggestion={suggestionForPdf} />
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
                     {/* <Box style={{ width: "100%", color: 'white' }}>
@@ -205,7 +303,7 @@ const Result = ({ value }) => {
 
                     <div className='d-flex justify-content-end p-3'>
                         <Stack direction={"row"} spacing={2}>
-                            <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
+                            <Button variant='contained' disabled={isLoading} onClick={() => setOpen(true)} className='custom-btn'>Submit</Button>
                             {/* <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button> */}
                         </Stack>
                     </div>

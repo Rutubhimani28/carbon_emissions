@@ -4,9 +4,9 @@ import Comms from './comms';
 import Hospitality from './hospitality';
 import PrAgency from './prAgency';
 import Result from './result';
-import hospitalityImg from '../../assets/Accommodation.png';
-import prAgencyImg from '../../assets/Transportation.png';
-import commsImg from '../../assets/Travel.png';
+import hospitalityImg from '../../assets/hospitality.png';
+import prAgencyImg from '../../assets/pr agency.png';
+import commsImg from '../../assets/comms.png';
 import result from '../../assets/result.png';
 
 const PrEventCalculation = () => {

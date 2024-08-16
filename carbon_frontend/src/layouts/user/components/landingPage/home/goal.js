@@ -23,14 +23,14 @@ const Goal = () => {
                         <Box className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 bg-white mx-3 template-inner-theme" style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px" }}>
                             <img src={mission} alt="img" width={50} className='tabImgWhite' />
                             <Typography variant='h6' className='text-center fs-5 pt-2 pb-4 fontFamily fw-bold' >Mission</Typography>
-                            <p className='text-center fs-6'>To promote awareness within industries regarding the crucial significance of steering their marketing operations with sustainable practices and to motivate them to actively reduce their carbon footprint.</p>
+                            <p className='text-center fs-6'>To promote awareness and empower organizations' CMO verticals, stakeholders, and exhibition organizers to adopt sustainable marketing practices that contribute to meaningful environmental impact.</p>
                         </Box>
                     </Grid>
                     <Grid item sm={12} md={3.9} className='wow animate__animated animate__fadeInRight animate__slow'>
                         <Box className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 bg-white mx-3 template-inner-theme" style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px" }}>
                             <img src={vision} alt="img" width={50} className='tabImgWhite' />
                             <Typography variant='h6' className='text-center fs-5  pt-2 pb-4 fontFamily fw-bold' >Vision</Typography>
-                            <p className='text-center fs-6'>We aspire to empower the organisation’s CMO vertical and its stakeholders, guiding them towards achieving a 50% reduction in their carbon footprint generated from their activities by 2030.</p>
+                            <p className='text-center fs-6'>We aspire to remove 1 Gigaton of carbon equivalent (1 GtCO<sub>2</sub>e) by 2030, driving meaningful environmental impact through sustainable marketing practices by collaborating with our clients.</p>
                         </Box>
                     </Grid>
                     <Grid item xs={0} md={2.1} />
