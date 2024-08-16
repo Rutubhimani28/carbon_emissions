@@ -367,7 +367,7 @@ const Comms = (props) => {
                 container
                 // rowSpacing={4}
                 columnSpacing={0}
-                className='overflow-auto'
+                className='overflow-auto justify-content-center'
               >
                 <Grid item xs={12} sm={12} md={12}>
                   <Typography
