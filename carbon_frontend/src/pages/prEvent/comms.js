@@ -378,7 +378,7 @@ const Comms = (props) => {
                     </Typography>
                     <table className="table-custom-inpt-field">
                       <tr>
-                        <th className="ps-2" />
+                        <th className="ps-2" width='155px'/>
                         <th className="ps-2">No of Emails</th>
                         <th className="ps-2">Attachment Size (Mb)</th>
                         <th className="ps-2">Emissions</th>
@@ -478,7 +478,7 @@ const Comms = (props) => {
                   <div className="table-responsive my-4">
                     <table className="table-custom-inpt-field">
                       <tr>
-                        <th className="ps-2" />
+                        <th className="ps-2" width='155px'/>
                         {/* <th className='ps-3'>Production File Size (in Mb)</th> */}
                         <th className="ps-2">File Size (in Mb)</th>
                         <th className="ps-2" style={{ width: "246px" }}> Sending to Media (No of Emails)</th>
@@ -544,7 +544,7 @@ const Comms = (props) => {
                             inputProps={{ style: { color: 'white' } }}
                           />
                         </td>
-                        <td className="ps-2 py-1">
+                        <td className="ps-3 py-1">
                           <TextField
                             size="small"
                             type="number"
@@ -615,7 +615,7 @@ const Comms = (props) => {
                             inputProps={{ style: { color: 'white' } }}
                           />
                         </td>
-                        <td className="ps-2 py-1">
+                        <td className="ps-3 py-1">
                           <TextField
                             size="small"
                             type="number"
@@ -631,19 +631,19 @@ const Comms = (props) => {
                 </Box>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+              <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4'>PR Assets</Typography>
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'start'}>  
                 <Box>
-                  <div className='table-responsive mb-4'>
-                    <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>PR Assets</Typography>
+                  <div className='table-responsive mb-4 d-block mx-auto'>
                     <table className='table-custom-inpt-field'>
                       <tr>
-                        <th className='ps-2' />
+                        <th className='ps-2' width='155px'/>
                         <th className='ps-3'>No. of Pages</th>
                         <th className='ps-2'>Emissions</th>
                       </tr>
                       <tr>
-                        <td className='ps-2 py-1 me-5 mb-xl-1 mb-md-5 SETPrinting'>Printing a Coloured Brochure</td>
-                        <td className='ps-3 py-1'>
+                        <td className='ps-2 py-1 me-5 mb-xl-1 mb-md-5 SETPrinting' >Printing a Coloured Brochure</td>
+                        <td className='ps-2 py-1 '>
                           <TextField size='small' type="number" name="colouredBrochurePage"
                             value={formik?.values?.colouredBrochurePage}
                             onChange={(e) => {
@@ -651,21 +651,21 @@ const Comms = (props) => {
                               formik.setFieldValue('emissionSix', Number(1.56 * Number(e.target.value)).toFixed(2));
                               formik.handleSubmit();
                             }}
-                            inputProps={{ style: { color: 'white' } }} />
+                            inputProps={{ style: { color: 'white' } }}/>
                         </td>
                         <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} /></td>
                       </tr>
                       <tr>
-                        <td className='ps-2 py-1 setPosition '>A4 Size (75GSM)</td>
-                        <td className='ps-3 py-1 '>
+                        <td className='ps-2 py-1 setPosition'>A4 Size (75GSM)</td>
+                        <td className='ps-2 py-1 '>
                           <TextField size='small' type="number" name='a4Size75Gsm' value={values?.a4Size75Gsm}
                             onChange={(e) => {
                               formik.setFieldValue("a4Size75Gsm", Number(e.target.value));
                               formik.handleSubmit();
                             }}
-                            inputProps={{ style: { color: 'white' } }} />
+                            inputProps={{ style: { color: 'white' } }}/>
                         </td>
-                        <td className='ps-2 py-1 '><TextField size='small' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} /></td>
+                        <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange}/></td>
                       </tr>
                     </table>
                   </div>
@@ -999,7 +999,7 @@ const Comms = (props) => {
                   </Button>
                 </Stack>
               </Grid>
-              <Grid item xs={12} sm={12} md={12} marginY={2}>
+              <Grid item xs={12} sm={12} md={12} marginY={2} display={'flex'} justifyContent={'center'}>
                 <Typography color="white">
                   {`Total Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
                 </Typography>
