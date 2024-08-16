@@ -362,649 +362,420 @@ const Comms = (props) => {
             <IconDiv>
               <img src={commsImg} alt="Local Transportation" width={100} className="tabImgWhite" />
             </IconDiv>
-            <Grid
-              // container
-              rowSpacing={3}
-              columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-            >
-              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
-                <Box>
-                  <div className="table-responsive">
-                    <Typography
-                      variant="h4"
-                      className="text-white mb-4 d-flex justify-content-center align-items-center my-4"
-                    >
-                      Email Invitations
-                    </Typography>
-                    <table className="table-custom-inpt-field">
-                      <tr>
-                        <th className="ps-2" width='155px'/>
-                        <th className="ps-2">No of Emails</th>
-                        <th className="ps-2">Attachment Size (Mb)</th>
-                        <th className="ps-2">Emissions</th>
-                      </tr>
-                      <tr>
-                        <td className="ps-2" width="100">
-                          Emails{' '}
-                        </td>
-                        <td className="ps-2 py-1 ">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="noOfEmails"
-                            value={values?.noOfEmails}
-                            onChange={(e) => {
-                              const emailEmissionOne =
-                                e.target.value === 0
-                                  ? 0
-                                  : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(2));
-                              const totalAttachmentSize =
-                                e.target.value === 0 || values?.attachmentSize === 0
-                                  ? 0
-                                  : Number((e.target.value * values?.attachmentSize).toFixed(2));
-                              const emailEmissionTwo =
-                                totalAttachmentSize === 0
-                                  ? 0
-                                  : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+            <Container >
+              <Grid
+                container
+                // rowSpacing={4}
+                columnSpacing={0}
+                className='overflow-auto justify-content-center'
+              >
+                <Grid item xs={12} sm={12} md={12}>
+                  <Typography
+                    variant="h4"
+                    className="text-white mb-4 d-flex justify-content-center align-items-center my-4"
+                  >
+                    Email Invitations
+                  </Typography>
+                </Grid>
 
-                              formik.setFieldValue('noOfEmails', e.target.value);
-                              formik.setFieldValue('emailEmissionOne', emailEmissionOne);
-                              formik.setFieldValue('totalAttachmentSize', totalAttachmentSize);
-                              formik.setFieldValue('emailEmissionTwo', emailEmissionTwo);
-                              formik.setFieldValue(
-                                'emissionOne',
-                                emailEmissionOne === 0 || emailEmissionTwo === 0
-                                  ? 0
-                                  : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2)
-                              );
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-2 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="attachmentSize"
-                            value={values?.attachmentSize}
-                            onChange={(e) => {
-                              const emailEmissionOne =
-                                values?.noOfEmails === 0
-                                  ? 0
-                                  : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2));
-                              const totalAttachmentSize =
-                                e.target.value === 0 || values?.noOfEmails === 0
-                                  ? 0
-                                  : Number((e.target.value * values?.noOfEmails).toFixed(2));
-                              const emailEmissionTwo =
-                                totalAttachmentSize === 0
-                                  ? 0
-                                  : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+                <Grid item xs={2.2} sm={2.2} md={2.2} />
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <Typography
+                    className="text-white fw-bold d-flex align-items-center"
+                  >
+                    No of Emails
+                  </Typography>
+                </Grid>
 
-                              formik.setFieldValue('attachmentSize', e.target.value);
-                              formik.setFieldValue('emailEmissionOne', emailEmissionOne);
-                              formik.setFieldValue('totalAttachmentSize', totalAttachmentSize);
-                              formik.setFieldValue('emailEmissionTwo', emailEmissionTwo);
-                              formik.setFieldValue(
-                                'emissionOne',
-                                emailEmissionOne === 0 || emailEmissionTwo === 0
-                                  ? 0
-                                  : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2)
-                              );
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-2 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            disabled
-                            name="emissionOne"
-                            value={values?.emissionOne}
-                            onChange={formik.handleChange}
-                          />
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                </Box>
-              </Grid>
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <Typography
+                    className="text-white fw-bold d-flex align-items-center"
+                  >
+                    Attachment Size (Mb)
+                  </Typography>
+                </Grid>
 
-              <Grid item xs={12} sm={12} md={12}>
-                <Box>
-                  <div className="table-responsive my-4">
-                    <table className="table-custom-inpt-field">
-                      <tr>
-                        <th className="ps-2" width='155px'/>
-                        {/* <th className='ps-3'>Production File Size (in Mb)</th> */}
-                        <th className="ps-2">File Size (in Mb)</th>
-                        <th className="ps-2" style={{ width: "246px" }}> Sending to Media (No of Emails)</th>
-                        <th className="ps-2">Emissions</th>
-                      </tr>
-                      <tr>
-                        <td className="ps-2" width="100">
-                          Video Byte
-                        </td>
-                        {/* <td className='ps-3 py-1'>
-                          <TextField size='small' type="number" name='prFileSizeOne' value={values?.prFileSizeOne}
-                            onChange={(e) => {
-                              const emissionTwo = e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.finalFileSizeOne) * Number(values?.sendingToMediaOne) * Number(values?.efTwo)).toFixed(2);
-                              formik.setFieldValue("prFileSizeOne", e.target.value);
-                              formik.setFieldValue("emissionTwo", emissionTwo);
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }} />
-                        </td> */}
-                        <td className="ps-2 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="finalFileSizeOne"
-                            value={values?.finalFileSizeOne}
-                            onChange={(e) => {
-                              const emissionTwo =
-                                e.target.value === 0
-                                  ? 0
-                                  : Number(
-                                    Number(e.target.value) *
-                                    // Number(values?.prFileSizeOne) *
-                                    Number(values?.sendingToMediaOne) *
-                                    Number(values?.efTwo)
-                                  ).toFixed(2);
-                              formik.setFieldValue('finalFileSizeOne', e.target.value);
-                              formik.setFieldValue('emissionTwo', emissionTwo);
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-2 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="sendingToMediaOne"
-                            value={values?.sendingToMediaOne}
-                            onChange={(e) => {
-                              const emissionTwo =
-                                e.target.value === 0
-                                  ? 0
-                                  : Number(
-                                    Number(e.target.value) *
-                                    // Number(values?.prFileSizeOne) *
-                                    Number(values?.finalFileSizeOne) *
-                                    Number(values?.efTwo)
-                                  ).toFixed(2);
-                              formik.setFieldValue('sendingToMediaOne', e.target.value);
-                              formik.setFieldValue('emissionTwo', emissionTwo);
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-3 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="emissionTwo"
-                            disabled
-                            value={values?.emissionTwo}
-                            onChange={formik.handleChange}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="ps-2 py-1">Pictures</td>
-                        {/* <td className='ps-3 py-1'>
-                          <TextField size='small' type="number" name='prFileSizeTwo' value={values?.prFileSizeTwo}
-                            onChange={(e) => {
-                              const emailEmissionThree = e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.finalFileSizeTwo) * Number(values?.sendingToMediaTwo) * Number(values?.efTwo))).toFixed(2);
-                              formik.setFieldValue("prFileSizeTwo", e.target.value);
-                              formik.setFieldValue("emissionTwo", emailEmissionThree);
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }} />
-                        </td> */}
-                        <td className="ps-2 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="finalFileSizeTwo"
-                            value={values?.finalFileSizeTwo}
-                            onChange={(e) => {
-                              const emailEmissionThree =
-                                e.target.value === 0
-                                  ? 0
-                                  : Number(
-                                    (Number(e.target.value) *
-                                      // Number(values?.prFileSizeTwo) *
-                                      Number(values?.sendingToMediaTwo) *
-                                      Number(values?.efTwo)) /
-                                    1000
-                                  ).toFixed(2);
-                              formik.setFieldValue('finalFileSizeTwo', e.target.value);
-                              formik.setFieldValue('emissionThree', Number(emailEmissionThree).toFixed(2));
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-2 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="sendingToMediaTwo"
-                            value={values?.sendingToMediaTwo}
-                            onChange={(e) => {
-                              const emailEmissionThree =
-                                e.target.value === 0
-                                  ? 0
-                                  : Number(
-                                    (Number(e.target.value) *
-                                      // Number(values?.prFileSizeTwo) *
-                                      Number(values?.finalFileSizeTwo) *
-                                      Number(values?.efTwo)) /
-                                    1000
-                                  ).toFixed(2);
-                              formik.setFieldValue('sendingToMediaTwo', e.target.value);
-                              formik.setFieldValue('emissionThree', Number(emailEmissionThree).toFixed(2));
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-3 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="emissionThree"
-                            disabled
-                            value={values?.emissionThree}
-                            onChange={formik.handleChange}
-                          />
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                </Box>
-              </Grid>
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <Typography
+                    className="text-white fw-bold d-flex align-items-center"
+                  >
+                    Emissions
+                  </Typography>
+                </Grid>
 
-              <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4'>PR Assets</Typography>
-              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'start'}>  
-                <Box>
-                  <div className='table-responsive mb-4 d-block mx-auto'>
-                    <table className='table-custom-inpt-field'>
-                      <tr>
-                        <th className='ps-2' width='155px'/>
-                        <th className='ps-3'>No. of Pages</th>
-                        <th className='ps-2'>Emissions</th>
-                      </tr>
-                      <tr>
-                        <td className='ps-2 py-1 me-5 mb-xl-1 mb-md-5 SETPrinting' >Printing a Coloured Brochure</td>
-                        <td className='ps-2 py-1 '>
-                          <TextField size='small' type="number" name="colouredBrochurePage"
-                            value={formik?.values?.colouredBrochurePage}
-                            onChange={(e) => {
-                              formik.setFieldValue('colouredBrochurePage', e.target.value);
-                              formik.setFieldValue('emissionSix', Number(1.56 * Number(e.target.value)).toFixed(2));
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}/>
-                        </td>
-                        <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} /></td>
-                      </tr>
-                      <tr>
-                        <td className='ps-2 py-1 setPosition'>A4 Size (75GSM)</td>
-                        <td className='ps-2 py-1 '>
-                          <TextField size='small' type="number" name='a4Size75Gsm' value={values?.a4Size75Gsm}
-                            onChange={(e) => {
-                              formik.setFieldValue("a4Size75Gsm", Number(e.target.value));
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}/>
-                        </td>
-                        <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange}/></td>
-                      </tr>
-                    </table>
-                  </div>
-                </Box>
-              </Grid>
+                <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
+                  Emails
+                </Grid>
 
-              {/* <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
-                <Box>
-                  <div className="table-responsive">
-                    <Typography
-                      variant="h4"
-                      className="text-white d-flex justify-content-center align-items-center my-4"
-                    >
-                      Social Media
-                    </Typography>
-                    <Box
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        flexWrap: 'wrap',
-                        gap: '16px',
-                        marginBottom: "40px"
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="noOfEmails"
+                    value={values?.noOfEmails}
+                    onChange={(e) => {
+                      const emailEmissionOne =
+                        e.target.value === 0
+                          ? 0
+                          : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(2));
+                      const totalAttachmentSize =
+                        e.target.value === 0 || values?.attachmentSize === 0
+                          ? 0
+                          : Number((e.target.value * values?.attachmentSize).toFixed(2));
+                      const emailEmissionTwo =
+                        totalAttachmentSize === 0
+                          ? 0
+                          : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+
+                      formik.setFieldValue('noOfEmails', e.target.value);
+                      formik.setFieldValue('emailEmissionOne', emailEmissionOne);
+                      formik.setFieldValue('totalAttachmentSize', totalAttachmentSize);
+                      formik.setFieldValue('emailEmissionTwo', emailEmissionTwo);
+                      formik.setFieldValue(
+                        'emissionOne',
+                        emailEmissionOne === 0 || emailEmissionTwo === 0
+                          ? 0
+                          : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2)
+                      );
+                      formik.handleSubmit();
+                    }}
+                    inputProps={{ style: { color: 'white' } }}
+                  />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="attachmentSize"
+                    value={values?.attachmentSize}
+                    onChange={(e) => {
+                      const emailEmissionOne =
+                        values?.noOfEmails === 0
+                          ? 0
+                          : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2));
+                      const totalAttachmentSize =
+                        e.target.value === 0 || values?.noOfEmails === 0
+                          ? 0
+                          : Number((e.target.value * values?.noOfEmails).toFixed(2));
+                      const emailEmissionTwo =
+                        totalAttachmentSize === 0
+                          ? 0
+                          : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+
+                      formik.setFieldValue('attachmentSize', e.target.value);
+                      formik.setFieldValue('emailEmissionOne', emailEmissionOne);
+                      formik.setFieldValue('totalAttachmentSize', totalAttachmentSize);
+                      formik.setFieldValue('emailEmissionTwo', emailEmissionTwo);
+                      formik.setFieldValue(
+                        'emissionOne',
+                        emailEmissionOne === 0 || emailEmissionTwo === 0
+                          ? 0
+                          : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2)
+                      );
+                      formik.handleSubmit();
+                    }}
+                    inputProps={{ style: { color: 'white' } }}
+                  />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7} >
+                  <TextField
+                    size="small"
+                    type="number"
+                    disabled
+                    name="emissionOne"
+                    value={values?.emissionOne}
+                    onChange={formik.handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} md={12} m={2} />
+
+                {/* ------------ */}
+
+                <Grid item xs={2.2} sm={2.2} md={2.2} />
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <Typography
+                    className="text-white fw-bold d-flex align-items-center"
+                  >
+                    File Size (in Mb)
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <Typography
+                    className="text-white fw-bold d-flex align-items-center"
+                  >
+                    Sending to Media (No of Emails)
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <Typography
+                    className="text-white fw-bold d-flex align-items-center"
+                  >
+                    Emissions
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
+                  Video Byte
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="finalFileSizeOne"
+                    value={values?.finalFileSizeOne}
+                    onChange={(e) => {
+                      const emissionTwo =
+                        e.target.value === 0
+                          ? 0
+                          : Number(
+                            Number(e.target.value) *
+                            // Number(values?.prFileSizeOne) *
+                            Number(values?.sendingToMediaOne) *
+                            Number(values?.efTwo)
+                          ).toFixed(2);
+                      formik.setFieldValue('finalFileSizeOne', e.target.value);
+                      formik.setFieldValue('emissionTwo', emissionTwo);
+                      formik.handleSubmit();
+                    }}
+                    inputProps={{ style: { color: 'white' } }}
+                  />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="sendingToMediaOne"
+                    value={values?.sendingToMediaOne}
+                    onChange={(e) => {
+                      const emissionTwo =
+                        e.target.value === 0
+                          ? 0
+                          : Number(
+                            Number(e.target.value) *
+                            // Number(values?.prFileSizeOne) *
+                            Number(values?.finalFileSizeOne) *
+                            Number(values?.efTwo)
+                          ).toFixed(2);
+                      formik.setFieldValue('sendingToMediaOne', e.target.value);
+                      formik.setFieldValue('emissionTwo', emissionTwo);
+                      formik.handleSubmit();
+                    }}
+                    inputProps={{ style: { color: 'white' } }}
+                  />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7} >
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="emissionTwo"
+                    disabled
+                    value={values?.emissionTwo}
+                    onChange={formik.handleChange}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={12} m={0.5} />
+
+                <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
+                  Pictures
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="finalFileSizeTwo"
+                    value={values?.finalFileSizeTwo}
+                    onChange={(e) => {
+                      const emailEmissionThree =
+                        e.target.value === 0
+                          ? 0
+                          : Number(
+                            (Number(e.target.value) *
+                              // Number(values?.prFileSizeTwo) *
+                              Number(values?.sendingToMediaTwo) *
+                              Number(values?.efTwo)) /
+                            1000
+                          ).toFixed(2);
+                      formik.setFieldValue('finalFileSizeTwo', e.target.value);
+                      formik.setFieldValue('emissionThree', Number(emailEmissionThree).toFixed(2));
+                      formik.handleSubmit();
+                    }}
+                    inputProps={{ style: { color: 'white' } }}
+                  />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="sendingToMediaTwo"
+                    value={values?.sendingToMediaTwo}
+                    onChange={(e) => {
+                      const emailEmissionThree =
+                        e.target.value === 0
+                          ? 0
+                          : Number(
+                            (Number(e.target.value) *
+                              // Number(values?.prFileSizeTwo) *
+                              Number(values?.finalFileSizeTwo) *
+                              Number(values?.efTwo)) /
+                            1000
+                          ).toFixed(2);
+                      formik.setFieldValue('sendingToMediaTwo', e.target.value);
+                      formik.setFieldValue('emissionThree', Number(emailEmissionThree).toFixed(2));
+                      formik.handleSubmit();
+                    }}
+                    inputProps={{ style: { color: 'white' } }}
+                  />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7} >
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="emissionThree"
+                    disabled
+                    value={values?.emissionThree}
+                    onChange={formik.handleChange}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={12} m={2} />
+
+                <Grid item xs={12} sm={12} md={12}>
+                  <Typography
+                    variant="h4"
+                    className="text-white mb-4 d-flex justify-content-center align-items-center my-4"
+                  >
+                    PR Assets
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={2.2} sm={2.2} md={2.2} />
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <Typography
+                    className="text-white fw-bold d-flex align-items-center"
+                  >
+                    No. of Pages
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <Typography
+                    className="text-white fw-bold d-flex align-items-center"
+                  >
+                    Emissions
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7} />
+
+                <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
+                  Printing a Coloured Brochure
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField size='small' type="number" name="colouredBrochurePage"
+                    value={formik?.values?.colouredBrochurePage}
+                    onChange={(e) => {
+                      formik.setFieldValue('colouredBrochurePage', e.target.value);
+                      formik.setFieldValue('emissionSix', Number(1.56 * Number(e.target.value)).toFixed(2));
+                      formik.handleSubmit();
+                    }}
+                    inputProps={{ style: { color: 'white' } }} />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField size='small' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7} />
+
+                <Grid item xs={12} sm={12} md={12} m={0.5} />
+
+                <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
+                  A4 Size (75GSM)
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField size='small' type="number" name='a4Size75Gsm' value={values?.a4Size75Gsm}
+                    onChange={(e) => {
+                      formik.setFieldValue("a4Size75Gsm", Number(e.target.value));
+                      formik.handleSubmit();
+                    }}
+                    inputProps={{ style: { color: 'white' } }} />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
+                  <TextField size='small' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} />
+                </Grid>
+
+                <Grid item xs={2.7} sm={2.7} md={2.7} />
+
+                <Grid item xs={12} sm={12} md={12} m={2} />
+
+                <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+                  <Stack direction={'row'} spacing={2}>
+                    {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
+                    <Button
+                      variant="contained"
+                      startIcon={<FaAngleDoubleLeft />}
+                      onClick={() => {
+                        formik.handleSubmit();
+                        setValue(value - 1);
                       }}
+                      className="custom-btn"
                     >
-                      <Card
-                        sx={{
-                          width: 260,
-                          maxWidth: '100%',
-                          boxShadow: 'lg',
-                          marginY: '16px',
-                        }}
-                      >
-                        <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                          <Typography variant="h6" sx={{ marginY: 1 }}>
-                            Image
-                          </Typography>
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="imgSize"
-                            value={values?.imgSize}
-                            label="Image Size (in Mb)"
-                            variant="outlined"
-                            fullWidth
-                            onChange={(e) => {
-                              formik.setFieldValue('imgSize', Number(e.target.value));
-                              formik.setFieldValue('deviceEnergy1', 0.01 * (1 / 60));
-                              formik.setFieldValue('somePlatformEnergy1', (0.4 / 1000) * Number(e.target.value));
-                              formik.setFieldValue('networkEnergy1', (0.2 / 1000) * Number(e.target.value));
-                              formik.setFieldValue(
-                                'totalEnergy1',
-                                0.01 * (Number(e.target.value) / 60) +
-                                (0.4 / 1000) * Number(e.target.value) +
-                                (0.2 / 1000 + Number(e.target.value))
-                              );
-                              formik.handleSubmit();
-                            }}
-                            sx={{ marginTop: 2 }}
-                            inputProps={{ style: { color: 'black' } }}
-                          />
-                          <TextField
-                            size="small"
-                            type="number"
-                            name={'impressionsOne'}
-                            value={values?.impressionsOne}
-                            label="Impressions"
-                            variant="outlined"
-                            fullWidth
-                            onChange={(e) => {
-                              formik.setFieldValue('impressionsOne', Number(e.target.value));
-                              formik.setFieldValue(
-                                'emissionFour',
-                                (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(2)
-                              );
-                              formik.handleSubmit();
-                            }}
-                            sx={{ marginTop: 2 }}
-                            inputProps={{ style: { color: 'black' } }}
-                          />
-                          <TextField
-                            size="small"
-                            type="number"
-                            disabled
-                            name="emissionFour"
-                            label="Emissions"
-                            variant="outlined"
-                            fullWidth
-                            value={values?.emissionFour}
-                            onChange={formik.handleChange}
-                            sx={{ marginTop: 2 }}
-                          />
-                        </CardContent>
-                      </Card>
-                      <Card
-                        sx={{
-                          width: 260,
-                          maxWidth: '100%',
-                          boxShadow: 'lg',
-                          marginY: '16px',
-                        }}
-                      >
-                        <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                          <Typography variant="h6" sx={{ marginY: 1 }}>
-                            Video
-                          </Typography>
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="videoSize"
-                            value={values?.videoSize}
-                            label="Video Size (in Mb)"
-                            variant="outlined"
-                            fullWidth
-                            onChange={(e) => {
-                              formik.setFieldValue('videoSize', Number(e.target.value));
-                              formik.setFieldValue(
-                                'somePlatformEnergy2',
-                                Number((Number(e.target.value) / 1000) * 0.4)
-                              );
-                              formik.setFieldValue('networkEnergy2', Number((0.2 / 1000) * Number(e.target.value)));
-                              formik.setFieldValue(
-                                'emissionFive',
-                                (
-                                  Number(e.target.value) *
-                                  Number(values?.impressionsTwo) *
-                                  Number(values.videoMins) *
-                                  Number(values.efTwo)
-                                ).toFixed(2)
-                              );
-                              formik.handleSubmit();
-                            }}
-                            sx={{ marginTop: 2 }}
-                            inputProps={{ style: { color: 'black' } }}
-                          />
-                          <TextField
-                            size="small"
-                            type="number"
-                            name={'videoMins'}
-                            value={values?.videoMins}
-                            label="Video (in mins)"
-                            variant="outlined"
-                            fullWidth
-                            onChange={(e) => {
-                              formik.setFieldValue('videoMins', Number(e.target.value));
-                              formik.setFieldValue('deviceEnergy2', Number(0.01 * (Number(e.target.value) / 60)));
-                              formik.handleSubmit();
-                            }}
-                            sx={{ marginTop: 2 }}
-                            inputProps={{ style: { color: 'black' } }}
-                          />
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="impressionsTwo"
-                            value={values?.impressionsTwo}
-                            label="Impressions"
-                            variant="outlined"
-                            fullWidth
-                            onChange={(e) => {
-                              formik.setFieldValue('impressionsTwo', Number(e.target.value));
-                              formik.setFieldValue(
-                                'emissionFive',
-                                (
-                                  Number(e.target.value) *
-                                  Number(values.videoSize) *
-                                  Number(values.videoMins) *
-                                  Number(values.efTwo)
-                                ).toFixed(2)
-                              );
-                              formik.handleSubmit();
-                            }}
-                            sx={{ marginTop: 2 }}
-                            inputProps={{ style: { color: 'black' } }}
-                          />
-                          <TextField
-                            size="small"
-                            type="number"
-                            disabled
-                            label="Emissions"
-                            variant="outlined"
-                            fullWidth
-                            name={'emissionFive'}
-                            value={values?.emissionFive}
-                            onChange={formik.handleChange}
-                            sx={{ marginTop: 2 }}
-                          />
-                        </CardContent>
-                      </Card>
-                    </Box>
-                  </div>
-                </Box>
-              </Grid> */}
+                      Save and Previous Page
+                    </Button>
+                    <Button
+                      variant="contained"
+                      endIcon={<FaAngleDoubleRight />}
+                      onClick={() => {
+                        formik.handleSubmit();
+                        setValue(value + 1);
+                      }}
+                      className="custom-btn"
+                    >
+                      {' '}
+                      Save and Next Page
+                    </Button>
+                    <Button
+                      variant="contained"
+                      endIcon={<FaAngleDoubleRight />}
+                      onClick={() => setValue(9)}
+                      className="custom-btn"
+                    >
+                      Go To Result
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      onClick={() => {
+                        formik.resetForm();
+                        handeleDelete();
+                      }}
+                      color="error"
+                    >
+                      Clear
+                    </Button>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12} sm={12} md={12} marginY={2}>
+                  <Typography color="white">
+                    {`Total Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
+                  </Typography>
+                </Grid>
 
-              {/* <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
-                <Box>
-                  <div className="table-responsive my-4">
-                    <table className="table-custom-inpt-field">
-                      <tr>
-                        <th className="ps-2" />
-                        <th className="ps-3">Video Size (in Mb)</th>
-                        <th className="ps-3">Video (in mins)</th>
-                        <th className="ps-3">Impressions</th>
-                        <th className="ps-2">Emissions</th>
-                      </tr>
-                      <tr>
-                        <td className="ps-2 py-1" width="100">
-                          Video
-                        </td>
-                        <td className="ps-3 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="videoSize"
-                            value={values?.videoSize}
-                            onChange={(e) => {
-                              formik.setFieldValue('videoSize', Number(e.target.value));
-                              formik.setFieldValue(
-                                'somePlatformEnergy2',
-                                Number((Number(e.target.value) / 1000) * 0.4)
-                              );
-                              formik.setFieldValue('networkEnergy2', Number((0.2 / 1000) * Number(e.target.value)));
-                              formik.setFieldValue(
-                                'emissionFive',
-                                (
-                                  Number(e.target.value) *
-                                  Number(values?.impressionsTwo) *
-                                  Number(values.videoMins) *
-                                  Number(values.efTwo)
-                                ).toFixed(2)
-                              );
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-3 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="videoMins"
-                            value={values?.videoMins}
-                            onChange={(e) => {
-                              formik.setFieldValue('videoMins', Number(e.target.value));
-                              formik.setFieldValue('deviceEnergy2', Number(0.01 * (Number(e.target.value) / 60)));
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-3 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="impressionsTwo"
-                            value={values?.impressionsTwo}
-                            onChange={(e) => {
-                              formik.setFieldValue('impressionsTwo', Number(e.target.value));
-                              formik.setFieldValue(
-                                'emissionFive',
-                                (
-                                  Number(e.target.value) *
-                                  Number(values.videoSize) *
-                                  Number(values.videoMins) *
-                                  Number(values.efTwo)
-                                ).toFixed(2)
-                              );
-                              formik.handleSubmit();
-                            }}
-                            inputProps={{ style: { color: 'white' } }}
-                          />
-                        </td>
-                        <td className="ps-2 py-1">
-                          <TextField
-                            size="small"
-                            type="number"
-                            name="emissionFive"
-                            disabled
-                            value={values?.emissionFive}
-                            onChange={formik.handleChange}
-                          />
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                </Box>
-              </Grid> */}
-
-              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
-                <Stack direction={'row'} spacing={2}>
-                  {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                  <Button
-                    variant="contained"
-                    startIcon={<FaAngleDoubleLeft />}
-                    onClick={() => {
-                      formik.handleSubmit();
-                      setValue(value - 1);
-                    }}
-                    className="custom-btn"
-                  >
-                    Save and Previous Page
-                  </Button>
-                  <Button
-                    variant="contained"
-                    endIcon={<FaAngleDoubleRight />}
-                    onClick={() => {
-                      formik.handleSubmit();
-                      setValue(value + 1);
-                    }}
-                    className="custom-btn"
-                  >
-                    {' '}
-                    Save and Next Page
-                  </Button>
-                  <Button
-                    variant="contained"
-                    endIcon={<FaAngleDoubleRight />}
-                    onClick={() => setValue(9)}
-                    className="custom-btn"
-                  >
-                    Go To Result
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    onClick={() => {
-                      formik.resetForm();
-                      handeleDelete();
-                    }}
-                    color="error"
-                  >
-                    Clear
-                  </Button>
-                </Stack>
               </Grid>
-              <Grid item xs={12} sm={12} md={12} marginY={2} display={'flex'} justifyContent={'center'}>
-                <Typography color="white">
-                  {`Total Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
-                </Typography>
-              </Grid>
-            </Grid>
+            </Container>
           </Box>
         </Card>
       </Container>
