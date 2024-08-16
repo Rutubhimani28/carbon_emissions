@@ -206,6 +206,9 @@ const Result = ({ value }) => {
                         if (videoSize && videoMins && impressionsTwo && emissions) {
                             return true;
                         }
+                        if (noOfPages && emissions) {
+                            return true;
+                        }
                         return (imgSize && impressionsOne) && emissions;
                     }
                     if (page?.tabTitle === "PR Agency") {
@@ -215,9 +218,9 @@ const Result = ({ value }) => {
                         if (kgs && emissions) {
                             return true;
                         }
-                        if (noOfPages && emissions) {
-                            return true;
-                        }
+                        // if (noOfPages && emissions) {
+                        //     return true;
+                        // }
                         if (noOfKms && emissions) {
                             return true;
                         }
@@ -294,8 +297,8 @@ const Result = ({ value }) => {
                                                                                         rowData.noOfEmails !== "" && rowData.attachmentSize !== "" && rowData.sendingToMedia !== "" && rowData.emissions !== "" && (
                                                                                             <tr key={rowIndex}>
                                                                                                 <td>{rowData.cmType}</td>
-                                                                                                <td>{rowData.noOfEmails || rowData.prFileSize || rowData.videoSize || rowData.imgSize}</td>
-                                                                                                <td>{rowData.attachmentSize || rowData.finalFileSize || rowData.videoMins || rowData.impressionsOne}</td>
+                                                                                                <td>{rowData.noOfEmails || rowData.prFileSize || rowData.videoSize || rowData.imgSize || rowData.noOfPages}</td>
+                                                                                                {rowData.attachmentSize || rowData.finalFileSize || rowData.videoMins || rowData.impressionsOne && <td>{rowData.attachmentSize || rowData.finalFileSize || rowData.videoMins || rowData.impressionsOne}</td>}
                                                                                                 {rowData.sendingToMedia || rowData.impressionsTwo && <td>{rowData.attachmentSize || rowData.finalFileSize || rowData.videoMins || rowData.impressionsOne}</td>}
                                                                                                 <td>{rowData.emissions}</td>
                                                                                             </tr>
@@ -306,8 +309,8 @@ const Result = ({ value }) => {
                                                                                         rowData.meetingRoomArea !== "" && rowData.meetingDuration !== "" && rowData.emissions !== "" && (
                                                                                             <tr key={rowIndex}>
                                                                                                 <td>{rowData.prType}</td>
-                                                                                                <td>{rowData.meetingRoomArea || rowData.kgs || rowData.noOfPages || rowData.kwh || rowData.noOfKms}</td>
-                                                                                                <td>{rowData.meetingDuration}</td>
+                                                                                                <td>{rowData.meetingRoomArea || rowData.kgs || rowData.kwh || rowData.noOfKms}</td>
+                                                                                                {rowData.meetingDuration || rowData.noOfDevice && <td>{rowData.meetingDuration || rowData.noOfDevice}</td>}
                                                                                                 <td>{rowData.emissions}</td>
                                                                                             </tr>
                                                                                         )
