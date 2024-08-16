@@ -402,7 +402,7 @@ const PrAgency = (props) => {
                                                 <th className='ps-5'>No of Devices</th>
                                                 <th className='ps-2'>Emissions</th> */}
                                                  <td className='ps-5 setdata'>Total Meeting Room Area(Sqft)</td>
-                                                 <td className='ps-2 setdata'>Projector(No Of Hours)</td>
+                                                 <td className='ps-2 setdata ps-5'>Projector(No Of Hours)</td>
                                             </tr>
                                             <tr>
                                                
@@ -421,7 +421,7 @@ const PrAgency = (props) => {
                                                 </td>
                                                
 
-                                                <td className='ps-2 py-1'>
+                                                <td className='ps-2 py-1 ps-5'>
                                                    <TextField size='small' type="number"
                                                        name="noOfHours"
                                                        fullWidth
@@ -441,7 +441,7 @@ const PrAgency = (props) => {
 
                                             <tr>
                                                 <td className='ps-5'>Metting Duration(No of Hrs)</td>
-                                                <td  className='ps-2'> Projector(No of Device)</td>
+                                                <td  className='ps-5'> Projector(No of Device)</td>
                                                 {/* <td className='ps-2'>Emissions</td> */}
                                             </tr>
                                             <tr>
@@ -458,10 +458,12 @@ const PrAgency = (props) => {
                                                        inputProps={{ style: { color: 'white' } }} />
                                                 </td>
                                                 {/* Projector(No of Device) */}
-                                                <td className='ps-2'> 
+                                                <td className='ps-5'> 
                                                 <TextField size='small' type="number"
                                                      name="projectorNoOfDevice"
                                                      fullWidth
+                                                     value={formik.values.projectorNoOfDevice}
+
                                                         onChange={(e) => {
                                                             formik.setFieldValue('projectorNoOfDevice', e.target.value);
                                                             formik.setFieldValue('projectorEmission', (e.target.value === 0 || values?.noOfHours === 0) ? 0 : Number((0.215 * Number(values?.noOfHours) * e.target.value).toFixed(2)));
@@ -473,14 +475,14 @@ const PrAgency = (props) => {
                                             </tr>
 
                                             <tr>
-                                                    <td className='ps-5'>Emissions</td>  
-                                                    <td className='ps-2'>Emissions</td>   
+                                                    <td className='ps-5 '>Emissions</td>  
+                                                    <td className='ps-2 ps-5'>Emissions</td>   
                                             </tr>
                                             <tr>
-                                                <td className='ps-5'>
+                                                <td className='ps-5 '>
                                                     <TextField size='small' type="number" disabled name='meetingRoomEmission' value={values?.meetingRoomEmission} onChange={formik.handleChange} />  
                                                 </td>
-                                                <td className='ps-2'> 
+                                                <td className='ps-2 ps-5'> 
                                                     <TextField size='small' type="number" disabled name='projectorEmission' value={values?.projectorEmission} onChange={formik.handleChange} />
                                                 </td>
                                             </tr>
@@ -497,7 +499,7 @@ const PrAgency = (props) => {
                                         {/* <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>PR Assets</Typography> */}
                                         <table className='table-custom-inpt-field'>
                                             {/* <tr>
-                                                <th className='ps-2' />
+                                                <th className='ps-2'/>
                                                 <th className='ps-3'>No. of Pages</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr> */}
@@ -517,7 +519,7 @@ const PrAgency = (props) => {
                                                </td>
                                             </tr>
                                             <tr>
-                                            <td className='ps-2'>Emissions</td>
+                                                <td className='ps-2'>Emissions</td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='electricityEmission' disabled value={values?.electricityEmission} onChange={formik.handleChange} /></td>
@@ -553,18 +555,18 @@ const PrAgency = (props) => {
                             </Grid>
 
 
-                            <Grid item xs={12} sm={6} md={6} display={'flex'} justifyContent={'center'}>
+                            <Grid item xs={12} sm={6} md={5} display={'flex'} justifyContent={'center'} className='mx-auto'>
                                 <Box>
                                     <div className='table-responsive'>
-                                        <Typography variant='h4' className='text-white mb-4 d-flex   justify-content-center align-items-center my-4 '>Branding</Typography>
+                                        <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4'>Branding</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2' />
+                                                <th className='ps-2'/>
                                                 <th className='ps-3'>Weight (kgs)</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 setPosition '>Polethylene HDPE Banner/ Standee*</td>
+                                                <td className='ps-2'>Polethylene HDPE Banner/ Standee*</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="hdpeBanner"
                                                         value={formik?.values?.hdpeBanner}
@@ -573,12 +575,12 @@ const PrAgency = (props) => {
                                                             formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(e.target.value)).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                                                        inputProps={{ style: { color: 'white' } }}/>
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size="small" type="number" disabled name="hdpeBannerEmission" value={formik?.values?.hdpeBannerEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>PVC Banners / Standee</td>
+                                                <td className='ps-2 py-1'>PVC Banners / Standee</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="pvcBanners"
                                                         value={formik?.values?.pvcBanners}
@@ -587,12 +589,12 @@ const PrAgency = (props) => {
                                                             formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(e.target.value)).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                                                        inputProps={{ style: { color: 'white' } }}/>
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='pvcBannersEmission' disabled value={values?.pvcBannersEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>Cotton Banner/ Standee</td>
+                                                <td className='ps-2 py-1'>Cotton Banner/ Standee</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="cottonBanner"
                                                         value={formik?.values?.cottonBanner}
@@ -601,19 +603,18 @@ const PrAgency = (props) => {
                                                             formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(e.target.value)).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                                                        inputProps={{ style: { color: 'white' } }}/>
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='cottonBannerEmission' disabled value={values?.cottonBannerEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>Giveway Paper bags (200 GSM)- A4 Size</td>
+                                                <td className='ps-2 py-1'>Giveway Paper bags (200 GSM)- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="paperBagsA4Size"
                                                         value={formik?.values?.paperBagsA4Size}
                                                         onChange={(e) => {
                                                             formik.setFieldValue('paperBagsA4Size', e.target.value);
                                                             formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(e.target.value)).toFixed(2));
-
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -621,7 +622,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='paperBagsA4SizeEmission' disabled value={values?.paperBagsA4SizeEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>Giveway Paper bags (200 GSM)- A5 Size</td>
+                                                <td className='ps-2 py-1'>Giveway Paper bags (200 GSM)- A5 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="paperBagsA5Size"
                                                         value={formik?.values?.paperBagsA5Size}
@@ -636,7 +637,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='paperBagsA5SizeEmission' disabled value={values?.paperBagsA5SizeEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>Giveway Jute bags*- A4 Size</td>
+                                                <td className='ps-2 py-1'>Giveway Jute bags*- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="juteBagsA4Size"
                                                         value={formik?.values?.juteBagsA4Size}
@@ -645,12 +646,12 @@ const PrAgency = (props) => {
                                                             formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(e.target.value)).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                                                        inputProps={{ style: { color: 'white' } }}/>
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='juteBagsA4SizeEmission' disabled value={values?.juteBagsA4SizeEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2  py-1 cotten'>Giveway Cotton bags- A4 Size</td>
+                                                <td className='ps-2  py-1 '>Giveway Cotton bags- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="cottonBagsA4Size"
                                                         value={formik?.values?.cottonBagsA4Size}
@@ -659,7 +660,7 @@ const PrAgency = (props) => {
                                                             formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(e.target.value)).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                                                        inputProps={{ style: { color: 'white' } }}/>
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='cottonBagsA4SizeEmission' disabled value={values?.cottonBagsA4SizeEmission} onChange={formik.handleChange} /></td>
                                             </tr>
@@ -668,18 +669,18 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid>
                             
-                            <Grid item xs={12} sm={6} md={6} display={'flex'} justifyContent={'center'}>
+                            <Grid item xs={12} sm={6} md={4} display={'flex'} justifyContent={'center'} className='mx-auto'>
                                 <Box>
                                     <div className='table-responsive'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Transportation</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2 setPosition'>Model of Transport</th>
+                                                <th className='ps-2'>Model of Transport</th>
                                                 <th className='ps-3'>No of Kms</th>
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>Petrol</td>
+                                                <td className='ps-2 py-1'>Petrol</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='petrolKms' value={values?.petrolKms}
                                                         onChange={(e) => {
@@ -687,12 +688,12 @@ const PrAgency = (props) => {
                                                             formik.setFieldValue("petrolEmission", Number(Number(e.target.value) * 0.171).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                                                        inputProps={{ style: { color: 'white' } }}/>
                                                 </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='petrolEmission' disabled value={values?.petrolEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='petrolEmission' disabled value={values?.petrolEmission} onChange={formik.handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>Diesel</td>
+                                                <td className='ps-2 py-1'>Diesel</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='dieselKms' value={values?.dieselKms}
                                                         onChange={(e) => {
@@ -700,12 +701,12 @@ const PrAgency = (props) => {
                                                             formik.setFieldValue("dieselEmission", Number(Number(e.target.value) * 0.172).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                                                        inputProps={{ style: { color: 'white' } }}/>
                                                 </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='dieselEmission' disabled value={values?.dieselEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='dieselEmission' disabled value={values?.dieselEmission} onChange={formik.handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>Hybrid</td>
+                                                <td className='ps-2 py-1'>Hybrid</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='hybridKms' value={values?.hybridKms}
                                                         onChange={(e) => {
@@ -713,12 +714,12 @@ const PrAgency = (props) => {
                                                             formik.setFieldValue("hybridEmission", Number(Number(e.target.value) * 0.068).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                                                        inputProps={{ style: { color: 'white' } }}/>
                                                 </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='hybridEmission' disabled value={values?.hybridEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='hybridEmission' disabled value={values?.hybridEmission} onChange={formik.handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1 setPosition'>Electric</td>
+                                                <td className='ps-2 py-1'>Electric</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='electricKms' value={values?.electricKms}
                                                         onChange={(e) => {
@@ -728,7 +729,7 @@ const PrAgency = (props) => {
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
-                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='electricEmission' disabled value={values?.electricEmission} onChange={formik.handleChange} /></td>
+                                                <td className='ps-2 py-1'><TextField size='small' type="number" name='electricEmission' disabled value={values?.electricEmission} onChange={formik.handleChange}/></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -809,7 +810,7 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid> */}
 
-                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
+                            <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"} className='mx-auto'>
                                 <Stack direction={"row"} spacing={2}>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                     <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
