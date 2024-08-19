@@ -401,8 +401,8 @@ const PrAgency = (props) => {
                                                 {/* <th className='ps-5'>No of Hours</th>
                                                 <th className='ps-5'>No of Devices</th>
                                                 <th className='ps-2'>Emissions</th> */}
-                                                 <td className='ps-5 setdata'>Total Meeting Room Area(Sqft)</td>
-                                                 <td className='ps-2 setdata ps-5'>Projector(No Of Hours)</td>
+                                                 <td className='ps-5 '>Total Meeting Room Area(Sqft)</td>
+                                                 <td className=' ps-5'>Projector(No Of Hours)</td>
                                             </tr>
                                             <tr>
                                                
@@ -419,9 +419,9 @@ const PrAgency = (props) => {
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
-                                               
 
-                                                <td className='ps-2 py-1 ps-5'>
+
+                                                <td className='py-1 ps-5'>
                                                    <TextField size='small' type="number"
                                                        name="noOfHours"
                                                        fullWidth
@@ -440,8 +440,8 @@ const PrAgency = (props) => {
                                             </tr>
 
                                             <tr>
-                                                <td className='ps-5'>Metting Duration(No of Hrs)</td>
-                                                <td  className='ps-5'> Projector(No of Device)</td>
+                                                <td className='ps-5 pt-2'>Metting Duration(No of Hrs)</td>
+                                                <td  className='ps-5 pt-2'> Projector(No of Device)</td>
                                                 {/* <td className='ps-2'>Emissions</td> */}
                                             </tr>
                                             <tr>
@@ -475,8 +475,8 @@ const PrAgency = (props) => {
                                             </tr>
 
                                             <tr>
-                                                    <td className='ps-5 '>Emissions</td>  
-                                                    <td className='ps-2 ps-5'>Emissions</td>   
+                                                    <td className='ps-5  pt-2'>Emissions</td>  
+                                                    <td className='ps-5  pt-2'>Emissions</td>   
                                             </tr>
                                             <tr>
                                                 <td className='ps-5 '>
@@ -523,7 +523,10 @@ const PrAgency = (props) => {
                                             </tr>
                                             <tr>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='electricityEmission' disabled value={values?.electricityEmission} onChange={formik.handleChange} /></td>
-
+                                              
+                                            </tr>
+                                            <tr>
+                                                <td className='ps-2'style={{maxWidth:"250px"}}>* If you have the exact energy consumption from hotel</td>
                                             </tr>
                                                 {/* <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="colouredBrochurePage"
@@ -669,7 +672,7 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid>
                             
-                            <Grid item xs={12} sm={6} md={4} display={'flex'} justifyContent={'center'} className='mx-auto'>
+                            <Grid item xs={12} sm={6} md={5} display={'flex'} justifyContent={'center'} className='mx-auto'>
                                 <Box>
                                     <div className='table-responsive'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Transportation</Typography>
