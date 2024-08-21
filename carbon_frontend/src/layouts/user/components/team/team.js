@@ -166,8 +166,8 @@ const TeamPage = () => {
                                     </IconButton>
                                 </div> */}
                                 <div className='d-flex justify-content-center py-2 pb-4'>
-                                    <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px" }}><Link to="https://x.com/shafeeqm"><FaXTwitter style={{ color: 'white' }} /></Link></Box>
-                                    <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px" }}><Link to="https://www.linkedin.com/in/shafeeqm/"><FaLinkedin style={{ color: 'white' }} /></Link></Box>
+                                    <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px" }}><Link target="_blank" to="https://x.com/shafeeqm"><FaXTwitter style={{ color: 'white' }} /></Link></Box>
+                                    <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px" }}><Link target="_blank" to="https://www.linkedin.com/in/shafeeqm/"><FaLinkedin style={{ color: 'white' }} /></Link></Box>
                                 </div>
                             </CardContent>
                         </Card>

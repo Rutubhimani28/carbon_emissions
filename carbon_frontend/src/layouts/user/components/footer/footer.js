@@ -27,8 +27,8 @@ const Footer = () => {
             <div className='d-flex justify-content-center py-2 pb-4'>
                 {/* <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#ff0000", color: "#fff", borderRadius: "5px" }}><MdMail /></Box> */}
                 {/* <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#69727d", color: "#fff", borderRadius: "5px" }}><IoCallOutline /></Box> */}
-                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px", textDecoration: 'none' }}><Link to="https://www.linkedin.com/company/sirat-earth/"><FaLinkedin style={{ cursor: "pointer", color: 'white' }} /></Link></Box>
-                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px", textDecoration: 'none' }}><Link to="https://x.com/Sirat_Earth"><FaXTwitter style={{ cursor: "pointer", color: 'white' }} /></Link></Box>
+                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px", textDecoration: 'none' }}><Link target="_blank" to="https://www.linkedin.com/company/sirat-earth/"><FaLinkedin style={{ cursor: "pointer", color: 'white' }} /></Link></Box>
+                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px", textDecoration: 'none' }}><Link target="_blank" to="https://x.com/Sirat_Earth"><FaXTwitter style={{ cursor: "pointer", color: 'white' }} /></Link></Box>
             </div>
             <p> Copyright  &copy; {year} Sirat2Sustainability Pvt Ltd. All Rights Reserved</p>
         </div>
