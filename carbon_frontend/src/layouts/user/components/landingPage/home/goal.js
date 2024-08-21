@@ -62,7 +62,7 @@ const Goal = () => {
                         <Grid item xs={12} md={12} className='wow animate__animated animate__fadeInUp animate__slow'>
                             <Box style={{ color: 'white' }} >
                                 <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' >Collaborating for Sustainable Development</Typography>
-                                <p className='text-light fs-5 mb-5'>Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring your organization is never alone in addressing systemic sustainability challenges, enabling a positive climate impact.
+                                <p className='text-light fs-5 mb-4'>Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring your organization is never alone in addressing systemic sustainability challenges, enabling a positive climate impact.
                                 </p>
                                 <p className='text-light fs-5'>
                                     Sirāt invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.
