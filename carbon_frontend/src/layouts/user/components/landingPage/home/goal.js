@@ -10,6 +10,10 @@ import TrustTwo from '../../../assets/images/GoFig.png';
 import mission from '../../../assets/images/mission.png'
 import vision from '../../../assets/images/visionary.png'
 import collbrate from '../../../assets/images/Collaborat.jpeg';
+import commited from '../../../assets/images/CommitedLogo.png'
+import Pledge from '../../../assets/images/PledgeTonetZERO.png'
+import greenview from '../../../assets/images/GreenView.png'
+
 
 const Goal = () => {
 
@@ -51,30 +55,48 @@ const Goal = () => {
             </Grid>
 
             {/* collabrate */}
-            <div className='collabrate '>
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
+            <div className='collabrate d-flex '>
+                <div style={{ display: 'flex', maxWidth: "50%" }} >
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
 
-                    <Grid item xs={12} md={6} className='wow animate__animated animate__fadeInUp animate__slow'>
-                        <Box className="">
-                            <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' >Collaborating for Sustainable Development</Typography>
-                            <p className='text-light fs-5'><strong>Sirāt</strong> invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.</p>
-                            <p className='text-light fs-5'>
+                        <Grid item xs={12} md={12} className='wow animate__animated animate__fadeInUp animate__slow'>
+                            <Box style={{ color: 'white' }} >
+                                <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' >Collaborating for Sustainable Development</Typography>
+                                <p className='text-light fs-5 mb-4'>Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring your organization is never alone in addressing systemic sustainability challenges, enabling a positive climate impact.
+                                </p>
+                                <p className='text-light fs-5'>
+                                    Sirāt invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.
+                                </p>
+                                {/* <p className='text-light fs-5'>
                                 <PopupButton
                                     url="https://calendly.com/mohammed-sirat"
                                     rootElement={document.getElementById("root")}
                                     text="Reach out to our CEO"
                                     styles={{ border: 'none', background: 'none', color: "#ffffd9", marginLeft: '-7px' }}
                                 />
-                                to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
-                        </Box>
+                                to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p> */}
+                            </Box>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Box >
-                            <img src={collbrate} alt="img" width={"90%"} style={{ borderRadius: "10px" }} />
-                        </Box>
+                </div>
+                <div style={{ display: 'flex', maxWidth: "50%", backgroundColor: 'green', padding: "20px" }}>
+                    <Grid item xs={2} md={2} style={{ maxWidth: "33.33%", }} >
+                        <img src={commited} alt="img" width={150} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
+                        <p className='ps-2'>We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. Through the SME Climate Hub, we commit to lowering our impact on the environment through authentic action, halving our emissions by 2030. In making the commitment, we have joined the United Nations Race to Zero campaign.</p>
                     </Grid>
 
-                </Grid>
+                    <Grid item xs={2} md={2} style={{ maxWidth: "33.33%", borderLeft: '2px solid white' }}>
+                        <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
+                        <p className='ps-2'>‘Pledge to Net Zero’ is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations. We have made a Pledge to Net Zero and are committed to reducing our GHG emissions</p>
+                    </Grid>
+
+                    <Grid item xs={2} md={2} style={{ maxWidth: "33.33%", borderLeft: '2px solid white' }} >
+                        <img src={greenview} alt="img" width={200} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
+                        <p className='ps-2'> We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide – the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.                            </p>
+                    </Grid>
+
+                </div>
+
             </div>
         </div>
     )
