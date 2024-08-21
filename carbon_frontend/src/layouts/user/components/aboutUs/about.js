@@ -117,7 +117,7 @@ const About = () => {
                                 text="Book a Meeting with our CEO"
                                 styles={{ border: 'none', background: 'none', color: "#ffffd9" }}
                             /> */}
-                            <Link to="/team" className='fs-5' style={{ textDecoration: 'none', color: "#ffffd9" }}>Meet the Team</Link>
+                            {/* <Link to="/team" className='fs-5' style={{ textDecoration: 'none', color: "#ffffd9" }}>Meet the Team</Link> */}
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={3} className='d-flex justify-content-center align-items-center flex-column wow animate__animated template-inner-theme pe-4 pt-4 animate__fadeInRight animate__slow' sx={{ order: { md: '1' }, borderRadius: { xs: "10px 10px 0px 0px", md: "0px 10px 10px 0px" } }}>

@@ -97,7 +97,7 @@ export default function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/faqs" element={<Faq />} />
               <Route path="/terms-conditions" element={<TermConditions />} />
-              <Route path="/team" element={<Team />} />
+              {/* <Route path="/team" element={<Team />} /> */}
             </Routes>
           </div>
 
