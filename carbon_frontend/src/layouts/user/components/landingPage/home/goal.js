@@ -79,20 +79,26 @@ const Goal = () => {
                         </Grid>
                     </Grid>
                 </div>
-                <div style={{ display: 'flex', maxWidth: "50%", backgroundColor: 'green', padding: "20px" }}>
-                    <Grid item xs={2} md={2} style={{ maxWidth: "33.33%", }} >
+                <div style={{ display: 'flex', maxWidth: "50%", backgroundColor: 'transperent', padding: "20px" }}>
+                    <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%" }} >
                         <img src={commited} alt="img" width={150} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
-                        <p className='ps-2'>We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. Through the SME Climate Hub, we commit to lowering our impact on the environment through authentic action, halving our emissions by 2030. In making the commitment, we have joined the United Nations Race to Zero campaign.</p>
+                        <p >
+                            We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. Through the SME Climate Hub, we commit to lowering our impact on the environment through authentic action, halving our emissions by 2030. In making the commitment, we have joined the United Nations Race to Zero campaign.
+                        </p>
                     </Grid>
 
-                    <Grid item xs={2} md={2} style={{ maxWidth: "33.33%", borderLeft: '2px solid white' }}>
+                    <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%", borderLeft: '2px solid white', borderRight: '2px solid white' }}>
                         <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
-                        <p className='ps-2'>‘Pledge to Net Zero’ is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations. We have made a Pledge to Net Zero and are committed to reducing our GHG emissions</p>
+                        <p >
+                            We have made a ‘Pledge to Net Zero’ and are committed to reducing our GHG emissions. Pledge to Net Zero’ is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
+                        </p>
                     </Grid>
 
-                    <Grid item xs={2} md={2} style={{ maxWidth: "33.33%", borderLeft: '2px solid white' }} >
-                        <img src={greenview} alt="img" width={200} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
-                        <p className='ps-2'> We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide – the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.                            </p>
+                    <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%" }} >
+                        <img src={greenview} className='tabImgWhite' alt="img" width={200} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
+                        <p >
+                            We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide – the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.
+                        </p>
                     </Grid>
 
                 </div>

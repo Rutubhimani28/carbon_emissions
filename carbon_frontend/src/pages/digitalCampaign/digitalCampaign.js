@@ -425,7 +425,7 @@ const DigitalCampaign = (props) => {
                         <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                             <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button><Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
+                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
                     </Grid>
                 </Card>
             </Container>

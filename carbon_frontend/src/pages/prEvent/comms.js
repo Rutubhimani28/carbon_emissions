@@ -751,7 +751,7 @@ const Comms = (props) => {
                     <Button
                       variant="contained"
                       endIcon={<FaAngleDoubleRight />}
-                      onClick={() => setValue(9)}
+                      onClick={() => setValue(3)}
                       className="custom-btn"
                     >
                       Go To Result
