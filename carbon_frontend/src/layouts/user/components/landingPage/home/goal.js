@@ -11,7 +11,8 @@ import mission from '../../../assets/images/mission.png'
 import vision from '../../../assets/images/visionary.png'
 import collbrate from '../../../assets/images/Collaborat.jpeg';
 import commited from '../../../assets/images/CommitedLogo.png'
-import Pledge from '../../../assets/images/PledgeTonetZERO.png'
+// import Pledge from '../../../assets/images/PledgeTonetZERO.png'
+import Pledge from '../../../assets/images/PledgeTonetZERO2.jpg'
 import greenview from '../../../assets/images/GreenView.png'
 
 
@@ -81,23 +82,24 @@ const Goal = () => {
                 </div>
                 <div style={{ display: 'flex', maxWidth: "50%", backgroundColor: 'transperent', padding: "20px" }}>
                     <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%" }} >
-                        <img src={commited} alt="img" width={150} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
-                        <p >
-                            We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. Through the SME Climate Hub, we commit to lowering our impact on the environment through authentic action, halving our emissions by 2030. In making the commitment, we have joined the United Nations Race to Zero campaign.
+                        {/* <img src={commited} alt="img" width={150} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} /> */}
+                        <img src={commited} alt="img" width={190} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
+                        <p>
+                            We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. In making the commitment, we have joined the United Nations <strong>Race to Zero</strong> campaign.
                         </p>
                     </Grid>
 
                     <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%", borderLeft: '2px solid white', borderRight: '2px solid white' }}>
                         <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
-                        <p >
-                            We have made a ‘Pledge to Net Zero’ and are committed to reducing our GHG emissions. Pledge to Net Zero’ is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
+                        <p>
+                            We have made a 'Pledge to Net Zero' and are committed to reducing our GHG emissions. Pledge to Net Zero' is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
                         </p>
                     </Grid>
 
                     <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%" }} >
                         <img src={greenview} className='tabImgWhite' alt="img" width={200} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
                         <p >
-                            We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide – the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.
+                            We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide - the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.
                         </p>
                     </Grid>
 
