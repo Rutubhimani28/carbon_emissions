@@ -3,8 +3,9 @@ import sendMail from "../middelwares/sendMail.js";
 const add = async (req, res) => {
     try {
         const sendMailPayload = {
-            subject: 'feedback or questions',
-            message: req.body.message
+            subject: req.body.subject,
+            message: req.body.message,
+            isHighPriority: req.body.isHighPriority || false
         };
 
         await sendMail(sendMailPayload);

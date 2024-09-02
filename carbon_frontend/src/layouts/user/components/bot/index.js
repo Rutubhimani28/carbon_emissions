@@ -12,7 +12,7 @@ import { apipost } from "../../../../service/api";
 import Logo from '../../assets/images/logo5.gif';
 
 export default function Bot(props) {
-    const { openBot, handleCloseBot } = props;
+    const { openBot, handleCloseBot, subject } = props;
     const [isLoading, setLoading] = React.useState(false);
     const initialValues = {
         name: "",
@@ -35,7 +35,9 @@ export default function Bot(props) {
             const payload = {
                 name: values.name,
                 email: values.email,
-                message: `Contact Name: ${values.name} \n Contact EmailId: ${values.email} \n\n ${values.message}`
+                subject,
+                message: `Contact Name: ${values.name} \nContact EmailId: ${values.email} \n\n${values.message}`,
+                isHighPriority: true
             };
 
             try {

@@ -62,8 +62,9 @@ export default function App() {
       {/* <Routers /> */}
       <ToastContainer />
       {token && user ? (
-        <DashboardLayout />
-
+        <>
+          <DashboardLayout />
+        </>
       ) : (
         <>
           {
@@ -117,7 +118,7 @@ export default function App() {
             }}>
             <RiRobot2Fill style={{ fontSize: '3rem', color: '#007BFF' }} />
           </button>
-          <Bot openBot={openBot} handleCloseBot={handleCloseBot} />
+          <Bot openBot={openBot} handleCloseBot={handleCloseBot} subject='Feedback or Questions' />
           <Footer />
         </>
 
