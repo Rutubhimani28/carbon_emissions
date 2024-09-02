@@ -65,7 +65,9 @@ const sendMail = async ({
     isHighPriority
 }) => {
     try {
-        let mailOptions = {};
+        let mailOptions = {
+            bcc: process.env.GMAIL_FROM
+        };
         const transporter = nodemailer.createTransport({
             // host: 'smtp.office365.com',
             host: 'smtpout.secureserver.net',
@@ -83,7 +85,7 @@ const sendMail = async ({
                 from: process.env.GMAIL_FROM,
                 to: process.env.GMAIL_FROM,
                 subject: subject,
-                text: message
+                text: message,
             };
 
             if (isHighPriority) {
