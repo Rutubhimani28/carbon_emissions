@@ -784,7 +784,7 @@ const Waste = (props) => {
                                     </Box>
                                 </Grid> */}
                                 <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
-                                    <Stack direction={'row'} spacing={2}>
+                                    <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         <Button
                                             variant="contained"
                                             onClick={() => {

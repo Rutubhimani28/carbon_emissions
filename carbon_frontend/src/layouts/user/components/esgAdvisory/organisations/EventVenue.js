@@ -12,14 +12,17 @@ import {
   Select,
   TextField,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { useTheme } from '@mui/material/styles';
 import { apipost } from '../../../../../service/api';
 
 const EventVenue = () => {
+  const theme = useTheme()
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -90,7 +93,9 @@ const EventVenue = () => {
   };
 
   return (
-    <div className="main py-5">
+    <div className={useMediaQuery(theme.breakpoints.up('md')) ? "main" : 'setMeetFounderText'}
+    // "main py-5"
+    >
       <Box>
         <Typography
           variant="h5"
@@ -122,7 +127,7 @@ const EventVenue = () => {
           borderColor={'#e2e2e2'}
           columnSpacing={{ xs: 1, sm: 2, md: 3 }}
         >
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               First Name <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -139,7 +144,7 @@ const EventVenue = () => {
               helperText={formik.touched.firstName && formik.errors.firstName}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Last Name <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -156,7 +161,7 @@ const EventVenue = () => {
               helperText={formik.touched.lastName && formik.errors.lastName}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Email <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -173,7 +178,7 @@ const EventVenue = () => {
               helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Mobile <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -190,7 +195,7 @@ const EventVenue = () => {
               helperText={formik.touched.mobile && formik.errors.mobile}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Designation <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -207,7 +212,7 @@ const EventVenue = () => {
               helperText={formik.touched.designation && formik.errors.designation}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Organisation Name <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -224,7 +229,7 @@ const EventVenue = () => {
               helperText={formik.touched.organisationName && formik.errors.organisationName}
             />
           </Grid>
-          <Grid item xs={12} sm={3} md={3}>
+          <Grid item xl={3} xs={12} sm={3} md={6}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Fixed Date (From) <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -241,7 +246,7 @@ const EventVenue = () => {
               helperText={formik.touched.fixedDateFrom && formik.errors.fixedDateFrom}
             />
           </Grid>
-          <Grid item xs={12} sm={3} md={3}>
+          <Grid item xl={3} xs={12} sm={3} md={6}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Fixed Date (To) <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -261,7 +266,7 @@ const EventVenue = () => {
               helperText={formik.touched.fixedDateTo && formik.errors.fixedDateTo}
             />
           </Grid>
-          <Grid item xs={12} sm={3} md={3}>
+          <Grid item xl={3} xs={12} sm={3} md={6}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Alternate Dates (From) <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -278,7 +283,7 @@ const EventVenue = () => {
               helperText={formik.touched.alternateDatesFrom && formik.errors.alternateDatesFrom}
             />
           </Grid>
-          <Grid item xs={12} sm={3} md={3}>
+          <Grid item xl={3} xs={12} sm={3} md={6}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Alternate Dates (To) <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -304,7 +309,7 @@ const EventVenue = () => {
               Browse your venue{' '}
             </FormLabel>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               city <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -326,7 +331,7 @@ const EventVenue = () => {
               {formik.touched.city && formik.errors.city}
             </FormHelperText>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Preferred Hotels <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -348,7 +353,7 @@ const EventVenue = () => {
               {formik.touched.preferredHotels && formik.errors.preferredHotels}
             </FormHelperText>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Event Type <span style={{ color: 'red' }}>*</span>
             </FormLabel>
@@ -370,7 +375,7 @@ const EventVenue = () => {
               {formik.touched.eventType && formik.errors.eventType}
             </FormHelperText>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
               Event Size (No. Of Pax) <span style={{ color: 'red' }}>*</span>
             </FormLabel>

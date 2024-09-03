@@ -126,7 +126,7 @@ const AirFreight = (props) => {
 
     return (
         <div>
-            <Container maxWidth>
+            <Container maxWidth style={{ maxWidth: 'auto' }}>
                 <Card
                     className="p-4 custom-inner-bg textborder"
                     style={{
@@ -144,7 +144,7 @@ const AirFreight = (props) => {
                     }}>
 
                         <IconDiv>
-                            <img width={100} src={LogisticsImg} alt="Food" className='tabImgWhite' />
+                            <img width={100} src={LogisticsImg} alt="Food" className='tabImgWhite' style={{position:'relative', bottom:'263px'}}/>
                         </IconDiv>
                         <Box>
                             <div className="table-responsive">
@@ -240,8 +240,8 @@ const AirFreight = (props) => {
                                     </tr>
                                 </table>
                             </div>
-                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={3}>
-                                <Stack direction={'row'} spacing={2}>
+                            <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={3} style={{ maxWidth: 'auto' }} >
+                                <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                     <Button
                                         variant="contained"

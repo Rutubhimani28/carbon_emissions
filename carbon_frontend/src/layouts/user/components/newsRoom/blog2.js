@@ -43,23 +43,23 @@ const Blog2 = () => {
             </div>
             <div style={{ position: "fixed", bottom: "70px", left: "0", }} >
                 <Link to='/news-room/blog1' className='d-flex nextBlog'>
-                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
+                    <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px" }}>
                         <FaChevronRight />
                     </div>
                     <img src={blog1} alt="blog2" height={"80px"} width={"100px"} />
                     <div className='nextBlogContent'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue"  }}>Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
                     </div>
                 </Link>
             </div>
             <div style={{ position: "fixed", bottom: "70px", right: "0", }}>
                 <Link to='/news-room/blog3' className='d-flex nextBlogRight'>
-                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
+                    <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px" }}>
                         <FaChevronLeft />
                     </div>
                     <img src={blog3} alt="blog2" height={"80px"} width={"100px"} />
                     <div className='nextBlogContentRight'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News</Typography>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue"  }}>Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News</Typography>
                     </div>
                 </Link>
             </div>

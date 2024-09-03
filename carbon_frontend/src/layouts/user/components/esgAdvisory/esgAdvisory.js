@@ -78,7 +78,7 @@ const EsgAdvisory = () => {
                     ref={videoRef}
                     loop
                     playsInline
-                    style={{ objectFit: 'fill', height: '75vh' }}
+                    style={{ objectFit: 'fill', height: '66vh' }}
                 >
                     {/* <source src={"https://sirat.earth/static/media/NetZero Consulting.76cf997a4ada4ef7a99c.mp4"} type={"video/mp4"} width={"100%"} />
                     <source src={"https://sirat.earth/static/media/NetZero Consulting.55c11663218fe2bac3f1.mov"} type={"video/mov"} width={"100%"} /> */}
@@ -94,34 +94,35 @@ const EsgAdvisory = () => {
             </div>
             <div className='container'>
                 <div style={{ paddingTop: '48px', paddingBottom: '42px' }}>
-                    <p className='pb-4 fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5' style={{ textAlign: 'justify' }}>We provide NetZero Consulting to develop sustainable business strategies for industries. Our objective is to foster collaboration and support within these industries to collectively meet climate goals. By adopting sustainable measures, industries can reduce their operational costs while creating added value and acting responsibly. With NetZero Consulting you can improve efficiency, control costs, and achieve your sustainability goals.</p>
+                    <p className='pb-4 main fontFamily wow animate__animated animate__fadeInUp animate__slow fs-5' style={{ textAlign: 'justify' }}>We provide NetZero Consulting to develop sustainable business strategies for industries. Our objective is to foster collaboration and support within these industries to collectively meet climate goals. By adopting sustainable measures, industries can reduce their operational costs while creating added value and acting responsibly. With NetZero Consulting you can improve efficiency, control costs, and achieve your sustainability goals.</p>
                 </div>
                 <div>
                     <img src={Services} alt="services" className='pb-5 pb-5 wow animate__animated animate__fadeInUp animate__slow' />
                 </div>
-                <div>
-                    <Typography variant='h6' className=' fs-1 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-center' >Industries</Typography>
-                    <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='my-4 d-flex ms-1 justify-content-between wow animate__animated animate__fadeInUp animate__slow'>
-                        <Grid item xs={12} md={2.8} className='shadow text-center py-2 my-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
+
+
+                <div className='d-block mx-auto'>
+                    <Typography variant='h6' className='fs-1 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-center' >Industries</Typography>
+                    <Grid container spacing={2} style={{ marginLeft: "-8px" }} className='  my-4 d-flex  justify-content-xl-between justify-content-sm-center   wow animate__animated animate__fadeInUp animate__slow'>
+                        <Grid item xs={12} md={5.5} lg={2.8} className='shadow text-center  py-2 m-2 template-inner-theme' style={{ paddingLeft: '-30px', borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
                             <Typography variant='h6' className='fs-4 fontFamily fw-bold pb-2 pt-2' ><a href="#organisations" style={{ textDecoration: 'none', color: 'inherit' }}>Organisations</a></Typography>
                             <p className='fontFamily fs-6'>CMO Vertical</p>
                         </Grid>
-                        <Grid item xs={12} md={2.8} className='shadow text-center py-2 my-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
+                        <Grid item xs={12} md={5.5} lg={2.8} className='shadow text-center py-2 m-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
                             <Typography variant='h6' className=' fs-4 fontFamily fw-bold pb-2 pt-2' ><a href="#agencies" style={{ textDecoration: 'none', color: 'inherit' }}>Agencies</a></Typography>
                             <p className='fontFamily fs-6'>Supporting organisations</p>
                         </Grid>
-                        <Grid item xs={12} md={2.8} className='shadow text-center py-2 my-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
-                            <Typography variant='h6' className=' fs-4 fontFamily fw-bold pb-2 pt-2' ><a href="#hospitality" style={{ textDecoration: 'none', color: 'inherit' }}>Hospitality</a></Typography>
+                        <Grid item xs={12} md={5.5} lg={2.8} className='shadow text-center py-2 m-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
+                            <Typography variant='h6' className=' fs-4 fontFamily fw-bold pb-2 pt-2'><a href="#hospitality" style={{ textDecoration: 'none', color: 'inherit' }}>Hospitality</a></Typography>
                             <p className='fontFamily fs-6'>Hospitality industry</p>
                         </Grid>
-                        <Grid item xs={12} md={2.8} className='shadow text-center py-2 my-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
+                        <Grid item xs={12} md={5.5} lg={2.8} className='shadow text-center py-2 m-2 template-inner-theme' style={{ borderRadius: "20px", boxShadow: "0 0rem 1rem rgb(0 0 0 / 41%)" }}>
                             <Typography variant='h6' className=' fs-4 fontFamily fw-bold pb-2 pt-2' ><a href="#exhibitions" style={{ textDecoration: 'none', color: 'inherit' }}>Exhibitions</a></Typography>
                             <p className='fontFamily fs-6'>Gathering exhibitors</p>
                         </Grid>
-
                     </Grid>
                 </div>
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' id="organisation">
+                <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 4 }} className='py-5 ' id="organisation">
                     <Grid item xs={12} md={4} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                         <Box className="organise p-3 " style={{ borderRadius: "20px" }}>
                             <img src={Organisations} alt="img" width={"100%"} />
@@ -159,7 +160,7 @@ const EsgAdvisory = () => {
                 </Grid>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' id="exhibitions">
                     <Grid item xs={12} md={4} sx={{ order: { md: '2' } }} className='wow animate__animated animate__fadeInRight animate__slow'>
-                        <Box className="organise p-3 " style={{ borderRadius: "20px" }}>
+                        <Box className="organise p-3" style={{ borderRadius: "20px" }}>
                             <img src={Exhibitions} alt="img" width={"100%"} />
                             <Typography variant='h6' className='text-center py-2 pt-4 fontFamily' color="#054723">Exhibitions</Typography>
                         </Box>

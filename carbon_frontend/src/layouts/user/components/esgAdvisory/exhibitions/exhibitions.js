@@ -1,12 +1,16 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
 import React from 'react'
+import { useTheme } from '@mui/material/styles'
 import ex1 from '../../../assets/images/ex1.jpg'
 import ex2 from '../../../assets/images/ex2.jpeg'
 import ex3 from '../../../assets/images/ex3.jpg'
 
 const Exhibitions = () => {
+    const theme = useTheme()
     return (
-        <div className='main py-5 mt-3'>
+        <div className={useMediaQuery(theme.breakpoints.up('md')) ? "main" : 'setMeetFounderText'}
+        // 'main py-5 mt-3'
+        >
             <div>
                 <Typography variant='h6' className='text-center fs-1 green pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Exhibitions/ Congresses</Typography>
             </div>
@@ -23,7 +27,7 @@ const Exhibitions = () => {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5  d-flex justify-content-center align-items-center ' >
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-1  d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                     <Box className=" p-3 ">
                         <img src={ex1} alt="img" width={"100%"} style={{ borderRadius: "15px" }} />
@@ -37,7 +41,7 @@ const Exhibitions = () => {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5  d-flex justify-content-center align-items-center ' >
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-1  d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                     <Box className="ps-3">
                         <Typography variant='h6' className='green fs-2 py-2 pt-4 fontFamily'>Social</Typography>
@@ -51,7 +55,7 @@ const Exhibitions = () => {
                     </Box>
                 </Grid>
             </Grid>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5  d-flex justify-content-center align-items-center ' >
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-1  d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                     <Box className=" p-3 ">
                         <img src={ex3} alt="img" width={"100%"} style={{ borderRadius: "15px" }} />
@@ -60,15 +64,15 @@ const Exhibitions = () => {
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInRight animate__slow'>
                     <Box className="ps-3">
                         <Typography variant='h6' className='green fs-2 py-2 pt-4 fontFamily'>Governance</Typography>
-                        <p className=' fs-5'>
+                        <p className='fs-5'>
                             Governance
                             From the initiation of discussions with clients to the conclusion of your event, establishing a strong governance model plays a crucial role in ensuring the overall success of your event..</p>
-                        <p className=' fs-5'>Incorporating sustainable measures into your governance model provides complete control over ensuring strict compliance from your clients, contributing to the betterment of our planet.</p>
+                        <p className='fs-5'>Incorporating sustainable measures into your governance model provides complete control over ensuring strict compliance from your clients, contributing to the betterment of our planet.</p>
                     </Box>
                 </Grid>
             </Grid>
-            <p className=' fs-5 wow animate__animated animate__fadeInUp animate__slow'>Partnering with us enables you to address the ESG models effectively.</p>
-            <p className=' fs-5 wow animate__animated animate__fadeInUp animate__slow'>Are you seeking a partner to assist you in setting up a strong ESG model to identify, optimise and reduce your carbon emissions generated during your exhibition/ congress? Kindly visit our<span style={{ color: "#ffffd9" }}> Sustainable Events </span>page and fill the details or alternatively share your details below and submit your request, we will promptly reconnect with you to explore the collaboration opportunities.</p>
+            <p className='fs-5 wow animate__animated animate__fadeInUp animate__slow'>Partnering with us enables you to address the ESG models effectively.</p>
+            <p className='pb-sm-3 fs-5 wow animate__animated animate__fadeInUp animate__slow' style={{paddingBottom:'20px'}}>Are you seeking a partner to assist you in setting up a strong ESG model to identify, optimise and reduce your carbon emissions generated during your exhibition/ congress? Kindly visit our<span style={{ color: "#ffffd9" }}> Sustainable Events </span>page and fill the details or alternatively share your details below and submit your request, we will promptly reconnect with you to explore the collaboration opportunities.</p>
         </div>
     )
 }

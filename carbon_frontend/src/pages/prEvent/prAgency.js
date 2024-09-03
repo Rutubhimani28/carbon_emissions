@@ -493,7 +493,7 @@ const PrAgency = (props) => {
                             </Grid>
 
 
-                            <Grid item xs={12} sm={6} md={6} display={'flex'} justifyContent={'center'}>
+                            <Grid item xs={12} sm={12} md={6} display={'flex'} justifyContent={'center'}>
                                 <Box>
                                     <div className='table-responsive'>
                                         {/* <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>PR Assets</Typography> */}
@@ -558,7 +558,7 @@ const PrAgency = (props) => {
                             </Grid>
 
 
-                            <Grid item xs={12} sm={6} md={5} display={'flex'} justifyContent={'center'} className='mx-auto'>
+                            <Grid item xs={12} sm={12} md={5} display={'flex'} justifyContent={'center'} className='mx-auto'>
                                 <Box>
                                     <div className='table-responsive'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4'>Branding</Typography>
@@ -672,7 +672,7 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={12} sm={6} md={5} display={'flex'} justifyContent={'center'} className='mx-auto'>
+                            <Grid item xs={12} sm={12} md={5} display={'flex'} justifyContent={'center'} className='mx-auto'>
                                 <Box>
                                     <div className='table-responsive'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Transportation</Typography>
