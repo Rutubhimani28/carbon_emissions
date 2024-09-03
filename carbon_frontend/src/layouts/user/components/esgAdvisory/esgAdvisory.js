@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PopupButton } from 'react-calendly'
-import { Grid, Typography, Box } from '@mui/material'
+import { Grid, Typography, Box, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles';
 import Services from '../../assets/images/Services2.jpg'
 import Agencies from '../../assets/images/Agencies2.jpeg'
 import Organisations from '../../assets/images/Organisations2.jpg'
@@ -12,6 +13,7 @@ import bannerVideo1 from '../../assets/images/NetZero Consulting.mp4';
 import bannerVideo2 from '../../assets/images/NetZero Consulting.mov';
 
 const EsgAdvisory = () => {
+    const theme = useTheme();
 
     const videoRef = useRef();
 
@@ -78,7 +80,8 @@ const EsgAdvisory = () => {
                     ref={videoRef}
                     loop
                     playsInline
-                    style={{ objectFit: 'fill', height: '66vh' }}
+                    // style={{ objectFit: 'fill', height: '66vh' }}
+                    style={{ objectFit: 'fill', height: useMediaQuery(theme.breakpoints.down('md')) ? "auto" : '66vh' }}
                 >
                     {/* <source src={"https://sirat.earth/static/media/NetZero Consulting.76cf997a4ada4ef7a99c.mp4"} type={"video/mp4"} width={"100%"} />
                     <source src={"https://sirat.earth/static/media/NetZero Consulting.55c11663218fe2bac3f1.mov"} type={"video/mov"} width={"100%"} /> */}
