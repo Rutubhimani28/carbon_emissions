@@ -13,6 +13,9 @@ import cat6 from '../../assets/images/cat6.png'
 import cat7 from '../../assets/images/cat7.png'
 import cat8 from '../../assets/images/cat8.png'
 import cat9 from '../../assets/images/cat9.png'
+import cat10 from '../../assets/images/PR Event.jpg'
+import cat11 from '../../assets/images/Digital Campaign.jpg'
+import cat12 from '../../assets/images/virtual_events.JPEG'
 
 const Category = () => {
 
@@ -54,13 +57,28 @@ const Category = () => {
         },
         {
             img: cat9,
-            title: "Digital",
-            subTitle: "Digital marketing, content & communications"
+            title: "Communications",
+            subTitle: "Emails & Newsletters"
         },
         {
             img: cat8,
             title: "Waste",
             subTitle: "Waste generated & disposal method"
+        },
+        {
+            img: cat10,
+            title: "Public Relations",
+            subTitle: "PR/ Joint PR activities & Announcements"
+        },
+        {
+            img: cat11,
+            title: "Digital Campaigns",
+            subTitle: "Digital Marketing and Social Media"
+        },
+        {
+            img: cat12,
+            title: "Virtual Events",
+            subTitle: "Events, workshops & key notes"
         },
     ];
 
@@ -71,7 +89,7 @@ const Category = () => {
                 {
                     data.map((item, i) => {
                         return (
-                            <Grid item sm={12} md={4} className='wow animate__animated animate__fadeInUp animate__slow'>
+                            <Grid item sm={12} md={4} key={i} className='wow animate__animated animate__fadeInUp animate__slow'>
                                 <Card className='bg-bg-transparent shadow-none'>
                                     <CardActionArea>
                                         <CardMedia

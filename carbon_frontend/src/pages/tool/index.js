@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Button, CircularProgress, Container, FormLabel, Grid, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Container, FormLabel, Grid, Modal, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { TiInfoLarge } from 'react-icons/ti';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +9,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { addToolData, clearToolFormData } from '../../redux/slice/toolSlice';
 // import HotelData from '../accomodation/data.json';
+import f2FEvent from "../../layouts/user/assets/images/F2F Event.jpg"
+import virtualEvent from "../../layouts/user/assets/images/Virtual Event.jpg"
+import prEvent from "../../layouts/user/assets/images/PR Event.jpg"
+import digitalCampaign from "../../layouts/user/assets/images/Digital Campaign.jpg"
 
 const style = {
     position: 'absolute',
@@ -29,22 +34,27 @@ const Home = () => {
     const dispatch = useDispatch();
     const toolData = useSelector((state) => state.toolDetails?.data);
 
+    const userSessionData = sessionStorage.getItem('user');
+    const userData = JSON.parse(userSessionData);
+
     const handleOpenInfo = () => setOpenInfo(true);
     const handleInfoClose = () => setOpenInfo(false);
     const initialValues = {
-        name: '',
-        email: '',
+        name: userData?.cnctPerson,
+        email: userData?.loginId,
+        // email: userData?.altCnctPersonBusEmail,
         activityName: '',
         country: '',
         budget: '',
-        date: '',
+        // date: '',
+        date: dayjs().format('YYYY-MM-DD'),
         isValidData: false,
         isDirtyData: false
     };
 
     const validationSchema = yup.object({
-        name: yup.string().required('Name is required'),
-        email: yup.string().email('Invalid Email').required('Business Email is required'),
+        // name: yup.string().required('Name is required'),
+        // email: yup.string().email('Invalid Email').required('Business Email is required'),
         activityName: yup.string().required('Activity Name is required'),
         country: yup.string().required('Country is required'),
         budget: yup.number().required('Budget is required'),
@@ -118,8 +128,9 @@ const Home = () => {
             <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
             <Box textAlign="center" mt={4}>
                 {/* <img src={logo} alt="Sirat Logo" style={{ width: '200px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
-                <Typography variant="h2" mt={2} className="text">
-                    Welcome to Sirāt's NetZero Platform
+                <Typography variant='h2' mt={2} className="text fs-1">
+                    {/* Welcome to Sirāt's NetZero Platform */}
+                    {`Welcome ${userData?.cnctPerson} to Sirāt's NetZero Platform `}
                 </Typography>
                 {/* <Typography mt={3} className='fs-5'>
                     To obtain a more accurate CO2 footprint generated from your activity, please input your data in as many fields as possible.
@@ -146,7 +157,7 @@ const Home = () => {
                         borderRadius={'10px'}
                     >
                         <Grid container spacing={2} py={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} style={{ paddingRight: '24px' }}>
-                            <Grid item xs={12} sm={6}>
+                            {/* <Grid item xs={12} sm={6}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                                     Name <span style={{ color: 'red' }}>*</span>
                                 </FormLabel>
@@ -181,7 +192,7 @@ const Home = () => {
                                     helperText={formik.touched.email && formik.errors.email}
                                     inputProps={{ style: { color: 'white' } }}
                                 />
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12} sm={6}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                                     Activity Name <span style={{ color: 'red' }}>*</span>
@@ -217,29 +228,6 @@ const Home = () => {
                                     helperText={formik.touched.country && formik.errors.country}
                                     inputProps={{ style: { color: 'white' } }}
                                 />
-                                {/* <FormControl fullWidth>
-                                    <Autocomplete
-                                        options={countriesData}
-                                        name="country"
-                                        fullWidth
-                                        getOptionLabel={(item) => item?.label}
-                                        value={formik.values?.country || null}
-                                        onChange={formik.handleChange}
-                                        renderInput={(params) =>
-                                            <TextField {...params}
-                                                size="small"
-                                                name="country"
-                                                placeholder='Select Country'
-                                                error={
-                                                    formik.touched.country &&
-                                                    Boolean(formik.errors.country)
-                                                }
-                                                helperText={
-                                                    formik.touched.country && formik.errors.country
-                                                }
-                                            />}
-                                    />
-                                </FormControl> */}
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
@@ -315,8 +303,39 @@ const Home = () => {
                 </Grid>
             </Box>
             <Box mt={0} textAlign="center">
-                { }
                 <Typography className="mb-2 fs-5">Choose your Marketing activity</Typography>
+                <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
+                    <Box onClick={() => isSubmited && navigate('/dashboard/f2f-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                        <img src={f2FEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">F2F Event</Typography>
+                    </Box>
+                    <Box onClick={() => isSubmited && navigate('/dashboard/virtual-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                        <img src={virtualEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Virtual Event</Typography>
+                    </Box>
+                    <Box onClick={() => isSubmited && navigate('/dashboard/pr-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                        <img src={prEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">PR Event</Typography>
+                    </Box>
+                    <Box onClick={() => isSubmited && navigate('/dashboard/campaign')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                        <img src={digitalCampaign} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                        <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Digital Campaign</Typography>
+                    </Box>
+                </Box>
+
+                {/* <Button
+                    variant="contained"
+                    color="primary"
+                    className="fs-3"
+                    // disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    // disabled={!isValid || !dirty}
+                    // disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
+                    disabled={!isSubmited}
+                    style={{ marginRight: '10px', backgroundColor: '#054723' }}
+                    onClick={() => navigate('/dashboard/f2f-event')}
+                >
+                    F2F Event
+                </Button>
                 <Button
                     variant="contained"
                     color="primary"
@@ -326,9 +345,22 @@ const Home = () => {
                     // disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
                     disabled={!isSubmited}
                     style={{ marginRight: '10px', backgroundColor: '#054723' }}
-                    onClick={() => navigate('/dashboard/event')}
+                    onClick={() => navigate('/dashboard/virtual-event')}
                 >
-                    Event
+                    Virtual Event
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    className="fs-3"
+                    // disabled={!isValid || !dirty || !isSubmited || Object.keys(errors).length > 0}
+                    // disabled={!isValid || !dirty}
+                    // disabled={isSubmited ? !isSubmited : (!isValid || !dirty)}
+                    disabled={!isSubmited}
+                    style={{ marginRight: '10px', backgroundColor: '#054723' }}
+                    onClick={() => navigate('/dashboard/pr-event')}
+                >
+                    PR Event
                 </Button>
                 <Button
                     variant="contained"
@@ -341,7 +373,7 @@ const Home = () => {
                     onClick={() => navigate('/dashboard/campaign')}
                 >
                     Digital Campaign
-                </Button>
+                </Button> */}
             </Box>
 
             <Typography className="fs-5 text-center my-4">

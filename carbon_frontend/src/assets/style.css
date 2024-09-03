@@ -264,3 +264,18 @@ text {
   position: relative;
   z-index: 99;
 }
+
+.strong-ol {
+  color: #000;
+  margin-top: 15px;
+}
+
+.strong-ol li::marker {
+  color: #000;
+  font-weight: bold;
+}
+
+.strong-ol li {
+  color: #000;
+  font-weight: normal;
+}

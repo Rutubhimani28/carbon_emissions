@@ -25,7 +25,12 @@ import totalAirTravelSlice from '../slice/totalAirTravelSlice';
 import hotelSlice from '../slice/hotelSlice';
 import totalHotelSlice from '../slice/totalHotelSlice';
 import totalDigitalCampaignSlice from '../slice/totalDigitalCampaignSlice';
+import totalVirtualEventSlice from '../slice/totalVirtualEventSlice';
+import totalCommsSlice from '../slice/totalCommsSlice';
+import totalPrAgencySlice from '../slice/totalPrAgencySlice';
+import totalHospitalitySlice from '../slice/totalHospitalitySlice';
 import toolSlice from "../slice/toolSlice";
+import resultTableDataSlice from "../slice/resultTableDataSlice";
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -78,9 +83,29 @@ const totalDigitalCampaignPersistConfig = {
     key: 'totalDigitalCampaign',
     storage: storageSession,
 };
+const totalVirtualEventPersistConfig = {
+    key: 'totalVirtualEvent',
+    storage: storageSession,
+};
+const totalCommsPersistConfig = {
+    key: 'totalComms',
+    storage: storageSession,
+};
+const totalPrAgencyPersistConfig = {
+    key: 'totalPrAgency',
+    storage: storageSession,
+};
+const totalHospitalityPersistConfig = {
+    key: 'totalhospitality',
+    storage: storageSession,
+};
 
 const toolPersistConfig = {
     key: 'tool',
+    storage: storageSession,
+};
+const resultTableDataPersistConfig = {
+    key: 'resultTableDataDetails',
     storage: storageSession,
 };
 
@@ -108,7 +133,12 @@ export const store = configureStore({
         totalAirTravelDetails: persistReducer(totalAirTravelPersistConfig, totalAirTravelSlice),
         totalHotelDetails: persistReducer(totalHotelPersistConfig, totalHotelSlice),
         totalDigitalCampaignDetails: persistReducer(totalDigitalCampaignPersistConfig, totalDigitalCampaignSlice),
+        totalVirtualEventDetails: persistReducer(totalVirtualEventPersistConfig, totalVirtualEventSlice),
+        totalCommsDetails: persistReducer(totalCommsPersistConfig, totalCommsSlice),
+        totalPrAgencyDetails: persistReducer(totalPrAgencyPersistConfig, totalPrAgencySlice),
+        totalHospitalityDetails: persistReducer(totalHospitalityPersistConfig, totalHospitalitySlice),
         toolDetails: persistReducer(toolPersistConfig, toolSlice),
+        resultTableDataDetails: persistReducer(resultTableDataPersistConfig, resultTableDataSlice),
     },
     middleware,
 });

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emissions Report</title>
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .page {
+            margin: 20px;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin: 0;
+            page-break-inside: auto;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        tbody {
+            display: table-row-group;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .sub-title {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* div {
+            page-break-inside: avoid;
+        } */
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h4>Dear <%= name %>,</h4>
+        <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated from your
+            <strong>
+                <%= activityName %>
+            </strong> activity.
+        </p>
+        <p>We're pleased to provide you with the carbon footprint report, detailing the emissions associated with the
+            mentioned activity.</p>
+
+        <h2>Total Carbon Footprint:</h2>
+        <table>
+            <tr>
+                <th>Digital Campaign</th>
+                <td>
+                    <%= data.totalDigitalCampaign %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+        </table>
+
+        <h4>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
+
+        <% if (resultTableData && resultTableData.data) { %>
+            <% resultTableData.data.forEach(function(page) { %>
+                <% if (page.tabData && page.tabData.length> 0) { %>
+                    <% if (page.tabTitle==="Digital Campaign" ) { %>
+                        <div class="page">
+                            <h3 class="title">
+                                <%= page.tabTitle %>
+                            </h3>
+                            <% page.tabData.forEach(function(flightClass) { %>
+                                <% if (flightClass.subTypeData && flightClass.subTypeData.td) { %>
+                                    <% if (flightClass.subTypeData.td.some(rowData=> rowData.emissions !== "")) { %>
+                                        <div class="table-container">
+                                            <% if (flightClass.subTypeData.th && flightClass.subTypeData.th.length> 0) {
+                                                %>
+                                                <h5 class="sub-title">
+                                                    <%= flightClass.subType %>
+                                                </h5>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <% flightClass.subTypeData.th.forEach(function(header) { %>
+                                                                <th>
+                                                                    <%= header %>
+                                                                </th>
+                                                                <% }); %>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% flightClass.subTypeData.td.forEach(function(rowData) { %>
+                                                            <% if (rowData.emissions !=="" ) { %>
+                                                                <tr>
+                                                                    <% if (page.tabTitle==="Digital Campaign" ) { %>
+                                                                        <td>
+                                                                            <%= rowData.dgType %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= rowData.imgSize || rowData.videoSize ||
+                                                                                rowData.noOfEmails %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= rowData.impressions1 ||
+                                                                                rowData.videoMins ||
+                                                                                rowData.attachmentSize %>
+                                                                        </td>
+                                                                        <% if (rowData.impressions2) { %>
+                                                                            <td>
+                                                                                <%= rowData.impressions2 %>
+                                                                            </td>
+                                                                            <% } %>
+                                                                                <td>
+                                                                                    <%= rowData.emissions %>
+                                                                                </td>
+                                                                                <% } %>
+                                                                </tr>
+                                                                <% } %>
+                                                                    <% }); %>
+                                                    </tbody>
+                                                </table>
+                                                <% } %>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                                                <% }); %>
+                        </div>
+                        <% } %>
+                            <% } %>
+                                <% }); %>
+                                    <% } %>
+
+                                        <h4 style="margin-top: 35px;">For every $ you spend you are generating <%=
+                                                eveydolarCo2 %> kgCO<sub>2</sub>e</h4>
+
+                                        <p>We deeply value your commitment to sustainability and appreciate your
+                                            proactive approach in understanding and
+                                            mitigating your environmental impact.</p>
+                                        <p>If you have any questions or need further assistance on how to reduce the
+                                            carbon emissions from your
+                                            activity, please contact us at <a
+                                                href="mailto:info@sirat.earth">info@sirat.earth</a>.</p>
+                                        <br />
+                                        <p>Best regards,</p>
+                                        <p style="margin-bottom:0; font-weight: bold;">Team Sirāt</p>
+    </div>
+</body>
+
+</html>

@@ -5,4 +5,3 @@ export const constant = {
     chatKeyOne: 'skC-sk-proj-Hyof0AYIn5of9aKGchn',
     chatKeyTwo: 'dEf-HT3BlbkFJrka3A6rNu3Qwo1ndebcm'
 }
-

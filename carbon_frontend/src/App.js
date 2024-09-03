@@ -31,7 +31,10 @@ import Services from './layouts/user/components/services/index';
 import NewRoom from './layouts/user/components/newsRoom';
 import PrivacyPolicy from './layouts/user/components/privacyPolicy/privacyPolicy';
 import TermConditions from './layouts/user/components/termCondition/termConditions';
+import Team from './layouts/user/components/team/team';
 import LoginPage from './pages/LoginPage';
+import ForgotPswdPage from './pages/ForgotPswdPage';
+import ResetPswdPage from './pages/ResetPswdPage';
 import ThemeProvider from './theme';
 import Blog1 from './layouts/user/components/newsRoom/blog1';
 import Blog2 from './layouts/user/components/newsRoom/blog2';
@@ -59,12 +62,13 @@ export default function App() {
       {/* <Routers /> */}
       <ToastContainer />
       {token && user ? (
-        <DashboardLayout />
-
+        <>
+          <DashboardLayout />
+        </>
       ) : (
         <>
           {
-            window.location.pathname !== "/login" &&
+            window.location.pathname !== "/login" && window.location.pathname !== "/forgot-password" && window.location.pathname !== "/reset-password" &&
             <Header />
           }
           <div className='template-outer-theme'>
@@ -72,6 +76,8 @@ export default function App() {
               <Route path="*" element={<Navigate to="/" />} />
               <Route path="/" element={<UserLayout />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/forgot-password" element={<ForgotPswdPage />} />
+              <Route path="/reset-password" element={<ResetPswdPage />} />
               <Route path="/netzero-platform" element={<Services />} />
               <Route path="/netzero-consulting" element={<EsgAdvisory />} />
               <Route path="/netzero-consulting/organisations/" element={<Organisations />} />
@@ -92,6 +98,7 @@ export default function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/faqs" element={<Faq />} />
               <Route path="/terms-conditions" element={<TermConditions />} />
+              {/* <Route path="/team" element={<Team />} /> */}
             </Routes>
           </div>
 
@@ -111,7 +118,7 @@ export default function App() {
             }}>
             <RiRobot2Fill style={{ fontSize: '3rem', color: '#007BFF' }} />
           </button>
-          <Bot openBot={openBot} handleCloseBot={handleCloseBot} />
+          <Bot openBot={openBot} handleCloseBot={handleCloseBot} subject='Feedback or Questions' />
           <Footer />
         </>
 

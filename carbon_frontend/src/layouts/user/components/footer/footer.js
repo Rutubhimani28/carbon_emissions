@@ -22,12 +22,13 @@ const Footer = () => {
                 <Link to="/terms-conditions" className='px-2 text-decoration-none text-light'> Terms & Conditions </Link>|
                 <Link to="/privacy-policy" className='px-2 text-decoration-none text-light'> Privacy Policy </Link>|
                 <Link to="/faqs" className='px-2 text-decoration-none text-light'> FAQs </Link>
+                {/* <Link to="/team" className='px-2 text-decoration-none text-light'> Our Team </Link> */}
             </p>
             <div className='d-flex justify-content-center py-2 pb-4'>
                 {/* <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#ff0000", color: "#fff", borderRadius: "5px" }}><MdMail /></Box> */}
                 {/* <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#69727d", color: "#fff", borderRadius: "5px" }}><IoCallOutline /></Box> */}
-                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px", textDecoration: 'none' }}><Link to="https://www.linkedin.com/in/shafeeqm/"><FaLinkedin style={{ color: 'white' }} /></Link></Box>
-                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px", textDecoration: 'none' }}><Link to="https://x.com/shafeeqm"><FaXTwitter style={{ color: 'white' }} /></Link></Box>
+                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px", textDecoration: 'none' }}><Link target="_blank" to="https://www.linkedin.com/company/sirat-earth/"><FaLinkedin style={{ cursor: "pointer", color: 'white' }} /></Link></Box>
+                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px", textDecoration: 'none' }}><Link target="_blank" to="https://x.com/Sirat_Earth"><FaXTwitter style={{ cursor: "pointer", color: 'white' }} /></Link></Box>
             </div>
             <p> Copyright  &copy; {year} Sirat2Sustainability Pvt Ltd. All Rights Reserved</p>
         </div>

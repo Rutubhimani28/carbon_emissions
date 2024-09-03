@@ -5,7 +5,7 @@ import { apiget } from '../../service/api';
 export const fetchUserData = createAsyncThunk('fetchUserData', async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     try {
-        const response = await apiget("user/");
+        const response = await apiget("api/user/");
         return response?.data?.result;
     } catch (error) {
         throw error;

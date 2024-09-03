@@ -48,6 +48,7 @@ Header.propTypes = {
 
 export default function Header({ onOpenNav }) {
   const navigate = useNavigate();
+  const userdata = JSON.parse(sessionStorage.getItem('user'));
 
   return (
     <StyledRoot>
@@ -85,6 +86,10 @@ export default function Header({ onOpenNav }) {
               <ListItemButton onClick={() => navigate('/dashboard/home')} className='text-dark text-capitalize'>
                 <ListItemText primary={'Home'} />
               </ListItemButton>
+              {userdata?.role === 'admin' && <ListItemButton onClick={() => navigate('/dashboard/user')} className='text-dark text-capitalize'>
+                <ListItemText primary={'User'} />
+              </ListItemButton>
+              }
             </ListItem>
           </List>
           <AccountPopover />

@@ -9,7 +9,8 @@ const email = new mongoose.Schema({
         { type: String }
     ],
     subject: { type: String },
-    templateName: { type: String },
+    attachmentTemplateName: { type: String },
+    emailBodyTemplateName: { type: String },
     data: {
         type: Object,
     },
