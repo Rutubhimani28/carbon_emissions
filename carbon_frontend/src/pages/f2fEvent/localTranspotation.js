@@ -242,7 +242,7 @@ const LocalTranspotation = (props) => {
                             },
                         ]
                     },
-                    scope: 1
+                    scope: 2
                 },
                 {
                     subType: "Taxi",

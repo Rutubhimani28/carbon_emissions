@@ -169,7 +169,7 @@ const DigitalCampaign = (props) => {
                             },
                         ]
                     },
-                    scope: 1
+                    scope: 3
                 },
             ];
 

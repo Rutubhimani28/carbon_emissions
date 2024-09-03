@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Button, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Container, FormLabel, Grid, Modal, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
@@ -45,7 +46,8 @@ const Home = () => {
         activityName: '',
         country: '',
         budget: '',
-        date: '',
+        // date: '',
+        date: dayjs().format('YYYY-MM-DD'),
         isValidData: false,
         isDirtyData: false
     };

@@ -580,7 +580,7 @@ const Production = (props) => {
                             },
                         ]
                     },
-                    scope: 2
+                    scope: 3
                 },
                 {
                     subType: "Branding",
@@ -614,7 +614,7 @@ const Production = (props) => {
                             },
                         ]
                     },
-                    scope: 2
+                    scope: 3
                 },
                 {
                     subType: "Stage Screen",

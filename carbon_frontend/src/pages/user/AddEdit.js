@@ -265,7 +265,7 @@ const Add = (props) => {
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="h6">Add New </Typography>
+          <Typography variant="h6">{selectedUser && Object.keys(selectedUser)?.length > 0 ? 'Edit' : 'Add'} User</Typography>
           <Typography>
             <ClearIcon
               onClick={handleClose}

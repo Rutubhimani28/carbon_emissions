@@ -54,7 +54,7 @@ const resultTableDataSlice = createSlice({
                     return {
                         tabTitle: "Local Transportation",
                         tabData: [
-                            { subType: "Company Car", scope: 1 },
+                            { subType: "Company Car", scope: 2 },
                             { subType: "Taxi", scope: 3 },
                             { subType: "Public Transport", scope: 3 }
                         ]
@@ -115,8 +115,8 @@ const resultTableDataSlice = createSlice({
                         tabData: [
                             { subType: "Production Material", scope: 3 },
                             { subType: "Production Material", scope: 3 },
-                            { subType: "Branding", scope: 2 },
-                            { subType: "Branding", scope: 2 },
+                            { subType: "Branding", scope: 3 },
+                            { subType: "Branding", scope: 3 },
                             { subType: "Stage Screen", scope: 3 },
                             { subType: "Stage Lighting & AV", scope: 3 },
                         ]
@@ -137,7 +137,7 @@ const resultTableDataSlice = createSlice({
                         tabTitle: "Energy",
                         tabData: [
                             { subType: "", scope: 3 },
-                            { subType: "", scope: 2 },
+                            { subType: "", scope: 3 },
                         ]
                     };
                 }
@@ -155,8 +155,8 @@ const resultTableDataSlice = createSlice({
                     return {
                         tabTitle: "Digital Comms",
                         tabData: [
-                            { subType: "", scope: 1 },
-                            { subType: "", scope: 1 },
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
                         ]
                     };
                 }
@@ -213,9 +213,9 @@ const resultTableDataSlice = createSlice({
                     return {
                         tabTitle: "Digital Campaign",
                         tabData: [
-                            { subType: "Event Promotion on Social Media", scope: 3 },
+                            { subType: "Social Media", scope: 3 },
                             { subType: "", scope: 3 },
-                            { subType: "Live Broadcasting", scope: 1 },
+                            { subType: "Email / Newsletter", scope: 1 },
                         ]
                     };
                 }
@@ -254,9 +254,9 @@ const resultTableDataSlice = createSlice({
                         tabTitle: "Comms",
                         tabData: [
                             { subType: "Email Invitations", scope: 1 },
-                            { subType: "", scope: 2 },
+                            { subType: "", scope: 1 },
                             // { subType: "Social Media", scope: 3 },
-                            { subType: "PR Assets", scope: 3 },
+                            { subType: "PR Assets", scope: 2 },
                         ]
                     };
                 }

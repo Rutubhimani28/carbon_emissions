@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import TableStyle from '../../components/TableStyle';
 import Iconify from '../../components/iconify';
 import { fetchUserData } from '../../redux/slice/userSlice';
-import AddUser from './AddEdit';
+import AddEditUser from './AddEdit';
 import { commonUtils } from '../../utils/utils';
 import { apidelete } from '../../service/api';
 
@@ -283,7 +283,7 @@ const User = () => {
 
     return (
         <>
-            <AddUser open={openAdd} handleClose={handleCloseAdd} setUserAction={setUserAction} handleUserClear={clearSelectedUserData} selectedUser={selectedUser} />
+            <AddEditUser open={openAdd} handleClose={handleCloseAdd} setUserAction={setUserAction} handleUserClear={clearSelectedUserData} selectedUser={selectedUser} />
 
             <Container maxWidth style={{ marginTop: "36px" }}>
                 <Card style={{ height: "auto", padding: '10px' }}>

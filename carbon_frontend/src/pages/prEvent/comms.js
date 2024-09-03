@@ -207,7 +207,7 @@ const Comms = (props) => {
                 emissions: emissionThree > 0 ? emissionThree : '',
               },
             ],
-            scope: 3,
+            scope: 1,
           },
         },
         // {
@@ -258,7 +258,7 @@ const Comms = (props) => {
               },
             ]
           },
-          scope: 3
+          scope: 2
         },
       ];
 
