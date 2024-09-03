@@ -1,7 +1,9 @@
 import React from 'react'
+import { useTheme } from '@emotion/react'
+import { Box, Card, CardContent, CardMedia, Grid, Typography, makeStyles,useMediaQuery } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { PopupButton } from 'react-calendly'
-import { Box, Card, CardContent, CardMedia, Grid, Typography, makeStyles } from '@mui/material'
+import "../../../assets/css/style.css"
 import goal1 from '../../../assets/images/goal1.png'
 import goal2 from '../../../assets/images/goal2.png'
 import TrustOne from '../../../assets/images/Aster CMI Logo.png';
