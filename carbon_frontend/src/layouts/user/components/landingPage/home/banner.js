@@ -141,8 +141,8 @@ const Index = () => {
                             <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Corporate Events</h1>
                             <p className='ps-xl-3'>Position sustainability at the core of your event with tailored solutions for global reach, media coverage, and social media engagement</p>
                         </div>
-                        <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution mt-md-3 mt-sm-3'>
-                            <img src={tailored2} alt="img" width={80} className='tabImgWhite '/>
+                        <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution '>
+                            <img src={tailored2} alt="img" width={80} className='tabImgWhite mt-3'/>
                             <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Large Exhibitions</h1>
                             <p className='ps-xl-3'>Develop a robust governance model and align exhibitors with a common environmental goal to deliver a positive social impact</p>
                         </div>
@@ -175,7 +175,7 @@ const Index = () => {
 
             <Box className="credit  d-flex justify-content-center" maxHeight={1200} >
                 <Grid container spacing={2} >
-                    <Grid item xs={12} className='wow animate__animated animate__fadeInUp animate__slow my-auto ms-xl-4 ms-sm-5'>
+                    <Grid item xl={6} md={6} xs={8.5}  className='wow animate__animated animate__fadeInUp animate__slow my-auto ms-xl-4 ms-sm-5'>
                         <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold ps-xl-5 ps-md-5 ps-sm-5  ms-4'>Offset Your Carbon Footprint</Typography>
                         <Typography className='text-light fs-xl-5 fs-sm-4 ps-md-5 ps-sm-5 ms-4'>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
                         <div className='ms-xl-5  ms-lg-5 ms-md-5 ms-sm-5'>
