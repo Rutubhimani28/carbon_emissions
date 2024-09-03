@@ -135,20 +135,20 @@ const Index = () => {
                     <Typography className='fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow pt-3 pb-2' item sm={12} md={12}>Tailored Solutions</Typography>
                 </Grid>
                 <div className='container'>
-                    <div className='row d-flex justify-content-center '>
+                    <div className='row d-flex'>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
-                            <img src={tailored1} alt="img" width={80} className='tabImgWhite mt-3' />
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Corporate Events</h1>
+                            <img src={tailored1} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' />
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'>Corporate Events</h1>
                             <p className='ps-xl-3'>Position sustainability at the core of your event with tailored solutions for global reach, media coverage, and social media engagement</p>
                         </div>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution '>
-                            <img src={tailored2} alt="img" width={80} className='tabImgWhite mt-3'/>
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Large Exhibitions</h1>
+                            <img src={tailored2} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3'/>
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'>Large Exhibitions</h1>
                             <p className='ps-xl-3'>Develop a robust governance model and align exhibitors with a common environmental goal to deliver a positive social impact</p>
                         </div>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
-                            <img src={tailored3} alt="img" width={80} className='tabImgWhite  mt-3' />
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Digital Campaigns</h1>
+                            <img src={tailored3} alt="img" width={80} className='tabImgWhite  mt-3 ms-xl-3' />
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'>Digital Campaigns</h1>
                             <p className='ps-xl-3'>Create eco-friendly digital campaigns, reduce your digital marketing carbon footprint by optimising your content and promote sustainability</p>
                         </div>
                     </div>

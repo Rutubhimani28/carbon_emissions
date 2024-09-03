@@ -16,9 +16,11 @@
 .main {
   padding: 0 100px;
 }
-.setMeetFounderText{
+
+.setMeetFounderText {
   padding: 0 20px;
 }
+
 @media (max-width: 500px) {
   .main {
     padding: 0 20px;
@@ -220,9 +222,9 @@
 .setDisplaySolution {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  /* justify-content: center;
+  align-items: center; */
+  /* text-align: center; */
 }
 
 @media screen and (max-width: 800px) {
