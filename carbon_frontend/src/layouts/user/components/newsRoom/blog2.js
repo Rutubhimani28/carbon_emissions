@@ -48,7 +48,7 @@ const Blog2 = () => {
                     </div>
                     <img src={blog1} alt="blog2" height={"80px"} width={"100px"} />
                     <div className='nextBlogContent'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue"  }}>Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
                     </div>
                 </Link>
             </div>
@@ -59,7 +59,7 @@ const Blog2 = () => {
                     </div>
                     <img src={blog3} alt="blog2" height={"80px"} width={"100px"} />
                     <div className='nextBlogContentRight'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News</Typography>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue"  }}>Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News</Typography>
                     </div>
                 </Link>
             </div>

@@ -49,7 +49,7 @@ const Blog1 = () => {
                     </div>
                     <img src={blog4} alt="blog4" height={"80px"} width={"100px"} />
                     <div className='nextBlogContent'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue"  }}>
                             Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing
                         </Typography>
                     </div>
@@ -62,7 +62,7 @@ const Blog1 = () => {
                     </div>
                     <img src={blog2} alt="blog2" height={"80px"} width={"100px"} />
                     <div className='nextBlogContentRight'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>Empowering organizations: Meeting net-zero through the reduction of single-use plastics</Typography>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue" }}>Empowering organizations: Meeting net-zero through the reduction of single-use plastics</Typography>
                     </div>
                 </Link>
             </div>

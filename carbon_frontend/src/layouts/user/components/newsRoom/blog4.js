@@ -23,7 +23,7 @@ const Blog4 = () => {
                     </div>
                     <img src={Room1} alt="blog2" height={"80px"} width={"100px"} />
                     <div className='nextBlogContentRight'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "#ffffd9" }}>Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue"  }}>Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
                     </div>
                 </Link>
             </div>

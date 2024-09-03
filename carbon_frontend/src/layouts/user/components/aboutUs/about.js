@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { PopupButton } from "react-calendly";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { Box, Card, Grid, Typography } from '@mui/material'
+import { Box, Card, Grid, Typography, useMediaQuery } from '@mui/material'
 import { FaLinkedin } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6"
+import { useTheme } from "@mui/material/styles";
 import banner from '../../assets/images/AboutBg.jpeg'
 import ceo from '../../assets/images/CEO.png'
 import what from '../../assets/images/What.png'
@@ -18,6 +19,7 @@ import goal6 from '../../assets/images/goal6.png'
 import goal7 from '../../assets/images/goal7.png'
 
 const About = () => {
+    const theme = useTheme()
     return (
         <div>
             {/* banner */}
@@ -106,11 +108,11 @@ const About = () => {
                         <Box className="text-center" style={{ marginBottom: '20px' }}>
                             <div className='d-flex flex-column justify-content-between align-items-center'>
                                 <Typography variant='h6' className=' fs-1 fontFamily fw-bold' style={{ color: '#efefef' }}>Meet the Founder</Typography>
-                                <Typography className='fs-1 pb-4 fontFamily fw-bold' style={{  display: { md: 'none' }, color: '#efefef' }} ><RemoveIcon style={{ fontSize: "50px" }} /><FiberManualRecordIcon style={{ fontSize: "20px" }} /><RemoveIcon style={{ fontSize: "50px" }} /></Typography>
+                                <Typography className='fs-1 pb-4 fontFamily fw-bold' style={{ display: { md: 'none' }, color: '#efefef' }} ><RemoveIcon style={{ fontSize: "50px" }} /><FiberManualRecordIcon style={{ fontSize: "20px" }} /><RemoveIcon style={{ fontSize: "50px" }} /> </Typography>
                             </div>
                             <p className='fs-5 setMeetFounderText'>A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.</p>
                         </Box>
-                        <Box className="text-center pt-3" style={{marginBottom:'20px'}}>
+                        <Box className="text-center pt-3" style={{ marginBottom: '20px' }}>
                             {/* <PopupButton
                                 url="https://calendly.com/mohammed-sirat"
                                 rootElement={document.getElementById("root")}
@@ -122,13 +124,17 @@ const About = () => {
                     </Grid>
                     <Grid item xs={12} md={3} className='d-flex justify-content-center align-items-center flex-column wow animate__animated template-inner-theme pe-4 pt-4 animate__fadeInRight animate__slow' sx={{ order: { md: '1' }, borderRadius: { xs: "10px 10px 0px 0px", md: "0px 10px 10px 0px" } }}>
                         <Box>
-                            <img src={ceo} alt="img" className="img-fuild mx-auto" width={"100%"} style={{ borderRadius: "10px" }} />
+                            <img src={ceo} alt="img" className="img-fuild" width={"100%"} style={{
+                                borderRadius: '10px',
+                                marginLeft: useMediaQuery(theme.breakpoints.up('md')) ? "2px" : '8px'
+                            }}
+                            />
                         </Box>
                         <div className='text-center pt-2' >
                             <p className=' fs-5 mb-0'>Mohammed Shafeeq</p>
                             <p className=' fs-6 mb-0'>CEO & Founder</p>
                             <div className='d-flex justify-content-center py-2 pb-4'>
-                                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px" }}><Link target="_blank" to="https://x.com/shafeeqm"><FaXTwitter style={{ color: 'white' }} /></Link></Box>
+                                <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#000000", color: "#fff", borderRadius: "5px" }}><Link target="_blank" to="https://x.com/shafeeqm"><FaXTwitter style={{ color: 'white' }} /> </Link></Box>
                                 <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#0077b5", color: "#fff", borderRadius: "5px" }}><Link target="_blank" to="https://www.linkedin.com/in/shafeeqm/"><FaLinkedin style={{ color: 'white' }} /></Link></Box>
                             </div>
                         </div>

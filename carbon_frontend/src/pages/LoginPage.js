@@ -75,7 +75,7 @@ export default function LoginPage() {
                 </Typography>
               </div>
               <LoginForm />
-              <Link to="/forgot-password" className='text-center text-decoration-none'>Forgot Password?</Link>
+              <Link to="/forgot-password" className='text-center text-decoration-none mt-3'>Forgot Password?</Link>
             </StyledContent>
           </Container>
         </StyledRoot>

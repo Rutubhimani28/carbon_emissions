@@ -12,7 +12,7 @@ const Footer = () => {
     const year = date.getFullYear()
     return (
         <div className='text-light text-center py-4 template-inner-theme' style={{ backgroundColor: "#4ABD43" }} >
-            <p>
+            <p className='px-2'>
                 <Link to="/" className='px-2 text-decoration-none text-light'>Home </Link> |
                 <Link to="/netzero-platform" className='px-2 text-decoration-none text-light'>NetZero Platform </Link>|
                 <Link to="/netzero-consulting" className='px-2 text-decoration-none text-light'> NetZero Consulting </Link>|

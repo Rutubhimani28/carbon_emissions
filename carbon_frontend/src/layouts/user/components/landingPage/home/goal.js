@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTheme } from '@emotion/react'
-import { Box, Card, CardContent, CardMedia, Grid, Typography, makeStyles,useMediaQuery } from '@mui/material'
+import { Box, Card, CardContent, CardMedia, Grid, Typography, makeStyles, useMediaQuery } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { PopupButton } from 'react-calendly'
 import "../../../assets/css/style.css"
@@ -58,34 +58,34 @@ const Goal = () => {
             </Grid>
 
             {/* collabrate */}
-            <div className="container-fuild collabrate d-flex justify-content-center main" style={{overflowX:"hidden"}}>
-                <div className="row d-flex justify-content-center mb-2">
-                    <div className="col-xl-5 col-md-12 ps-xl-2 mt-3">
-                        <h1 className='fontFamily text-light fw-bold mt-5'>Collaborating for Sustainable Development</h1>
-                        <p className='text-light fs-5 mt-4'>Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring your organization is never alone in addressing systemic sustainability challenges, enabling a positive climate impact.
+            <div className="container-fuild collabrate d-flex justify-content-center main " style={{ overflowX: "hidden" }}>
+                <div className="row d-flex justify-content-center mb-xl-3">
+                    <div className="col-xl-5 col-md-12 ps-xl-2 mt-2">
+                        <h1 className='fontFamily text-light fw-bold mt-3'>Collaborating for Sustainable Development</h1>
+                        <p className='text-light fs-5 mt-1'>Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring your organization is never alone in addressing systemic sustainability challenges, enabling a positive climate impact.
                         </p>
-                        <p className='text-light fs-5 mt-4'>
+                        <p className='text-light fs-5 mt-2'>
                             Sirāt invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.
                         </p>
                     </div>
-                    <div className="col-xl-7 col-md-12">
+                    <div className="col-xl-7 col-md-12 mt-xl-2">
                         <div className='row d-flex justify-content-center mt-2'>
                             <div className='col-md-4'>
-                                <img src={commited} alt="img" width={150} style={{ height: "100px", margin:useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
-                                <p style={{marginBottom:'15px'}}>
-                                We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. In making the commitment, we have joined the United Nations <strong>Race to Zero</strong> campaign.
+                                <img src={commited} alt="img" className='img-fuild pt-xl-2 pt-sm-5' width={150} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }}  />
+                                <p style={{ marginBottom: '15px' }}>
+                                    We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. In making the commitment, we have joined the United Nations <strong>Race to Zero</strong> campaign.
                                 </p>
                             </div>
                             <div className='col-md-4' style={{ borderLeft: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0, borderRight: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0 }} >
-                                <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin:useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
-                                <p className='p-xl-2'style={{marginBottom:'15px'}}>
-                                We have made a 'Pledge to Net Zero' and are committed to reducing our GHG emissions. Pledge to Net Zero' is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
+                                <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
+                                <p className='p-xl-2' style={{ marginBottom: '15px' }}>
+                                    We have made a 'Pledge to Net Zero' and are committed to reducing our GHG emissions. Pledge to Net Zero' is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
                                 </p>
                             </div>
                             <div className='col-md-4'>
-                                <img src={greenview} className='tabImgWhite img-fuild pt-xl-2 pt-sm-5' alt="img" width={200} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} />
-                                <p className='ps-xl-2'style={{marginBottom:'15px'}}>
-                                We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide - the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.                                </p>
+                                <img src={greenview} className='tabImgWhite img-fuild pt-xl-2 pt-sm-5' alt="img" width={200} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} />
+                                <p className='ps-xl-2' style={{ marginBottom: '15px' }}>
+                                    We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide - the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.                                </p>
                             </div>
                         </div>
                     </div>
