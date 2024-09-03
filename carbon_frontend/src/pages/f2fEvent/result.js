@@ -23,6 +23,7 @@ const Result = ({ value }) => {
     const [suggestion, setSuggestion] = useState('');
     const [suggestionForPdf, setSuggestionForPdf] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [content, setContent] = useState('');
     const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails)
     const allFreightData = useSelector((state) => state?.totalAirFreightDetails)
     const allEnergyData = useSelector((state) => state?.totalEnergyUpdatedDetails)
@@ -196,11 +197,27 @@ const Result = ({ value }) => {
     // const chartSeries = [scope1Count, scope2Count, scope3Count];
     const chartSeries = [sc1, sc2, sc3];
 
-    const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
-    const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
-    const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
-    const carbonPerDollar = `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`;
-    const wantInResult = `\n\nWhat are the top three ways to reduce my face-to-face event's carbon footprint by 10-20%? Suggest one actionable point for all the 9 categories to achieve this reduction. How do the original and reduced footprints compare? Additionally, how can adopting sustainable measures lead to an approximate 10% cost reduction, considering that the cost savings may not be directly proportional to the carbon reductions?`
+    const generatePrompt = async () => {
+        let contentData = ``;
+        let categoryCount = 0;
+
+        resultData?.forEach(item => {
+            if (item?.totalEmission > 0) {
+                contentData += `${item.type}: ${item.totalEmission || 0} kgCO2e \n`
+                categoryCount += 1;
+            }
+        });
+
+        if (total && Number(total).toFixed(2) > 0) {
+            contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
+        }
+        if (toolFormData?.budget > 0) {
+            contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
+        }
+
+        contentData += `\n\nWhat are the top three ways to reduce my face-to-face event's carbon footprint by 10-20%? Suggest one actionable point for all the ${categoryCount} categories to achieve this reduction. How do the original and reduced footprints compare? Additionally, how can adopting sustainable measures lead to an approximate 10% cost reduction, considering that the cost savings may not be directly proportional to the carbon reductions?`
+        setContent(contentData);
+    };
 
     const formatSuggestions = (suggestions) => {
         // return suggestions.split('\n').map((line, index) => (
@@ -240,7 +257,7 @@ const Result = ({ value }) => {
                     model: "gpt-4o",
                     messages: [{
                         "role": "user",
-                        "content": `${contentData}\n${totalCarbonFootprint} The total marketing budget for this activity is ${toolFormData?.budget} dollar. ${wantInResult}`
+                        "content": content
                     }],
                     temperature: 0.7,
                 },
@@ -330,13 +347,18 @@ const Result = ({ value }) => {
             });
         });
 
-        chat();
+        generatePrompt();
 
         setSc1(sc1Count);
         setSc2(sc2Count);
         setSc3(sc3Count);
-    }, [resultTableData, value])
+    }, [resultTableData, value]);
 
+    useEffect(() => {
+        if (content) {
+            chat();
+        }
+    }, [content]);
 
     return (
         <div>
