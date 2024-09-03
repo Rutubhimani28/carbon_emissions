@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from "formik";
+import { useTheme } from '@emotion/react'
 import * as yup from "yup";
-import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, Grid, TextField, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, Grid, TextField, Typography, useMediaQuery } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import posterImg from '../../../assets/images/Still Image for CEO Video.png';
 import bannerVideo1 from '../../../assets/images/Home2.mp4'
@@ -16,6 +17,7 @@ import Logo from '../../../assets/images/logo5.gif';
 import { apipost } from '../../../../../service/api';
 
 const Index = () => {
+    const theme = useTheme();
     const [openCredit, setOpenCredit] = useState(false);
     const [isLoading, setLoading] = React.useState(false);
     const videoRef = useRef();
@@ -137,18 +139,18 @@ const Index = () => {
                 <div className='container'>
                     <div className='row d-flex'>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
-                            <img src={tailored1} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' />
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'>Corporate Events</h1>
+                            <img src={tailored1} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' style={{display:useMediaQuery(theme.breakpoints.up('md')) ? "" : "block" , margin:useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto"}}   />
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'style={{textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center"}}>Corporate Events</h1>
                             <p className='ps-xl-3'>Position sustainability at the core of your event with tailored solutions for global reach, media coverage, and social media engagement</p>
                         </div>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution '>
-                            <img src={tailored2} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3'/>
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'>Large Exhibitions</h1>
+                            <img src={tailored2} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' style={{display:useMediaQuery(theme.breakpoints.up('md')) ? "" : "block" , margin:useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto"}}/>
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'style={{textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center"}}>Large Exhibitions</h1>
                             <p className='ps-xl-3'>Develop a robust governance model and align exhibitors with a common environmental goal to deliver a positive social impact</p>
                         </div>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
-                            <img src={tailored3} alt="img" width={80} className='tabImgWhite  mt-3 ms-xl-3' />
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'>Digital Campaigns</h1>
+                            <img src={tailored3} alt="img" width={80} className='tabImgWhite  mt-3 ms-xl-3' style={{display:useMediaQuery(theme.breakpoints.up('md')) ? "" : "block" , margin:useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto"}}/>
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'style={{textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center"}}>Digital Campaigns</h1>
                             <p className='ps-xl-3'>Create eco-friendly digital campaigns, reduce your digital marketing carbon footprint by optimising your content and promote sustainability</p>
                         </div>
                     </div>
