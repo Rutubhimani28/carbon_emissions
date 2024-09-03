@@ -16,9 +16,9 @@ const Blog4 = () => {
                     <Link to="https://forceforgood.insead.edu/article/mohammed-shafeeq-ilpse-c10-pioneering-sustainable-entrepreneurship-marketing" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing</Link>
                 </Typography>
             </div>
-            <div style={{ position: "fixed", bottom: "70px", right: "0", }}>
+            <div style={{ position: "fixed", bottom: "70px", right: "0"}}>
                 <Link to='/news-room/blog1' className='d-flex nextBlogRight'>
-                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
+                    <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px" }}>
                         <FaChevronRight />
                     </div>
                     <img src={Room1} alt="blog2" height={"80px"} width={"100px"} />

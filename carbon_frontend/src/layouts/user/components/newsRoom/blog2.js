@@ -43,7 +43,7 @@ const Blog2 = () => {
             </div>
             <div style={{ position: "fixed", bottom: "70px", left: "0", }} >
                 <Link to='/news-room/blog1' className='d-flex nextBlog'>
-                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
+                    <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px" }}>
                         <FaChevronRight />
                     </div>
                     <img src={blog1} alt="blog2" height={"80px"} width={"100px"} />
@@ -54,7 +54,7 @@ const Blog2 = () => {
             </div>
             <div style={{ position: "fixed", bottom: "70px", right: "0", }}>
                 <Link to='/news-room/blog3' className='d-flex nextBlogRight'>
-                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
+                    <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px" }}>
                         <FaChevronLeft />
                     </div>
                     <img src={blog3} alt="blog2" height={"80px"} width={"100px"} />

@@ -104,6 +104,7 @@
 }
 
 .organise {
+  max-width: 400px;
   background-color: #fff;
   transition: all 0.4s linear;
   position: relative;

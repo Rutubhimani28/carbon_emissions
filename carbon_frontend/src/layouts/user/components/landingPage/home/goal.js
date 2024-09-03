@@ -82,9 +82,9 @@ const Goal = () => {
                                     We have made a 'Pledge to Net Zero' and are committed to reducing our GHG emissions. Pledge to Net Zero' is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
                                 </p>
                             </div>
-                            <div className='col-md-4'>
+                            <div className='col-md-4 mb-sm-3'>
                                 <img src={greenview} className='tabImgWhite img-fuild pt-xl-2 pt-sm-5' alt="img" width={200} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} />
-                                <p className='ps-xl-2' style={{ marginBottom: '15px' }}>
+                                <p className='ps-xl-2 ' style={{ marginBottom: '15px' ,paddingBottom: useMediaQuery(theme.breakpoints.up("sm")) ? "0" : "28px"}}>
                                     We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide - the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.                                </p>
                             </div>
                         </div>

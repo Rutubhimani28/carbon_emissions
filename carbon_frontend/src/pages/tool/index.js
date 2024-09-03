@@ -303,28 +303,28 @@ const Home = () => {
                 </Grid>
             </Box>
 
-            <Grid  xs={3} md={6} spacing={2}>
+            <Grid xs={3} md={6} spacing={2}>
 
                 <Typography className="mb-2 fs-5 text-center">Choose your Marketing activity</Typography>
-                <Grid  xl={3} md={6} sm={12}>
+                <Grid xl={3} md={6} sm={12}>
                     <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
                         <Box onClick={() => isSubmited && navigate('/dashboard/f2f-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                            <img src={f2FEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                            <img src={f2FEvent} alt="img" width={"100%"} style={{ borderRadius: "10px",aspectRatio:'135 / 76' }} height={"120px"} />
                             <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">F2F Event</Typography>
                         </Box>
 
                         <Box onClick={() => isSubmited && navigate('/dashboard/virtual-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                            <img src={virtualEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                            <img src={virtualEvent} alt="img" width={"100%"} style={{ borderRadius: "10px",aspectRatio:'135 / 76' }} height={"120px"} />
                             <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Virtual Event</Typography>
                         </Box>
 
                         <Box onClick={() => isSubmited && navigate('/dashboard/pr-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                            <img src={prEvent} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                            <img src={prEvent} alt="img" width={"100%"} style={{ borderRadius: "10px",aspectRatio:'135 / 76' }} height={"120px"} />
                             <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">PR Event</Typography>
                         </Box>
 
                         <Box onClick={() => isSubmited && navigate('/dashboard/campaign')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                            <img src={digitalCampaign} alt="img" width={"100%"} style={{ borderRadius: "10px" }} height={"120px"} />
+                            <img src={digitalCampaign} alt="img" width={"100%"} style={{borderRadius: "10px",aspectRatio:'135 / 76' }} height={"120px"} />
                             <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Digital Campaign</Typography>
                         </Box>
                     </Box>
