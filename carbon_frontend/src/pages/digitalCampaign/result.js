@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import ReactApexChart from 'react-apexcharts';
 import axios from 'axios';
-import { Box, Button, Card, Container, Stack, Typography, Accordion, AccordionActions, AccordionSummary, AccordionDetails, CircularProgress } from '@mui/material';
+import { Box, Button, Card, Container, Stack, Typography, Accordion, AccordionActions, AccordionSummary, AccordionDetails, CircularProgress, Grid } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useDispatch, useSelector } from 'react-redux';
 import SendMail from './sendMail';
@@ -40,6 +41,41 @@ const Result = ({ value }) => {
     const handeleDelete = () => {
         dispatch(deleteCampaignData());
     };
+
+    const chartOptions = {
+        labels: ['Scope.1', 'Scope.2', 'Scope.3'],
+        colors: ['#008FFB', '#00E396', '#FEB019'],
+        chart: { type: "donut" },
+        legend: {
+            position: 'bottom'
+        },
+        dataLabels: { enabled: true },
+        tooltip: { enabled: true },
+        plotOptions: {
+            pie: {
+                expandOnClick: false,
+                donut: {
+                    size: "75%",
+                    labels: {
+                        show: false,
+                        name: { show: false },
+                    }
+                }
+            }
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    };
+    const chartSeries = [sc1, sc2, sc3];
 
     const sentenceParts = [];
     const liveBroadcastParts = [];
@@ -174,7 +210,6 @@ const Result = ({ value }) => {
 
     }, [resultTableData, value, allDigitalCampaignData]);
 
-
     useEffect(() => {
         if (content) {
             chat();
@@ -185,34 +220,6 @@ const Result = ({ value }) => {
         <div>
             <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen chatSuggestion={suggestionForPdf} />
 
-            {/* <Container maxWidth>
-                <Card className='custom-inner-bg'>
-                    <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
-
-                        <Box color='white'>
-                            <h3 className='text-center py-3 fw-bold green'>Your Carbon Footprint :</h3>
-                            <table>
-                                {
-                                    resultData?.length > 0 && resultData?.map((item) => (
-                                        <tr>
-                                            <th>{item?.type}</th>
-                                            <td align='right' className='ps-4'>{item?.totalEmission}</td>
-                                            <td className='ps-1'>kkgCO<sub>2</sub>e</td>
-                                        </tr>
-                                    ))
-                                }
-                            </table>
-                            <h4 className='text-center py-3 fw-bold mt-1'>Total To Offset = {total} kgCO<sub>2</sub>e</h4>
-                        </Box>
-                    </div>
-                    <div className='d-flex justify-content-end p-3'>
-                        <Stack direction={"row"} spacing={2}>
-                            <Button variant='contained' onClick={() => setOpen(true)} className='custom-btn'>Send Mail</Button>
-                            <Button variant='outlined' color='error' onClick={handeleDelete}>Clear</Button>
-                        </Stack>
-                    </div>
-                </Card>
-            </Container> */}
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
                     {/* <Box style={{ width: "100%", color: 'white' }}>
@@ -287,7 +294,15 @@ const Result = ({ value }) => {
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(3)} tCO<sub>2</sub>e</Typography>
                         <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${(total / toolFormData?.budget).toFixed(3)}`} kgCO<sub>2</sub>e</Typography>
                         {/* <Typography className='text-center py-1 fw-bold mt-4 fs-6'>Note: Source of the calculation will be shared to the designated company representative during the auditing.</Typography> */}
-                        <Typography className='text-center py-1 fw-bold mt-2 fs-5'>Do you want to change any data? If no, please click on Submit.</Typography>
+
+                        <Grid container my={3} className='d-flex justify-content-center'>
+                            {(sc1 > 0 || sc2 > 0 || sc3 > 0) &&
+                                <Grid item xs={12} sm={4} md={4}>
+                                    <ReactApexChart options={chartOptions} series={chartSeries} type="donut" height={300} />
+                                </Grid>}
+                        </Grid>
+
+                        <Typography className='text-center fw-bold fs-5'>Do you want to change any data? If no, please click on Submit.</Typography>
                     </Box>
 
                     <div className='d-flex justify-content-end p-3'>

@@ -100,7 +100,7 @@ const EnergyUpdated = (props) => {
                             },
                         ]
                     },
-                    scope: 2
+                    scope: 3
                 },
             ];
 
