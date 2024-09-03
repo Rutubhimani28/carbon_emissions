@@ -1,13 +1,19 @@
-import { useTheme } from '@emotion/react'
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
-import "../../../assets/css/style.css"
-import TrustOne from '../../../assets/images/Aster CMI Logo.png'
-import commited from '../../../assets/images/CommitedLogo.png'
-import TrustTwo from '../../../assets/images/GoFig.png'
-import greenview from '../../../assets/images/GreenView.png'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { PopupButton } from 'react-calendly'
+import { Box, Card, CardContent, CardMedia, Grid, Typography, makeStyles } from '@mui/material'
+import goal1 from '../../../assets/images/goal1.png'
+import goal2 from '../../../assets/images/goal2.png'
+import TrustOne from '../../../assets/images/Aster CMI Logo.png';
+import bgImg from '../../../assets/images/bg.png';
+import TrustTwo from '../../../assets/images/GoFig.png';
 import mission from '../../../assets/images/mission.png'
-import Pledge from '../../../assets/images/PledgeTonetZERO.png'
 import vision from '../../../assets/images/visionary.png'
+import collbrate from '../../../assets/images/Collaborat.jpeg';
+import commited from '../../../assets/images/CommitedLogo.png'
+// import Pledge from '../../../assets/images/PledgeTonetZERO.png'
+import Pledge from '../../../assets/images/PledgeTonetZERO2.jpg'
+import greenview from '../../../assets/images/GreenView.png'
 
 const Goal = () => {
     const theme = useTheme();
@@ -65,20 +71,19 @@ const Goal = () => {
                             <div className='col-md-4'>
                                 <img src={commited} alt="img" width={150} style={{ height: "100px", margin:useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
                                 <p style={{marginBottom:'15px'}}>
-                                    We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. Through the SME Climate Hub, we commit to lowering our impact on the environment through authentic action, halving our emissions by 2030. In making the commitment, we have joined the United Nations Race to Zero campaign.
+                                We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. In making the commitment, we have joined the United Nations <strong>Race to Zero</strong> campaign.
                                 </p>
                             </div>
                             <div className='col-md-4' style={{ borderLeft: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0, borderRight: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0 }} >
                                 <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin:useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
                                 <p className='p-xl-2'style={{marginBottom:'15px'}}>
-                                    We have made a ‘Pledge to Net Zero’ and are committed to reducing our GHG emissions. Pledge to Net Zero’ is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
+                                We have made a 'Pledge to Net Zero' and are committed to reducing our GHG emissions. Pledge to Net Zero' is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
                                 </p>
                             </div>
                             <div className='col-md-4'>
                                 <img src={greenview} className='tabImgWhite img-fuild pt-xl-2 pt-sm-5' alt="img" width={200} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} />
                                 <p className='ps-xl-2'style={{marginBottom:'15px'}}>
-                                    We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide – the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.
-                                </p>
+                                We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide - the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.                                </p>
                             </div>
                         </div>
                     </div>

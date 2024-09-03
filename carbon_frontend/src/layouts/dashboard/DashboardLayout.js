@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // @mui
+import { RiRobot2Fill } from "react-icons/ri";
 import { styled } from '@mui/material/styles';
 //
 // import { fetchCustomFieldData } from '../../redux/slice/customFieldSlice';
@@ -18,6 +19,7 @@ import User from '../../pages/user/User';
 
 // import banner from '../user/assets/images/home_banner.jpg';
 import banner from '../user/assets/images/NetZero Tool Pic.jpeg';
+import Bot from '../user/components/bot';
 
 // ----------------------------------------------------------------------
 
@@ -51,6 +53,8 @@ const Main = styled('div')(({ theme }) => ({
 
 export default function DashboardLayout() {
   const [open, setOpen] = useState(false);
+  const [openBot, setOpenBot] = useState(false);
+  const handleCloseBot = () => setOpenBot(false);
 
   const toolData = useSelector((state) => state.toolDetails?.data);
   const toolFormData = toolData.find((item) => item?.type === "toolForm");
@@ -95,6 +99,25 @@ export default function DashboardLayout() {
             </>
           }
         </Routes>
+
+        <button
+          onClick={() => setOpenBot(true)}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: '1000',
+            padding: '5px',
+            backdropFilter: 'blur(10px)',
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+            borderRadius: '30%',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+            border: 'none'
+          }}>
+          <RiRobot2Fill style={{ fontSize: '3rem', color: '#007BFF' }} />
+        </button>
+        <Bot openBot={openBot} handleCloseBot={handleCloseBot} subject='NetZero Platform- Customer Query' />
+
       </Main>
     </StyledRoot>
   );

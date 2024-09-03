@@ -43,7 +43,7 @@ const Banner = () => {
 
                     <Grid className='fs-5 py-4 wow animate__animated animate__fadeInRight animate__slow' item sm={12} md={12} style={{ textAlign: 'justify' }}>An AI enabled carbon accounting platform to collect data and assess the complete life cycle of all your marketing and communication activities' carbon footprint. Our platform covers not only digital campaigns and digital marketing but also events, including face-to-face events, virtual events, and public relations events. It encompasses all phases—pre-event, event, and post-event—and marks a significant milestone based on our NetZero framework.</Grid>
 
-                    <Grid className='fs-5 py-4 wow animate__animated animate__fadeInUp animate__slow' item sm={12} style={{ textAlign: 'justify' }}>We earnestly delve into the meticulous examination of the nine diverse categories as outlined below:</Grid>
+                    <Grid className='fs-5 py-4 wow animate__animated animate__fadeInUp animate__slow' item sm={12} style={{ textAlign: 'justify' }}>We earnestly delve into the meticulous examination of the twelve diverse categories as outlined below:</Grid>
                 </Grid>
             </Box>
         </div>

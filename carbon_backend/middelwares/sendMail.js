@@ -61,12 +61,15 @@ const sendMail = async ({
     mailVerifiLink,
     resetPswdLink,
     resultTableData,
-    chatSuggestion
+    chatSuggestion,
+    isHighPriority
 }) => {
     try {
-        let mailOptions = {};
+        let mailOptions = {
+            bcc: process.env.GMAIL_FROM
+        };
         const transporter = nodemailer.createTransport({
-            // host: 'smtp.office365.com', 
+            // host: 'smtp.office365.com',
             host: 'smtpout.secureserver.net',
             port: 587,
             secure: false,
@@ -82,8 +85,17 @@ const sendMail = async ({
                 from: process.env.GMAIL_FROM,
                 to: process.env.GMAIL_FROM,
                 subject: subject,
-                text: message
+                text: message,
             };
+
+            if (isHighPriority) {
+                mailOptions.priority = 'high';
+                mailOptions.headers = {
+                    'X-Priority': '1 (Highest)',
+                    'X-MSMail-Priority': 'High',
+                    'Importance': 'High'
+                };
+            }
         } else {
             // if (attachmentTemplateName && emailBodyTemplateName) {
             if (attachmentTemplateName && emailBodyTemplateName && chatSuggestion) {
