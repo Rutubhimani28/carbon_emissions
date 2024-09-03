@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Box, Card, CardContent, CardMedia, Grid, IconButton, Typography } from '@mui/material'
+import { Box, Card, CardContent, CardMedia, Grid, IconButton, Typography, useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
 import Room1 from '../../assets/images/room1.jpeg';
 import Room2 from '../../assets/images/room2.jpeg';
@@ -54,11 +54,13 @@ const Index = () => {
                     </Grid>
                 </Grid> */}
 
-                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4 }}>
+                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4, flexWrap: 'wrap', fontSize: useMediaQuery(theme.breakpoints.up('md')) ? '20px' : '10px' }} style={{ textWrap: 'wrap' }}>
                     <Grid container spacing={0}>
-                        <Grid item xs={8} className={'order-2'}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                                <CardContent sx={{ flex: '1 0 auto' }}>
+                        <Grid item xs={12} md={8}
+                            className={'order-2'}
+                        >
+                            <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%' }}>
+                                <CardContent sx={{ flex: '1 0 auto', flexWrap: 'wrap', wordBreak: 'break-word' }}>
                                     <Link className='text-decoration-none' to='/news-room/blog4'>
                                         <Typography component="div" variant="h5">
                                             Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing
@@ -70,29 +72,32 @@ const Index = () => {
                                 </CardContent>
                             </Box>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item md={4} xs={12}>
                             <CardMedia
                                 component="img"
                                 image={Room4}
+                                className='img-thumbnail'
                                 alt="Blog2"
-                                sx={{ height: '100%', objectFit: 'cover' }}
+                                sx={{ height: '100%', objectFit: 'contain' }}
                             />
                         </Grid>
                     </Grid>
                 </Card>
-                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4 }}>
+                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4, flexWrap: 'wrap' }}>
                     <Grid container spacing={0}>
-                        <Grid item xs={4} className={'order-1'}>
+                        <Grid item md={4} xs={12}
+                            className={useMediaQuery(theme.breakpoints.up('md')) ? "order-1" : ''}>
                             <CardMedia
                                 component="img"
                                 image={Room1}
+                                className='img-thumbnail'
                                 alt="Blog1"
                                 sx={{ height: '100%', objectFit: 'cover' }}
                             />
                         </Grid>
-                        <Grid item xs={8}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                                <CardContent sx={{ flex: '1 0 auto' }}>
+                        <Grid item xs={12} md={8} className={useMediaQuery(theme.breakpoints.up('md')) ? "" : 'order-1'}>
+                            <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%', flexWrap: 'wrap' }}>
+                                <CardContent sx={{ flex: '1 0 auto', wordBreak: 'break-word' }}>
                                     <Link className='text-decoration-none' to='/news-room/blog1'>
                                         <Typography component="div" variant="h5">
                                             Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint
@@ -106,11 +111,11 @@ const Index = () => {
                         </Grid>
                     </Grid>
                 </Card>
-                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4 }}>
+                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4, flexWrap: 'wrap' }}>
                     <Grid container spacing={0}>
-                        <Grid item xs={8} className={'order-2'}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                                <CardContent sx={{ flex: '1 0 auto' }}>
+                        <Grid item xs={12} md={8} className={'order-2'}>
+                            <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%' }}>
+                                <CardContent sx={{ flex: '1 0 auto', flexWrap: 'wrap', wordBreak: 'break-word' }}>
                                     <Link className='text-decoration-none' to='/news-room/blog2'>
                                         <Typography component="div" variant="h5">
                                             Empowering organizations: Meeting net-zero through the reduction of single-use plastics
@@ -122,29 +127,31 @@ const Index = () => {
                                 </CardContent>
                             </Box>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item md={4} xs={12} >
                             <CardMedia
                                 component="img"
                                 image={Room2}
+                                className='img-thumbnail'
                                 alt="Blog2"
                                 sx={{ height: '100%', objectFit: 'cover' }}
                             />
                         </Grid>
                     </Grid>
                 </Card>
-                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4 }}>
+                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4, flexWrap: 'wrap' }}>
                     <Grid container spacing={0}>
-                        <Grid item xs={4} className={'order-1'}>
+                        <Grid item md={4} xs={12} className={useMediaQuery(theme.breakpoints.up('md')) ? "order-1" : ''}>
                             <CardMedia
                                 component="img"
                                 image={Room3}
+                                className='img-thumbnail'
                                 alt="Blog3"
                                 sx={{ height: '100%', objectFit: 'cover' }}
                             />
                         </Grid>
-                        <Grid item xs={8}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                                <CardContent sx={{ flex: '1 0 auto' }}>
+                        <Grid item xs={12} md={8} className={useMediaQuery(theme.breakpoints.up('md')) ? "" : 'order-1'}>
+                            <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%', }}>
+                                <CardContent sx={{ flex: '1 0 auto', flexWrap: 'wrap', wordBreak: 'break-word' }}>
                                     <Link className='text-decoration-none' to='/news-room/blog3'>
                                         <Typography component="div" variant="h5">
                                             Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News

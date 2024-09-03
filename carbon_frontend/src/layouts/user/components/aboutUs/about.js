@@ -22,9 +22,9 @@ const About = () => {
         <div>
             {/* banner */}
             <div>
-                <img src={banner} alt="img" width={"100%"} height='600px' />
+                <img src={banner} alt="img" width={"100%"} className="h-xl-75 h-sm-100" />
             </div>
-            <div className='text-center main py-4'>
+            <div className='text-center py-4'>
                 <p className='py-4 fontFamily mx-4 wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }} >In today's world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to introduce NetZero Consulting within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact. We further provide a user-friendly NetZero Platform to help to identify, optimise (through our NetZero Consulting) and measure the emissions generated from marketing operations.</p>
             </div>
             <div>
@@ -103,14 +103,14 @@ const About = () => {
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main' >
                     <Grid item xs={12} md={9} sx={{ order: { xs: "2", md: "1" }, borderRadius: { xs: "0px 0px 10px 10px", md: "10px 0px 0px 10px" } }} className='wow animate__animated animate__fadeInLeft animate__slow template-inner-theme d-flex flex-column justify-content-center' style={{ textAlign: 'center' }}>
 
-                        <Box className="text-center main" style={{ marginBottom: '20px' }}>
+                        <Box className="text-center" style={{ marginBottom: '20px' }}>
                             <div className='d-flex flex-column justify-content-between align-items-center'>
-                                <Typography variant='h6' className=' fs-1 fontFamily fw-bold ' style={{ color: '#efefef' }}>Meet the Founder</Typography>
-                                <Typography className=' fs-1 pb-4 fontFamily fw-bold' style={{ marginTop: "-25px", display: { md: 'none' }, color: '#efefef' }} ><RemoveIcon style={{ fontSize: "50px" }} /><FiberManualRecordIcon style={{ fontSize: "20px" }} /><RemoveIcon style={{ fontSize: "50px" }} /></Typography>
+                                <Typography variant='h6' className=' fs-1 fontFamily fw-bold' style={{ color: '#efefef' }}>Meet the Founder</Typography>
+                                <Typography className='fs-1 pb-4 fontFamily fw-bold' style={{  display: { md: 'none' }, color: '#efefef' }} ><RemoveIcon style={{ fontSize: "50px" }} /><FiberManualRecordIcon style={{ fontSize: "20px" }} /><RemoveIcon style={{ fontSize: "50px" }} /></Typography>
                             </div>
-                            <p className='fs-5'>A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.</p>
+                            <p className='fs-5 setMeetFounderText'>A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.</p>
                         </Box>
-                        <Box className="text-center main pt-3" style={{ marginBottom: '20px' }}>
+                        <Box className="text-center pt-3" style={{marginBottom:'20px'}}>
                             {/* <PopupButton
                                 url="https://calendly.com/mohammed-sirat"
                                 rootElement={document.getElementById("root")}
@@ -121,8 +121,8 @@ const About = () => {
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={3} className='d-flex justify-content-center align-items-center flex-column wow animate__animated template-inner-theme pe-4 pt-4 animate__fadeInRight animate__slow' sx={{ order: { md: '1' }, borderRadius: { xs: "10px 10px 0px 0px", md: "0px 10px 10px 0px" } }}>
-                        <Box >
-                            <img src={ceo} alt="img" width={"100%"} style={{ borderRadius: "10px" }} />
+                        <Box>
+                            <img src={ceo} alt="img" className="img-fuild mx-auto" width={"100%"} style={{ borderRadius: "10px" }} />
                         </Box>
                         <div className='text-center pt-2' >
                             <p className=' fs-5 mb-0'>Mohammed Shafeeq</p>

@@ -1,21 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { PopupButton } from 'react-calendly'
-import { Box, Card, CardContent, CardMedia, Grid, Typography, makeStyles } from '@mui/material'
-import goal1 from '../../../assets/images/goal1.png'
-import goal2 from '../../../assets/images/goal2.png'
-import TrustOne from '../../../assets/images/Aster CMI Logo.png';
-import bgImg from '../../../assets/images/bg.png';
-import TrustTwo from '../../../assets/images/GoFig.png';
-import mission from '../../../assets/images/mission.png'
-import vision from '../../../assets/images/visionary.png'
-import collbrate from '../../../assets/images/Collaborat.jpeg';
+import { useTheme } from '@emotion/react'
+import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
+import "../../../assets/css/style.css"
+import TrustOne from '../../../assets/images/Aster CMI Logo.png'
 import commited from '../../../assets/images/CommitedLogo.png'
-import Pledge from '../../../assets/images/PledgeTonetZERO.png'
+import TrustTwo from '../../../assets/images/GoFig.png'
 import greenview from '../../../assets/images/GreenView.png'
-
+import mission from '../../../assets/images/mission.png'
+import Pledge from '../../../assets/images/PledgeTonetZERO.png'
+import vision from '../../../assets/images/visionary.png'
 
 const Goal = () => {
+    const theme = useTheme();
 
     return (
         <div>
@@ -55,55 +50,90 @@ const Goal = () => {
             </Grid>
 
             {/* collabrate */}
-            <div className='collabrate d-flex '>
-                <div style={{ display: 'flex', maxWidth: "50%" }} >
+            <div className="container-fuild collabrate d-flex justify-content-center main" style={{overflowX:"hidden"}}>
+                <div className="row d-flex justify-content-center mb-2">
+                    <div className="col-xl-5 col-md-12 ps-xl-2 mt-3">
+                        <h1 className='fontFamily text-light fw-bold mt-5'>Collaborating for Sustainable Development</h1>
+                        <p className='text-light fs-5 mt-4'>Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring your organization is never alone in addressing systemic sustainability challenges, enabling a positive climate impact.
+                        </p>
+                        <p className='text-light fs-5 mt-4'>
+                            Sirāt invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.
+                        </p>
+                    </div>
+                    <div className="col-xl-7 col-md-12">
+                        <div className='row d-flex justify-content-center mt-2'>
+                            <div className='col-md-4'>
+                                <img src={commited} alt="img" width={150} style={{ height: "100px", margin:useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
+                                <p style={{marginBottom:'15px'}}>
+                                    We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. Through the SME Climate Hub, we commit to lowering our impact on the environment through authentic action, halving our emissions by 2030. In making the commitment, we have joined the United Nations Race to Zero campaign.
+                                </p>
+                            </div>
+                            <div className='col-md-4' style={{ borderLeft: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0, borderRight: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0 }} >
+                                <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin:useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
+                                <p className='p-xl-2'style={{marginBottom:'15px'}}>
+                                    We have made a ‘Pledge to Net Zero’ and are committed to reducing our GHG emissions. Pledge to Net Zero’ is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
+                                </p>
+                            </div>
+                            <div className='col-md-4'>
+                                <img src={greenview} className='tabImgWhite img-fuild pt-xl-2 pt-sm-5' alt="img" width={200} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ?  "0 auto" : "20px auto", marginBottom: "10px" }} />
+                                <p className='ps-xl-2'style={{marginBottom:'15px'}}>
+                                    We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide – the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* <div className='collabrate d-flex  justify-content-center'>
+                <div style={{ display: 'flex', maxWidth: "50%", wordBreak: 'break-word' }}  >
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
 
                         <Grid item xs={12} md={12} className='wow animate__animated animate__fadeInUp animate__slow'>
                             <Box style={{ color: 'white' }} >
-                                <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' >Collaborating for Sustainable Development</Typography>
+                                <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold'>Collaborating for Sustainable Development</Typography>
                                 <p className='text-light fs-5 mb-4'>Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring your organization is never alone in addressing systemic sustainability challenges, enabling a positive climate impact.
                                 </p>
                                 <p className='text-light fs-5'>
                                     Sirāt invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.
                                 </p>
-                                {/* <p className='text-light fs-5'>
+                                <p className='text-light fs-5'>
                                 <PopupButton
                                     url="https://calendly.com/mohammed-sirat"
                                     rootElement={document.getElementById("root")}
                                     text="Reach out to our CEO"
                                     styles={{ border: 'none', background: 'none', color: "#ffffd9", marginLeft: '-7px' }}
                                 />
-                                to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p> */}
+                                to join our collaborations or raise ideas on collaborative and constructive actions your organisation would like to participate in developing with us.</p>
                             </Box>
                         </Grid>
                     </Grid>
                 </div>
-                <div style={{ display: 'flex', maxWidth: "50%", backgroundColor: 'transperent', padding: "20px" }}>
-                    <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%" }} >
-                        <img src={commited} alt="img" width={150} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
-                        <p >
+                <div style={{ display: 'flex', maxWidth: "50%", backgroundColor: 'transperent', padding: "20px", wordBreak: 'break-word' }} className='settimewidth'>
+                    <Grid className='ps-3' item xs={4} md={4} style={{ maxWidth: "33.33%" }} >
+                        <img src={commited} alt="img" width={150} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} className='img-fuild' />
+                        <p>
                             We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. Through the SME Climate Hub, we commit to lowering our impact on the environment through authentic action, halving our emissions by 2030. In making the commitment, we have joined the United Nations Race to Zero campaign.
                         </p>
                     </Grid>
 
-                    <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%", borderLeft: '2px solid white', borderRight: '2px solid white' }}>
-                        <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
-                        <p >
+                    <Grid className='ps-3' item xs={4} md={4} style={{ maxWidth: "33.33%", borderLeft: '2px solid white', borderRight: '2px solid white' }}>
+                        <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} className='img-fuild' />
+                        <p>
                             We have made a ‘Pledge to Net Zero’ and are committed to reducing our GHG emissions. Pledge to Net Zero’ is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
                         </p>
                     </Grid>
 
-                    <Grid className='ps-3' item xs={2} md={2} style={{ maxWidth: "33.33%" }} >
-                        <img src={greenview} className='tabImgWhite' alt="img" width={200} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
-                        <p >
+                    <Grid className='ps-3' item xs={4} md={4} style={{ maxWidth: "33.33%" }} >
+                        <img src={greenview} className='tabImgWhite img-fuild' alt="img" width={200} style={{ height: "100px", margin: "0 auto", marginBottom: "10px" }} />
+                        <p>
                             We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide – the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.
                         </p>
                     </Grid>
 
                 </div>
 
-            </div>
+            </div> */}
         </div>
     )
 }

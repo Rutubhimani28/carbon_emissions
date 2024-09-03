@@ -101,8 +101,8 @@ const Index = () => {
                     <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
                     and watch it with your favorite video player!
                 </video>
-                <div style={{ position: 'absolute', right: '40px', bottom: '25px', color: "white", fontSize: '30px', fontWeight: '800' }}>
-                    <span>Enabling the <u>path</u> to NetZero</span>
+                <div className='ms-xl-1 ms-md-2 ms-sm-5 ps-4' style={{ position: 'absolute', right: '40px', bottom: '25px', color: "white", fontSize: '30px', fontWeight: '800' }}>
+                    <span >Enabling the <u>path</u> to NetZero</span>
                 </div>
             </div>
 
@@ -110,10 +110,10 @@ const Index = () => {
                 <Grid className='fs-5 wow animate__animated animate__fadeInLeft animate__slow ' item sm={12} md={6} style={{ textAlign: 'justify' }}>At <strong>Sirāt</strong>, we understand the needs and aspirations of organizations' Chief Marketing Officer (CMO) vertical. We recognize the necessity of aligning your activities with a NetZero framework. We create an action plan to achieve your short-, medium-, and long-term goals to meet your climate goals and enable the <u>path</u> to NetZero.</Grid>
 
                 <Grid className='fs-5 wow animate__animated animate__fadeInRight animate__slow ' item sm={12} md={6} style={{ textAlign: 'justify' }}>We aim to seamlessly integrate Environmental, Social and Governance (ESG) considerations into your organization's CMO strategies by deeply understanding your needs. Our <Link to="/netzero-consulting" style={{ color: "#ffffd9", textDecoration: 'none' }}>NetZero Consulting</Link> and an AI enabled carbon accounting <Link to="/netzero-platform" style={{ color: "#ffffd9", textDecoration: 'none' }}> NetZero Platform</Link>, designed to measure the CO<sub>2</sub> footprint generated from your marketing operations.</Grid>
-                <Grid className='fs-5' item sm={12} md={2} style={{ opacity: "0" }}>hb</Grid>
+                <Grid className='fs-5' item xs={12} sm={2} md={2} />
 
                 <Grid className='fs-5 d-flex justify-content-center wow animate__animated animate__fadeInLeft animate__slow' item sm={8} md={8}>
-                    <div className='video-responsive' style={{ position: 'relative', paddingTop: "42px" }}>
+                    <div className='video-responsive' style={{ position: 'relative', paddingTop: "42px", display: 'block', margin: 'auto' }}>
                         {/* <video loop muted playsInline controls poster={posterImg} width="100%" height="100%"> */}
                         <video loop muted controls playsInline poster={posterImg} width="100%" height="100%" style={{ objectFit: 'cover' }}>
                             {/* <source src={"https://sirat.earth/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
@@ -130,37 +130,59 @@ const Index = () => {
                 <Grid className='fs-5' item xs={12} sm={2} md={2} />
             </Grid>
 
-            <Grid container justifyContent="center" className='wow animate__animated animate__fadeInRight animate__slow pb-3 bg-light mx-auto template-inner-theme rounded-3' style={{ maxWidth: '59%', marginBottom: '50px' }}>
+            <Grid container className='wow animate__animated animate__fadeInRight animate__slow pb-3 bg-light mx-auto template-inner-theme rounded-3 setWidthofBanner' style={{ marginBottom: '50px' }}>
                 <Grid item sm={12} md={12} className="d-flex justify-content-center">
-                    <Typography className='fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow pt-5' item sm={12} md={12}>Tailored Solutions</Typography>
+                    <Typography className='fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow pt-3 pb-2' item sm={12} md={12}>Tailored Solutions</Typography>
                 </Grid>
-                <Grid item sm={12} md={12} className="d-flex justify-content-between">
-                    <Box className="d-flex justify-content-left flex-column align-items-left p-4 rounded-3 mx-0">
+                <div className='container'>
+                    <div className='row d-flex justify-content-center '>
+                        <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
+                            <img src={tailored1} alt="img" width={80} className='tabImgWhite mt-3' />
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Corporate Events</h1>
+                            <p className='ps-xl-3'>Position sustainability at the core of your event with tailored solutions for global reach, media coverage, and social media engagement</p>
+                        </div>
+                        <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution mt-md-3 mt-sm-3'>
+                            <img src={tailored2} alt="img" width={80} className='tabImgWhite '/>
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Large Exhibitions</h1>
+                            <p className='ps-xl-3'>Develop a robust governance model and align exhibitors with a common environmental goal to deliver a positive social impact</p>
+                        </div>
+                        <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
+                            <img src={tailored3} alt="img" width={80} className='tabImgWhite  mt-3' />
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Digital Campaigns</h1>
+                            <p className='ps-xl-3'>Create eco-friendly digital campaigns, reduce your digital marketing carbon footprint by optimising your content and promote sustainability</p>
+                        </div>
+                    </div>
+                </div>
+                {/* flex wrap property for contain show in as a row */}
+                {/* <Grid item sm={12} md={12} className="d-flex justify-content-between  setWidthofBanner">
+                    <Box className="d-flex justify-content-xl-left justify-content-sm-center flex-column align-items-xl-start align-items-sm-center p-4 rounded-3 mx-0 flex-nowrap flex-sm-wrap">
                         <img src={tailored1} alt="img" width={80} className='tabImgWhite' />
                         <Typography variant='h6' className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Corporate Events</Typography>
-                        <Typography className='fs-6' align="left">Position sustainability at the core of your event with tailored solutions for global reach, media coverage, and social media engagement</Typography>
+                        <Typography className='fs-6 align-items-xl-start align-items-sm-center'>Position sustainability at the core of your event with tailored solutions for global reach, media coverage, and social media engagement</Typography>
                     </Box>
-                    <Box className="d-flex justify-content-left flex-column align-items-left p-4 rounded-3 mx-0">
+                    <Box className="d-flex justify-content-xl-left justify-content-sm-center flex-column align-items-left p-4 rounded-3 mx-0 flex-nowrap flex-sm-wrap">
                         <img src={tailored2} alt="img" width={80} className='tabImgWhite' />
                         <Typography variant='h6' className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Large Exhibitions</Typography>
-                        <Typography className='fs-6' align="left">Develop a robust governance model and align exhibitors with a common environmental goal to deliver a positive social impact</Typography>
+                        <Typography className='fs-6 align-items-xl-start align-items-sm-center'>Develop a robust governance model and align exhibitors with a common environmental goal to deliver a positive social impact</Typography>
                     </Box>
-                    <Box className="d-flex justify-content-left flex-column align-items-left p-4 rounded-3 mx-0">
+                    <Box className="d-flex justify-content-xl-left justify-content-sm-center flex-column align-items-left p-4 rounded-3 mx-0 flex-nowrap flex-sm-wrap">
                         <img src={tailored3} alt="img" width={80} className='tabImgWhite' />
                         <Typography variant='h6' className='fs-5 pt-3 pb-4 fontFamily fw-bold'>Digital Campaigns</Typography>
-                        <Typography className='fs-6' align="left">Create eco-friendly digital campaigns, reduce your digital marketing carbon footprint by optimising your content and promote sustainability</Typography>
+                        <Typography className='fs-6 align-items-xl-start align-items-sm-center'>Create eco-friendly digital campaigns, reduce your digital marketing carbon footprint by optimising your content and promote sustainability</Typography>
                     </Box>
-                </Grid>
+                </Grid> */}
             </Grid>
 
-            <Box className="credit d-flex justify-content-center">
-                <Grid container spacing={3}>
-                    <Grid item xs={6} md={6} className='wow animate__animated animate__fadeInUp animate__slow my-auto'>
-                        <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold' style={{ paddingLeft: '100px' }}>Offset Your Carbon Footprint</Typography>
-                        <Typography className='text-light fs-5' style={{ paddingLeft: '100px' }}>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
-                        <Button style={{ marginLeft: '100px' }} className="custom-btn my-4" onClick={() => { setOpenCredit(true) }}>Buy Credits</Button>
+            <Box className="credit  d-flex justify-content-center" maxHeight={1200} >
+                <Grid container spacing={2} >
+                    <Grid item xs={12} className='wow animate__animated animate__fadeInUp animate__slow my-auto ms-xl-4 ms-sm-5'>
+                        <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold ps-xl-5 ps-md-5 ps-sm-5  ms-4'>Offset Your Carbon Footprint</Typography>
+                        <Typography className='text-light fs-xl-5 fs-sm-4 ps-md-5 ps-sm-5 ms-4'>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
+                        <div className='ms-xl-5  ms-lg-5 ms-md-5 ms-sm-5'>
+                            <Button className="custom-btn my-4 ms-4" onClick={() => { setOpenCredit(true) }}>Buy Credits</Button>
+                        </div>
                     </Grid>
-                    <Grid item xs={12} md={6}/>
+                    {/* <Grid item xs={12} md={6} /> */}
                 </Grid>
             </Box>
 

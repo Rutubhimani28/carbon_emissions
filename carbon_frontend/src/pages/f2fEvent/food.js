@@ -393,7 +393,7 @@ const Food = (props) => {
                                 rowSpacing={3}
                                 columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                             >
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant='h4' className='text-center text-white mb-4'>Food</Typography>
                                         <div className='table-responsive'>
@@ -441,7 +441,7 @@ const Food = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant='h4' className='text-center text-white mb-4' sx={{ opacity: 0 }}>temp</Typography>
                                         <div className='table-responsive'>
@@ -461,7 +461,7 @@ const Food = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant='h4' className='text-center text-white mb-4'>Beverages</Typography>
                                         <div className='table-responsive'>
@@ -547,7 +547,7 @@ const Food = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant='h4' className='text-center text-white mb-4' sx={{ opacity: 0 }}>temp</Typography>
                                         <div className='table-responsive'>
@@ -568,7 +568,7 @@ const Food = (props) => {
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                    <Stack direction={"row"} spacing={2}>
+                                    <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                         <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
                                         <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>

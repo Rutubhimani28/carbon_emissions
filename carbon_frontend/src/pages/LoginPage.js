@@ -39,6 +39,7 @@ const StyledContent = styled('div')(({ theme }) => ({
   margin: 'auto',
   // minHeight: '100vh',
   display: 'flex',
+  alignContent:'start',
   justifyContent: 'center',
   flexDirection: 'column',
   padding: theme.spacing(18, 0),
@@ -66,10 +67,10 @@ export default function LoginPage() {
 
           <Container maxWidth="sm">
             <StyledContent>
-              <div className='d-flex justify-content-center flex-column align-items-center'>
+              <div className='d-flex justify-content-center  align-self-top  flex-column align-items-center'>
                 {/* <img src={Logo} width={200} /> */}
                 <img src={Logo} width={300} />
-                <Typography variant="h3" gutterBottom mb={4}>
+                <Typography variant="h3"  mb={2}>
                   Sign in
                 </Typography>
               </div>

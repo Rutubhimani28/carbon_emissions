@@ -78,17 +78,30 @@ const Header = (props) => {
                 </Typography>
                 <Divider />
                 <List>
-                    {navItems.map((item) => (
-                        item?.name === 'NetZero Consulting' ? (
-                            <div key={item.name} style={{ display: 'inline', marginLeft: "-15px" }} className='esg_menu'>
-                                <Button
-                                    className={`text-capitalize fs-6 fw-bold  ${routeName === item?.path ? 'tab-text-color' : 'text-dark'}`}
-                                    onClick={() => navigate(item.path)}
-                                >
-                                    {item?.name}
-                                </Button>
-                                {/* <ExpandMoreIcon
-                                    className="expand-icon"
+
+                    {
+                        navItems.map((item) => (
+                            <ListItem key={item.name} disablePadding>
+                                <ListItemButton onClick={() => navigate(item.path)} className='text-dark'>
+                                    <ListItemText primary={item.name} />
+                                </ListItemButton>
+                            </ListItem>
+                        ))
+
+                    }
+
+                    {/* {navItems.map((item) => (
+                        item?.name === 'NetZero Consulting'
+                            ? (
+                                <div key={item.name} style={{ display: 'inline', marginLeft: "-56px" }} className='esg_menu'>
+                                    <Button
+                                        className={`text-capitalize fs-6 fw-bold  ${routeName === item?.path ? 'tab-text-color' : 'text-dark'}`}
+                                        onClick={() => navigate(item.path)}
+                                    >
+                                        {item?.name}
+                                    </Button> */}
+                                    {/* <ExpandMoreIcon
+                                    {/* className="expand-icon"
                                     onClick={handleMenuToggle}
                                     style={{ cursor: 'pointer' }}
                                 />
@@ -108,15 +121,15 @@ const Header = (props) => {
                                         </li>
                                     </div>
                                 )} */}
-                            </div>
-                        ) : (
-                            <ListItem key={item.name} disablePadding>
-                                <ListItemButton onClick={() => navigate(item.path)} className='text-dark'>
-                                    <ListItemText primary={item.name} />
-                                </ListItemButton>
-                            </ListItem>
-                        )
-                    ))}
+                                {/* </div>  */}
+                            {/* ) : (
+                                <ListItem key={item.name} disablePadding>
+                                    <ListItemButton onClick={() => navigate(item.path)} className='text-dark'>
+                                        <ListItemText primary={item.name} />
+                                    </ListItemButton>
+                                </ListItem>
+                            )
+                    ))} */}
                     <ListItem disablePadding>
                         <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
                             <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
@@ -185,7 +198,7 @@ const Header = (props) => {
                                 </>
                             )
                         ))}
-                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
+                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize  fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
                         {/* <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                             login
                         </Button> */}

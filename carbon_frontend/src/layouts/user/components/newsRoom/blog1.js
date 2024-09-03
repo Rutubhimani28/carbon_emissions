@@ -17,7 +17,7 @@ const Blog1 = () => {
                 </div>
                 <Typography variant='h6' className='text-center fs-2 pt-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
                 <ul className='p-5 wow animate__animated animate__fadeInUp animate__slow'>
-                    <li className='fs-5 '>Go Sustainable provided ESG Advisory services to identify, optimize and report the Carbon emissions generated from the event.</li>
+                    <li className='fs-5'>Go Sustainable provided ESG Advisory services to identify, optimize and report the Carbon emissions generated from the event.</li>
                     <li className='fs-5 pt-1'>We reported 2.35 tCO2e is reduced from this activity by adopting sustainable measures.</li>
                 </ul>
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' ><strong>Pune, India, 18 Mar 2024: </strong>Go Sustainable, an early-stage start-up, has partnered with the organizing committee of the 2nd IAP-PEM Conference, a two-day conference hosted by Aster CMI Hospital, Bangalore, to support them in identifying, optimizing, and reporting the carbon emissions generated during the event.</p>
@@ -30,7 +30,7 @@ const Blog1 = () => {
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' >We offer ESG advisory services to Chief Marketing Officers (CMOs) and their partners, promoting and encouraging the adoption of sustainable practices in their marketing and corporate affairs activities. Additionally, we assist CMOs in identifying, optimizing, and reporting emissions produced from their operations, thereby creating a pathway to net-zero.</p>
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' ><strong>For media inquiries contact: </strong></p>
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' >Mohammed Shafeeq</p>
-                <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' >Email: <Link className='text-decoration-none' style={{ color: "#ffffd9" }} to='mailto:mohammed.shafeeq@gosustainable.ai'>mohammed.shafeeq@gosustainable.ai</Link></p>
+                <p style={{ fontSize: "20px", wordBreak:'break-word' }} className='wow animate__animated animate__fadeInUp animate__slow' >Email: <Link className='text-decoration-none' style={{ color: "#ffffd9" }} to='mailto:mohammed.shafeeq@gosustainable.ai'>mohammed.shafeeq@gosustainable.ai</Link></p>
                 <p style={{ fontSize: "20px" }} className='wow animate__animated animate__fadeInUp animate__slow' ><strong>Follow us on social media </strong></p>
                 <p ><Link className='text-decoration-none wow animate__animated animate__fadeInUp animate__slow' style={{ color: "#ffffd9" }} to='https://www.linkedin.com/company/gosustainable-cmo/'>LinkedIn </Link> <Link className='text-decoration-none' style={{ color: "#ffffd9" }} to='https://twitter.com/shafeeqm'>Twitter</Link></p>
             </div>
@@ -44,7 +44,7 @@ const Blog1 = () => {
             </div>
             <div style={{ position: "fixed", bottom: "70px", left: "0", }} >
                 <Link to='/news-room/blog4' className='d-flex nextBlog'>
-                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
+                    <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px"}}>
                         <FaChevronLeft />
                     </div>
                     <img src={blog4} alt="blog4" height={"80px"} width={"100px"} />
@@ -55,7 +55,7 @@ const Blog1 = () => {
                     </div>
                 </Link>
             </div>
-            <div style={{ position: "fixed", bottom: "70px", right: "0", }}>
+            <div style={{ position: "fixed", bottom: "70px", right: "0px" }}>
                 <Link to='/news-room/blog2' className='d-flex nextBlogRight'>
                     <div style={{ backgroundColor: "#ffffd9", color: "#fff", padding: "25px 10px" }}>
                         <FaChevronRight />

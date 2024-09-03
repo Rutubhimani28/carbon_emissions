@@ -16,7 +16,9 @@
 .main {
   padding: 0 100px;
 }
-
+.setMeetFounderText{
+  padding: 0 20px;
+}
 @media (max-width: 500px) {
   .main {
     padding: 0 20px;
@@ -47,7 +49,10 @@
 
 .bg-img {
   background: url('../images/bg.png');
-  height: 81.8vh;
+  height: 76.2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .collabrate {
@@ -194,4 +199,39 @@
 
 .nextBlogRight:hover .nextBlogContentRight {
   left: -200px;
+}
+
+.setWidthofBanner {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  max-width: 59%;
+}
+
+.setBorderLeft {
+  border-left: '2px solid white';
+  border-right: '2px solid white';
+  /* borderLeft: '2px solid white',
+ borderRight: '2px solid white' */
+}
+
+.setDisplaySolution {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .setWidthofBanner {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .setWidthofBanner {
+    max-width: 90%;
+  }
 }

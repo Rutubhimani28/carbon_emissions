@@ -35,7 +35,7 @@ const Counsulting = () => {
                             <Box>
                                 <p className='text-center  text-white pt-3 fontFamily fw-bold pb-2' style={{ backgroundColor: "#4ABD43" }}>“Empowering the CMO Vertical: Go Sustainable’s specialized Consulting for ESG Excellence”</p>
                             </Box>
-                            <p >We specialize in guiding organizations toward achieving their ESG goals and fostering short, mid, and long-term business values within the dynamic landscape of the CMO vertical. Whether you are starting from scratch or taking over a partially developed program, our primary objective is to support you in meeting your sustainability goals.</p>
+                            <p>We specialize in guiding organizations toward achieving their ESG goals and fostering short, mid, and long-term business values within the dynamic landscape of the CMO vertical. Whether you are starting from scratch or taking over a partially developed program, our primary objective is to support you in meeting your sustainability goals.</p>
                         </Box>
                     </Grid>
                 </Grid>

@@ -80,8 +80,8 @@ export default function App() {
               <Route path="/netzero-platform" element={<Services />} />
               <Route path="/netzero-consulting" element={<EsgAdvisory />} />
               <Route path="/netzero-consulting/organisations/" element={<Organisations />} />
-              <Route path="/event-venue" element={<EventVenue />} />
-              <Route path="/event-execution-agency" element={<EventExecutionAgency />} />
+              {/* <Route path="/event-venue" element={<EventVenue />} /> */}
+              {/* <Route path="/event-execution-agency" element={<EventExecutionAgency />} /> */}
               <Route path="/netzero-consulting/organisations/esg-consulting" element={<Counsulting />} />
               <Route path="/netzero-consulting/organisations/sustainable-events" element={<SustainableEvents />} />
               <Route path="/netzero-consulting/service-providers/" element={<Agencies />} />

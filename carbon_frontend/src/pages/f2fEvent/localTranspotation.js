@@ -411,7 +411,7 @@ const LocalTranspotation = (props) => {
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                         >
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={12} sm={12} md={6}>
                                 {/* <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"}> */}
                                 {/* <FormLabel className='fontFamily fw-bold text-dark mt-1' id="demo-row-radio-buttons-group-label">Scope<span style={{ color: "red" }}>*</span></FormLabel> */}
 
@@ -553,7 +553,8 @@ const LocalTranspotation = (props) => {
                                     </div>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+
+                            <Grid item xs={12} sm={12} md={6}>
                                 <Box>
                                     <div className='table-responsive'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center'>Taxi</Typography>
@@ -646,7 +647,8 @@ const LocalTranspotation = (props) => {
                                     </div>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+
+                            <Grid item xs={12} sm={12} md={6}>
                                 {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope2} Emissions`}</Typography> */}
                                 <Box>
                                     <div className='table-responsive'>
@@ -683,11 +685,12 @@ const LocalTranspotation = (props) => {
 
                                 </Box>
                             </Grid>
+
                             {/* <Grid item xs={12} sm={12} md={12} marginY={2}>
                                 <Typography color='white'>Note: No. of passengers limit to max 4. (including driver)</Typography>
                             </Grid> */}
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                <Stack direction={"row"} spacing={2}>
+                                <Stack  columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                     <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>

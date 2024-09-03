@@ -751,7 +751,7 @@ const Production = (props) => {
 
     return (
         <div>
-            <Container maxWidth>
+            <Container maxWidth style={{ maxWidth: 'auto' }} >
                 <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
                     <Typography variant="h4" className="text-center text-white mb-4">
                         Production Material
@@ -768,7 +768,7 @@ const Production = (props) => {
                             </IconDiv>
 
                             <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -817,7 +817,7 @@ const Production = (props) => {
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
 
                                         <div className="table-responsive">
@@ -872,7 +872,8 @@ const Production = (props) => {
                                         Branding
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -993,7 +994,7 @@ const Production = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
@@ -1147,7 +1148,7 @@ const Production = (props) => {
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
                                             Stage Screen
@@ -1216,7 +1217,7 @@ const Production = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
                                             Stage Lighting & AV
@@ -1274,7 +1275,7 @@ const Production = (props) => {
                                     <li className="text-white ms-3">100% Recyclable/ Biodegradable</li>
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
-                                    <Stack direction={'row'} spacing={2}>
+                                    <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                         <Button
                                             variant="contained"

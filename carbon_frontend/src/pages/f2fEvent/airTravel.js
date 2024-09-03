@@ -261,7 +261,7 @@ const AirTravel = (props) => {
                                 rowSpacing={3}
                                 columnSpacing={{ xs: 0, sm: 5, md: 4 }}
                             >
-                                <Grid item xs={12} sm={6} md={6}>
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant='h4' className='text-center text-white mb-4'>Economy Class</Typography>
                                         <div className='table-responsive'>
@@ -302,7 +302,8 @@ const AirTravel = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant='h4' className='text-center text-white mb-4'>Business Class</Typography>
                                         <div className='table-responsive'>
@@ -343,7 +344,8 @@ const AirTravel = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={6} md={6}>
+
+                                <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant='h4' className="text-center text-white mb-4">First Class</Typography>
                                         <div className='table-responsive'>
@@ -384,8 +386,9 @@ const AirTravel = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
+
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                    <Stack direction={"row"} spacing={2}>
+                                    <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                         <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page  </Button>
                                         <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
