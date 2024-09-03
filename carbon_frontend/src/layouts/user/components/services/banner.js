@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 // import bannerVideo2 from '../../assets/images/NetZero Platform- Updated Video.mp4';
 import bannerVideo1 from '../../assets/images/NetZero Platform 3.mp4';
 import bannerVideo2 from '../../assets/images/NetZero Platform 3.mov';
 
 const Banner = () => {
+    const theme = useTheme();
 
     const videoRef = useRef();
 
@@ -23,7 +25,8 @@ const Banner = () => {
                     ref={videoRef}
                     loop
                     playsInline
-                    style={{ objectFit: 'fill', height: '75vh' }}
+                    // style={{ objectFit: 'fill', height: '75vh' }}
+                    style={{ objectFit: 'fill', height: useMediaQuery(theme.breakpoints.down('md')) ? "auto" : '75vh' }}
                 >
                     {/* <source src={"https://sirat.earth/static/media/NetZero Platform 3.be3922de36ac58785f94.mp4"} type={"video/mp4"} width={"100%"} />
                     <source src={"https://sirat.earth/static/media/NetZero Platform 3.6d1780745e82c9e0401c.mov"} type={"video/mov"} width={"100%"} /> */}
