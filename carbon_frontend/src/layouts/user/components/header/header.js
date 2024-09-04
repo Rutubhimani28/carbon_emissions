@@ -131,7 +131,7 @@ const Header = (props) => {
                             )
                     ))} */}
                     <ListItem disablePadding>
-                        <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
+                        <ListItemButton className='text-dark'>
                             <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
                         </ListItemButton>
                     </ListItem>
