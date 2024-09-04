@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPrAgencyData, deletePrAgencyData } from '../../redux/slice/totalPrAgencySlice';
-import { addResultTableData, deleteResTabPrAgencyData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabPrAgencyData, prEventEmissionCatogorywise, deletePrAgencyCatogorywiseEmission } from '../../redux/slice/resultTableDataSlice';
 import LocalTransportImg from '../../assets/pr agency.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -173,12 +173,12 @@ const PrAgency = (props) => {
                     emission: hybridEmission > 0 ? hybridEmission : ''
                 },
                 {
-                    type: 'Electirc',
+                    type: 'Electric',
                     electricKms: values?.electricKms,
                     emission: electricEmission > 0 ? electricEmission : ''
                 },
                 {
-                    type: 'Electircy',
+                    type: 'Electricity',
                     electricityKwh: values?.electricityKwh,
                     emission: electricityEmission > 0 ? electricityEmission : ''
                 }
@@ -323,14 +323,21 @@ const PrAgency = (props) => {
                 },
             ];
 
+            /* for meeting room, projector, and branding, transportation */
+            const totalBrandingEmission = (Number(hdpeBannerEmission) || 0) + (Number(pvcBannersEmission) || 0) + (Number(cottonBannerEmission) || 0) + (Number(paperBagsA4SizeEmission) || 0) + (Number(paperBagsA5SizeEmission) || 0) + (Number(juteBagsA4SizeEmission) || 0) + (Number(cottonBagsA4SizeEmission) || 0);
+            const totalTransportationEmission = (Number(petrolEmission) || 0) + (Number(dieselEmission) || 0) || (Number(hybridEmission) || 0) + (Number(electricEmission) || 0);
+            const meetingBrandingProjectotTranspotatorEmission = (Number(meetingRoomEmission) || 0) + (Number(projectorEmission) || 0) + (Number(electricityEmission) || 0) + totalBrandingEmission + totalTransportationEmission;
+
             dispatch(addPrAgencyData({ data }));
             dispatch(addResultTableData({ data: tableData, tabTitle: "PR Agency" }));
+            dispatch(prEventEmissionCatogorywise({ categories: [{ catgName: 'PR Agency', emission: meetingBrandingProjectotTranspotatorEmission }] }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deletePrAgencyData());
         dispatch(deleteResTabPrAgencyData());
+        dispatch(deletePrAgencyCatogorywiseEmission());
     };
 
     useEffect(() => {
