@@ -4,6 +4,7 @@ const resultTableDataSlice = createSlice({
     name: "totalResultTableData",
     initialState: {
         data: [],
+        prEventEmissionDataCategorywise: []
     },
     reducers: {
         addResultTableData: (state, action) => {
@@ -310,9 +311,58 @@ const resultTableDataSlice = createSlice({
                 ...state,
                 data: filteredData,
             };
-        }
+        },
+        prEventEmissionCatogorywise: (state, action) => {
+            const { categories } = action.payload;
+
+            categories?.forEach((category) => {
+                const existingIndex = state.prEventEmissionDataCategorywise.findIndex(sitem => sitem.catgName === category.catgName);
+
+                if (existingIndex !== -1) {
+                    state.prEventEmissionDataCategorywise[existingIndex] = category;
+                } else {
+                    state.prEventEmissionDataCategorywise.push({
+                        ...category
+                    });
+                }
+            });
+        },
+        deleteCommsCatogorywiseEmission: (state, action) => {
+            const filteredData = state.prEventEmissionDataCategorywise.filter(category => {
+                return category.catgName !== 'Email Invitations' && category.catgName !== "PR Assets";
+            });
+
+            return {
+                ...state,
+                prEventEmissionDataCategorywise: filteredData,
+            };
+        },
+        deletePrAgencyCatogorywiseEmission: (state, action) => {
+            const filteredData = state.prEventEmissionDataCategorywise.filter(category => {
+                return category.catgName !== 'PR Agency';
+            });
+
+            return {
+                ...state,
+                prEventEmissionDataCategorywise: filteredData,
+            };
+        },
+        deleteHospitalityCatogorywiseEmission: (state, action) => {
+            const filteredData = state.prEventEmissionDataCategorywise.filter(category => {
+                return category.catgName !== 'Food/Lunch' && category.catgName !== 'Red Meat' && category.catgName !== 'Food-PetBottleWaste';
+            });
+
+            return {
+                ...state,
+                prEventEmissionDataCategorywise: filteredData,
+            };
+        },
+        deleteprEventEmissionCatogorywise: (state, action) => ({
+            ...state,
+            prEventEmissionDataCategorywise: [],
+        }),
     },
 });
 
-export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData, deleteResTabCommsData, deleteResTabHospitalityData, deleteResTabPrAgencyData } = resultTableDataSlice.actions;
+export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData, deleteResTabCommsData, deleteResTabHospitalityData, deleteResTabPrAgencyData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission, deletePrAgencyCatogorywiseEmission, deleteHospitalityCatogorywiseEmission, deleteprEventEmissionCatogorywise } = resultTableDataSlice.actions;
 export default resultTableDataSlice.reducer;

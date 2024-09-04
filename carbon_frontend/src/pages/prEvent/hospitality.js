@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHospitalityData, deleteHospitalityData, scopeChange } from '../../redux/slice/totalHospitalitySlice';
-import { addResultTableData, deleteResTabHospitalityData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabHospitalityData, prEventEmissionCatogorywise, deleteHospitalityCatogorywiseEmission } from '../../redux/slice/resultTableDataSlice';
 import hospitalityImg from '../../assets/hospitality.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -159,7 +159,7 @@ const Hospitality = (props) => {
                 {
                     subType: "",
                     subTypeData: {
-                        th: ["Food Wate", "kgs", "Emissions"],
+                        th: ["Food Waste", "kgs", "Emissions"],
                         td: [
                             {
                                 hstType: "Food Waste (non-meat)",
@@ -206,14 +206,22 @@ const Hospitality = (props) => {
                 }
             ];
 
+            /* food/Lunch, Red meat, Food-Plastic waste  */
+            const totalLunchEmission = (Number(emissionOne) || 0) + (Number(emissionTwo) || 0) + (Number(emissionThree) || 0) + (Number(emissionFour) || 0);
+            const foodWasteEmission = (Number(foodWasteNonMeatEmission) || 0) + (Number(foodWasteMeatEmission) || 0) + (Number(municipalSolidWasteEmission) || 0);
+            const totalPlasticWasteEmissiom = (Number(bottleOneEmission) || 0) + (Number(bottleTwoEmission) || 0) + (Number(bottleThreeEmission) || 0);
+            const foodPlasticWasteEmission = foodWasteEmission + totalPlasticWasteEmissiom;
+
             dispatch(addHospitalityData({ data }));
             dispatch(addResultTableData({ data: tableData, tabTitle: "Hospitality" }));
+            dispatch(prEventEmissionCatogorywise({ categories: [{ catgName: 'Food/Lunch', emission: totalLunchEmission }, { catgName: 'Red Meat', emission: emissionThree }, { catgName: 'Food-PetBottleWaste', emission: foodPlasticWasteEmission }] }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteHospitalityData());
         dispatch(deleteResTabHospitalityData());
+        dispatch(deleteHospitalityCatogorywiseEmission());
     };
 
     useEffect(() => {

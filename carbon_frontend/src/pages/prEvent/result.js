@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteCommsData } from '../../redux/slice/totalCommsSlice';
 import { deleteHospitalityData } from '../../redux/slice/totalHospitalitySlice';
 import { deletePrAgencyData } from '../../redux/slice/totalPrAgencySlice';
+import { deleteprEventEmissionCatogorywise } from '../../redux/slice/resultTableDataSlice';
 import CustomBarChart from './barChart';
 import SendMail from './sendMail';
 import { constant } from '../../constant';
@@ -25,6 +26,14 @@ const Result = ({ value }) => {
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
     const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const prEventEmissionDataCategorywise = useSelector(state => state.resultTableDataDetails.prEventEmissionDataCategorywise);
+
+    const emailInvitationsEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "Email Invitations");
+    const prAssetsEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "PR Assets");
+    const prAgencyEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "PR Agency");
+    const foodEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "Food/Lunch");
+    const redMeatEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "Red Meat");
+    const foodAndPETbottleEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "Food-Plastic Waste");
 
     const [sc1, setSc1] = useState(0);
     const [sc2, setSc2] = useState(0);
@@ -70,6 +79,7 @@ const Result = ({ value }) => {
         dispatch(deleteCommsData())
         dispatch(deletePrAgencyData())
         dispatch(deleteHospitalityData())
+        dispatch(deleteprEventEmissionCatogorywise())
     }
 
     const chartOptions = {
@@ -121,23 +131,44 @@ const Result = ({ value }) => {
 
     const generatePrompt = async () => {
         let contentData = ``;
-        let categoryCount = 0;
+        // let categoryCount = 0;
 
-        resultData?.forEach(item => {
-            if (item?.totalEmission > 0) {
-                contentData += `${item.type}: ${item.totalEmission || 0} kgCO2e \n`
-                categoryCount += 1;
-            }
-        });
+        // resultData?.forEach(item => {
+        //     if (item?.totalEmission > 0) {
+        //         contentData += `${item.type}: ${item.totalEmission || 0} kgCO2e \n`
+        //         categoryCount += 1;
+        //     }
+        // });
 
-        if (total && Number(total).toFixed(2) > 0) {
-            contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
+        // if (total && Number(total).toFixed(2) > 0) {
+        //     contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
+        // }
+        // if (total && (total / toolFormData?.budget) > 0) {
+        //     contentData += `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`
+        // }
+
+        // contentData += `\n\nHow do I reduce my total carbon footprint up to 20%? Provide simple steps for each category with percentage targets, prioritizing higher emission categories for greater reduction. Also, indicate the most important category and the overall reduction achieved.`
+        // setContent(contentData);
+
+        if (emailInvitationsEmission && emailInvitationsEmission.emission > 0) {
+            contentData += `The email carbon footprint is ${emailInvitationsEmission.emission} kgCO2e, `
         }
-        if (total && (total / toolFormData?.budget) > 0) {
-            contentData += `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`
+        if (prAssetsEmission && prAssetsEmission.emission > 0) {
+            contentData += `while PR assets generate ${prAssetsEmission.emission} kgCO2e`
         }
-
-        contentData += `\n\nHow do I reduce my total carbon footprint up to 20%? Provide simple steps for each category with percentage targets, prioritizing higher emission categories for greater reduction. Also, indicate the most important category and the overall reduction achieved.`
+        if (prAgencyEmission && prAgencyEmission.emission > 0) {
+            contentData += `The meeting room, projector, and branding add ${prAgencyEmission.emission} kgCO2e, `
+        }
+        if (foodEmission && foodEmission.emission > 0) {
+            contentData += `and food accounts for ${foodEmission.emission} kgCO2e, `
+        }
+        if (redMeatEmission && redMeatEmission.emission > 0) {
+            contentData += `with ${redMeatEmission.emission} kgCO2e from red meat. `
+        }
+        if (foodAndPETbottleEmission && foodAndPETbottleEmission.emission > 0) {
+            contentData += `Food and PET bottle waste generate ${foodAndPETbottleEmission.emission} kgCO2e.`
+        }
+        contentData += `\n\nSuggest three steps for each category to reduce the overall footprint by 10 - 20 % and email emissions by over 50 %. \nHow do the original and reduced footprints compare ? Also, explain how sustainable measures could cut costs by 10 %, considering cost savings may not directly match carbon reductions.`
         setContent(contentData);
     };
 

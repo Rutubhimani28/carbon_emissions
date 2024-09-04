@@ -20,7 +20,7 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCommsData, deleteCommsData, scopeChange } from '../../redux/slice/totalCommsSlice';
-import { addResultTableData, deleteResTabCommsData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabCommsData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission } from '../../redux/slice/resultTableDataSlice';
 import commsImg from '../../assets/comms.png';
 import { IconDiv } from '../../components/IconDiv';
 
@@ -262,14 +262,20 @@ const Comms = (props) => {
         },
       ];
 
+      /* for Email Invitations, PR Assets  */
+      const emailInvitationEmission = (Number(emissionOne) || 0) + (Number(emissionTwo) || 0) + (Number(emissionThree) || 0);
+      const prAssestsEmission = (Number(emissionSix) || 0) + (Number(emissionSeven) || 0);
+
       dispatch(addCommsData({ data }));
       dispatch(addResultTableData({ data: tableData, tabTitle: 'Comms' }));
+      dispatch(prEventEmissionCatogorywise({ categories: [{ catgName: 'Email Invitations', emission: emailInvitationEmission }, { catgName: 'PR Assets', emission: prAssestsEmission }] }));
     },
   });
 
   const handeleDelete = () => {
     dispatch(deleteCommsData());
     dispatch(deleteResTabCommsData());
+    dispatch(deleteCommsCatogorywiseEmission());
   };
 
   useEffect(() => {
