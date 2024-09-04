@@ -37,7 +37,7 @@ const Banner = () => {
                     <source src={"https://sirat.earth:8000/videos/NetZero Platform 3.mov"} type={"video/mov"} />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
-                    <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
+                    <a href="https://sirat.earth:8000/videos/Netzero Platform 3 encoded.mp4">download it</a>
                     and watch it with your favorite video player!
                 </video>
             </div>
