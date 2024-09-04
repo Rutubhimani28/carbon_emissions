@@ -92,15 +92,13 @@ const Index = () => {
                 >
                     {/* <source src={"https://sirat.earth/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
                     <source src={"https://sirat.earth/static/media/Home2.be01049ec23c63b9ce2d.mov"} type="video/mov" /> */}
-
                     {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
                     <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.be01049ec23c63b9ce2d.mov"} type="video/mov" /> */}
-
                     <source src={"https://sirat.earth:8000/videos/Home2.mp4"} type={"video/mp4"} />
                     <source src={"https://sirat.earth:8000/videos/Home2.mov"} type="video/mov" />
                     <track kind="captions" src="captions.vtt" label="English" />
                     Sorry, your browser doesn't support embedded videos, but don't worry, you can
-                    <a href="https://gosustainable.ai/wp-content/uploads/2024/01/Sustainable-Events-Video.mp4">download it</a>
+                    <a href="https://sirat.earth:8000/videos/Home2.mp4">download it</a>
                     and watch it with your favorite video player!
                 </video>
                 <div className='ms-xl-1 ms-md-2 ms-sm-5 ps-4' style={{ position: 'absolute', right: '40px', bottom: '25px', color: "white", fontSize: '30px', fontWeight: '800' }}>
@@ -139,18 +137,18 @@ const Index = () => {
                 <div className='container'>
                     <div className='row d-flex'>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
-                            <img src={tailored1} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' style={{display:useMediaQuery(theme.breakpoints.up('md')) ? "" : "block" , margin:useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto"}}   />
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'style={{textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center"}}>Corporate Events</h1>
+                            <img src={tailored1} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' style={{ display: useMediaQuery(theme.breakpoints.up('md')) ? "" : "block", margin: useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto" }} />
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3' style={{ textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center" }}>Corporate Events</h1>
                             <p className='ps-xl-3'>Position sustainability at the core of your event with tailored solutions for global reach, media coverage, and social media engagement</p>
                         </div>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution '>
-                            <img src={tailored2} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' style={{display:useMediaQuery(theme.breakpoints.up('md')) ? "" : "block" , margin:useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto"}}/>
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'style={{textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center"}}>Large Exhibitions</h1>
+                            <img src={tailored2} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' style={{ display: useMediaQuery(theme.breakpoints.up('md')) ? "" : "block", margin: useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto" }} />
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3' style={{ textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center" }}>Large Exhibitions</h1>
                             <p className='ps-xl-3'>Develop a robust governance model and align exhibitors with a common environmental goal to deliver a positive social impact</p>
                         </div>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
-                            <img src={tailored3} alt="img" width={80} className='tabImgWhite  mt-3 ms-xl-3' style={{display:useMediaQuery(theme.breakpoints.up('md')) ? "" : "block" , margin:useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto"}}/>
-                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3'style={{textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center"}}>Digital Campaigns</h1>
+                            <img src={tailored3} alt="img" width={80} className='tabImgWhite  mt-3 ms-xl-3' style={{ display: useMediaQuery(theme.breakpoints.up('md')) ? "" : "block", margin: useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto" }} />
+                            <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3' style={{ textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center" }}>Digital Campaigns</h1>
                             <p className='ps-xl-3'>Create eco-friendly digital campaigns, reduce your digital marketing carbon footprint by optimising your content and promote sustainability</p>
                         </div>
                     </div>
@@ -177,7 +175,7 @@ const Index = () => {
 
             <Box className="credit  d-flex justify-content-center" maxHeight={1200} >
                 <Grid container spacing={2} >
-                    <Grid item xl={6} md={6} xs={8.5}  className='wow animate__animated animate__fadeInUp animate__slow my-auto ms-xl-4 ms-sm-5'>
+                    <Grid item xl={6} md={6} xs={8.5} className='wow animate__animated animate__fadeInUp animate__slow my-auto ms-xl-4 ms-sm-5'>
                         <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold ps-xl-5 ps-md-5 ps-sm-5  ms-4'>Offset Your Carbon Footprint</Typography>
                         <Typography className='text-light fs-xl-5 fs-sm-4 ps-md-5 ps-sm-5 ms-4'>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
                         <div className='ms-xl-5  ms-lg-5 ms-md-5 ms-sm-5'>
