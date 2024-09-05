@@ -89,15 +89,17 @@ const Category = () => {
                 {
                     data.map((item, i) => {
                         return (
-                            <Grid item sm={12} md={4} key={i} className='wow animate__animated animate__fadeInUp animate__slow'>
-                                <Card className='bg-bg-transparent shadow-none'>
+                            <Grid item xs={12} sm={6} md={3} key={i} className='wow animate__animated animate__fadeInUp animate__slow'>
+                                <Card className=' shadow-none'>
                                     <CardActionArea>
                                         <CardMedia
                                             component="img"
-                                            height="320"
+                                            // height="320"
+                                            height="220"
                                             image={item.img}
                                             alt="green iguana"
                                             className='cadImage'
+                                            style={{ objectFit: 'cover' }}
                                         />
                                         <CardContent className='text-center text-light p-2 fontFamily cardBtn rounded-4 template-inner-theme' style={{ backgroundColor: "#4ABD43" }}>
                                             <Typography gutterBottom variant="h5" component="div" className='mb-1 fontFamily'>
@@ -142,7 +144,7 @@ const Category = () => {
                     />
                 </p>
             </Box>
-        </div>
+        </div >
     )
 }
 
