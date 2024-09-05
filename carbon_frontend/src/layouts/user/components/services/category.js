@@ -85,7 +85,6 @@ const Category = () => {
     return (
         <div className='main pt-5'>
             <Grid container spacing={8}>
-
                 {
                     data.map((item, i) => {
                         return (
@@ -115,21 +114,9 @@ const Category = () => {
                         )
                     })
                 }
-
-                {/* <ul className='wow animate__animated animate__fadeInUp animate__slow mt-3'>
-                    {
-                        data.map((item, i) => {
-                            return (
-                                <li>{item.title} {item.subTitle}</li>
-                            )
-                        })
-                    }
-                </ul> */}
-
             </Grid>
 
             <Box className="text-center py-5">
-
                 <p className='fontFamily pb-3 fs-5 wow animate__animated animate__fadeInUp animate__slow'>
                     {/* Would you like to learn more about these <strong>nine categories </strong>and discover how you can collaborate with us to precisely pinpoint actions for mitigating carbon footprint? And are you ready to take the next step in reducing your carbon footprint reporting journey? */}
                     Are you ready to take the next step in reducing your carbon footprint reporting journey with us?
@@ -144,7 +131,7 @@ const Category = () => {
                     />
                 </p>
             </Box>
-        </div >
+        </div>
     )
 }
 
