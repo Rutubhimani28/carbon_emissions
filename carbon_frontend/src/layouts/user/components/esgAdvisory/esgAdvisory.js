@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { PopupButton } from 'react-calendly'
 import { Grid, Typography, Box, useMediaQuery } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
-import { useTheme } from '@emotion/react'
-import { Grid, Typography, Box, useMediaQuery } from '@mui/material'
 import Services from '../../assets/images/Services2.jpg'
 import Agencies from '../../assets/images/Agencies2.jpeg'
 import Organisations from '../../assets/images/Organisations2.jpg'
@@ -17,7 +15,7 @@ import bannerVideo2 from '../../assets/images/NetZero Consulting.mov';
 const EsgAdvisory = () => {
     const theme = useTheme()
     const videoRef = useRef();
-gi
+
     useEffect(() => {
         videoRef.current.playbackRate = 0.5;
     }, []);
