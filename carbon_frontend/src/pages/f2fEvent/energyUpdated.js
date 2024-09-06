@@ -43,7 +43,7 @@ const EnergyUpdated = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            const emissionOne = Number((values?.kwh * 0.43).toFixed(2))
+            const emissionOne = Number((values?.kwh * 0.716).toFixed(2))
             const emissionTwo = Number((values?.gallonsOne * 8.78).toFixed(2))
             const emissionThree = Number((values?.gallonsTwo * 10.21).toFixed(2))
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
@@ -54,7 +54,7 @@ const EnergyUpdated = (props) => {
                 {
                     type: 'Electricity',
                     kwh: values?.kwh,
-                    emission: emissionOne > 0 ? Number((values?.kwh * 0.43).toFixed(2)) : ''
+                    emission: emissionOne > 0 ? Number((values?.kwh * 0.716).toFixed(2)) : ''
                 },
                 {
                     type: 'Petrol (Generator)',
@@ -157,7 +157,7 @@ const EnergyUpdated = (props) => {
                                         type="number"
                                         onChange={(e) => {
                                             formik.handleChange(e);
-                                            formik.setFieldValue('emissionOne', Number((e.target.value * 0.43).toFixed(2)));
+                                            formik.setFieldValue('emissionOne', Number((e.target.value * 0.716).toFixed(2)));
                                             formik.handleSubmit();
                                         }}
                                         error={

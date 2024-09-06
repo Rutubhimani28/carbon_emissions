@@ -78,7 +78,7 @@ const Hotel = (props) => {
         // emissionsTwo: 0,
         // // Meeting Room2  
         // energyUtilisedKwh: 0,
-        // efThree: 0.43,
+        // efThree: 0.716,
         // emissionsThree: 0,
 
         // Hotel
@@ -96,7 +96,7 @@ const Hotel = (props) => {
         emissionsTwo: '',
         // Meeting Room2  
         energyUtilisedKwh: '',
-        efThree: 0.43,
+        efThree: 0.716,
         emissionsThree: '',
     };
 
