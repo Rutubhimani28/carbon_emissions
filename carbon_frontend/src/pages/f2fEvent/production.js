@@ -39,7 +39,7 @@ const Production = (props) => {
         { name: 'LED Screen Panel (500mmx500mm)', ef: 0.043, fieldName: 'ledScreenPanel' },
     ];
     const fieldDataFour = [
-        { name: 'Electricity', ef: 0.43, fieldName: 'electricity' },
+        { name: 'Electricity', ef: 0.716, fieldName: 'electricity' },
     ];
 
     const fieldDataFive = [
@@ -240,7 +240,7 @@ const Production = (props) => {
             const paintEmission = values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(2))
             const projectorEmission = values?.projectorNoOfHour === 0 || values?.projectorNoOfDevice === 0 ? 0 : Number((values?.projectorNoOfHour * values?.projectorNoOfDevice * 0.215).toFixed(2))
             const ledScreenPanelEmission = values?.ledScreenPanelNoOfHour === 0 || values?.ledScreenPanelNoOfDevice === 0 ? 0 : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(2))
-            const kwhEmission = Number((values?.kwh * 0.43).toFixed(2))
+            const kwhEmission = Number((values?.kwh * 0.716).toFixed(2))
             // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2)
             const hdpeBannerEmission = Number(3.11 * Number(values?.hdpeBanner)).toFixed(2)
             const pvcBannersEmission = Number(7.83 * Number(values?.pvcBanners)).toFixed(2)
@@ -1244,7 +1244,7 @@ const Production = (props) => {
                                                                     formik.handleChange(e);
                                                                     formik.setFieldValue(
                                                                         `kwhEmission`,
-                                                                        Number((e.target.value * 0.43).toFixed(2))
+                                                                        Number((e.target.value * 0.716).toFixed(2))
                                                                     );
                                                                     formik.handleSubmit();
                                                                 }}

@@ -68,7 +68,7 @@ const Category = () => {
         {
             img: cat10,
             title: "Public Relations",
-            subTitle: "PR/ Joint PR activities & Announcements"
+            subTitle: "PR/ Joint PR activities"
         },
         {
             img: cat11,
@@ -85,19 +85,20 @@ const Category = () => {
     return (
         <div className='main pt-5'>
             <Grid container spacing={8}>
-
                 {
                     data.map((item, i) => {
                         return (
-                            <Grid item sm={12} md={4} key={i} className='wow animate__animated animate__fadeInUp animate__slow'>
-                                <Card className='bg-bg-transparent shadow-none'>
+                            <Grid item xs={12} sm={6} md={3} key={i} className='wow animate__animated animate__fadeInUp animate__slow'>
+                                <Card className='shadow-none'>
                                     <CardActionArea>
                                         <CardMedia
                                             component="img"
-                                            height="320"
+                                            // height="320"
+                                            height="220"
                                             image={item.img}
                                             alt="green iguana"
                                             className='cadImage'
+                                            style={{ objectFit: 'cover' }}
                                         />
                                         <CardContent className='text-center text-light p-2 fontFamily cardBtn rounded-4 template-inner-theme' style={{ backgroundColor: "#4ABD43" }}>
                                             <Typography gutterBottom variant="h5" component="div" className='mb-1 fontFamily'>
@@ -113,21 +114,9 @@ const Category = () => {
                         )
                     })
                 }
-
-                {/* <ul className='wow animate__animated animate__fadeInUp animate__slow mt-3'>
-                    {
-                        data.map((item, i) => {
-                            return (
-                                <li>{item.title} {item.subTitle}</li>
-                            )
-                        })
-                    }
-                </ul> */}
-
             </Grid>
 
             <Box className="text-center py-5">
-
                 <p className='fontFamily pb-3 fs-5 wow animate__animated animate__fadeInUp animate__slow'>
                     {/* Would you like to learn more about these <strong>nine categories </strong>and discover how you can collaborate with us to precisely pinpoint actions for mitigating carbon footprint? And are you ready to take the next step in reducing your carbon footprint reporting journey? */}
                     Are you ready to take the next step in reducing your carbon footprint reporting journey with us?
