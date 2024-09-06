@@ -68,7 +68,7 @@ const Category = () => {
         {
             img: cat10,
             title: "Public Relations",
-            subTitle: "PR/ Joint PR activities & Announcements"
+            subTitle: "PR/ Joint PR activities"
         },
         {
             img: cat11,
