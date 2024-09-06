@@ -80,7 +80,7 @@ const PrAgency = (props) => {
             const dieselEmission = values?.dieselKms === 0 ? 0 : Number((0.172 * values?.dieselKms)).toFixed(2);
             const hybridEmission = values?.hybridKms === 0 ? 0 : Number((0.068 * values?.hybridKms)).toFixed(2);
             const electricEmission = values?.electricKms === 0 ? 0 : Number(0.047 * values?.electricKms).toFixed(2);
-            const electricityEmission = values?.electricityKwh === 0 ? 0 : Number(0.43 * values?.electricityKwh).toFixed(2);
+            const electricityEmission = values?.electricityKwh === 0 ? 0 : Number(0.716 * values?.electricityKwh).toFixed(2);
 
             if (meetingRoomEmission > 0) formik.setFieldValue('meetingRoomEmission', meetingRoomEmission);
             if (projectorEmission > 0) formik.setFieldValue('projectorEmission', projectorEmission);
@@ -519,7 +519,7 @@ const PrAgency = (props) => {
                                                     <TextField size='small' type="number" name='electricityKwh' value={values?.electricityKwh}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("electricityKwh", e.target.value);
-                                                            formik.setFieldValue("electricityEmission", Number(Number(e.target.value) * 0.43).toFixed(2));
+                                                            formik.setFieldValue("electricityEmission", Number(Number(e.target.value) * 0.716).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -762,7 +762,7 @@ const PrAgency = (props) => {
                                                     <TextField size='small' type="number" name='electricityKwh' value={values?.electricityKwh}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("electricityKwh", e.target.value);
-                                                            formik.setFieldValue("electricityEmission", Number(Number(e.target.value) * 0.43).toFixed(2));
+                                                            formik.setFieldValue("electricityEmission", Number(Number(e.target.value) * 0.716).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1144,7 +1144,7 @@ const PrAgency = (props) => {
     //                                                 <TextField size='small' type="number" name='electricityKwh' value={values?.electricityKwh}
     //                                                     onChange={(e) => {
     //                                                         formik.setFieldValue("electricityKwh", e.target.value);
-    //                                                         formik.setFieldValue("electricityEmission", Number(Number(e.target.value) * 0.43).toFixed(2));
+    //                                                         formik.setFieldValue("electricityEmission", Number(Number(e.target.value) * 0.716).toFixed(2));
     //                                                         formik.handleSubmit();
     //                                                     }}
     //                                                     inputProps={{ style: { color: 'white' } }} />
@@ -1554,7 +1554,7 @@ const PrAgency = (props) => {
     //                                                 <TextField size='small' type="number" name='electricityKwh' value={values?.electricityKwh}
     //                                                     onChange={(e) => {
     //                                                         formik.setFieldValue("electricityKwh", e.target.value);
-    //                                                         formik.setFieldValue("electricityEmission", Number(Number(e.target.value) * 0.43).toFixed(2));
+    //                                                         formik.setFieldValue("electricityEmission", Number(Number(e.target.value) * 0.716).toFixed(2));
     //                                                         formik.handleSubmit();
     //                                                     }}
     //                                                     inputProps={{ style: { color: 'white' } }} />
