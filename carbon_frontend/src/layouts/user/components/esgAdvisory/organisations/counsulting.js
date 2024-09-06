@@ -10,7 +10,7 @@ const Counsulting = () => {
         <div>
             <img src={banner} alt="banner" />
             <div className='main'>
-                <Typography variant='h6' className='text-center fs-2 green pt-5 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >ESG Consulting</Typography>
+                <Typography variant='h6' className='text-center fs-2 green pt-5 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow'>ESG Consulting</Typography>
                 <p className='py-3 pb-3 fontFamily wow animate__animated animate__fadeInUp animate__slow'>Within the Chief Marketing Officer (CMO) vertical’s domain, the endeavour to unravel the intricacies of decarbonization poses a pressing challenge. The true urgency comes to light as organizations confront the imminent 2030 targets, a trajectory that many currently veer off-course from achieving. The central question persists:<strong> How can these organizations, whether working independently or collaboratively, achieve net-zero ambitions while preserving b oth viability and profitability?</strong></p>
 
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 d-flex justify-content-center align-items-center ' >

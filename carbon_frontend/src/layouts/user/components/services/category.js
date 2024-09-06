@@ -117,7 +117,8 @@ const Category = () => {
             </Grid>
 
             <Box className="text-center py-5">
-                <p className='fontFamily pb-3 fs-5 wow animate__animated animate__fadeInUp animate__slow'>
+
+                <p className='fontFamily pb-3  wow animate__animated animate__fadeInUp animate__slow' style={{fontSize: "18px" }}>
                     {/* Would you like to learn more about these <strong>nine categories </strong>and discover how you can collaborate with us to precisely pinpoint actions for mitigating carbon footprint? And are you ready to take the next step in reducing your carbon footprint reporting journey? */}
                     Are you ready to take the next step in reducing your carbon footprint reporting journey with us?
                 </p>

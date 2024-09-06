@@ -3,9 +3,9 @@ import React from 'react'
 
 const PrivacyPolicy = () => {
     return (
-        <div className='main py-5'>
+        <div className='setTeam_Policy_FAQs py-3'>
             {/* <Typography variant='h6' className='text-center fs-1 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Privacy Policy</Typography> */}
-            <Typography variant='h6' className='text-center fs-1 pt-4 fontFamily fw-bold' >Privacy Policy</Typography>
+            <Typography variant='h6' className='text-center fs-1 pt-2 fontFamily fw-bold' >Privacy Policy</Typography>
             {/* <p className='wow animate__animated animate__fadeInLeft animate__slow'>
 
                 <p style={{ fontSize: "20px" }} className=' mb-0'>Definitions</p>

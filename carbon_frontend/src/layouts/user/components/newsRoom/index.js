@@ -9,10 +9,9 @@ import Room4 from '../../assets/images/room4.png';
 
 const Index = () => {
     const theme = useTheme();
-
     return (
         <div>
-            <div className='main py-5 d-flex flex-column align-items-center'>
+            <div className='setNewsRoomPadding py-5 d-flex flex-column align-items-center'>
                 {/* <Typography variant='h6' className='text-center fs-1 pt-4 fontFamily fw-bold pb-5 wow animate__animated animate__fadeInUp animate__slow' >News Room & Blogs</Typography> */}
 
                 {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>

@@ -101,21 +101,21 @@ const Index = () => {
                     <a href="https://sirat.earth:8000/videos/Home2.mp4">download it</a>
                     and watch it with your favorite video player!
                 </video>
-                <div className='ms-xl-1 ms-md-2 ms-sm-5 ps-4' style={{ position: 'absolute', right: '40px', bottom: '25px', color: "white", fontSize: '30px', fontWeight: '800' }}>
-                    <span >Enabling the <u>path</u> to NetZero</span>
+                <div className='ms-xl-1 ms-md-2 ms-sm-5 ps-4' style={{ position: 'absolute', right: '10px', bottom: '8px', color: "white", fontSize: useMediaQuery(theme.breakpoints.up('sm')) ? "30px" : "15px", fontWeight: '800' }}>
+                    <span>Enabling the <u>path</u> to NetZero</span>
                 </div>
             </div>
 
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main py-5 my-2'>
-                <Grid className='fs-5 wow animate__animated animate__fadeInLeft animate__slow ' item sm={12} md={6} style={{ textAlign: 'justify' }}>At <strong>Sirāt</strong>, we understand the needs and aspirations of organizations' Chief Marketing Officer (CMO) vertical. We recognize the necessity of aligning your activities with a NetZero framework. We create an action plan to achieve your short-, medium-, and long-term goals to meet your climate goals and enable the <u>path</u> to NetZero.</Grid>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main ' style={{ paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? "45px" : "32px" }}>
+                <Grid className='wow animate__animated animate__fadeInLeft animate__slow ' item sm={12} style={{ fontSize: "18px", paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? "12px" : "0px" }}>At <strong>Sirāt</strong>, we understand the needs and aspirations of organizations' Chief Marketing Officer (CMO) vertical. We recognize the necessity of aligning your activities with a NetZero framework. We create an action plan to achieve your short-, medium-, and long-term goals to meet your climate goals and enable the <u>path</u> to NetZero.</Grid>
 
-                <Grid className='fs-5 wow animate__animated animate__fadeInRight animate__slow ' item sm={12} md={6} style={{ textAlign: 'justify' }}>We aim to seamlessly integrate Environmental, Social and Governance (ESG) considerations into your organization's CMO strategies by deeply understanding your needs. Our <Link to="/netzero-consulting" style={{ color: "#ffffd9", textDecoration: 'none' }}>NetZero Consulting</Link> and an AI enabled carbon accounting <Link to="/netzero-platform" style={{ color: "#ffffd9", textDecoration: 'none' }}> NetZero Platform</Link>, designed to measure the CO<sub>2</sub> footprint generated from your marketing operations.</Grid>
-                <Grid className='fs-5' item xs={12} sm={2} md={2} />
+                <Grid className='wow animate__animated animate__fadeInRight animate__slow pt-3' item sm={12} style={{ fontSize: "18px" }}>We aim to seamlessly integrate Environmental, Social and Governance (ESG) considerations into your organization's CMO strategies by deeply understanding your needs. Our <Link to="/netzero-consulting" style={{ color: "#ffffd9", textDecoration: 'none' }}>NetZero Consulting</Link> and an AI enabled carbon accounting <Link to="/netzero-platform" style={{ color: "#ffffd9", textDecoration: 'none' }}> NetZero Platform</Link>, designed to measure the CO<sub>2</sub> footprint generated from your marketing operations.</Grid>
+                {/* <Grid className='fs-5' item xs={12} sm={2} md={2} /> */}
 
-                <Grid className='fs-5 d-flex justify-content-center wow animate__animated animate__fadeInLeft animate__slow' item sm={8} md={8}>
-                    <div className='video-responsive' style={{ position: 'relative', paddingTop: "42px", display: 'block', margin: 'auto' }}>
+                <Grid item xs={12} sm={12} md={12} className='fs-5 d-block mx-auto wow animate__animated animate__fadeInLeft animate__slow'>
+                    <div className='video-responsive' style={{ position: 'relative', paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? "42px" : "25px", display: 'block', margin: 'auto' }}>
                         {/* <video loop muted playsInline controls poster={posterImg} width="100%" height="100%"> */}
-                        <video loop muted controls playsInline poster={posterImg} width="100%" height="100%" style={{ objectFit: 'cover' }}>
+                        <video loop muted controls playsInline poster={posterImg} height="100%" style={{ objectFit: 'cover', width: useMediaQuery(theme.breakpoints.up('md')) ? "100%" : "100%", margin: useMediaQuery(theme.breakpoints.up('md')) ? "auto" : "0" }}>
                             {/* <source src={"https://sirat.earth/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
                             <source src={"https://sirat.earth/static/media/CEO Video-Updates3.b10a4ac41f4b0d1d500d.mov"} type={"video/mov"} /> */}
                             {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
@@ -127,7 +127,7 @@ const Index = () => {
                         </video>
                     </div>
                 </Grid>
-                <Grid className='fs-5' item xs={12} sm={2} md={2} />
+                {/* <Grid className='fs-5' item xs={12} sm={2} md={2} /> */}
             </Grid>
 
             <Grid container className='wow animate__animated animate__fadeInRight animate__slow pb-3 bg-light mx-auto template-inner-theme rounded-3 setWidthofBanner' style={{ marginBottom: '50px' }}>
@@ -147,7 +147,7 @@ const Index = () => {
                             <p className='ps-xl-3'>Develop a robust governance model and align exhibitors with a common environmental goal to deliver a positive social impact</p>
                         </div>
                         <div className='col-xl-4 col-md-12 col-sm-12 setDisplaySolution'>
-                            <img src={tailored3} alt="img" width={80} className='tabImgWhite  mt-3 ms-xl-3' style={{ display: useMediaQuery(theme.breakpoints.up('md')) ? "" : "block", margin: useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto" }} />
+                            <img src={tailored3} alt="img" width={80} className='tabImgWhite mt-3 ms-xl-3' style={{ display: useMediaQuery(theme.breakpoints.up('md')) ? "" : "block", margin: useMediaQuery(theme.breakpoints.up('md')) ? "" : "auto" }} />
                             <h1 className='fs-5 pt-3 pb-4 fontFamily fw-bold ms-xl-3' style={{ textAlign: useMediaQuery(theme.breakpoints.up('md')) ? "start" : "center" }}>Digital Campaigns</h1>
                             <p className='ps-xl-3'>Create eco-friendly digital campaigns, reduce your digital marketing carbon footprint by optimising your content and promote sustainability</p>
                         </div>
@@ -175,7 +175,7 @@ const Index = () => {
 
             <Box className="credit  d-flex justify-content-center" maxHeight={1200} >
                 <Grid container spacing={2} >
-                    <Grid item xl={6} md={6} xs={8.5} className='wow animate__animated animate__fadeInUp animate__slow my-auto ms-xl-4 ms-sm-5'>
+                    <Grid item xs={12} xl={6} md={6} xs={8.5} className='wow animate__animated animate__fadeInUp animate__slow my-auto ms-xl-4 ms-sm-5'>
                         <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold ps-xl-5 ps-md-5 ps-sm-5  ms-4'>Offset Your Carbon Footprint</Typography>
                         <Typography className='text-light fs-xl-5 fs-sm-4 ps-md-5 ps-sm-5 ms-4'>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
                         <div className='ms-xl-5  ms-lg-5 ms-md-5 ms-sm-5'>

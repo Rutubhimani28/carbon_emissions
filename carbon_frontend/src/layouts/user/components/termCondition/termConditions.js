@@ -3,11 +3,11 @@ import React from 'react'
 
 const TermConditions = () => {
     return (
-        <div className='main py-5 text-white'>
-            <Typography variant='h6' className='text-center fs-1 mb-3 fontFamily fw-bold py-5' >Terms & Conditions</Typography>
+        <div className='setTeam_Policy_FAQs py-3 text-white'>
+            <Typography variant='h6' className='text-center fs-1 mb-1 fontFamily fw-bold py-2' >Terms & Conditions</Typography>
 
             <ol>
-                <li style={{ fontSize: "20px" }} className=' mb-3'>This website is owned and operated by Sirāt (Sirat2Sustainability Pvt Ltd). Throughout the website, the terms<strong> ‘we,’ ‘us’ </strong>and <strong>‘our’</strong> refer to <strong>Sirāt.</strong></li>
+                <li style={{ fontSize: "20px" }} className=' mb-3'>This website is owned and operated by Sirāt (Sirat2Sustainability Pvt Ltd). Throughout the website, the terms<strong> ‘we,’ ‘us’ </strong>and <strong>‘our’</strong> refer to <strong>Sirāt. </strong></li>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>By using, accessing, or visiting the Sirāt website, you accept and agree to comply with the following terms of use (“Terms of Use”), whether as a guest or a registered user.</li>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>For information on how we collect and use personal information, on cookies and other similar devices we use, and how to set your cookie preferences, please see our Privacy Policy. ‍ Changes to these terms</li>
                 <li style={{ fontSize: "20px" }} className=' mb-3'>We may revise these Terms of Use at any time by amending this page. Please check this page from time to time to take notice of any changes we make, as they are binding.</li>
