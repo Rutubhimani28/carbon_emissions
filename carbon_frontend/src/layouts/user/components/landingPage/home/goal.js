@@ -24,7 +24,7 @@ const Goal = () => {
         <div>
             <div className='pb-5'>
                 <Typography variant='h6' className='text-center fs-3 green pt-5 pb-3 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-white' >Our Mission & Vision</Typography>
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='my-4'>
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid item xs={0} md={2.1} />
                     <Grid item sm={12} md={3.9} className='wow animate__animated animate__fadeInLeft animate__slow'>
                         <Box className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 bg-white mx-3 template-inner-theme" style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px" }}>
@@ -71,20 +71,20 @@ const Goal = () => {
                     <div className="col-xl-7 col-md-12 mt-xl-2">
                         <div className='row d-flex justify-content-center mt-2'>
                             <div className='col-md-4'>
-                                <img src={commited} alt="img" className='img-fuild pt-xl-2 pt-sm-5' width={150} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }}  />
-                                <p style={{ marginBottom: '15px' }}>
+                                <img src={commited} alt="img" className='img-fuild pt-xl-2 pt-sm-5' width={useMediaQuery(theme.breakpoints.up("sm")) ? "150px" : "200px"} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} />
+                                <p style={{ marginBottom: '15px', paddingBottom: useMediaQuery(theme.breakpoints.up('md')) ? "" : "15px", borderBottom: useMediaQuery(theme.breakpoints.up('sm')) ? "" : "2px solid white" }}>
                                     We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. In making the commitment, we have joined the United Nations <strong>Race to Zero</strong> campaign.
                                 </p>
                             </div>
                             <div className='col-md-4' style={{ borderLeft: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0, borderRight: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0 }} >
                                 <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
-                                <p className='p-xl-2' style={{ marginBottom: '15px' }}>
+                                <p className='p-xl-2' style={{ marginBottom: '15px', paddingBottom: useMediaQuery(theme.breakpoints.up('md')) ? "" : "15px", borderBottom: useMediaQuery(theme.breakpoints.up('sm')) ? "" : "2px solid white" }}>
                                     We have made a 'Pledge to Net Zero' and are committed to reducing our GHG emissions. Pledge to Net Zero' is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
                                 </p>
                             </div>
                             <div className='col-md-4 mb-sm-3'>
                                 <img src={greenview} className='tabImgWhite img-fuild pt-xl-2 pt-sm-5' alt="img" width={200} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} />
-                                <p className='ps-xl-2 ' style={{ marginBottom: '15px' ,paddingBottom: useMediaQuery(theme.breakpoints.up("sm")) ? "0" : "28px"}}>
+                                <p className='ps-xl-2 ' style={{ marginBottom: '15px', paddingBottom: useMediaQuery(theme.breakpoints.up("sm")) ? "0" : "28px" }}>
                                     We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide - the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.                                </p>
                             </div>
                         </div>

@@ -26,12 +26,12 @@ const About = () => {
             <div>
                 <img src={banner} alt="img" width={"100%"} className="h-xl-75 h-sm-100" />
             </div>
-            <div className='text-center py-4'>
+            <div className='py-4' style={{ padding: useMediaQuery(theme.breakpoints.up('sm')) ? "0 40px" : '0 20px' }}>
                 <p className='py-4 fontFamily mx-4 wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }} >In today's world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to introduce NetZero Consulting within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact. We further provide a user-friendly NetZero Platform to help to identify, optimise (through our NetZero Consulting) and measure the emissions generated from marketing operations.</p>
             </div>
             <div>
                 <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow'>Targeted Sustainable Development Goals (SDGs)</Typography>
-                <p className='text-center  py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow'>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs</a>.</p>
+                <p className='text-center py-3 pb-5 fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow'>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs</a>.</p>
             </div>
             <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
                 <img src={goal1} alt='img' width={170} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
@@ -110,7 +110,7 @@ const About = () => {
                                 <Typography variant='h6' className=' fs-1 fontFamily fw-bold' style={{ color: '#efefef' }}>Meet the Founder</Typography>
                                 <Typography className='fs-1 pb-4 fontFamily fw-bold' style={{ display: { md: 'none' }, color: '#efefef' }} ><RemoveIcon style={{ fontSize: "50px" }} /><FiberManualRecordIcon style={{ fontSize: "20px" }} /><RemoveIcon style={{ fontSize: "50px" }} /> </Typography>
                             </div>
-                            <p className='fs-5 setMeetFounderText'>A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.</p>
+                            <p className='fs-5 setMeetFounderText text-start'>A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.</p>
                         </Box>
                         <Box className="text-center pt-3" style={{ marginBottom: '20px' }}>
                             {/* <PopupButton

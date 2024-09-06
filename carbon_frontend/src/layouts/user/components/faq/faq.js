@@ -1,12 +1,16 @@
-import { Typography } from '@mui/material'
+import { useTheme } from '@emotion/react';
+import { Typography, useMediaQuery } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Faq = () => {
+    const theme = useTheme();
     return (
-        <div className='main py-5'>
-            <Typography variant='h6' className='text-center fs-1 mb-2 fontFamily fw-bold py-5' >FAQ's</Typography>
-            <p>
+        <div className='setTeam_Policy_FAQs py-3'>
+            <Typography variant='h6' className='text-center fs-1 mb-1 fontFamily fw-bold py-2'>FAQ's</Typography>
+            <p
+            //  style={{ padding: useMediaQuery(theme.breakpoints.up('sm')) ? "0 10px" : "0 5px" }}
+             >
                 <p style={{ fontSize: "20px" }} className=' mb-5'>In candid conversation with our Founder & CEO of <strong>Sirāt</strong>, Mr.Mohammed Shafeeq.</p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-0'><strong>Q1: What is Sirat all about? And why now?</strong></p>

@@ -198,7 +198,7 @@ const Header = (props) => {
                                 </>
                             )
                         ))}
-                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize  fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
+                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
                         {/* <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                             login
                         </Button> */}
@@ -207,7 +207,7 @@ const Header = (props) => {
                         url="https://calendly.com/mohammed-sirat"
                         pageSettings={pageSettings}
                         utm={utm}
-
+                        style={{overflowY:'hidden'}}
                         onModalClose={() => setIsOpenCalendly(false)}
                         open={isOpenCalendly}
                         rootElement={document.getElementById('root')}
@@ -225,7 +225,7 @@ const Header = (props) => {
                     }}
                     sx={{
                         display: { xs: 'block', md: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
                     }}
                 >
                     {drawer}
@@ -233,7 +233,6 @@ const Header = (props) => {
             </nav>
             <Box component="main" >
                 <Toolbar />
-
             </Box>
         </Box>
     );

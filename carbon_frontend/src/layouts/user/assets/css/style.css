@@ -17,19 +17,28 @@
   padding: 0 100px;
 }
 
+.setTeam_Policy_FAQs {
+  padding: 0 40px;
+}
+
+.setNewsRoomPadding {
+  padding: 0 0px;
+}
+
 .setMeetFounderText {
   padding: 0 20px;
 }
 
-@media (max-width: 500px) {
-  .main {
-    padding: 0 20px;
-  }
-}
 
 @media (max-width: 900px) {
   .main {
     padding: 0 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .main {
+    padding: 0 26px;
   }
 }
 

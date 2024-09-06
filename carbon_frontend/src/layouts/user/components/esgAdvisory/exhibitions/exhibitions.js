@@ -18,26 +18,26 @@ const Exhibitions = () => {
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
 
                     <Box className="ps-3">
-                        <p className=' fs-5'>As an exhibition/ congress organiser, you play a pivotal role in bringing together diverse companies, segments, government bodies, and enabling them to showcase their innovations. Additionally, you facilitate the  discussions, roundtables on topics that contribute to the betterment of both people and the planet. </p>
+                        <p className='fs-5'>As an exhibition/ congress organiser, you play a pivotal role in bringing together diverse companies, segments, government bodies, and enabling them to showcase their innovations. Additionally, you facilitate the  discussions, roundtables on topics that contribute to the betterment of both people and the planet. </p>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInRight animate__slow' >
                     <Box className="ps-3">
-                        <p className=' fs-5'>Necessitating robust ESG models is key to showcase your commitment to meet the climate goals. It’s crucial to recognize that these events generate significant emissions.<strong>Have you considered implementing a strategy and an ESG model before you plan your event?</strong> </p>
+                        <p className='fs-5'>Necessitating robust ESG models is key to showcase your commitment to meet the climate goals. It’s crucial to recognize that these events generate significant emissions.<strong>Have you considered implementing a strategy and an ESG model before you plan your event?</strong> </p>
                     </Box>
                 </Grid>
             </Grid>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-1  d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
-                    <Box className=" p-3 ">
+                    <Box className="p-3 ">
                         <img src={ex1} alt="img" width={"100%"} style={{ borderRadius: "15px" }} />
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInRight animate__slow'>
                     <Box className="ps-3">
                         <Typography variant='h6' className='green fs-2 py-2 pt-4 fontFamily'>Environmental</Typography>
-                        <p className=' fs-5'>The environmental impact of your exhibition/ congress extends to the construction of booths/demo showcases, materials used, logistics, food and beverages served, energy consumption, etc., all of which directly contribute to both direct and indirect greenhouse gas (GHG) emissions.</p>
-                        <p className=' fs-5'>Identifying and optimizing these categories can significantly reduce the overall impact on the environment.</p>
+                        <p className='fs-5'>The environmental impact of your exhibition/ congress extends to the construction of booths/demo showcases, materials used, logistics, food and beverages served, energy consumption, etc., all of which directly contribute to both direct and indirect greenhouse gas (GHG) emissions.</p>
+                        <p className='fs-5'>Identifying and optimizing these categories can significantly reduce the overall impact on the environment.</p>
                     </Box>
                 </Grid>
             </Grid>
@@ -45,12 +45,12 @@ const Exhibitions = () => {
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                     <Box className="ps-3">
                         <Typography variant='h6' className='green fs-2 py-2 pt-4 fontFamily'>Social</Typography>
-                        <p className=' fs-5'>Establishing a social message reflects how socially responsible you are.</p>
-                        <p className=' fs-5'>Your exhibition/congress aims to convey a meaningful social message to your audience and to the local community. By taking a few simple steps, we can boost your brand identity and make a positive contribution to the community.</p>
+                        <p className='fs-5'>Establishing a social message reflects how socially responsible you are.</p>
+                        <p className='fs-5'>Your exhibition/congress aims to convey a meaningful social message to your audience and to the local community. By taking a few simple steps, we can boost your brand identity and make a positive contribution to the community.</p>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6} sx={{ order: { md: '1' } }} className='wow animate__animated animate__fadeInRight animate__slow'>
-                    <Box className=" p-3 ">
+                    <Box className="p-3 ">
                         <img src={ex2} alt="img" width={"100%"} style={{ borderRadius: "15px" }} />
                     </Box>
                 </Grid>
