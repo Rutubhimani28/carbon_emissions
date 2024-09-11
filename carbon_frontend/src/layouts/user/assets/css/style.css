@@ -14,7 +14,7 @@
 }
 
 .main {
-  padding: 0 100px;
+  padding: 0 60px;
 }
 
 .setTeam_Policy_FAQs {
@@ -38,7 +38,7 @@
 
 @media (max-width: 500px) {
   .main {
-    padding: 0 26px;
+    padding: 0 20px;
   }
 }
 
