@@ -106,7 +106,7 @@ const Index = () => {
                 </div>
             </div>
 
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main ' style={{ paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? "45px" : "32px" }}>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='main' style={{ paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? "45px" : "32px" }}>
                 <Grid className='wow animate__animated animate__fadeInLeft animate__slow ' item sm={12} style={{ fontSize: "18px", paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? "12px" : "0px" }}>At <strong>Sirāt</strong>, we understand the needs and aspirations of organizations' Chief Marketing Officer (CMO) vertical. We recognize the necessity of aligning your activities with a NetZero framework. We create an action plan to achieve your short-, medium-, and long-term goals to meet your climate goals and enable the <u>path</u> to NetZero.</Grid>
 
                 <Grid className='wow animate__animated animate__fadeInRight animate__slow pt-3' item sm={12} style={{ fontSize: "18px" }}>We aim to seamlessly integrate Environmental, Social and Governance (ESG) considerations into your organization's CMO strategies by deeply understanding your needs. Our <Link to="/netzero-consulting" style={{ color: "#ffffd9", textDecoration: 'none' }}>NetZero Consulting</Link> and an AI enabled carbon accounting <Link to="/netzero-platform" style={{ color: "#ffffd9", textDecoration: 'none' }}> NetZero Platform</Link>, designed to measure the CO<sub>2</sub> footprint generated from your marketing operations.</Grid>
