@@ -1,9 +1,11 @@
-import { Typography } from '@mui/material'
+import { useTheme } from '@emotion/react'
+import { Typography, useMediaQuery } from '@mui/material'
 import React from 'react'
 
 const PrivacyPolicy = () => {
+    const theme = useTheme()
     return (
-        <div className='setTeam_Policy_FAQs py-3'>
+        <div className='py-3' style={{padding : useMediaQuery(theme.breakpoints.up('sm')) ? "0 40px" : "0 20px"}} >
             {/* <Typography variant='h6' className='text-center fs-1 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Privacy Policy</Typography> */}
             <Typography variant='h6' className='text-center fs-1 pt-2 fontFamily fw-bold' >Privacy Policy</Typography>
             {/* <p className='wow animate__animated animate__fadeInLeft animate__slow'>
@@ -89,15 +91,15 @@ const PrivacyPolicy = () => {
 
                 <p style={{ fontSize: "20px" }} className=' mb-0'>Definitions</p>
                 <p style={{ fontSize: "20px" }} className=' mb-0'>‘Customer’, ‘you’ or ‘your’</p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' mb-1'>Means an individual who: (a) subscribes for, uses or receives, has used or received, or applies to use or receive SIRĀT services; (b) corresponds with SIRĀT; and/or (c) is a user of this website.</p>
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' mb-1'>Means an individual who: (a) subscribes for, uses or receives, has used or received, or applies to use or receive SIRĀT services; (b) corresponds with SIRĀT; and/or (c) is a user of this website.</p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>1. What type of personal information does Sirāt will collect?</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' '>During your interaction with Sirāt.EARTH website, Sirāt may use a browser feature called a 'cookie' to collect information anonymously and track your patterns on Sirāt websites. A cookie is a small text file containing a unique identification number that identifies your browser to Sirāt computers each time you visit one of the Sirāt websites using cookies. Cookies tell Sirāt which pages of its websites are visited and how many people visited each web page. This helps Sirāt to enhance the online experience of visitors to the Sirāt websites. Cookies also serve to identify your computer so that your preferences can be saved for future visits. Sirāt is not working with any third parties that use these cookies to help us with traffic management, research and analytics.
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' '>During your interaction with Sirāt.EARTH website, Sirāt may use a browser feature called a 'cookie' to collect information anonymously and track your patterns on Sirāt websites. A cookie is a small text file containing a unique identification number that identifies your browser to Sirāt computers each time you visit one of the Sirāt websites using cookies. Cookies tell Sirāt which pages of its websites are visited and how many people visited each web page. This helps Sirāt to enhance the online experience of visitors to the Sirāt websites. Cookies also serve to identify your computer so that your preferences can be saved for future visits. Sirāt is not working with any third parties that use these cookies to help us with traffic management, research and analytics.
                     The use of cookies is an industry standard and many major browsers are initially set up to accept them. You can reset your browser to refuse either to accept all cookies or to notify you when you have received a cookie. However, if you refuse to accept cookies, you may not be able to use some of the features available on Sirāt website.
                 </p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>2. Why does Sirāt collect and use personal information?</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' mb-0'>Sirāt collects and uses your personal information for the following purposes:
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' mb-0'>Sirāt collects and uses your personal information for the following purposes:
                     to establish and maintain a responsible commercial relationship with you;
                     Where we have a legitimate interest, such as to provide you with our services; for research and statistical purposes, to understand your needs as a Customer and your eligibility for services;
                     to recommend particular services and opportunities to its Customers;
@@ -111,7 +113,7 @@ const PrivacyPolicy = () => {
 
                 <div className='mt-4'>
                     <p style={{ fontSize: "20px" }} className='mb-2'><strong>3. How does Sirāt obtain your consent?</strong></p>
-                    <p style={{ fontSize: "20px", textAlign: 'justify' }} className='mb-0'>Sometimes Sirāt may request your consent before processing your personal information. If so, the form of consent sought by Sirāt may vary, depending upon the circumstances and the type of personal information processed. In determining the form of consent obtained from you, Sirāt considers the sensitivity of the information and your reasonable expectations, so that you understand the nature, purpose and consequences of the collection, use and/or disclosure of your personal information. Sirāt will always seek express consent when the personal information is likely to be considered sensitive. Sensitive personal information means information about an individual’s: race; ethnic origin; politics; religion; trade union membership; genetics; biometrics; health; sex life; or sexual orientation.
+                    <p style={{ fontSize: "20px", textAlign: 'left' }} className='mb-0'>Sometimes Sirāt may request your consent before processing your personal information. If so, the form of consent sought by Sirāt may vary, depending upon the circumstances and the type of personal information processed. In determining the form of consent obtained from you, Sirāt considers the sensitivity of the information and your reasonable expectations, so that you understand the nature, purpose and consequences of the collection, use and/or disclosure of your personal information. Sirāt will always seek express consent when the personal information is likely to be considered sensitive. Sensitive personal information means information about an individual’s: race; ethnic origin; politics; religion; trade union membership; genetics; biometrics; health; sex life; or sexual orientation.
                         Consent may be obtained in any one of the following ways:
                         an application form may be used to seek consent, collect Personal Information and inform the Customer of the use that will be made of the Personal Information. By completing and signing the form, the Customer is giving consent to the collection and the specified uses;
                         a series of tick boxes may be used to allow the Customer to request that their names and addresses are not given to other organisations;
@@ -121,28 +123,28 @@ const PrivacyPolicy = () => {
                 </div>
 
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>‍4. What happens if you do not provide us with the information we request or ask that we stop processing your information?</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' '>If you do not provide the Personal Information necessary, or you refuse or withdraw your consent for the processing of your Personal Information, where this information is necessary for us to provide services to you, we may not be able to provide you with that particular service. We will explain the impact on you at the time, to help you with your decision.</p>
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' '>If you do not provide the Personal Information necessary, or you refuse or withdraw your consent for the processing of your Personal Information, where this information is necessary for us to provide services to you, we may not be able to provide you with that particular service. We will explain the impact on you at the time, to help you with your decision.</p>
 
 
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>5. Who does Sirāt share Personal Information with?</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' mb-0'>We share your Personal Information with trusted third parties where we have retained them to provide services that you have requested. These third parties comply with similar and equally stringent undertakings of privacy and confidentiality.
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' mb-0'>We share your Personal Information with trusted third parties where we have retained them to provide services that you have requested. These third parties comply with similar and equally stringent undertakings of privacy and confidentiality.
                     We share your Personal Information with third parties who perform functions on our behalf and who also provide services to us, such as professional advisors, IT consultants carrying out testing and development work on our business technology systems, research and mailing inbox houses and function co-coordinators. These third parties comply with similar and equally stringent undertakings of privacy and confidentiality
                     Where required we share your Personal Information with other third parties: to comply with a legal obligation; when we believe in good faith that an applicable law requires it; at the request of governmental authorities conducting an investigation; to verify or enforce our applicable policies; to detect and protect against fraud, or any technical or security vulnerabilities; to respond to an emergency; or otherwise to protect the rights, property, safety, or security of third parties, visitors to our website, our business or the public.
                     Sirāt does not sell your Personal Information to any individual or a company or organisation (private or public).
                 </p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>‍6. Will your Personal Information be transferred outside of the country?‍</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' mb-0'>In the event that a third party service provider is located in a foreign country, your Personal Information may be processed and stored in such other foreign country. In such circumstances, the governments, courts or law enforcement or regulatory agencies of that country may be able to obtain access to your Personal Information through the laws of the foreign country. Whenever your Personal Information is transferred to a foreign country, we will ensure that appropriate safeguards are put in place in relation to that transfer.
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' mb-0'>In the event that a third party service provider is located in a foreign country, your Personal Information may be processed and stored in such other foreign country. In such circumstances, the governments, courts or law enforcement or regulatory agencies of that country may be able to obtain access to your Personal Information through the laws of the foreign country. Whenever your Personal Information is transferred to a foreign country, we will ensure that appropriate safeguards are put in place in relation to that transfer.
                     The data processing and data transfer shall be undertaken in accordance with the applicable ADGM Data Protection Regulation.
                 </p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>7. How does Sirāt safeguard your Personal Information?‍</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' '>‍The nature of the safeguards varies depending on the sensitivity of the Personal Information, the scope of the Personal Information, and the method of storage of that information. More sensitive types of Personal Information will be safeguarded by a higher level of protection, such as encryption. If you would like more information about the safeguards we have in place, please contact us by using the contact us page on this website.</p>
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' '>‍The nature of the safeguards varies depending on the sensitivity of the Personal Information, the scope of the Personal Information, and the method of storage of that information. More sensitive types of Personal Information will be safeguarded by a higher level of protection, such as encryption. If you would like more information about the safeguards we have in place, please contact us by using the contact us page on this website.</p>
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>8. How long does Sirāt retain your Personal Information?</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' '>Personal Information collected by Sirāt will be retained in accordance with applicable legal requirements. Personal Information shall be deleted if the data is no longer required and there is no legal requirement to maintain that information.</p>
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' '>Personal Information collected by Sirāt will be retained in accordance with applicable legal requirements. Personal Information shall be deleted if the data is no longer required and there is no legal requirement to maintain that information.</p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>9. What are your rights?‍</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=''>‍By law you have a number of rights when it comes to your Personal Information. Further information and advice about your rights can be obtained by the data protection regulator in your country.
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=''>‍By law you have a number of rights when it comes to your Personal Information. Further information and advice about your rights can be obtained by the data protection regulator in your country.
                     The right to object to processing
                     You have the right to object to certain types of processing, including processing for direct marketing (i.e. if you no longer want to be contacted with potential opportunities).
                     The right to be informed
@@ -163,15 +165,15 @@ const PrivacyPolicy = () => {
                 </p>
 
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>‍10. How can I challenge compliance and offer suggestions?</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' mb-0'>
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' mb-0'>
                     You may direct any questions or inquiries with respect to the privacy principles outlined above or about Sirāt privacy practices described in its Privacy Policy using the contact us page on this website.
                     Sirāt will investigate all complaints and respond to all questions asked by you. If a complaint is found to be justified, Sirāt will take appropriate measures to resolve the complaint, which may include amending its policies and procedures.</p>
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>11. Your role in protecting your Personal Information</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' mb-0'>
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' mb-0'>
                     Please remember that Sirāt Privacy Policy and our use of your Personal Information only applies to the information you provide. We caution that if you disclose Personal Information or sensitive Personal Information through use of the Internet such as through chat rooms, communities, bulletin boards or other public online forums, this information is not collected by or for Sirāt but may be collected and used by other persons or companies over which Sirāt has no control. Sirāt is not responsible for privacy statements, privacy compliance or other content of any website not owned or managed by Sirāt.
                     Sirāt does its best to protect and safeguard Personal Information and we believe there are safeguards you should take as well. Do not share your Personal Information with any third party unless you clearly understand the purpose of the request and you know with whom you are dealing. Do not keep sensitive Personal Information in your email inbox or on Webmail.</p>
                 <p style={{ fontSize: "20px" }} className=' mb-2 mt-4'><strong>12. Updating this Privacy Policy</strong></p>
-                <p style={{ fontSize: "20px", textAlign: 'justify' }} className=' mb-0'>Sirāt will update this Privacy Policy to reflect the changes in our practices and in order to comply with applicable laws. Sirāt may modify or remove portions of this Privacy Policy when it feels it is necessary and appropriate. Where we do make any changes to this Privacy Policy, we will let you know. This Privacy Policy was last updated on 01<sup>st</sup> Jan 2024..</p>
+                <p style={{ fontSize: "20px", textAlign: 'left' }} className=' mb-0'>Sirāt will update this Privacy Policy to reflect the changes in our practices and in order to comply with applicable laws. Sirāt may modify or remove portions of this Privacy Policy when it feels it is necessary and appropriate. Where we do make any changes to this Privacy Policy, we will let you know. This Privacy Policy was last updated on 01<sup>st</sup> Jan 2024..</p>
 
             </p>
 
