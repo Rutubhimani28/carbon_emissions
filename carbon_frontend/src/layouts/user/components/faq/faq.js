@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Faq = () => {
     const theme = useTheme();
     return (
-        < div className='setTeam_Policy_FAQs py-3' style={{ padding: useMediaQuery(theme.breakpoints.up('sm')) ? "0 40px" : "0 20px" }} >
+        <div className='setHome_padding py-3'>
             <Typography variant='h6' className='text-center fs-1 mb-1 fontFamily fw-bold py-2'>FAQ's</Typography>
             <p
             //  style={{ padding: useMediaQuery(theme.breakpoints.up('sm')) ? "0 10px" : "0 5px" }}

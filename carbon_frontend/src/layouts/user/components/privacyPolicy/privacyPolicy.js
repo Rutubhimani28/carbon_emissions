@@ -5,7 +5,7 @@ import React from 'react'
 const PrivacyPolicy = () => {
     const theme = useTheme()
     return (
-        <div className='py-3' style={{padding : useMediaQuery(theme.breakpoints.up('sm')) ? "0 40px" : "0 20px"}} >
+        <div className='py-3 setHome_padding' >
             {/* <Typography variant='h6' className='text-center fs-1 pt-4 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow' >Privacy Policy</Typography> */}
             <Typography variant='h6' className='text-center fs-1 pt-2 fontFamily fw-bold' >Privacy Policy</Typography>
             {/* <p className='wow animate__animated animate__fadeInLeft animate__slow'>
