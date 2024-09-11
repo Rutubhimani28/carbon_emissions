@@ -16,7 +16,9 @@
 .main {
   padding: 0 60px;
 }
-
+.setHome_padding{
+  padding: 0 40px;
+}
 .setTeam_Policy_FAQs {
   padding: 0 40px;
 }
@@ -34,11 +36,17 @@
   .main {
     padding: 0 50px;
   }
+  .setHome_padding{
+    padding: 0 50px;
+  }
 }
 
 @media (max-width: 500px) {
   .main {
     padding: 0 20px;
+  }
+  .setHome_padding{
+    padding: 0 17px;
   }
 }
 
