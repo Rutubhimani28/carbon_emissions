@@ -11,7 +11,7 @@ const Index = () => {
     const theme = useTheme();
     return (
         <div>
-            <div className='setNewsRoomPadding py-5 d-flex flex-column align-items-center'>
+            <div className='setNewsRoomPadding pt-5 pb-3 d-flex flex-column align-items-center'>
                 {/* <Typography variant='h6' className='text-center fs-1 pt-4 fontFamily fw-bold pb-5 wow animate__animated animate__fadeInUp animate__slow' >News Room & Blogs</Typography> */}
 
                 {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
@@ -53,8 +53,8 @@ const Index = () => {
                     </Grid>
                 </Grid> */}
 
-                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4, flexWrap: 'wrap', fontSize: useMediaQuery(theme.breakpoints.up('md')) ? '20px' : '10px' }} style={{ textWrap: 'wrap' }}>
-                    <Grid container spacing={0}>
+                <Card sx={{ display: 'flex', marginBottom: 4, flexWrap: 'wrap', fontSize: useMediaQuery(theme.breakpoints.up('md')) ? '20px' : '10px', width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px' }}>
+                    <Grid container spacing={0} >
                         <Grid item xs={12} md={8}
                             className={'order-2'}
                         >
@@ -82,7 +82,7 @@ const Index = () => {
                         </Grid>
                     </Grid>
                 </Card>
-                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4, flexWrap: 'wrap' }}>
+                <Card sx={{ display: 'flex', marginBottom: 4, flexWrap: 'wrap', width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px' }}>
                     <Grid container spacing={0}>
                         <Grid item md={4} xs={12}
                             className={useMediaQuery(theme.breakpoints.up('md')) ? "order-1" : ''}>
@@ -110,7 +110,7 @@ const Index = () => {
                         </Grid>
                     </Grid>
                 </Card>
-                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4, flexWrap: 'wrap' }}>
+                <Card sx={{ display: 'flex', marginBottom: 4, flexWrap: 'wrap', width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px' }}>
                     <Grid container spacing={0}>
                         <Grid item xs={12} md={8} className={'order-2'}>
                             <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%' }}>
@@ -137,7 +137,7 @@ const Index = () => {
                         </Grid>
                     </Grid>
                 </Card>
-                <Card sx={{ display: 'flex', width: '80%', marginBottom: 4, flexWrap: 'wrap' }}>
+                <Card sx={{ display: 'flex', marginBottom: 4, flexWrap: 'wrap', width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px' }}>
                     <Grid container spacing={0}>
                         <Grid item md={4} xs={12} className={useMediaQuery(theme.breakpoints.up('md')) ? "order-1" : ''}>
                             <CardMedia

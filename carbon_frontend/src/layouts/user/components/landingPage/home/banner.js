@@ -130,7 +130,7 @@ const Index = () => {
                 <Grid className='fs-5' item xs={12} sm={2} md={2} />
             </Grid>
 
-            <Grid container className='wow animate__animated animate__fadeInRight animate__slow pb-3 bg-light mx-auto template-inner-theme rounded-3 setWidthofBanner' style={{ marginBottom: '50px', marginTop: '17px' }}>
+            <Grid container className=' wow animate__animated animate__fadeInRight animate__slow pb-3 bg-light mx-auto template-inner-theme rounded-3 setWidthofBanner' style={{ marginBottom: '50px', marginTop: '17px' }}>
                 <Grid item sm={12} md={12} className="d-flex justify-content-center">
                     <Typography className='fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow pt-3 pb-2' item sm={12} md={12}>Tailored Solutions</Typography>
                 </Grid>
@@ -172,14 +172,14 @@ const Index = () => {
                     </Box>
                 </Grid> */}
             </Grid>
-            
-            <Box className="credit d-flex justify-content-center" maxHeight={1200}>
-                <Grid container spacing={2} >
+
+            <Box className="credit d-flex justify-content-center" maxHeight={1200} style={{height :  useMediaQuery(theme.breakpoints.up('sm')) ? "450px" : "350px"  }}>
+                <Grid container spacing={2}>
                     <Grid item xs={12} xl={6} md={6} className='wow animate__animated animate__fadeInUp animate__slow my-auto ms-xl-4 ms-sm-5'>
-                        <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold ps-xl-5 ps-md-5 ps-sm-5  ms-4'>Offset Your Carbon Footprint</Typography>
-                        <Typography className='text-light fs-xl-5 fs-sm-4 ps-md-5 ps-sm-5 ms-4 me-3'>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
-                        <div className='ms-xl-5  ms-lg-5 ms-md-5 ms-sm-5'>
-                            <Button className="custom-btn my-4 ms-4" onClick={() => { setOpenCredit(true) }}>Buy Credits</Button>
+                        <Typography variant='h6' className='text-light fs-1 pt-2 pb-4 fontFamily fw-bold ps-xl-5 ps-md-5 ps-sm-5  ms-4'> Offset Your Carbon Footprint</Typography>
+                        <Typography className='text-light fs-xl-5 fs-sm-5 ps-md-5 ps-sm-5 ms-4 me-3'style={{fontSize :  useMediaQuery(theme.breakpoints.up('sm')) ? "" : "16px"  }}>Compensate for emissions by funding projects that reduce or remove an equivalent amount of CO<sub>2</sub> from the atmosphere, helping to mitigate climate change and promote sustainable development.</Typography>
+                        <div className='ms-xl-5 ms-lg-5 ms-md-5 ms-sm-5'>
+                            <Button className="custom-btn my-4 ms-4" onClick={() => { setOpenCredit(true) }}> Buy Credits</Button>
                         </div>
                     </Grid>
                     {/* <Grid item xs={12} md={6} /> */}
