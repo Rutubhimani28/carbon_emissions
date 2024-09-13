@@ -73,7 +73,7 @@ const About = () => {
                     <Grid item xs={12} md={9} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
                         <Box className="text-center main">
                             <div className='d-flex flex-column justify-content-between align-items-center'>
-                                <Typography variant='h6' className=' fs-1 fontFamily fw-bold green' style={{ color: '#054723' }}>Meet the Founder</Typography>
+                                <Typography variant='h6' className=' fs-1 fontFamily fw-bold green' style={{ color: '#054723' }}>    Founder</Typography>
                                 <Typography className=' fs-1 pb-4 fontFamily fw-bold green ' style={{ marginTop: "-25px", display: { md: 'none' }, color: '#054723' }} ><RemoveIcon style={{ fontSize: "50px" }} /><FiberManualRecordIcon style={{ fontSize: "20px" }} /><RemoveIcon style={{ fontSize: "50px" }} /></Typography>
                             </div>
                             <p className='fs-5'>A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.</p>
@@ -102,7 +102,7 @@ const About = () => {
                     </Grid>
                 </Grid> */}
 
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main' 
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' sx={{ padding: '0px 10px 0px 20px' }}
                 // style={{ width: useMediaQuery (theme.breakpoints.up('sm')) ? "1550px" : '388px' }}
                 // style={{marginLeft : useMediaQuery(theme.breakpoints.up('sm')) ? "0" : '-3px'}}
                 >

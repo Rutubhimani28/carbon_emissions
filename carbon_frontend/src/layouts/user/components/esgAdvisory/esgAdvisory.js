@@ -175,7 +175,7 @@ const EsgAdvisory = () => {
                         <p style={{ textAlign: 'left', fontSize: "18px", padding: useMediaQuery(theme.breakpoints.up('sm')) ? "0 40px" : "0 0px", marginTop: useMediaQuery(theme.breakpoints.up('md')) ? "0" : "15px" }} > A robust governance model, coupled with our NetZero Consulting and a <Link to="/netzero-platform" style={{ color: "#ffffd9", textAlign: 'justify', textDecoration: 'none' }} > NetZero Platform</Link>, enhances your reputation, attracting eco-conscious exhibitors and attendees. Together, we align with your overall ESG objectives, fostering accountability and environmental stewardship.</p>
                     </Grid>
                 </Grid>
-                <p style={{ fontSize: "18px", padding: useMediaQuery(theme.breakpoints.up('sm')) ? "0 40px" : "0 0px" }} >We would like to partner with you to reduce your carbon footprint, fostering long-term business value creation with a deep understanding of your needs.</p>
+                <p style={{ fontSize: "18px", padding: useMediaQuery(theme.breakpoints.up('sm')) ? "0 40px" : "10px 0px" }} >We would like to partner with you to reduce your carbon footprint, fostering long-term business value creation with a deep understanding of your needs.</p>
                 <p className='fontFamily wow animate__animated animate__fadeInUp animate__slow pb-5 mt-2' style={{ textAlign: 'center' }}>
                     <PopupButton
                         url="https://calendly.com/mohammed-sirat"
