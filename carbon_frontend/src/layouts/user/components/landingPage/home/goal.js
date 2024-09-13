@@ -8,7 +8,7 @@ import goal1 from '../../../assets/images/goal1.png'
 import goal2 from '../../../assets/images/goal2.png'
 import TrustOne from '../../../assets/images/Aster CMI Logo.png';
 import bgImg from '../../../assets/images/bg.png';
-import TrustTwo from '../../../assets/images/GoFig.png';
+import TrustTwo from '../../../assets/images/GoFig2.png';
 import mission from '../../../assets/images/mission.png'
 import vision from '../../../assets/images/visionary.png'
 import collbrate from '../../../assets/images/Collaborat.jpeg';

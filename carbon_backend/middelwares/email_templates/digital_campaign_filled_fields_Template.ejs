@@ -143,23 +143,19 @@
                                                                             <%= rowData.dgType %>
                                                                         </td>
                                                                         <td>
-                                                                            <%= rowData.imgSize || rowData.videoSize ||
-                                                                                rowData.noOfEmails %>
+                                                                            <%= rowData.imgSize || rowData.noOfEmails ||
+                                                                                rowData.videoMins %>
                                                                         </td>
                                                                         <td>
                                                                             <%= rowData.impressions1 ||
-                                                                                rowData.videoMins ||
+                                                                                rowData.impressions2 ||
                                                                                 rowData.attachmentSize %>
                                                                         </td>
-                                                                        <% if (rowData.impressions2) { %>
-                                                                            <td>
-                                                                                <%= rowData.impressions2 %>
-                                                                            </td>
-                                                                            <% } %>
-                                                                                <td>
-                                                                                    <%= rowData.emissions %>
-                                                                                </td>
-                                                                                <% } %>
+
+                                                                        <td>
+                                                                            <%= rowData.emissions %>
+                                                                        </td>
+                                                                        <% } %>
                                                                 </tr>
                                                                 <% } %>
                                                                     <% }); %>

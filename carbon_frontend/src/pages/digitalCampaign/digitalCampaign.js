@@ -18,29 +18,21 @@ const DigitalCampaign = (props) => {
     const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails?.totalEmission);
 
     const initialValues = {
-        imgSize: '',
-        deviceEnergy1: '',   // 0.01(1/60)
-        somePlatformEnergy1: '', // =(0.4/1000)*imgSize
-        networkEnergy1: '',      // =(0.2/1000)*imgSize
-        totalEnergy1: '',        // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
-        efOne: '',               // = totalEnergy1*0.43
-        impressionsOne: '',      // 
-        emissionOne: '',
-        videoSize: '',
+        imgSize: '',         // No of Mb   
+        uploadEnergy: 22.8,
+        impressionsOne: '',
+        downloadEnergy: '',  // imgSize * impressionsOne   
+        totalEnergy: '',     // Total Energy (C5 + E5)    // upload energy + download energy     
+        totalEnergyKwh: '',  // Total Energy (kwh)       // (totalEnergy/3600000) * imgSize   
+        emissionOne: '',     // totalEnergyKwh * 0.716   // 0.716(static)                     
+
+        // videoSize: '',
         videoMins: '',
-        deviceEnergy2: '',       // = 0.01*( videoMins/60)
-        somePlatformEnergy2: '', // = ( videoSize/1000)*0.4
-        networkEnergy2: '',      // = (0.2/1000)* videoSize
-        totalEnergy2: '',        // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
-        efTwo: '',               // = totalEnergy2*0.43
+        efTwo: 0.897,
+        videoEnergy: '',         // = (videoMins * efTwo / 60)
         impressionsTwo: '',
-        emissionTwo: '',         // videoSize * videoMins * impressionsTwo * efTwo
-        // noOfEmails: '',
-        // // efThree: '',
-        // emissionThree: '',
-        // attachmentSize: '',
-        // // efFour: '',
-        // emissionFour: '',
+        emissionTwo: '',         // = (videoEnergy * impressionsTwo * 0.716)  // 0.716(static)
+
         noOfEmails: '',
         emialEfOne: 4,
         emialEfTwo: 50,
@@ -54,60 +46,34 @@ const DigitalCampaign = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            const emissionOne = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne))).toFixed(2)
-            const emissionTwo = values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo))).toFixed(2)
-            // const emissionThree = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000)).toFixed(2)
-            // const emissionFour = values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000)).toFixed(2)
+            const emissionOne = values?.totalEnergyKwh === 0 ? 0 : Number(values?.totalEnergyKwh * 0.716).toFixed(2)
+            const emissionTwo = values?.videoEnergy === 0 || values?.impressionsTwo === 0 ? 0 : Number((Number(values?.videoEnergy) * Number(values?.impressionsTwo) * 0.716)).toFixed(2)
             const emissionThree = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2)
 
-            // formik.setFieldValue('emissionOne', values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2)));
+
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
-            // formik.setFieldValue('emissionTwo', values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2)));
             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
-            // // formik.setFieldValue('emissionThree', values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2)));
-            // if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
-            // // formik.setFieldValue('emissionFour', values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2)));
-            // if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour);
             if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
 
             const data = [
                 {
                     type: 'Image',
                     imgSize: values?.imgSize,
-                    deviceEnergy1: values?.deviceEnergy1,
-                    somePlatformEnergy1: values?.somePlatformEnergy1,
-                    networkEnergy1: values?.networkEnergy1,
-                    totalEnergy1: values?.totalEnergy1,
-                    efOne: values?.efOne,
+                    uploadEnergy: values?.uploadEnergy,
                     impressionsOne: values?.impressionsOne,
-                    // emission: values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : Number(Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2))
+                    downloadEnergy: values?.downloadEnergy,
+                    totalEnergy: values?.totalEnergy,
+                    totalEnergyKwh: values?.totalEnergyKwh,
                     emission: emissionOne > 0 ? emissionOne : ''
                 },
                 {
                     type: 'Video',
-                    videoSize: values?.videoSize,
                     videoMins: values?.videoMins,
-                    deviceEnergy2: values?.deviceEnergy2,
-                    somePlatformEnergy2: values?.somePlatformEnergy2,
-                    networkEnergy2: values?.networkEnergy2,
-                    totalEnergy2: values?.totalEnergy2,
+                    videoEnergy: values?.videoEnergy,
                     efTwo: values?.efTwo,
                     impressionsTwo: values?.impressionsTwo,
-                    // emission: values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0 ? 0 : Number((Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efTwo)).toFixed(2))
                     emission: emissionTwo > 0 ? emissionTwo : ''
                 },
-                // {
-                //     name: 'Emails',
-                //     noOfEmails: values?.noOfEmails,
-                //     // emission: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * 4) / 1000).toFixed(2))
-                //     emission: emissionThree > 0 ? emissionThree : ''
-                // },
-                // {
-                //     name: 'Email Attachment',
-                //     attachmentSize: values?.attachmentSize,
-                //     // emission: values?.attachmentSize === 0 ? 0 : Number(((Number(values?.attachmentSize) * 50) / 1000).toFixed(2))
-                //     emission: emissionFour > 0 ? emissionFour : ''
-                // }
                 {
                     name: 'Emails',
                     noOfEmails: values?.noOfEmails,
@@ -125,7 +91,6 @@ const DigitalCampaign = (props) => {
                 {
                     subType: "Social Media",
                     subTypeData: {
-                        // th: ["Image", "Image Size (in Mb)", "Impressions", "Emissions"],
                         th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
                         td: [
                             {
@@ -141,12 +106,10 @@ const DigitalCampaign = (props) => {
                 {
                     subType: "",
                     subTypeData: {
-                        // th: ["Video", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
-                        th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                        th: ["", "Video (in mins)", "Impressions", "Emissions"],
                         td: [
                             {
                                 dgType: "Video",
-                                videoSize: values?.videoSize,
                                 videoMins: values?.videoMins,
                                 impressions2: values?.impressionsTwo,
                                 emissions: emissionTwo > 0 ? emissionTwo : '',
@@ -169,7 +132,7 @@ const DigitalCampaign = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    scope: 1
                 },
             ];
 
@@ -188,26 +151,19 @@ const DigitalCampaign = (props) => {
     useEffect(() => {
         if (allData?.length > 0) {
             formik.setFieldValue('imgSize', allData[0]?.imgSize);
-            formik.setFieldValue('deviceEnergy1', allData[0]?.deviceEnergy1);
-            formik.setFieldValue('somePlatformEnergy1', allData[0]?.somePlatformEnergy1);
-            formik.setFieldValue('networkEnergy1', allData[0]?.networkEnergy1);
-            formik.setFieldValue('totalEnergy1', allData[0]?.totalEnergy1);
-            formik.setFieldValue('efOne', allData[0]?.efOne);
+            formik.setFieldValue('uploadEnergy', allData[0]?.uploadEnergy);
+            formik.setFieldValue('totalEnergy', allData[0]?.totalEnergy);
+            formik.setFieldValue('totalEnergyKwh', allData[0]?.totalEnergyKwh);
+            formik.setFieldValue('downloadEnergy', allData[0]?.downloadEnergy);
             formik.setFieldValue('impressionsOne', allData[0]?.impressionsOne);
             formik.setFieldValue('emissionOne', allData[0]?.emission);
-            formik.setFieldValue('videoSize', allData[1]?.videoSize);
+
             formik.setFieldValue('videoMins', allData[1]?.videoMins);
-            formik.setFieldValue('deviceEnergy2', allData[1]?.deviceEnergy2);
-            formik.setFieldValue('somePlatformEnergy2', allData[1]?.somePlatformEnergy2);
-            formik.setFieldValue('networkEnergy2', allData[1]?.networkEnergy2);
-            formik.setFieldValue('totalEnergy2', allData[1]?.totalEnergy2);
+            formik.setFieldValue('videoEnergy', allData[1]?.videoEnergy);
             formik.setFieldValue('efTwo', allData[1]?.efTwo);
             formik.setFieldValue('impressionsTwo', allData[1]?.impressionsTwo);
             formik.setFieldValue('emissionTwo', allData[1]?.emission);
-            // formik.setFieldValue('noOfEmails', allData[2]?.noOfEmails);
-            // formik.setFieldValue('emissionThree', allData[2]?.emission);
-            // formik.setFieldValue('attachmentSize', allData[3]?.attachmentSize);
-            // formik.setFieldValue('emissionFour', allData[3]?.emission);
+
             formik.setFieldValue('noOfEmails', allData[2]?.noOfEmails);
             formik.setFieldValue('emialEfOne', allData[2]?.emialEfOne);
             formik.setFieldValue('emialEfTwo', allData[2]?.emialEfTwo);
@@ -218,22 +174,6 @@ const DigitalCampaign = (props) => {
             formik.setFieldValue('emissionThree', allData[2]?.emission);
         }
     }, [value]);
-
-    useEffect(() => {
-        formik.setFieldValue("totalEnergy1", Number(values.deviceEnergy1) + Number(values.somePlatformEnergy1) + Number(values.networkEnergy1));
-    }, [values.deviceEnergy1, values.somePlatformEnergy1, values.networkEnergy1])
-
-    useEffect(() => {
-        formik.setFieldValue("totalEnergy2", Number(values.deviceEnergy2) + Number(values.somePlatformEnergy2) + Number(values.networkEnergy2));
-    }, [values.deviceEnergy2, values.somePlatformEnergy2, values.networkEnergy2]);
-
-    useEffect(() => {
-        formik.setFieldValue("efOne", Number(values.totalEnergy1) * 0.43);
-    }, [values.totalEnergy1]);
-
-    useEffect(() => {
-        formik.setFieldValue("efTwo", Number(values.totalEnergy2) * 0.43);
-    }, [values.totalEnergy2]);
 
     return (
         <div>
@@ -263,11 +203,15 @@ const DigitalCampaign = (props) => {
                                             variant="outlined"
                                             fullWidth
                                             onChange={(e) => {
+                                                const downloadEnergy = Number(Number(e.target.value) * Number(values.impressionsOne));
+                                                const totalEnergy = Number(values.impressionsOne) > 0 ? Number(values.uploadEnergy) + downloadEnergy : 0;
+                                                const totalEnergyKwh = Number(Number(totalEnergy / 3600000) * Number(e.target.value));
+
                                                 formik.setFieldValue("imgSize", Number(e.target.value));
-                                                formik.setFieldValue("deviceEnergy1", 0.01 * (1 / 60));
-                                                formik.setFieldValue("somePlatformEnergy1", (0.4 / 1000) * Number(e.target.value));
-                                                formik.setFieldValue("networkEnergy1", (0.2 / 1000) * Number(e.target.value));
-                                                formik.setFieldValue("totalEnergy1", (0.01 * (Number(e.target.value) / 60)) + ((0.4 / 1000) * Number(e.target.value)) + ((0.2 / 1000) + Number(e.target.value)));     // maybe
+                                                formik.setFieldValue("downloadEnergy", downloadEnergy);
+                                                formik.setFieldValue("totalEnergy", totalEnergy);
+                                                formik.setFieldValue("totalEnergyKwh", totalEnergyKwh);
+                                                formik.setFieldValue("emissionOne", Number(totalEnergyKwh * 0.716).toFixed(2));
                                                 formik.handleSubmit();
                                             }}
                                             sx={{ marginTop: 2 }}
@@ -278,8 +222,15 @@ const DigitalCampaign = (props) => {
                                             variant="outlined"
                                             fullWidth
                                             onChange={(e) => {
+                                                const downloadEnergy = Number(Number(e.target.value) * Number(values.imgSize));
+                                                const totalEnergy = Number(e.target.value) > 0 ? Number(values.uploadEnergy) + downloadEnergy : 0;
+                                                const totalEnergyKwh = Number(totalEnergy / 3600000) * Number(values.imgSize);
+
                                                 formik.setFieldValue("impressionsOne", Number(e.target.value));
-                                                formik.setFieldValue("emissionOne", (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(2));
+                                                formik.setFieldValue("totalEnergy", totalEnergy);
+                                                formik.setFieldValue("downloadEnergy", downloadEnergy);
+                                                formik.setFieldValue("totalEnergyKwh", totalEnergyKwh);
+                                                formik.setFieldValue("emissionOne", Number(totalEnergyKwh * 0.716).toFixed(2));
                                                 formik.handleSubmit();
                                             }}
                                             sx={{ marginTop: 2 }}
@@ -289,7 +240,9 @@ const DigitalCampaign = (props) => {
                                             label="Emissions"
                                             variant="outlined"
                                             fullWidth
-                                            value={values?.emissionOne} onChange={formik.handleChange} sx={{ marginTop: 2 }}
+                                            value={values?.emissionOne}
+                                            onChange={formik.handleChange}
+                                            sx={{ marginTop: 2 }}
                                         />
                                     </CardContent>
                                 </Card>
@@ -304,27 +257,13 @@ const DigitalCampaign = (props) => {
                                     <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                         <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
                                         <Typography variant="h6" sx={{ marginY: 1 }}>Video</Typography>
-                                        <TextField size='small' type="number" name={'videoSize'} value={values?.videoSize}
-                                            label="Video Size (in Mb)"
-                                            variant="outlined"
-                                            fullWidth
-                                            onChange={(e) => {
-                                                formik.setFieldValue("videoSize", Number(e.target.value));
-                                                formik.setFieldValue("somePlatformEnergy2", Number((Number(e.target.value) / 1000) * 0.4));
-                                                formik.setFieldValue("networkEnergy2", Number((0.2 / 1000) * Number(e.target.value)));
-                                                formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values?.impressionsTwo) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
-                                                formik.handleSubmit();
-                                            }}
-                                            sx={{ marginTop: 2 }}
-                                            inputProps={{ style: { color: 'black' } }}
-                                        />
                                         <TextField size='small' type="number" name={'videoMins'} value={values?.videoMins}
                                             label="Video (in mins)"
                                             variant="outlined"
                                             fullWidth
                                             onChange={(e) => {
                                                 formik.setFieldValue("videoMins", Number(e.target.value));
-                                                formik.setFieldValue("deviceEnergy2", Number(0.01 * (Number(e.target.value) / 60)));
+                                                formik.setFieldValue("videoEnergy", Number(Number(values.efTwo) * (Number(e.target.value) / 60)));
                                                 formik.handleSubmit();
                                             }}
                                             sx={{ marginTop: 2 }}
@@ -336,7 +275,7 @@ const DigitalCampaign = (props) => {
                                             fullWidth
                                             onChange={(e) => {
                                                 formik.setFieldValue("impressionsTwo", Number(e.target.value));
-                                                formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
+                                                formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoEnergy) * 0.716).toFixed(2));
                                                 formik.handleSubmit();
                                             }}
                                             sx={{ marginTop: 2 }}
@@ -347,7 +286,8 @@ const DigitalCampaign = (props) => {
                                             variant="outlined"
                                             fullWidth
                                             name={'emissionTwo'}
-                                            value={values?.emissionTwo} onChange={formik.handleChange}
+                                            value={values?.emissionTwo}
+                                            onChange={formik.handleChange}
                                             sx={{ marginTop: 2 }}
                                         />
                                     </CardContent>
@@ -361,7 +301,7 @@ const DigitalCampaign = (props) => {
                                 <Card
                                     sx={{
                                         width: 260,
-                                        height: 382,
+                                        // height: 382,
                                         maxWidth: '100%',
                                         boxShadow: 'lg',
                                         marginY: '16px'
