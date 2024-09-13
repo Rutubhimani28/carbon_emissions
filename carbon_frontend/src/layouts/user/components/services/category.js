@@ -1,5 +1,6 @@
 import { PopupButton } from 'react-calendly'
-import { Box, CardActionArea, Grid } from '@mui/material'
+import { Box, CardActionArea, Grid, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
@@ -81,9 +82,11 @@ const Category = () => {
             subTitle: "Events, workshops & key notes"
         },
     ];
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
-        <div className='main pt-5'>
+        <div className={`main ${isSmallScreen ? 'pt-1' : 'pt-5'}`} >
             <Grid container spacing={8}>
                 {
                     data.map((item, i) => {
@@ -118,7 +121,7 @@ const Category = () => {
 
             <Box className="text-center py-5">
 
-                <p className='fontFamily pb-3  wow animate__animated animate__fadeInUp animate__slow' style={{fontSize: "18px" }}>
+                <p className='fontFamily pb-3  wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }}>
                     {/* Would you like to learn more about these <strong>nine categories </strong>and discover how you can collaborate with us to precisely pinpoint actions for mitigating carbon footprint? And are you ready to take the next step in reducing your carbon footprint reporting journey? */}
                     Are you ready to take the next step in reducing your carbon footprint reporting journey with us?
                 </p>
