@@ -102,7 +102,7 @@ const About = () => {
                     </Grid>
                 </Grid> */}
 
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5' sx={{ padding: '0px 10px 0px 20px' }}
+                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main' sx={{ padding: useMediaQuery(theme.breakpoints.down('md')) && '0px 10px 0px 20px !important' }}
                 // style={{ width: useMediaQuery (theme.breakpoints.up('sm')) ? "1550px" : '388px' }}
                 // style={{marginLeft : useMediaQuery(theme.breakpoints.up('sm')) ? "0" : '-3px'}}
                 >
