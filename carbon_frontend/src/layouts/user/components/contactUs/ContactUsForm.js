@@ -283,8 +283,9 @@ const ContactUsForm = () => {
 
     <div>
       <Box>
-        <Grid container spacing={2}  columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='d-flex flex-column justify-content-center align-items-center'style={{ padding : useMediaQuery(theme.breakpoints.up('md')) ? "0 100px" : "0 20px" }}>
-          <Grid item xs={12} md={12} sm={12} border={2} borderColor={'#e2e2e2'}  columnSpacing={{ xs: 1, sm: 2, md: 3 }} bgcolor={'white'} borderRadius={'5px'}>
+        {/* <Grid container spacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='d-flex flex-column justify-content-center align-items-center' style={{ padding: useMediaQuery(theme.breakpoints.up('md')) ? "0 100px" : "0 20px" }}> */}
+        <Grid container spacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='d-flex flex-column justify-content-center align-items-center' style={{ padding: useMediaQuery(theme.breakpoints.up('md')) ? "0 100px" : "0 0 0 6px" }}>
+          <Grid item xs={12} md={12} sm={12} border={2} borderColor={'#e2e2e2'} columnSpacing={{ xs: 1, sm: 2, md: 3 }} bgcolor={'white'} borderRadius={'5px'} px={2}>
             <Grid container spacing={2} p={1} py={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} >
               <Grid item xs={12} md={6} sm={12} >
                 <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
@@ -303,7 +304,7 @@ const ContactUsForm = () => {
                   helperText={formik.touched.firstName && formik.errors.firstName}
                 />
               </Grid>
-              <Grid item xs={12}  md={6} >
+              <Grid item xs={12} md={6} >
                 <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
                   Last Name <span style={{ color: 'red' }}>*</span>
                 </FormLabel>
@@ -320,7 +321,7 @@ const ContactUsForm = () => {
                   helperText={formik.touched.lastName && formik.errors.lastName}
                 />
               </Grid>
-              <Grid item xs={12}  md={6} >
+              <Grid item xs={12} md={6} >
                 <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
                   Organisation <span style={{ color: 'red' }}>*</span>
                 </FormLabel>
@@ -337,7 +338,7 @@ const ContactUsForm = () => {
                   helperText={formik.touched.organisation && formik.errors.organisation}
                 />
               </Grid>
-              <Grid item xs={12}  md={6} >
+              <Grid item xs={12} md={6} >
                 <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
                   Designation <span style={{ color: 'red' }}>*</span>
                 </FormLabel>
