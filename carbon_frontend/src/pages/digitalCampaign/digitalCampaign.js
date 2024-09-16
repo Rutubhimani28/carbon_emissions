@@ -19,11 +19,11 @@ const DigitalCampaign = (props) => {
 
     const initialValues = {
         imgSize: '',         // No of Mb   
-        uploadEnergy: 22.8,
+        uploadEnergy: '',    // 22.8 * imgSize  //  22.8(static)
         impressionsOne: '',
-        downloadEnergy: '',  // imgSize * impressionsOne   
+        downloadEnergy: '',  // 20 * impressionsOne * imgSize
         totalEnergy: '',     // Total Energy (C5 + E5)    // upload energy + download energy     
-        totalEnergyKwh: '',  // Total Energy (kwh)       // (totalEnergy/3600000) * imgSize   
+        totalEnergyKwh: '',  // Total Energy (kwh)       // (totalEnergy/3600000)
         emissionOne: '',     // totalEnergyKwh * 0.716   // 0.716(static)                     
 
         // videoSize: '',
@@ -46,7 +46,7 @@ const DigitalCampaign = (props) => {
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            const emissionOne = values?.totalEnergyKwh === 0 ? 0 : Number(values?.totalEnergyKwh * 0.716).toFixed(2)
+            const emissionOne = values?.totalEnergyKwh === 0 ? 0 : Number(values?.totalEnergyKwh * 0.716).toFixed(2);
             const emissionTwo = values?.videoEnergy === 0 || values?.impressionsTwo === 0 ? 0 : Number((Number(values?.videoEnergy) * Number(values?.impressionsTwo) * 0.716)).toFixed(2)
             const emissionThree = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2)
 
@@ -203,9 +203,10 @@ const DigitalCampaign = (props) => {
                                             variant="outlined"
                                             fullWidth
                                             onChange={(e) => {
-                                                const downloadEnergy = Number(Number(e.target.value) * Number(values.impressionsOne));
-                                                const totalEnergy = Number(values.impressionsOne) > 0 ? Number(values.uploadEnergy) + downloadEnergy : 0;
-                                                const totalEnergyKwh = Number(Number(totalEnergy / 3600000) * Number(e.target.value));
+                                                const downloadEnergy = Number(Number(e.target.value) * Number(values.impressionsOne) * 20);
+                                                const uploadEnergy = Number(Number(e.target.value) * 22.8);
+                                                const totalEnergy = Number(values.impressionsOne) > 0 ? Number(uploadEnergy) + downloadEnergy : 0;
+                                                const totalEnergyKwh = Number(totalEnergy / 3600000);
 
                                                 formik.setFieldValue("imgSize", Number(e.target.value));
                                                 formik.setFieldValue("downloadEnergy", downloadEnergy);
@@ -222,9 +223,11 @@ const DigitalCampaign = (props) => {
                                             variant="outlined"
                                             fullWidth
                                             onChange={(e) => {
-                                                const downloadEnergy = Number(Number(e.target.value) * Number(values.imgSize));
-                                                const totalEnergy = Number(e.target.value) > 0 ? Number(values.uploadEnergy) + downloadEnergy : 0;
-                                                const totalEnergyKwh = Number(totalEnergy / 3600000) * Number(values.imgSize);
+                                                const downloadEnergy = Number(Number(e.target.value) * Number(values.imgSize) * 20);
+                                                const uploadEnergy = Number(Number(values.imgSize) * 22.8);
+                                                const totalEnergy = Number(e.target.value) > 0 ? Number(uploadEnergy) + downloadEnergy : 0;
+                                                const totalEnergyKwh = Number(totalEnergy / 3600000);
+
 
                                                 formik.setFieldValue("impressionsOne", Number(e.target.value));
                                                 formik.setFieldValue("totalEnergy", totalEnergy);
