@@ -43,7 +43,7 @@ const Production = (props) => {
     ];
 
     const fieldDataFive = [
-        { name: 'Polethylene HDPE Banner', ef: 3.11, fieldName: 'hdpeBanner' },
+        { name: 'Polyethylene HDPE Banner', ef: 3.11, fieldName: 'hdpeBanner' },
         { name: 'PVC Banners', ef: 7.83, fieldName: 'pvcBanners' },
         { name: 'Cotton Banner', ef: 14.5, fieldName: 'cottonBanner' },
         { name: 'Plastic Badge Holders (Polycorbonate)', ef: 4.2, fieldName: 'plasticBadgeHolders' },
@@ -417,7 +417,7 @@ const Production = (props) => {
                 },
 
                 {
-                    type: 'PolethyleneHDPEBanner',
+                    type: 'PolyethyleneHDPEBanner',
                     hdpeBanner: values?.hdpeBanner,
                     emission: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                 },
@@ -559,7 +559,7 @@ const Production = (props) => {
                         th: ["", "In Kgs", "Emissions"],
                         td: [
                             {
-                                pType: "Polethylene HDPE Banner",
+                                pType: "Polyethylene HDPE Banner",
                                 kgs: values?.hdpeBanner,
                                 emissions: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                             },
@@ -883,7 +883,7 @@ const Production = (props) => {
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Polethylene HDPE Banner *</td>
+                                                    <td className="ps-2 py-1">Polyethylene HDPE Banner *</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"

@@ -113,7 +113,7 @@ const PrAgency = (props) => {
                     emission: projectorEmission > 0 ? projectorEmission : '',
                 },
                 {
-                    type: 'PolethyleneHDPEBanner',
+                    type: 'PolyethyleneHDPEBanner',
                     hdpeBanner: values?.hdpeBanner,
                     emission: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                 },
@@ -221,7 +221,7 @@ const PrAgency = (props) => {
                         th: ["", "Weight (Kgs)", "Emissions"],
                         td: [
                             {
-                                prType: "Polethylene HDPE Banner/ Standee*",
+                                prType: "Polyethylene HDPE Banner/ Standee*",
                                 kgs: values?.hdpeBanner,
                                 emissions: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                             },
@@ -576,7 +576,7 @@ const PrAgency = (props) => {
                                                 <th className='ps-2'>Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2'>Polethylene HDPE Banner/ Standee*</td>
+                                                <td className='ps-2'>Polyethylene HDPE Banner/ Standee*</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="hdpeBanner"
                                                         value={formik?.values?.hdpeBanner}
@@ -957,7 +957,7 @@ const PrAgency = (props) => {
     //                                             <th className='ps-2'>Emissions</th>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 setPosition '>Polethylene HDPE Banner/ Standee*</td>
+    //                                             <td className='ps-2 setPosition '>Polyethylene HDPE Banner/ Standee*</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="hdpeBanner"
     //                                                     value={formik?.values?.hdpeBanner}
@@ -1326,7 +1326,7 @@ const PrAgency = (props) => {
     //                                             <th className='ps-2'>Emissions</th>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2'>Polethylene HDPE Banner/ Standee*</td>
+    //                                             <td className='ps-2'>Polyethylene HDPE Banner/ Standee*</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="hdpeBanner"
     //                                                     value={formik?.values?.hdpeBanner}

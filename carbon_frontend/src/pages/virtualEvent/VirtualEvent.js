@@ -138,7 +138,7 @@ const VirtualEvent = (props) => {
         emissionFifteen: '',
 
         //  Outdoor Branding:
-        // Polethylene HDPE Banner
+        // Polyethylene HDPE Banner
         hdpeBanner: '',              // Weight (kgs)
         efSixteen: 3.11,
         emissionSixteen: '',
@@ -323,7 +323,7 @@ const VirtualEvent = (props) => {
                     emission: emissionFifteen > 0 ? emissionFifteen : '',
                 },
                 {
-                    name: 'Polethylene HDPE Banner',
+                    name: 'Polyethylene HDPE Banner',
                     hdpeBanner: values?.hdpeBanner,
                     ef: values?.efSixteen,
                     emission: emissionSixteen > 0 ? emissionSixteen : '',
@@ -371,7 +371,7 @@ const VirtualEvent = (props) => {
                         th: ["", "Weight (Kgs)", "Emissions"],
                         td: [
                             {
-                                vtType: "Polethylene HDPE Banner",
+                                vtType: "Polyethylene HDPE Banner",
                                 kgs: values?.hdpeBanner,
                                 emissions: emissionSixteen > 0 ? emissionSixteen : '',
                             },
@@ -899,7 +899,7 @@ const VirtualEvent = (props) => {
                                                 <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className="ps-4 py-1">Polethylene</td>
+                                                <td className="ps-4 py-1">Polyethylene</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField
                                                         fullWidth
