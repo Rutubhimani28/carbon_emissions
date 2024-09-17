@@ -22,8 +22,10 @@ import { FaSnapchat, FaTwitch, FaTiktok, FaAngleDoubleRight, FaImage, FaFileVide
 import { GiVideoConference } from "react-icons/gi";
 import { addVirtualEventData, deleteVirtualEventData } from '../../redux/slice/totalVirtualEventSlice';
 import { addResultTableData, deleteResTabVrtEventData } from '../../redux/slice/resultTableDataSlice';
-import VirtualEventImg from '../../layouts/user/assets/images/virtualEvent.png';
+import VirtualEventIcon from '../../layouts/user/assets/images/virtualEvent.png';
+import outboundIcon from '../../assets/outboundIcon.png';
 import { IconDiv } from '../../components/IconDiv';
+import TVImg from '../../layouts/user/assets/images/tv.png';
 
 const style = {
     position: 'absolute',
@@ -130,7 +132,7 @@ const VirtualEvent = (props) => {
         efFourteen: 0.023125,
         emissionFourteen: '',
 
-        // Coloured Magazine/ Page
+        // Magazine/ Page
         noOfCopiesTwo: '',
         efFifteen: 0.005857143,
         emissionFifteen: '',
@@ -315,7 +317,7 @@ const VirtualEvent = (props) => {
                     emission: emissionFourteen > 0 ? emissionFourteen : '',
                 },
                 {
-                    name: 'Coloured Magazine/ Page',
+                    name: 'Magazine/ Page',
                     noOfCopies: values?.noOfCopiesTwo,
                     ef: values?.efFifteen,
                     emission: emissionFifteen > 0 ? emissionFifteen : '',
@@ -355,7 +357,7 @@ const VirtualEvent = (props) => {
                                 emissions: emissionFourteen > 0 ? emissionFourteen : '',
                             },
                             {
-                                vtType: "Coloured Magazine/ Page",
+                                vtType: "Magazine/ Page",
                                 noOfCopies: values?.noOfCopiesTwo,
                                 emissions: emissionFifteen > 0 ? emissionFifteen : '',
                             },
@@ -508,7 +510,8 @@ const VirtualEvent = (props) => {
                 },
             ];
 
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Virtual Event" }));
+            // dispatch(addResultTableData({ data: tableData, tabTitle: "Virtual Event" }));
+            dispatch(addResultTableData({ data: tableData, tabTitle: "Outbound Marketing" }));
         },
     });
 
@@ -644,9 +647,11 @@ const VirtualEvent = (props) => {
                 <Card className='p-3 custom-inner-bg'>
                     {/* <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}> */}
                     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                        <IconDiv><img width={100} src={VirtualEventImg} alt="Virtual Event " className="tabImgWhite" /></IconDiv>
+                        {/* <IconDiv><img width={100} src={VirtualEventIcon} alt="Virtual Event" className="tabImgWhite" /></IconDiv> */}
+                        <IconDiv><img width={100} src={outboundIcon} alt="Outbound Marketing" className="tabImgWhite" /></IconDiv>
 
-                        <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
+                        {/* <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} /> */}
+
                         {/*
                         <Typography variant="h4" className="text-center text-white mt-4">Event Promotion on Social Media</Typography>
                         <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
@@ -767,7 +772,8 @@ const VirtualEvent = (props) => {
                                 }}
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} />
+                                    {/* <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} /> */}
+                                    <img src={TVImg} alt="tv" style={{ width: "65px", margin: "auto" }} />
                                     <Typography variant="h6" sx={{ marginY: 1 }}>TV Ad</Typography>
                                     <TextField size='small' type="number" name={'adDuration'} value={values?.adDuration}
                                         label="Ad duration (In Secs)"
@@ -856,7 +862,7 @@ const VirtualEvent = (props) => {
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                     <Icon component={MenuBookIcon} color="yellow" sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Coloured Magazine/ Page</Typography>
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Magazine/ Page</Typography>
                                     <TextField size='small' type="number" name={'noOfCopiesTwo'} value={values?.noOfCopiesTwo}
                                         label="No of copies"
                                         variant="outlined"
@@ -879,75 +885,82 @@ const VirtualEvent = (props) => {
                                     />
                                 </CardContent>
                             </Card>
-                            <Card
-                                sx={{
-                                    width: 260,
-                                    maxWidth: '100%',
-                                    boxShadow: 'lg',
-                                    marginY: '16px'
-                                }}
-                            >
-                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={FaRectangleAd} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Polethylene HDPE Banner</Typography>
-                                    <TextField size='small' type="number" name={'hdpeBanner'} value={values?.hdpeBanner}
-                                        label="Weight (Kgs)"
-                                        variant="outlined"
-                                        fullWidth
-                                        onChange={(e) => {
-                                            formik.setFieldValue("hdpeBanner", Number(e.target.value));
-                                            formik.handleSubmit();
-                                        }}
-                                        sx={{ marginTop: 2 }}
-                                        inputProps={{ style: { color: 'black' } }}
-                                    />
-                                    <TextField size='small' type="number" disabled
-                                        label="Emissions"
-                                        variant="outlined"
-                                        fullWidth
-                                        name={'emissionSixteen'}
-                                        value={values?.emissionSixteen}
-                                        onChange={formik.handleChange}
-                                        sx={{ marginTop: 2 }}
-                                    />
-                                </CardContent>
-                            </Card>
-                            <Card
-                                sx={{
-                                    width: 260,
-                                    maxWidth: '100%',
-                                    boxShadow: 'lg',
-                                    marginY: '16px'
-                                }}
-                            >
-                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={FaSheetPlastic} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>PVC Banners</Typography>
-                                    <TextField size='small' type="number" name={'pvcBanners'} value={values?.pvcBanners}
-                                        label="Weight (Kgs)"
-                                        variant="outlined"
-                                        fullWidth
-                                        onChange={(e) => {
-                                            formik.setFieldValue("pvcBanners", Number(e.target.value));
-                                            formik.handleSubmit();
-                                        }}
-                                        sx={{ marginTop: 2 }}
-                                        inputProps={{ style: { color: 'black' } }}
-                                    />
-                                    <TextField size='small' type="number" disabled
-                                        label="Emissions"
-                                        variant="outlined"
-                                        fullWidth
-                                        name={'emissionSeventeen'}
-                                        value={values?.emissionSeventeen}
-                                        onChange={formik.handleChange}
-                                        sx={{ marginTop: 2 }}
-                                    />
-                                </CardContent>
-                            </Card>
                         </Box>
 
-                        <Typography variant="h4" className="text-center text-white mt-4">Live Broadcasting</Typography>
+                        <Box className="mb-4">
+                            <Typography variant="h4" className="text-center text-white mt-4 mb-2">Outdoor Banner</Typography>
+                            <Grid item xs={12} sm={12} md={6}>
+                                <Box>
+                                    <div className="table-responsive">
+                                        <table className="table-custom-inpt-field">
+                                            <tr>
+                                                <th />
+                                                <th className="ps-2">Wight (Kgs)</th>
+                                                <th className="ps-2">Emissions</th>
+                                            </tr>
+                                            <tr>
+                                                <td className="ps-4 py-1">Polethylene</td>
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        fullWidth
+                                                        size='small'
+                                                        type="number"
+                                                        name={'hdpeBanner'}
+                                                        value={values?.hdpeBanner}
+                                                        onChange={(e) => {
+                                                            formik.setFieldValue("hdpeBanner", Number(e.target.value));
+                                                            formik.handleSubmit();
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }}
+                                                    />
+                                                </td>
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        size='small'
+                                                        type="number"
+                                                        disabled
+                                                        fullWidth
+                                                        name={'emissionSixteen'}
+                                                        value={values?.emissionSixteen}
+                                                        onChange={formik.handleChange}
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className="ps-4 py-1">PVC</td>
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        fullWidth
+                                                        size='small'
+                                                        type="number"
+                                                        name={'pvcBanners'}
+                                                        value={values?.pvcBanners}
+                                                        onChange={(e) => {
+                                                            formik.setFieldValue("pvcBanners", Number(e.target.value));
+                                                            formik.handleSubmit();
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }}
+                                                    />
+                                                </td>
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        size='small'
+                                                        type="number"
+                                                        disabled
+                                                        fullWidth
+                                                        name={'emissionSeventeen'}
+                                                        value={values?.emissionSeventeen}
+                                                        onChange={formik.handleChange}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </Box>
+                            </Grid>
+                        </Box>
+
+                        {/* <Typography variant="h4" className="text-center text-white my-4">Live Broadcasting</Typography>
                         <Box style={{ padding: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
                             <Card
                                 sx={{
@@ -1445,13 +1458,14 @@ const VirtualEvent = (props) => {
                                     />
                                 </CardContent>
                             </Card>
-                        </Box>
+                        </Box> */}
                     </Box>
                     <Grid>
                         <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                             <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button><Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
+                        {/* <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid> */}
+                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Outbound Marketing Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
                     </Grid>
                 </Card>
 

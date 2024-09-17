@@ -106,7 +106,7 @@ const Result = ({ value }) => {
             liveBroadcastParts.push(`Email generating ${emailEmission} kgCO2e`);
         }
 
-        const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my virtual event of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
+        const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
         const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} \n\n${wantInResult}`;
         setContent(finalSentence);
     };

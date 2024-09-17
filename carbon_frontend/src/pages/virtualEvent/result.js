@@ -28,7 +28,8 @@ const Result = ({ value }) => {
 
     const resultData = [
         {
-            type: 'Virtual Event',
+            // type: 'Virtual Event',
+            type: 'Outbound Marketing',
             totalEmission: allVirtualEventData?.totalEmission
         },
     ];
@@ -72,7 +73,8 @@ const Result = ({ value }) => {
 
     const generatePrompt = async () => {
         if (totalCarbonFootprint) {
-            sentenceParts.push(`My Virtual Event has a carbon footprint of ${totalCarbonFootprint}`);
+            // sentenceParts.push(`My Virtual Event has a carbon footprint of ${totalCarbonFootprint}`);
+            sentenceParts.push(`My Outbound Marketing has a carbon footprint of ${totalCarbonFootprint}`);
         }
         if (imgSize) {
             sentenceParts.push(`with a ${imgSize} MB image`);
@@ -111,7 +113,8 @@ const Result = ({ value }) => {
             liveBroadcastParts.push(`YouTube generating ${emissionTwelve} kgCO2e`);
         }
 
-        const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my virtual event of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
+        // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my virtual event of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
+        const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my outbound marketing of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
         const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} ${carbonPerDollar} \n\n${wantInResult}`;
         setContent(finalSentence);
     };
@@ -132,7 +135,8 @@ const Result = ({ value }) => {
             return line;
         }).join('\n');
 
-        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Virtual Event : </h3> `;
+        // let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Virtual Event : </h3> `;
+        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Outbound Marketing : </h3> `;
 
         formattedSuggestions.split('\n').forEach((line, index) => {
             pdfData += `${line}<br />`;

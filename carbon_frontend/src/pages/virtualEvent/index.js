@@ -3,6 +3,7 @@ import { useState } from 'react';
 import VirtualEvent from './VirtualEvent';
 import Result from './result';
 import virtualEventImg from '../../layouts/user/assets/images/virtualEvent.png';
+import outboundIcon from '../../assets/outboundIcon.png';
 import result from '../../assets/result.png';
 
 const VirtualEventCalculation = () => {
@@ -24,7 +25,8 @@ const VirtualEventCalculation = () => {
                         scrollButtons="auto"
                         aria-label="scrollable auto tabs example"
                     >
-                        <Tab icon={<img src={virtualEventImg} alt='' width={60} className='tabImgZoomIn tabImgWhite' />} label="Virtual Event" className='tab-text' />
+                        {/* <Tab icon={<img src={virtualEventImg} alt='' width={60} className='tabImgZoomIn tabImgWhite' />} label="Virtual Event" className='tab-text' /> */}
+                        <Tab icon={<img src={outboundIcon} alt='' width={42} className='tabImgZoomIn tabImgWhite' />} label="Outbound Marketing" className='tab-text' />
                         <Tab icon={<img src={result} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Summary" className='tab-text' />
                     </Tabs>
                 </Box>
