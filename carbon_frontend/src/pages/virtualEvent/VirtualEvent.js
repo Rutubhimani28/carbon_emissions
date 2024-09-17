@@ -642,8 +642,9 @@ const VirtualEvent = (props) => {
                     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv><img width={100} src={VirtualEventImg} alt="Virtual Event " className="tabImgWhite" /></IconDiv>
 
-                        <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />     
-                        {/*<Typography variant="h4" className="text-center text-white mt-4">Event Promotion on Social Media</Typography>
+                        <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
+                        {/*
+                        <Typography variant="h4" className="text-center text-white mt-4">Event Promotion on Social Media</Typography>
                         <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
                             <Card
                                 sx={{
