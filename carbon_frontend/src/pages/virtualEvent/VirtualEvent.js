@@ -127,7 +127,7 @@ const VirtualEvent = (props) => {
         efThirteen: 2.25,
         emissionThirteen: '',
 
-        // Newspaper Full page Ad
+        // Newspaper- Full page Ad
         noOfCopiesOne: '',
         efFourteen: 0.023125,
         emissionFourteen: '',
@@ -311,7 +311,7 @@ const VirtualEvent = (props) => {
                 },
 
                 {
-                    name: 'Newspaper Full page Ad',
+                    name: 'Newspaper- Full page Ad',
                     noOfCopies: values?.noOfCopiesOne,
                     ef: values?.efFourteen,
                     emission: emissionFourteen > 0 ? emissionFourteen : '',
@@ -352,7 +352,7 @@ const VirtualEvent = (props) => {
                         th: ["", "No of copies", "Emissions"],
                         td: [
                             {
-                                vtType: "Newspaper Full page Ad",
+                                vtType: "Newspaper- Full page Ad",
                                 noOfCopies: values?.noOfCopiesOne,
                                 emissions: emissionFourteen > 0 ? emissionFourteen : '',
                             },
@@ -832,7 +832,7 @@ const VirtualEvent = (props) => {
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                     <Icon component={IoNewspaper} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper Full page Ad</Typography>
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper- Full page Ad</Typography>
                                     <TextField size='small' type="number" name={'noOfCopiesOne'} value={values?.noOfCopiesOne}
                                         label="No of copies"
                                         variant="outlined"
