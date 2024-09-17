@@ -120,7 +120,7 @@ const Waste = (props) => {
                     emission: plasticWrappingEmission > 0 ? plasticWrappingEmission : '',
                 },
                 // {
-                //     type: 'PolethyleneHDPEBanner',
+                //     type: 'PolyethyleneHDPEBanner',
                 //     hdpeBanner: values?.hdpeBanner,
                 //     emission: Number((3.11 * values?.hdpeBanner).toFixed(2)) || 0,
                 // },
@@ -272,7 +272,7 @@ const Waste = (props) => {
             formik.setFieldValue('cottonBagsA4SizeEmission', allData[15]?.emission);
         }
     }, [value]);
-    
+
     return (
         <div>
             <Container maxWidth>
@@ -526,7 +526,7 @@ const Waste = (props) => {
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Polethylene HDPE Banner</td>
+                                                    <td className="ps-2 py-1">Polyethylene HDPE Banner</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"

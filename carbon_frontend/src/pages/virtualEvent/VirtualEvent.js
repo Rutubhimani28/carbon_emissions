@@ -127,7 +127,7 @@ const VirtualEvent = (props) => {
         efThirteen: 2.25,
         emissionThirteen: '',
 
-        // Newspaper Full page Ad
+        // Newspaper- Full page Ad
         noOfCopiesOne: '',
         efFourteen: 0.023125,
         emissionFourteen: '',
@@ -138,7 +138,7 @@ const VirtualEvent = (props) => {
         emissionFifteen: '',
 
         //  Outdoor Branding:
-        // Polethylene HDPE Banner
+        // Polyethylene HDPE Banner
         hdpeBanner: '',              // Weight (kgs)
         efSixteen: 3.11,
         emissionSixteen: '',
@@ -311,7 +311,7 @@ const VirtualEvent = (props) => {
                 },
 
                 {
-                    name: 'Newspaper Full page Ad',
+                    name: 'Newspaper- Full page Ad',
                     noOfCopies: values?.noOfCopiesOne,
                     ef: values?.efFourteen,
                     emission: emissionFourteen > 0 ? emissionFourteen : '',
@@ -323,7 +323,7 @@ const VirtualEvent = (props) => {
                     emission: emissionFifteen > 0 ? emissionFifteen : '',
                 },
                 {
-                    name: 'Polethylene HDPE Banner',
+                    name: 'Polyethylene HDPE Banner',
                     hdpeBanner: values?.hdpeBanner,
                     ef: values?.efSixteen,
                     emission: emissionSixteen > 0 ? emissionSixteen : '',
@@ -352,7 +352,7 @@ const VirtualEvent = (props) => {
                         th: ["", "No of copies", "Emissions"],
                         td: [
                             {
-                                vtType: "Newspaper Full page Ad",
+                                vtType: "Newspaper- Full page Ad",
                                 noOfCopies: values?.noOfCopiesOne,
                                 emissions: emissionFourteen > 0 ? emissionFourteen : '',
                             },
@@ -371,7 +371,7 @@ const VirtualEvent = (props) => {
                         th: ["", "Weight (Kgs)", "Emissions"],
                         td: [
                             {
-                                vtType: "Polethylene HDPE Banner",
+                                vtType: "Polyethylene HDPE Banner",
                                 kgs: values?.hdpeBanner,
                                 emissions: emissionSixteen > 0 ? emissionSixteen : '',
                             },
@@ -832,7 +832,7 @@ const VirtualEvent = (props) => {
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                     <Icon component={IoNewspaper} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper Full page Ad</Typography>
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper- Full page Ad</Typography>
                                     <TextField size='small' type="number" name={'noOfCopiesOne'} value={values?.noOfCopiesOne}
                                         label="No of copies"
                                         variant="outlined"
@@ -899,7 +899,7 @@ const VirtualEvent = (props) => {
                                                 <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className="ps-4 py-1">Polethylene</td>
+                                                <td className="ps-4 py-1">Polyethylene</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField
                                                         fullWidth
