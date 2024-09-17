@@ -24,6 +24,7 @@ import { addVirtualEventData, deleteVirtualEventData } from '../../redux/slice/t
 import { addResultTableData, deleteResTabVrtEventData } from '../../redux/slice/resultTableDataSlice';
 import VirtualEventImg from '../../layouts/user/assets/images/virtualEvent.png';
 import { IconDiv } from '../../components/IconDiv';
+import TVImg from '../../layouts/user/assets/images/tv.png';
 
 const style = {
     position: 'absolute',
@@ -767,7 +768,8 @@ const VirtualEvent = (props) => {
                                 }}
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} />
+                                    {/* <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} /> */}
+                                    <img src={TVImg} alt="tv" style={{ width: "65px", margin: "auto" }} />
                                     <Typography variant="h6" sx={{ marginY: 1 }}>TV Ad</Typography>
                                     <TextField size='small' type="number" name={'adDuration'} value={values?.adDuration}
                                         label="Ad duration (In Secs)"
