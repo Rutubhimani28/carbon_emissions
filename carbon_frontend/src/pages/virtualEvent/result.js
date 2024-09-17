@@ -260,9 +260,9 @@ const Result = ({ value }) => {
                                                                                     (rowData.imgSize !== "" || rowData.impressionsOne !== "" || rowData.impressionsTwo !== "" || rowData.videoSize !== "" || rowData.videoMins !== "" || rowData.noOfPeople !== "" || rowData.noOfMins !== "") && rowData.emissions !== "" && (
                                                                                         <tr key={rowIndex}>
                                                                                             <td>{rowData.vtType}</td>
-                                                                                            <td>{rowData.imgSize || rowData.videoSize || rowData.noOfMins}</td>
-                                                                                            <td>{rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople}</td>
-                                                                                            {(rowData.impressionsTwo) && <td>{rowData.impressionsTwo}</td>}
+                                                                                            <td>{rowData.imgSize || rowData.videoSize || rowData.noOfMins || rowData.noOfCopies || rowData.kgs || rowData.adDuration}</td>
+                                                                                            <td>{rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople || rowData.noOfSlots}</td>
+                                                                                            {(rowData.impressionsTwo || rowData.viewers) && <td>{rowData.impressionsTwo || rowData.viewers}</td>}
                                                                                             <td>{rowData.emissions}</td>
                                                                                         </tr>
                                                                                     )

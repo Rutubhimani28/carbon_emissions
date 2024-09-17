@@ -234,7 +234,10 @@ const resultTableDataSlice = createSlice({
                     return {
                         tabTitle: "Virtual Event",
                         tabData: [
-                            { subType: "Event Promotion on Social Media", scope: 3 },
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
+                            { subType: "", scope: 3 },
+                            // { subType: "Event Promotion on Social Media", scope: 3 },
                             { subType: "", scope: 3 },
                             { subType: "Live Broadcasting", scope: 1 },
                         ]

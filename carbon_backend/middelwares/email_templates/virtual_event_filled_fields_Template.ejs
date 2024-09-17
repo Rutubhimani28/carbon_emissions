@@ -122,16 +122,21 @@
                                                                         </td>
                                                                         <td>
                                                                             <%= rowData.imgSize || rowData.videoSize ||
-                                                                                rowData.noOfMins %>
+                                                                                rowData.noOfMins || rowData.kgs ||
+                                                                                rowData.adDuration || rowData.noOfCopies
+                                                                                %>
                                                                         </td>
+                                                                    <% if (rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople || rowData.noOfSlots) { %>
                                                                         <td>
-                                                                            <%= rowData.videoMins ||
-                                                                                rowData.impressionsOne ||
-                                                                                rowData.noOfPeople %>
+                                                                            <%= rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople || rowData.noOfSlots %>
                                                                         </td>
-                                                                        <% if (rowData.impressionsTwo) { %>
+                                                                        <% } %>
+
+                                                                        <% if (rowData.impressionsTwo ||
+                                                                            rowData.viewers) { %>
                                                                             <td>
-                                                                                <%= rowData.impressionsTwo %>
+                                                                                <%= rowData.impressionsTwo ||
+                                                                                    rowData.viewers%>
                                                                             </td>
                                                                             <% } %>
                                                                                 <td>
