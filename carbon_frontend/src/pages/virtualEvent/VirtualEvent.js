@@ -5,6 +5,9 @@ import { Box, Button, ButtonGroup, Card, CardActions, CardContent, Container, Gr
 import { useTheme } from '@mui/material/styles';
 import { TiInfoLarge } from 'react-icons/ti';
 import CloseIcon from '@mui/icons-material/Close';
+import { BiSolidTv } from "react-icons/bi";
+import { FaSheetPlastic, FaRectangleAd } from "react-icons/fa6";
+import { IoNewspaper } from "react-icons/io5";
 import {
     Facebook as FacebookIcon,
     Instagram as InstagramIcon,
@@ -13,6 +16,7 @@ import {
     Pinterest as PinterestIcon,
     LinkedIn as LinkedInIcon,
     Reddit as RedditIcon,
+    MenuBook as MenuBookIcon
 } from '@mui/icons-material';
 import { FaSnapchat, FaTwitch, FaTiktok, FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
 import { GiVideoConference } from "react-icons/gi";
@@ -752,38 +756,8 @@ const VirtualEvent = (props) => {
                                 </CardContent>
                             </Card>
                         </Box> */}
-                        <Typography variant="h4" className="text-center text-white mt-4">Print advertising</Typography>
-                        <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
-                            <Card
-                                sx={{
-                                    width: 280,
-                                    maxWidth: '100%',
-                                    boxShadow: 'lg',
-                                    marginY: '16px'
-                                }}
-                            >
-                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={FaImage} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper Full page Ad</Typography>
-                                    <TextField size='small' type="number" name={'noOfCopiesOne'} value={values?.noOfCopiesOne}
-                                        label="No of copies"
-                                        variant="outlined"
-                                        fullWidth
-                                        onChange={(e) => {
-                                            formik.setFieldValue("noOfCopiesOne", Number(e.target.value));
-                                            formik.handleSubmit();
-                                        }}
-                                        sx={{ marginTop: 2 }}
-                                        inputProps={{ style: { color: 'black' } }}
-                                    />
-                                    <TextField size='small' type="number" disabled name={'emissionFourteen'}
-                                        label="Emissions"
-                                        variant="outlined"
-                                        fullWidth
-                                        value={values?.emissionFourteen} onChange={formik.handleChange} sx={{ marginTop: 2 }}
-                                    />
-                                </CardContent>
-                            </Card>
+
+                        <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }} className="mt-5">
                             <Card
                                 sx={{
                                     width: 260,
@@ -793,106 +767,7 @@ const VirtualEvent = (props) => {
                                 }}
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Coloured Magazine/ Page</Typography>
-                                    <TextField size='small' type="number" name={'noOfCopiesTwo'} value={values?.noOfCopiesTwo}
-                                        label="No of copies"
-                                        variant="outlined"
-                                        fullWidth
-                                        onChange={(e) => {
-                                            formik.setFieldValue("noOfCopiesTwo", Number(e.target.value));
-                                            formik.handleSubmit();
-                                        }}
-                                        sx={{ marginTop: 2 }}
-                                        inputProps={{ style: { color: 'black' } }}
-                                    />
-                                    <TextField size='small' type="number" disabled
-                                        label="Emissions"
-                                        variant="outlined"
-                                        fullWidth
-                                        name={'emissionFifteen'}
-                                        value={values?.emissionFifteen}
-                                        onChange={formik.handleChange}
-                                        sx={{ marginTop: 2 }}
-                                    />
-                                </CardContent>
-                            </Card>
-                            <Card
-                                sx={{
-                                    width: 260,
-                                    maxWidth: '100%',
-                                    boxShadow: 'lg',
-                                    marginY: '16px'
-                                }}
-                            >
-                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Polethylene HDPE Banner</Typography>
-                                    <TextField size='small' type="number" name={'hdpeBanner'} value={values?.hdpeBanner}
-                                        label="Weight (Kgs)"
-                                        variant="outlined"
-                                        fullWidth
-                                        onChange={(e) => {
-                                            formik.setFieldValue("hdpeBanner", Number(e.target.value));
-                                            formik.handleSubmit();
-                                        }}
-                                        sx={{ marginTop: 2 }}
-                                        inputProps={{ style: { color: 'black' } }}
-                                    />
-                                    <TextField size='small' type="number" disabled
-                                        label="Emissions"
-                                        variant="outlined"
-                                        fullWidth
-                                        name={'emissionSixteen'}
-                                        value={values?.emissionSixteen}
-                                        onChange={formik.handleChange}
-                                        sx={{ marginTop: 2 }}
-                                    />
-                                </CardContent>
-                            </Card>
-                            <Card
-                                sx={{
-                                    width: 260,
-                                    maxWidth: '100%',
-                                    boxShadow: 'lg',
-                                    marginY: '16px'
-                                }}
-                            >
-                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>PVC Banners</Typography>
-                                    <TextField size='small' type="number" name={'pvcBanners'} value={values?.pvcBanners}
-                                        label="Weight (Kgs)"
-                                        variant="outlined"
-                                        fullWidth
-                                        onChange={(e) => {
-                                            formik.setFieldValue("pvcBanners", Number(e.target.value));
-                                            formik.handleSubmit();
-                                        }}
-                                        sx={{ marginTop: 2 }}
-                                        inputProps={{ style: { color: 'black' } }}
-                                    />
-                                    <TextField size='small' type="number" disabled
-                                        label="Emissions"
-                                        variant="outlined"
-                                        fullWidth
-                                        name={'emissionSeventeen'}
-                                        value={values?.emissionSeventeen}
-                                        onChange={formik.handleChange}
-                                        sx={{ marginTop: 2 }}
-                                    />
-                                </CardContent>
-                            </Card>
-                            <Card
-                                sx={{
-                                    width: 260,
-                                    maxWidth: '100%',
-                                    boxShadow: 'lg',
-                                    marginY: '16px'
-                                }}
-                            >
-                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} />
                                     <Typography variant="h6" sx={{ marginY: 1 }}>TV Ad</Typography>
                                     <TextField size='small' type="number" name={'adDuration'} value={values?.adDuration}
                                         label="Ad duration (In Secs)"
@@ -936,6 +811,135 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         name={'emissionEightteen'}
                                         value={values?.emissionEightteen}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 280,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={IoNewspaper} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper Full page Ad</Typography>
+                                    <TextField size='small' type="number" name={'noOfCopiesOne'} value={values?.noOfCopiesOne}
+                                        label="No of copies"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfCopiesOne", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={'emissionFourteen'}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={values?.emissionFourteen} onChange={formik.handleChange} sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={MenuBookIcon} color="yellow" sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Coloured Magazine/ Page</Typography>
+                                    <TextField size='small' type="number" name={'noOfCopiesTwo'} value={values?.noOfCopiesTwo}
+                                        label="No of copies"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfCopiesTwo", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionFifteen'}
+                                        value={values?.emissionFifteen}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaRectangleAd} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Polethylene HDPE Banner</Typography>
+                                    <TextField size='small' type="number" name={'hdpeBanner'} value={values?.hdpeBanner}
+                                        label="Weight (Kgs)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("hdpeBanner", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionSixteen'}
+                                        value={values?.emissionSixteen}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaSheetPlastic} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>PVC Banners</Typography>
+                                    <TextField size='small' type="number" name={'pvcBanners'} value={values?.pvcBanners}
+                                        label="Weight (Kgs)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("pvcBanners", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionSeventeen'}
+                                        value={values?.emissionSeventeen}
                                         onChange={formik.handleChange}
                                         sx={{ marginTop: 2 }}
                                     />
