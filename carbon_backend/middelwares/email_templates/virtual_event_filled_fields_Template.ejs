@@ -76,7 +76,8 @@
         <h2>Total Carbon Footprint:</h2>
         <table>
             <tr>
-                <th>Virtual Event</th>
+                <!-- <th>Virtual Event</th> -->
+                <th>Outbound Marketing</th>
                 <td>
                     <%= data.totalVirtualEvent %> kgCO<sub>2</sub>e
                 </td>
@@ -88,7 +89,7 @@
         <% if (resultTableData && resultTableData.data) { %>
             <% resultTableData.data.forEach(function(page) { %>
                 <% if (page.tabData && page.tabData.length> 0) { %>
-                    <% if (page.tabTitle==="Virtual Event" ) { %>
+                    <% if (page.tabTitle==="Outbound Marketing" ) { %>
                         <div class="page">
                             <h3 class="title">
                                 <%= page.tabTitle %>
@@ -116,7 +117,7 @@
                                                         <% flightClass.subTypeData.td.forEach(function(rowData) { %>
                                                             <% if (rowData.emissions !=="" ) { %>
                                                                 <tr>
-                                                                    <% if (page.tabTitle==="Virtual Event" ) { %>
+                                                                    <% if (page.tabTitle==="Outbound Marketing" ) { %>
                                                                         <td>
                                                                             <%= rowData.vtType %>
                                                                         </td>
@@ -126,23 +127,28 @@
                                                                                 rowData.adDuration || rowData.noOfCopies
                                                                                 %>
                                                                         </td>
-                                                                    <% if (rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople || rowData.noOfSlots) { %>
-                                                                        <td>
-                                                                            <%= rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople || rowData.noOfSlots %>
-                                                                        </td>
-                                                                        <% } %>
-
-                                                                        <% if (rowData.impressionsTwo ||
-                                                                            rowData.viewers) { %>
+                                                                        <% if (rowData.videoMins ||
+                                                                            rowData.impressionsOne || rowData.noOfPeople
+                                                                            || rowData.noOfSlots) { %>
                                                                             <td>
-                                                                                <%= rowData.impressionsTwo ||
-                                                                                    rowData.viewers%>
+                                                                                <%= rowData.videoMins ||
+                                                                                    rowData.impressionsOne ||
+                                                                                    rowData.noOfPeople ||
+                                                                                    rowData.noOfSlots %>
                                                                             </td>
                                                                             <% } %>
-                                                                                <td>
-                                                                                    <%= rowData.emissions %>
-                                                                                </td>
-                                                                                <% } %>
+
+                                                                                <% if (rowData.impressionsTwo ||
+                                                                                    rowData.viewers) { %>
+                                                                                    <td>
+                                                                                        <%= rowData.impressionsTwo ||
+                                                                                            rowData.viewers%>
+                                                                                    </td>
+                                                                                    <% } %>
+                                                                                        <td>
+                                                                                            <%= rowData.emissions %>
+                                                                                        </td>
+                                                                                        <% } %>
                                                                 </tr>
                                                                 <% } %>
                                                                     <% }); %>

@@ -230,16 +230,18 @@ const resultTableDataSlice = createSlice({
         },
         deleteResTabVrtEventData: (state, action) => {
             const filteredData = state.data.map(item => {
-                if (item.tabTitle === 'Virtual Event') {
+                // if (item.tabTitle === 'Virtual Event') {
+                if (item.tabTitle === 'Outbound Marketing') {
                     return {
-                        tabTitle: "Virtual Event",
+                        // tabTitle: "Virtual Event",
+                        tabTitle: "Outbound Marketing",
                         tabData: [
                             { subType: "", scope: 3 },
                             { subType: "", scope: 3 },
                             { subType: "", scope: 3 },
                             // { subType: "Event Promotion on Social Media", scope: 3 },
                             { subType: "", scope: 3 },
-                            { subType: "Live Broadcasting", scope: 1 },
+                            // { subType: "Live Broadcasting", scope: 1 },
                         ]
                     };
                 }
