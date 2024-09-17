@@ -44,24 +44,24 @@ const VirtualEvent = (props) => {
     const [openInfo, setOpenInfo] = useState(false);
 
     const initialValues = {
-        imgSize: '',
-        deviceEnergy1: '',       // 0.01(1/60)
-        somePlatformEnergy1: '', // =(0.4/1000)*imgSize
-        networkEnergy1: '',      // =(0.2/1000)*imgSize
-        totalEnergy1: '',        // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
-        efOne: '',               // = totalEnergy1*0.43
-        impressionsOne: '',      // 
-        emissionOne: '',
+        // imgSize: '',
+        // deviceEnergy1: '',       // 0.01(1/60)
+        // somePlatformEnergy1: '', // =(0.4/1000)*imgSize
+        // networkEnergy1: '',      // =(0.2/1000)*imgSize
+        // totalEnergy1: '',        // = deviceEnergy1 + somePlatformEnergy1 + networkEnergy1
+        // efOne: '',               // = totalEnergy1*0.43
+        // impressionsOne: '',      // 
+        // emissionOne: '',
 
-        videoSize: '',
-        videoMins: '',
-        deviceEnergy2: '',       // = 0.01*( videoMins/60)
-        somePlatformEnergy2: '', // = ( videoSize/1000)*0.4
-        networkEnergy2: '',      // = (0.2/1000)* videoSize
-        totalEnergy2: '',        // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
-        efTwo: '',               // = totalEnergy2*0.43
-        impressionsTwo: '',
-        emissionTwo: '',         // videoSize * videoMins * impressionsTwo * efTwo
+        // videoSize: '',
+        // videoMins: '',
+        // deviceEnergy2: '',       // = 0.01*( videoMins/60)
+        // somePlatformEnergy2: '', // = ( videoSize/1000)*0.4
+        // networkEnergy2: '',      // = (0.2/1000)* videoSize
+        // totalEnergy2: '',        // = deviceEnergy2 + somePlatformEnergy2 + networkEnergy2
+        // efTwo: '',               // = totalEnergy2*0.43
+        // impressionsTwo: '',
+        // emissionTwo: '',         // videoSize * videoMins * impressionsTwo * efTwo
 
         // Socail Media Platforms
         // Tiktok
@@ -120,6 +120,33 @@ const VirtualEvent = (props) => {
         noOfPeopleEleven: '',
         efThirteen: 2.25,
         emissionThirteen: '',
+
+        // Newspaper Full page Ad
+        noOfCopiesOne: '',
+        efFourteen: 0.023125,
+        emissionFourteen: '',
+
+        // Coloured Magazine/ Page
+        noOfCopiesTwo: '',
+        efFifteen: 0.005857143,
+        emissionFifteen: '',
+
+        //  Outdoor Branding:
+        // Polethylene HDPE Banner
+        hdpeBanner: '',              // Weight (kgs)
+        efSixteen: 3.11,
+        emissionSixteen: '',
+        // PVC Banners
+        pvcBanners: '',              // Weight (kgs)
+        efSeventeen: 7.83,
+        emissionSeventeen: '',
+
+        // TV Ad
+        adDuration: '',            // Ad Duration (In Sec)
+        noOfSlots: '',
+        viewers: '',
+        efEighteen: 0.002,
+        emissionEightteen: '',
     };
 
     const formik = useFormik({
@@ -144,6 +171,12 @@ const VirtualEvent = (props) => {
             // Video Conferencing
             const emissionThirteen = values?.noOfMinsEleven === 0 || values?.noOfPeopleEleven === 0 ? 0 : (Number(Number(values?.noOfMinsEleven) * Number(values?.noOfPeopleEleven) * Number(values?.efThirteen) / 1000).toFixed(2));
 
+            const emissionFourteen = values?.noOfCopiesOne === 0 ? 0 : Number(Number(values?.noOfCopiesOne) * Number(values?.efFourteen)).toFixed(2);
+            const emissionFifteen = values?.noOfCopiesTwo === 0 ? 0 : Number(Number(values?.noOfCopiesTwo) * Number(values?.efFifteen)).toFixed(2);
+            const emissionSixteen = values?.hdpeBanner === 0 ? 0 : Number(Number(values?.hdpeBanner) * Number(values?.efSixteen)).toFixed(2);
+            const emissionSeventeen = values?.pvcBanners === 0 ? 0 : Number(Number(values?.pvcBanners) * Number(values?.efSeventeen)).toFixed(2);
+            const emissionEightteen = values?.adDuration === 0 ? 0 : Number(Number(values?.adDuration) * Number(values?.noOfSlots) * Number(values?.viewers) * Number(values?.efEighteen)).toFixed(2);
+
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 
             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
@@ -161,29 +194,35 @@ const VirtualEvent = (props) => {
 
             if (emissionThirteen > 0) formik.setFieldValue('emissionThirteen', emissionThirteen);
 
+            if (emissionFourteen > 0) formik.setFieldValue('emissionFourteen', emissionFourteen);
+            if (emissionFifteen > 0) formik.setFieldValue('emissionFifteen', emissionFifteen);
+            if (emissionSixteen > 0) formik.setFieldValue('emissionSixteen', emissionSixteen);
+            if (emissionSeventeen > 0) formik.setFieldValue('emissionSeventeen', emissionSeventeen);
+            if (emissionEightteen > 0) formik.setFieldValue('emissionEightteen', emissionEightteen);
+
             const data = [
                 {
-                    type: 'Image',
-                    imgSize: values?.imgSize,
-                    deviceEnergy1: values?.deviceEnergy1,
-                    somePlatformEnergy1: values?.somePlatformEnergy1,
-                    networkEnergy1: values?.networkEnergy1,
-                    totalEnergy1: values?.totalEnergy1,
-                    efOne: values?.efOne,
-                    impressionsOne: values?.impressionsOne,
-                    emission: emissionOne > 0 ? emissionOne : ''
+                    // type: 'Image',
+                    // imgSize: values?.imgSize,
+                    // deviceEnergy1: values?.deviceEnergy1,
+                    // somePlatformEnergy1: values?.somePlatformEnergy1,
+                    // networkEnergy1: values?.networkEnergy1,
+                    // totalEnergy1: values?.totalEnergy1,
+                    // efOne: values?.efOne,
+                    // impressionsOne: values?.impressionsOne,
+                    // emission: emissionOne > 0 ? emissionOne : ''
                 },
                 {
-                    type: 'Video',
-                    videoSize: values?.videoSize,
-                    videoMins: values?.videoMins,
-                    deviceEnergy2: values?.deviceEnergy2,
-                    somePlatformEnergy2: values?.somePlatformEnergy2,
-                    networkEnergy2: values?.networkEnergy2,
-                    totalEnergy2: values?.totalEnergy2,
-                    efTwo: values?.efTwo,
-                    impressionsTwo: values?.impressionsTwo,
-                    emission: emissionTwo > 0 ? emissionTwo : ''
+                    // type: 'Video',
+                    // videoSize: values?.videoSize,
+                    // videoMins: values?.videoMins,
+                    // deviceEnergy2: values?.deviceEnergy2,
+                    // somePlatformEnergy2: values?.somePlatformEnergy2,
+                    // networkEnergy2: values?.networkEnergy2,
+                    // totalEnergy2: values?.totalEnergy2,
+                    // efTwo: values?.efTwo,
+                    // impressionsTwo: values?.impressionsTwo,
+                    // emission: emissionTwo > 0 ? emissionTwo : ''
                 },
 
                 {
@@ -263,22 +302,58 @@ const VirtualEvent = (props) => {
                     noOfPeople: values?.noOfPeopleEleven,
                     ef: values?.efThirteen,
                     emission: emissionThirteen > 0 ? emissionThirteen : '',
-                }
+                },
+
+                {
+                    name: 'Newspaper Full page Ad',
+                    noOfCopies: values?.noOfCopiesOne,
+                    ef: values?.efFourteen,
+                    emission: emissionFourteen > 0 ? emissionFourteen : '',
+                },
+                {
+                    name: 'Coloured Magazine/ Page',
+                    noOfCopies: values?.noOfCopiesTwo,
+                    ef: values?.efFifteen,
+                    emission: emissionFifteen > 0 ? emissionFifteen : '',
+                },
+                {
+                    name: 'Polethylene HDPE Banner',
+                    hdpeBanner: values?.hdpeBanner,
+                    ef: values?.efSixteen,
+                    emission: emissionSixteen > 0 ? emissionSixteen : '',
+                },
+                {
+                    name: 'PVC Banners',
+                    pvcBanners: values?.pvcBanners,
+                    ef: values?.efSeventeen,
+                    emission: emissionSeventeen > 0 ? emissionSeventeen : '',
+                },
+                {
+                    name: 'TV Ad',
+                    adDuration: values?.adDuration,
+                    noOfSlots: values?.noOfSlots,
+                    viewers: values?.viewers,
+                    ef: values?.efEighteen,
+                    emission: emissionEightteen > 0 ? emissionEightteen : '',
+                },
             ];
             dispatch(addVirtualEventData({ data }));
 
             const tableData = [
                 {
-                    subType: "Event Promotion on Social Media",
+                    subType: "",
                     subTypeData: {
-                        // th: ["Image", "Image Size (in Mb)", "Impressions", "Emissions"],
-                        th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
+                        th: ["", "No of copies", "Emissions"],
                         td: [
                             {
-                                vtType: "Image",
-                                imgSize: values?.imgSize,
-                                impressionsOne: values?.impressionsOne,
-                                emissions: emissionOne > 0 ? emissionOne : '',
+                                vtType: "Newspaper Full page Ad",
+                                noOfCopies: values?.noOfCopiesOne,
+                                emissions: emissionFourteen > 0 ? emissionFourteen : '',
+                            },
+                            {
+                                vtType: "Coloured Magazine/ Page",
+                                noOfCopies: values?.noOfCopiesTwo,
+                                emissions: emissionFifteen > 0 ? emissionFifteen : '',
                             },
                         ]
                     },
@@ -287,20 +362,71 @@ const VirtualEvent = (props) => {
                 {
                     subType: "",
                     subTypeData: {
-                        // th: ["Video", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
-                        th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                        th: ["", "Weight (Kgs)", "Emissions"],
                         td: [
                             {
-                                vtType: "Video",
-                                videoSize: values?.videoSize,
-                                videoMins: values?.videoMins,
-                                impressionsTwo: values?.impressionsTwo,
-                                emissions: emissionTwo > 0 ? emissionTwo : '',
+                                vtType: "Polethylene HDPE Banner",
+                                kgs: values?.hdpeBanner,
+                                emissions: emissionSixteen > 0 ? emissionSixteen : '',
+                            },
+                            {
+                                vtType: "PVC Banners",
+                                kgs: values?.pvcBanners,
+                                emissions: emissionSeventeen > 0 ? emissionSeventeen : '',
                             },
                         ]
                     },
                     scope: 3
                 },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "Ad duration (In Sec)", "No of slots", "Viewers", "Emissions"],
+                        td: [
+                            {
+                                vtType: "Tv Ad",
+                                adDuration: values?.adDuration,
+                                noOfSlots: values?.noOfSlots,
+                                viewers: values?.viewers,
+                                emissions: emissionEightteen > 0 ? emissionEightteen : '',
+                            }
+                        ]
+                    },
+                    scope: 3
+                },
+                // {
+                //     subType: "Event Promotion on Social Media",
+                //     subTypeData: {
+                //         // th: ["Image", "Image Size (in Mb)", "Impressions", "Emissions"],
+                //         th: ["", "Image Size (in Mb)", "Impressions", "Emissions"],
+                //         td: [
+                //             {
+                //                 vtType: "Image",
+                //                 imgSize: values?.imgSize,
+                //                 impressionsOne: values?.impressionsOne,
+                //                 emissions: emissionOne > 0 ? emissionOne : '',
+                //             },
+                //         ]
+                //     },
+                //     scope: 3
+                // },
+                // {
+                //     subType: "",
+                //     subTypeData: {
+                //         // th: ["Video", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                //         th: ["", "Video Size (in Mb)", "Video (in mins)", "Impressions", "Emissions"],
+                //         td: [
+                //             {
+                //                 vtType: "Video",
+                //                 videoSize: values?.videoSize,
+                //                 videoMins: values?.videoMins,
+                //                 impressionsTwo: values?.impressionsTwo,
+                //                 emissions: emissionTwo > 0 ? emissionTwo : '',
+                //             },
+                //         ]
+                //     },
+                //     scope: 3
+                // },
                 {
                     subType: "Live Broadcasting",
                     subTypeData: {
@@ -394,24 +520,24 @@ const VirtualEvent = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue('imgSize', allData[0]?.imgSize);
-            formik.setFieldValue('deviceEnergy1', allData[0]?.deviceEnergy1);
-            formik.setFieldValue('somePlatformEnergy1', allData[0]?.somePlatformEnergy1);
-            formik.setFieldValue('networkEnergy1', allData[0]?.networkEnergy1);
-            formik.setFieldValue('totalEnergy1', allData[0]?.totalEnergy1);
-            formik.setFieldValue('efOne', allData[0]?.efOne);
-            formik.setFieldValue('impressionsOne', allData[0]?.impressionsOne);
-            formik.setFieldValue('emissionOne', allData[0]?.emission);
+            // formik.setFieldValue('imgSize', allData[0]?.imgSize);
+            // formik.setFieldValue('deviceEnergy1', allData[0]?.deviceEnergy1);
+            // formik.setFieldValue('somePlatformEnergy1', allData[0]?.somePlatformEnergy1);
+            // formik.setFieldValue('networkEnergy1', allData[0]?.networkEnergy1);
+            // formik.setFieldValue('totalEnergy1', allData[0]?.totalEnergy1);
+            // formik.setFieldValue('efOne', allData[0]?.efOne);
+            // formik.setFieldValue('impressionsOne', allData[0]?.impressionsOne);
+            // formik.setFieldValue('emissionOne', allData[0]?.emission);
 
-            formik.setFieldValue('videoSize', allData[1]?.videoSize);
-            formik.setFieldValue('videoMins', allData[1]?.videoMins);
-            formik.setFieldValue('deviceEnergy2', allData[1]?.deviceEnergy2);
-            formik.setFieldValue('somePlatformEnergy2', allData[1]?.somePlatformEnergy2);
-            formik.setFieldValue('networkEnergy2', allData[1]?.networkEnergy2);
-            formik.setFieldValue('totalEnergy2', allData[1]?.totalEnergy2);
-            formik.setFieldValue('efTwo', allData[1]?.efTwo);
-            formik.setFieldValue('impressionsTwo', allData[1]?.impressionsTwo);
-            formik.setFieldValue('emissionTwo', allData[1]?.emission);
+            // formik.setFieldValue('videoSize', allData[1]?.videoSize);
+            // formik.setFieldValue('videoMins', allData[1]?.videoMins);
+            // formik.setFieldValue('deviceEnergy2', allData[1]?.deviceEnergy2);
+            // formik.setFieldValue('somePlatformEnergy2', allData[1]?.somePlatformEnergy2);
+            // formik.setFieldValue('networkEnergy2', allData[1]?.networkEnergy2);
+            // formik.setFieldValue('totalEnergy2', allData[1]?.totalEnergy2);
+            // formik.setFieldValue('efTwo', allData[1]?.efTwo);
+            // formik.setFieldValue('impressionsTwo', allData[1]?.impressionsTwo);
+            // formik.setFieldValue('emissionTwo', allData[1]?.emission);
 
             formik.setFieldValue('noOfMinsOne', allData[2]?.noOfMins);
             formik.setFieldValue('noOfPeopleOne', allData[2]?.noOfPeople);
@@ -467,6 +593,28 @@ const VirtualEvent = (props) => {
             formik.setFieldValue('noOfPeopleEleven', allData[12]?.noOfPeople);
             formik.setFieldValue('efThirteen', allData[12]?.ef);
             formik.setFieldValue('emissionThirteen', allData[12]?.emission);
+
+            formik.setFieldValue('noOfCopiesOne', allData[13]?.noOfCopies);
+            formik.setFieldValue('efFourteen', allData[13]?.ef);
+            formik.setFieldValue('emissionFourteen', allData[13]?.emission);
+
+            formik.setFieldValue('noOfCopiesTwo', allData[14]?.noOfCopies);
+            formik.setFieldValue('efFifteen', allData[14]?.ef);
+            formik.setFieldValue('emissionFifteen', allData[14]?.emission);
+
+            formik.setFieldValue('hdpeBanner', allData[15]?.hdpeBanner);
+            formik.setFieldValue('efSixteen', allData[15]?.ef);
+            formik.setFieldValue('emissionSixteen', allData[15]?.emission);
+
+            formik.setFieldValue('pvcBanners', allData[16]?.pvcBanners);
+            formik.setFieldValue('efSeventeen', allData[16]?.ef);
+            formik.setFieldValue('emissionSeventeen', allData[16]?.emission);
+
+            formik.setFieldValue('adDuration', allData[17]?.adDuration);
+            formik.setFieldValue('noOfSlots', allData[17]?.noOfSlots);
+            formik.setFieldValue('viewers', allData[17]?.viewers);
+            formik.setFieldValue('efEighteen', allData[17]?.ef);
+            formik.setFieldValue('emissionEightteen', allData[17]?.emission);
         }
     }, [value]);
 
@@ -494,9 +642,8 @@ const VirtualEvent = (props) => {
                     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv><img width={100} src={VirtualEventImg} alt="Virtual Event " className="tabImgWhite" /></IconDiv>
 
-                        <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />
-
-                        <Typography variant="h4" className="text-center text-white mt-4">Event Promotion on Social Media</Typography>
+                        <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} />     
+                        {/*<Typography variant="h4" className="text-center text-white mt-4">Event Promotion on Social Media</Typography>
                         <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
                             <Card
                                 sx={{
@@ -599,6 +746,196 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         name={'emissionTwo'}
                                         value={values?.emissionTwo} onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                        </Box> */}
+                        <Typography variant="h4" className="text-center text-white mt-4">Print advertising</Typography>
+                        <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
+                            <Card
+                                sx={{
+                                    width: 280,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaImage} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper Full page Ad</Typography>
+                                    <TextField size='small' type="number" name={'noOfCopiesOne'} value={values?.noOfCopiesOne}
+                                        label="No of copies"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfCopiesOne", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={'emissionFourteen'}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={values?.emissionFourteen} onChange={formik.handleChange} sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Coloured Magazine/ Page</Typography>
+                                    <TextField size='small' type="number" name={'noOfCopiesTwo'} value={values?.noOfCopiesTwo}
+                                        label="No of copies"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfCopiesTwo", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionFifteen'}
+                                        value={values?.emissionFifteen}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Polethylene HDPE Banner</Typography>
+                                    <TextField size='small' type="number" name={'hdpeBanner'} value={values?.hdpeBanner}
+                                        label="Weight (Kgs)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("hdpeBanner", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionSixteen'}
+                                        value={values?.emissionSixteen}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>PVC Banners</Typography>
+                                    <TextField size='small' type="number" name={'pvcBanners'} value={values?.pvcBanners}
+                                        label="Weight (Kgs)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("pvcBanners", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionSeventeen'}
+                                        value={values?.emissionSeventeen}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>TV Ad</Typography>
+                                    <TextField size='small' type="number" name={'adDuration'} value={values?.adDuration}
+                                        label="Ad duration (In Secs)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("adDuration", Number(e.target.value));
+                                            formik.setFieldValue("emissionEightteen", Number(Number(e.target.value) * Number(values?.noOfSlots) * Number(values?.viewers) * Number(values?.efEighteen)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfSlots'} value={values?.noOfSlots}
+                                        label="No of slots"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfSlots", Number(e.target.value));
+                                            formik.setFieldValue("emissionEightteen", Number(Number(e.target.value) * Number(values?.adDuration) * Number(values?.viewers) * Number(values?.efEighteen)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" name={'viewers'} value={values?.viewers}
+                                        label="viewers"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("viewers", Number(e.target.value));
+                                            formik.setFieldValue("emissionEightteen", Number(Number(e.target.value) * Number(values?.adDuration) * Number(values?.noOfSlots) * Number(values?.efEighteen)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionEightteen'}
+                                        value={values?.emissionEightteen}
+                                        onChange={formik.handleChange}
                                         sx={{ marginTop: 2 }}
                                     />
                                 </CardContent>
