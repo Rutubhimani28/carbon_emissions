@@ -259,13 +259,14 @@ const Result = ({ value }) => {
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            {page.tabTitle === "Virtual Event" &&
+                                                                            // {page.tabTitle === "Virtual Event" && 
+                                                                            {page.tabTitle === "Outbound Marketing" &&
                                                                                 flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
                                                                                     (rowData.imgSize !== "" || rowData.impressionsOne !== "" || rowData.impressionsTwo !== "" || rowData.videoSize !== "" || rowData.videoMins !== "" || rowData.noOfPeople !== "" || rowData.noOfMins !== "") && rowData.emissions !== "" && (
                                                                                         <tr key={rowIndex}>
                                                                                             <td>{rowData.vtType}</td>
-                                                                                            <td>{rowData.imgSize || rowData.videoSize || rowData.noOfMins || rowData.noOfCopies || rowData.kgs || rowData.adDuration}</td>
-                                                                                            <td>{rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople || rowData.noOfSlots}</td>
+                                                                                            <td>{rowData.imgSize || rowData.videoSize || rowData.noOfMins || rowData.noOfCopiesOne || rowData.kgs || rowData.adDuration || rowData.podcastSize || rowData.noOfPages}</td>
+                                                                                            <td>{rowData.videoMins || rowData.impressionsOne || rowData.noOfPeople || rowData.noOfSlots || rowData.noOfListeners || rowData.noOfCopiesTwo}</td>
                                                                                             {(rowData.impressionsTwo || rowData.viewers) && <td>{rowData.impressionsTwo || rowData.viewers}</td>}
                                                                                             <td>{rowData.emissions}</td>
                                                                                         </tr>

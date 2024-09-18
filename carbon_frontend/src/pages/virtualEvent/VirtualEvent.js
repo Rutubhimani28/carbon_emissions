@@ -20,11 +20,12 @@ import {
 } from '@mui/icons-material';
 import { FaSnapchat, FaTwitch, FaTiktok, FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
 import { GiVideoConference } from "react-icons/gi";
+import { IconDiv } from '../../components/IconDiv';
 import { addVirtualEventData, deleteVirtualEventData } from '../../redux/slice/totalVirtualEventSlice';
 import { addResultTableData, deleteResTabVrtEventData } from '../../redux/slice/resultTableDataSlice';
 import VirtualEventIcon from '../../layouts/user/assets/images/virtualEvent.png';
 import outboundIcon from '../../assets/outboundIcon.png';
-import { IconDiv } from '../../components/IconDiv';
+import podcastIcon from '../../assets/podcastIcon.png';
 import TVImg from '../../layouts/user/assets/images/tv.png';
 
 const style = {
@@ -132,7 +133,8 @@ const VirtualEvent = (props) => {
         efFourteen: 0.023125,
         emissionFourteen: '',
 
-        // Magazine/ Page
+        // Magazine
+        noOfPages: '',
         noOfCopiesTwo: '',
         efFifteen: 0.005857143,
         emissionFifteen: '',
@@ -153,6 +155,18 @@ const VirtualEvent = (props) => {
         viewers: '',
         efEighteen: 0.002,
         emissionEightteen: '',
+
+        // Podcast
+        podcastSize: '',    // Podcast Size (in Mb)
+        noOfListeners: '',
+        podcastKwh: 0.00004296,
+        podcastTotal: '',        // podcastSize * podcastKwh
+        emissionNineteen: '',    // podcastTotal * noOfListeners
+
+        // Energy
+        energyKwh: '',
+        efTwenty: 0.716,
+        emissionTwenty: ''
     };
 
     const formik = useFormik({
@@ -178,10 +192,23 @@ const VirtualEvent = (props) => {
             const emissionThirteen = values?.noOfMinsEleven === 0 || values?.noOfPeopleEleven === 0 ? 0 : (Number(Number(values?.noOfMinsEleven) * Number(values?.noOfPeopleEleven) * Number(values?.efThirteen) / 1000).toFixed(2));
 
             const emissionFourteen = values?.noOfCopiesOne === 0 ? 0 : Number(Number(values?.noOfCopiesOne) * Number(values?.efFourteen)).toFixed(2);
-            const emissionFifteen = values?.noOfCopiesTwo === 0 ? 0 : Number(Number(values?.noOfCopiesTwo) * Number(values?.efFifteen)).toFixed(2);
+            const emissionFifteen = values?.noOfPages === 0 || values?.noOfCopiesTwo === 0 ? 0 : Number(Number(values?.noOfPages) * Number(values?.noOfCopiesTwo) * Number(values?.efFifteen)).toFixed(2);
             const emissionSixteen = values?.hdpeBanner === 0 ? 0 : Number(Number(values?.hdpeBanner) * Number(values?.efSixteen)).toFixed(2);
             const emissionSeventeen = values?.pvcBanners === 0 ? 0 : Number(Number(values?.pvcBanners) * Number(values?.efSeventeen)).toFixed(2);
             const emissionEightteen = values?.adDuration === 0 ? 0 : Number(Number(values?.adDuration) * Number(values?.noOfSlots) * Number(values?.viewers) * Number(values?.efEighteen)).toFixed(2);
+
+            /*
+                    podcastSize: '',    // Podcast Size (in Mb)
+                    noOfListeners: '',
+                    podcastKwh: 0.00004296,
+                    podcastTotal: '',        // podcastSize * podcastKwh
+                    emissionNineteen: '',    // podcastTotal * noOfListeners
+            */
+            const emissionNineteen = values?.podcastTotal === 0 || values?.noOfListeners === 0 ? 0 : Number(Number(values?.podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
+            console.log("--- emissionNineteen ", emissionNineteen)
+            console.log("--- values?.podcastTotal ", values?.podcastTotal)
+            console.log("--- values?.noOfListeners ", values?.noOfListeners)
+            const emissionTwenty = values?.energyKwh === 0 ? 0 : Number(Number(values?.energyKwh) * Number(values?.efTwenty)).toFixed(2);
 
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 
@@ -205,6 +232,10 @@ const VirtualEvent = (props) => {
             if (emissionSixteen > 0) formik.setFieldValue('emissionSixteen', emissionSixteen);
             if (emissionSeventeen > 0) formik.setFieldValue('emissionSeventeen', emissionSeventeen);
             if (emissionEightteen > 0) formik.setFieldValue('emissionEightteen', emissionEightteen);
+
+            if (emissionNineteen > 0) formik.setFieldValue('emissionNineteen', emissionNineteen);
+            if (emissionTwenty > 0) formik.setFieldValue('emissionTwenty', emissionTwenty);
+
 
             const data = [
                 {
@@ -312,13 +343,14 @@ const VirtualEvent = (props) => {
 
                 {
                     name: 'Newspaper- Full page Ad',
-                    noOfCopies: values?.noOfCopiesOne,
+                    noOfCopiesOne: values?.noOfCopiesOne,
                     ef: values?.efFourteen,
                     emission: emissionFourteen > 0 ? emissionFourteen : '',
                 },
                 {
-                    name: 'Magazine/ Page',
-                    noOfCopies: values?.noOfCopiesTwo,
+                    name: 'Magazine',
+                    noOfPages: values?.noOfPages,
+                    noOfCopiesTwo: values?.noOfCopiesTwo,
                     ef: values?.efFifteen,
                     emission: emissionFifteen > 0 ? emissionFifteen : '',
                 },
@@ -342,6 +374,21 @@ const VirtualEvent = (props) => {
                     ef: values?.efEighteen,
                     emission: emissionEightteen > 0 ? emissionEightteen : '',
                 },
+
+                {
+                    name: 'Podcast',
+                    podcastSize: values?.podcastSize,
+                    noOfListeners: values?.noOfListeners,
+                    podcastKwh: values?.podcastKwh,
+                    podcastTotal: values?.podcastTotal,
+                    emission: emissionNineteen > 0 ? emissionNineteen : '',
+                },
+                {
+                    name: 'Energy',
+                    energyKwh: values?.energyKwh,
+                    ef: values?.efTwenty,
+                    emission: emissionTwenty > 0 ? emissionTwenty : '',
+                }
             ];
             dispatch(addVirtualEventData({ data }));
 
@@ -353,12 +400,22 @@ const VirtualEvent = (props) => {
                         td: [
                             {
                                 vtType: "Newspaper- Full page Ad",
-                                noOfCopies: values?.noOfCopiesOne,
+                                noOfCopiesOne: values?.noOfCopiesOne,
                                 emissions: emissionFourteen > 0 ? emissionFourteen : '',
                             },
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "No of pages", "No of copies", "Emissions"],
+                        td: [
                             {
-                                vtType: "Magazine/ Page",
-                                noOfCopies: values?.noOfCopiesTwo,
+                                vtType: "Magazine",
+                                noOfPages: values?.noOfPages,
+                                noOfCopiesTwo: values?.noOfCopiesTwo,
                                 emissions: emissionFifteen > 0 ? emissionFifteen : '',
                             },
                         ]
@@ -395,6 +452,35 @@ const VirtualEvent = (props) => {
                                 noOfSlots: values?.noOfSlots,
                                 viewers: values?.viewers,
                                 emissions: emissionEightteen > 0 ? emissionEightteen : '',
+                            }
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "Podcast Size (in Mb)", "No of Listeners", "Emissions"],
+                        td: [
+                            {
+                                vtType: "Podcast",
+                                podcastSize: values?.podcastSize,
+                                noOfListeners: values?.noOfListeners,
+                                emissions: emissionNineteen > 0 ? emissionNineteen : '',
+                            }
+                        ]
+                    },
+                    scope: 3
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "kwh", "Emissions"],
+                        td: [
+                            {
+                                vtType: "Enrgy",
+                                energyKwh: values?.energyKwh,
+                                emissions: emissionTwenty > 0 ? emissionTwenty : '',
                             }
                         ]
                     },
@@ -507,7 +593,7 @@ const VirtualEvent = (props) => {
                         ]
                     },
                     scope: 2
-                },
+                }
             ];
 
             // dispatch(addResultTableData({ data: tableData, tabTitle: "Virtual Event" }));
@@ -601,11 +687,12 @@ const VirtualEvent = (props) => {
             formik.setFieldValue('efThirteen', allData[12]?.ef);
             formik.setFieldValue('emissionThirteen', allData[12]?.emission);
 
-            formik.setFieldValue('noOfCopiesOne', allData[13]?.noOfCopies);
+            formik.setFieldValue('noOfCopiesOne', allData[13]?.noOfCopiesOne);
             formik.setFieldValue('efFourteen', allData[13]?.ef);
             formik.setFieldValue('emissionFourteen', allData[13]?.emission);
 
-            formik.setFieldValue('noOfCopiesTwo', allData[14]?.noOfCopies);
+            formik.setFieldValue('noOfPages', allData[14]?.noOfPages);
+            formik.setFieldValue('noOfCopiesTwo', allData[14]?.noOfCopiesTwo);
             formik.setFieldValue('efFifteen', allData[14]?.ef);
             formik.setFieldValue('emissionFifteen', allData[14]?.emission);
 
@@ -622,6 +709,16 @@ const VirtualEvent = (props) => {
             formik.setFieldValue('viewers', allData[17]?.viewers);
             formik.setFieldValue('efEighteen', allData[17]?.ef);
             formik.setFieldValue('emissionEightteen', allData[17]?.emission);
+
+            formik.setFieldValue('podcastSize', allData[18]?.podcastSize);
+            formik.setFieldValue('noOfListeners', allData[18]?.noOfListeners);
+            formik.setFieldValue('podcastKwh', allData[18]?.podcastKwh);
+            formik.setFieldValue('podcastTotal', allData[18]?.podcastTotal);
+            formik.setFieldValue('emissionNineteen', allData[18]?.emission);
+
+            formik.setFieldValue('energyKwh', allData[19]?.energyKwh);
+            formik.setFieldValue('efTwenty', allData[19]?.ef);
+            formik.setFieldValue('emissionTwenty', allData[19]?.emission);
         }
     }, [value]);
 
@@ -862,13 +959,26 @@ const VirtualEvent = (props) => {
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                     <Icon component={MenuBookIcon} color="yellow" sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Magazine/ Page</Typography>
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Magazine</Typography>
+                                    <TextField size='small' type="number" name={'noOfPages'} value={values?.noOfPages}
+                                        label="No of pages"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfPages", Number(e.target.value));
+                                            formik.setFieldValue("emissionFifteen", Number(Number(e.target.value) * Number(values?.noOfCopiesTwo)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
                                     <TextField size='small' type="number" name={'noOfCopiesTwo'} value={values?.noOfCopiesTwo}
                                         label="No of copies"
                                         variant="outlined"
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfCopiesTwo", Number(e.target.value));
+                                            formik.setFieldValue("emissionFifteen", Number(Number(e.target.value) * Number(values?.noOfPages)).toFixed(2));
                                             formik.handleSubmit();
                                         }}
                                         sx={{ marginTop: 2 }}
@@ -880,6 +990,56 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         name={'emissionFifteen'}
                                         value={values?.emissionFifteen}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <img src={podcastIcon} alt="tv" style={{ width: "55px", height: '55px', margin: "auto" }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Podcast</Typography>
+                                    <TextField size='small' type="number" name={'podcastSize'} value={values?.podcastSize}
+                                        label="Podcast Size (in Mb)"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            const podcastTotal = Number(e.target.value) * Number(values?.podcastKwh);
+                                            const emissionNineteen = Number(Number(podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
+                                            formik.setFieldValue("podcastSize", Number(e.target.value));
+                                            formik.setFieldValue("podcastTotal", podcastTotal);
+                                            formik.setFieldValue("emissionNineteen", emissionNineteen);
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" name={'noOfListeners'} value={values?.noOfListeners}
+                                        label="No of Listeners"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            const emissionNineteen = Number(Number(values?.podcastTotal) * Number(e.target.value)).toFixed(2);
+                                            formik.setFieldValue("noOfListeners", Number(e.target.value));
+                                            formik.setFieldValue("emissionNineteen", emissionNineteen);
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionNineteen'}
+                                        value={values?.emissionNineteen}
                                         onChange={formik.handleChange}
                                         sx={{ marginTop: 2 }}
                                     />
@@ -950,6 +1110,50 @@ const VirtualEvent = (props) => {
                                                         fullWidth
                                                         name={'emissionSeventeen'}
                                                         value={values?.emissionSeventeen}
+                                                        onChange={formik.handleChange}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </Box>
+                            </Grid>
+                        </Box>
+
+                        <Box className="mb-4">
+                            <Grid item xs={12} sm={12} md={6}>
+                                <Box>
+                                    <div className="table-responsive">
+                                        <table className="table-custom-inpt-field">
+                                            <tr>
+                                                <th width={'122px'} />
+                                                <th className="ps-2">kwh</th>
+                                                <th className="ps-2">Emissions</th>
+                                            </tr>
+                                            <tr>
+                                                <td className="ps-4 py-1">Energy</td>
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        fullWidth
+                                                        size='small'
+                                                        type="number"
+                                                        name={'energyKwh'}
+                                                        value={values?.energyKwh}
+                                                        onChange={(e) => {
+                                                            formik.setFieldValue("energyKwh", Number(e.target.value));
+                                                            formik.handleSubmit();
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }}
+                                                    />
+                                                </td>
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        size='small'
+                                                        type="number"
+                                                        disabled
+                                                        fullWidth
+                                                        name={'emissionTwenty'}
+                                                        value={values?.emissionTwenty}
                                                         onChange={formik.handleChange}
                                                     />
                                                 </td>
