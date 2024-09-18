@@ -447,7 +447,7 @@ const VirtualEvent = (props) => {
                         th: ["", "Ad duration (In Sec)", "No of slots", "Viewers", "Emissions"],
                         td: [
                             {
-                                vtType: "Tv Ad",
+                                vtType: "TV Ad",
                                 adDuration: values?.adDuration,
                                 noOfSlots: values?.noOfSlots,
                                 viewers: values?.viewers,
@@ -478,7 +478,7 @@ const VirtualEvent = (props) => {
                         th: ["", "kwh", "Emissions"],
                         td: [
                             {
-                                vtType: "Enrgy",
+                                vtType: "Energy",
                                 energyKwh: values?.energyKwh,
                                 emissions: emissionTwenty > 0 ? emissionTwenty : '',
                             }

@@ -101,7 +101,7 @@ const sendMail = async ({
             if (attachmentTemplateName && emailBodyTemplateName && chatSuggestion) {
                 const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
                 const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`);
-
+                console.log("--- data ", data);
 
                 const [attachmentTemplate, emailBodyTemplate] = await Promise.all([
                     ejs.renderFile(attachmentTemplatePath, {

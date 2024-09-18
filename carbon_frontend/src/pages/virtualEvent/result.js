@@ -27,15 +27,45 @@ const Result = ({ value }) => {
     ];
 
     const resultData = [
+        // {
+        //     // type: 'Virtual Event',
+        //     type: 'Outbound Marketing',
+        //     totalEmission: allVirtualEventData?.totalEmission
+        // },
         {
-            // type: 'Virtual Event',
-            type: 'Outbound Marketing',
-            totalEmission: allVirtualEventData?.totalEmission
+            type: 'TV Ad',
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[17]?.emission
+        },
+        {
+            type: 'Newspaper- Full page Ad',
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[13]?.emission
+        },
+        {
+            type: 'Magazine',
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[14]?.emission
+        },
+        {
+            type: 'Podcast',
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[18]?.emission
+        },
+        {
+            type: 'Polyethylene',
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[15]?.emission
+        },
+        {
+            type: 'PVC',
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[16]?.emission
         },
     ];
 
     const data = {
-        "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(2),
+        // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(2),
+        "totalTvAd": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(2),
+        "totalNewspaper": Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission).toFixed(2),
+        "totalMagazine": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
+        "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission).toFixed(2),
+        "totalPolyethylene": Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission).toFixed(2),
+        "totalPVC": Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(2),
         "grandTotal": Number(total).toFixed(2)
     };
 
@@ -72,50 +102,71 @@ const Result = ({ value }) => {
     };
 
     const generatePrompt = async () => {
-        if (totalCarbonFootprint) {
-            // sentenceParts.push(`My Virtual Event has a carbon footprint of ${totalCarbonFootprint}`);
-            sentenceParts.push(`My Outbound Marketing has a carbon footprint of ${totalCarbonFootprint}`);
-        }
-        if (imgSize) {
-            sentenceParts.push(`with a ${imgSize} MB image`);
-        }
-        if (videoSize && videoMins) {
-            sentenceParts.push(`and a ${videoSize} MB, ${videoMins}-minute video.`);
-        }
-        if (noOfMinsOne && emissionThree) {
-            liveBroadcastParts.push(`TikTok generating ${emissionThree} kgCO2e`);
-        }
-        if (emissionFour) {
-            liveBroadcastParts.push(`Reddit generating ${emissionFour} kgCO2e`);
-        }
-        if (emissionFive) {
-            liveBroadcastParts.push(`Pinterest generating ${emissionFive} kgCO2e`);
-        }
-        if (emissionSix) {
-            liveBroadcastParts.push(`Instagram Live generating ${emissionSix} kgCO2e`);
-        }
-        if (emissionSeven) {
-            liveBroadcastParts.push(`Snapchat generating ${emissionSeven} kgCO2e`);
-        }
-        if (emissionEight) {
-            liveBroadcastParts.push(`Facebook Live generating ${emissionEight} kgCO2e`);
-        }
-        if (emissionNine) {
-            liveBroadcastParts.push(`LinkedIn Live generating ${emissionNine} kgCO2e`);
-        }
-        if (emissionTen) {
-            liveBroadcastParts.push(`Twitter Live generating ${emissionTen} kgCO2e`);
-        }
-        if (emissionEleven) {
-            liveBroadcastParts.push(`Twitch generating ${emissionEleven} kgCO2e`);
-        }
-        if (emissionTwelve) {
-            liveBroadcastParts.push(`YouTube generating ${emissionTwelve} kgCO2e`);
-        }
+        // if (totalCarbonFootprint) {
+        //     // sentenceParts.push(`My Virtual Event has a carbon footprint of ${totalCarbonFootprint}`);
+        //     sentenceParts.push(`My Outbound Marketing has a carbon footprint of ${totalCarbonFootprint}`);
+        // }
+        // if (imgSize) {
+        //     sentenceParts.push(`with a ${imgSize} MB image`);
+        // }
+        // if (videoSize && videoMins) {
+        //     sentenceParts.push(`and a ${videoSize} MB, ${videoMins}-minute video.`);
+        // }
+        // if (noOfMinsOne && emissionThree) {
+        //     liveBroadcastParts.push(`TikTok generating ${emissionThree} kgCO2e`);
+        // }
+        // if (emissionFour) {
+        //     liveBroadcastParts.push(`Reddit generating ${emissionFour} kgCO2e`);
+        // }
+        // if (emissionFive) {
+        //     liveBroadcastParts.push(`Pinterest generating ${emissionFive} kgCO2e`);
+        // }
+        // if (emissionSix) {
+        //     liveBroadcastParts.push(`Instagram Live generating ${emissionSix} kgCO2e`);
+        // }
+        // if (emissionSeven) {
+        //     liveBroadcastParts.push(`Snapchat generating ${emissionSeven} kgCO2e`);
+        // }
+        // if (emissionEight) {
+        //     liveBroadcastParts.push(`Facebook Live generating ${emissionEight} kgCO2e`);
+        // }
+        // if (emissionNine) {
+        //     liveBroadcastParts.push(`LinkedIn Live generating ${emissionNine} kgCO2e`);
+        // }
+        // if (emissionTen) {
+        //     liveBroadcastParts.push(`Twitter Live generating ${emissionTen} kgCO2e`);
+        // }
+        // if (emissionEleven) {
+        //     liveBroadcastParts.push(`Twitch generating ${emissionEleven} kgCO2e`);
+        // }
+        // if (emissionTwelve) {
+        //     liveBroadcastParts.push(`YouTube generating ${emissionTwelve} kgCO2e`);
+        // }
 
-        // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my virtual event of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
-        const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my outbound marketing of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
-        const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} ${carbonPerDollar} \n\n${wantInResult}`;
+        // // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my virtual event of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
+        // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my outbound marketing of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
+        // const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} ${carbonPerDollar} \n\n${wantInResult}`;
+        // setContent(finalSentence);
+
+        // if (totalCarbonFootprint) {
+        //     // sentenceParts.push(`My Virtual Event has a carbon footprint of ${totalCarbonFootprint}`);
+        //     sentenceParts.push(`My Outbound Marketing has a carbon footprint of ${totalCarbonFootprint}`);
+        // }
+        if (allVirtualEventData?.data?.[0]?.data?.[13]?.emission) {
+            sentenceParts.push(`A newspaper ad with ${allVirtualEventData?.data?.[0]?.data?.[13]?.noOfCopiesOne} copies generates ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e. Targeting specific regions could cut emissions by 20-50%`);
+        }
+        if (allVirtualEventData?.data?.[0]?.data?.[17]?.emission) {
+            sentenceParts.push(`A TV ad with ${allVirtualEventData?.data?.[0]?.data?.[17]?.adDuration} seconds and ${allVirtualEventData?.data?.[0]?.data?.[17]?.noOfSlots} slots generates ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgCO2e. To reduce this: shorten ad length to 7secs, reduce slots, and use energy-efficient production.`);
+        }
+        if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
+            sentenceParts.push(` A podcast with ${allVirtualEventData?.data?.[0]?.data?.[18]?.podcastSize}MB and ${allVirtualEventData?.data?.[0]?.data?.[18]?.noOfListeners} listeners generates ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e; optimize file size, use better codecs.`);
+        }
+        if (allVirtualEventData?.data?.[0]?.data?.[14]?.emission) {
+            sentenceParts.push(`A 2-page magazine print with ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfCopiesTwo} copies emits ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e; use recycled paper and eco-friendly inks to reduce this.`);
+        }
+        sentenceParts.push(`Prefer polyethylene banners over PVC to cut emissions by up to 70% and they are 100% recyclable. Give me the final % of carbon reductions.`);
+
+        const finalSentence = `${sentenceParts.join(', ')}`;
         setContent(finalSentence);
     };
 
