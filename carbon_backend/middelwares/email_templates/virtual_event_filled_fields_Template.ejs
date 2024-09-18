@@ -124,17 +124,23 @@
                                                                         <td>
                                                                             <%= rowData.imgSize || rowData.videoSize ||
                                                                                 rowData.noOfMins || rowData.kgs ||
-                                                                                rowData.adDuration || rowData.noOfCopies
-                                                                                %>
+                                                                                rowData.adDuration ||
+                                                                                rowData.noOfCopiesOne ||
+                                                                                rowData.podcastSize || rowData.energyKwh
+                                                                                || rowData.noOfPages %>
                                                                         </td>
                                                                         <% if (rowData.videoMins ||
                                                                             rowData.impressionsOne || rowData.noOfPeople
-                                                                            || rowData.noOfSlots) { %>
+                                                                            || rowData.noOfListeners ||
+                                                                            rowData.noOfCopiesTwo || rowData.noOfSlots)
+                                                                            { %>
                                                                             <td>
                                                                                 <%= rowData.videoMins ||
                                                                                     rowData.impressionsOne ||
                                                                                     rowData.noOfPeople ||
-                                                                                    rowData.noOfSlots %>
+                                                                                    rowData.noOfSlots ||
+                                                                                    rowData.noOfListeners ||
+                                                                                    rowData.noOfCopiesTwo %>
                                                                             </td>
                                                                             <% } %>
 
