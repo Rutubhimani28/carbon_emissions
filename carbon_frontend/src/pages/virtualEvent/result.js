@@ -102,6 +102,7 @@ const Result = ({ value }) => {
     };
 
     const generatePrompt = async () => {
+        // // for virtual Event
         // if (totalCarbonFootprint) {
         //     // sentenceParts.push(`My Virtual Event has a carbon footprint of ${totalCarbonFootprint}`);
         //     sentenceParts.push(`My Outbound Marketing has a carbon footprint of ${totalCarbonFootprint}`);
@@ -148,25 +149,31 @@ const Result = ({ value }) => {
         // const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} ${carbonPerDollar} \n\n${wantInResult}`;
         // setContent(finalSentence);
 
-        // if (totalCarbonFootprint) {
-        //     // sentenceParts.push(`My Virtual Event has a carbon footprint of ${totalCarbonFootprint}`);
-        //     sentenceParts.push(`My Outbound Marketing has a carbon footprint of ${totalCarbonFootprint}`);
-        // }
-        if (allVirtualEventData?.data?.[0]?.data?.[13]?.emission) {
-            sentenceParts.push(`A newspaper ad with ${allVirtualEventData?.data?.[0]?.data?.[13]?.noOfCopiesOne} copies generates ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e. Targeting specific regions could cut emissions by 20-50%`);
-        }
+        // // for Outbound Marketing
         if (allVirtualEventData?.data?.[0]?.data?.[17]?.emission) {
-            sentenceParts.push(`A TV ad with ${allVirtualEventData?.data?.[0]?.data?.[17]?.adDuration} seconds and ${allVirtualEventData?.data?.[0]?.data?.[17]?.noOfSlots} slots generates ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgCO2e. To reduce this: shorten ad length to 7secs, reduce slots, and use energy-efficient production.`);
+            sentenceParts.push(`TV Ad ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgCO2e.`);
         }
-        if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
-            sentenceParts.push(` A podcast with ${allVirtualEventData?.data?.[0]?.data?.[18]?.podcastSize}MB and ${allVirtualEventData?.data?.[0]?.data?.[18]?.noOfListeners} listeners generates ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e; optimize file size, use better codecs.`);
+        if (allVirtualEventData?.data?.[0]?.data?.[13]?.emission) {
+            sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
         }
         if (allVirtualEventData?.data?.[0]?.data?.[14]?.emission) {
-            sentenceParts.push(`A 2-page magazine print with ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfCopiesTwo} copies emits ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e; use recycled paper and eco-friendly inks to reduce this.`);
+            sentenceParts.push(`Magazine ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e.`);
         }
-        sentenceParts.push(`Prefer polyethylene banners over PVC to cut emissions by up to 70% and they are 100% recyclable. Give me the final % of carbon reductions.`);
+        if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
+            sentenceParts.push(`Podcast ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e.`);
+        }
+        if (allVirtualEventData?.data?.[0]?.data?.[15]?.emission) {
+            sentenceParts.push(`Polyethylene ${allVirtualEventData?.data?.[0]?.data?.[15]?.emission} kgCO2e.`);
+        }
+        if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
+            sentenceParts.push(`PVC banner ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgCO2e.`);
+        }
+        if (totalCarbonFootprint) {
+            sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);
+        }
+        sentenceParts.push(`\n\nHow to reduce the carbon footprint by 20-25%? Don't show 20-25% in the beginning, suggest to use Polyethylene Banners as they are 100% recyclable. In end say, by following these measures you can reduce cost by more than 10%`);
 
-        const finalSentence = `${sentenceParts.join(', ')}`;
+        const finalSentence = `${sentenceParts.join('\n')}`;
         setContent(finalSentence);
     };
 
