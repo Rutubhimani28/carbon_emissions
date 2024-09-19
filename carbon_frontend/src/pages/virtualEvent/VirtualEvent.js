@@ -197,17 +197,7 @@ const VirtualEvent = (props) => {
             const emissionSeventeen = values?.pvcBanners === 0 ? 0 : Number(Number(values?.pvcBanners) * Number(values?.efSeventeen)).toFixed(2);
             const emissionEightteen = values?.adDuration === 0 ? 0 : Number(Number(values?.adDuration) * Number(values?.noOfSlots) * Number(values?.viewers) * Number(values?.efEighteen)).toFixed(2);
 
-            /*
-                    podcastSize: '',    // Podcast Size (in Mb)
-                    noOfListeners: '',
-                    podcastKwh: 0.00004296,
-                    podcastTotal: '',        // podcastSize * podcastKwh
-                    emissionNineteen: '',    // podcastTotal * noOfListeners
-            */
             const emissionNineteen = values?.podcastTotal === 0 || values?.noOfListeners === 0 ? 0 : Number(Number(values?.podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
-            console.log("--- emissionNineteen ", emissionNineteen)
-            console.log("--- values?.podcastTotal ", values?.podcastTotal)
-            console.log("--- values?.noOfListeners ", values?.noOfListeners)
             const emissionTwenty = values?.energyKwh === 0 ? 0 : Number(Number(values?.energyKwh) * Number(values?.efTwenty)).toFixed(2);
 
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);

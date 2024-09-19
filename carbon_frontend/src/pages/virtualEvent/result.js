@@ -49,11 +49,11 @@ const Result = ({ value }) => {
             totalEmission: allVirtualEventData?.data?.[0]?.data?.[18]?.emission
         },
         {
-            type: 'Polyethylene',
+            type: 'Polyethylene Banner',
             totalEmission: allVirtualEventData?.data?.[0]?.data?.[15]?.emission
         },
         {
-            type: 'PVC',
+            type: 'PVC Banner',
             totalEmission: allVirtualEventData?.data?.[0]?.data?.[16]?.emission
         },
     ];
@@ -280,7 +280,7 @@ const Result = ({ value }) => {
 
     return (
         <div>
-            <SendMail open={open} close={() => setOpen(false)} datas={data} setOpen chatSuggestion={suggestionForPdf} />
+            <SendMail open={open} close={() => setOpen(false)} datas={{ ...data, totalVirtualEvent: Number(allVirtualEventData?.totalEmission).toFixed(2) }} setOpen chatSuggestion={suggestionForPdf} />
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
                     {/* <Box style={{ width: "100%", color: 'white' }}>
