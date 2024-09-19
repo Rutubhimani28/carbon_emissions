@@ -229,7 +229,7 @@ const VirtualEvent = (props) => {
 
             const data = [
                 {
-                    // type: 'Image',
+                    type: 'Image',
                     // imgSize: values?.imgSize,
                     // deviceEnergy1: values?.deviceEnergy1,
                     // somePlatformEnergy1: values?.somePlatformEnergy1,
@@ -240,7 +240,7 @@ const VirtualEvent = (props) => {
                     // emission: emissionOne > 0 ? emissionOne : ''
                 },
                 {
-                    // type: 'Video',
+                    type: 'Video',
                     // videoSize: values?.videoSize,
                     // videoMins: values?.videoMins,
                     // deviceEnergy2: values?.deviceEnergy2,
