@@ -44,8 +44,8 @@ const EnergyUpdated = (props) => {
         initialValues,
         onSubmit: async (values) => {
             const emissionOne = Number((values?.kwh * 0.716).toFixed(2))
-            const emissionTwo = Number((values?.gallonsOne * 8.78).toFixed(2))
-            const emissionThree = Number((values?.gallonsTwo * 10.21).toFixed(2))
+            const emissionTwo = Number((values?.gallonsOne * 2.288).toFixed(2))
+            const emissionThree = Number((values?.gallonsTwo * 2.91).toFixed(2))
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
             if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
@@ -59,12 +59,12 @@ const EnergyUpdated = (props) => {
                 {
                     type: 'Petrol (Generator)',
                     gallonsOne: values?.gallonsOne,
-                    emission: emissionTwo > 0 ? Number((values?.gallonsOne * 8.78).toFixed(2)) : ''
+                    emission: emissionTwo > 0 ? Number((values?.gallonsOne * 2.288).toFixed(2)) : ''
                 },
                 {
                     type: 'Diesel (Generator)',
                     gallonsTwo: values?.gallonsTwo,
-                    emission: emissionThree > 0 ? Number((values?.gallonsTwo * 10.21).toFixed(2)) : ''
+                    emission: emissionThree > 0 ? Number((values?.gallonsTwo * 2.91).toFixed(2)) : ''
                 }
             ];
 
@@ -100,7 +100,7 @@ const EnergyUpdated = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    scope: 2
                 },
             ];
 
@@ -207,7 +207,7 @@ const EnergyUpdated = (props) => {
                                         type="number"
                                         onChange={(e) => {
                                             formik.handleChange(e);
-                                            formik.setFieldValue('emissionTwo', Number((e.target.value * 8.78).toFixed(2)));
+                                            formik.setFieldValue('emissionTwo', Number((e.target.value * 2.288).toFixed(2)));
                                             formik.handleSubmit();
                                         }}
                                         error={
@@ -257,7 +257,7 @@ const EnergyUpdated = (props) => {
                                         value={formik.values.gallonsTwo}
                                         onChange={(e) => {
                                             formik.handleChange(e);
-                                            formik.setFieldValue('emissionThree', Number((e.target.value * 10.21).toFixed(2)));
+                                            formik.setFieldValue('emissionThree', Number((e.target.value * 2.91).toFixed(2)));
                                             formik.handleSubmit();
                                         }}
                                         error={
@@ -293,7 +293,7 @@ const EnergyUpdated = (props) => {
                             </Grid>
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                <Stack  columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
+                                <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                     <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>

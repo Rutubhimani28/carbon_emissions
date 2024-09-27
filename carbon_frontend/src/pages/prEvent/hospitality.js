@@ -32,8 +32,12 @@ const Hospitality = (props) => {
         foodWasteNonMeatEmission: '',
         foodWasteMeatKg: '',
         foodWasteMeatEmission: '',
-        municipalSolidWasteKg: '',
-        municipalSolidWasteEmission: '',
+        // municipalSolidWasteKg: '',
+        // municipalSolidWasteEmission: '',
+        foodWasteMixKg: '',
+        foodWasteMixEmission: '',
+        fruitVegetablesKg: '',
+        fruitVegetablesEmission: '',
 
         bottleOne: '',
         bottleOneEmission: '',
@@ -47,17 +51,19 @@ const Hospitality = (props) => {
         initialValues,
         onSubmit: async (values) => {
 
-            const emissionOne = Number((2 * values?.noOfPaxOne).toFixed(2));
-            const emissionTwo = Number((5.76 * values?.noOfPaxTwo).toFixed(2));
-            const emissionThree = Number((23.55 * values?.noOfPaxThree).toFixed(2));
-            const emissionFour = Number((0.6 * values?.noOfPaxFour).toFixed(2));
+            const emissionOne = Number(2 * Number(values?.noOfPaxOne)).toFixed(2);
+            const emissionTwo = Number(5.76 * Number(values?.noOfPaxTwo)).toFixed(2);
+            const emissionThree = Number(23.55 * Number(values?.noOfPaxThree)).toFixed(2);
+            const emissionFour = Number(0.6 * Number(values?.noOfPaxFour)).toFixed(2);
 
-            const foodWasteNonMeatEmission = Number(0.67 * Number(values?.foodWasteNonMeatKg)).toFixed(2);
-            const foodWasteMeatEmission = Number(0.69 * Number(values?.foodWasteMeatKg)).toFixed(2);
-            const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2);
-            const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.004032).toFixed(2);
-            const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.004032).toFixed(2);
-            const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.004032).toFixed(2);
+            const foodWasteNonMeatEmission = Number(0.74 * Number(values?.foodWasteNonMeatKg)).toFixed(2);
+            const foodWasteMeatEmission = Number(0.76 * Number(values?.foodWasteMeatKg)).toFixed(2);
+            // const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2);
+            const foodWasteMixEmission = Number(0.75 * Number(values?.foodWasteMixKg)).toFixed(2);
+            const fruitVegetablesEmission = Number(0.31 * Number(values?.fruitVegetablesKg)).toFixed(2);
+            const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.022).toFixed(2);
+            const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.022).toFixed(2);
+            const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.022).toFixed(2);
 
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
@@ -66,7 +72,9 @@ const Hospitality = (props) => {
 
             if (foodWasteNonMeatEmission > 0) formik.setFieldValue('foodWasteNonMeatEmission', foodWasteNonMeatEmission);
             if (foodWasteMeatEmission > 0) formik.setFieldValue('foodWasteMeatEmission', foodWasteMeatEmission);
-            if (municipalSolidWasteEmission > 0) formik.setFieldValue('municipalSolidWasteEmission', municipalSolidWasteEmission);
+            // if (municipalSolidWasteEmission > 0) formik.setFieldValue('municipalSolidWasteEmission', municipalSolidWasteEmission);
+            if (foodWasteMixEmission > 0) formik.setFieldValue('foodWasteMixEmission', foodWasteMixEmission);
+            if (fruitVegetablesEmission > 0) formik.setFieldValue('fruitVegetablesEmission', fruitVegetablesEmission);
             if (bottleOneEmission > 0) formik.setFieldValue('bottleOneEmission', bottleOneEmission);
             if (bottleTwoEmission > 0) formik.setFieldValue('bottleTwoEmission', bottleTwoEmission);
             if (bottleThreeEmission > 0) formik.setFieldValue('bottleThreeEmission', bottleThreeEmission);
@@ -75,22 +83,22 @@ const Hospitality = (props) => {
                 {
                     type: 'Vegetarian',
                     noOfPax: values?.noOfPaxOne,
-                    emission: Number((2 * values?.noOfPaxOne).toFixed(2)) || 0
+                    emission: emissionOne > 0 ? emissionOne : ''
                 },
                 {
                     type: 'Non-Veg (Poultry/ Sea Food)',
                     noOfPax: values?.noOfPaxTwo,
-                    emission: Number((5.76 * values?.noOfPaxTwo).toFixed(2)) || 0
+                    emission: emissionTwo > 0 ? emissionTwo : ''
                 },
                 {
                     type: 'Non-Veg (Red Meat)',
                     noOfPax: values?.noOfPaxThree,
-                    emission: Number((23.55 * values?.noOfPaxThree).toFixed(2)) || 0
+                    emission: emissionThree > 0 ? emissionThree : ''
                 },
                 {
                     type: 'Tea/ Coffee + Cookies',
                     noOfPax: values?.noOfPaxFour,
-                    emission: Number((0.6 * values?.noOfPaxFour).toFixed(2)) || 0
+                    emission: emissionFour > 0 ? emissionFour : ''
                 },
 
                 {
@@ -103,10 +111,20 @@ const Hospitality = (props) => {
                     kgs: values?.foodWasteMeatKg,
                     emission: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : '',
                 },
+                // {
+                //     type: 'MunicipalSolidWaste',
+                //     kgs: values?.municipalSolidWasteKg,
+                //     emission: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : '',
+                // },
                 {
-                    type: 'MunicipalSolidWaste',
-                    kgs: values?.municipalSolidWasteKg,
-                    emission: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : '',
+                    type: 'FoodWasteMixWaste',
+                    kgs: values?.foodWasteMixKg,
+                    emission: foodWasteMixEmission > 0 ? foodWasteMixEmission : '',
+                },
+                {
+                    type: 'FruitWaste',
+                    kgs: values?.fruitVegetablesKg,
+                    emission: fruitVegetablesEmission > 0 ? fruitVegetablesEmission : '',
                 },
 
                 {
@@ -163,19 +181,29 @@ const Hospitality = (props) => {
                         td: [
                             {
                                 hstType: "Food Waste (non-meat)",
-                                kgs: values?.noOfPaxOne,
+                                kgs: values?.foodWasteNonMeatKg,
                                 emissions: foodWasteNonMeatEmission > 0 ? foodWasteNonMeatEmission : ''
                             },
                             {
                                 hstType: "Food Waste (meat)",
-                                kgs: values?.noOfPaxTwo,
+                                kgs: values?.foodWasteMeatKg,
                                 emissions: foodWasteMeatEmission > 0 ? foodWasteMeatEmission : ''
                             },
+                            // {
+                            //     hstType: "Municipal Solid Waste",
+                            //     kgs: values?.noOfPaxFour,
+                            //     emissions: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : ''
+                            // },
                             {
-                                hstType: "Municipal Solid Waste",
-                                kgs: values?.noOfPaxFour,
-                                emissions: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : ''
-                            }
+                                hstType: "Food Waste (All mix)",
+                                kgs: values?.foodWasteMixKg,
+                                emissions: foodWasteMixEmission > 0 ? foodWasteMixEmission : ''
+                            },
+                            {
+                                hstType: "Fruits & Vegetables",
+                                kgs: values?.fruitVegetablesKg,
+                                emissions: fruitVegetablesEmission > 0 ? fruitVegetablesEmission : ''
+                            },
                         ]
                     },
                     scope: 3
@@ -208,7 +236,8 @@ const Hospitality = (props) => {
 
             /* food/Lunch, Red meat, Food-Plastic waste  */
             const totalLunchEmission = (Number(emissionOne) || 0) + (Number(emissionTwo) || 0) + (Number(emissionThree) || 0) + (Number(emissionFour) || 0);
-            const foodWasteEmission = (Number(foodWasteNonMeatEmission) || 0) + (Number(foodWasteMeatEmission) || 0) + (Number(municipalSolidWasteEmission) || 0);
+            // const foodWasteEmission = (Number(foodWasteNonMeatEmission) || 0) + (Number(foodWasteMeatEmission) || 0) + (Number(municipalSolidWasteEmission) || 0);
+            const foodWasteEmission = (Number(foodWasteNonMeatEmission) || 0) + (Number(foodWasteMeatEmission) || 0) + (Number(foodWasteMixEmission) || 0) + (Number(fruitVegetablesEmission) || 0);
             const totalPlasticWasteEmissiom = (Number(bottleOneEmission) || 0) + (Number(bottleTwoEmission) || 0) + (Number(bottleThreeEmission) || 0);
             const foodPlasticWasteEmission = foodWasteEmission + totalPlasticWasteEmissiom;
 
@@ -239,15 +268,19 @@ const Hospitality = (props) => {
             formik.setFieldValue("foodWasteNonMeatEmission", allData[4]?.emission);
             formik.setFieldValue("foodWasteMeatKg", allData[5]?.kgs);
             formik.setFieldValue("foodWasteMeatEmission", allData[5]?.emission);
-            formik.setFieldValue("municipalSolidWasteKg", allData[6]?.kgs);
-            formik.setFieldValue("municipalSolidWasteEmission", allData[6]?.emission);
+            // formik.setFieldValue("municipalSolidWasteKg", allData[6]?.kgs);
+            // formik.setFieldValue("municipalSolidWasteEmission", allData[6]?.emission);
+            formik.setFieldValue('foodWasteMixKg', allData[6]?.kgs);
+            formik.setFieldValue('foodWasteMixEmission', allData[6]?.emission);
+            formik.setFieldValue('fruitVegetablesKg', allData[7]?.kgs);
+            formik.setFieldValue('fruitVegetablesEmission', allData[7]?.emission);
 
-            formik.setFieldValue("bottleOne", allData[7]?.bottle);
-            formik.setFieldValue("bottleOneEmission", allData[7]?.emission);
-            formik.setFieldValue("bottleTwo", allData[8]?.bottle);
-            formik.setFieldValue("bottleTwoEmission", allData[8]?.emission);
-            formik.setFieldValue("bottleThree", allData[9]?.bottle);
-            formik.setFieldValue("bottleThreeEmission", allData[9]?.emission);
+            formik.setFieldValue("bottleOne", allData[8]?.bottle);
+            formik.setFieldValue("bottleOneEmission", allData[8]?.emission);
+            formik.setFieldValue("bottleTwo", allData[9]?.bottle);
+            formik.setFieldValue("bottleTwoEmission", allData[9]?.emission);
+            formik.setFieldValue("bottleThree", allData[10]?.bottle);
+            formik.setFieldValue("bottleThreeEmission", allData[10]?.emission);
         }
     }, [value]);
 
@@ -338,7 +371,7 @@ const Hospitality = (props) => {
                                                         value={formik?.values?.foodWasteNonMeatKg}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
-                                                            formik.setFieldValue('foodWasteNonMeatEmission', Number(0.67 * Number(e?.target?.value)).toFixed(2));
+                                                            formik.setFieldValue('foodWasteNonMeatEmission', Number(0.74 * Number(e?.target?.value)).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -352,14 +385,14 @@ const Hospitality = (props) => {
                                                         value={formik?.values?.foodWasteMeatKg}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
-                                                            formik.setFieldValue('foodWasteMeatEmission', Number(0.69 * Number(e.target.value)).toFixed(2));
+                                                            formik.setFieldValue('foodWasteMeatEmission', Number(0.76 * Number(e.target.value)).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteMeatEmission' disabled value={values?.foodWasteMeatEmission} onChange={formik.handleChange} /></td>
                                             </tr>
-                                            <tr>
+                                            {/* <tr>
                                                 <td className='ps-2 py-1'>Municipal Solid Waste</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="municipalSolidWasteKg"
@@ -372,6 +405,59 @@ const Hospitality = (props) => {
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' disabled value={values?.municipalSolidWasteEmission} onChange={formik.handleChange} /></td>
+                                            </tr> */}
+                                            <tr>
+                                                <td className="ps-2 py-1">Food Waste (All mix)</td>
+                                                <td className='ps-3 py-1'>
+                                                    <TextField
+                                                        size="small"
+                                                        type="number"
+                                                        name="foodWasteMixKg"
+                                                        value={formik?.values?.foodWasteMixKg}
+                                                        onChange={(e) => {
+                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('foodWasteMixEmission', Number(0.75 * Number(e.target.value)).toFixed(2));
+                                                            formik.handleSubmit();
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }}
+                                                    />
+                                                </td>
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        size="small"
+                                                        type="number"
+                                                        name="foodWasteMixEmission"
+                                                        value={formik?.values?.foodWasteMixEmission}
+                                                        onChange={formik.handleChange}
+                                                        disabled
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className="ps-2 py-1">Fruits & Vegetables</td>
+                                                <td className="ps-3 py-1">
+                                                    <TextField
+                                                        size="small"
+                                                        type="number"
+                                                        name="fruitVegetablesKg"
+                                                        value={formik?.values?.fruitVegetablesKg}
+                                                        onChange={(e) => {
+                                                            formik.handleChange(e);
+                                                            formik.setFieldValue('fruitVegetablesEmission', Number(0.31 * Number(e.target.value)).toFixed(2));
+                                                            formik.handleSubmit();
+                                                        }} inputProps={{ style: { color: 'white' } }}
+                                                    />
+                                                </td>
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        size="small"
+                                                        type="number"
+                                                        name="fruitVegetablesEmission"
+                                                        value={formik?.values?.fruitVegetablesEmission}
+                                                        onChange={formik.handleChange}
+                                                        disabled
+                                                    />
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>
@@ -394,7 +480,7 @@ const Hospitality = (props) => {
                                                         value={formik?.values?.bottleOne}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
-                                                            formik.setFieldValue('bottleOneEmission', Number(Number(e.target.value) * 6.42 * 0.004032).toFixed(2));
+                                                            formik.setFieldValue('bottleOneEmission', Number(Number(e.target.value) * 6.42 * 0.022).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -408,7 +494,7 @@ const Hospitality = (props) => {
                                                         value={formik?.values?.bottleTwo}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
-                                                            formik.setFieldValue('bottleTwoEmission', Number(Number(e.target.value) * 13 * 0.004032).toFixed(2));
+                                                            formik.setFieldValue('bottleTwoEmission', Number(Number(e.target.value) * 13 * 0.022).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -422,7 +508,7 @@ const Hospitality = (props) => {
                                                         value={formik?.values?.bottleThree}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
-                                                            formik.setFieldValue('bottleThreeEmission', Number(Number(e.target.value) * 21.5 * 0.004032).toFixed(2));
+                                                            formik.setFieldValue('bottleThreeEmission', Number(Number(e.target.value) * 21.5 * 0.022).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -435,7 +521,7 @@ const Hospitality = (props) => {
                             </Grid>
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                <Stack  columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
+                                <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                     <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>

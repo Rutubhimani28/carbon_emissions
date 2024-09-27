@@ -190,7 +190,7 @@ const Comms = (props) => {
           subType: '',
           subTypeData: {
             // th: ['', 'Production File Size', 'Final File Size', 'Sending To Media(No of Emails)', 'Emissions'],
-            th: ['', 'File Size (in Mb)', 'Sending to Media (No of Emails)', 'Emissions'],
+            th: ['', 'File Size (in Mb)', 'No of Emails', 'Emissions'],
             td: [
               {
                 cmType: 'Video Byte',
@@ -514,7 +514,7 @@ const Comms = (props) => {
                   <Typography
                     className="text-white fw-bold d-flex align-items-center ps-2"
                   >
-                    Sending to Media (No of Emails)
+                    No of Emails
                   </Typography>
                 </Grid>
 
