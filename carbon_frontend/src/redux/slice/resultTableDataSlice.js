@@ -55,7 +55,7 @@ const resultTableDataSlice = createSlice({
                     return {
                         tabTitle: "Local Transportation",
                         tabData: [
-                            { subType: "Company Car", scope: 2 },
+                            { subType: "Company Car", scope: 1 },
                             { subType: "Taxi", scope: 3 },
                             { subType: "Public Transport", scope: 3 }
                         ]
@@ -138,7 +138,7 @@ const resultTableDataSlice = createSlice({
                         tabTitle: "Energy",
                         tabData: [
                             { subType: "", scope: 3 },
-                            { subType: "", scope: 3 },
+                            { subType: "", scope: 2 },
                         ]
                     };
                 }
@@ -177,6 +177,7 @@ const resultTableDataSlice = createSlice({
                         tabData: [
                             { subType: "Food Waste", scope: 3 },
                             { subType: "Plastic Waste", scope: 3 },
+                            { subType: "Event Waste", scope: 3 },
                         ]
                     };
                 }

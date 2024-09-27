@@ -53,8 +53,8 @@ const PrAgency = (props) => {
         dieselEmission: '',
         hybridKms: '',
         hybridEmission: '',
-        electricKms: '',
-        electricEmission: '',
+        // electricKms: '',
+        // electricEmission: '',
 
         electricityKwh: '',
         electricityEmission: '',
@@ -76,10 +76,10 @@ const PrAgency = (props) => {
             const cottonBagsA4SizeEmission = Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2);
             const colouredBrochurePageEmission = Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2);
             const a4Size75GsmEmission = Number(0.0047 * Number(values?.a4Size75Gsm)).toFixed(2);
-            const petrolEmission = values?.petrolKms === 0 ? 0 : Number((0.171 * values?.petrolKms)).toFixed(2);
-            const dieselEmission = values?.dieselKms === 0 ? 0 : Number((0.172 * values?.dieselKms)).toFixed(2);
-            const hybridEmission = values?.hybridKms === 0 ? 0 : Number((0.068 * values?.hybridKms)).toFixed(2);
-            const electricEmission = values?.electricKms === 0 ? 0 : Number(0.047 * values?.electricKms).toFixed(2);
+            const petrolEmission = values?.petrolKms === 0 ? 0 : Number(0.163 * values?.petrolKms).toFixed(2);
+            const dieselEmission = values?.dieselKms === 0 ? 0 : Number(0.168 * values?.dieselKms).toFixed(2);
+            const hybridEmission = values?.hybridKms === 0 ? 0 : Number(0.118 * values?.hybridKms).toFixed(2);
+            // const electricEmission = values?.electricKms === 0 ? 0 : Number(0.047 * values?.electricKms).toFixed(2);
             const electricityEmission = values?.electricityKwh === 0 ? 0 : Number(0.716 * values?.electricityKwh).toFixed(2);
 
             if (meetingRoomEmission > 0) formik.setFieldValue('meetingRoomEmission', meetingRoomEmission);
@@ -96,7 +96,7 @@ const PrAgency = (props) => {
             if (petrolEmission > 0) formik.setFieldValue('petrolEmission', petrolEmission);
             if (dieselEmission > 0) formik.setFieldValue('dieselEmission', dieselEmission);
             if (hybridEmission > 0) formik.setFieldValue('hybridEmission', hybridEmission);
-            if (electricEmission > 0) formik.setFieldValue('electricEmission', electricEmission);
+            // if (electricEmission > 0) formik.setFieldValue('electricEmission', electricEmission);
             if (electricityEmission > 0) formik.setFieldValue('electricityEmission', electricityEmission);
 
             const data = [
@@ -172,11 +172,11 @@ const PrAgency = (props) => {
                     hybridKms: values?.hybridKms,
                     emission: hybridEmission > 0 ? hybridEmission : ''
                 },
-                {
-                    type: 'Electric',
-                    electricKms: values?.electricKms,
-                    emission: electricEmission > 0 ? electricEmission : ''
-                },
+                // {
+                //     type: 'Electric',
+                //     electricKms: values?.electricKms,
+                //     emission: electricEmission > 0 ? electricEmission : ''
+                // },
                 {
                     type: 'Electricity',
                     electricityKwh: values?.electricityKwh,
@@ -298,11 +298,11 @@ const PrAgency = (props) => {
                                 noOfKms: values?.hybridKms,
                                 emissions: hybridEmission > 0 ? hybridEmission : ''
                             },
-                            {
-                                prType: "Electric",
-                                noOfKms: values?.electricKms,
-                                emissions: electricEmission > 0 ? electricEmission : ''
-                            },
+                            // {
+                            //     prType: "Electric",
+                            //     noOfKms: values?.electricKms,
+                            //     emissions: electricEmission > 0 ? electricEmission : ''
+                            // },
                         ]
                     },
                     scope: 3
@@ -325,7 +325,8 @@ const PrAgency = (props) => {
 
             /* for meeting room, projector, and branding, transportation */
             const totalBrandingEmission = (Number(hdpeBannerEmission) || 0) + (Number(pvcBannersEmission) || 0) + (Number(cottonBannerEmission) || 0) + (Number(paperBagsA4SizeEmission) || 0) + (Number(paperBagsA5SizeEmission) || 0) + (Number(juteBagsA4SizeEmission) || 0) + (Number(cottonBagsA4SizeEmission) || 0);
-            const totalTransportationEmission = (Number(petrolEmission) || 0) + (Number(dieselEmission) || 0) || (Number(hybridEmission) || 0) + (Number(electricEmission) || 0);
+            // const totalTransportationEmission = (Number(petrolEmission) || 0) + (Number(dieselEmission) || 0) || (Number(hybridEmission) || 0) + (Number(electricEmission) || 0);
+            const totalTransportationEmission = (Number(petrolEmission) || 0) + (Number(dieselEmission) || 0) || (Number(hybridEmission) || 0);
             const meetingBrandingProjectotTranspotatorEmission = (Number(meetingRoomEmission) || 0) + (Number(projectorEmission) || 0) + (Number(electricityEmission) || 0) + totalBrandingEmission + totalTransportationEmission;
 
             dispatch(addPrAgencyData({ data }));
@@ -374,10 +375,10 @@ const PrAgency = (props) => {
             formik.setFieldValue("dieselEmission", allData[12]?.emission);
             formik.setFieldValue("hybridKms", allData[13]?.hybridKms);
             formik.setFieldValue("hybridEmission", allData[13]?.emission);
-            formik.setFieldValue("electricKms", allData[14]?.electricKms);
-            formik.setFieldValue("electricEmission", allData[14]?.emission);
-            formik.setFieldValue("electricityKwh", allData[15]?.electricityKwh);
-            formik.setFieldValue("electricityEmission", allData[15]?.emission);
+            // formik.setFieldValue("electricKms", allData[14]?.electricKms);
+            // formik.setFieldValue("electricEmission", allData[14]?.emission);
+            formik.setFieldValue("electricityKwh", allData[14]?.electricityKwh);
+            formik.setFieldValue("electricityEmission", allData[14]?.emission);
         }
     }, [value]);
 
@@ -695,7 +696,7 @@ const PrAgency = (props) => {
                                                     <TextField size='small' type="number" name='petrolKms' value={values?.petrolKms}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("petrolKms", e.target.value);
-                                                            formik.setFieldValue("petrolEmission", Number(Number(e.target.value) * 0.171).toFixed(2));
+                                                            formik.setFieldValue("petrolEmission", Number(Number(e.target.value) * 0.163).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -708,7 +709,7 @@ const PrAgency = (props) => {
                                                     <TextField size='small' type="number" name='dieselKms' value={values?.dieselKms}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("dieselKms", e.target.value);
-                                                            formik.setFieldValue("dieselEmission", Number(Number(e.target.value) * 0.172).toFixed(2));
+                                                            formik.setFieldValue("dieselEmission", Number(Number(e.target.value) * 0.168).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
@@ -721,14 +722,14 @@ const PrAgency = (props) => {
                                                     <TextField size='small' type="number" name='hybridKms' value={values?.hybridKms}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("hybridKms", e.target.value);
-                                                            formik.setFieldValue("hybridEmission", Number(Number(e.target.value) * 0.068).toFixed(2));
+                                                            formik.setFieldValue("hybridEmission", Number(Number(e.target.value) * 0.118).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='hybridEmission' disabled value={values?.hybridEmission} onChange={formik.handleChange} /></td>
                                             </tr>
-                                            <tr>
+                                            {/* <tr>
                                                 <td className='ps-2 py-1'>Electric</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='electricKms' value={values?.electricKms}
@@ -740,7 +741,7 @@ const PrAgency = (props) => {
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='electricEmission' disabled value={values?.electricEmission} onChange={formik.handleChange} /></td>
-                                            </tr>
+                                            </tr> */}
                                         </table>
                                     </div>
                                 </Box>
@@ -1077,7 +1078,7 @@ const PrAgency = (props) => {
     //                                                 <TextField size='small' type="number" name='petrolKms' value={values?.petrolKms}
     //                                                     onChange={(e) => {
     //                                                         formik.setFieldValue("petrolKms", e.target.value);
-    //                                                         formik.setFieldValue("petrolEmission", Number(Number(e.target.value) * 0.171).toFixed(2));
+    //                                                         formik.setFieldValue("petrolEmission", Number(Number(e.target.value) * 0.163).toFixed(2));
     //                                                         formik.handleSubmit();
     //                                                     }}
     //                                                     inputProps={{ style: { color: 'white' } }} />
@@ -1090,7 +1091,7 @@ const PrAgency = (props) => {
     //                                                 <TextField size='small' type="number" name='dieselKms' value={values?.dieselKms}
     //                                                     onChange={(e) => {
     //                                                         formik.setFieldValue("dieselKms", e.target.value);
-    //                                                         formik.setFieldValue("dieselEmission", Number(Number(e.target.value) * 0.172).toFixed(2));
+    //                                                         formik.setFieldValue("dieselEmission", Number(Number(e.target.value) * 0.168).toFixed(2));
     //                                                         formik.handleSubmit();
     //                                                     }}
     //                                                     inputProps={{ style: { color: 'white' } }} />
@@ -1103,7 +1104,7 @@ const PrAgency = (props) => {
     //                                                 <TextField size='small' type="number" name='hybridKms' value={values?.hybridKms}
     //                                                     onChange={(e) => {
     //                                                         formik.setFieldValue("hybridKms", e.target.value);
-    //                                                         formik.setFieldValue("hybridEmission", Number(Number(e.target.value) * 0.068).toFixed(2));
+    //                                                         formik.setFieldValue("hybridEmission", Number(Number(e.target.value) * 0.118).toFixed(2));
     //                                                         formik.handleSubmit();
     //                                                     }}
     //                                                     inputProps={{ style: { color: 'white' } }} />
@@ -1487,7 +1488,7 @@ const PrAgency = (props) => {
     //                                                 <TextField size='small' type="number" name='petrolKms' value={values?.petrolKms}
     //                                                     onChange={(e) => {
     //                                                         formik.setFieldValue("petrolKms", e.target.value);
-    //                                                         formik.setFieldValue("petrolEmission", Number(Number(e.target.value) * 0.171).toFixed(2));
+    //                                                         formik.setFieldValue("petrolEmission", Number(Number(e.target.value) * 0.163).toFixed(2));
     //                                                         formik.handleSubmit();
     //                                                     }}
     //                                                     inputProps={{ style: { color: 'white' } }} />
@@ -1500,7 +1501,7 @@ const PrAgency = (props) => {
     //                                                 <TextField size='small' type="number" name='dieselKms' value={values?.dieselKms}
     //                                                     onChange={(e) => {
     //                                                         formik.setFieldValue("dieselKms", e.target.value);
-    //                                                         formik.setFieldValue("dieselEmission", Number(Number(e.target.value) * 0.172).toFixed(2));
+    //                                                         formik.setFieldValue("dieselEmission", Number(Number(e.target.value) * 0.168).toFixed(2));
     //                                                         formik.handleSubmit();
     //                                                     }}
     //                                                     inputProps={{ style: { color: 'white' } }} />
@@ -1513,7 +1514,7 @@ const PrAgency = (props) => {
     //                                                 <TextField size='small' type="number" name='hybridKms' value={values?.hybridKms}
     //                                                     onChange={(e) => {
     //                                                         formik.setFieldValue("hybridKms", e.target.value);
-    //                                                         formik.setFieldValue("hybridEmission", Number(Number(e.target.value) * 0.068).toFixed(2));
+    //                                                         formik.setFieldValue("hybridEmission", Number(Number(e.target.value) * 0.118).toFixed(2));
     //                                                         formik.handleSubmit();
     //                                                     }}
     //                                                     inputProps={{ style: { color: 'white' } }} />
