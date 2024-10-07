@@ -98,7 +98,7 @@ const sendMail = async ({
             }
         } else {
             // if (attachmentTemplateName && emailBodyTemplateName) {
-            if (attachmentTemplateName && emailBodyTemplateName && chatSuggestion) {
+            if ((attachmentTemplateName && emailBodyTemplateName && chatSuggestion) || attachmentTemplateName && emailBodyTemplateName) {
                 const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
                 const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`);
                 console.log("--- data ", data);
@@ -128,11 +128,22 @@ const sendMail = async ({
                     })
                 ]);
 
+                const attachmentsArr = [];
+
                 const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf');
-                const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
 
                 await createPDF(attachmentTemplate, attachmentPdfFilePath);
-                await createPDF(chatSuggestion, chatPdfFilePath);
+
+                if (chatSuggestion) {
+                    const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    await createPDF(chatSuggestion, chatPdfFilePath);
+                    attachmentsArr.push({
+                        filename: 'carbon_reduction_suggestions.pdf',
+                        path: chatPdfFilePath,
+                        contentType: 'application/pdf'
+                    });
+                }
+
 
                 mailOptions = {
                     from: process.env.GMAIL_FROM,
@@ -145,11 +156,7 @@ const sendMail = async ({
                             path: attachmentPdfFilePath,
                             contentType: 'application/pdf'
                         },
-                        {
-                            filename: 'carbon_reduction_suggestions.pdf',
-                            path: chatPdfFilePath,
-                            contentType: 'application/pdf'
-                        },
+                        ...attachmentsArr
                     ]
                 };
 

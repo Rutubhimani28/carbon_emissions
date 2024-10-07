@@ -283,7 +283,9 @@ const AirTravel = (props) => {
                                                 <tr>
                                                     <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
                                                     <td className='ps-2 py-1'>
-                                                        <TextField size='small' type="number" name='noOfTripsTwo' value={formik?.values?.noOfTripsTwo}
+                                                        <TextField size='small' type="number" name='noOfTripsTwo'
+                                                            disabled
+                                                            value={formik?.values?.noOfTripsTwo}
                                                             onChange={(e) => { calclulateEconomyClass(e, "emissionTwo", e.target.value, 375) }}
                                                             inputProps={{ style: { color: 'white' } }} />
                                                     </td>
@@ -292,7 +294,9 @@ const AirTravel = (props) => {
                                                 <tr>
                                                     <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
                                                     <td className='ps-2 py-1'>
-                                                        <TextField size='small' type="number" name='noOfTripsThree' value={formik?.values?.noOfTripsThree}
+                                                        <TextField size='small' type="number" name='noOfTripsThree'
+                                                            disabled
+                                                            value={formik?.values?.noOfTripsThree}
                                                             onChange={(e) => { calclulateEconomyClass(e, "emissionThree", e.target.value, 960) }}
                                                             inputProps={{ style: { color: 'white' } }} />
                                                     </td>
@@ -316,7 +320,9 @@ const AirTravel = (props) => {
                                                 <tr>
                                                     <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
                                                     <td className='ps-2 py-1'>
-                                                        <TextField size='small' type="number" name='noOfTripsFour' value={formik?.values?.noOfTripsFour}
+                                                        <TextField size='small' type="number" name='noOfTripsFour'
+                                                            disabled
+                                                            value={formik?.values?.noOfTripsFour}
                                                             onChange={(e) => { calclulateBusinessClass(e, "emissionFour", e.target.value, 400) }}
                                                             inputProps={{ style: { color: 'white' } }} />
                                                     </td>
@@ -334,7 +340,9 @@ const AirTravel = (props) => {
                                                 <tr>
                                                     <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
                                                     <td className='ps-2 py-1'>
-                                                        <TextField size='small' type="number" name='noOfTripsSix' value={formik?.values?.noOfTripsSix}
+                                                        <TextField size='small' type="number" name='noOfTripsSix'
+                                                            disabled
+                                                            value={formik?.values?.noOfTripsSix}
                                                             onChange={(e) => { calclulateBusinessClass(e, "emissionSix", e.target.value, 1920) }}
                                                             inputProps={{ style: { color: 'white' } }} />
                                                     </td>
@@ -358,7 +366,9 @@ const AirTravel = (props) => {
                                                 <tr>
                                                     <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
                                                     <td className='ps-2 py-1'>
-                                                        <TextField size='small' type="number" name='noOfTripsSeven' value={formik?.values?.noOfTripsSeven}
+                                                        <TextField size='small' type="number" name='noOfTripsSeven'
+                                                            disabled
+                                                            value={formik?.values?.noOfTripsSeven}
                                                             onChange={(e) => { calclulateFirstClass(e, "emissionSeven", e.target.value, 600) }}
                                                             inputProps={{ style: { color: 'white' } }} />
                                                     </td>
@@ -367,7 +377,9 @@ const AirTravel = (props) => {
                                                 <tr>
                                                     <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
                                                     <td className='ps-2 py-1'>
-                                                        <TextField size='small' type="number" name='noOfTripsEight' value={formik?.values?.noOfTripsEight}
+                                                        <TextField size='small' type="number" name='noOfTripsEight'
+                                                            disabled
+                                                            value={formik?.values?.noOfTripsEight}
                                                             onChange={(e) => { calclulateFirstClass(e, "emissionEight", e.target.value, 1125) }}
                                                             inputProps={{ style: { color: 'white' } }} />
                                                     </td>

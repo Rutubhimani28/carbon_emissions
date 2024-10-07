@@ -580,6 +580,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2'>Polyethylene HDPE Banner/ Standee*</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="hdpeBanner"
+                                                        disabled
                                                         value={formik?.values?.hdpeBanner}
                                                         onChange={(e) => {
                                                             formik.setFieldValue('hdpeBanner', e.target.value);
@@ -622,6 +623,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'>Giveway Paper bags (200 GSM)- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="paperBagsA4Size"
+                                                        disabled
                                                         value={formik?.values?.paperBagsA4Size}
                                                         onChange={(e) => {
                                                             formik.setFieldValue('paperBagsA4Size', e.target.value);
@@ -636,6 +638,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'>Giveway Paper bags (200 GSM)- A5 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="paperBagsA5Size"
+                                                        disabled
                                                         value={formik?.values?.paperBagsA5Size}
                                                         onChange={(e) => {
                                                             formik.setFieldValue('paperBagsA5Size', e.target.value);
@@ -651,6 +654,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'>Giveway Jute bags*- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="juteBagsA4Size"
+                                                        disabled
                                                         value={formik?.values?.juteBagsA4Size}
                                                         onChange={(e) => {
                                                             formik.setFieldValue('juteBagsA4Size', e.target.value);
@@ -665,6 +669,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2  py-1 '>Giveway Cotton bags- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="cottonBagsA4Size"
+                                                        disabled
                                                         value={formik?.values?.cottonBagsA4Size}
                                                         onChange={(e) => {
                                                             formik.setFieldValue('cottonBagsA4Size', e.target.value);
@@ -706,7 +711,9 @@ const PrAgency = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Diesel</td>
                                                 <td className='ps-3 py-1'>
-                                                    <TextField size='small' type="number" name='dieselKms' value={values?.dieselKms}
+                                                    <TextField size='small' type="number" name='dieselKms'
+                                                        disabled
+                                                        value={values?.dieselKms}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("dieselKms", e.target.value);
                                                             formik.setFieldValue("dieselEmission", Number(Number(e.target.value) * 0.168).toFixed(2));
@@ -719,7 +726,9 @@ const PrAgency = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Hybrid</td>
                                                 <td className='ps-3 py-1'>
-                                                    <TextField size='small' type="number" name='hybridKms' value={values?.hybridKms}
+                                                    <TextField size='small' type="number" name='hybridKms'
+                                                        disabled
+                                                        value={values?.hybridKms}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("hybridKms", e.target.value);
                                                             formik.setFieldValue("hybridEmission", Number(Number(e.target.value) * 0.118).toFixed(2));

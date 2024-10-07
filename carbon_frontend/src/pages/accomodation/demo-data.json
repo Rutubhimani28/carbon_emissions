@@ -1,0 +1,43 @@
+[
+    {
+        "geography": "Delhi",
+        "country": "India",
+        "stars_four_fourPointHalf": 50.0,
+        "stars_five": 66.0
+    },
+    {
+        "geography": "Dubai-Sharjah-Ajman",
+        "country": "United Arab Emirates",
+        "stars_four_fourPointHalf": 57.0,
+        "stars_five": 91.5
+    },
+    {
+        "geography": "Sydney",
+        "country": "Australia",
+        "stars_four_fourPointHalf": 34.8,
+        "stars_five": 51.4
+    },
+    {
+        "geography": "Singapore",
+        "country": "Singapore",
+        "stars_four_fourPointHalf": 22.9,
+        "stars_five": 44.2
+    },
+    {
+        "geography": "San Juan–Caguas–Guaynabo",
+        "country": "Puerto Rico, USA",
+        "stars_four_fourPointHalf": 56.8
+    },
+    {
+        "geography": "Paris",
+        "country": "France",
+        "stars_four_fourPointHalf": 7.2,
+        "stars_five": 12.3
+    },
+    {
+        "geography": "Morocco",
+        "country": "Morocco",
+        "stars_four_fourPointHalf": 48.9,
+        "stars_five": 81.3
+    }
+]

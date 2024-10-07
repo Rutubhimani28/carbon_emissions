@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addHotelData, deleteHotelData } from '../../redux/slice/totalHotelSlice';
 import Accomodation from '../../assets/Accommodation.png';
 import { IconDiv } from '../../components/IconDiv';
-import HotelData from '../accomodation/data.json';
+// import HotelData from '../accomodation/data.json';
+import HotelData from '../accomodation/demo-data.json';
 import { addResultTableData, deleteResTabHotelData } from '../../redux/slice/resultTableDataSlice';
 
 const Hotel = (props) => {
@@ -620,7 +621,7 @@ const Hotel = (props) => {
 
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                    <Stack  columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
+                                    <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                         <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
                                         <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>

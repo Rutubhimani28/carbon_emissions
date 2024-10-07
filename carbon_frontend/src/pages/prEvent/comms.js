@@ -418,6 +418,7 @@ const Comms = (props) => {
                     size="small"
                     type="number"
                     name="noOfEmails"
+                    disabled
                     value={values?.noOfEmails}
                     onChange={(e) => {
                       const emailEmissionOne =
@@ -455,6 +456,7 @@ const Comms = (props) => {
                     className='ps-2'
                     type="number"
                     name="attachmentSize"
+                    disabled
                     value={values?.attachmentSize}
                     onChange={(e) => {
                       const emailEmissionOne =
@@ -535,6 +537,7 @@ const Comms = (props) => {
                     size="small"
                     type="number"
                     name="finalFileSizeOne"
+                    disabled
                     value={values?.finalFileSizeOne}
                     onChange={(e) => {
                       const emissionTwo =
@@ -560,6 +563,7 @@ const Comms = (props) => {
                     type="number"
                     className='ps-2'
                     name="sendingToMediaOne"
+                    disabled
                     value={values?.sendingToMediaOne}
                     onChange={(e) => {
                       const emissionTwo =
@@ -696,6 +700,7 @@ const Comms = (props) => {
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
                   <TextField size='small' type="number" name="colouredBrochurePage"
+                    disabled
                     value={formik?.values?.colouredBrochurePage}
                     onChange={(e) => {
                       formik.setFieldValue('colouredBrochurePage', e.target.value);
@@ -706,7 +711,7 @@ const Comms = (props) => {
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small'className='ps-2' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} />
+                  <TextField size='small' className='ps-2' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
@@ -727,7 +732,7 @@ const Comms = (props) => {
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small'className='ps-2' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} />
+                  <TextField size='small' className='ps-2' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />

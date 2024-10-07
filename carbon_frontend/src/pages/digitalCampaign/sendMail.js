@@ -42,8 +42,8 @@ const SendMail = (props) => {
         // receiver: userEmail,
         receiver: toolFormData?.email,
         sender: userid,
-        // emails: [],
-        emails: [`${toolFormData?.email}`],
+        emails: [],
+        // emails: [`${toolFormData?.email}`],
         addEmail: ''
     };
 

@@ -297,6 +297,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="noOfKmsOne"
+                                                disabled
                                                 value={formik?.values?.noOfKmsOne}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -311,6 +312,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="kgsOne"
+                                                disabled
                                                 value={formik?.values?.kgsOne}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -338,6 +340,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="noOfKmsTwo"
+                                                disabled
                                                 value={formik?.values?.noOfKmsTwo}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -352,6 +355,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="kgsTwo"
+                                                disabled
                                                 value={formik?.values?.kgsTwo}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -464,6 +468,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="noOfKmsFive"
+                                                disabled
                                                 value={formik?.values?.noOfKmsFive}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -478,6 +483,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="kgsFive"
+                                                disabled
                                                 value={formik?.values?.kgsFive}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -506,6 +512,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="noOfKmsSix"
+                                                disabled
                                                 value={formik?.values?.noOfKmsSix}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -520,6 +527,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="kgsSix"
+                                                disabled
                                                 value={formik?.values?.kgsSix}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -548,6 +556,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="noOfKmsSeven"
+                                                disabled
                                                 value={formik?.values?.noOfKmsSeven}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -562,6 +571,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="kgsSeven"
+                                                disabled
                                                 value={formik?.values?.kgsSeven}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -590,6 +600,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="noOfKmsEight"
+                                                disabled
                                                 value={formik?.values?.noOfKmsEight}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);
@@ -604,6 +615,7 @@ const AirFreight = (props) => {
                                                 size="small"
                                                 type="number"
                                                 name="kgsEight"
+                                                disabled
                                                 value={formik?.values?.kgsEight}
                                                 onChange={(e) => {
                                                     formik.handleChange(e);

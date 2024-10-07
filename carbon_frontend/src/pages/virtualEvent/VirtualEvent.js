@@ -866,6 +866,7 @@ const VirtualEvent = (props) => {
                                         label="Ad duration (In Secs)"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         onChange={(e) => {
                                             formik.setFieldValue("adDuration", Number(e.target.value));
                                             formik.setFieldValue("emissionEightteen", Number(Number(e.target.value) * Number(values?.noOfSlots) * Number(values?.viewers) * Number(values?.efEighteen)).toFixed(2));
@@ -878,6 +879,7 @@ const VirtualEvent = (props) => {
                                         label="No of slots"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfSlots", Number(e.target.value));
                                             formik.setFieldValue("emissionEightteen", Number(Number(e.target.value) * Number(values?.adDuration) * Number(values?.viewers) * Number(values?.efEighteen)).toFixed(2));
@@ -890,6 +892,7 @@ const VirtualEvent = (props) => {
                                         label="viewers"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         onChange={(e) => {
                                             formik.setFieldValue("viewers", Number(e.target.value));
                                             formik.setFieldValue("emissionEightteen", Number(Number(e.target.value) * Number(values?.adDuration) * Number(values?.noOfSlots) * Number(values?.efEighteen)).toFixed(2));
@@ -1000,6 +1003,7 @@ const VirtualEvent = (props) => {
                                         label="Podcast Size (in Mb)"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         onChange={(e) => {
                                             const podcastTotal = Number(e.target.value) * Number(values?.podcastKwh);
                                             const emissionNineteen = Number(Number(podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
@@ -1015,6 +1019,7 @@ const VirtualEvent = (props) => {
                                         label="No of Listeners"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         onChange={(e) => {
                                             const emissionNineteen = Number(Number(values?.podcastTotal) * Number(e.target.value)).toFixed(2);
                                             formik.setFieldValue("noOfListeners", Number(e.target.value));
@@ -1056,6 +1061,7 @@ const VirtualEvent = (props) => {
                                                         size='small'
                                                         type="number"
                                                         name={'hdpeBanner'}
+                                                        disabled
                                                         value={values?.hdpeBanner}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("hdpeBanner", Number(e.target.value));

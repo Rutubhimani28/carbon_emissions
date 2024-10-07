@@ -203,6 +203,7 @@ const EnergyUpdated = (props) => {
                                         label=""
                                         fullWidth
                                         size="small"
+                                        disabled
                                         value={formik.values.gallonsOne}
                                         type="number"
                                         onChange={(e) => {
@@ -254,6 +255,7 @@ const EnergyUpdated = (props) => {
                                         fullWidth
                                         type="number"
                                         size="small"
+                                        disabled
                                         value={formik.values.gallonsTwo}
                                         onChange={(e) => {
                                             formik.handleChange(e);

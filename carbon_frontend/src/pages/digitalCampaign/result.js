@@ -212,7 +212,7 @@ const Result = ({ value }) => {
 
     useEffect(() => {
         if (content) {
-            chat();
+            // chat();
         }
     }, [content]);
 
@@ -312,7 +312,7 @@ const Result = ({ value }) => {
                         </Stack>
                     </div>
 
-                    <Box style={{ padding: "20px", paddingTop: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
+                    {/* <Box style={{ padding: "20px", paddingTop: "20px", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: 'center' }}>
                         <Accordion style={{ color: 'white', background: '#1f9e6d', width: '100%' }}>
                             <AccordionSummary
                                 expandIcon={<ArrowDownwardIcon style={{ color: 'white' }} />}
@@ -333,7 +333,7 @@ const Result = ({ value }) => {
 
                             </AccordionDetails>
                         </Accordion>
-                    </Box>
+                    </Box> */}
 
                 </Card>
             </Container>

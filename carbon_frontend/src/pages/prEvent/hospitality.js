@@ -326,7 +326,9 @@ const Hospitality = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Non-Veg (Poultry/ Sea Food)</td>
                                                 <td className='ps-3 py-1'>
-                                                    <TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo}
+                                                    <TextField size='small' type="number" name='noOfPaxTwo'
+                                                        disabled
+                                                        value={formik?.values?.noOfPaxTwo}
                                                         onChange={(e) => { handleChangeFoodWaste(e, "emissionTwo", e.target.value, 5.76); }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
@@ -335,7 +337,9 @@ const Hospitality = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Non-Veg (Red Meat)</td>
                                                 <td className='ps-3 py-1'>
-                                                    <TextField size='small' type="number" name='noOfPaxThree' value={formik?.values?.noOfPaxThree}
+                                                    <TextField size='small' type="number" name='noOfPaxThree'
+                                                        disabled
+                                                        value={formik?.values?.noOfPaxThree}
                                                         onChange={(e) => { handleChangeFoodWaste(e, "emissionThree", e.target.value, 23.55); }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
@@ -344,7 +348,9 @@ const Hospitality = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Tea/ Coffee + Cookies</td>
                                                 <td className='ps-3 py-1'>
-                                                    <TextField size='small' type="number" name='noOfPaxFour' value={formik?.values?.noOfPaxFour}
+                                                    <TextField size='small' type="number" name='noOfPaxFour'
+                                                        disabled
+                                                        value={formik?.values?.noOfPaxFour}
                                                         onChange={(e) => { handleChangeFoodWaste(e, "emissionFour", e.target.value, 0.6); }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
@@ -382,6 +388,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'>Food Waste (meat)</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="foodWasteMeatKg"
+                                                        disabled
                                                         value={formik?.values?.foodWasteMeatKg}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
@@ -413,6 +420,7 @@ const Hospitality = (props) => {
                                                         size="small"
                                                         type="number"
                                                         name="foodWasteMixKg"
+                                                        disabled
                                                         value={formik?.values?.foodWasteMixKg}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
@@ -440,6 +448,7 @@ const Hospitality = (props) => {
                                                         size="small"
                                                         type="number"
                                                         name="fruitVegetablesKg"
+                                                        disabled
                                                         value={formik?.values?.fruitVegetablesKg}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
@@ -491,6 +500,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'>500ml</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="bottleTwo"
+                                                        disabled
                                                         value={formik?.values?.bottleTwo}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);
@@ -505,6 +515,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'>1000ml</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="bottleThree"
+                                                        disabled
                                                         value={formik?.values?.bottleThree}
                                                         onChange={(e) => {
                                                             formik.handleChange(e);

@@ -17,26 +17,26 @@ const Production = (props) => {
     const totalEmission = useSelector((state) => state?.totalProductionDetails?.totalEmission);
 
     const fieldDataOne = [
-        { name: 'Sawn Timber', ef: 0.263, fieldName: 'sawnTimber' },
-        { name: 'MDF', ef: 0.856, fieldName: 'mdf' },
-        { name: 'Open Panel Timber Frame', ef: 0.345, fieldName: 'openPanelTimberFrame' },
-        { name: 'Carpet ', ef: 6.7, fieldName: 'carpet' },
-        { name: 'Adhesive Vinyl', ef: 3.1, fieldName: 'adhesiveVinyl' },
-        { name: 'Cardboard', ef: 0.94, fieldName: 'cardboard' },
-        { name: 'Nylon', ef: 12.7, fieldName: 'nylon' },
+        { name: 'Sawn Timber', ef: 0.263, fieldName: 'sawnTimber', disabled: false },
+        { name: 'MDF', ef: 0.856, fieldName: 'mdf', disabled: true },
+        { name: 'Open Panel Timber Frame', ef: 0.345, fieldName: 'openPanelTimberFrame', disabled: true },
+        { name: 'Carpet ', ef: 6.7, fieldName: 'carpet', disabled: true },
+        { name: 'Adhesive Vinyl', ef: 3.1, fieldName: 'adhesiveVinyl', disabled: true },
+        { name: 'Cardboard', ef: 0.94, fieldName: 'cardboard', disabled: true },
+        { name: 'Nylon', ef: 12.7, fieldName: 'nylon', disabled: true },
     ];
     const fieldDataTwo = [
-        { name: 'Wood', ef: 1.8, fieldName: 'wood' },
-        { name: 'Steel ', ef: 1.36, fieldName: 'steel' },
-        { name: 'Aluminium', ef: 2.663, fieldName: 'aluminium' },
-        { name: 'Iron', ef: 0.64, fieldName: 'iron' },
-        { name: 'Paper', ef: 0.0005, fieldName: 'paper' },
-        { name: 'Recycled Paper', ef: 0.02, fieldName: 'recycledPaper' },
-        { name: 'Paint ', ef: 1.15, fieldName: 'paint' },
+        { name: 'Wood', ef: 1.8, fieldName: 'wood', disabled: true },
+        { name: 'Steel ', ef: 1.36, fieldName: 'steel', disabled: false },
+        { name: 'Aluminium', ef: 2.663, fieldName: 'aluminium', disabled: true },
+        { name: 'Iron', ef: 0.64, fieldName: 'iron', disabled: false },
+        { name: 'Paper', ef: 0.0005, fieldName: 'paper', disabled: true },
+        { name: 'Recycled Paper', ef: 0.02, fieldName: 'recycledPaper', disabled: true },
+        { name: 'Paint ', ef: 1.15, fieldName: 'paint', disabled: true },
     ];
     const fieldDataThree = [
-        { name: 'Projector', ef: 0.215, fieldName: 'projector' },
-        { name: 'LED Screen Panel (500mmx500mm)', ef: 0.043, fieldName: 'ledScreenPanel' },
+        { name: 'Projector', ef: 0.215, fieldName: 'projector', disabled: false },
+        { name: 'LED Screen Panel (500mmx500mm)', ef: 0.043, fieldName: 'ledScreenPanel', disabled: true },
     ];
     const fieldDataFour = [
         { name: 'Electricity', ef: 0.716, fieldName: 'electricity' },
@@ -788,6 +788,7 @@ const Production = (props) => {
                                                                         type="number"
                                                                         name={`${ite?.fieldName}Kgs`}
                                                                         value={formik.values[`${ite?.fieldName}Kgs`]}
+                                                                        disabled={ite?.disabled}
                                                                         onChange={(e) => {
                                                                             formik.handleChange(e);
                                                                             formik.setFieldValue(
@@ -838,6 +839,7 @@ const Production = (props) => {
                                                                         type="number"
                                                                         name={`${item?.fieldName}Area`}
                                                                         value={formik.values[`${item?.fieldName}Area`]}
+                                                                        disabled={item?.disabled}
                                                                         onChange={(e) => {
                                                                             formik.handleChange(e);
                                                                             formik.setFieldValue(
@@ -889,6 +891,7 @@ const Production = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="hdpeBanner"
+                                                            disabled
                                                             value={formik?.values?.hdpeBanner}
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('hdpeBanner', e.target.value);
@@ -943,6 +946,7 @@ const Production = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="cottonBanner"
+                                                            disabled
                                                             value={formik?.values?.cottonBanner}
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('cottonBanner', e.target.value);
@@ -970,6 +974,7 @@ const Production = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="plasticBadgeHolders"
+                                                            disabled
                                                             value={formik?.values?.plasticBadgeHolders}
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('plasticBadgeHolders', e.target.value);
@@ -1010,6 +1015,7 @@ const Production = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="colouredBrochurePage"
+                                                            disabled
                                                             value={formik?.values?.colouredBrochurePage}
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('colouredBrochurePage', e.target.value);
@@ -1065,6 +1071,7 @@ const Production = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="paperBagsA5Size"
+                                                            disabled
                                                             value={formik?.values?.paperBagsA5Size}
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('paperBagsA5Size', e.target.value);
@@ -1093,6 +1100,7 @@ const Production = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="juteBagsA4Size"
+                                                            disabled
                                                             value={formik?.values?.juteBagsA4Size}
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('juteBagsA4Size', e.target.value);
@@ -1121,6 +1129,7 @@ const Production = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="cottonBagsA4Size"
+                                                            disabled
                                                             value={formik?.values?.cottonBagsA4Size}
                                                             onChange={(e) => {
                                                                 formik.setFieldValue('cottonBagsA4Size', e.target.value);
@@ -1171,6 +1180,7 @@ const Production = (props) => {
                                                                         size="small"
                                                                         type="number"
                                                                         name={`${it?.fieldName}NoOfHour`}
+                                                                        disabled={it?.disabled}
                                                                         value={formik.values[`${it?.fieldName}NoOfHour`]}
                                                                         onChange={(e) => {
                                                                             formik.handleChange(e);
@@ -1188,6 +1198,7 @@ const Production = (props) => {
                                                                         size="small"
                                                                         type="number"
                                                                         name={`${it?.fieldName}NoOfDevice`}
+                                                                        disabled={it?.disabled}
                                                                         value={formik.values[`${it?.fieldName}NoOfDevice`]}
                                                                         onChange={(e) => {
                                                                             formik.handleChange(e);

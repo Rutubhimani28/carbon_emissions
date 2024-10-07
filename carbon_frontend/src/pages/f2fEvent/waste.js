@@ -489,6 +489,7 @@ const Waste = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="foodWasteMixKg"
+                                                            disabled
                                                             value={formik?.values?.foodWasteMixKg}
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);
@@ -515,6 +516,7 @@ const Waste = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="fruitVegetablesKg"
+                                                            disabled
                                                             value={formik?.values?.fruitVegetablesKg}
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);
@@ -583,6 +585,7 @@ const Waste = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="bottleTwo"
+                                                            disabled
                                                             value={formik?.values?.bottleTwo}
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);
@@ -610,6 +613,7 @@ const Waste = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="bottleThree"
+                                                            disabled
                                                             value={formik?.values?.bottleThree}
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);
@@ -681,6 +685,7 @@ const Waste = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="woodKg"
+                                                            disabled
                                                             value={formik?.values?.woodKg}
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);
@@ -734,6 +739,7 @@ const Waste = (props) => {
                                                             size="small"
                                                             type="number"
                                                             name="pvcKg"
+                                                            disabled
                                                             value={formik?.values?.pvcKg}
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);

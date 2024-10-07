@@ -302,7 +302,9 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Hybrid</td>
                                                 <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='hybridCarKms' value={values?.hybridCarKms}
+                                                    <TextField size='small' type="number" name='hybridCarKms'
+                                                        disabled
+                                                        value={values?.hybridCarKms}
                                                         onChange={(e) => {
                                                             handleChange(e);
                                                             setFieldValue("hybridCarEmission", Number(Number(values?.efThree) * Number(e.target.value)).toFixed(2));
@@ -359,7 +361,9 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Hybrid</td>
                                                 <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='hybridCarKms2' value={values?.hybridCarKms2}
+                                                    <TextField size='small' type="number" name='hybridCarKms2'
+                                                        disabled
+                                                        value={values?.hybridCarKms2}
                                                         onChange={(e) => {
                                                             handleChange(e);
                                                             setFieldValue("hybridCarEmission2", Number(Number(values?.efSix) * Number(e.target.value)).toFixed(2));
@@ -388,7 +392,9 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Bus-Diesel</td>
                                                 <td className='ps-3 py-1'>
-                                                    <TextField size='small' type="number" name='busDieselKms' value={values?.busDieselKms}
+                                                    <TextField size='small' type="number" name='busDieselKms'
+                                                        disabled
+                                                        value={values?.busDieselKms}
                                                         onChange={(e) => {
                                                             handleChange(e);
                                                             setFieldValue("busDieselEmission", Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2));
@@ -401,7 +407,9 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Subway/ Tram</td>
                                                 <td className='ps-3 py-1'>
-                                                    <TextField size='small' type="number" name='subwayTramKms' value={values?.subwayTramKms}
+                                                    <TextField size='small' type="number" name='subwayTramKms'
+                                                        disabled
+                                                        value={values?.subwayTramKms}
                                                         onChange={(e) => {
                                                             handleChange(e);
                                                             setFieldValue("subwayTramEmission", Number(Number(values?.efEight) * Number(e.target.value)).toFixed(2));
@@ -414,7 +422,9 @@ const LocalTranspotation = (props) => {
                                             <tr>
                                                 <td className='ps-2 py-1'>Ferry</td>
                                                 <td className='ps-3 py-1'>
-                                                    <TextField size='small' type="number" name='ferryKms' value={values?.ferryKms}
+                                                    <TextField size='small' type="number" name='ferryKms'
+                                                        disabled
+                                                        value={values?.ferryKms}
                                                         onChange={(e) => {
                                                             handleChange(e);
                                                             setFieldValue("ferryEmission", Number(Number(values?.efNine) * Number(e.target.value)).toFixed(2));

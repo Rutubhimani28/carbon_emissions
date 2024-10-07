@@ -264,6 +264,7 @@ const DigitalCampaign = (props) => {
                                             label="Video (in mins)"
                                             variant="outlined"
                                             fullWidth
+                                            disabled
                                             onChange={(e) => {
                                                 formik.setFieldValue("videoMins", Number(e.target.value));
                                                 formik.setFieldValue("videoEnergy", Number(Number(values.efTwo) * (Number(e.target.value) / 60)));
@@ -276,6 +277,7 @@ const DigitalCampaign = (props) => {
                                             label="Impressions"
                                             variant="outlined"
                                             fullWidth
+                                            disabled
                                             onChange={(e) => {
                                                 formik.setFieldValue("impressionsTwo", Number(e.target.value));
                                                 formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoEnergy) * 0.716).toFixed(2));
