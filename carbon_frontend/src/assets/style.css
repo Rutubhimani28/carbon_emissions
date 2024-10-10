@@ -109,7 +109,9 @@ p {
 }
 
 .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
-  -webkit-text-fill-color: #fff;
+  /* -webkit-text-fill-color: #fff; */
+  -webkit-text-fill-color: gray;
+  border: 1px solid gray !important;
 }
 
 .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input {
@@ -154,6 +156,13 @@ p {
   border-radius: 6px;
   color: white !important;
 }
+
+/* ###### */
+/* .table-custom-inpt-field .css-wb57ya-MuiFormControl-root-MuiTextField-root.Mui-disabled {
+  border: 1px solid gray !important;
+  border-radius: 6px;
+  color: gray !important;
+} */
 
 .table-custom-inpt-field .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-u85066-MuiAutocomplete-root .MuiOutlinedInput-root {
   color: white;
@@ -204,6 +213,11 @@ p {
 
 .textborder input {
   border: 1px solid white;
+  border-radius: 6px;
+}
+
+.textborder input:disabled {
+  border: 1px solid gray !important;
   border-radius: 6px;
 }
 
@@ -279,4 +293,8 @@ text {
 .strong-ol li {
   color: #000;
   font-weight: normal;
+}
+
+.disabled-field-label {
+  color: grey; 
 }

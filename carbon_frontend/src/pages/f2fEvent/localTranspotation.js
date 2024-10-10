@@ -286,9 +286,11 @@ const LocalTranspotation = (props) => {
                                                     <TextField size='small' type="number" disabled name='petrolCarEmission' value={values?.petrolCarEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Diesel</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Diesel</td>
                                                 <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='dieselCarKms' value={values?.dieselCarKms}
+                                                    <TextField size='small' type="number" name='dieselCarKms'
+                                                        disabled
+                                                        value={values?.dieselCarKms}
                                                         onChange={(e) => {
                                                             handleChange(e);
                                                             setFieldValue("dieselCarEmission", Number(Number(values?.efTwo) * Number(e.target.value)).toFixed(2));
@@ -300,7 +302,7 @@ const LocalTranspotation = (props) => {
                                                     <TextField size='small' type="number" name='dieselCarEmission' value={values?.dieselCarEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Hybrid</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Hybrid</td>
                                                 <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" name='hybridCarKms'
                                                         disabled
@@ -345,9 +347,11 @@ const LocalTranspotation = (props) => {
                                                     <TextField size='small' type="number" disabled name='petrolCarEmission2' value={values?.petrolCarEmission2} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Diesel</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Diesel</td>
                                                 <td className='ps-2 py-1'>
-                                                    <TextField size='small' type="number" name='dieselCarKms2' value={values?.dieselCarKms2}
+                                                    <TextField size='small' type="number" name='dieselCarKms2'
+                                                        disabled
+                                                        value={values?.dieselCarKms2}
                                                         onChange={(e) => {
                                                             handleChange(e);
                                                             setFieldValue("dieselCarEmission2", Number(Number(values?.efFive) * Number(e.target.value)).toFixed(2));
@@ -359,7 +363,7 @@ const LocalTranspotation = (props) => {
                                                     <TextField size='small' type="number" name='dieselCarEmission2' value={values?.dieselCarEmission2} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Hybrid</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Hybrid</td>
                                                 <td className='ps-2 py-1'>
                                                     <TextField size='small' type="number" name='hybridCarKms2'
                                                         disabled
@@ -390,7 +394,7 @@ const LocalTranspotation = (props) => {
                                                 <th className='ps-2'>Emissions per person </th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Bus-Diesel</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Bus-Diesel</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='busDieselKms'
                                                         disabled
@@ -405,7 +409,7 @@ const LocalTranspotation = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='busDieselEmission' disabled value={values?.busDieselEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Subway/ Tram</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Subway/ Tram</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='subwayTramKms'
                                                         disabled
@@ -420,7 +424,7 @@ const LocalTranspotation = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='subwayTramEmission' value={values?.subwayTramEmission} onChange={formik.handleChange} disabled /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Ferry</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Ferry</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='ferryKms'
                                                         disabled

@@ -197,11 +197,12 @@ const DigitalCampaign = (props) => {
                                 >
                                     <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                         <Icon component={FaImage} sx={{ fontSize: 60, color: 'black' }} />
-                                        <Typography variant="h6" sx={{ marginY: 1 }}>Image</Typography>
+                                        <Typography variant="h6" sx={{ marginY: 1 }} className='disabled-field-label'>Image</Typography>
                                         <TextField size='small' type="number" name={'imgSize'} value={values?.imgSize}
                                             label="Image Size (in Mb)"
                                             variant="outlined"
                                             fullWidth
+                                            disabled
                                             onChange={(e) => {
                                                 const downloadEnergy = Number(Number(e.target.value) * Number(values.impressionsOne) * 20);
                                                 const uploadEnergy = Number(Number(e.target.value) * 22.8);
@@ -222,6 +223,7 @@ const DigitalCampaign = (props) => {
                                             label="Impressions"
                                             variant="outlined"
                                             fullWidth
+                                            disabled
                                             onChange={(e) => {
                                                 const downloadEnergy = Number(Number(e.target.value) * Number(values.imgSize) * 20);
                                                 const uploadEnergy = Number(Number(values.imgSize) * 22.8);
@@ -259,7 +261,7 @@ const DigitalCampaign = (props) => {
                                 >
                                     <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                         <Icon component={FaFileVideo} sx={{ fontSize: 60, color: 'black' }} />
-                                        <Typography variant="h6" sx={{ marginY: 1 }}>Video</Typography>
+                                        <Typography variant="h6" sx={{ marginY: 1 }} className='disabled-field-label'>Video</Typography>
                                         <TextField size='small' type="number" name={'videoMins'} value={values?.videoMins}
                                             label="Video (in mins)"
                                             variant="outlined"

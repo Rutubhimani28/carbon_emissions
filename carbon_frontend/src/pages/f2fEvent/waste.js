@@ -223,7 +223,7 @@ const Waste = (props) => {
                     subType: "Food Waste",
                     subTypeData: {
                         th: ["", "Kgs", "Emissions"],
-                        td: [
+                        td: [ 
                             {
                                 wsType: "Food Waste (non-meat)",
                                 kgs: values?.foodWasteNonMeatKg,
@@ -430,12 +430,13 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Food Waste (meat)</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Food Waste (meat)</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
                                                             type="number"
                                                             name="foodWasteMeatKg"
+                                                            disabled
                                                             value={formik?.values?.foodWasteMeatKg}
                                                             onChange={(e) => {
                                                                 formik.handleChange(e);
@@ -483,7 +484,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Food Waste (All mix)</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Food Waste (All mix)</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -510,7 +511,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Fruits & Vegetables</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Fruits & Vegetables</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -579,7 +580,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">500ml</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">500ml</td>
                                                     <td className="ps-3 py-1">
                                                         <TextField
                                                             size="small"
@@ -607,7 +608,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">1000ml</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">1000ml</td>
                                                     <td className="ps-3 py-1">
                                                         <TextField
                                                             size="small"
@@ -679,7 +680,7 @@ const Waste = (props) => {
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Wood</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Wood</td>
                                                     <td className="ps-3 py-1">
                                                         <TextField
                                                             size="small"
@@ -733,7 +734,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">PVC</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">PVC</td>
                                                     <td className="ps-3 py-1">
                                                         <TextField
                                                             size="small"

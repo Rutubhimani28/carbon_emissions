@@ -183,7 +183,6 @@ const DigitalContent = (props) => {
                             container
                             rowSpacing={3}
                             columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-                            className='table-custom-inpt-field'
                             justifyContent={'center'}
                         >
 
@@ -354,7 +353,7 @@ const DigitalContent = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -375,11 +374,11 @@ const DigitalContent = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h4' color='white'>
+                                <Typography variant='h4' className='disabled-field-label'>
                                     Laptops used
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No.of Attendees</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>No.of Attendees</FormLabel>
                                     <TextField
                                         id="noOfAttendees"
                                         name="noOfAttendees"
@@ -405,7 +404,7 @@ const DigitalContent = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No of Hours</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>No of Hours</FormLabel>
                                     <TextField
                                         id="noOfHours"
                                         name="noOfHours"
@@ -431,7 +430,7 @@ const DigitalContent = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Emissions</FormLabel>
                                     {/* <TextField
                                         id="emissionThree"
                                         name="emissionThree"

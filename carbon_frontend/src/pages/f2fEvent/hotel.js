@@ -235,7 +235,9 @@ const Hotel = (props) => {
                 <Card className='p-4 custom-inner-bg ' style={{ padding: '20px' }}>
                     {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                        <Box
+                        //  className='table-custom-inpt-field' 
+                         mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
                                 <img src={Accomodation} alt="Hotel" width={100} className='tabImgWhite' />
                             </IconDiv>
@@ -246,7 +248,7 @@ const Hotel = (props) => {
                                 style={{ justifyContent: 'center' }}
                             >
                                 <Grid item xs={12} sm={4} md={4}>
-                                    <Typography variant='h4'>
+                                    <Typography variant='h4' className='text-white'>
                                         Hotel Stay
                                     </Typography>
                                     <Grid mt={2}>
@@ -432,7 +434,7 @@ const Hotel = (props) => {
                                         </FormControl>
                                     </Grid>
                                     <Grid mt={2} className='textborder'>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>No. of Nights</FormLabel>
+                                        <FormLabel id="demo-row-radio-buttons-group-label"  className={` ${!formik.values.hotelType ? 'disabled-field-label' : 'label-white'}`}>No. of Nights</FormLabel>
                                         <FormControl fullWidth>
                                             <TextField
                                                 size="small"
@@ -462,7 +464,7 @@ const Hotel = (props) => {
                                         </FormControl>
                                     </Grid>
                                     <Grid mt={2} className='textborder'>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                        <FormLabel id="demo-row-radio-buttons-group-label" className='label-white disabled-field-label'>Emissions</FormLabel>
                                         <TextField
                                             id="emissionsOne"
                                             name="emissionsOne"
@@ -483,7 +485,7 @@ const Hotel = (props) => {
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12} sm={8} textAlign={"center"}>
-                                    <Typography variant='h4' justifyContent={"center"}>
+                                    <Typography variant='h4' justifyContent={"center"} className='text-white'>
                                         Meeting Room Energy Consumption
                                     </Typography>
                                     <Grid
@@ -497,12 +499,14 @@ const Hotel = (props) => {
                                         <Grid item xs={12} sm={6} md={6}>
 
                                             <Grid mt={2}>
-                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Total Meeting Room Area (Sqft)</FormLabel>
+                                                {/* <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Total Meeting Room Area (Sqft)</FormLabel> */}
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Total Meeting Room Area (Sqft)</FormLabel>
                                                 <TextField
                                                     id="totalMeetingRoomArea"
                                                     name="totalMeetingRoomArea"
                                                     label=""
                                                     fullWidth
+                                                    disabled
                                                     size="small"
                                                     type="number"
                                                     value={formik.values.totalMeetingRoomArea}
@@ -519,15 +523,17 @@ const Hotel = (props) => {
                                                         formik.touched.totalMeetingRoomArea && formik.errors.totalMeetingRoomArea
                                                     }
                                                     inputProps={{ style: { color: 'white' } }}
+                                                    className=''
                                                 />
                                             </Grid>
                                             <Grid mt={2}>
-                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Meeting Duration (No of Hrs)</FormLabel>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Meeting Duration (No of Hrs)</FormLabel>
                                                 <TextField
                                                     id="meetingDuration"
                                                     name="meetingDuration"
                                                     label=""
                                                     fullWidth
+                                                    disabled
                                                     size="small"
                                                     type='number'
                                                     value={formik.values.meetingDuration}
@@ -547,7 +553,7 @@ const Hotel = (props) => {
                                                 />
                                             </Grid>
                                             <Grid mt={2}>
-                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Emissions</FormLabel>
                                                 <TextField
                                                     id="emissionsTwo"
                                                     name="emissionsTwo"
@@ -594,7 +600,7 @@ const Hotel = (props) => {
                                             </Grid>
 
                                             <Grid mt={2}>
-                                                <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                                <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Emissions</FormLabel>
                                                 <TextField
                                                     id="emissionsThree"
                                                     name="emissionsThree"
@@ -614,7 +620,7 @@ const Hotel = (props) => {
                                                 />
                                             </Grid>
                                             <Grid mt={2}>
-                                                <Typography> * If you have the exact energy consumption from hotel</Typography>
+                                                <Typography className='text-white'> * If you have the exact energy consumption from hotel</Typography>
                                             </Grid>
                                         </Grid>
                                     </Grid>

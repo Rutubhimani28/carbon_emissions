@@ -281,7 +281,7 @@ const AirTravel = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Medium Haul Flight (3-6hrs)</td>
                                                     <td className='ps-2 py-1'>
                                                         <TextField size='small' type="number" name='noOfTripsTwo'
                                                             disabled
@@ -292,7 +292,7 @@ const AirTravel = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' value={formik?.values?.emissionTwo} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Long Haul Flight (&gt;6hrs)</td>
                                                     <td className='ps-2 py-1'>
                                                         <TextField size='small' type="number" name='noOfTripsThree'
                                                             disabled
@@ -318,7 +318,7 @@ const AirTravel = (props) => {
                                                     <th className='ps-2'>Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Short Haul Flight (&lt;3hrs)</td>
                                                     <td className='ps-2 py-1'>
                                                         <TextField size='small' type="number" name='noOfTripsFour'
                                                             disabled
@@ -338,7 +338,7 @@ const AirTravel = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionFive' value={formik?.values?.emissionFive} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Long Haul Flight (&gt;6hrs)</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Long Haul Flight (&gt;6hrs)</td>
                                                     <td className='ps-2 py-1'>
                                                         <TextField size='small' type="number" name='noOfTripsSix'
                                                             disabled
@@ -364,7 +364,7 @@ const AirTravel = (props) => {
                                                     <th className='ps-2'>Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Short Haul Flight (&lt;3hrs)</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Short Haul Flight (&lt;3hrs)</td>
                                                     <td className='ps-2 py-1'>
                                                         <TextField size='small' type="number" name='noOfTripsSeven'
                                                             disabled
@@ -375,7 +375,7 @@ const AirTravel = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionSeven' value={formik?.values?.emissionSeven} onChange={formik.handleChange} /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Medium Haul Flight (3-6hrs)</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Medium Haul Flight (3-6hrs)</td>
                                                     <td className='ps-2 py-1'>
                                                         <TextField size='small' type="number" name='noOfTripsEight'
                                                             disabled

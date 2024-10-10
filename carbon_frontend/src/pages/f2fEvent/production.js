@@ -781,7 +781,7 @@ const Production = (props) => {
                                                     fieldDataTwo?.map((ite) => (
                                                         <>
                                                             <tr key={`two${ite}`}>
-                                                                <td className="ps-2 py-1">{ite.name}</td>
+                                                                <td className={`ps-2 py-1 ${ite.disabled ? 'disabled-field-label' : ''}`}>{ite.name}</td>
                                                                 <td className="ps-2 py-1">
                                                                     <TextField
                                                                         size="small"
@@ -832,7 +832,7 @@ const Production = (props) => {
                                                     fieldDataOne?.map((item) => (
                                                         <>
                                                             <tr key={`one${item}`}>
-                                                                <td className="ps-2 py-1">{item.name}</td>
+                                                                <td className={`ps-2 py-1 ${item.disabled ? 'disabled-field-label' : ''}`}>{item.name}</td>
                                                                 <td className="ps-2 py-1">
                                                                     <TextField
                                                                         size="small"
@@ -885,7 +885,7 @@ const Production = (props) => {
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Polyethylene HDPE Banner *</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Polyethylene HDPE Banner *</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -940,7 +940,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Cotton Banner</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Cotton Banner</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -968,7 +968,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Plastic Badge Holders (Polycorbonate)</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Plastic Badge Holders (Polycorbonate)</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1009,7 +1009,7 @@ const Production = (props) => {
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Printing a Coloured Brochure/ Page (&gt;130 GSM)</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Printing a Coloured Brochure/ Page (&gt;130 GSM)</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1065,7 +1065,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A5 Size</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Giveway Paper bags (200 GSM)- A5 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1094,7 +1094,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Jute bags*- A4 Size</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Giveway Jute bags*- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1123,7 +1123,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Cotton bags- A4 Size</td>
+                                                    <td className="ps-2 py-1 disabled-field-label">Giveway Cotton bags- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1174,7 +1174,7 @@ const Production = (props) => {
                                                     fieldDataThree?.map((it) => (
                                                         <>
                                                             <tr key={`three${it}`}>
-                                                                <td className="ps-2 py-1">{it.name}</td>
+                                                                <td className={`ps-2 py-1 ${it.disabled ? 'disabled-field-label' : ''}`}>{it.name}</td>
                                                                 <td className="ps-2 py-1">
                                                                     <TextField
                                                                         size="small"

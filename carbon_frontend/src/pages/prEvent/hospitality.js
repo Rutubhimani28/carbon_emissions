@@ -324,7 +324,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'><TextField size="small" type="number" disabled name="emissionOne" value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Non-Veg (Poultry/ Sea Food)</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Non-Veg (Poultry/ Sea Food)</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='noOfPaxTwo'
                                                         disabled
@@ -335,7 +335,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwo' disabled value={values?.emissionTwo} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Non-Veg (Red Meat)</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Non-Veg (Red Meat)</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='noOfPaxThree'
                                                         disabled
@@ -346,7 +346,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' disabled value={values?.emissionThree} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Tea/ Coffee + Cookies</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Tea/ Coffee + Cookies</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='noOfPaxFour'
                                                         disabled
@@ -385,7 +385,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='foodWasteNonMeatEmission' disabled value={values?.foodWasteNonMeatEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Food Waste (meat)</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>Food Waste (meat)</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="foodWasteMeatKg"
                                                         disabled
@@ -414,7 +414,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='municipalSolidWasteEmission' disabled value={values?.municipalSolidWasteEmission} onChange={formik.handleChange} /></td>
                                             </tr> */}
                                             <tr>
-                                                <td className="ps-2 py-1">Food Waste (All mix)</td>
+                                                <td className="ps-2 py-1 disabled-field-label">Food Waste (All mix)</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField
                                                         size="small"
@@ -442,7 +442,7 @@ const Hospitality = (props) => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="ps-2 py-1">Fruits & Vegetables</td>
+                                                <td className="ps-2 py-1 disabled-field-label">Fruits & Vegetables</td>
                                                 <td className="ps-3 py-1">
                                                     <TextField
                                                         size="small"
@@ -497,7 +497,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='bottleOneEmission' disabled value={values?.bottleOneEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>500ml</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>500ml</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="bottleTwo"
                                                         disabled
@@ -512,7 +512,7 @@ const Hospitality = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='bottleTwoEmission' disabled value={values?.bottleTwoEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>1000ml</td>
+                                                <td className='ps-2 py-1 disabled-field-label'>1000ml</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="bottleThree"
                                                         disabled

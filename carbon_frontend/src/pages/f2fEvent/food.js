@@ -412,8 +412,10 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionOne' value={formik?.values?.emissionOne} onChange={formik.handleChange} /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Non-Veg (Poultry/ Sea Food)</td>
-                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' value={formik?.values?.noOfPaxTwo}
+                                                    <td className='ps-2 py-1 disabled-field-label'>Non-Veg (Poultry/ Sea Food)</td>
+                                                    <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxTwo' 
+                                                        disabled
+                                                        value={formik?.values?.noOfPaxTwo}
                                                         onChange={(e) => { handleChangeFoodWaste(e, "emissionTwo", e.target.value, 5.76); }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                     </td>
@@ -421,7 +423,7 @@ const Food = (props) => {
                                                 </tr>
 
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Non-Veg (Red Meat)</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Non-Veg (Red Meat)</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxThree'
                                                         disabled
                                                         value={formik?.values?.noOfPaxThree}
@@ -431,7 +433,7 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionThree' value={formik?.values?.emissionThree} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Tea/ Coffee + Cookies</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Tea/ Coffee + Cookies</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfPaxFour'
                                                         disabled
                                                         value={formik?.values?.noOfPaxFour}
@@ -484,7 +486,7 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionSix' value={formik?.values?.emissionSix} onChange={formik.handleChange} /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Red Wine</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Red Wine</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesTwo'
                                                         disabled
                                                         value={formik?.values?.noOfBottlesTwo}
@@ -494,7 +496,7 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionSeven' value={formik?.values?.emissionSeven} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>White Wine</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>White Wine</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesThree'
                                                         disabled
                                                         value={formik?.values?.noOfBottlesThree}
@@ -504,7 +506,7 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEight' value={formik?.values?.emissionEight} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Whisky</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Whisky</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesFour'
                                                         disabled
                                                         value={formik?.values?.noOfBottlesFour}
@@ -514,7 +516,7 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" disabled name='emissionNine' value={formik?.values?.emissionNine} onChange={formik.handleChange} /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Gin</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Gin</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesFive'
                                                         disabled
                                                         value={formik?.values?.noOfBottlesFive}
@@ -524,7 +526,7 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTen' value={formik?.values?.emissionTen} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Rum</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Rum</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesSix'
                                                         disabled
                                                         value={formik?.values?.noOfBottlesSix}
@@ -534,7 +536,7 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionEleven' value={formik?.values?.emissionEleven} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Vodka</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Vodka</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesSeven'
                                                         disabled
                                                         value={formik?.values?.noOfBottlesSeven}
@@ -544,7 +546,7 @@ const Food = (props) => {
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='emissionTwelve' value={formik?.values?.emissionTwelve} onChange={formik.handleChange} disabled /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td className='ps-2 py-1'>Fruit Juices</td>
+                                                    <td className='ps-2 py-1 disabled-field-label'>Fruit Juices</td>
                                                     <td className='ps-2 py-1'><TextField size='small' type="number" name='noOfBottlesEight'
                                                         disabled
                                                         value={formik?.values?.noOfBottlesEight}

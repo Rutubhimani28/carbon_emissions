@@ -130,7 +130,7 @@ const EnergyUpdated = (props) => {
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg textborder'>
                     {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
-                    <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
+                    <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={EnergyImg} alt="Energy" width={100} className='tabImgWhite' />
                         </IconDiv>
@@ -142,7 +142,7 @@ const EnergyUpdated = (props) => {
                         >
 
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h4'>
+                                <Typography variant='h4' className='text-white'>
                                     Electricity
                                 </Typography>
                                 <Grid mt={2}>
@@ -171,7 +171,8 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                    {/* <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel> */}
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"
@@ -192,11 +193,11 @@ const EnergyUpdated = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h4'>
+                                <Typography variant='h4' className='disabled-field-label'>
                                     Petrol (Generator)
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Gallons</FormLabel>
                                     <TextField
                                         id="gallonsOne"
                                         name="gallonsOne"
@@ -222,7 +223,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionTwo"
                                         name="emissionTwo"
@@ -243,11 +244,11 @@ const EnergyUpdated = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
-                                <Typography variant='h4'>
+                                <Typography variant='h4' className='disabled-field-label'>
                                     Diesel (Generator)
                                 </Typography>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Gallons</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Gallons</FormLabel>
                                     <TextField
                                         id="gallonsTwo"
                                         name="gallonsTwo"
@@ -273,7 +274,7 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                                    <FormLabel id="demo-row-radio-buttons-group-label" className='disabled-field-label'>Emissions</FormLabel>
                                     <TextField
                                         id="emissionThree"
                                         name="emissionThree"
@@ -304,7 +305,7 @@ const EnergyUpdated = (props) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-                                <Typography>{`Total Energy Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+                                <Typography className='text-white'>{`Total Energy Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
                             </Grid>
                             {/* <Grid item xs={12} sm={12} md={12} marginLeft={3}>
                                 <ul>

@@ -291,7 +291,7 @@ const AirFreight = (props) => {
                                         <th className="ps-2">Emissions</th>
                                     </tr>
                                     <tr>
-                                        <td className="ps-2 py-1">Air Craft</td>
+                                        <td className="ps-2 py-1 disabled-field-label">Air Craft</td>
                                         <td className="ps-2 py-1">
                                             <TextField
                                                 size="small"
@@ -334,7 +334,7 @@ const AirFreight = (props) => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td className="ps-2 py-1">Rail</td>
+                                        <td className="ps-2 py-1 disabled-field-label">Rail</td>
                                         <td className="ps-2 py-1">
                                             <TextField
                                                 size="small"
@@ -462,7 +462,7 @@ const AirFreight = (props) => {
                                     </tr>
 
                                     <tr>
-                                        <td className="ps-2 py-1">Cargo Ship (Bulk Carrier)</td>
+                                        <td className="ps-2 py-1 disabled-field-label">Cargo Ship (Bulk Carrier)</td>
                                         <td className="ps-2 py-1">
                                             <TextField
                                                 size="small"
@@ -506,7 +506,7 @@ const AirFreight = (props) => {
                                     </tr>
 
                                     <tr>
-                                        <td className="ps-2 py-1">Sea Tanker</td>
+                                        <td className="ps-2 py-1 disabled-field-label">Sea Tanker</td>
                                         <td className="ps-2 py-1">
                                             <TextField
                                                 size="small"
@@ -550,7 +550,7 @@ const AirFreight = (props) => {
                                     </tr>
 
                                     <tr>
-                                        <td className="ps-2 py-1">Light Goods Vehicle</td>
+                                        <td className="ps-2 py-1 disabled-field-label">Light Goods Vehicle</td>
                                         <td className="ps-2 py-1">
                                             <TextField
                                                 size="small"
@@ -594,7 +594,7 @@ const AirFreight = (props) => {
                                     </tr>
 
                                     <tr>
-                                        <td className="ps-2 py-1">Heavy Goods Vehicle</td>
+                                        <td className="ps-2 py-1 disabled-field-label">Heavy Goods Vehicle</td>
                                         <td className="ps-2 py-1">
                                             <TextField
                                                 size="small"

@@ -861,7 +861,7 @@ const VirtualEvent = (props) => {
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                     {/* <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} /> */}
                                     <img src={TVImg} alt="tv" style={{ width: "65px", margin: "auto" }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>TV Ad</Typography>
+                                    <Typography variant="h6" sx={{ marginY: 1 }} className='disabled-field-label'>TV Ad</Typography>
                                     <TextField size='small' type="number" name={'adDuration'} value={values?.adDuration}
                                         label="Ad duration (In Secs)"
                                         variant="outlined"
@@ -922,11 +922,12 @@ const VirtualEvent = (props) => {
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                     <Icon component={IoNewspaper} sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper- Full page Ad</Typography>
+                                    <Typography variant="h6" sx={{ marginY: 1 }} className='disabled-field-label'>Newspaper- Full page Ad</Typography>
                                     <TextField size='small' type="number" name={'noOfCopiesOne'} value={values?.noOfCopiesOne}
                                         label="No of copies"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfCopiesOne", Number(e.target.value));
                                             formik.handleSubmit();
@@ -952,11 +953,12 @@ const VirtualEvent = (props) => {
                             >
                                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                                     <Icon component={MenuBookIcon} color="yellow" sx={{ fontSize: 60, color: 'black' }} />
-                                    <Typography variant="h6" sx={{ marginY: 1 }}>Magazine</Typography>
+                                    <Typography variant="h6" sx={{ marginY: 1 }} className='disabled-field-label'>Magazine</Typography>
                                     <TextField size='small' type="number" name={'noOfPages'} value={values?.noOfPages}
                                         label="No of pages"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPages", Number(e.target.value));
                                             formik.setFieldValue("emissionFifteen", Number(Number(e.target.value) * Number(values?.noOfCopiesTwo)).toFixed(2));
@@ -969,6 +971,7 @@ const VirtualEvent = (props) => {
                                         label="No of copies"
                                         variant="outlined"
                                         fullWidth
+                                        disabled
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfCopiesTwo", Number(e.target.value));
                                             formik.setFieldValue("emissionFifteen", Number(Number(e.target.value) * Number(values?.noOfPages)).toFixed(2));
@@ -1003,7 +1006,6 @@ const VirtualEvent = (props) => {
                                         label="Podcast Size (in Mb)"
                                         variant="outlined"
                                         fullWidth
-                                        disabled
                                         onChange={(e) => {
                                             const podcastTotal = Number(e.target.value) * Number(values?.podcastKwh);
                                             const emissionNineteen = Number(Number(podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
@@ -1019,7 +1021,6 @@ const VirtualEvent = (props) => {
                                         label="No of Listeners"
                                         variant="outlined"
                                         fullWidth
-                                        disabled
                                         onChange={(e) => {
                                             const emissionNineteen = Number(Number(values?.podcastTotal) * Number(e.target.value)).toFixed(2);
                                             formik.setFieldValue("noOfListeners", Number(e.target.value));
@@ -1047,14 +1048,14 @@ const VirtualEvent = (props) => {
                             <Grid item xs={12} sm={12} md={6}>
                                 <Box>
                                     <div className="table-responsive">
-                                        <table className="table-custom-inpt-field">
-                                            <tr>
+                                        <table>
+                                            <tr >
                                                 <th />
-                                                <th className="ps-2">Wight (Kgs)</th>
-                                                <th className="ps-2">Emissions</th>
+                                                <th className="ps-2 text-white">Wight (Kgs)</th>
+                                                <th className="ps-2 text-white">Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className="ps-4 py-1">Polyethylene</td>
+                                                <td className="ps-4 py-1 disabled-field-label">Polyethylene</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField
                                                         fullWidth
@@ -1068,6 +1069,7 @@ const VirtualEvent = (props) => {
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
+                                                        style={{ border: '1px solid gray', borderRadius: "6px"}}
                                                     />
                                                 </td>
                                                 <td className="ps-2 py-1">
@@ -1079,10 +1081,11 @@ const VirtualEvent = (props) => {
                                                         name={'emissionSixteen'}
                                                         value={values?.emissionSixteen}
                                                         onChange={formik.handleChange}
+                                                        style={{ border: '1px solid gray', borderRadius: "6px"}}
                                                     />
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr className="table-custom-inpt-field">
                                                 <td className="ps-4 py-1">PVC</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField

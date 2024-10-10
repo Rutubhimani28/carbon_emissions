@@ -409,7 +409,7 @@ const Comms = (props) => {
                   </Typography>
                 </Grid>
 
-                <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
+                <Grid item xs={2.2} sm={2.2} md={2.2} className="d-flex align-items-center disabled-field-label">
                   Emails
                 </Grid>
 
@@ -528,7 +528,7 @@ const Comms = (props) => {
                   </Typography>
                 </Grid>
 
-                <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
+                <Grid item xs={2.2} sm={2.2} md={2.2} className="d-flex align-items-center disabled-field-label">
                   Video Byte
                 </Grid>
 
@@ -694,7 +694,7 @@ const Comms = (props) => {
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
 
-                <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
+                <Grid item xs={2.2} sm={2.2} md={2.2} className="d-flex align-items-center disabled-field-label">
                   Printing a Coloured Brochure
                 </Grid>
 
