@@ -157,13 +157,6 @@ p {
   color: white !important;
 }
 
-/* ###### */
-/* .table-custom-inpt-field .css-wb57ya-MuiFormControl-root-MuiTextField-root.Mui-disabled {
-  border: 1px solid gray !important;
-  border-radius: 6px;
-  color: gray !important;
-} */
-
 .table-custom-inpt-field .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon.css-u85066-MuiAutocomplete-root .MuiOutlinedInput-root {
   color: white;
 }
