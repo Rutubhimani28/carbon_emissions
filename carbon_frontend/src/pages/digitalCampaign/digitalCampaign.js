@@ -75,7 +75,7 @@ const DigitalCampaign = (props) => {
                     emission: emissionTwo > 0 ? emissionTwo : ''
                 },
                 {
-                    name: 'Emails',
+                    type: 'Emails',
                     noOfEmails: values?.noOfEmails,
                     emialEfOne: values?.emialEfOne,
                     emialEfTwo: values?.emialEfTwo,

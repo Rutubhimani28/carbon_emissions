@@ -198,7 +198,7 @@ const Result = ({ value }) => {
     const chartSeries = [sc1, sc2, sc3];
 
     const generatePrompt = async () => {
-        let contentData = ``;
+        let contentData = `Category	Emissions (kgCO2e)`;
         let categoryCount = 0;
 
         resultData?.forEach(item => {
@@ -209,10 +209,12 @@ const Result = ({ value }) => {
         });
 
         if (total && Number(total).toFixed(2) > 0) {
-            contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
+            // contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
+            contentData += `\nTotal ${Number(total).toFixed(2)} Carbon Footprint generated from your Product Launch activity`
         }
         if (toolFormData?.budget > 0) {
-            contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
+            // contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
+            contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget}$ and For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`
         }
 
         contentData += `\n\nWhat are the top three ways to reduce my face-to-face event's carbon footprint by 10-20%? Suggest one actionable point for all the ${categoryCount} categories to achieve this reduction. How do the original and reduced footprints compare? Additionally, how can adopting sustainable measures lead to an approximate 10% cost reduction, considering that the cost savings may not be directly proportional to the carbon reductions?`
