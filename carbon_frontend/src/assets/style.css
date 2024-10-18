@@ -117,6 +117,37 @@ p {
   border-radius: 6px;
 }
 
+.table-custom-inpt-field .custom-dateTimePicker-field {
+  color: white !important;
+  border: 1px solid white !important;
+  border-radius: 6px;
+}
+
+.custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input {
+  opacity: 1;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.custom-dateTimePicker-field .css-kelolb-MuiInputBase-root-MuiOutlinedInput-root svg {
+  color: #ffffff !important;
+}
+
+.custom-dateTimePicker-field .css-kelolb-MuiInputBase-root-MuiOutlinedInput-root.Mui-disabled svg {
+  color: #ffffff !important;
+}
+
+.custom-placeholder::placeholder {
+  color: white; 
+}
+
+
+
+
 /* .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input:hover,
 .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input:focus {
   border-color: white !important;

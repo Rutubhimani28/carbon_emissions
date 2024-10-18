@@ -4,6 +4,8 @@ import auth from '../middelwares/auth.js';
 
 const router = express.Router();
 
-router.post('/add', auth, email.addEmail)
+router.post('/add', auth, email.addEmail);
+router.post('/addGraph', auth, email.addEmailForGraphs);
+router.post('/add-email-for-two-events', auth, email.addEmailForTwoEvents);
 
 export default router;

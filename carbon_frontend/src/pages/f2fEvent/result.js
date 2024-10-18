@@ -33,6 +33,7 @@ const Result = ({ value }) => {
     const allLocalTranspotationData = useSelector((state) => state?.totalLocalTranspotationDetails);
     const allAirTravelData = useSelector((state) => state?.totalAirTravelDetails);
     const allHotelData = useSelector((state) => state?.totalHotelDetails);
+    const totalResultTableData = useSelector((state) => state?.resultTableDataDetails);
 
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
@@ -42,21 +43,21 @@ const Result = ({ value }) => {
     const [sc2, setSc2] = useState(0);
     const [sc3, setSc3] = useState(0);
 
-    const scope1Count = 0;
-    const scope2Count = 0;
-    const scope3Count = 0;
+    // const scope1Count = 0;
+    // const scope2Count = 0;
+    // const scope3Count = 0;
 
-    const allFieldsData = [allDigitalContentData, allFreightData, allEnergyData, allFoodData, allWasteData, allProductionData, allLocalTranspotationData, allAirTravelData, allHotelData];
+    // const allFieldsData = [allDigitalContentData, allFreightData, allEnergyData, allFoodData, allWasteData, allProductionData, allLocalTranspotationData, allAirTravelData, allHotelData];
 
-    // allFieldsData?.forEach((item) => {
-    //     if (item.scope === 1 || item.scope1 === 1 || item.scope2 === 1 || item.scope3 === 1) {
-    //         scope1Count += 1;
-    //     } else if (item.scope === 2 || item.scope1 === 2 || item.scope2 === 2 || item.scope2 === 2) {
-    //         scope2Count += 1;
-    //     } else {
-    //         scope3Count += 1;
-    //     }
-    // });
+    // // allFieldsData?.forEach((item) => {
+    // //     if (item.scope === 1 || item.scope1 === 1 || item.scope2 === 1 || item.scope3 === 1) {
+    // //         scope1Count += 1;
+    // //     } else if (item.scope === 2 || item.scope1 === 2 || item.scope2 === 2 || item.scope2 === 2) {
+    // //         scope2Count += 1;
+    // //     } else {
+    // //         scope3Count += 1;
+    // //     }
+    // // });
 
     const total = Number(allProductionData?.totalEmission) + Number(allFreightData?.totalEmission) + Number(allFoodData?.totalEmission) + Number(allEnergyData?.totalEmission) + Number(allAirTravelData?.totalEmission) + Number(allDigitalContentData?.totalEmission) + Number(allLocalTranspotationData?.totalEmission) + Number(allHotelData?.totalEmission) + Number(allWasteData?.totalEmission)
 
@@ -198,7 +199,7 @@ const Result = ({ value }) => {
     const chartSeries = [sc1, sc2, sc3];
 
     const generatePrompt = async () => {
-        let contentData = `Category	Emissions (kgCO2e)`;
+        let contentData = ``;
         let categoryCount = 0;
 
         resultData?.forEach(item => {
@@ -209,18 +210,16 @@ const Result = ({ value }) => {
         });
 
         if (total && Number(total).toFixed(2) > 0) {
-            // contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
-            contentData += `\nTotal ${Number(total).toFixed(2)} Carbon Footprint generated from your Product Launch activity`
+            contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
         }
         if (toolFormData?.budget > 0) {
-            // contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
-            contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget}$ and For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`
+            contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
         }
 
         contentData += `\n\nWhat are the top three ways to reduce my face-to-face event's carbon footprint by 10-20%? Suggest one actionable point for all the ${categoryCount} categories to achieve this reduction. How do the original and reduced footprints compare? Additionally, how can adopting sustainable measures lead to an approximate 10% cost reduction, considering that the cost savings may not be directly proportional to the carbon reductions?`
         setContent(contentData);
     };
-
+    
     const formatSuggestions = (suggestions) => {
         // return suggestions.split('\n').map((line, index) => (
         //     <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line.replaceAll("kgCO2e", "kgCO<sub>2</sub>e") }} />
@@ -286,7 +285,8 @@ const Result = ({ value }) => {
         let sc2Count = 0;
         let sc3Count = 0;
 
-        resultTableData?.data?.forEach(page => {
+        // resultTableData?.data?.forEach(page => {
+        resultTableData?.data?.find((item) => item?.from === "f2fEvent")?.allDataOfTab?.forEach(page => {
             page?.tabData?.forEach(flightClass => {
                 const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
 
@@ -358,7 +358,7 @@ const Result = ({ value }) => {
 
     useEffect(() => {
         if (content) {
-            chat();
+            // chat();
         }
     }, [content]);
 
@@ -368,9 +368,10 @@ const Result = ({ value }) => {
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
-                    {/* <Box style={{ display: "flex", justifyContent: "space-around", width: "100%", color: 'white' }}> */}
+                    {/* {resultTableData?.data?.map((page, pageIndex) => ( */}
+                    {/* {resultTableData?.data?.find((item) => item?.from === "f2fEvent")?.allDataOfTab[0]?.map((page, pageIndex) => ( */}
                     {/* <Box style={{ width: "100%", color: 'white' }}>
-                        {resultTableData?.data?.map((page, pageIndex) => (
+                        {resultTableData?.data?.find((item) => item?.from === "f2fEvent")?.allDataOfTab?.map((page, pageIndex) => (
                             validTitles.includes(page.tabTitle) && (
                                 <Box key={pageIndex} style={{ margin: "20px" }}>
                                     {page?.tabData.some(flightClass =>

@@ -10,7 +10,8 @@ import { addHotelData, deleteHotelData } from '../../redux/slice/totalHotelSlice
 import Accomodation from '../../assets/Accommodation.png';
 import { IconDiv } from '../../components/IconDiv';
 import HotelData from '../accomodation/data.json';
-import { addResultTableData, deleteResTabHotelData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabHotelData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
+import useEventData from '../../hooks/useEventData';
 
 const Hotel = (props) => {
     const { setValue, value } = props;
@@ -18,8 +19,10 @@ const Hotel = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalHotelDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
-    const scope = useSelector((state) => state?.totalHotelDetails?.scope);
+    // const scope = useSelector((state) => state?.totalHotelDetails?.scope);
     const geographyOptions = HotelData?.map((item) => ({ value: item?.geography, label: item?.geography }))
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const eventsData = useEventData();
 
     const customStyles = {
         control: (provided) => ({
@@ -197,13 +200,32 @@ const Hotel = (props) => {
             ];
 
             dispatch(addHotelData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Hotel" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Hotel" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteHotelData());
         dispatch(deleteResTabHotelData());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            } 
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            }
+        }
     };
 
     useEffect(() => {
@@ -232,7 +254,6 @@ const Hotel = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg ' style={{ padding: '20px' }}>
-                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
@@ -620,11 +641,12 @@ const Hotel = (props) => {
 
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                    <Stack  columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
+                                    <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
-                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
-                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(9) }} className='custom-btn'>Go To Result</Button>
+                                        {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                         <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                     </Stack>
                                 </Grid>

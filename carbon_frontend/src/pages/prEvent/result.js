@@ -237,7 +237,7 @@ const Result = ({ value }) => {
         let sc2Count = 0;
         let sc3Count = 0;
 
-        resultTableData?.data?.forEach(page => {
+        resultTableData?.data?.find((item) => item?.from === "prEvent")?.allDataOfTab?.forEach(page => {
             page?.tabData?.forEach(flightClass => {
                 const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
 
@@ -307,7 +307,7 @@ const Result = ({ value }) => {
 
     useEffect(() => {
         if (content) {
-            chat();
+            // chat();
         }
     }, [content]);
 
@@ -317,9 +317,9 @@ const Result = ({ value }) => {
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
-                    {/* <Box style={{ display: "flex", justifyContent: "space-around", width: "100%", color: 'white' }}> */}
+                    {/* {resultTableData?.data?.map((page, pageIndex) => ( */}
                     {/* <Box style={{ width: "100%", color: 'white' }}>
-                        {resultTableData?.data?.map((page, pageIndex) => (
+                        {resultTableData?.data?.find((item) => item?.from === "prEvent")?.allDataOfTab?.map((page, pageIndex) => (
                             validTitles.includes(page.tabTitle) && (
                                 <Box key={pageIndex} style={{ margin: "20px" }}>
                                     {page?.tabData.some(flightClass =>

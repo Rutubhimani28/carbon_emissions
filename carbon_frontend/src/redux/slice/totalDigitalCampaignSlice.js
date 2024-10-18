@@ -29,9 +29,12 @@ const digitalCampaignSlice = createSlice({
             data: [],
             totalEmission: 0
         }),
-
+        setDigitalCampaignAllData: (state, action) => {
+            state.data = action.payload.data; 
+            state.totalEmission = action.payload.totalEmission; 
+        },
     },
 });
 
-export const { addCampaignData, deleteCampaignData } = digitalCampaignSlice.actions;
+export const { addCampaignData, deleteCampaignData, setDigitalCampaignAllData } = digitalCampaignSlice.actions;
 export default digitalCampaignSlice.reducer;

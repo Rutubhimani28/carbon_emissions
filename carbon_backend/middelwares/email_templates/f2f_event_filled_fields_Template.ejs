@@ -160,8 +160,8 @@
         </table>
         <h4 class=''>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
 
-        <% if (resultTableData && resultTableData.data) { %>
-            <% resultTableData.data.forEach(function(page) { %>
+        <% if (resultTableData && resultTableData.allDataOfTab) { %>
+            <% resultTableData.allDataOfTab.forEach(function(page) { %>
                 <% if (page.tabData && page.tabData.length> 0) { %>
                     <% const validTabTitles=[ "Air Travel" , "Local Transportation" , "Food & Beverages" , "Logistics"
                         , "Event Production" , "Energy" , "Digital Comms" , "Waste" , "Hotel" ]; %>

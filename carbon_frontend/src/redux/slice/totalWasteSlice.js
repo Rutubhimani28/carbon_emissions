@@ -6,7 +6,7 @@ const totalWasteSlice = createSlice({
     initialState: {
         data: [],
         totalEmission: 0,
-        scope: 2
+        // scope: 2
     },
     reducers: {
         addWasteData: (state, action) => {
@@ -25,14 +25,19 @@ const totalWasteSlice = createSlice({
             ...state,
             data: [],
             totalEmission: 0,
-            scope: 2
+            // scope: 2
         }),
-        scopeChange: (state, action) => ({
-            ...state,
-            scope: action.payload
-        })
+        // scopeChange: (state, action) => ({
+        //     ...state,
+        //     scope: action.payload
+        // }),
+        setWasteAllData: (state, action) => {
+            state.data = action.payload.data; 
+            state.totalEmission = action.payload.totalEmission; 
+            // state.scope = action.payload.scope; 
+        },
     },
 });
 
-export const { addWasteData, deleteWasteData } = totalWasteSlice.actions;
+export const { addWasteData, deleteWasteData,setWasteAllData } = totalWasteSlice.actions;
 export default totalWasteSlice.reducer;

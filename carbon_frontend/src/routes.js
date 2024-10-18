@@ -26,6 +26,7 @@ import Accomodation from './pages/accomodation';
 import Waste from './pages/waste';
 import ToolHome from './pages/tool';
 import DigitalCampaign from './pages/digitalCampaign/index';
+import RetrieveEventsData from './pages/retrieveEvents/index';
 import TermConditions from './layouts/user/components/termCondition/termConditions';
 
 // ----------------------------------------------------------------------
@@ -42,6 +43,7 @@ export default function Router() {
         { element: <Navigate to="/dashboard/pr-event" />, index: true },
         { element: <Navigate to="/dashboard/campaign" />, index: true },
         { element: <Navigate to="/dashboard/user" />, index: true },
+        { element: <Navigate to="/dashboard/retrieve-events" />, index: true },
         // { path: 'app', element: <DashboardAppPage /> },
         // { path: 'user', element: <User /> },
         // { path: 'user/view/:id', element: <UserView /> },
@@ -61,6 +63,7 @@ export default function Router() {
         { path: 'p2-event', element: <PrEvent /> },
         { path: 'campaign', element: <DigitalCampaign /> },
         { path: 'user', element: <User /> },
+        { path: 'retrieve-events', element: <RetrieveEventsData /> },
         { path: 'terms-conditions', element: <TermConditions /> },
         // { path: 'contactUs', element: <ContactUs /> },
         // { path: 'events', element: <Events /> },
@@ -78,6 +81,7 @@ export default function Router() {
         { path: 'pr-event', element: <Navigate to="/dashboard/pr-event" />, index: true },
         { path: 'campaign', element: <Navigate to="/dashboard/campaign" />, index: true },
         { path: 'user', element: <Navigate to="/dashboard/user" />, index: true },
+        { path: 'user', element: <Navigate to="/dashboard/retrieve-events" />, index: true },
         { path: 'terms-conditions', element: <Navigate to="/dashboard/terms-conditions" />, index: true },
         // { path: '404', element: <Page404 /> },
         // { path: '*', element: <Navigate to="/404" /> },

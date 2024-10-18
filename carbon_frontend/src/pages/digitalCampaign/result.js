@@ -79,39 +79,35 @@ const Result = ({ value }) => {
 
     const sentenceParts = [];
     const liveBroadcastParts = [];
-    // const wantInResult = 'Please note that the results are sensitive to the choice of viewing device, type of network connection and resolution. \n What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
-    const wantInResult = 'What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
+    const wantInResult = 'Please note that the results are sensitive to the choice of viewing device, type of network connection and resolution. \n What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
 
     const imgSize = allDigitalCampaignData?.data?.[0]?.data?.[0]?.imgSize || 0;
-    const imageEmission = allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission || 0;
     const videoSize = allDigitalCampaignData?.data?.[0]?.data?.[1]?.videoSize || 0;
-    const videoEmission = allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission || 0;
     const videoMins = allDigitalCampaignData?.data?.[0]?.data?.[1]?.videoMins || 0;
-    const noOfMinsOne = allDigitalCampaignData?.data?.[0]?.data?.[1]?.noOfMins || 0;
+    const noOfMinsOne = allDigitalCampaignData?.data?.[0]?.data?.[2]?.noOfMins || 0;
     const emailEmission = allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0;
 
     const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
-    // const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
-    const totalCarbonFootprint = `${Number(total).toFixed(2)} kgCO2e`;
+    const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
     const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
     const carbonPerDollar = `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`;
 
     const generatePrompt = async () => {
         if (totalCarbonFootprint) {
-            sentenceParts.push(`My Digital Campaign has a carbon footprint of ${totalCarbonFootprint}, `);
+            sentenceParts.push(`My Digital Campaign has a carbon footprint of ${totalCarbonFootprint}`);
         }
-        if (imgSize && imageEmission) {
-            sentenceParts.push(`with a ${imgSize} MB image generating ${imageEmission} kgco2e `);
+        if (imgSize) {
+            sentenceParts.push(`with a ${imgSize} MB image`);
         }
-        if (videoEmission && videoMins) {
-            sentenceParts.push(`and a ${videoMins} minute video generating ${videoEmission} kgco2e `);
+        if (videoSize && videoMins) {
+            sentenceParts.push(`and a ${videoSize} MB, ${videoMins}-minute video.`);
         }
         if (emailEmission) {
-            sentenceParts.push(`and email campaigns generating ${emailEmission} kgCO2e.`);
+            liveBroadcastParts.push(`Email generating ${emailEmission} kgCO2e`);
         }
 
-        // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
-        const finalSentence = `${sentenceParts.join(', ')} \n\n${wantInResult}`;
+        const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
+        const finalSentence = `${sentenceParts.join(', ')} ${liveBroadcastSentence} \n\n${wantInResult}`;
         setContent(finalSentence);
     };
 
@@ -180,7 +176,8 @@ const Result = ({ value }) => {
         let sc2Count = 0;
         let sc3Count = 0;
 
-        resultTableData?.data?.forEach(page => {
+        // resultTableData?.data?.forEach(page => {
+        resultTableData?.data?.find((item) => item?.from === "digitalCampaign")?.allDataOfTab?.forEach(page => {
             page?.tabData?.forEach(flightClass => {
                 const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
 
@@ -216,7 +213,7 @@ const Result = ({ value }) => {
 
     useEffect(() => {
         if (content) {
-            chat();
+            // chat();
         }
     }, [content]);
 
@@ -226,8 +223,9 @@ const Result = ({ value }) => {
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
+                    {/* {resultTableData?.data?.filter((item) => item.tabTitle === "Digital Campaign")?.map((page, pageIndex) => ( */}
                     {/* <Box style={{ width: "100%", color: 'white' }}>
-                        {resultTableData?.data?.filter((item) => item.tabTitle === "Digital Campaign")?.map((page, pageIndex) => (
+                        {resultTableData?.data?.find((item) => item?.from === "digitalCampaign")?.allDataOfTab?.map((page, pageIndex) => (
                             <Box key={pageIndex} style={{ margin: "20px" }}>
                                 {page?.tabData.some(flightClass =>
                                     flightClass?.subTypeData?.td?.some(rowData =>

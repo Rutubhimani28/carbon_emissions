@@ -4,10 +4,11 @@ import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLocalTranspotationData, deleteLocalTranspotationData, scopeChange } from '../../redux/slice/totalLocalTranspotationSlice';
-import { addResultTableData, deleteResTabLocalTransData } from '../../redux/slice/resultTableDataSlice';
+import { addLocalTranspotationData, deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
+import { addResultTableData, deleteResTabLocalTransData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import LocalTransportImg from '../../assets/Transportation.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const LocalTranspotation = (props) => {
     const { setValue, value } = props;
@@ -15,9 +16,13 @@ const LocalTranspotation = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalLocalTranspotationDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalLocalTranspotationDetails?.totalEmission);
-    const scope1 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope1);
-    const scope2 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope2);
-    const scope3 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope3);
+    // const scope1 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope1);
+    // const scope2 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope2);
+    // const scope3 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope3);
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const toolData = useSelector(state => state.toolDetails?.data);
+    const toolFormData = toolData.find((item) => item?.type === "toolForm");
+    const eventsData = useEventData();
 
     // -----------   initialValues
     const initialValues = {
@@ -205,7 +210,7 @@ const LocalTranspotation = (props) => {
             ];
 
             dispatch(addLocalTranspotationData({ data }))
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Local Transportation" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Local Transportation" }));
         },
     });
 
@@ -247,6 +252,25 @@ const LocalTranspotation = (props) => {
     }, [value]);
 
     const { values, handleChange, setFieldValue, handleSubmit } = formik;
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            } 
+        }
+    };
 
     return (
         <div>
@@ -436,9 +460,10 @@ const LocalTranspotation = (props) => {
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(9); }} className='custom-btn'>Go To Result</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
                             </Grid>

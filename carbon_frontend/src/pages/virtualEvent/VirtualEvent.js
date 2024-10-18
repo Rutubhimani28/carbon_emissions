@@ -22,11 +22,12 @@ import { FaSnapchat, FaTwitch, FaTiktok, FaAngleDoubleRight, FaImage, FaFileVide
 import { GiVideoConference } from "react-icons/gi";
 import { IconDiv } from '../../components/IconDiv';
 import { addVirtualEventData, deleteVirtualEventData } from '../../redux/slice/totalVirtualEventSlice';
-import { addResultTableData, deleteResTabVrtEventData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabVrtEventData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import VirtualEventIcon from '../../layouts/user/assets/images/virtualEvent.png';
 import outboundIcon from '../../assets/outboundIcon.png';
 import podcastIcon from '../../assets/podcastIcon.png';
 import TVImg from '../../layouts/user/assets/images/tv.png';
+import useEventData from '../../hooks/useEventData';
 
 const style = {
     position: 'absolute',
@@ -49,6 +50,8 @@ const VirtualEvent = (props) => {
     const allData = useSelector((state) => state?.totalVirtualEventDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalVirtualEventDetails?.totalEmission);
     const [openInfo, setOpenInfo] = useState(false);
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const eventsData = useEventData();
 
     const initialValues = {
         // imgSize: '',
@@ -586,8 +589,11 @@ const VirtualEvent = (props) => {
                 }
             ];
 
-            // dispatch(addResultTableData({ data: tableData, tabTitle: "Virtual Event" }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Outbound Marketing" }));
+            // dispatch(addResultTableData({ from: "outboundMarketing", data: tableData, tabTitle: "Outbound Marketing" }));
+            // dispatch(addResultTableData({ from: "outboundMarketing", data: tableData, tabTitle: "Outbound Marketing" }));
+            dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
+            dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
+
         },
     });
 
@@ -596,6 +602,25 @@ const VirtualEvent = (props) => {
     const handeleDelete = () => {
         dispatch(deleteVirtualEventData());
         dispatch(deleteResTabVrtEventData());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            } 
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            }
+        }
     };
 
     const handleOpenInfo = () => setOpenInfo(true);
@@ -1656,7 +1681,9 @@ const VirtualEvent = (props) => {
                     </Box>
                     <Grid>
                         <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button><Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
+                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button>
+                                {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
+                                <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
                         </Grid>
                         {/* <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid> */}
                         <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Outbound Marketing Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>

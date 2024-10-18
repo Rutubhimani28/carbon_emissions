@@ -6,7 +6,7 @@ const totalAirFreightSlice = createSlice({
     initialState: {
         data: [],
         totalEmission: 0,
-        scope: 3
+        // scope: 3
     },
     reducers: {
         addLogisticsData: (state, action) => {
@@ -31,12 +31,17 @@ const totalAirFreightSlice = createSlice({
             totalEmission: 0,
             scope: 3
         }),
-        scopeChange: (state, action) => ({
-            ...state,
-            scope: action.payload.scope
-        })
+        // scopeChange: (state, action) => ({
+        //     ...state,
+        //     scope: action.payload.scope
+        // }),
+        setAirFreightlAllData: (state, action) => {
+            state.data = action.payload.data; 
+            state.totalEmission = action.payload.totalEmission; 
+            // state.scope = action.payload.scope; 
+        },
     },
 });
 
-export const { addLogisticsData, deleteLogisticsData, scopeChange } = totalAirFreightSlice.actions;
+export const { addLogisticsData, deleteLogisticsData, setAirFreightlAllData } = totalAirFreightSlice.actions;
 export default totalAirFreightSlice.reducer;

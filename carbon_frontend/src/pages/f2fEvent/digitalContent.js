@@ -6,9 +6,10 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from "yup";
 import { addData, deleteData } from '../../redux/slice/totalDigitalContSlice';
-import { addResultTableData, deleteResTableDigitalContData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTableDigitalContData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import DigitalImg from '../../assets/Digital.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const DigitalContent = (props) => {
     const { setValue, value } = props;
@@ -17,7 +18,10 @@ const DigitalContent = (props) => {
 
     const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
     const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
-    const scope = useSelector((state) => state?.totalDigitalContentDetails?.scope);
+    // const scope = useSelector((state) => state?.totalDigitalContentDetails?.scope);
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const eventsData = useEventData();
+
 
     // -----------  validationSchema
     const validationSchema = yup.object({
@@ -132,11 +136,35 @@ const DigitalContent = (props) => {
                 },
             ];
 
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Comms" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Digital Comms" }));
         },
     });
 
     const { values } = formik;
+
+    const handeleDelete = () => {
+        dispatch(deleteData());
+        dispatch(deleteResTableDigitalContData());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            } 
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            } 
+        }
+    };
 
     useEffect(() => {
         if (allData?.length > 0) {
@@ -163,18 +191,12 @@ const DigitalContent = (props) => {
             formik.setFieldValue("serviceLifeOfLaptop", allData[1]?.serviceLifeOfLaptop)
             formik.setFieldValue("emissionTwo", allData[1]?.emission)
         }
-    }, [value])
-
-    const handeleDelete = () => {
-        dispatch(deleteData());
-        dispatch(deleteResTableDigitalContData());
-    };
+    }, [value]);
 
     return (
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg textborder'>
-                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         <IconDiv>
                             <img src={DigitalImg} alt="Digital" width={100} className='tabImgWhite' />
@@ -468,11 +490,12 @@ const DigitalContent = (props) => {
                             </Grid>
 
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                <Stack  columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
+                                <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(9)}} className='custom-btn'>Go To Result</Button>
+                                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
 

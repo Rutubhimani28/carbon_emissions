@@ -6,7 +6,6 @@ const totalCommsSlice = createSlice({
     initialState: {
         data: [],
         totalEmission: 0,
-        scope: 3
     },
     reducers: {
         addCommsData: (state, action) => {
@@ -27,14 +26,13 @@ const totalCommsSlice = createSlice({
             ...state,
             data: [],
             totalEmission: 0,
-            scope: 3
         }),
-        scopeChange: (state, action) => ({
-            ...state,
-            scope: action.payload.scope
-        })
+        setCommsAllData: (state, action) => {
+            state.data = action.payload.data; 
+            state.totalEmission = action.payload.totalEmission; 
+        },
     },
 });
 
-export const { addCommsData, deleteCommsData, scopeChange } = totalCommsSlice.actions;
+export const { addCommsData, deleteCommsData, setCommsAllData } = totalCommsSlice.actions;
 export default totalCommsSlice.reducer;

@@ -5,9 +5,10 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addWasteData, deleteWasteData } from '../../redux/slice/totalWasteSlice';
-import { addResultTableData, deleteResTabWasteData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabWasteData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import { IconDiv } from '../../components/IconDiv';
 import WasteImg from '../../assets/Waste.png';
+import useEventData from '../../hooks/useEventData';
 
 const Waste = (props) => {
     const { setValue, value } = props;
@@ -15,7 +16,9 @@ const Waste = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalWasteDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalWasteDetails?.totalEmission);
-    const scope = useSelector((state) => state?.totalWasteDetails?.scope);
+    // const scope = useSelector((state) => state?.totalWasteDetails?.scope);
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const eventsData = useEventData();
 
     // -----------   initialValues
     const initialValues = {
@@ -313,13 +316,38 @@ const Waste = (props) => {
                 },
             ];
 
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Waste" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Waste" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteWasteData());
         dispatch(deleteResTabWasteData());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+           ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            console.log("---- we are updating data ")
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            } else {
+                console.log('Data updated successfully:', resultAction.payload);
+            }
+        } else {
+            console.log("---- we are saving data ")
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            } else {
+                console.log('Data saved successfully:', resultAction.payload);
+            }
+        }
     };
 
     useEffect(() => {
@@ -377,7 +405,6 @@ const Waste = (props) => {
         <div>
             <Container maxWidth>
                 <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
-                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
 
                         <Box
@@ -1032,7 +1059,8 @@ const Waste = (props) => {
                                         <Button
                                             variant="contained"
                                             onClick={() => {
-                                                formik.handleSubmit();
+                                                // formik.handleSubmit();
+                                                handleSaveToDb();
                                                 setValue(value - 1);
                                             }}
                                             startIcon={<FaAngleDoubleLeft />}
@@ -1043,7 +1071,8 @@ const Waste = (props) => {
                                         <Button
                                             variant="contained"
                                             onClick={() => {
-                                                formik.handleSubmit();
+                                                // formik.handleSubmit();
+                                                handleSaveToDb();
                                                 setValue(value + 1);
                                             }}
                                             className="custom-btn"
@@ -1053,6 +1082,7 @@ const Waste = (props) => {
                                             Save and Next Page
                                         </Button>
                                         {/* <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button> */}
+                                        {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                         <Button
                                             variant="outlined"
                                             onClick={() => {

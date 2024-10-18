@@ -10,6 +10,7 @@ import botRoutes from './botRoutes.js'
 import toolRoutes from './toolRoutes.js'
 import buyCreditsRoutes from './buyCreditsRoutes.js'
 import userRoutes from './userRoutes.js'
+import eventDataRoutes from './eventDataRoutes.js'
 
 const router = express.Router();
 
@@ -24,5 +25,6 @@ router.use('/bot', botRoutes);
 router.use('/tool', toolRoutes);
 router.use('/buyCredits', buyCreditsRoutes);
 router.use('/user', userRoutes);
+router.use('/eventData', eventDataRoutes);
 
 export default router

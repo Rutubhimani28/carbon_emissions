@@ -21,6 +21,7 @@ const Result = ({ value }) => {
 
     const allVirtualEventData = useSelector((state) => state?.totalVirtualEventDetails)
     const total = Number(allVirtualEventData?.totalEmission);
+    const totalResultTableData = useSelector((state) => state?.resultTableDataDetails);
 
     const chartData = [
         Number(allVirtualEventData?.totalEmission) || 0,
@@ -242,46 +243,46 @@ const Result = ({ value }) => {
     };
 
     useEffect(() => {
-        let sc1Count = 0;
-        let sc2Count = 0;
-        let sc3Count = 0;
+        // let sc1Count = 0;
+        // let sc2Count = 0;
+        // let sc3Count = 0;
 
-        resultTableData?.data?.forEach(page => {
-            page?.tabData?.forEach(flightClass => {
-                const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+        // resultTableData?.data?.forEach(page => {
+        //     page?.tabData?.forEach(flightClass => {
+        //         const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
 
-                    const rowData2 = rowData;
-                    const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
+        //             const rowData2 = rowData;
+        //             const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
 
-                    if (page?.tabTitle === "Digital Campaign") {
-                        return ((impressions1 && imgSize) || (impressions2 && videoMins && videoSize) || (noOfEmails && attachmentSize)) && emissions;
-                    }
+        //             if (page?.tabTitle === "Digital Campaign") {
+        //                 return ((impressions1 && imgSize) || (impressions2 && videoMins && videoSize) || (noOfEmails && attachmentSize)) && emissions;
+        //             }
 
-                    return false;
-                });
+        //             return false;
+        //         });
 
-                if (hasFilledRow) {
-                    if (flightClass?.scope === 1) {
-                        sc1Count += 1;
-                    } else if (flightClass?.scope === 2) {
-                        sc2Count += 1;
-                    } else if (flightClass?.scope === 3) {
-                        sc3Count += 1;
-                    }
-                }
-            });
-        });
+        //         if (hasFilledRow) {
+        //             if (flightClass?.scope === 1) {
+        //                 sc1Count += 1;
+        //             } else if (flightClass?.scope === 2) {
+        //                 sc2Count += 1;
+        //             } else if (flightClass?.scope === 3) {
+        //                 sc3Count += 1;
+        //             }
+        //         }
+        //     });
+        // });
 
-        setSc1(sc1Count);
-        setSc2(sc2Count);
-        setSc3(sc3Count);
+        // setSc1(sc1Count);
+        // setSc2(sc2Count);
+        // setSc3(sc3Count);
 
         generatePrompt();
     }, [resultTableData, value, allVirtualEventData]);
 
     useEffect(() => {
         if (content) {
-            chat();
+            // chat();
         }
     }, [content]);
 
@@ -290,8 +291,9 @@ const Result = ({ value }) => {
             <SendMail open={open} close={() => setOpen(false)} datas={{ ...data, totalVirtualEvent: Number(allVirtualEventData?.totalEmission).toFixed(2) }} setOpen chatSuggestion={suggestionForPdf} />
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
+                    {/* {resultTableData?.data?.filter((item) => item.tabTitle === "Virtual Event")?.map((page, pageIndex) => ( */}
                     {/* <Box style={{ width: "100%", color: 'white' }}>
-                        {resultTableData?.data?.filter((item) => item.tabTitle === "Virtual Event")?.map((page, pageIndex) => (
+                        {resultTableData?.data?.find((item) => item?.from === "virtualEvent")?.allDataOfTab?.map((page, pageIndex) => (
                             <Box key={pageIndex} style={{ margin: "20px" }}>
                                 {page?.tabData.some(flightClass =>
                                     flightClass?.subTypeData?.td?.some(rowData =>
@@ -317,8 +319,9 @@ const Result = ({ value }) => {
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            // {page.tabTitle === "Virtual Event" && 
-                                                                            {page.tabTitle === "Outbound Marketing" &&
+
+                                                                            {
+                                                                                page.tabTitle === "Outbound Marketing" &&
                                                                                 flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
                                                                                     (rowData.imgSize !== "" || rowData.impressionsOne !== "" || rowData.impressionsTwo !== "" || rowData.videoSize !== "" || rowData.videoMins !== "" || rowData.noOfPeople !== "" || rowData.noOfMins !== "") && rowData.emissions !== "" && (
                                                                                         <tr key={rowIndex}>
@@ -329,7 +332,8 @@ const Result = ({ value }) => {
                                                                                             <td>{rowData.emissions}</td>
                                                                                         </tr>
                                                                                     )
-                                                                                ))}
+                                                                                ))
+                                                                            }
                                                                         </tbody>
                                                                     </table>
                                                                 </>

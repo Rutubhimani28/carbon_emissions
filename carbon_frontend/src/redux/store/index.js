@@ -31,6 +31,7 @@ import totalPrAgencySlice from '../slice/totalPrAgencySlice';
 import totalHospitalitySlice from '../slice/totalHospitalitySlice';
 import toolSlice from "../slice/toolSlice";
 import resultTableDataSlice from "../slice/resultTableDataSlice";
+import eventsEmissionsSlice from '../slice/eventsEmissionsDataSlice';
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -108,6 +109,10 @@ const resultTableDataPersistConfig = {
     key: 'resultTableDataDetails',
     storage: storageSession,
 };
+const eventsEmissionsPersistConfig = {
+    key: 'eventsEmissionsDetails',
+    storage: storageSession,
+};
 
 export const store = configureStore({
     reducer: {
@@ -139,6 +144,7 @@ export const store = configureStore({
         totalHospitalityDetails: persistReducer(totalHospitalityPersistConfig, totalHospitalitySlice),
         toolDetails: persistReducer(toolPersistConfig, toolSlice),
         resultTableDataDetails: persistReducer(resultTableDataPersistConfig, resultTableDataSlice),
+        eventsEmissionsDetails: persistReducer(eventsEmissionsPersistConfig, eventsEmissionsSlice),
     },
     middleware,
 });

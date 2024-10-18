@@ -10,7 +10,7 @@ export const apiget = async (path) => {
         // eslint-disable-next-line prefer-const
         let response = await axios.get(constant.baseUrl + path, {
             headers: {
-                'Authorization': sessionStorage.getItem('token')
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         });
         // eslint-disable-next-line dot-notation
@@ -38,7 +38,7 @@ export const apipost = async (path, data) => {
     try {
         const response = await axios.post(constant.baseUrl + path, data, {
             headers: {
-                'Authorization': sessionStorage.getItem('token')
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         });
         if (response.data.token && response.data.token !== null) {
@@ -69,7 +69,7 @@ export const apiput = async (path, data) => {
     try {
         const response = await axios.put(constant.baseUrl + path, data, {
             headers: {
-                'Authorization': sessionStorage?.getItem('token')
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         });
 
@@ -95,7 +95,7 @@ export const apidelete = async (path) => {
     try {
         const response = await axios.delete(constant.baseUrl + path, {
             headers: {
-                'Authorization': sessionStorage.getItem('token')
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         });
 
@@ -122,7 +122,7 @@ export const deleteManyApi = async (path, data) => {
     try {
         const response = await axios.post(constant.baseUrl + path, data, {
             headers: {
-                'Authorization': sessionStorage.getItem('token')
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         });
         if (response.data.token && response.data.token !== null) {

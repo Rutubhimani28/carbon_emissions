@@ -19,10 +19,11 @@ import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCommsData, deleteCommsData, scopeChange } from '../../redux/slice/totalCommsSlice';
-import { addResultTableData, deleteResTabCommsData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission } from '../../redux/slice/resultTableDataSlice';
+import { addCommsData, deleteCommsData } from '../../redux/slice/totalCommsSlice';
+import { addResultTableData, deleteResTabCommsData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import commsImg from '../../assets/comms.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const Comms = (props) => {
   const { setValue, value } = props;
@@ -30,6 +31,9 @@ const Comms = (props) => {
   const dispatch = useDispatch();
   const allData = useSelector((state) => state?.totalCommsDetails?.data[0]?.data);
   const totalEmission = useSelector((state) => state?.totalCommsDetails?.totalEmission);
+  const resultTableData = useSelector(state => state.resultTableDataDetails);
+
+  const eventsData = useEventData();
 
   // -----------   initialValues
   const initialValues = {
@@ -267,7 +271,7 @@ const Comms = (props) => {
       const prAssestsEmission = (Number(emissionSix) || 0) + (Number(emissionSeven) || 0);
 
       dispatch(addCommsData({ data }));
-      dispatch(addResultTableData({ data: tableData, tabTitle: 'Comms' }));
+      dispatch(addResultTableData({ from: "prEvent", data: tableData, tabTitle: 'Comms' }));
       dispatch(prEventEmissionCatogorywise({ categories: [{ catgName: 'Email Invitations', emission: emailInvitationEmission }, { catgName: 'PR Assets', emission: prAssestsEmission }] }));
     },
   });
@@ -276,6 +280,25 @@ const Comms = (props) => {
     dispatch(deleteCommsData());
     dispatch(deleteResTabCommsData());
     dispatch(deleteCommsCatogorywiseEmission());
+  };
+
+  const handleSaveToDb = async () => {
+    const eventData = {
+      ...eventsData,
+    };
+
+    if (resultTableData.eventDataId) {
+      eventData.eventDataId = resultTableData?.eventDataId;
+      const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+      if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+        console.error('Failed to update data:', resultAction.payload);
+      }
+    } else {
+      const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+      if (addResultTableDatasToDb.rejected.match(resultAction)) {
+        console.error('Failed to save data:', resultAction.payload);
+      }
+    }
   };
 
   useEffect(() => {
@@ -706,7 +729,7 @@ const Comms = (props) => {
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small'className='ps-2' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} />
+                  <TextField size='small' className='ps-2' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
@@ -727,7 +750,7 @@ const Comms = (props) => {
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small'className='ps-2' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} />
+                  <TextField size='small' className='ps-2' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
@@ -737,7 +760,7 @@ const Comms = (props) => {
                 <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                   <Stack direction={'row'} spacing={2}>
                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                    <Button
+                    {/* <Button
                       variant="contained"
                       startIcon={<FaAngleDoubleLeft />}
                       onClick={() => {
@@ -747,12 +770,13 @@ const Comms = (props) => {
                       className="custom-btn"
                     >
                       Save and Previous Page
-                    </Button>
+                    </Button> */}
                     <Button
                       variant="contained"
                       endIcon={<FaAngleDoubleRight />}
                       onClick={() => {
-                        formik.handleSubmit();
+                        // formik.handleSubmit();
+                        handleSaveToDb();
                         setValue(value + 1);
                       }}
                       className="custom-btn"
@@ -763,11 +787,15 @@ const Comms = (props) => {
                     <Button
                       variant="contained"
                       endIcon={<FaAngleDoubleRight />}
-                      onClick={() => setValue(3)}
+                      onClick={() => {
+                        handleSaveToDb();
+                        setValue(3)
+                      }}
                       className="custom-btn"
                     >
                       Go To Result
                     </Button>
+                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                     <Button
                       variant="outlined"
                       onClick={() => {

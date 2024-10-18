@@ -15,6 +15,7 @@ import PrEvent from '../../pages/prEvent';
 import DigitalCampaign from '../../pages/digitalCampaign';
 import TermConditions from '../user/components/termCondition/termConditions';
 import User from '../../pages/user/User';
+import RetrieveEventsData from '../../pages/retrieveEvents/index';
 // import User from '../../pages/user/index';
 
 // import banner from '../user/assets/images/home_banner.jpg';
@@ -56,6 +57,7 @@ export default function DashboardLayout() {
   const [openBot, setOpenBot] = useState(false);
   const handleCloseBot = () => setOpenBot(false);
 
+  const toolDataToolDetails = useSelector((state) => state.toolDetails);
   const toolData = useSelector((state) => state.toolDetails?.data);
   const toolFormData = toolData.find((item) => item?.type === "toolForm");
   const userdata = JSON.parse(sessionStorage.getItem('user'));
@@ -82,6 +84,7 @@ export default function DashboardLayout() {
         <Routes>
           <Route path="*" element={<Navigate to="/dashboard/home" />} />
           <Route path="/dashboard/home" element={<ToolHome />} />
+          <Route path="/dashboard/retrieve-events" element={<RetrieveEventsData />} />
           <Route path="/dashboard/terms-conditions" element={<TermConditions />} />
           {
             (toolFormData?.isSubmited) &&

@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .page {
+            margin: 20px;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin: 0;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            // Sample data from allEventsEmissions
+            // const allEventsEmissions = [
+            //     {
+            //         f2fEventTotalEmission: "4382.00",
+            //         virtualEventTotalEmission: "25.00",
+            //         prEventTotalEmission: "20405.47",
+            //         digitalCampaignTotalEmission: "12434.03",
+            //         activity: "A1 - 2024-09-30",
+            //     },
+            //     {
+            //         f2fEventTotalEmission: "29140.31",
+            //         virtualEventTotalEmission: "234.00",
+            //         prEventTotalEmission: "400.00",
+            //         digitalCampaignTotalEmission: "5000.00",
+            //         activity: "A2 - 2024-10-02",
+            //     },
+            // ];
+
+            const allEventsEmissions = <%- JSON.stringify(allEventsEmissions) %>;
+
+            const eventTypes = [
+                { name: "F2F Event", color: "rgb(31 158 109)" },
+                { name: "Virtual Event", color: "#ACE1AF" },
+                { name: "PR Event", color: "#D0F0C0" },
+                { name: "Digital Campaign", color: "rgb(5, 71, 35)" }
+            ];
+
+            const dataSeries = eventTypes.map(eventType => {
+                return {
+                    type: "column",
+                    name: eventType.name,
+                    color: eventType.color,     
+                    showInLegend: true,         // Enable legend for this series
+                    legendText: eventType.name,
+                    dataPoints: allEventsEmissions.map(event => {
+                        // Get the corresponding emission value based on event type
+                        let value;
+                        switch (eventType.name) {
+                            case "F2F Event":
+                                value = parseFloat(event.f2fEventTotalEmission);
+                                break;
+                            case "Virtual Event":
+                                value = parseFloat(event.virtualEventTotalEmission);
+                                break;
+                            case "PR Event":
+                                value = parseFloat(event.prEventTotalEmission);
+                                break;
+                            case "Digital Campaign":
+                                value = parseFloat(event.digitalCampaignTotalEmission);
+                                break;
+                        }
+                        return {
+                            label: event.activity.split(" - ")[0],  
+                            y: value,
+                            toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(2)}`
+                        };
+                    })
+                };
+            });
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Event Emissions Comparison",
+                    fontSize: 30,
+                    margin: 30
+                },
+                axisY: {
+                    title: "Total Emissions (kgCO2e)",
+                    labelFontSize: 20,
+                    labelFontColor: "dimGrey"
+                },
+                axisX: {
+                    title: "Activities",
+                    labelAngle: -30
+                },
+                data: dataSeries,
+                legend: {
+                    cursor: "pointer",
+                    horizontalAlign: "center", // Aligns the legend at the center
+                    verticalAlign: "top",      // Positions the legend at the top
+                    fontSize: 16,              // Font size for the legend
+                    margin: 20
+                },
+            });
+
+            chart.render();
+        }
+    </script>
+</head>
+<body>
+    <div id="chartContainer" style="height: 400px; width: 90%; margin: auto;"></div>
+    <table style="width: 90%; margin: auto; margin-top: 30px; border-collapse: collapse;" border="1">
+        <thead>
+            <tr>
+                <th>Activity</th>
+                <th>F2F Event Emission</th>
+                <th>Virtual Event Emission</th>
+                <th>PR Event Emission</th>
+                <th>Digital Campaign Emission</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                const allEventsEmissions = <%- JSON.stringify(allEventsEmissions) %>;
+
+                allEventsEmissions.forEach(event => {
+                    document.write(`
+                        <tr>
+                            <td>${event.activity}</td>
+                            <td>${event.f2fEventTotalEmission || 0}</td>
+                            <td>${event.virtualEventTotalEmission || 0}</td>
+                            <td>${event.prEventTotalEmission || 0}</td>
+                            <td>${event.digitalCampaignTotalEmission || 0}</td>
+                        </tr>
+                    `);
+                });
+            </script>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -75,7 +75,8 @@ const SendMail = (props) => {
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
                 eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
-                resultTableData,
+                resultTableData: resultTableData?.data?.find(item => item.from === "virtualEvent"),
+                // resultTableData: resultTableData?.data?.find(item => item.from === "outboundMarketing"),
                 chatSuggestion
             };
 
@@ -145,6 +146,7 @@ const SendMail = (props) => {
         // setEmails(newTags);
         formik.setFieldValue('emails', newTags);
     };
+
     return (
         <div>
             <Dialog

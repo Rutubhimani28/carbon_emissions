@@ -107,8 +107,8 @@
 
         <h4>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
 
-        <% if (resultTableData && resultTableData.data) { %>
-            <% resultTableData.data.forEach(function(page) { %>
+        <% if (resultTableData && resultTableData.allDataOfTab) { %>
+            <% resultTableData.allDataOfTab.forEach(function(page) { %>
                 <% if (page.tabData && page.tabData.length> 0) { %>
                     <% if (page.tabTitle==="Digital Campaign" ) { %>
                         <div class="page">

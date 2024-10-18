@@ -4,10 +4,11 @@ import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addHospitalityData, deleteHospitalityData, scopeChange } from '../../redux/slice/totalHospitalitySlice';
-import { addResultTableData, deleteResTabHospitalityData, prEventEmissionCatogorywise, deleteHospitalityCatogorywiseEmission } from '../../redux/slice/resultTableDataSlice';
+import { addHospitalityData, deleteHospitalityData } from '../../redux/slice/totalHospitalitySlice';
+import { addResultTableData, deleteResTabHospitalityData, prEventEmissionCatogorywise, deleteHospitalityCatogorywiseEmission, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import hospitalityImg from '../../assets/hospitality.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const Hospitality = (props) => {
 
@@ -16,6 +17,9 @@ const Hospitality = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalHospitalityDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHospitalityDetails?.totalEmission);
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const eventsData = useEventData();
+
 
     // -----------   initialValues
     const initialValues = {
@@ -242,7 +246,7 @@ const Hospitality = (props) => {
             const foodPlasticWasteEmission = foodWasteEmission + totalPlasticWasteEmissiom;
 
             dispatch(addHospitalityData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Hospitality" }));
+            dispatch(addResultTableData({ from: "prEvent", data: tableData, tabTitle: "Hospitality" }));
             dispatch(prEventEmissionCatogorywise({ categories: [{ catgName: 'Food/Lunch', emission: totalLunchEmission }, { catgName: 'Red Meat', emission: emissionThree }, { catgName: 'Food-PetBottleWaste', emission: foodPlasticWasteEmission }] }));
         },
     });
@@ -251,6 +255,25 @@ const Hospitality = (props) => {
         dispatch(deleteHospitalityData());
         dispatch(deleteResTabHospitalityData());
         dispatch(deleteHospitalityCatogorywiseEmission());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            } 
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            }
+        }
     };
 
     useEffect(() => {
@@ -523,9 +546,10 @@ const Hospitality = (props) => {
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(3)} className='custom-btn'>Go To Result</Button>
+                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(3) }} className='custom-btn'>Go To Result</Button>
+                                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
                             </Grid>

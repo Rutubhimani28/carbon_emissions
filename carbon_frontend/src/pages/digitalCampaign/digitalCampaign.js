@@ -6,9 +6,10 @@ import { FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
 import { MdEmail } from "react-icons/md";
 import { useTheme } from '@mui/material/styles';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
-import { addResultTableData, deleteResTabDgCampaignData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabDgCampaignData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import Phone from '../../assets/phone2.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const DigitalCampaign = (props) => {
     const { setValue, value } = props;
@@ -16,6 +17,8 @@ const DigitalCampaign = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalDigitalCampaignDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails?.totalEmission);
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const eventsData = useEventData();
 
     const initialValues = {
         imgSize: '',         // No of Mb   
@@ -75,7 +78,7 @@ const DigitalCampaign = (props) => {
                     emission: emissionTwo > 0 ? emissionTwo : ''
                 },
                 {
-                    type: 'Emails',
+                    name: 'Emails',
                     noOfEmails: values?.noOfEmails,
                     emialEfOne: values?.emialEfOne,
                     emialEfTwo: values?.emialEfTwo,
@@ -137,7 +140,7 @@ const DigitalCampaign = (props) => {
             ];
 
             dispatch(addCampaignData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Campaign" }));
+            dispatch(addResultTableData({ from: "digitalCampaign", data: tableData, tabTitle: "Digital Campaign" }));
         },
     });
 
@@ -146,6 +149,25 @@ const DigitalCampaign = (props) => {
     const handeleDelete = () => {
         dispatch(deleteCampaignData());
         dispatch(deleteResTabDgCampaignData());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            } 
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            }
+        }
     };
 
     useEffect(() => {
@@ -366,7 +388,9 @@ const DigitalCampaign = (props) => {
                     </Box>
                     <Grid>
                         <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button><Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
+                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button>
+                                {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
+                                <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
                     </Grid>

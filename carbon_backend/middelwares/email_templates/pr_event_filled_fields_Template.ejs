@@ -118,8 +118,8 @@
 
         <h4>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
 
-        <% if (resultTableData && resultTableData.data) { %>
-            <% resultTableData.data.forEach(function(page, pageIndex) { %>
+        <% if (resultTableData && resultTableData.allDataOfTab) { %>
+            <% resultTableData.allDataOfTab.forEach(function(page, pageIndex) { %>
                 <% const validTabTitles=[ "Comms" , "PR Agency" , "Hospitality" ]; %>
                     <% if (validTabTitles.includes(page.tabTitle)) { %>
                         <% if (page.tabData.some(flightClass=> flightClass.subTypeData && flightClass.subTypeData.td &&

@@ -20,9 +20,13 @@ const toolSlice = createSlice({
         },
         clearToolFormData: (state, action) => {
             state.data = state.data.filter((item) => item.type !== "toolForm")
+        },
+        setToolFormAllData: (state, action) => {
+            // state.data = action.payload.data;
+            state.data = action.payload;
         }
     },
 });
 
-export const { addToolData, clearToolData, clearToolFormData, clearLogisticsData } = toolSlice.actions;
+export const { addToolData, clearToolData, clearToolFormData, clearLogisticsData, setToolFormAllData } = toolSlice.actions;
 export default toolSlice.reducer;

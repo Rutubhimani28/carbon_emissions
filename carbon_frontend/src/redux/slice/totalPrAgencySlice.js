@@ -5,7 +5,7 @@ const totalPrAgencySlice = createSlice({
     initialState: {
         data: [],
         totalEmission: 0,
-        scope: 3
+        // scope: 3
     },
     reducers: {
         addPrAgencyData: (state, action) => {
@@ -24,14 +24,19 @@ const totalPrAgencySlice = createSlice({
             ...state,
             data: [],
             totalEmission: 0,
-            scope: 3
+            // scope: 3
         }),
-        scopeChange: (state, action) => ({
-            ...state,
-            scope: action.payload.scope
-        })
+        // scopeChange: (state, action) => ({
+        //     ...state,
+        //     scope: action.payload.scope
+        // }),
+        setPrAgencyAllData: (state, action) => {
+            state.data = action.payload.data;
+            state.totalEmission = action.payload.totalEmission;
+            // state.scope = action.payload.scope;
+        },
     },
 });
 
-export const { addPrAgencyData, deletePrAgencyData, scopeChange } = totalPrAgencySlice.actions;
+export const { addPrAgencyData, deletePrAgencyData, setPrAgencyAllData } = totalPrAgencySlice.actions;
 export default totalPrAgencySlice.reducer;

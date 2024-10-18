@@ -5,9 +5,10 @@ import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
-import { addResultTableData, deleteResTabProductionData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabProductionData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import ProductionImg from '../../assets/production.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const Production = (props) => {
     const { setValue, value } = props;
@@ -15,6 +16,8 @@ const Production = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalProductionDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalProductionDetails?.totalEmission);
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const eventsData = useEventData();
 
     const fieldDataOne = [
         { name: 'Sawn Timber', ef: 0.263, fieldName: 'sawnTimber' },
@@ -654,13 +657,32 @@ const Production = (props) => {
             ];
 
             dispatch(addProductionData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Event Production" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Event Production" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteProductionData());
         dispatch(deleteResTabProductionData());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+           ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            }
+        }
     };
 
     useEffect(() => {
@@ -1308,6 +1330,7 @@ const Production = (props) => {
                                         >
                                             Go To Result
                                         </Button>
+                                        <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button>
                                         <Button
                                             variant="outlined"
                                             onClick={() => {

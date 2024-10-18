@@ -269,7 +269,7 @@ const User = () => {
 
     };
 
-    const handleExportSms = (extension) => {
+    const handleExportData = (extension) => {
         if (selectedRowIds && selectedRowIds?.length > 0) {
             downloadCsvOrExcel(extension, selectedRowIds)
         } else {
@@ -295,7 +295,7 @@ const User = () => {
                             <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAdd}>
                                 Add New
                             </Button>
-                            <Button variant="contained" startIcon={<CiExport icon="eva:plus-fill" />} onClick={() => { handleExportSms('xlsx') }} >
+                            <Button variant="contained" startIcon={<CiExport icon="eva:plus-fill" />} onClick={() => { handleExportData('xlsx') }} >
                                 {selectedRowIds && selectedRowIds?.length > 0 ? 'Export Selected Data' : 'Export'}
                             </Button>
                         </Stack>

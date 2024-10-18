@@ -17,8 +17,9 @@ import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { IconDiv } from '../../components/IconDiv';
 import { addLogisticsData, deleteLogisticsData } from '../../redux/slice/totalAirFreightSlice';
-import { addResultTableData, deleteResTabLogisticsData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabLogisticsData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import LogisticsImg from '../../assets/Logistics.png';
+import useEventData from '../../hooks/useEventData';
 
 const AirFreight = (props) => {
     const { setValue, value } = props;
@@ -27,7 +28,10 @@ const AirFreight = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalAirFreightDetails?.data[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirFreightDetails?.totalEmission);
-    const scope = useSelector((state) => state?.totalAirFreightDetails?.scope);
+    // const scope = useSelector((state) => state?.totalAirFreightDetails?.scope);
+    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const eventsData = useEventData();
+
 
     // -----------   initialValues
     const initialValues = {
@@ -207,13 +211,32 @@ const AirFreight = (props) => {
             ];
 
             dispatch(addLogisticsData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Logistics" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Logistics" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteLogisticsData());
         dispatch(deleteResTabLogisticsData());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            } 
+        }
     };
 
     useEffect(() => {
@@ -633,7 +656,8 @@ const AirFreight = (props) => {
                                     <Button
                                         variant="contained"
                                         onClick={() => {
-                                            formik.handleSubmit();
+                                            // formik.handleSubmit();
+                                            handleSaveToDb();
                                             setValue(value - 1);
                                         }}
                                         className="custom-btn"
@@ -645,7 +669,8 @@ const AirFreight = (props) => {
                                         variant="contained"
                                         endIcon={<FaAngleDoubleRight />}
                                         onClick={() => {
-                                            formik.handleSubmit();
+                                            // formik.handleSubmit();
+                                            handleSaveToDb();
                                             setValue(value + 1);
                                         }}
                                         className="custom-btn"
@@ -656,11 +681,15 @@ const AirFreight = (props) => {
                                     <Button
                                         variant="contained"
                                         endIcon={<FaAngleDoubleRight />}
-                                        onClick={() => setValue(9)}
+                                        onClick={() => {
+                                            handleSaveToDb();
+                                            setValue(9);
+                                        }}
                                         className="custom-btn"
                                     >
                                         Go To Result
                                     </Button>
+                                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                     <Button
                                         variant="outlined"
                                         onClick={() => {

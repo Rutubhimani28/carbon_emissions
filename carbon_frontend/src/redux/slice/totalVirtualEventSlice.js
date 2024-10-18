@@ -29,9 +29,13 @@ const virtualEventSlice = createSlice({
             data: [],
             totalEmission: 0
         }),
-
+        setVirtualEventAllData: (state, action) => {
+            state.data = action.payload.data; 
+            state.totalEmission = action.payload.totalEmission; 
+            // state.scope = action.payload.scope; 
+        },
     },
 });
 
-export const { addVirtualEventData, deleteVirtualEventData } = virtualEventSlice.actions;
+export const { addVirtualEventData, deleteVirtualEventData, setVirtualEventAllData } = virtualEventSlice.actions;
 export default virtualEventSlice.reducer;
