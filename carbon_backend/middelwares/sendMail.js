@@ -6,10 +6,6 @@ import path from 'path';
 // import { dirname } from 'path';
 import ejs from 'ejs';
 import { fileURLToPath } from 'url';
-import PDFDocument from 'pdfkit';
-import MemoryStream from 'memorystream';
-import { ChartJSNodeCanvas } from 'chartjs-node-canvas';
-import tmp from 'tmp';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
