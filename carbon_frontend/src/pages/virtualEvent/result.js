@@ -151,27 +151,34 @@ const Result = ({ value }) => {
 
         // // for Outbound Marketing
         if (allVirtualEventData?.data?.[0]?.data?.[17]?.emission) {
-            sentenceParts.push(`TV Ad ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgCO2e.`);
+            // sentenceParts.push(`TV Ad ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgCO2e.`);
+            sentenceParts.push(`TV Ad with ${allVirtualEventData?.data?.[0]?.data?.[17]?.adDuration} secs duration with ${allVirtualEventData?.data?.[0]?.data?.[17]?.noOfSlots} slots generated ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgco2e, `);
         }
         if (allVirtualEventData?.data?.[0]?.data?.[13]?.emission) {
-            sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
+            // sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
+            sentenceParts.push(`Newspaper ad with ${allVirtualEventData?.data?.[0]?.data?.[13]?.noOfCopiesOne} copies generated ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgco2e, `);
         }
         if (allVirtualEventData?.data?.[0]?.data?.[14]?.emission) {
-            sentenceParts.push(`Magazine ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e.`);
+            // sentenceParts.push(`Magazine ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e.`);
+            sentenceParts.push(`magazine with ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfPages} pages and ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfCopiesTwo} copies generated ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgco2e, `);
         }
         if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
-            sentenceParts.push(`Podcast ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e.`);
+            // sentenceParts.push(`Podcast ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e.`);
+            sentenceParts.push(`podcast of ${allVirtualEventData?.data?.[0]?.data?.[18]?.podcastSize}mb with ${allVirtualEventData?.data?.[0]?.data?.[18]?.noOfListeners} listeners generated ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgco2e. `);
         }
-        if (allVirtualEventData?.data?.[0]?.data?.[15]?.emission) {
-            sentenceParts.push(`Polyethylene ${allVirtualEventData?.data?.[0]?.data?.[15]?.emission} kgCO2e.`);
-        }
+        // if (allVirtualEventData?.data?.[0]?.data?.[15]?.emission) {
+        //     sentenceParts.push(`Polyethylene ${allVirtualEventData?.data?.[0]?.data?.[15]?.emission} kgCO2e.`);
+        // }
         if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
-            sentenceParts.push(`PVC banner ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgCO2e.`);
+            // sentenceParts.push(`PVC banner ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgCO2e.`);
+            sentenceParts.push(`and PVC banner generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e,`);
         }
         if (totalCarbonFootprint) {
-            sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);
+            // sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);
+            sentenceParts.push(`Total emissions were ${Number(total).toFixed(2)} kgCO2e.`);
         }
-        sentenceParts.push(`\n\nHow to reduce the carbon footprint by 20-25%? Show the calculation for comparing the original and reduced carbon footprints. Suggest using Polyethylene Banners as they are 100% recyclable. In end say, by following these measures you can reduce cost by more than 10%.`);
+        // sentenceParts.push(`\n\nHow to reduce the carbon footprint by 20-25%? Show the calculation for comparing the original and reduced carbon footprints. Suggest using Polyethylene Banners as they are 100% recyclable. In end say, by following these measures you can reduce cost by more than 10%.`);
+        sentenceParts.push(`\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, along with alternative methods, also show the calculation for each category. For PVC banners suggest to use polyethylene.`);
 
         const finalSentence = `${sentenceParts.join('\n')}`;
         setContent(finalSentence);
