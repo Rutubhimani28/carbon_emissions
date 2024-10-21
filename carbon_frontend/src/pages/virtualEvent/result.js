@@ -171,7 +171,7 @@ const Result = ({ value }) => {
         if (totalCarbonFootprint) {
             sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);
         }
-        sentenceParts.push(`\n\nHow to reduce the carbon footprint by 20-25%? Suggest to use Polyethylene Banners as they are 100% recyclable. In end say, by following these measures you can reduce cost by more than 10%.`);
+        sentenceParts.push(`\n\nHow to reduce the carbon footprint by 20-25%? Show the calculation for comparing the original and reduced carbon footprints. Suggest using Polyethylene Banners as they are 100% recyclable. In end say, by following these measures you can reduce cost by more than 10%.`);
 
         const finalSentence = `${sentenceParts.join('\n')}`;
         setContent(finalSentence);
