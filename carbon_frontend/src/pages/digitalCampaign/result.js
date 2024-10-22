@@ -81,7 +81,7 @@ const Result = ({ value }) => {
     const liveBroadcastParts = [];
     // const wantInResult = 'Please note that the results are sensitive to the choice of viewing device, type of network connection and resolution. \n What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
     // const wantInResult = 'What are the top three ways to cut this by over 50%? Show the calculation for comparing the original and reduced carbon footprints. While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
-    const wantInResult = ' How can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, and what tools can be used to compress image & video, also show the simplified calculation for each category.';
+    const wantInResult = ' How can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, and what tools can be used to compress image & video.';
 
     const imgSize = allDigitalCampaignData?.data?.[0]?.data?.[0]?.imgSize || 0;
     const imageEmission = allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission || 0;
