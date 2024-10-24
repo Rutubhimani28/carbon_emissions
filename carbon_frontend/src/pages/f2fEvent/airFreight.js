@@ -130,7 +130,7 @@ const AirFreight = (props) => {
                 {
                     type: 'Sea Tanker',
                     noOfKmsSix: values?.noOfKmsSix,
-                    kgsSix: values?.kgsTwo,
+                    kgsSix: values?.kgsSix,
                     efSix: values?.efSix,
                     emission: (emissionSix > 0) ? emissionSix : '',
                 },
@@ -396,7 +396,7 @@ const AirFreight = (props) => {
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    {/* <tr>
                                         <td className="ps-2 py-1">Road</td>
                                         <td className="ps-2 py-1">
                                             <TextField
@@ -436,7 +436,7 @@ const AirFreight = (props) => {
                                                 disabled
                                             />
                                         </td>
-                                    </tr>
+                                    </tr> */}
 
                                     <tr>
                                         <td className="ps-2 py-1">Cargo Ship (Container)</td>

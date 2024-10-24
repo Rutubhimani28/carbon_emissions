@@ -54,10 +54,10 @@ const Production = (props) => {
 
     const fieldDataSix = [
         { name: 'Printing a Coloured Brochure/ Page (<130 GSM)', ef: 1.56, fieldName: 'colouredBrochurePage' },
-        { name: 'Giveway Paper bags (200 GSM)- A4 Size', ef: 0.3125, fieldName: 'paperBagsA4Size' },
-        { name: 'Giveway Paper bags (200 GSM)- A5 Size', ef: 0.125, fieldName: 'paperBagsA5Size' },
-        { name: 'Giveway Jute bags*- A4 Size', ef: 0.73, fieldName: 'juteBagsA4Size' },
-        { name: 'Giveway Cotton bags- A4 Size', ef: 17, fieldName: 'cottonBagsA4Size' },
+        { name: 'Giveaway Paper bags (200 GSM)- A4 Size', ef: 0.3125, fieldName: 'paperBagsA4Size' },
+        { name: 'Giveaway Paper bags (200 GSM)- A5 Size', ef: 0.125, fieldName: 'paperBagsA5Size' },
+        { name: 'Giveaway Jute bags*- A4 Size', ef: 0.73, fieldName: 'juteBagsA4Size' },
+        { name: 'Giveaway Cotton bags- A4 Size', ef: 17, fieldName: 'cottonBagsA4Size' },
     ];
 
 
@@ -596,22 +596,22 @@ const Production = (props) => {
                                 emissions: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
                             },
                             {
-                                pType: "Giveway Paper bags (200 GSM)- A4 Size",
+                                pType: "Giveaway Paper bags (200 GSM)- A4 Size",
                                 noOfUnits: values?.paperBagsA4Size,
                                 emissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
                             },
                             {
-                                pType: "Giveway Paper bags (200 GSM)- A5 Size",
+                                pType: "Giveaway Paper bags (200 GSM)- A5 Size",
                                 noOfUnits: values?.paperBagsA5Size,
                                 emissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
                             },
                             {
-                                pType: "Giveway Jute bags*- A4 Size",
+                                pType: "Giveaway Jute bags*- A4 Size",
                                 noOfUnits: values?.juteBagsA4Size,
                                 emissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
                             },
                             {
-                                pType: "Giveway Cotton bags- A4 Size",
+                                pType: "Giveaway Cotton bags- A4 Size",
                                 noOfUnits: values?.cottonBagsA4Size,
                                 emissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
                             },
@@ -958,7 +958,7 @@ const Production = (props) => {
                                                         />
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                {/* <tr>
                                                     <td className="ps-2 py-1">Cotton Banner</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
@@ -984,7 +984,7 @@ const Production = (props) => {
                                                             disabled
                                                         />
                                                     </td>
-                                                </tr>
+                                                </tr> */}
                                                 <tr>
                                                     <td className="ps-2 py-1">Plastic Badge Holders (Polycorbonate)</td>
                                                     <td className="ps-2 py-1">
@@ -1025,7 +1025,7 @@ const Production = (props) => {
                                                     <th className="ps-2" width="150">No. of Units</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
-                                                <tr>
+                                                {/* <tr>
                                                     <td className="ps-2 py-1">Printing a Coloured Brochure/ Page (&gt;130 GSM)</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
@@ -1051,9 +1051,9 @@ const Production = (props) => {
                                                             onChange={formik.handleChange}
                                                         />
                                                     </td>
-                                                </tr>
+                                                </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Paper bags (200 GSM)- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1080,8 +1080,8 @@ const Production = (props) => {
                                                         />
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A5 Size</td>
+                                                {/* <tr>
+                                                    <td className="ps-2 py-1">Giveaway Paper bags (200 GSM)- A5 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1107,9 +1107,9 @@ const Production = (props) => {
                                                             onChange={formik.handleChange}
                                                         />
                                                     </td>
-                                                </tr>
+                                                </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Jute bags*- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Jute bags*- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1137,7 +1137,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Cotton bags- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Cotton bags- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1239,7 +1239,7 @@ const Production = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={12} md={6}>
+                                {/* <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
                                             Stage Lighting & AV
@@ -1251,8 +1251,6 @@ const Production = (props) => {
                                                     <th className="ps-2">kwh</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
-                                                {/* {fieldDataFour && */}
-                                                {/* fieldDataFour?.map((i) => ( */}
                                                 <>
                                                     <tr >
                                                         <td className="ps-2 py-1">Electricity</td>
@@ -1285,11 +1283,10 @@ const Production = (props) => {
                                                         </td>
                                                     </tr>
                                                 </>
-                                                {/* ))}/ */}
                                             </table>
                                         </div>
                                     </Box>
-                                </Grid>
+                                </Grid> */}
 
                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
                                     <Typography color="white">Note:</Typography>
@@ -1303,6 +1300,7 @@ const Production = (props) => {
                                             variant="contained"
                                             onClick={() => {
                                                 formik.handleSubmit();
+                                                handleSaveToDb();
                                                 setValue(value - 1);
                                             }}
                                             className="custom-btn"
@@ -1314,6 +1312,7 @@ const Production = (props) => {
                                             variant="contained"
                                             onClick={() => {
                                                 formik.handleSubmit();
+                                                handleSaveToDb();
                                                 setValue(value + 1);
                                             }}
                                             className="custom-btn"

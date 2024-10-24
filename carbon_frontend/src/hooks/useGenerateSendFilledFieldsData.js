@@ -62,7 +62,7 @@ const UseGenerateSendFilledFieldsData = () => {
                 virtualEventTotalEmission,
                 prEventTotalEmission,
                 digitalCampaignTotalEmission,
-                activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('MM/DD/YYYY hh:mm A')}`,
+                activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('DD/MM/YYYY hh:mm A')}`,
                 eventId: event?._id,
             }
         );

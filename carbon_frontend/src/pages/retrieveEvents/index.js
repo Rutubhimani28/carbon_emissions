@@ -91,11 +91,16 @@ const MyEventSelector = () => {
     const userid = sessionStorage.getItem('user_id');
     const userSessionData = sessionStorage.getItem('user');
     const userData = JSON.parse(userSessionData);
+    const isAdmin = userData?.role === 'admin';
+    // const isAdmin = false;
     const resultTableData = useSelector(state => state.resultTableDataDetails);
-    const previousEvents = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm A')}` }));
+    // const previousEvents = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm A')}` }));
 
     const [isGraphLoading, setIsGraphLoading] = useState(false);
     const [isFieldsLoading, setIsFieldsLoading] = useState(false);
+    const [previousAllAccounts, setPreviousAllAccounts] = useState([]);
+    const [previousEvents, setPreviousEvents] = useState([]);
+    const [selectedAccountPreviousEvents, setselectedAccountPreviousEvents] = useState([]);      // for options
 
     const [userAction, setUserAction] = useState(null)
     const [selectedRowIds, setSelectedRowIds] = useState([]);
@@ -106,6 +111,8 @@ const MyEventSelector = () => {
     const dispatch = useDispatch()
 
     const { data, isLoading } = useSelector((state) => state?.eventsEmissionsDetails);
+    const [selectedData, setselectedData] = useState([]);      // for options
+    const [filteredTableData, setFilteredTableData ] = useState(data);
 
     const formatOptionLabel = ({ label }) => (
         <Typography noWrap title={label}>
@@ -114,14 +121,20 @@ const MyEventSelector = () => {
     );
 
     const validationSchema = yup.object({
-        addEmail: yup.string().email('Email not valid')
+        addEmail: yup.string().email('Email not valid'),
+        selectedAccount: yup.object().required('Account is required').test(
+            'is-not-null',
+            'Account is required',
+            (value) => value !== null
+        ),
     });
 
     const formik = useFormik({
         initialValues: {
             selectedEvents: [],
             emails: [`${userData?.loginId}`],
-            addEmail: ''
+            addEmail: '',
+            selectedAccount: null
         },
         validationSchema,
         validate: values => {
@@ -163,7 +176,7 @@ const MyEventSelector = () => {
         const returnArr = [];
 
         const selectedValues = formik.values.selectedEvents.map(event => event.value);
-        
+
         const apiPath = `api/eventData?_id[]=${selectedValues.join('&_id[]=')}`;
         const response = await apiget(apiPath);
         const responseData = response.data.data;
@@ -415,7 +428,7 @@ const MyEventSelector = () => {
                     virtualEventTotalEmission,
                     prEventTotalEmission,
                     digitalCampaignTotalEmission,
-                    activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('MM/DD/YYYY hh:mm A')}`,
+                    activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('DD/MM/YYYY hh:mm A')}`,
                     eventId: event?._id,
                 }
             );
@@ -423,6 +436,8 @@ const MyEventSelector = () => {
 
         const payload = {
             allEventsEmissions,
+            name: userData?.cnctPerson,
+            activityName: `${responseData[0]?.activityName} and ${responseData[1]?.activityName}`,
             // receiver: [userData?.loginId],
             receiver: formik.values?.emails,
             subject: `${responseData[0]?.activityName} vs ${responseData[1]?.activityName} - graph chart`,
@@ -508,6 +523,19 @@ const MyEventSelector = () => {
     }, [])
     // }, [userAction])
 
+    useEffect(() => {
+        const fetchUsers = async () => {
+            // try {
+            const res = await apiget('api/eventData/events-users-list');
+            setPreviousAllAccounts(res.data?.data);
+            // } catch (error) {
+            //     console.error("--- addEmail error ", error);
+            // }
+        };
+
+        fetchUsers(); // Call the async function
+    }, []);
+
     return (
         <>
             <Box
@@ -523,9 +551,67 @@ const MyEventSelector = () => {
                     boxShadow: 3,
                     margin: 'auto',
                     marginTop: '40px',
+                    position: 'relative', // Required for absolute positioning of the overlay
                 }}
             >
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
+                {isAdmin &&
+                    (
+                        <>
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
+                                <Typography variant="h6" className='text-white' gutterBottom>
+                                    Select Account
+                                </Typography>
+                                <span style={{ color: 'red', marginLeft: '4px' }}>*</span>
+                            </Box>
+                            <Select
+                                isClearable
+                                name="selectedAccount"
+                                placeholder="Select an account..."
+                                options={previousAllAccounts} // Change to your accounts array
+                                formatOptionLabel={formatOptionLabel} // Ensure this function is relevant for accounts
+                                onChange={selectedOption => {
+                                    formik.setFieldValue('selectedAccount', selectedOption);
+                                    const selectedUserEvents = data?.filter((event) => event?.createdById === selectedOption?.value);
+                                    const filterdeEvents = selectedUserEvents?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm A')}` }));
+                                    setselectedAccountPreviousEvents(filterdeEvents || []);
+                                    setFilteredTableData(selectedUserEvents);
+                                }}
+                                value={formik.values.selectedAccount} // Ensure this corresponds to the single account
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        width: '100%',
+                                        minWidth: '550px',
+                                        borderColor: formik.errors.selectedAccount ? 'red' : 'white',
+                                        '&:hover': {
+                                            borderColor: formik.errors.selectedAccount ? 'red' : 'white',
+                                        },
+                                        backgroundColor: 'transparent',
+                                    }),
+                                    menu: (base) => ({
+                                        ...base,
+                                        zIndex: 9999,
+                                        maxWidth: '600px',
+                                    }),
+                                    placeholder: (base) => ({
+                                        ...base,
+                                        color: 'white', // Set placeholder color to white
+                                    }),
+                                }}
+                            />
+                            {formik.errors.selectedAccount && (
+                                <Typography
+                                    color="error"
+                                    variant="caption"
+                                    sx={{ marginTop: '4px', fontSize: '1rem', justifyContent: 'flex-start', width: '100%' }}
+                                >
+                                    {formik.errors.selectedAccount}
+                                </Typography>
+                            )}
+                        </>
+                    )
+                }
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%', marginTop: "10px"}}>
                     <Typography variant="h6" className='text-white' gutterBottom>
                         Select Previous Events
                     </Typography>
@@ -535,7 +621,8 @@ const MyEventSelector = () => {
                     isMulti
                     name="selectedEvents"
                     placeholder="Select any two events..."
-                    options={previousEvents}
+                    disabled={isAdmin && !formik.values?.selectedAccount}
+                    options={isAdmin ? selectedAccountPreviousEvents : previousEvents}
                     formatOptionLabel={formatOptionLabel}
                     onChange={selectedOptions => {
                         formik.setFieldValue('selectedEvents', selectedOptions);
@@ -572,6 +659,7 @@ const MyEventSelector = () => {
                         {formik.errors.selectedEvents}
                     </Typography>
                 )}
+
                 <Box
                     sx={{
                         width: '100%',
@@ -588,8 +676,8 @@ const MyEventSelector = () => {
                             flexWrap: "nowrap",
                             width: "100%",
                             overflowX: 'auto',
-                            padding: '0', 
-                            margin: '0', 
+                            padding: '0',
+                            margin: '0',
                         }}
                     >
                         {formik.values.emails?.map((tag, index) => (
@@ -648,7 +736,7 @@ const MyEventSelector = () => {
                             border: formik.touched.addEmail && formik.errors.addEmail ? '1px solid red' : '1px solid white',
                             borderRadius: '6px',
                         }}
-                        inputProps={{ 
+                        inputProps={{
                             className: 'custom-placeholder',
                             style: { color: 'white', background: 'trasnparent' },
                         }}
@@ -667,7 +755,7 @@ const MyEventSelector = () => {
                     <Typography
                         color="error"
                         variant="caption"
-                        sx={{ marginTop: '4px', fontSize: '1rem', justifyContent: 'flex-start', width: '100%' }} 
+                        sx={{ marginTop: '4px', fontSize: '1rem', justifyContent: 'flex-start', width: '100%' }}
                     >
                         {formik.errors.addEmail}
                     </Typography>
@@ -679,7 +767,8 @@ const MyEventSelector = () => {
                         onClick={handleRetrieveCalculations}
                         disabled={formik.values.selectedEvents.length !== 2} // Enabled only if exactly 2 events are selected
                     >
-                        {isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Calculations'}
+                        {/* {isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Calculations'} */}
+                        Retrieve Calculations
                     </Button>
                     <Button
                         variant="contained"
@@ -687,10 +776,32 @@ const MyEventSelector = () => {
                         onClick={handleRetrieveGraphs}
                         disabled={formik.values.selectedEvents.length !== 2} // Enabled only if exactly 2 events are selected
                     >
-                        {isGraphLoading ? <CircularProgress size={27} /> : 'Retrieve Graphs'}
+                        {/* {isGraphLoading ? <CircularProgress size={27} /> : 'Retrieve Graphs'} */}
+                        Retrieve Graphs
                     </Button>
                 </Box>
-            </Box>
+
+                {/* Loader Overlay */}
+                {(isGraphLoading || isFieldsLoading) && (
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            // bgcolor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent background
+                            backdropFilter: 'blur(1px)', // Blur effect
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 10, // Ensure it’s above other content
+                        }}
+                    >
+                        <CircularProgress />
+                    </Box>
+                )}
+            </Box >
 
 
             {(userData?.role === 'admin') &&
@@ -716,7 +827,7 @@ const MyEventSelector = () => {
                                     </Card>
                                 ) : (
                                     <DataGrid
-                                        rows={data || []}
+                                        rows={ formik.values?.selectedAccount ? filteredTableData : data || []}
                                         columns={columns}
                                         checkboxSelection
                                         disableSelectionOnClick

@@ -262,7 +262,7 @@ const Hotel = (props) => {
                             <Grid
                                 container
                                 rowSpacing={3}
-                                columnSpacing={{ xs: 0, sm: 5, md: 5 }}
+                                columnSpacing={{ xs: 0, sm: 12, md: 12 }}
                                 style={{ justifyContent: 'center' }}
                             >
                                 <Grid item xs={12} sm={4} md={4}>
@@ -502,8 +502,9 @@ const Hotel = (props) => {
                                         />
                                     </Grid>
                                 </Grid>
-                                <Grid item xs={12} sm={8} textAlign={"center"}>
-                                    <Typography variant='h4' justifyContent={"center"}>
+                                {/* <Grid item xs={0} sm={2} /> */}
+                                <Grid item xs={12} sm={6} >
+                                    <Typography variant='h4' justifyContent={"flex-start"}>
                                         Meeting Room Energy Consumption
                                     </Typography>
                                     <Grid
@@ -511,7 +512,7 @@ const Hotel = (props) => {
                                         rowSpacing={3}
                                         textAlign={"left"}
                                         columnSpacing={{ xs: 0, sm: 5, md: 5 }}
-                                        style={{ justifyContent: 'center' }}
+                                        // style={{ justifyContent: 'center' }}
                                         className='textborder'
                                     >
                                         <Grid item xs={12} sm={6} md={6}>
@@ -587,7 +588,7 @@ const Hotel = (props) => {
                                                 />
                                             </Grid>
                                         </Grid>
-                                        <Grid item xs={12} sm={6} md={6}>
+                                        {/* <Grid item xs={12} sm={6} md={6}>
                                             <Grid mt={2}>
                                                 <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh) *</FormLabel>
                                                 <TextField
@@ -636,7 +637,7 @@ const Hotel = (props) => {
                                             <Grid mt={2}>
                                                 <Typography> * If you have the exact energy consumption from hotel</Typography>
                                             </Grid>
-                                        </Grid>
+                                        </Grid> */}
                                     </Grid>
 
                                 </Grid>

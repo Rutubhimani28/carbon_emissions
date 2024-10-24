@@ -26,10 +26,16 @@ const totalCommsSlice = createSlice({
             ...state,
             data: [],
             totalEmission: 0,
+            // scope: 3
         }),
+        // scopeChange: (state, action) => ({
+        //     ...state,
+        //     scope: action.payload.scope
+        // }),
         setCommsAllData: (state, action) => {
             state.data = action.payload.data; 
             state.totalEmission = action.payload.totalEmission; 
+            // state.scope = action.payload.scope; 
         },
     },
 });

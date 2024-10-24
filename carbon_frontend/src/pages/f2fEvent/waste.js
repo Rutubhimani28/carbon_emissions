@@ -331,22 +331,16 @@ const Waste = (props) => {
         };
 
         if (resultTableData.eventDataId) {
-            console.log("---- we are updating data ")
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
             if (updateResultTableDatasToDb.rejected.match(resultAction)) {
                 console.error('Failed to update data:', resultAction.payload);
-            } else {
-                console.log('Data updated successfully:', resultAction.payload);
-            }
+            } 
         } else {
-            console.log("---- we are saving data ")
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
             if (addResultTableDatasToDb.rejected.match(resultAction)) {
                 console.error('Failed to save data:', resultAction.payload);
-            } else {
-                console.log('Data saved successfully:', resultAction.payload);
-            }
+            } 
         }
     };
 
@@ -946,7 +940,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Paper bags (200 GSM)- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -972,7 +966,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A5 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Paper bags (200 GSM)- A5 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -998,7 +992,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Jute bags*- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Jute bags*- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1024,7 +1018,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Cotton bags- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Cotton bags- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
