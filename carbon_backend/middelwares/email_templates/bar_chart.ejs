@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!-- <!DOCTYPE HTML>
 <html>
 <head>
     <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
@@ -73,12 +73,12 @@
 
             const allEventsEmissions = <%- JSON.stringify(allEventsEmissions) %>;
 
-            const eventTypes = [
-                { name: "F2F Event", color: "rgb(31 158 109)" },
-                { name: "Virtual Event", color: "#ACE1AF" },
-                { name: "PR Event", color: "#D0F0C0" },
-                { name: "Digital Campaign", color: "rgb(5, 71, 35)" }
-            ];
+                const eventTypes = [
+                    { name: "F2F Event", color: "rgb(31 158 109)" },
+                    { name: "Outbound Marketing", color: "#ACE1AF" },
+                    { name: "PR Event", color: "#D0F0C0" },
+                    { name: "Digital Campaign", color: "rgb(5, 71, 35)" }
+                ];
 
             const dataSeries = eventTypes.map(eventType => {
                 return {
@@ -173,4 +173,200 @@
         </tbody>
     </table>
 </body>
+</html> -->
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .page {
+            margin: 20px;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin: 0;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        
+        #chartContainer .canvasjs-chart-credit {
+            display: none;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            const allEventsEmissions = <%- JSON.stringify(allEventsEmissions) %>;
+
+            // const allEventsEmissions = [
+            //     {
+            //         f2fEventTotalEmission: "4382.00",
+            //         // virtualEventTotalEmission: "25.00",
+            //         prEventTotalEmission: "20405.47",
+            //         digitalCampaignTotalEmission: "22434.03",
+            //         activity: "A1 - 2024-09-30",
+            //     },
+            //     {
+            //         f2fEventTotalEmission: "29140.31",
+            //         // virtualEventTotalEmission: "234.00",
+            //         // prEventTotalEmission: "2300.00",
+            //         digitalCampaignTotalEmission: "3000.00",
+            //         activity: "A2 - 2024-10-02",
+            //     },
+            // ];
+
+            const eventTypesMap = [
+                { name: "F2F Event", color: "rgb(31, 158, 109)", field: "f2fEventTotalEmission" },
+                { name: "Virtual Event", color: "#ACE1AF", field: "virtualEventTotalEmission" },
+                { name: "PR Event", color: "#D0F0C0", field: "prEventTotalEmission" },
+                { name: "Digital Campaign", color: "rgb(5, 71, 35)", field: "digitalCampaignTotalEmission" }
+            ];
+
+            const eventTypes = [];
+
+            // Iterate through the event types map and check for existence in allEventsEmissions
+            eventTypesMap.forEach(eventType => {
+                // Check if any object in the array has the corresponding emission property
+                const exists = allEventsEmissions.some(event => event[eventType.field] !== undefined);
+                if (exists) {
+                    eventTypes.push(eventType);
+                }
+            });
+
+            // Prepare the dataSeries for the chart
+            const dataSeries = eventTypes.map(eventType => {
+                return {
+                    type: "column",
+                    name: eventType.name,
+                    color: eventType.color,
+                    showInLegend: true,
+                    legendText: eventType.name,
+                    dataPoints: allEventsEmissions.map(event => {
+                        const value = parseFloat(event[eventType.field]) || 0; // Default to 0 if undefined
+                        return {
+                            // label: event.activity.split(" - ")[0],
+                            label: event.activity,
+                            y: value,
+                            toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(2)}`
+                        };
+                    })
+                };
+            });
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Event Emissions Comparison",
+                    fontSize: 30,
+                    margin: 30
+                },
+                axisY: {
+                    title: "Total Emissions (kgCO2e)",
+                    labelFontSize: 20,
+                    labelFontColor: "dimGrey"
+                },
+                axisX: {
+                    // title: "Activities",
+                    // labelAngle: -30
+                },
+                data: dataSeries,
+                legend: {
+                    cursor: "pointer",
+                    horizontalAlign: "center",
+                    verticalAlign: "top",
+                    fontSize: 16,
+                    margin: 20
+                },
+            });
+
+            chart.render(); // Generate the table dynamically
+            const tableBody = document.getElementById('table-body');
+            let tableHeader = '';
+
+            eventTypes.forEach(eventType => {
+                tableHeader += `<th>${eventType.name} Emission</th>`;
+            });
+
+            const hasF2F = eventTypes.some(eventType => eventType.field === "f2fEventTotalEmission");
+
+            if (hasF2F) {
+                document.getElementById('table-header').innerHTML = `<th>Activity</th>${tableHeader}`;
+            }
+
+            allEventsEmissions.forEach(event => {
+                const row = `<tr>
+                    <td>${event.activity}</td>
+                    ${eventTypes.map(eventType => `<td>${parseFloat(event[eventType.field]) || 0}</td>`).join('')}
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h4>Dear <%= name %>,</h4>
+    <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated from your <strong> <%= activityName %></strong> activity.</p>
+
+    <p>We're pleased to provide you with the analytics report, comparing the emissions associated with the mentioned activity measured in two different time stamps.</p>
+
+    <div id="chartContainer" style="height: 400px; width: 90%; margin: auto;"></div>
+
+    <div class="table-container">
+        <table style="width: 90%; margin: auto; margin-top: 30px; border-collapse: collapse;" border="1">
+            <thead>
+                <tr id="table-header"></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+    
+    <p style="margin-top: 30px;">We deeply value your commitment to sustainability and appreciate your proactive approach in understanding and mitigating your environmental impact.</p>
+    <p>If you have any questions or need further assistance on how to reduce the carbon emissions from your activity, please contact us at <a href="mailto:info@sirat.earth">info@sirat.earth</a>.</p>
+    <br />
+    <p>Best regards,</p>
+    <p style="margin-bottom:0; font-weight: bold;">Team Sirāt</p>
+
+</body>
+
+
 </html>

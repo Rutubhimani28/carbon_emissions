@@ -4,10 +4,31 @@ import User from "../models/user.js";
 
 const index = async (req, res) => {
     const userId = req.user.userId;
-    const query = { createdBy: userId };
+    const user = await User.findById(userId).select('role');
 
-    if (Object.keys(req.query).length > 0) {
-        Object.assign(query, req.query);
+    const query = {};
+
+    if (user.role === 'admin') {
+        if (Object.keys(req.query).length > 0) {
+            Object.assign(query, req.query);
+
+            // Handle array query parameters like _id[]
+            if (req.query._id && Array.isArray(req.query._id)) {
+                query._id = { $in: req.query._id }; // Match any of the provided IDs
+            }
+        }
+    } else {
+        query.createdBy = userId;
+
+        // Handle any additional query parameters for non-admin users
+        if (Object.keys(req.query).length > 0) {
+            Object.assign(query, req.query);
+
+            // Handle array query parameters like _id[]
+            if (req.query._id && Array.isArray(req.query._id)) {
+                query._id = { $in: req.query._id }; // Match any of the provided IDs
+            }
+        }
     }
 
     const userEventsData = await EventData.find(query);
@@ -91,7 +112,7 @@ const getEventsEmissionsRecords = async (req, res) => {
 
     try {
         // Fetch user details to check role
-        const user = await User.findById(userId).select('role'); 
+        const user = await User.findById(userId).select('role');
 
         if (user.role !== 'admin') {
             return res.status(403).json({ success: false, message: 'Access denied.' });
@@ -107,7 +128,7 @@ const getEventsEmissionsRecords = async (req, res) => {
 
             // Face-to-Face Event Emissions
             const airTravelEmission = event?.airTravelAllData?.totalEmission || 0;
-            const localTransportationEmission = event?.localTranspotationAllData?.totalEmission || 0; 
+            const localTransportationEmission = event?.localTranspotationAllData?.totalEmission || 0;
             const hotelEmission = event?.hotelAllData?.totalEmission || 0;
             const foodEmission = event?.foodAllData?.totalEmission || 0;
             const airFreightEmission = event?.airFreightAllData?.totalEmission || 0;
@@ -137,6 +158,8 @@ const getEventsEmissionsRecords = async (req, res) => {
             const digitalCampaignEmission = event?.digitalCampaignAllData?.totalEmission || 0;
             const digitalCampaignTotalEmission = Number(digitalCampaignEmission);
 
+            console.log("=== createdBy ", event?.createdBy);
+
             return {
                 // ...event.toObject(), // Convert Mongoose Document to plain object
                 f2fEventTotalEmission: f2fEventTotalEmission.toFixed(2),
@@ -146,6 +169,7 @@ const getEventsEmissionsRecords = async (req, res) => {
                 activityName: event?.activityName,
                 budget: event?.budget,
                 createdBy: event?.createdBy?.loginId,
+                createdById: event?.createdBy?._id,
                 dateTime: event?.dateTime,
                 _id: event?._id
             };
@@ -160,4 +184,35 @@ const getEventsEmissionsRecords = async (req, res) => {
     }
 };
 
-export default { index, add, edit, getEventsEmissionsRecords };
+// only for admin
+const getUserRecords = async (req, res) => {
+    const userId = req.user.userId;
+
+    try {
+        // Fetch user details to check role
+        const user = await User.findById(userId).select('role');
+
+        if (user.role !== 'admin') {
+            return res.status(403).json({ success: false, message: 'Access denied.' });
+        }
+
+        // Fetch the existing event data, sorted by dateTime in descending order, and populate createdBy for loginId
+        const existingUserData = await User.find()
+
+        // Map through existingUserData to calculate emissions
+        const listOfUsers = existingUserData.map(user => {
+            return {
+                label: user?.loginId,
+                value: user?._id
+            };
+        });
+
+        res.status(200).json({ success: true, data: listOfUsers });
+
+    } catch (err) {
+        console.error('Failed to update event Data:', err);
+        res.status(500).json({ message: 'Error retrieving events emission data', error: err.toString() });
+    }
+};
+
+export default { index, add, edit, getEventsEmissionsRecords, getUserRecords };
