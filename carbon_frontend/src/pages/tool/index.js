@@ -202,12 +202,57 @@ const Home = () => {
         await addEmailForGraph(resultTableData?.eventDataId); // send current events data as graph
     };
 
+    // const handleSaveToDb = async () => {
+    //     // Trigger form validation
+    //     await formik.validateForm();
+    
+    //     // Check if form is valid (no errors)
+    //     if (!formik.isValid) {
+    //         console.log("Form contains errors, submission halted.");
+    //         return;
+    //     }
+    
+    //     formik.handleSubmit();
+    
+    //     const eventData = {
+    //         ...eventsData,
+    //     };
+    
+    //     if (!resultTableData?.eventDataId) {
+    //         const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+    //         if (addResultTableDatasToDb.rejected.match(resultAction)) {
+    //             console.error('Failed to save data:', resultAction.payload);
+    //         }
+    //     }
+    // };
     const handleSaveToDb = async () => {
         formik.handleSubmit();
 
         const eventData = {
-            ...eventsData,
+            // ...eventsData,
+
+            activityName: formik.values?.activityName || '',
+            budget: formik.values?.budget || '',
+            country: formik.values?.country || '',
+            dateTime: formik.values?.dateTime || '',
+
+            f2fEventData: [],
+            virtualEventData: [],
+            prEventData: [],
+            digitalCampaignData: [],
+
+            airTravelAllData: { data: [], totalEmission: 0 },
+            localTranspotationAllData: { data: [], totalEmission: 0 },
+            hotelAllData: { data: [], totalEmission: 0 },
+            foodAllData: { data: [], totalEmission: 0 },
+            airFreightAllData: { data: [], totalEmission: 0 },
+            productionAllData: { data: [], totalEmission: 0 },
+            energyUpdatedAllData: { data: [], totalEmission: 0 },
+            digitalContentAllData: { data: [], totalEmission: 0 },
+            wasteAllData: { data: [], totalEmission: 0 },
         };
+
+        console.log("==== eventsData ", eventsData);
 
         // if (resultTableData.eventDataId) {
         //     eventData.eventDataId = resultTableData?.eventDataId;
@@ -225,13 +270,46 @@ const Home = () => {
         //     }
         // }
 
-        if(!resultTableData.eventDataId){
+        await formik.validateForm();
+
+        if (!resultTableData.eventDataId && formik.isValid) {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
             if (addResultTableDatasToDb.rejected.match(resultAction)) {
                 console.error('Failed to save data:', resultAction.payload);
             }
         }
     };
+    
+    // const handleSaveToDb = async () => {
+    //     formik.handleSubmit();
+
+    //     const eventData = {
+    //         ...eventsData,
+    //     };
+
+    //     // if (resultTableData.eventDataId) {
+    //     //     eventData.eventDataId = resultTableData?.eventDataId;
+    //     //     console.log("=== called for update", eventData);
+    //     //     const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+    //     //     if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+    //     //         console.error('Failed to update data:', resultAction.payload);
+    //     //     }
+    //     // } else {
+    //     //     console.log("=== called for save");
+
+    //     //     const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+    //     //     if (addResultTableDatasToDb.rejected.match(resultAction)) {
+    //     //         console.error('Failed to save data:', resultAction.payload);
+    //     //     }
+    //     // }
+
+    //     if (!resultTableData.eventDataId) {
+    //         const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+    //         if (addResultTableDatasToDb.rejected.match(resultAction)) {
+    //             console.error('Failed to save data:', resultAction.payload);
+    //         }
+    //     }
+    // };
 
     const formik = useFormik({
         initialValues,
@@ -370,11 +448,11 @@ const Home = () => {
                                 />
                             </Grid> */}
                                 <Grid item xs={12} sm={12}>
-                                    <FormLabel className="fw-bold text-white mt-1">
+                                    {/* <FormLabel className="fw-bold text-white mt-1">
                                         What would you like to do?
-                                    </FormLabel>
+                                    </FormLabel> */}
                                     <RadioGroup
-                                        row
+
                                         name="actionChoice"
                                         value={formik.values?.actionChoice}
                                         onChange={handleActionChoiceChange}
@@ -382,19 +460,19 @@ const Home = () => {
                                         <FormControlLabel
                                             value="add"
                                             control={<Radio />}
-                                            label="Calculate New Event's Emission Data"
+                                            label="New Activity"
                                         />
                                         <FormControlLabel
                                             value="retrieve"
                                             control={<Radio />}
-                                            label="Retrieve Previous Event Emission Data"
+                                            label="Retrive Previous Activity"
                                         />
                                     </RadioGroup>
                                 </Grid>
                                 {formik.values?.actionChoice === "retrieve" &&
                                     <Grid item xs={12} sm={16} md={12}>
                                         <Grid mt={2}>
-                                            <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Select Previous Event</FormLabel>
+                                            <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Retrive your Activity</FormLabel>
                                             <FormControl fullWidth>
                                                 <Select
                                                     className="basic-single"
@@ -404,7 +482,7 @@ const Home = () => {
                                                     isRtl={false}
                                                     isSearchable
                                                     name="previousEvent"
-                                                    placeholder="Select Previous Event"
+                                                    placeholder="Retrive your Activity"
                                                     options={previousEvent}
                                                     styles={customStyles}
                                                     value={formik?.values?.previousEvent || null}
@@ -474,7 +552,7 @@ const Home = () => {
                                     />
                                 </Grid> */}
                                 {/* <Grid item xs={12} sm={12} className='table-custom-inpt-field'> */}
-                                <Grid item xs={12} sm={12}>
+                                <Grid item xs={12} sm={6}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                                             <FormLabel className="fw-bold text-white mt-1">
@@ -591,7 +669,7 @@ const Home = () => {
                                         style={{ backgroundColor: '#054723', marginRight: "10px" }}
                                         disabled={formik.values?.isDisabledRetrieveButtons}
                                     >
-                                        {dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Calculation'}
+                                        {dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Data'}
                                     </Button>
                                     <Button
                                         id="action"
@@ -633,7 +711,7 @@ const Home = () => {
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/virtual-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
                                 <img src={virtualEvent} alt="img" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
-                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Virtual Event</Typography>
+                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Outdoor Marketing</Typography>
                             </Box>
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/pr-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>

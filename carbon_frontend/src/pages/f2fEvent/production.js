@@ -795,15 +795,15 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="172" />
-                                                    <th className="ps-2">Weight (Kgs)</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th  width="30%" />
+                                                    <th className="ps-2"  width="30%">Weight (Kgs)</th>
+                                                    <th className="ps-2"  width="30%">Emissions</th>
                                                 </tr>
                                                 {fieldDataTwo &&
                                                     fieldDataTwo?.map((ite) => (
                                                         <>
                                                             <tr key={`two${ite}`}>
-                                                                <td className="ps-2 py-1">{ite.name}</td>
+                                                                <td className="py-1">{ite.name}</td>
                                                                 <td className="ps-2 py-1">
                                                                     <TextField
                                                                         size="small"
@@ -845,9 +845,9 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="250" />
-                                                    <th className="ps-2" width="150">Total Area (m<sup>2</sup>)</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th  width="30%" />
+                                                    <th className="ps-2" width="30%">Total Area (m<sup>2</sup>)</th>
+                                                    <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
                                                 {fieldDataOne &&
                                                     fieldDataOne?.map((item) => (
@@ -900,12 +900,12 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="172" />
-                                                    <th className="ps-2">In Kgs</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th  width="30%" />
+                                                    <th className="ps-2" width="30%">In Kgs</th>
+                                                    <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Polyethylene HDPE Banner *</td>
+                                                    <td className="py-1">Polyethylene Banner*</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -932,7 +932,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">PVC Banners</td>
+                                                    <td className="py-1">PVC Banners</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -986,7 +986,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Plastic Badge Holders (Polycorbonate)</td>
+                                                    <td className="py-1">Plastic Badge</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1021,9 +1021,9 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="250" />
-                                                    <th className="ps-2" width="150">No. of Units</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th  width="30%" />
+                                                    <th className="ps-2" width="30%">No.of A4 Units</th>
+                                                    <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
                                                 {/* <tr>
                                                     <td className="ps-2 py-1">Printing a Coloured Brochure/ Page (&gt;130 GSM)</td>
@@ -1053,7 +1053,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveaway Paper bags (200 GSM)- A4 Size</td>
+                                                    <td className="ps-2 py-1">Paper bags</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1109,7 +1109,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveaway Jute bags*- A4 Size</td>
+                                                    <td className="ps-2 py-1">Jute bags*</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1137,7 +1137,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveaway Cotton bags- A4 Size</td>
+                                                    <td className="ps-2 py-1">Cotton bags</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1170,18 +1170,19 @@ const Production = (props) => {
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={12} sm={12} md={6}>
-                                    <Box>
+                                <Grid item xs={12} sm={12} md={0.5}/>
+                                <Grid item xs={12} sm={12} md={11}>
+                                    <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
                                         <Typography variant="h4" className="text-center text-white mb-4">
                                             Stage Screen
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="172" />
-                                                    <th className="ps-2">No of Hours</th>
-                                                    <th className="ps-2">No of Devices/ Panels</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th width="25%" />
+                                                    <th className="ps-2" width="25%">No of Hours</th>
+                                                    <th className="ps-2" width="25%">No of Devices/ Panels</th>
+                                                    <th className="ps-2" width="25%">Emissions</th>
                                                 </tr>
                                                 {fieldDataThree &&
                                                     fieldDataThree?.map((it) => (
@@ -1239,6 +1240,8 @@ const Production = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
+                                <Grid item xs={12} sm={12} md={0.5}/>
+
                                 {/* <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">

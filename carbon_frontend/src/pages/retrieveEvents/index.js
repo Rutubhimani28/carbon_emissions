@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -87,6 +87,7 @@ const MyEventSelector = () => {
         { Header: "Budget ($)", accessor: 'budget' },
         { Header: "Created By", accessor: 'createdBy' },
     ];
+    const selectRef = useRef(null);
 
     const userid = sessionStorage.getItem('user_id');
     const userSessionData = sessionStorage.getItem('user');
@@ -442,7 +443,8 @@ const MyEventSelector = () => {
             receiver: formik.values?.emails,
             subject: `${responseData[0]?.activityName} vs ${responseData[1]?.activityName} - graph chart`,
             attachmentTemplateName: 'bar_chart',
-            attachmentPdfName: `${responseData[0]?.activityName} vs ${responseData[1]?.activityName} - graph chart`
+            // attachmentPdfName: `${responseData[0]?.activityName} vs ${responseData[1]?.activityName} - graph chart`
+            attachmentPdfName: `Marketing Activity Analytics`
         };
 
         await addEmailForGraphs(payload);
@@ -611,45 +613,45 @@ const MyEventSelector = () => {
                         </>
                     )
                 }
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%', marginTop: "10px"}}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%', marginTop: "10px" }}>
                     <Typography variant="h6" className='text-white' gutterBottom>
-                        Select Previous Events
+                        Select Previous Activities
                     </Typography>
                     <span style={{ color: 'red', marginLeft: '4px' }}>*</span>
                 </Box>
                 <Select
                     isMulti
                     name="selectedEvents"
-                    placeholder="Select any two events..."
+                    placeholder="Select any two activities..."
                     disabled={isAdmin && !formik.values?.selectedAccount}
                     options={isAdmin ? selectedAccountPreviousEvents : previousEvents}
                     formatOptionLabel={formatOptionLabel}
                     onChange={selectedOptions => {
                         formik.setFieldValue('selectedEvents', selectedOptions);
                     }}
-                    value={formik.values.selectedEvents}
-                    styles={{
-                        control: (base) => ({
-                            ...base,
-                            width: '100%',
-                            minWidth: '550px',
-                            borderColor: formik.errors.selectedEvents ? 'red' : 'white',
-                            '&:hover': {
-                                borderColor: formik.errors.selectedEvents ? 'red' : 'white',
-                            },
-                            backgroundColor: 'transparent',
-                        }),
-                        menu: (base) => ({
-                            ...base,
-                            zIndex: 9999,
-                            maxWidth: '600px',
-                        }),
-                        placeholder: (base) => ({
-                            ...base,
-                            color: 'white', // Set placeholder color to white
-                        }),
-                    }}
-                />
+    value={formik.values.selectedEvents}
+    styles={{
+        control: (base) => ({
+            ...base,
+            width: '100%',
+            minWidth: '550px',
+            borderColor: formik.errors.selectedEvents ? 'red' : 'white',
+            '&:hover': {
+                borderColor: formik.errors.selectedEvents ? 'red' : 'white',
+            },
+            backgroundColor: 'transparent',
+        }),
+        menu: (base) => ({
+            ...base,
+            zIndex: 9999,
+            maxWidth: '600px',
+        }),
+        placeholder: (base) => ({
+            ...base,
+            color: 'white', // Set placeholder color to white
+        }),
+    }}
+/>
                 {formik.errors.selectedEvents && (
                     <Typography
                         color="error"
@@ -722,7 +724,7 @@ const MyEventSelector = () => {
                         size='small'
                         fullWidth
                         value={emailInput}
-                        placeholder='Add receiver email'
+                        placeholder='Add Email'
                         onChange={(e) => handleInputChange(e)}
                         // error={
                         //     formik.touched.addEmail &&
@@ -761,15 +763,14 @@ const MyEventSelector = () => {
                     </Typography>
                 )}
                 <Box sx={{ display: 'flex', gap: 2, marginTop: '16px', marginLeft: '5px', justifyContent: 'flex-start' }}>
-                    <Button
+                    {/* <Button
                         variant="contained"
                         style={{ backgroundColor: '#054723' }}
                         onClick={handleRetrieveCalculations}
                         disabled={formik.values.selectedEvents.length !== 2} // Enabled only if exactly 2 events are selected
                     >
-                        {/* {isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Calculations'} */}
                         Retrieve Calculations
-                    </Button>
+                    </Button> */}
                     <Button
                         variant="contained"
                         style={{ backgroundColor: '#054723' }}

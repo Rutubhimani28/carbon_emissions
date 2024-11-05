@@ -219,7 +219,7 @@ const Hotel = (props) => {
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
             if (updateResultTableDatasToDb.rejected.match(resultAction)) {
                 console.error('Failed to update data:', resultAction.payload);
-            } 
+            }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
             if (addResultTableDatasToDb.rejected.match(resultAction)) {
@@ -261,8 +261,8 @@ const Hotel = (props) => {
                             </IconDiv>
                             <Grid
                                 container
-                                rowSpacing={3}
-                                columnSpacing={{ xs: 0, sm: 12, md: 12 }}
+                                rowSpacing={1}
+                                columnSpacing={{ xs: 0, sm: 4, md: 4 }}
                                 style={{ justifyContent: 'center' }}
                             >
                                 <Grid item xs={12} sm={4} md={4}>
@@ -503,19 +503,21 @@ const Hotel = (props) => {
                                     </Grid>
                                 </Grid>
                                 {/* <Grid item xs={0} sm={2} /> */}
-                                <Grid item xs={12} sm={6} >
-                                    <Typography variant='h4' justifyContent={"flex-start"}>
-                                        Meeting Room Energy Consumption
-                                    </Typography>
+                                <Grid item xs={12} sm={8} >
                                     <Grid
                                         container
-                                        rowSpacing={3}
+                                        // rowSpacing={1}
                                         textAlign={"left"}
-                                        columnSpacing={{ xs: 0, sm: 5, md: 5 }}
+                                        columnSpacing={{ xs: 0, sm: 3, md: 3 }}
                                         // style={{ justifyContent: 'center' }}
                                         className='textborder'
                                     >
-                                        <Grid item xs={12} sm={6} md={6}>
+                                        <Grid item xs={12}>
+                                            <Typography variant='h4' justifyContent={"flex-start"}>
+                                                Meeting Room Energy Consumption
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6} md={5.8}>
 
                                             <Grid mt={2}>
                                                 <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Total Meeting Room Area (Sqft)</FormLabel>

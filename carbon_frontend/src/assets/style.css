@@ -126,6 +126,7 @@ p {
 .custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input {
   opacity: 1;
   -webkit-text-fill-color: #ffffff !important;
+  padding: 9px 14px;
 }
 
 .custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
