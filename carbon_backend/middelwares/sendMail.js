@@ -167,6 +167,8 @@ export default async function sendMail({
                 const attachmentTemplate = await ejs.renderFile(attachmentTemplatePath, {
                     subject,
                     allEventsEmissions: allEventsEmissions,
+                    name,
+                    activityName
                 });
 
                 const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint_chart.pdf');
@@ -444,9 +446,6 @@ export default async function sendMail({
 
 export const sendMailForTwoEvents = async ({ eventsData }) => {       // for two events filled calculation datas 
     try {
-        let mailOptions = {
-            bcc: process.env.GMAIL_FROM
-        };
         const transporter = nodemailer.createTransport({
             // host: 'smtp.office365.com',
             host: 'smtpout.secureserver.net',
@@ -461,162 +460,86 @@ export const sendMailForTwoEvents = async ({ eventsData }) => {       // for two
 
         const attachmentsArray = [];
 
+        const combinedData = {};
+
+        // Combine data from both events
         for (const event of eventsData) {
             const {
                 receiver,
                 subject,
-                // Data for the first event
                 dataOne,
                 totalTonCo2One,
                 eveydolarCo2One,
                 resultTableDataOne,
                 attachmentTemplateNameOne,
                 attachmentPdfNameOne,
-                // Data for the second event
                 dataTwo,
                 totalTonCo2Two,
                 eveydolarCo2Two,
                 resultTableDataTwo,
                 attachmentTemplateNameTwo,
                 attachmentPdfNameTwo,
-                // Data for the third event
-                dataThree,
-                totalTonCo2Three,
-                eveydolarCo2Three,
-                resultTableDataThree,
-                attachmentTemplateNameThree,
-                attachmentPdfNameThree,
-                // Data for the fourth event
-                dataFour,
-                totalTonCo2Four,
-                eveydolarCo2Four,
-                resultTableDataFour,
-                attachmentTemplateNameFour,
-                attachmentPdfNameFour,
                 name,
                 activityName,
-                budget,
-                country,
             } = event;
 
-            // Boolean checks for each event type
-            const isf2fEvent = !!attachmentTemplateNameOne;
-            const isVirtualEvent = !!attachmentTemplateNameTwo;
-            const isPrEvent = !!attachmentTemplateNameThree;
-            const isDigitalcampaign = !!attachmentTemplateNameFour;
+            // Append data to combinedData
+            combinedData.dataOne = dataOne;
+            combinedData.totalTonCo2One = totalTonCo2One;
+            combinedData.eveydolarCo2One = eveydolarCo2One;
+            combinedData.resultTableDataOne = resultTableDataOne;
 
-            // Handle attachments based on the boolean checks
-            if (isf2fEvent) {
-                const templatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateNameOne}.ejs`);
-                const renderedTemplate = await ejs.renderFile(templatePath, {
-                    subject,
-                    data: dataOne,
-                    name,
-                    activityName,
-                    totalTonCo2: totalTonCo2One,
-                    eveydolarCo2: eveydolarCo2One,
-                    resultTableData: resultTableDataOne,
-                });
+            combinedData.dataTwo = dataTwo;
+            combinedData.totalTonCo2Two = totalTonCo2Two;
+            combinedData.eveydolarCo2Two = eveydolarCo2Two;
+            combinedData.resultTableDataTwo = resultTableDataTwo;
 
-                const pdfFilePath = path.join(__dirname, attachmentPdfNameOne ? `${attachmentPdfNameOne}.pdf` : 'carbon_footprint.pdf');
-                await createPDF(renderedTemplate, pdfFilePath);
+            combinedData.name = name;
+            combinedData.activityName = activityName;
 
-                attachmentsArray.push({
-                    filename: attachmentPdfNameOne ? `${attachmentPdfNameOne}.pdf` : 'carbon_footprint.pdf',
-                    path: pdfFilePath,
-                    contentType: 'application/pdf',
-                });
+            // Handle attachments
+            const templatePaths = [
+                { templateName: attachmentTemplateNameOne, pdfName: attachmentPdfNameOne, data: dataOne, totalTonCo2: totalTonCo2One, eveydolarCo2: eveydolarCo2One, resultTableData: resultTableDataOne },
+                { templateName: attachmentTemplateNameTwo, pdfName: attachmentPdfNameTwo, data: dataTwo, totalTonCo2: totalTonCo2Two, eveydolarCo2: eveydolarCo2Two, resultTableData: resultTableDataTwo },
+            ];
+
+            for (const { templateName, pdfName, data, totalTonCo2, eveydolarCo2, resultTableData } of templatePaths) {
+                if (templateName) {
+                    const templatePath = path.join(__dirname, '/email_templates', `${templateName}.ejs`);
+                    const renderedTemplate = await ejs.renderFile(templatePath, {
+                        subject,
+                        data,
+                        name,
+                        activityName,
+                        totalTonCo2,
+                        eveydolarCo2,
+                        resultTableData,
+                    });
+
+                    const pdfFilePath = path.join(__dirname, pdfName ? `${pdfName}.pdf` : 'carbon_footprint.pdf');
+                    await createPDF(renderedTemplate, pdfFilePath);
+
+                    attachmentsArray.push({
+                        filename: pdfName ? `${pdfName}.pdf` : 'carbon_footprint.pdf',
+                        path: pdfFilePath,
+                        contentType: 'application/pdf',
+                    });
+                }
             }
-
-            if (isVirtualEvent) {
-                const templatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateNameTwo}.ejs`);
-                const renderedTemplate = await ejs.renderFile(templatePath, {
-                    subject,
-                    data: dataTwo,
-                    name,
-                    activityName,
-                    totalTonCo2: totalTonCo2Two,
-                    eveydolarCo2: eveydolarCo2Two,
-                    resultTableData: resultTableDataTwo,
-                });
-
-                const pdfFilePath = path.join(__dirname, attachmentPdfNameTwo ? `${attachmentPdfNameTwo}.pdf` : 'carbon_footprint.pdf');
-                await createPDF(renderedTemplate, pdfFilePath);
-
-                attachmentsArray.push({
-                    filename: attachmentPdfNameTwo ? `${attachmentPdfNameTwo}.pdf` : 'carbon_footprint.pdf',
-                    path: pdfFilePath,
-                    contentType: 'application/pdf',
-                });
-            }
-
-            if (isPrEvent) {
-                const templatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateNameThree}.ejs`);
-                const renderedTemplate = await ejs.renderFile(templatePath, {
-                    subject,
-                    data: dataThree,
-                    name,
-                    activityName,
-                    totalTonCo2: totalTonCo2Three,
-                    eveydolarCo2: eveydolarCo2Three,
-                    resultTableData: resultTableDataThree,
-                });
-
-                const pdfFilePath = path.join(__dirname, attachmentPdfNameThree ? `${attachmentPdfNameThree}.pdf` : 'carbon_footprint.pdf');
-                await createPDF(renderedTemplate, pdfFilePath);
-
-                attachmentsArray.push({
-                    filename: attachmentPdfNameThree ? `${attachmentPdfNameThree}.pdf` : 'carbon_footprint.pdf',
-                    path: pdfFilePath,
-                    contentType: 'application/pdf',
-                });
-            }
-
-            if (isDigitalcampaign) {
-                const templatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateNameFour}.ejs`);
-                const renderedTemplate = await ejs.renderFile(templatePath, {
-                    subject,
-                    data: dataFour,
-                    name,
-                    activityName,
-                    totalTonCo2: totalTonCo2Four,
-                    eveydolarCo2: eveydolarCo2Four,
-                    resultTableData: resultTableDataFour,
-                });
-
-                const pdfFilePath = path.join(__dirname, attachmentPdfNameFour ? `${attachmentPdfNameFour}.pdf` : 'carbon_footprint.pdf');
-                await createPDF(renderedTemplate, pdfFilePath);
-
-                attachmentsArray.push({
-                    filename: attachmentPdfNameFour ? `${attachmentPdfNameFour}.pdf` : 'carbon_footprint.pdf',
-                    path: pdfFilePath,
-                    contentType: 'application/pdf',
-                });
-            }
-
-            // Construct mail options for each event
-            const mailOptions = {
-                from: process.env.GMAIL_FROM,
-                to: receiver,
-                subject: subject,
-                attachments: attachmentsArray,
-            };
-
-            // Send email
-            await transporter.sendMail(mailOptions);
-            console.log('Email sent successfully from sendMailForTwoEvents ');
-
-            // // Clean up the PDF file after successful sending
-            // for (const attachment of attachmentsArray) {
-            //     fs.unlink(attachment.path, (err) => {
-            //         if (err) {
-            //             console.error(`Error removing file ${attachment.path}:`, err);
-            //         } else {
-            //             console.log(`Successfully removed file ${attachment.path}`);
-            //         }
-            //     });
-            // }
         }
+
+        // Construct mail options for the combined events
+        const mailOptions = {
+            bcc: process.env.GMAIL_FROM,
+            from: process.env.GMAIL_FROM,
+            to: eventsData[0].receiver, // Assuming the receiver is the same for all events
+            subject: eventsData[0].subject, // Assuming the subject is the same for all events
+            attachments: attachmentsArray,
+        };
+
+        // Send email
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully from sendMailForTwoEvents');
 
     } catch (error) {
         console.log('Error sending email from sendMailForTwoEvents :', error);

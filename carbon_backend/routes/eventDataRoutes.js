@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', auth, eventDataController.index);
 router.get('/events-emissions-list', auth, eventDataController.getEventsEmissionsRecords);
+router.get('/events-users-list', auth, eventDataController.getUserRecords);
 router.post('/add', auth, eventDataController.add);
 router.put('/:id', auth, eventDataController.edit);
 

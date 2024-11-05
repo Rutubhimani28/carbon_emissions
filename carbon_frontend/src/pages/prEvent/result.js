@@ -168,7 +168,7 @@ const Result = ({ value }) => {
         if (foodAndPETbottleEmission && foodAndPETbottleEmission.emission > 0) {
             contentData += `Food and PET bottle waste generate ${foodAndPETbottleEmission.emission} kgCO2e.`
         }
-        contentData += `\n\nSuggest three steps for each category to reduce the overall footprint by 10 - 20 % and email emissions by over 50 %. \nHow do the original and reduced footprints compare ? Also, explain how sustainable measures could cut costs by 10 %, considering cost savings may not directly match carbon reductions.`
+        contentData += `\n\nSuggest three steps for each category to reduce the overall footprint by 10-20% and email emissions by over 50%. Show the calculation for comparing the original and reduced carbon footprints. Also, explain how sustainable measures could cut costs by 10%, considering cost savings may not directly match carbon reductions.`
         setContent(contentData);
     };
 
@@ -307,7 +307,7 @@ const Result = ({ value }) => {
 
     useEffect(() => {
         if (content) {
-            // chat();
+            chat();
         }
     }, [content]);
 

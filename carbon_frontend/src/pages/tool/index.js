@@ -14,7 +14,7 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import * as yup from 'yup';
 import { addToolData, clearToolFormData } from '../../redux/slice/toolSlice';
-import { fetchResultTableDatasFromDb} from '../../redux/slice/resultTableDataSlice';
+import { fetchResultTableDatasFromDb, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import f2FEvent from "../../layouts/user/assets/images/F2F Event.jpg";
 import virtualEvent from "../../layouts/user/assets/images/Virtual Event.jpg";
 import outbound from "../../layouts/user/assets/images/outbound.JPEG";
@@ -202,6 +202,115 @@ const Home = () => {
         await addEmailForGraph(resultTableData?.eventDataId); // send current events data as graph
     };
 
+    // const handleSaveToDb = async () => {
+    //     // Trigger form validation
+    //     await formik.validateForm();
+    
+    //     // Check if form is valid (no errors)
+    //     if (!formik.isValid) {
+    //         console.log("Form contains errors, submission halted.");
+    //         return;
+    //     }
+    
+    //     formik.handleSubmit();
+    
+    //     const eventData = {
+    //         ...eventsData,
+    //     };
+    
+    //     if (!resultTableData?.eventDataId) {
+    //         const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+    //         if (addResultTableDatasToDb.rejected.match(resultAction)) {
+    //             console.error('Failed to save data:', resultAction.payload);
+    //         }
+    //     }
+    // };
+    const handleSaveToDb = async () => {
+        formik.handleSubmit();
+
+        const eventData = {
+            // ...eventsData,
+
+            activityName: formik.values?.activityName || '',
+            budget: formik.values?.budget || '',
+            country: formik.values?.country || '',
+            dateTime: formik.values?.dateTime || '',
+
+            f2fEventData: [],
+            virtualEventData: [],
+            prEventData: [],
+            digitalCampaignData: [],
+
+            airTravelAllData: { data: [], totalEmission: 0 },
+            localTranspotationAllData: { data: [], totalEmission: 0 },
+            hotelAllData: { data: [], totalEmission: 0 },
+            foodAllData: { data: [], totalEmission: 0 },
+            airFreightAllData: { data: [], totalEmission: 0 },
+            productionAllData: { data: [], totalEmission: 0 },
+            energyUpdatedAllData: { data: [], totalEmission: 0 },
+            digitalContentAllData: { data: [], totalEmission: 0 },
+            wasteAllData: { data: [], totalEmission: 0 },
+        };
+
+        console.log("==== eventsData ", eventsData);
+
+        // if (resultTableData.eventDataId) {
+        //     eventData.eventDataId = resultTableData?.eventDataId;
+        //     console.log("=== called for update", eventData);
+        //     const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+        //     if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+        //         console.error('Failed to update data:', resultAction.payload);
+        //     }
+        // } else {
+        //     console.log("=== called for save");
+
+        //     const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+        //     if (addResultTableDatasToDb.rejected.match(resultAction)) {
+        //         console.error('Failed to save data:', resultAction.payload);
+        //     }
+        // }
+
+        await formik.validateForm();
+
+        if (!resultTableData.eventDataId && formik.isValid) {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            }
+        }
+    };
+    
+    // const handleSaveToDb = async () => {
+    //     formik.handleSubmit();
+
+    //     const eventData = {
+    //         ...eventsData,
+    //     };
+
+    //     // if (resultTableData.eventDataId) {
+    //     //     eventData.eventDataId = resultTableData?.eventDataId;
+    //     //     console.log("=== called for update", eventData);
+    //     //     const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+    //     //     if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+    //     //         console.error('Failed to update data:', resultAction.payload);
+    //     //     }
+    //     // } else {
+    //     //     console.log("=== called for save");
+
+    //     //     const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+    //     //     if (addResultTableDatasToDb.rejected.match(resultAction)) {
+    //     //         console.error('Failed to save data:', resultAction.payload);
+    //     //     }
+    //     // }
+
+    //     if (!resultTableData.eventDataId) {
+    //         const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+    //         if (addResultTableDatasToDb.rejected.match(resultAction)) {
+    //             console.error('Failed to save data:', resultAction.payload);
+    //         }
+    //     }
+    // };
+
     const formik = useFormik({
         initialValues,
         enableReinitialize: true,
@@ -339,11 +448,11 @@ const Home = () => {
                                 />
                             </Grid> */}
                                 <Grid item xs={12} sm={12}>
-                                    <FormLabel className="fw-bold text-white mt-1">
+                                    {/* <FormLabel className="fw-bold text-white mt-1">
                                         What would you like to do?
-                                    </FormLabel>
+                                    </FormLabel> */}
                                     <RadioGroup
-                                        row
+
                                         name="actionChoice"
                                         value={formik.values?.actionChoice}
                                         onChange={handleActionChoiceChange}
@@ -351,19 +460,19 @@ const Home = () => {
                                         <FormControlLabel
                                             value="add"
                                             control={<Radio />}
-                                            label="Calculate New Event's Emission Data"
+                                            label="New Activity"
                                         />
                                         <FormControlLabel
                                             value="retrieve"
                                             control={<Radio />}
-                                            label="Retrieve Previous Event Emission Data"
+                                            label="Retrive Previous Activity"
                                         />
                                     </RadioGroup>
                                 </Grid>
                                 {formik.values?.actionChoice === "retrieve" &&
                                     <Grid item xs={12} sm={16} md={12}>
                                         <Grid mt={2}>
-                                            <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Select Previous Event</FormLabel>
+                                            <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Retrive your Activity</FormLabel>
                                             <FormControl fullWidth>
                                                 <Select
                                                     className="basic-single"
@@ -373,7 +482,7 @@ const Home = () => {
                                                     isRtl={false}
                                                     isSearchable
                                                     name="previousEvent"
-                                                    placeholder="Select Previous Event"
+                                                    placeholder="Retrive your Activity"
                                                     options={previousEvent}
                                                     styles={customStyles}
                                                     value={formik?.values?.previousEvent || null}
@@ -383,7 +492,8 @@ const Home = () => {
                                         </Grid>
                                     </Grid>
                                 }
-                                <Grid item xs={12} sm={6} className='table-custom-inpt-field'>
+                                {/* <Grid item xs={12} sm={6} className='table-custom-inpt-field'> */}
+                                <Grid item xs={12} sm={6}>
                                     <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                                         Activity Name <span style={{ color: 'red' }}>*</span>
                                     </FormLabel>
@@ -391,7 +501,7 @@ const Home = () => {
                                         name="activityName"
                                         type="text"
                                         size="small"
-                                        className="textborder"
+                                        className="textborder custom-inpt-field-color"
                                         fullWidth
                                         disabled={isDisabledField}
                                         value={formik.values.activityName}
@@ -402,7 +512,8 @@ const Home = () => {
                                         inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={6} className='table-custom-inpt-field'>
+                                {/* <Grid item xs={12} sm={6} className='table-custom-inpt-field'> */}
+                                <Grid item xs={12} sm={6}>
                                     <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                                         Country <span style={{ color: 'red' }}>*</span>
                                     </FormLabel>
@@ -411,7 +522,7 @@ const Home = () => {
                                         type="text"
                                         size="small"
                                         fullWidth
-                                        className="textborder"
+                                        className="textborder custom-inpt-field-color"
                                         disabled={isDisabledField}
                                         value={formik.values.country}
                                         onChange={formik.handleChange}
@@ -440,7 +551,8 @@ const Home = () => {
                                         inputProps={{ style: { color: 'white' } }}
                                     />
                                 </Grid> */}
-                                <Grid item xs={12} sm={12} className='table-custom-inpt-field'>
+                                {/* <Grid item xs={12} sm={12} className='table-custom-inpt-field'> */}
+                                <Grid item xs={12} sm={6}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                                             <FormLabel className="fw-bold text-white mt-1">
@@ -454,7 +566,7 @@ const Home = () => {
                                                         fullWidth
                                                         disabled={isDisabledField}
                                                         error={formik.touched.dateTime && Boolean(formik.errors.dateTime)}
-                                                        helperText={formik.touched.dateTime && formik.errors.dateTime}
+                                                        // helperText={formik.touched.dateTime && formik.errors.dateTime}
                                                         inputProps={{ style: { color: 'white' } }}
                                                         sx={{
                                                             '& .MuiOutlinedInput-root': {
@@ -483,19 +595,31 @@ const Home = () => {
                                                     // Store date as UTC
                                                     // formik.setFieldValue("dateTime", newValue ? newValue.toISOString() : null);
                                                     formik.setFieldValue("dateTime", newValue);
+                                                    formik.setFieldTouched("dateTime", true); // Mark as touched here
+                                                }}
+                                                onOpen={() => {
+                                                    console.log("--- onOpen called ");
+                                                    formik.setFieldTouched("dateTime", true); // Set touched on open
                                                 }}
                                                 onError={(error) => {
                                                     if (error) {
                                                         formik.setFieldTouched("dateTime", true);
+                                                        formik.setFieldError("dateTime", "Date is required");
                                                     }
                                                 }}
                                                 defaultValue={null}
                                                 className='custom-dateTimePicker-field'
                                             />
+                                            {formik.touched.dateTime && formik.errors.dateTime && (
+                                                <FormLabel className="mt-1" style={{ fontSize: '0.75rem', color: '#FF4842'}}>
+                                                    {formik.errors.dateTime}
+                                                </FormLabel>
+                                            )}
                                         </div>
                                     </LocalizationProvider>
                                 </Grid>
-                                <Grid item xs={12} sm={6} className='table-custom-inpt-field'>
+                                {/* <Grid item xs={12} sm={6} className='table-custom-inpt-field'> */}
+                                <Grid item xs={12} sm={6}>
                                     <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                                         Allotted Budget (in$) <span style={{ color: 'red' }}>*</span>
                                     </FormLabel>
@@ -503,7 +627,7 @@ const Home = () => {
                                         name="budget"
                                         type="number"
                                         size="small"
-                                        className="textborder"
+                                        className="textborder custom-inpt-field-color"
                                         fullWidth
                                         disabled={isDisabledField}
                                         value={formik.values.budget}
@@ -512,6 +636,10 @@ const Home = () => {
                                         error={formik.touched.budget && Boolean(formik.errors.budget)}
                                         helperText={formik.touched.budget && formik.errors.budget}
                                         inputProps={{ style: { color: 'white' } }}
+                                        InputProps={{
+                                            style: { color: isDisabledField ? 'white' : 'white' },
+                                            disabled: isDisabledField
+                                        }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={12}>
@@ -527,7 +655,8 @@ const Home = () => {
                                     <Button
                                         id="action"
                                         variant="contained"
-                                        onClick={formik.handleSubmit}
+                                        // onClick={formik.handleSubmit}
+                                        onClick={() => handleSaveToDb()}
                                         type="submit"
                                         style={{ backgroundColor: '#054723', width: "50px", marginRight: "10px" }}
                                     >
@@ -540,7 +669,7 @@ const Home = () => {
                                         style={{ backgroundColor: '#054723', marginRight: "10px" }}
                                         disabled={formik.values?.isDisabledRetrieveButtons}
                                     >
-                                        {dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Calculation'}
+                                        {dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Data'}
                                     </Button>
                                     <Button
                                         id="action"
@@ -582,7 +711,7 @@ const Home = () => {
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/virtual-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
                                 <img src={virtualEvent} alt="img" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
-                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Virtual Event</Typography>
+                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Outdoor Marketing</Typography>
                             </Box>
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/pr-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
@@ -687,7 +816,7 @@ const Home = () => {
                         </ul>
                     </Box>
                 </Modal>
-               </Container >
+            </Container >
         </>
     );
 };

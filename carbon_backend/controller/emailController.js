@@ -101,7 +101,7 @@ const addEmail = async (req, res) => {
 
 const addEmailForGraphs = async (req, res) => {
     try {
-        const { allEventsEmissions, receiver, attachmentPdfName, attachmentTemplateName, subject } = req.body;
+        const { allEventsEmissions, receiver, attachmentPdfName, attachmentTemplateName, subject, name, activityName } = req.body;
 
         if (!receiver || receiver?.length < 1) {
             return res.status(400).json({ success: false, message: 'Receiver is required' });
@@ -113,6 +113,8 @@ const addEmailForGraphs = async (req, res) => {
             attachmentPdfName,
             attachmentTemplateName,
             subject,
+            name,
+            activityName
         };
         await sendMail(sendMailPayload);
 
