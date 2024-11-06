@@ -116,6 +116,7 @@ const addEmailForGraphs = async (req, res) => {
             name,
             activityName
         };
+        
         await sendMail(sendMailPayload);
 
         return res.status(201).json({ success: true, message: 'Email Sent successfully' });
