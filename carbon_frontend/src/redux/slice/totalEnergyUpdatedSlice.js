@@ -19,7 +19,7 @@ const totalEnergyUpdatedSlice = createSlice({
                     state.data.push(newItem);
                 }
             });
-            state.totalEmission = state.data[0].data.reduce((total, item) => item.emission ? total + Number(item.emission) : total, 0).toFixed(2);
+            state.totalEmission = state?.data[0]?.data.reduce((total, item) => item?.emission ? total + Number(item?.emission) : total, 0).toFixed(2);
         },
         deleteEnergyData: (state, action) => ({
             ...state,
@@ -32,8 +32,8 @@ const totalEnergyUpdatedSlice = createSlice({
         //     scope: action.payload.scope
         // }),
         setEnergyAllData: (state, action) => {
-            state.data = action.payload.data; 
-            state.totalEmission = action.payload.totalEmission; 
+            state.data = action?.payload?.data;
+            state.totalEmission = action?.payload?.totalEmission;
             // state.scope = action.payload.scope; 
         },
     },

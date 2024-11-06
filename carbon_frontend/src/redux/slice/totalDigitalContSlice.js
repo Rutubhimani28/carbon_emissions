@@ -32,8 +32,8 @@ const totalDigitalContSlice = createSlice({
         //     scope: action.payload.scope
         // }),
         setDigitalCommsAllData: (state, action) => {
-            state.data = action.payload.data; 
-            state.totalEmission = action.payload.totalEmission; 
+            state.data = action?.payload?.data;
+            state.totalEmission = action?.payload?.totalEmission;
             // state.scope = action.payload.scope; 
         },
     },

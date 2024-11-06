@@ -46,7 +46,8 @@ const Production = (props) => {
     ];
 
     const fieldDataFive = [
-        { name: 'Polyethylene HDPE Banner', ef: 3.11, fieldName: 'hdpeBanner' },
+        // { name: 'Polyethylene HDPE Banner', ef: 3.11, fieldName: 'hdpeBanner' },
+        { name: 'Polyethylene Banner', ef: 3.11, fieldName: 'hdpeBanner' },
         { name: 'PVC Banners', ef: 7.83, fieldName: 'pvcBanners' },
         { name: 'Cotton Banner', ef: 14.5, fieldName: 'cottonBanner' },
         { name: 'Plastic Badge Holders (Polycorbonate)', ef: 4.2, fieldName: 'plasticBadgeHolders' },
@@ -562,7 +563,8 @@ const Production = (props) => {
                         th: ["", "In Kgs", "Emissions"],
                         td: [
                             {
-                                pType: "Polyethylene HDPE Banner",
+                                // pType: "Polyethylene HDPE Banner",
+                                pType: "Polyethylene Banner",
                                 kgs: values?.hdpeBanner,
                                 emissions: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                             },
@@ -577,7 +579,8 @@ const Production = (props) => {
                                 emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
                             },
                             {
-                                pType: "Plastic Badge Holders (Polycorbonate)",
+                                // pType: "Plastic Badge Holders (Polycorbonate)",
+                                pType: "Plastic Badges",
                                 kgs: values?.plasticBadgeHolders,
                                 emissions: plasticBadgeHoldersEmission > 0 ? plasticBadgeHoldersEmission : ''
                             },
@@ -596,7 +599,8 @@ const Production = (props) => {
                                 emissions: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
                             },
                             {
-                                pType: "Giveaway Paper bags (200 GSM)- A4 Size",
+                                // pType: "Giveaway Paper bags (200 GSM)- A4 Size",
+                                pType: "Paper Bags",
                                 noOfUnits: values?.paperBagsA4Size,
                                 emissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
                             },
@@ -606,12 +610,14 @@ const Production = (props) => {
                                 emissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
                             },
                             {
-                                pType: "Giveaway Jute bags*- A4 Size",
+                                // pType: "Giveaway Jute bags*- A4 Size",
+                                pType: "Jute Bags",
                                 noOfUnits: values?.juteBagsA4Size,
                                 emissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
                             },
                             {
-                                pType: "Giveaway Cotton bags- A4 Size",
+                                // pType: "Giveaway Cotton bags- A4 Size",
+                                pType: "Cotton Bags",
                                 noOfUnits: values?.cottonBagsA4Size,
                                 emissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
                             },
@@ -1332,7 +1338,7 @@ const Production = (props) => {
                                         >
                                             Go To Result
                                         </Button>
-                                        <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button>
+                                        {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                         <Button
                                             variant="outlined"
                                             onClick={() => {

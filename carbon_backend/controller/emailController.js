@@ -1,5 +1,5 @@
 import sendMail, { sendMailForTwoEvents } from '../middelwares/sendMail.js';
-import Email from '../models/email.js';
+// import Email from '../models/email.js';
 
 // const addEmail = async (req, res) => {
 //     try {

@@ -225,7 +225,7 @@ const PrAgency = (props) => {
                         th: ["", "Weight (Kgs)", "Emissions"],
                         td: [
                             {
-                                prType: "Polyethylene HDPE Banner/ Standee*",
+                                prType: "Polyethylene Banner*",
                                 kgs: values?.hdpeBanner,
                                 emissions: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                             },
@@ -235,27 +235,27 @@ const PrAgency = (props) => {
                                 emissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
                             },
                             {
-                                prType: "Cotton Banner/ Standee",
+                                prType: "Cotton Banner",
                                 kgs: values?.cottonBanner,
                                 emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
                             },
                             {
-                                prType: "Giveaway Paper bags (200 GSM)- A4 Size",
+                                prType: "Paper Bags- A4 Size",
                                 kgs: values?.paperBagsA4Size,
                                 emissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
                             },
                             {
-                                prType: "Giveaway Paper bags (200 GSM)- A5 Size",
+                                prType: "Paper Bags- A5 Size",
                                 kgs: values?.paperBagsA5Size,
                                 emissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
                             },
                             {
-                                prType: "Giveaway Jute bags*- A4 Size",
+                                prType: "Jute Bags- A4 Size",
                                 kgs: values?.juteBagsA4Size,
                                 emissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
                             },
                             {
-                                prType: "Giveaway Cotton bags- A4 Size",
+                                prType: "Cotton Bags- A4 Size",
                                 kgs: values?.cottonBagsA4Size,
                                 emissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
                             }
@@ -360,7 +360,7 @@ const PrAgency = (props) => {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
             if (addResultTableDatasToDb.rejected.match(resultAction)) {
                 console.error('Failed to save data:', resultAction.payload);
-            } 
+            }
         }
     };
 
@@ -595,12 +595,12 @@ const PrAgency = (props) => {
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4'>Branding</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2' />
-                                                <th className='ps-3'>Weight (kgs)</th>
-                                                <th className='ps-2'>Emissions</th>
+                                                <th className='' width="40%" />
+                                                <th className='ps-3' width="30%">Weight (kgs)</th>
+                                                <th className='ps-2' width="30%">Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2'>Polyethylene HDPE Banner/ Standee*</td>
+                                                <td className=''>Polyethylene Banner*</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="hdpeBanner"
                                                         value={formik?.values?.hdpeBanner}
@@ -614,7 +614,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size="small" type="number" disabled name="hdpeBannerEmission" value={formik?.values?.hdpeBannerEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>PVC Banners / Standee</td>
+                                                <td className=' py-1'>PVC Banners</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="pvcBanners"
                                                         value={formik?.values?.pvcBanners}
@@ -628,7 +628,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='pvcBannersEmission' disabled value={values?.pvcBannersEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Cotton Banner/ Standee</td>
+                                                <td className='py-1'>Cotton Banner</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="cottonBanner"
                                                         value={formik?.values?.cottonBanner}
@@ -642,7 +642,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='cottonBannerEmission' disabled value={values?.cottonBannerEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Giveaway Paper bags (200 GSM)- A4 Size</td>
+                                                <td className='py-1'>Paper Bags- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="paperBagsA4Size"
                                                         value={formik?.values?.paperBagsA4Size}
@@ -656,7 +656,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='paperBagsA4SizeEmission' disabled value={values?.paperBagsA4SizeEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Giveaway Paper bags (200 GSM)- A5 Size</td>
+                                                <td className='py-1'>Paper Bags- A5 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="paperBagsA5Size"
                                                         value={formik?.values?.paperBagsA5Size}
@@ -671,7 +671,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='paperBagsA5SizeEmission' disabled value={values?.paperBagsA5SizeEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Giveaway Jute bags*- A4 Size</td>
+                                                <td className='py-1'>Jute Bags- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="juteBagsA4Size"
                                                         value={formik?.values?.juteBagsA4Size}
@@ -685,7 +685,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='juteBagsA4SizeEmission' disabled value={values?.juteBagsA4SizeEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2  py-1 '>Giveaway Cotton bags- A4 Size</td>
+                                                <td className='py-1 '>Cotton Bags- A4 Size</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name="cottonBagsA4Size"
                                                         value={formik?.values?.cottonBagsA4Size}
@@ -709,12 +709,12 @@ const PrAgency = (props) => {
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Transportation</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='ps-2'>Model of Transport</th>
-                                                <th className='ps-3'>No of Kms</th>
-                                                <th className='ps-2'>Emissions</th>
+                                                <th className='' width="40%">Model of Transport</th>
+                                                <th className='ps-3' width="30%">No of Kms</th>
+                                                <th className='ps-2' width="30%">Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Petrol</td>
+                                                <td className='py-1'>Petrol</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='petrolKms' value={values?.petrolKms}
                                                         onChange={(e) => {
@@ -727,7 +727,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='petrolEmission' disabled value={values?.petrolEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Diesel</td>
+                                                <td className='py-1'>Diesel</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='dieselKms' value={values?.dieselKms}
                                                         onChange={(e) => {
@@ -740,7 +740,7 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 py-1'><TextField size='small' type="number" name='dieselEmission' disabled value={values?.dieselEmission} onChange={formik.handleChange} /></td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-2 py-1'>Hybrid</td>
+                                                <td className='py-1'>Hybrid</td>
                                                 <td className='ps-3 py-1'>
                                                     <TextField size='small' type="number" name='hybridKms' value={values?.hybridKms}
                                                         onChange={(e) => {
@@ -982,7 +982,7 @@ const PrAgency = (props) => {
     //                                             <th className='ps-2'>Emissions</th>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 setPosition '>Polyethylene HDPE Banner/ Standee*</td>
+    //                                             <td className='ps-2 setPosition '>Polyethylene Banner*</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="hdpeBanner"
     //                                                     value={formik?.values?.hdpeBanner}
@@ -996,7 +996,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size="small" type="number" disabled name="hdpeBannerEmission" value={formik?.values?.hdpeBannerEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1 setPosition'>PVC Banners / Standee</td>
+    //                                             <td className='ps-2 py-1 setPosition'>PVC Banners</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="pvcBanners"
     //                                                     value={formik?.values?.pvcBanners}
@@ -1010,7 +1010,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='pvcBannersEmission' disabled value={values?.pvcBannersEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1 setPosition'>Cotton Banner/ Standee</td>
+    //                                             <td className='ps-2 py-1 setPosition'>Cotton Banner</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="cottonBanner"
     //                                                     value={formik?.values?.cottonBanner}
@@ -1024,7 +1024,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='cottonBannerEmission' disabled value={values?.cottonBannerEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1 setPosition'>Giveaway Paper bags (200 GSM)- A4 Size</td>
+    //                                             <td className='ps-2 py-1 setPosition'>Paper Bags- A4 Size</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="paperBagsA4Size"
     //                                                     value={formik?.values?.paperBagsA4Size}
@@ -1039,7 +1039,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='paperBagsA4SizeEmission' disabled value={values?.paperBagsA4SizeEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1 setPosition'>Giveaway Paper bags (200 GSM)- A5 Size</td>
+    //                                             <td className='ps-2 py-1 setPosition'>Paper Bags- A5 Size</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="paperBagsA5Size"
     //                                                     value={formik?.values?.paperBagsA5Size}
@@ -1054,7 +1054,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='paperBagsA5SizeEmission' disabled value={values?.paperBagsA5SizeEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1 setPosition'>Giveaway Jute bags*- A4 Size</td>
+    //                                             <td className='ps-2 py-1 setPosition'>Jute Bags- A4 Size</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="juteBagsA4Size"
     //                                                     value={formik?.values?.juteBagsA4Size}
@@ -1068,7 +1068,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='juteBagsA4SizeEmission' disabled value={values?.juteBagsA4SizeEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2  py-1 cotten'>Giveaway Cotton bags- A4 Size</td>
+    //                                             <td className='ps-2  py-1 cotten'>Cotton Bags- A4 Size</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="cottonBagsA4Size"
     //                                                     value={formik?.values?.cottonBagsA4Size}
@@ -1351,7 +1351,7 @@ const PrAgency = (props) => {
     //                                             <th className='ps-2'>Emissions</th>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2'>Polyethylene HDPE Banner/ Standee*</td>
+    //                                             <td className='ps-2'>Polyethylene Banner*</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="hdpeBanner"
     //                                                     value={formik?.values?.hdpeBanner}
@@ -1365,7 +1365,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size="small" type="number" disabled name="hdpeBannerEmission" value={formik?.values?.hdpeBannerEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1'>PVC Banners / Standee</td>
+    //                                             <td className='ps-2 py-1'>PVC Banners</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="pvcBanners"
     //                                                     value={formik?.values?.pvcBanners}
@@ -1379,7 +1379,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='pvcBannersEmission' disabled value={values?.pvcBannersEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1'>Cotton Banner/ Standee</td>
+    //                                             <td className='ps-2 py-1'>Cotton Banner</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="cottonBanner"
     //                                                     value={formik?.values?.cottonBanner}
@@ -1393,7 +1393,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='cottonBannerEmission' disabled value={values?.cottonBannerEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1'>Giveaway Paper bags (200 GSM)- A4 Size</td>
+    //                                             <td className='ps-2 py-1'>Paper Bags- A4 Size</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="paperBagsA4Size"
     //                                                     value={formik?.values?.paperBagsA4Size}
@@ -1408,7 +1408,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='paperBagsA4SizeEmission' disabled value={values?.paperBagsA4SizeEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1'>Giveaway Paper bags (200 GSM)- A5 Size</td>
+    //                                             <td className='ps-2 py-1'>Paper Bags- A5 Size</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="paperBagsA5Size"
     //                                                     value={formik?.values?.paperBagsA5Size}
@@ -1423,7 +1423,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='paperBagsA5SizeEmission' disabled value={values?.paperBagsA5SizeEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1'>Giveaway Jute bags*- A4 Size</td>
+    //                                             <td className='ps-2 py-1'>Jute Bags- A4 Size</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="juteBagsA4Size"
     //                                                     value={formik?.values?.juteBagsA4Size}
@@ -1437,7 +1437,7 @@ const PrAgency = (props) => {
     //                                             <td className='ps-2 py-1'><TextField size='small' type="number" name='juteBagsA4SizeEmission' disabled value={values?.juteBagsA4SizeEmission} onChange={formik.handleChange} /></td>
     //                                         </tr>
     //                                         <tr>
-    //                                             <td className='ps-2 py-1'>Giveaway Cotton bags- A4 Size</td>
+    //                                             <td className='ps-2 py-1'>Cotton Bags- A4 Size</td>
     //                                             <td className='ps-3 py-1'>
     //                                                 <TextField size='small' type="number" name="cottonBagsA4Size"
     //                                                     value={formik?.values?.cottonBagsA4Size}

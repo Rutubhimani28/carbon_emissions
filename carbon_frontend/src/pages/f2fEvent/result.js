@@ -222,7 +222,7 @@ const Result = ({ value }) => {
     
 
     const generatePrompt = async () => {
-        let contentData = `Category	Emissions (kgCO2e)`;
+        let contentData = `Category	Emissions (kgCO2e) \n`;
         let categoryCount = 0;
 
         resultData?.forEach(item => {

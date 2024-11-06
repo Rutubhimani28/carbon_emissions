@@ -202,7 +202,7 @@ const Result = ({ value }) => {
         }).join('\n');
 
         // let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Virtual Event : </h3> `;
-        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Outbound Marketing : </h3> `;
+        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Outdoor Marketing : </h3> `;
 
         formattedSuggestions.split('\n').forEach((line, index) => {
             pdfData += `${line}<br />`;

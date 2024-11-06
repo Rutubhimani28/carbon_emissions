@@ -760,7 +760,7 @@ const VirtualEvent = (props) => {
                     {/* <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}> */}
                     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         {/* <IconDiv><img width={100} src={VirtualEventIcon} alt="Virtual Event" className="tabImgWhite" /></IconDiv> */}
-                        <IconDiv><img width={100} src={outboundIcon} alt="Outbound Marketing" className="tabImgWhite" /></IconDiv>
+                        <IconDiv><img width={100} src={outboundIcon} alt="Outdoor Marketing" className="tabImgWhite" /></IconDiv>
 
                         {/* <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} /> */}
 
@@ -1686,7 +1686,7 @@ const VirtualEvent = (props) => {
                                 <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
                         </Grid>
                         {/* <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid> */}
-                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Outbound Marketing Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
+                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Outdoor Marketing Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
                     </Grid>
                 </Card>
 

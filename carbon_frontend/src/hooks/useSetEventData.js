@@ -115,7 +115,8 @@ const useSetEventData = () => {
             budget: currentEventData?.budget,
             actionChoice: "retrieve",
             // dateTime: dayjs(currentEventData?.dateTime).format('YYYY-MM-DD') || '',
-            dateTime: dayjs(currentEventData?.dateTime).format('MM/DD/YYYY hh:mm A') || null,
+            dateTime: currentEventData?.dateTime || null,
+            // dateTime: dayjs(currentEventData?.dateTime).format('MM/DD/YYYY hh:mm') || null,
             isValidData: true,
             isDirtyData: false,
             previousEvent: {
@@ -170,19 +171,19 @@ const useSetEventData = () => {
         dispatch(deleteprEventEmissionCatogorywise());
         // dispatch(setResultTableAllData()); 
         dispatch(deleteAirTravelData()); // updated
-        dispatch(deleteLocalTranspotationData()); 
-        dispatch(deleteHotelData()); 
-        dispatch(deleteFoodData()); 
-        dispatch(deleteLogisticsData()); 
-        dispatch(deleteEnergyData()); 
-        dispatch(deleteData()); 
-        dispatch(deleteProductionData()); 
-        dispatch(deleteCampaignData()); 
-        dispatch(deleteWasteData()); 
-        dispatch(deleteVirtualEventData()); 
-        dispatch(deleteCommsData()); 
-        dispatch(deletePrAgencyData()); 
-        dispatch(deleteHospitalityData()); 
+        dispatch(deleteLocalTranspotationData());
+        dispatch(deleteHotelData());
+        dispatch(deleteFoodData());
+        dispatch(deleteLogisticsData());
+        dispatch(deleteEnergyData());
+        dispatch(deleteData());
+        dispatch(deleteProductionData());
+        dispatch(deleteCampaignData());
+        dispatch(deleteWasteData());
+        dispatch(deleteVirtualEventData());
+        dispatch(deleteCommsData());
+        dispatch(deletePrAgencyData());
+        dispatch(deleteHospitalityData());
     };
 
 

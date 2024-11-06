@@ -26,7 +26,7 @@ const VirtualEventCalculation = () => {
                         aria-label="scrollable auto tabs example"
                     >
                         {/* <Tab icon={<img src={virtualEventImg} alt='' width={60} className='tabImgZoomIn tabImgWhite' />} label="Virtual Event" className='tab-text' /> */}
-                        <Tab icon={<img src={outboundIcon} alt='' width={42} className='tabImgZoomIn tabImgWhite' />} label="Outbound Marketing" className='tab-text' />
+                        <Tab icon={<img src={outboundIcon} alt='' width={42} className='tabImgZoomIn tabImgWhite' />} label="Outdoor Marketing" className='tab-text' />
                         <Tab icon={<img src={result} alt='' width={35} className='tabImgZoomIn tabImgWhite' />} label="Summary" className='tab-text' />
                     </Tabs>
                 </Box>

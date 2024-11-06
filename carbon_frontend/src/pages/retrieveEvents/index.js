@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import * as yup from "yup";
 import Select, { components } from 'react-select';
@@ -47,7 +48,8 @@ const MyEventSelector = () => {
         },
         {
             "field": "virtualEventTotalEmission",
-            "headerName": "Virtual Event Emission",
+            // "headerName": "Virtual Event Emission",
+            "headerName": "Outdoor Marketing Emission",
             "width": 175
         },
         {
@@ -65,7 +67,8 @@ const MyEventSelector = () => {
             headerName: "Date/Time",
             width: 175,
             valueFormatter: (params) => {
-                return dayjs(params.value).format('MM/DD/YYYY hh:mm A');
+                return params.value;
+                // return dayjs(params.value).format('MM/DD/YYYY hh:mm');
             },
         },
         {
@@ -82,7 +85,7 @@ const MyEventSelector = () => {
     const csvColumns = [
         { Header: "Activity Name", accessor: 'activityName' },
         { Header: "F2F Event Emission", accessor: 'f2fEventTotalEmission' },
-        { Header: "Virtual Event Emission", accessor: 'virtualEventTotalEmission' },
+        { Header: "Outdoor Marketing Emission", accessor: 'virtualEventTotalEmission' },
         { Header: "PR Event Emission", accessor: 'prEventTotalEmission' },
         { Header: "Digital Campaign Emission", accessor: 'digitalCampaignTotalEmission' },
         { Header: "Date/Time", accessor: 'dateTime' },
@@ -97,7 +100,7 @@ const MyEventSelector = () => {
     const isAdmin = userData?.role === 'admin';
     // const isAdmin = false;
     const resultTableData = useSelector(state => state.resultTableDataDetails);
-    // const previousEvents = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm A')}` }));
+    // const previousEvents = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm')}` }));
 
     const [isGraphLoading, setIsGraphLoading] = useState(false);
     const [isFieldsLoading, setIsFieldsLoading] = useState(false);
@@ -306,7 +309,8 @@ const MyEventSelector = () => {
                         from: "virtualEvent",
                         allDataOfTab: responseData[ind]?.prEventData || []
                     },
-                    attachmentPdfNameTwo: `Virtual Event- ${responseData[ind]?.activityName}`,
+                    // attachmentPdfNameTwo: `Virtual Event- ${responseData[ind]?.activityName}`,
+                    attachmentPdfNameTwo: `Outdoor Marketing- ${responseData[ind]?.activityName}`,
                     activityName: responseData[ind]?.activityName || '',
                     budget: responseData[ind]?.budget || '',
                     country: responseData[ind]?.country || '',
@@ -431,12 +435,13 @@ const MyEventSelector = () => {
                     virtualEventTotalEmission,
                     prEventTotalEmission,
                     digitalCampaignTotalEmission,
-                    activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('DD/MM/YYYY hh:mm A')}`,
+                    activity: `${event?.activityName}-${moment(event?.dateTime).format("DD/MM/YYYY HH:mm")}`,
+                    // activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('DD/MM/YYYY hh:mm')}`,
                     eventId: event?._id,
                 }
             );
         });
-
+        
         const payload = {
             allEventsEmissions,
             name: userData?.cnctPerson,
@@ -619,7 +624,8 @@ const MyEventSelector = () => {
                                 onChange={selectedOption => {
                                     formik.setFieldValue('selectedAccount', selectedOption);
                                     const selectedUserEvents = data?.filter((event) => event?.createdById === selectedOption?.value);
-                                    const filterdeEvents = selectedUserEvents?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm A')}` }));
+                                                                        const filterdeEvents = selectedUserEvents?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${item?.dateTime}` }));
+                                    // const filterdeEvents = selectedUserEvents?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm')}` }));
                                     setselectedAccountPreviousEvents(filterdeEvents || []);
                                     setFilteredTableData(selectedUserEvents);
                                 }}
@@ -629,6 +635,7 @@ const MyEventSelector = () => {
                                         ...base,
                                         width: '100%',
                                         minWidth: '550px',
+                                        color: "#fff",
                                         borderColor: formik.errors.selectedAccount ? 'red' : 'white',
                                         '&:hover': {
                                             borderColor: formik.errors.selectedAccount ? 'red' : 'white',
@@ -643,6 +650,14 @@ const MyEventSelector = () => {
                                     placeholder: (base) => ({
                                         ...base,
                                         color: 'white', // Set placeholder color to white
+                                    }),
+                                    singleValue: (base) => ({
+                                        ...base,
+                                        color: 'white', // Set selected text color to white for single selection
+                                    }),
+                                    multiValueLabel: (base) => ({
+                                        ...base,
+                                        color: 'white', // Set selected text color to white for multiple selections
                                     }),
                                 }}
                             />
@@ -753,14 +768,13 @@ const MyEventSelector = () => {
                         options={isAdmin ? selectedAccountPreviousEvents : previousEvents}
                         formatOptionLabel={formatOptionLabel}
                         onChange={(selectedOptions) => {
-                            // Allow a maximum of two options to be selected
                             if (selectedOptions.length > 2) {
-                                selectedOptions = selectedOptions.slice(0, 2); // Keep only the first two selected options
+                                selectedOptions = selectedOptions.slice(0, 2);
                             }
                             formik.setFieldValue('selectedEvents', selectedOptions);
                         }}
                         value={formik.values.selectedEvents}
-                        components={{ DropdownIndicator: null }} // Remove default dropdown indicator
+                        components={{ DropdownIndicator: null }}
                         styles={{
                             control: (base) => ({
                                 ...base,
@@ -776,7 +790,8 @@ const MyEventSelector = () => {
                             menu: (base) => ({
                                 ...base,
                                 zIndex: 9999,
-                                maxWidth: '500px',
+                                marginLeft: "9px",
+                                maxWidth: '520px',
                             }),
                             placeholder: (base) => ({
                                 ...base,
@@ -785,34 +800,96 @@ const MyEventSelector = () => {
                         }}
                     />
 
-                    {formik.values.selectedEvents.length < 2 && (
-                        <div
-                            onClick={() => handlePlusClick()}
-                            onKeyPress={(e) => {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    selectRef.current.focus();
-                                }
-                            }}
-                            role="button"
-                            tabIndex="0"
-                            style={{
-                                // position: 'absolute',
-                                // right: '-30px',
-                                // top: '50%',
-                                // transform: 'translateY(-50%)',
-                                width: '10%',
-                                marginLeft: "18px",
-                                marginRight: "15px",
-                                cursor: 'pointer',
-                                color: "#fff",
-                                fontSize: "20px"
-                            }}
-                        >
-                            <AddCircleOutlineIcon style={{ fontSize: "31px" }} />
-                        </div>
-                    )}
-
+                    <div
+                        onClick={() => formik.values.selectedEvents.length < 2 && handlePlusClick()}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                selectRef.current.focus();
+                            }
+                        }}
+                        role="button"
+                        tabIndex="0"
+                        style={{
+                            width: '10%',
+                            marginLeft: "18px",
+                            marginRight: "15px",
+                            cursor: formik.values.selectedEvents.length < 2 ? 'pointer' : 'not-allowed',
+                            color: "#fff",
+                            fontSize: "20px",
+                            opacity: formik.values.selectedEvents.length < 2 ? 1 : 0.5,
+                        }}
+                        aria-disabled={formik.values.selectedEvents.length >= 2}
+                    >
+                        <AddCircleOutlineIcon style={{ fontSize: "31px" }} />
+                    </div>
                 </Box>
+
+                {/* 
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Select
+                        ref={selectRef}
+                        isMulti
+                        name="selectedEvents"
+                        placeholder="Select any two activities..."
+                        disabled={isAdmin && !formik.values?.selectedAccount}
+                        options={isAdmin ? selectedAccountPreviousEvents : previousEvents}
+                        formatOptionLabel={formatOptionLabel}
+                        onChange={(selectedOptions) => {
+                            if (selectedOptions.length > 2) {
+                                selectedOptions = selectedOptions.slice(0, 2);
+                            }
+                            formik.setFieldValue('selectedEvents', selectedOptions);
+                        }}
+                        value={formik.values.selectedEvents}
+                        components={{ DropdownIndicator: null }}
+                        styles={{
+                            control: (base) => ({
+                                ...base,
+                                width: '100%',
+                                minWidth: '500px',
+                                marginLeft: "9px",
+                                borderColor: formik.errors.selectedEvents ? 'red' : 'white',
+                                '&:hover': {
+                                    borderColor: formik.errors.selectedEvents ? 'red' : 'white',
+                                },
+                                backgroundColor: 'transparent',
+                            }),
+                            menu: (base) => ({
+                                ...base,
+                                zIndex: 9999,
+                                marginLeft: "9px",
+                                maxWidth: '520px',
+                            }),
+                            placeholder: (base) => ({
+                                ...base,
+                                color: 'white',
+                            }),
+                        }}
+                    />
+
+                    <div
+                        onClick={() => handlePlusClick()}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                selectRef.current.focus();
+                            }
+                        }}
+                        role="button"
+                        tabIndex="0"
+                        style={{
+                            width: '10%',
+                            marginLeft: "18px",
+                            marginRight: "15px",
+                            cursor: formik.values.selectedEvents.length < 2 ? 'pointer' : 'not-allowed',
+                            color: "#fff",
+                            fontSize: "20px",
+                            opacity: formik.values.selectedEvents.length < 2 ? 1 : 0.5,
+                        }}
+                        aria-disabled={formik.values.selectedEvents.length < 2}
+                    >
+                        <AddCircleOutlineIcon style={{ fontSize: "31px" }} />
+                    </div>
+                </Box> */}
 
                 {/* </div > */}
                 <Box

@@ -22,6 +22,7 @@ export const commonUtils = {
     downloadCsvOrExcel: ({ csvColumns, data, extension, fileName, selectedIds, setSelectedRowIds }) => {
         const formatDateOfBirth = (dateString) => {
             return moment(dateString).format('MM/DD/YYYY HH:MM A')
+            // return moment(dateString).format('MM/DD/YYYY HH:MM')
         };
 
         const formatRecords = (records) => {

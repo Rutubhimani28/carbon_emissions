@@ -98,7 +98,8 @@ const Home = () => {
     const { setParticularEventFetchedData, handleDeleteAllData } = useSetEventData();
     const { addEmail, addEmailForGraph, ...dataFromUseGenerateSendFilledFieldsData } = useGenerateSendFilledFieldsData();
 
-    const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm A')}` }));
+    const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${item?.dateTime}` }));
+    // const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm')}` }));
 
     const handleOpenInfo = () => setOpenInfo(true);
     const handleInfoClose = () => setOpenInfo(false);
@@ -129,7 +130,7 @@ const Home = () => {
     });
 
     const AddData = (values) => {
-        setIsLoading(true);
+                setIsLoading(true);
         dispatch(addToolData(values));
         setIsLoading(false);
     };
@@ -146,7 +147,7 @@ const Home = () => {
         formik.setFieldValue("dateTime", null);
         setIsDisabledField(e.target.value === "retrieve");
         // setActionChoiceState(e.target.value);
-
+        
         if (e.target.value === 'retrieve') {
             formik.setFieldValue("previousEvent", null);
 
@@ -160,6 +161,8 @@ const Home = () => {
     };
 
     const handlePreviousEventSelect = (e) => {
+
+
         formik.setFieldValue("previousEvent", e || null);
         formik.setFieldValue("isDisabledRetrieveButtons", true);
 
@@ -205,19 +208,19 @@ const Home = () => {
     // const handleSaveToDb = async () => {
     //     // Trigger form validation
     //     await formik.validateForm();
-    
+
     //     // Check if form is valid (no errors)
     //     if (!formik.isValid) {
     //         console.log("Form contains errors, submission halted.");
     //         return;
     //     }
-    
+
     //     formik.handleSubmit();
-    
+
     //     const eventData = {
     //         ...eventsData,
     //     };
-    
+
     //     if (!resultTableData?.eventDataId) {
     //         const resultAction = await dispatch(addResultTableDatasToDb(eventData));
     //         if (addResultTableDatasToDb.rejected.match(resultAction)) {
@@ -252,8 +255,6 @@ const Home = () => {
             wasteAllData: { data: [], totalEmission: 0 },
         };
 
-        console.log("==== eventsData ", eventsData);
-
         // if (resultTableData.eventDataId) {
         //     eventData.eventDataId = resultTableData?.eventDataId;
         //     console.log("=== called for update", eventData);
@@ -269,7 +270,7 @@ const Home = () => {
         //         console.error('Failed to save data:', resultAction.payload);
         //     }
         // }
-
+        
         await formik.validateForm();
 
         if (!resultTableData.eventDataId && formik.isValid) {
@@ -279,7 +280,7 @@ const Home = () => {
             }
         }
     };
-    
+
     // const handleSaveToDb = async () => {
     //     formik.handleSubmit();
 
@@ -335,7 +336,8 @@ const Home = () => {
             formik.setFieldValue('country', formPrevData?.country);
             formik.setFieldValue('budget', formPrevData?.budget);
             // formik.setFieldValue('dateTime', formPrevData?.dateTime);
-            formik.setFieldValue('dateTime', dayjs(formPrevData?.dateTime).format('MM/DD/YYYY hh:mm A'));
+            formik.setFieldValue('dateTime', formPrevData?.dateTime);
+            // formik.setFieldValue('dateTime', dayjs(formPrevData?.dateTime).format('MM/DD/YYYY hh:mm'));
             formik.setFieldValue('email', formPrevData?.email);
             // formik.setFieldValue('isDirtyData', formPrevData?.isDirtyData);
             formik.setFieldValue('actionChoice', formPrevData?.actionChoice);
@@ -587,16 +589,22 @@ const Home = () => {
                                                                 color: 'white !important', // Placeholder color
                                                             },
                                                         }}
+                                                        ampm={false}
                                                     />
                                                 )}
                                                 disabled={isDisabledField}
                                                 value={formik.values.dateTime ? dayjs(formik.values.dateTime) : null}
+                                                // onChange={(newValue) => {
+                                                //     // Store date as UTC
+                                                //     // formik.setFieldValue("dateTime", newValue ? newValue.toISOString() : null);
+                                                //     formik.setFieldValue("dateTime", newValue);
+                                                //     formik.setFieldTouched("dateTime", true); // Mark as touched here
+                                                // }}
                                                 onChange={(newValue) => {
-                                                    // Store date as UTC
-                                                    // formik.setFieldValue("dateTime", newValue ? newValue.toISOString() : null);
-                                                    formik.setFieldValue("dateTime", newValue);
-                                                    formik.setFieldTouched("dateTime", true); // Mark as touched here
+                                                    formik.setFieldValue('dateTime', newValue ? dayjs(newValue).format('YYYY-MM-DD HH:mm') : null);
+                                                    formik.setFieldTouched('dateTime', true);
                                                 }}
+
                                                 onOpen={() => {
                                                     console.log("--- onOpen called ");
                                                     formik.setFieldTouched("dateTime", true); // Set touched on open
@@ -609,9 +617,12 @@ const Home = () => {
                                                 }}
                                                 defaultValue={null}
                                                 className='custom-dateTimePicker-field'
+                                                format="YYYY-MM-DD HH:mm"
+                                                ampm={false}
+
                                             />
                                             {formik.touched.dateTime && formik.errors.dateTime && (
-                                                <FormLabel className="mt-1" style={{ fontSize: '0.75rem', color: '#FF4842'}}>
+                                                <FormLabel className="mt-1" style={{ fontSize: '0.75rem', color: '#FF4842' }}>
                                                     {formik.errors.dateTime}
                                                 </FormLabel>
                                             )}
@@ -671,7 +682,7 @@ const Home = () => {
                                     >
                                         {dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Data'}
                                     </Button>
-                                    <Button
+                                    {/* <Button
                                         id="action"
                                         variant="contained"
                                         onClick={() => handleRetrieveGraph()}
@@ -679,7 +690,7 @@ const Home = () => {
                                         disabled={formik.values?.isDisabledRetrieveButtons}
                                     >
                                         {dataFromUseGenerateSendFilledFieldsData?.isGraphLoading ? <CircularProgress size={27} /> : 'Retrieve Graph'}
-                                    </Button>
+                                    </Button> */}
                                 </Grid>
 
                                 <Grid item xs={5} sm={3} className="ps-0">
@@ -705,22 +716,22 @@ const Home = () => {
                     <Grid xl={3} md={6} sm={12}>
                         <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
                             <Box onClick={() => isSubmited && navigate('/dashboard/f2f-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                                <img src={f2FEvent} alt="img" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
+                                <img src={f2FEvent} alt="F2F Event" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
                                 <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">F2F Event</Typography>
                             </Box>
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/virtual-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                                <img src={virtualEvent} alt="img" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
+                                <img src={virtualEvent} alt="Outdoor Marketing" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
                                 <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Outdoor Marketing</Typography>
                             </Box>
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/pr-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                                <img src={prEvent} alt="img" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
+                                <img src={prEvent} alt="PR Event" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
                                 <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">PR Event</Typography>
                             </Box>
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/campaign')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                                <img src={digitalCampaign} alt="img" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
+                                <img src={digitalCampaign} alt="Digital Campaign" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
                                 <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Digital Campaign</Typography>
                             </Box>
                         </Box>

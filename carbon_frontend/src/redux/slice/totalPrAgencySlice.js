@@ -31,8 +31,8 @@ const totalPrAgencySlice = createSlice({
         //     scope: action.payload.scope
         // }),
         setPrAgencyAllData: (state, action) => {
-            state.data = action.payload.data;
-            state.totalEmission = action.payload.totalEmission;
+            state.data = action?.payload?.data;
+            state.totalEmission = action?.payload?.totalEmission;
             // state.scope = action.payload.scope;
         },
     },

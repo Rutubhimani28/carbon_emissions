@@ -265,11 +265,11 @@ const Hotel = (props) => {
                                 columnSpacing={{ xs: 0, sm: 4, md: 4 }}
                                 style={{ justifyContent: 'center' }}
                             >
-                                <Grid item xs={12} sm={4} md={4}>
-                                    <Typography variant='h4'>
+                                <Grid item xs={12} sm={4} md={5} >
+                                    <Typography variant='h4' display={"flex"} justifyContent={"center"} >
                                         Hotel Stay
                                     </Typography>
-                                    <Grid mt={2}>
+                                    <Grid mt={2} display={"flex"} justifyContent={"flex-end"} flexDirection={"column"}>
                                         <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Geography</FormLabel>
                                         <FormControl fullWidth>
                                             {/* <Autocomplete
@@ -503,7 +503,7 @@ const Hotel = (props) => {
                                     </Grid>
                                 </Grid>
                                 {/* <Grid item xs={0} sm={2} /> */}
-                                <Grid item xs={12} sm={8} >
+                                <Grid item xs={12} sm={7} >
                                     <Grid
                                         container
                                         // rowSpacing={1}
@@ -513,11 +513,12 @@ const Hotel = (props) => {
                                         className='textborder'
                                     >
                                         <Grid item xs={12}>
-                                            <Typography variant='h4' justifyContent={"flex-start"}>
+                                            <Typography variant='h4' display={"flex"} justifyContent={"center"}>
                                                 Meeting Room Energy Consumption
                                             </Typography>
                                         </Grid>
-                                        <Grid item xs={12} sm={6} md={5.8}>
+                                        <Grid item xs={12} sm={3} />
+                                        <Grid item xs={12} sm={6} md={8} display={"flex"} justifyContent={"center"} flexDirection={"column"}>
 
                                             <Grid mt={2}>
                                                 <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Total Meeting Room Area (Sqft)</FormLabel>
@@ -590,6 +591,8 @@ const Hotel = (props) => {
                                                 />
                                             </Grid>
                                         </Grid>
+                                        <Grid item xs={12} sm={1} />
+
                                         {/* <Grid item xs={12} sm={6} md={6}>
                                             <Grid mt={2}>
                                                 <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh) *</FormLabel>
@@ -643,6 +646,7 @@ const Hotel = (props) => {
                                     </Grid>
 
                                 </Grid>
+
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                     <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}

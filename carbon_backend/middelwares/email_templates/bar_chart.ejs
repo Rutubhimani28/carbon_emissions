@@ -231,6 +231,7 @@
         #chartContainer .canvasjs-chart-credit {
             display: none;
         }
+
         .chart-title {
             text-decoration: underline;
             font-size: 30px;
@@ -298,24 +299,24 @@
             //     };
             // });
             const dataSeries = eventTypesMap.map(eventType => {
-        return {
-            type: "column",
-            name: eventType.name,
-            color: eventType.color,
-            showInLegend: true,
-            legendText: eventType.name,
-            dataPoints: allEventsEmissions.map(event => {
-                const value = parseFloat(event[eventType.field]) || 0; // Default to 0 if undefined
                 return {
-                    label: event.activity,
-                    y: value,
-                    toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(2)}`
+                    type: "column",
+                    name: eventType.name,
+                    color: eventType.color,
+                    showInLegend: true,
+                    legendText: eventType.name,
+                    dataPoints: allEventsEmissions.map(event => {
+                        const value = parseFloat(event[eventType.field]) || 0; // Default to 0 if undefined
+                        return {
+                            label: event.activity,
+                            y: value,
+                            toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(2)}`
+                        };
+                    })
                 };
-            })
-        };
-    }).filter(series => 
-        series.dataPoints.some(point => point.y > 0)  // Keep series with at least one non-zero data point
-    );
+            }).filter(series =>
+                series.dataPoints.some(point => point.y > 0)  // Keep series with at least one non-zero data point
+            );
 
             var chart = new CanvasJS.Chart("chartContainer", {
                 // title: {
@@ -344,50 +345,64 @@
             });
 
             chart.render(); // Generate the table dynamically
-            const tableBody = document.getElementById('table-body');
-            let tableHeader = '';
 
-            eventTypes.forEach(eventType => {
-                tableHeader += `<th>${eventType.name} Emission</th>`;
-            });
+            // Create table header
+            let tableHTML = '<table><thead><tr><th>Activity</th>';
 
-            const hasF2F = eventTypes.some(eventType => eventType.field === "f2fEventTotalEmission");
+            // Track which headers should be added
+            const headers = new Set();
 
-            if (hasF2F) {
-                document.getElementById('table-header').innerHTML = `<th>Activity</th>${tableHeader}`;
-            }
-
+            // Determine which headers to include based on available data
             allEventsEmissions.forEach(event => {
-                const row = `<tr>
-                    <td>${event.activity}</td>
-                    ${eventTypes.map(eventType => `<td>${parseFloat(event[eventType.field]) || 0}</td>`).join('')}
-                </tr>`;
-                tableBody.innerHTML += row;
+                eventTypesMap.forEach(eventType => {
+                    if (event[eventType.field] !== undefined && parseFloat(event[eventType.field]) > 0) {
+                        headers.add(eventType.name);
+                    }
+                });
             });
+
+            headers.forEach(header => {
+                tableHTML += `<th>${header} Emissions</th>`;
+            });
+            tableHTML += '</tr></thead><tbody>';
+
+            // Create table rows
+            allEventsEmissions.forEach(event => {
+                tableHTML += '<tr>';
+                tableHTML += `<td>${event.activity}</td>`;
+                headers.forEach(header => {
+                    const eventType = eventTypesMap.find(type => type.name === header);
+                    const value = event[eventType.field] ? parseFloat(event[eventType.field]).toFixed(2) > 0 && parseFloat(event[eventType.field]).toFixed(2) : '';
+                    tableHTML += `<td>${value || '-'}</td>`;
+                });
+                tableHTML += '</tr>';
+            });
+
+            tableHTML += '</tbody></table>';
+
+            // Output the table to the div with id 'tableContainer'
+            document.getElementById('tableContainer').innerHTML = tableHTML;
+
         }
     </script>
 </head>
 
 <body>
     <h4>Dear <%= name %>,</h4>
-    <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated from your
+    <!-- <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated from your
         <strong>
             <%= activityName %>
-        </strong> activity. And we are pleased to provide you with a simple analytics report.</p>
+        </strong> activity. And we are pleased to provide you with a simple analytics report.
+    </p> -->
+    <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated from your
+        marketing activity. And we are pleased to provide you with a simple analytics report.</p>
 
     <!-- <p>We're pleased to provide you with the analytics report, comparing the emissions associated with the mentioned activity measured in two different time stamps.</p> -->
     <h2 class="chart-title">Marketing Activity Emissions Comparison</h2>
 
     <div id="chartContainer" style="height: 400px; width: 90%; margin: auto;"></div>
 
-    <!-- <div class="table-container">
-        <table style="width: 90%; margin: auto; margin-top: 30px; border-collapse: collapse;" border="1">
-            <thead>
-                <tr id="table-header"></tr>
-            </thead>
-            <tbody id="table-body"></tbody>
-        </table>
-    </div> -->
+    <div id="tableContainer" class="table-container"></div>
 
     <p style="margin-top: 30px;">We deeply value your commitment to sustainability and appreciate your proactive
         approach in understanding and mitigating your environmental impact.</p>

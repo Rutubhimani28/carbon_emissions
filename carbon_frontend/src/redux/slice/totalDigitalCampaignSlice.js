@@ -30,8 +30,8 @@ const digitalCampaignSlice = createSlice({
             totalEmission: 0
         }),
         setDigitalCampaignAllData: (state, action) => {
-            state.data = action.payload.data; 
-            state.totalEmission = action.payload.totalEmission; 
+            state.data = action?.payload?.data;
+            state.totalEmission = action?.payload?.totalEmission;
         },
     },
 });

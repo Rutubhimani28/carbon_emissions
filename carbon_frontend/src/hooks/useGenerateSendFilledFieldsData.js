@@ -62,7 +62,8 @@ const UseGenerateSendFilledFieldsData = () => {
                 virtualEventTotalEmission,
                 prEventTotalEmission,
                 digitalCampaignTotalEmission,
-                activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('DD/MM/YYYY hh:mm A')}`,
+                activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('DD/MM/YYYY hh:mm')}`,
+                // activity: `${event?.activityName} - ${dayjs(event?.dateTime).format('DD/MM/YYYY hh:mm')}`,
                 eventId: event?._id,
             }
         );
@@ -163,7 +164,8 @@ const UseGenerateSendFilledFieldsData = () => {
         returnObj.totalTonCo2Two = (dataTwo?.grandTotal / 1000).toFixed(2) || 0;
         returnObj.eveydolarCo2Two = (dataTwo?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
         returnObj.resultTableDataTwo = resultTableData?.data?.find(item => item.from === "virtualEvent");
-        returnObj.attachmentPdfNameTwo = `Virtual Event- ${toolFormData?.activityName}`;
+        // returnObj.attachmentPdfNameTwo = `Virtual Event- ${toolFormData?.activityName}`;
+        returnObj.attachmentPdfNameTwo = `Outdoor Marketing- ${toolFormData?.activityName}`;
     }
 
     // pr-event
@@ -201,7 +203,7 @@ const UseGenerateSendFilledFieldsData = () => {
     // send graph data to genearet pdf and send to mail
     const addEmailForGraph = async (eventDataId) => {
         setIsGraphLoading(true);
-        const currentEventEmissions = allEventsEmissions?.filter((event) => event?.eventId=== eventDataId);
+        const currentEventEmissions = allEventsEmissions?.filter((event) => event?.eventId === eventDataId);
         try {
             const payload = {
                 allEventsEmissions: currentEventEmissions,
