@@ -20,7 +20,6 @@ const PrAgency = (props) => {
     const resultTableData = useSelector(state => state.resultTableDataDetails);
     const eventsData = useEventData();
 
-
     const initialValues = {
         meetingRoomArea: '',
         meetingDuration: '',
