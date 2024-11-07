@@ -8,6 +8,7 @@ import { useTheme } from '@mui/material/styles';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
 import { addResultTableData, deleteResTabDgCampaignData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import Phone from '../../assets/phone2.png';
+import podcastIcon from '../../assets/podcastIcon.png';
 import { IconDiv } from '../../components/IconDiv';
 import useEventData from '../../hooks/useEventData';
 
@@ -43,7 +44,14 @@ const DigitalCampaign = (props) => {
         emailEmissionTwo: '',         // (totalAttachmentSize * emialEfTwo) / 1000
         attachmentSize: '',
         totalAttachmentSize: '',      // noOfEmails * attachmentSize
-        emissionThree: ''             // emailEmissionOne + emailEmissionTwo          // emissions
+        emissionThree: '',           // emailEmissionOne + emailEmissionTwo          // emissions
+
+        podcastSize: '',    // Podcast Size (in Mb)
+        noOfListeners: '',
+        podcastKwh: 0.00004296,
+        podcastTotal: '',        // podcastSize * podcastKwh
+        emissionNineteen: '',    // podcastTotal * noOfListeners
+
     };
 
     const formik = useFormik({
@@ -52,12 +60,12 @@ const DigitalCampaign = (props) => {
             const emissionOne = values?.totalEnergyKwh === 0 ? 0 : Number(values?.totalEnergyKwh * 0.716).toFixed(2);
             const emissionTwo = values?.videoEnergy === 0 || values?.impressionsTwo === 0 ? 0 : Number((Number(values?.videoEnergy) * Number(values?.impressionsTwo) * 0.716)).toFixed(2)
             const emissionThree = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2)
-
+            const emissionNineteen = values?.podcastTotal === 0 || values?.noOfListeners === 0 ? 0 : Number(Number(values?.podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
 
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
             if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
-
+            if (emissionNineteen > 0) formik.setFieldValue('emissionNineteen', emissionNineteen);
             const data = [
                 {
                     type: 'Image',
@@ -87,6 +95,14 @@ const DigitalCampaign = (props) => {
                     attachmentSize: values?.attachmentSize,
                     totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
                     emission: emissionThree > 0 ? emissionThree : '',
+                },
+                {
+                    name: 'Podcast',
+                    podcastSize: values?.podcastSize,
+                    noOfListeners: values?.noOfListeners,
+                    podcastKwh: values?.podcastKwh,
+                    podcastTotal: values?.podcastTotal,
+                    emission: emissionNineteen > 0 ? emissionNineteen : '',
                 },
             ];
 
@@ -137,6 +153,21 @@ const DigitalCampaign = (props) => {
                     },
                     scope: 1
                 },
+                {
+                    subType: "Podcast",
+                    subTypeData: {
+                        th: ["", "Podcast Size (in Mb)", "No of Listeners", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Podcast",
+                                podcastSize: values?.podcastSize,
+                                noOfListeners: values?.noOfListeners,
+                                emissions: emissionNineteen > 0 ? emissionNineteen : '',
+                            }
+                        ]
+                    },
+                    scope: 3
+                },
             ];
 
             dispatch(addCampaignData({ data }));
@@ -161,7 +192,7 @@ const DigitalCampaign = (props) => {
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
             if (updateResultTableDatasToDb.rejected.match(resultAction)) {
                 console.error('Failed to update data:', resultAction.payload);
-            } 
+            }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
             if (addResultTableDatasToDb.rejected.match(resultAction)) {
@@ -172,6 +203,7 @@ const DigitalCampaign = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
+            console.log(allData, "allData")
             formik.setFieldValue('imgSize', allData[0]?.imgSize);
             formik.setFieldValue('uploadEnergy', allData[0]?.uploadEnergy);
             formik.setFieldValue('totalEnergy', allData[0]?.totalEnergy);
@@ -194,8 +226,16 @@ const DigitalCampaign = (props) => {
             formik.setFieldValue('attachmentSize', allData[2]?.attachmentSize);
             formik.setFieldValue('totalAttachmentSize', allData[2]?.totalAttachmentSize);
             formik.setFieldValue('emissionThree', allData[2]?.emission);
+
+            formik.setFieldValue('podcastSize', allData[3]?.podcastSize);
+            formik.setFieldValue('noOfListeners', allData[3]?.noOfListeners);
+            formik.setFieldValue('podcastKwh', allData[3]?.podcastKwh);
+            formik.setFieldValue('podcastTotal', allData[3]?.podcastTotal);
+            formik.setFieldValue('emissionNineteen', allData[3]?.emission);
         }
     }, [value]);
+
+    console.log(values)
 
     return (
         <div>
@@ -378,6 +418,58 @@ const DigitalCampaign = (props) => {
                                             variant="outlined"
                                             fullWidth
                                             value={values?.emissionThree}
+                                            onChange={formik.handleChange}
+                                            sx={{ marginTop: 2 }}
+                                        />
+                                    </CardContent>
+                                </Card>
+                                <Card
+                                    sx={{
+                                        width: 260,
+                                        maxWidth: '100%',
+                                        boxShadow: 'lg',
+                                        marginY: '16px'
+                                    }}
+                                >
+                                    <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                        <img src={podcastIcon} alt="tv" style={{ width: "55px", height: '55px', margin: "auto" }} />
+                                        <Typography variant="h6" sx={{ marginY: 1 }}>Podcast</Typography>
+                                        <TextField size='small' type="number" name='podcastSize' value={values?.podcastSize}
+                                            label="Podcast Size (in Mb)"
+                                            variant="outlined"
+                                            fullWidth
+                                            onChange={(e) => {
+                                                const podcastTotal = e.target.value * 0.00004296
+                                                console.log("e.target.value", e.target.value)
+                                                console.log("values?.podcastKwh", values?.podcastKwh)
+                                                const emissionNineteen = Number(Number(podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
+                                                formik.setFieldValue("podcastSize", Number(e.target.value));
+                                                formik.setFieldValue("podcastTotal", podcastTotal);
+                                                formik.setFieldValue("emissionNineteen", emissionNineteen);
+                                                formik.handleSubmit();
+                                            }}
+                                            sx={{ marginTop: 2 }}
+                                            inputProps={{ style: { color: 'black' } }}
+                                        />
+                                        <TextField size='small' type="number" name={'noOfListeners'} value={values?.noOfListeners}
+                                            label="No of Listeners"
+                                            variant="outlined"
+                                            fullWidth
+                                            onChange={(e) => {
+                                                const emissionNineteen = Number(Number(values?.podcastTotal) * Number(e.target.value)).toFixed(2);
+                                                formik.setFieldValue("noOfListeners", Number(e.target.value));
+                                                formik.setFieldValue("emissionNineteen", emissionNineteen);
+                                                formik.handleSubmit();
+                                            }}
+                                            sx={{ marginTop: 2 }}
+                                            inputProps={{ style: { color: 'black' } }}
+                                        />
+                                        <TextField size='small' type="number" disabled
+                                            label="Emissions"
+                                            variant="outlined"
+                                            fullWidth
+                                            name={'emissionNineteen'}
+                                            value={values?.emissionNineteen}
                                             onChange={formik.handleChange}
                                             sx={{ marginTop: 2 }}
                                         />

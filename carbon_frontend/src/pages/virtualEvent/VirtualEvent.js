@@ -614,7 +614,7 @@ const VirtualEvent = (props) => {
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
             if (updateResultTableDatasToDb.rejected.match(resultAction)) {
                 console.error('Failed to update data:', resultAction.payload);
-            } 
+            }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
             if (addResultTableDatasToDb.rejected.match(resultAction)) {
@@ -1010,7 +1010,7 @@ const VirtualEvent = (props) => {
                                     />
                                 </CardContent>
                             </Card>
-                            <Card
+                            {/* <Card
                                 sx={{
                                     width: 260,
                                     maxWidth: '100%',
@@ -1059,7 +1059,7 @@ const VirtualEvent = (props) => {
                                         sx={{ marginTop: 2 }}
                                     />
                                 </CardContent>
-                            </Card>
+                            </Card> */}
                         </Box>
 
                         <Box className="mb-4">

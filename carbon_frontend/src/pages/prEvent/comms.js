@@ -251,12 +251,12 @@ const Comms = (props) => {
             th: ["", "No. of Pages", "Emissions"],
             td: [
               {
-                cmType: "Printing a Coloured Brochure",
+                cmType: "Coloured Brochure",
                 noOfPages: values?.colouredBrochurePage,
                 emissions: emissionSix > 0 ? emissionSix : ''
               },
               {
-                cmType: "A4 Size (75GSM)",
+                cmType: "Black & White",
                 noOfPages: values?.a4Size75Gsm,
                 emissions: emissionSeven > 0 ? emissionSeven : ''
               },
@@ -714,7 +714,7 @@ const Comms = (props) => {
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
-                  Printing a Coloured Brochure
+                  Coloured Brochure
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
@@ -737,7 +737,7 @@ const Comms = (props) => {
                 <Grid item xs={12} sm={12} md={12} m={0.5} />
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
-                  A4 Size (75GSM)
+                  Black & White
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>

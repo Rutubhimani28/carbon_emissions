@@ -441,7 +441,7 @@ const MyEventSelector = () => {
                 }
             );
         });
-        
+
         const payload = {
             allEventsEmissions,
             name: userData?.cnctPerson,
@@ -536,7 +536,7 @@ const MyEventSelector = () => {
         const fetchUsers = async () => {
             // try {
             const res = await apiget('api/eventData/events-users-list');
-            setPreviousAllAccounts(res.data?.data);
+            setPreviousAllAccounts(res?.data?.data);
             // } catch (error) {
             //     console.error("--- addEmail error ", error);
             // }
@@ -624,7 +624,7 @@ const MyEventSelector = () => {
                                 onChange={selectedOption => {
                                     formik.setFieldValue('selectedAccount', selectedOption);
                                     const selectedUserEvents = data?.filter((event) => event?.createdById === selectedOption?.value);
-                                                                        const filterdeEvents = selectedUserEvents?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${item?.dateTime}` }));
+                                    const filterdeEvents = selectedUserEvents?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${item?.dateTime}` }));
                                     // const filterdeEvents = selectedUserEvents?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm')}` }));
                                     setselectedAccountPreviousEvents(filterdeEvents || []);
                                     setFilteredTableData(selectedUserEvents);

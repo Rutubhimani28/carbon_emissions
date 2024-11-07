@@ -349,6 +349,7 @@ const resultTableDataSlice = createSlice({
                                         { subType: "Social Media", scope: 3 },
                                         { subType: "", scope: 3 },
                                         { subType: "Email / Newsletter", scope: 1 },
+                                        { subType: "Podcast", scope: 3 },
                                     ]
                                 };
                             }
@@ -538,7 +539,7 @@ const resultTableDataSlice = createSlice({
             .addCase(addResultTableDatasToDb.fulfilled, (state, action) => {
                 state.isLoading = false;
                 // state.data = action.payload;
-                state.eventDataId = action.payload._id
+                state.eventDataId = action?.payload?._id
                 state.error = "";
             })
             .addCase(addResultTableDatasToDb.rejected, (state, action) => {

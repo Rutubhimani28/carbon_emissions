@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
     <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
@@ -49,131 +49,159 @@
             background-color: #f4f4f4;
             font-weight: bold;
         }
+
+        #chartContainer .canvasjs-chart-credit {
+            display: none;
+        }
+
+        .chart-title {
+            text-decoration: underline;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
     </style>
 
     <script type="text/javascript">
         window.onload = function () {
-            // Sample data from allEventsEmissions
+            const allEventsEmissions = <% - JSON.stringify(allEventsEmissions) %>;
             // const allEventsEmissions = [
             //     {
             //         f2fEventTotalEmission: "4382.00",
-            //         virtualEventTotalEmission: "25.00",
+            //         // virtualEventTotalEmission: "25.00",
             //         prEventTotalEmission: "20405.47",
-            //         digitalCampaignTotalEmission: "12434.03",
+            //         digitalCampaignTotalEmission: "22434.03",
             //         activity: "A1 - 2024-09-30",
             //     },
             //     {
             //         f2fEventTotalEmission: "29140.31",
-            //         virtualEventTotalEmission: "234.00",
-            //         prEventTotalEmission: "400.00",
-            //         digitalCampaignTotalEmission: "5000.00",
+            //         // virtualEventTotalEmission: "234.00",
+            //         // prEventTotalEmission: "2300.00",
+            //         digitalCampaignTotalEmission: "3000.00",
             //         activity: "A2 - 2024-10-02",
             //     },
             // ];
 
-            const allEventsEmissions = <%- JSON.stringify(allEventsEmissions) %>;
+            const eventTypesMap = [
+                { name: "F2F Event", color: "rgb(31, 158, 109)", field: "f2fEventTotalEmission" },
+                { name: "Outbound Marketing", color: "#ACE1AF", field: "virtualEventTotalEmission" },
+                { name: "PR Event", color: "#D0F0C0", field: "prEventTotalEmission" },
+                { name: "Digital Campaign", color: "rgb(5, 71, 35)", field: "digitalCampaignTotalEmission" }
+            ];
 
-                const eventTypes = [
-                    { name: "F2F Event", color: "rgb(31 158 109)" },
-                    { name: "Outbound Marketing", color: "#ACE1AF" },
-                    { name: "PR Event", color: "#D0F0C0" },
-                    { name: "Digital Campaign", color: "rgb(5, 71, 35)" }
-                ];
+            const eventTypes = [];
+            eventTypesMap.forEach(eventType => {
+                const exists = allEventsEmissions.some(event => event[eventType.field] !== undefined);
+                if (exists) {
+                    eventTypes.push(eventType);
+                }
+            });
 
-            const dataSeries = eventTypes.map(eventType => {
+            const dataSeries = eventTypesMap.map(eventType => {
                 return {
                     type: "column",
                     name: eventType.name,
-                    color: eventType.color,     
-                    showInLegend: true,         // Enable legend for this series
+                    color: eventType.color,
+                    showInLegend: true,
                     legendText: eventType.name,
                     dataPoints: allEventsEmissions.map(event => {
-                        // Get the corresponding emission value based on event type
-                        let value;
-                        switch (eventType.name) {
-                            case "F2F Event":
-                                vaEvent Emissionslue = parseFloat(event.f2fEventTotalEmission);
-                                break;
-                            case "Virtual Event":
-                                value = parseFloat(event.virtualEventTotalEmission);
-                                break;
-                            case "PR Event":
-                                value = parseFloat(event.prEventTotalEmission);
-                                break;
-                            case "Digital Campaign":
-                                value = parseFloat(event.digitalCampaignTotalEmission);
-                                break;
-                        }
+                        const value = parseFloat(event[eventType.field]) || 0;
                         return {
-                            label: event.activity.split(" - ")[0],  
+                            label: event.activity,
                             y: value,
+                            indexLabel: value > 0 ? value.toFixed(2) : "", // Display the label inside the bar
+                            indexLabelPlacement: "inside",                // Position label inside the bar
+                            indexLabelFontColor: "black",                 // Color of the label
                             toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(2)}`
                         };
                     })
                 };
-            });
+            }).filter(series =>
+                series.dataPoints.some(point => point.y > 0)
+            );
 
             var chart = new CanvasJS.Chart("chartContainer", {
-                title: {
-                    text: " Comparison",
-                    fontSize: 30,
-                    margin: 30
-                },
                 axisY: {
-                    title: "Total Emissions (kgCO2e)",
+                    title: "Total Emissions (kgCO₂e)",
                     labelFontSize: 20,
                     labelFontColor: "dimGrey"
                 },
                 axisX: {
-                    title: "Activities",
-                    labelAngle: -30
+                    // labelAngle: -30
                 },
                 data: dataSeries,
                 legend: {
                     cursor: "pointer",
-                    horizontalAlign: "center", // Aligns the legend at the center
-                    verticalAlign: "top",      // Positions the legend at the top
-                    fontSize: 16,              // Font size for the legend
+                    horizontalAlign: "center",
+                    verticalAlign: "top",
+                    fontSize: 10,
                     margin: 20
                 },
             });
 
             chart.render();
+
+            let tableHTML = '<table><thead><tr><th>Activity</th>';
+            const headers = new Set();
+            allEventsEmissions.forEach(event => {
+                eventTypesMap.forEach(eventType => {
+                    if (event[eventType.field] !== undefined && parseFloat(event[eventType.field]) > 0) {
+                        headers.add(eventType.name);
+                    }
+                });
+            });
+
+            headers.forEach(header => {
+                tableHTML += `<th>${header} Emissions</th>`;
+            });
+            tableHTML += '</tr></thead><tbody>';
+
+            allEventsEmissions.forEach(event => {
+                tableHTML += '<tr>';
+                tableHTML += `<td>${event.activity}</td>`;
+                headers.forEach(header => {
+                    const eventType = eventTypesMap.find(type => type.name === header);
+                    const value = event[eventType.field] ? parseFloat(event[eventType.field]).toFixed(2) > 0 && parseFloat(event[eventType.field]).toFixed(2) : '';
+                    tableHTML += `<td>${value || '-'}</td>`;
+                });
+                tableHTML += '</tr>';
+            });
+
+            tableHTML += '</tbody></table>';
+            document.getElementById('tableContainer').innerHTML = tableHTML;
         }
     </script>
 </head>
-<body>
-    <div id="chartContainer" style="height: 400px; width: 90%; margin: auto;"></div>
-    <table style="width: 90%; margin: auto; margin-top: 30px; border-collapse: collapse;" border="1">
-        <thead>
-            <tr>
-                <th>Activity</th>
-                <th>F2F Event Emission</th>
-                <th>Virtual Event Emission</th>
-                <th>PR Event Emission</th>
-                <th>Digital Campaign Emission</th>
-            </tr>
-        </thead>
-        <tbody>
-            <script>
-                const allEventsEmissions = <%- JSON.stringify(allEventsEmissions) %>;
 
-                allEventsEmissions.forEach(event => {
-                    document.write(`
-                        <tr>
-                            <td>${event.activity}</td>
-                            <td>${event.f2fEventTotalEmission || 0}</td>
-                            <td>${event.virtualEventTotalEmission || 0}</td>
-                            <td>${event.prEventTotalEmission || 0}</td>
-                            <td>${event.digitalCampaignTotalEmission || 0}</td>
-                        </tr>
-                    `);
-                });
-            </script>
-        </tbody>
-    </table>
+<body>
+    <h4>Dear <%= name %>,</h4>
+    <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated by
+        your <strong>
+            <%= activityName %>
+        </strong> activity</p>
+    <p>We are pleased to provide you with the carbon footprint report, which details the emissions associated with the
+        mentioned activity</p>
+    <h2 class="chart-title">Marketing Activity Emissions Comparison</h2>
+
+    <div id="chartContainer" style="height: 400px; width: 90%; margin: auto;"></div>
+    <!-- <div id="tableContainer" class="table-container"></div> -->
+
+    <p style="margin-top: 30px;">We deeply value your commitment to sustainability and appreciate your proactive
+        approach in understanding and mitigating your environmental impact.</p>
+    <p>If you have any questions or need further assistance on how to reduce the carbon emissions from your activity,
+        please contact us at <a href="mailto:info@sirat.earth">info@sirat.earth</a>.</p>
+    <br />
+    <p>Best regards,</p>
+    <p style="margin-bottom:0; font-weight: bold;">Team Sirāt</p>
+
 </body>
-</html> -->
+
+</html>
+
+
+
+
+<!-- 
 
 <!DOCTYPE HTML>
 <html>
@@ -242,7 +270,7 @@
 
     <script type="text/javascript">
         window.onload = function () {
-            const allEventsEmissions = <%- JSON.stringify(allEventsEmissions) %>;
+            const allEventsEmissions = <% - JSON.stringify(allEventsEmissions) %>;
 
             // const allEventsEmissions = [
             //     {
@@ -389,15 +417,13 @@
 
 <body>
     <h4>Dear <%= name %>,</h4>
-    <!-- <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated from your
-        <strong>
-            <%= activityName %>
-        </strong> activity. And we are pleased to provide you with a simple analytics report.
-    </p> -->
-    <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated from your
-        marketing activity. And we are pleased to provide you with a simple analytics report.</p>
 
-    <!-- <p>We're pleased to provide you with the analytics report, comparing the emissions associated with the mentioned activity measured in two different time stamps.</p> -->
+    <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated by
+        your <strong>
+            <%= activityName %>
+        </strong> activity</p>
+    <p>We are pleased to provide you with the carbon footprint report, which details the emissions associated with the
+        mentioned activity</p>
     <h2 class="chart-title">Marketing Activity Emissions Comparison</h2>
 
     <div id="chartContainer" style="height: 400px; width: 90%; margin: auto;"></div>
@@ -415,4 +441,4 @@
 </body>
 
 
-</html>
+</html> -->
