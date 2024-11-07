@@ -612,7 +612,9 @@ const PrAgency = (props) => {
                                     Branding
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12} sm={12} md={6}>
+                            <Grid item xs={12} sm={1} md={1} />
+
+                            <Grid item xs={12} sm={12} md={5}>
                                 <Box>
                                     <div className="table-responsive">
                                         <table className="table-custom-inpt-field">
@@ -691,7 +693,7 @@ const PrAgency = (props) => {
                                     </div>
                                 </Box>
                             </Grid>
-                            <Grid item xs={12} sm={12} md={6}>
+                            <Grid item xs={12} sm={12} md={5}>
                                 <Box>
                                     <div className="table-responsive">
                                         <table className="table-custom-inpt-field">
@@ -779,6 +781,9 @@ const PrAgency = (props) => {
                                     </div>
                                 </Box>
                             </Grid>
+                            <Grid item xs={12} sm={1} md={1} />
+                            <Grid item xs={12} sm={3} md={3.5} />
+
                             {/* <Grid item xs={12} sm={12} md={5} display={'flex'} justifyContent={'center'} className='mx-auto'>
                                 <Box>
                                     <div className='table-responsive'>
@@ -893,13 +898,13 @@ const PrAgency = (props) => {
                                 </Box>
                             </Grid> */}
 
-                            <Grid item xs={12} sm={12} md={7} display={'flex'} justifyContent={'center'} className='mx-auto'>
+                            <Grid item xs={12} sm={12} md={5} >
                                 <Box>
                                     <div className='table-responsive'>
                                         <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '>Transportation</Typography>
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                <th className='' width="40%">Model of Transport</th>
+                                                <th className='' width="23%">Model of Transport</th>
                                                 <th className='ps-3' width="30%">No of Kms</th>
                                                 <th className='ps-2' width="30%">Emissions</th>
                                             </tr>
@@ -959,6 +964,7 @@ const PrAgency = (props) => {
                                     </div>
                                 </Box>
                             </Grid>
+                            <Grid item xs={12} sm={3} md={3.5} />
 
                             {/* <Grid item xs={12} sm={6} md={6} display={'flex'} justifyContent={'center'}>
                                 <Box>
