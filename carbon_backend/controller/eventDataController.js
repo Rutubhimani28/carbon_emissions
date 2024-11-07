@@ -158,7 +158,7 @@ const getEventsEmissionsRecords = async (req, res) => {
             const digitalCampaignEmission = event?.digitalCampaignAllData?.totalEmission || 0;
             const digitalCampaignTotalEmission = Number(digitalCampaignEmission);
 
-            console.log("=== createdBy ", event?.createdBy);
+            // console.log("=== createdBy ", event?.createdBy);
 
             return {
                 // ...event.toObject(), // Convert Mongoose Document to plain object
