@@ -130,7 +130,7 @@ const Home = () => {
     });
 
     const AddData = (values) => {
-                setIsLoading(true);
+        setIsLoading(true);
         dispatch(addToolData(values));
         setIsLoading(false);
     };
@@ -147,7 +147,7 @@ const Home = () => {
         formik.setFieldValue("dateTime", null);
         setIsDisabledField(e.target.value === "retrieve");
         // setActionChoiceState(e.target.value);
-        
+
         if (e.target.value === 'retrieve') {
             formik.setFieldValue("previousEvent", null);
 
@@ -270,7 +270,7 @@ const Home = () => {
         //         console.error('Failed to save data:', resultAction.payload);
         //     }
         // }
-        
+
         await formik.validateForm();
 
         if (!resultTableData.eventDataId && formik.isValid) {
@@ -721,7 +721,7 @@ const Home = () => {
                             </Box>
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/virtual-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
-                                <img src={virtualEvent} alt="Outdoor Marketing" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
+                                <img src={outbound} alt="Outdoor Marketing" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
                                 <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Outdoor Marketing</Typography>
                             </Box>
 
