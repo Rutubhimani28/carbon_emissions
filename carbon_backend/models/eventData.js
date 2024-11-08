@@ -52,6 +52,5 @@ const EventDataSchema = new mongoose.Schema(
         timestamps: true
     },);
 
-
 // Create a model based on the schema
 export default mongoose.model('EventData', EventDataSchema, 'EventData');
