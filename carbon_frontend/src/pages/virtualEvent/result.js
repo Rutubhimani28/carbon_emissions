@@ -70,6 +70,8 @@ const Result = ({ value }) => {
         "grandTotal": Number(total).toFixed(2)
     };
 
+    const outdoorBilboardEmission = Number(data.totalPolyethylene) + Number(data?.totalPVC) + Number(allVirtualEventData?.data?.[0]?.data?.[19]?.emission) || 0;
+
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
     const resultTableData = useSelector(state => state.resultTableDataDetails);
@@ -163,16 +165,19 @@ const Result = ({ value }) => {
             // sentenceParts.push(`Magazine ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e.`);
             sentenceParts.push(`magazine with ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfPages} pages and ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfCopiesTwo} copies generated ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgco2e, `);
         }
-        if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
-            // sentenceParts.push(`Podcast ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e.`);
-            sentenceParts.push(`podcast of ${allVirtualEventData?.data?.[0]?.data?.[18]?.podcastSize}mb with ${allVirtualEventData?.data?.[0]?.data?.[18]?.noOfListeners} listeners generated ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgco2e. `);
-        }
+        // if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
+        //     // sentenceParts.push(`Podcast ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e.`);
+        //     sentenceParts.push(`podcast of ${allVirtualEventData?.data?.[0]?.data?.[18]?.podcastSize}mb with ${allVirtualEventData?.data?.[0]?.data?.[18]?.noOfListeners} listeners generated ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgco2e. `);
+        // }
         // if (allVirtualEventData?.data?.[0]?.data?.[15]?.emission) {
         //     sentenceParts.push(`Polyethylene ${allVirtualEventData?.data?.[0]?.data?.[15]?.emission} kgCO2e.`);
         // }
-        if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
-            // sentenceParts.push(`PVC banner ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgCO2e.`);
-            sentenceParts.push(`and PVC banner generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e,`);
+        // if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
+        //     // sentenceParts.push(`PVC banner ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgCO2e.`);
+        //     sentenceParts.push(`and PVC banner generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e,`);
+        // }
+        if (outdoorBilboardEmission) {
+            sentenceParts.push(`and outdoor billboard generated ${outdoorBilboardEmission} kgco2e. `);
         }
         if (totalCarbonFootprint) {
             // sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);

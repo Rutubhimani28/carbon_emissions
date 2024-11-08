@@ -89,6 +89,10 @@ const Result = ({ value }) => {
     const emailEmission = allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0;
     const imageEmission = allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission || 0;
     const videoEmission = allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission || 0;
+    const podcastEmission = allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0;
+    const podcastNoOfListeners = allDigitalCampaignData?.data?.[0]?.data?.[3]?.noOfListeners || 0;
+    const podcastSize = allDigitalCampaignData?.data?.[0]?.data?.[3]?.podcastSize || 0;
+
     const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
     const totalCarbonFootprint = `${Number(total).toFixed(2)} kgCO2e`;
     const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
@@ -106,6 +110,9 @@ const Result = ({ value }) => {
         }
         if (emailEmission) {
             sentenceParts.push(`and email campaigns generating ${emailEmission} kgCO2e.`);
+        }
+        if (podcastEmission) {
+            sentenceParts.push(`and podcast of ${podcastSize}mb with ${podcastNoOfListeners} listeners generated ${podcastEmission} kgCO2e.`);
         }
 
         // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';

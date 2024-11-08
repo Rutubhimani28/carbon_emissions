@@ -1063,7 +1063,7 @@ const VirtualEvent = (props) => {
                         </Box>
 
                         <Box className="mb-4">
-                            <Typography variant="h4" className="text-center text-white mt-4 mb-2">Outdoor Banner</Typography>
+                            <Typography variant="h4" className="text-center text-white mt-4 mb-2">Outdoor Billboard</Typography>
                             <Grid item xs={12} sm={12} md={6}>
                                 <Box>
                                     <div className="table-responsive">
