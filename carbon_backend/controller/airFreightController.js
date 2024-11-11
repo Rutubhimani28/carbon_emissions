@@ -69,4 +69,4 @@ const deleteMany = async (req, res) => {
     }
 };
 
-export default { index, add, addMany, edit, deleteData, deleteMany }
+export default { index, add, addMany, edit, deleteData, deleteMany };
