@@ -75,12 +75,13 @@ const UseGenerateSendFilledFieldsData = () => {
         country: toolFormData?.country || '',
         dateTime: toolFormData?.dateTime || '',
         isAttachment: true,
-        subject: `${toolFormData?.activityName} activity all events emissions data`,
-        receiver: userData?.loginId,
+        // subject: `${toolFormData?.activityName} activity all events emissions data`,
+        subject: `${toolFormData?.activityName}- Data`,
+        receiver: [userData?.loginId, 'kevalrabadiya91prolink@gmail.com'],
         sender: userid,
         name: toolFormData?.name,
         // receiver: values?.emails,
-        // emailBodyTemplateName: "f2f_event_grand_total_result_Template",
+        emailBodyTemplateName: "retrieve_data_ebody_Template",
         // chatSuggestion
     };
 
@@ -144,13 +145,16 @@ const UseGenerateSendFilledFieldsData = () => {
 
     const dataFour = {
         "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(2),
-        "grandTotal": Number(total4).toFixed(2)
+        "grandTotal": Number(total4).toFixed(2),
+        socialMediaEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission).toFixed(2) || 0 + Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission).toFixed(2) || 0,
+        emailEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission).toFixed(2) || 0,
+        podcastEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission).toFixed(2) || 0
     };
 
     // f2f-event
     if (total1 > 0) {
         returnObj.dataOne = dataOne;
-        returnObj.attachmentTemplateNameOne = "f2f_event_filled_fields_Template";
+        returnObj.attachmentTemplateNameOne = "f2f_event__retrieve_data_filled_fields_Template";
         returnObj.totalTonCo2One = (dataOne?.grandTotal / 1000).toFixed(2) || 0;
         returnObj.eveydolarCo2One = (dataOne?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
         returnObj.resultTableDataOne = resultTableData?.data?.find(item => item.from === "f2fEvent");
@@ -160,7 +164,7 @@ const UseGenerateSendFilledFieldsData = () => {
     // virtual-event
     if (total2 > 0) {
         returnObj.dataTwo = dataTwo;
-        returnObj.attachmentTemplateNameTwo = "virtual_event_filled_fields_Template";
+        returnObj.attachmentTemplateNameTwo = "virtual_event_retrieve_data_filled_fields_Template";
         returnObj.totalTonCo2Two = (dataTwo?.grandTotal / 1000).toFixed(2) || 0;
         returnObj.eveydolarCo2Two = (dataTwo?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
         returnObj.resultTableDataTwo = resultTableData?.data?.find(item => item.from === "virtualEvent");
@@ -171,7 +175,7 @@ const UseGenerateSendFilledFieldsData = () => {
     // pr-event
     if (total3 > 0) {
         returnObj.dataThree = dataThree;
-        returnObj.attachmentTemplateNameThree = "pr_event_filled_fields_Template";
+        returnObj.attachmentTemplateNameThree = "pr_event_retrieve_data_filled_fields_Template";
         returnObj.totalTonCo2Three = (dataThree?.grandTotal / 1000).toFixed(2) || 0;
         returnObj.eveydolarCo2Three = (dataThree?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
         returnObj.resultTableDataThree = resultTableData?.data?.find(item => item.from === "prEvent");
@@ -181,7 +185,7 @@ const UseGenerateSendFilledFieldsData = () => {
     // digital-campaign
     if (total4 > 0) {
         returnObj.dataFour = dataFour;
-        returnObj.attachmentTemplateNameFour = "digital_campaign_filled_fields_Template";
+        returnObj.attachmentTemplateNameFour = "digital_campaign_retrieve_data_filled_fields_Template";
         returnObj.totalTonCo2Four = (dataFour?.grandTotal / 1000).toFixed(2) || 0;
         returnObj.eveydolarCo2Four = (dataFour?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
         returnObj.resultTableDataFour = resultTableData?.data?.find(item => item.from === "digitalCampaign");
@@ -212,7 +216,7 @@ const UseGenerateSendFilledFieldsData = () => {
                 // attachmentPdfName: 'user_all_event_bar_chart'
                 attachmentPdfName: `${toolFormData?.activityName} - graph chart`,
                 name: userData?.cnctPerson,
-                subject: `${toolFormData?.activityName} - graph chart`,
+                subject: `${toolFormData?.activityName} - Retrieve Graphs`,
                 activityName: `${toolFormData?.activityName} - graph chart`,
             };
             await apipost('api/email/addGraph', payload);

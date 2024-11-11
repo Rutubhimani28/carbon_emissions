@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emissions Report</title>
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 20px 20px 20px;
+            box-sizing: border-box;
+        }
+
+        .page {
+            margin: 20px;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin: 0;
+            page-break-inside: auto;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        tbody {
+            display: table-row-group;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .sub-title {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* div {
+            page-break-inside: avoid;
+        } */
+    </style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container">
+            <h3 style="text-align: center;" class="title">
+                Activity Name: <%= activityName %>
+            </h3>
+
+            <h2>Total Carbon Footprint:</h2>
+            <table>
+                <!-- <tr>
+                <th>Digital Campaign</th>
+                <td>
+                    <%= data.totalDigitalCampaign %> kgCO<sub>2</sub>e
+                </td>
+            </tr> -->
+                <tr>
+                    <th>Social Media (Image + Video)</th>
+                    <td>
+                        <%= data.socialMediaEmission %> kgCO<sub>2</sub>e
+                    </td>
+                </tr>
+                <tr>
+                    <th>Email / Newsletter</th>
+                    <td>
+                        <%= data.emailEmission %> kgCO<sub>2</sub>e
+                    </td>
+                </tr>
+                <tr>
+                    <th>Podcast</th>
+                    <td>
+                        <%= data.podcastEmission %> kgCO<sub>2</sub>e
+                    </td>
+                </tr>
+            </table>
+
+            <h4>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
+
+            <% if (resultTableData && resultTableData.allDataOfTab) { %>
+                <% resultTableData.allDataOfTab.forEach(function(page) { %>
+                    <% if (page.tabData && page.tabData.length> 0) { %>
+                        <% if (page.tabTitle==="Digital Campaign" ) { %>
+                            <div class="page">
+                                <h3 class="title">
+                                    <%= page.tabTitle %>
+                                </h3>
+                                <% page.tabData.forEach(function(flightClass) { %>
+                                    <% if (flightClass.subTypeData && flightClass.subTypeData.td) { %>
+                                        <% if (flightClass.subTypeData.td.some(rowData=> rowData.emissions !== "")) { %>
+                                            <div class="table-container">
+                                                <% if (flightClass.subTypeData.th && flightClass.subTypeData.th.length>
+                                                    0) {
+                                                    %>
+                                                    <h5 class="sub-title">
+                                                        <%= flightClass.subType %>
+                                                    </h5>
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <% flightClass.subTypeData.th.forEach(function(header) {
+                                                                    %>
+                                                                    <th>
+                                                                        <%= header %>
+                                                                    </th>
+                                                                    <% }); %>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% flightClass.subTypeData.td.forEach(function(rowData) { %>
+                                                                <% if (rowData.emissions !=="" ) { %>
+                                                                    <tr>
+                                                                        <% if (page.tabTitle==="Digital Campaign" ) { %>
+                                                                            <td>
+                                                                                <%= rowData.dgType %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= rowData.imgSize ||
+                                                                                    rowData.noOfEmails ||
+                                                                                    rowData.videoMins ||
+                                                                                    rowData.podcastSize %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= rowData.impressions1 ||
+                                                                                    rowData.impressions2 ||
+                                                                                    rowData.attachmentSize ||
+                                                                                    rowData.noOfListeners %>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <%= rowData.emissions %>
+                                                                            </td>
+                                                                            <% } %>
+                                                                    </tr>
+                                                                    <% } %>
+                                                                        <% }); %>
+                                                        </tbody>
+                                                    </table>
+                                                    <% } %>
+                                            </div>
+                                            <% } %>
+                                                <% } %>
+                                                    <% }); %>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    <% }); %>
+                                        <% } %>
+
+                                            <h4 style="margin-top: 35px;">For every $ you spend you are generating <%=
+                                                    eveydolarCo2 %> kgCO<sub>2</sub>e</h4>
+        </div>
+</body>
+
+</html>

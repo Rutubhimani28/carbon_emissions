@@ -674,7 +674,7 @@ const Production = (props) => {
 
     const handleSaveToDb = async () => {
         const eventData = {
-           ...eventsData,
+            ...eventsData,
         };
 
         if (resultTableData.eventDataId) {
@@ -801,9 +801,9 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th  width="30%" />
-                                                    <th className="ps-2"  width="30%">Weight (Kgs)</th>
-                                                    <th className="ps-2"  width="30%">Emissions</th>
+                                                    <th width="30%" />
+                                                    <th className="ps-2" width="30%">Weight (Kgs)</th>
+                                                    <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
                                                 {fieldDataTwo &&
                                                     fieldDataTwo?.map((ite) => (
@@ -851,7 +851,7 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th  width="30%" />
+                                                    <th width="30%" />
                                                     <th className="ps-2" width="30%">Total Area (m<sup>2</sup>)</th>
                                                     <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
@@ -906,8 +906,8 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th  width="30%" />
-                                                    <th className="ps-2" width="30%">In Kgs</th>
+                                                    <th width="30%" />
+                                                    <th className="ps-2" width="30%">Weight (In kgs)</th>
                                                     <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
                                                 <tr>
@@ -1027,7 +1027,7 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th  width="30%" />
+                                                    <th width="30%" />
                                                     <th className="ps-2" width="30%">No.of A4 Units</th>
                                                     <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
@@ -1176,9 +1176,9 @@ const Production = (props) => {
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={12} sm={12} md={0.5}/>
+                                <Grid item xs={12} sm={12} md={0.5} />
                                 <Grid item xs={12} sm={12} md={11}>
-                                    <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
+                                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
                                         <Typography variant="h4" className="text-center text-white mb-4">
                                             Stage Screen
                                         </Typography>
@@ -1246,7 +1246,7 @@ const Production = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={12} md={0.5}/>
+                                <Grid item xs={12} sm={12} md={0.5} />
 
                                 {/* <Grid item xs={12} sm={12} md={6}>
                                     <Box>

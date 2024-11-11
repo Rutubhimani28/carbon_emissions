@@ -376,7 +376,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchUsesAllEventsData();
-    }, [dispatch]);
+    }, [dispatch, formik.values.actionChoice]);
 
     return (
         <>
@@ -680,7 +680,8 @@ const Home = () => {
                                         style={{ backgroundColor: '#054723', marginRight: "10px" }}
                                         disabled={formik.values?.isDisabledRetrieveButtons}
                                     >
-                                        {dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Data'}
+                                        {/* {dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading ? <CircularProgress size={27} /> : 'Retrieve Data'} */}
+                                        Retrieve Data
                                     </Button>
                                     {/* <Button
                                         id="action"
@@ -692,6 +693,28 @@ const Home = () => {
                                         {dataFromUseGenerateSendFilledFieldsData?.isGraphLoading ? <CircularProgress size={27} /> : 'Retrieve Graph'}
                                     </Button> */}
                                 </Grid>
+
+                                {
+                                    (dataFromUseGenerateSendFilledFieldsData?.isGraphLoading || dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading) && (
+                                        <Box
+                                            sx={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                left: 0,
+                                                right: 0,
+                                                bottom: 0,
+                                                // bgcolor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent background
+                                                backdropFilter: 'blur(1px)', // Blur effect
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                zIndex: 10, // Ensure it’s above other content
+                                            }}
+                                        >
+                                            <CircularProgress />
+                                        </Box>
+                                    )
+                                }
 
                                 <Grid item xs={5} sm={3} className="ps-0">
                                     {/* <Button

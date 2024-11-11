@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emissions Report</title>
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 20px 20px 20px;
+            box-sizing: border-box;
+        }
+
+        .page {
+            margin: 20px;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin: 0;
+            page-break-inside: auto;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        tbody {
+            display: table-row-group;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .sub-title {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* div {
+            page-break-inside: avoid;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3 style="text-align: center;" class="title">
+            Activity Name: <%= activityName %>
+        </h3>
+        <h2 style="font-size: 16px; font-weight: 900;">Total Carbon Footprint :</h2>
+        <table>
+            <tr>
+                <th>Comms</th>
+                <td>
+                    <%= data.totalComms %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>PR Agency</th>
+                <td>
+                    <%= data.totalPrAgency %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Hospitality</th>
+                <td>
+                    <%= data.totalHospitality %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+        </table>
+
+        <h4>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
+
+        <% if (resultTableData && resultTableData.allDataOfTab) { %>
+            <% resultTableData.allDataOfTab.forEach(function(page, pageIndex) { %>
+                <% const validTabTitles=[ "Comms" , "PR Agency" , "Hospitality" ]; %>
+                    <% if (validTabTitles.includes(page.tabTitle)) { %>
+                        <% if (page.tabData.some(flightClass=> flightClass.subTypeData && flightClass.subTypeData.td &&
+                            flightClass.subTypeData.td.some(rowData => rowData.noOfTrips !== "" && rowData.emissions !==
+                            ""))) { %>
+                            <div class="page">
+                                <h3 class="title">
+                                    <%= page.tabTitle %>
+                                </h3>
+                                <div class="d-flex justify-content-around">
+                                    <% page.tabData.forEach(function(flightClass, classIndex) { %>
+                                        <% if (flightClass.subTypeData && flightClass.subTypeData.td &&
+                                            flightClass.subTypeData.td.some(rowData=> rowData.noOfTrips !== "" &&
+                                            rowData.emissions
+                                            !== "")) { %>
+                                            <div class="table-container">
+                                                <% if (flightClass.subTypeData.th && flightClass.subTypeData.th.length>
+                                                    0) {
+                                                    %>
+                                                    <h5 class="sub-title">
+                                                        <%= flightClass.subType %>
+                                                    </h5>
+                                                    <table style="width: 100%; border: 1px solid white;">
+                                                        <thead>
+                                                            <tr>
+                                                                <% flightClass.subTypeData.th.forEach(function(header,
+                                                                    headerIndex) { %>
+                                                                    <th>
+                                                                        <%= header %>
+                                                                    </th>
+                                                                    <% }); %>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% if (page.tabTitle==="Comms" ) { %>
+                                                                <% flightClass.subTypeData.td.forEach(function(rowData,
+                                                                    rowIndex) { %>
+                                                                    <% if (rowData.noOfEmails !=="" &&
+                                                                        rowData.attachmentSize !=="" &&
+                                                                        rowData.sendingToMedia !=="" &&
+                                                                        rowData.emissions !=="" ) { %>
+                                                                        <tr>
+                                                                            <% if (rowData.cmType !=="" ) { %>
+                                                                                <td>
+                                                                                    <%= rowData.cmType %>
+                                                                                </td>
+                                                                                <% } %>
+                                                                                    <!-- <td>
+                                                                                        <%= rowData.noOfEmails ||
+                                                                                            rowData.videoSize ||
+                                                                                            rowData.imgSize %>
+                                                                                    </td> -->
+                                                                                    <% if (rowData.noOfEmails ||
+                                                                                        rowData.videoSize ||
+                                                                                        rowData.imgSize ||
+                                                                                        rowData.noOfPages ) { %>
+                                                                                        <td>
+                                                                                            <%= rowData.noOfEmails ||
+                                                                                                rowData.videoSize ||
+                                                                                                rowData.imgSize ||
+                                                                                                rowData.noOfPages %>
+                                                                                        </td>
+                                                                                        <% } %>
+
+                                                                                            <% if
+                                                                                                (rowData.attachmentSize
+                                                                                                || rowData.finalFileSize
+                                                                                                || rowData.videoMins ||
+                                                                                                rowData.impressionsOne)
+                                                                                                { %>
+                                                                                                <td>
+                                                                                                    <%= rowData.attachmentSize
+                                                                                                        ||
+                                                                                                        rowData.finalFileSize
+                                                                                                        ||
+                                                                                                        rowData.videoMins
+                                                                                                        ||
+                                                                                                        rowData.impressionsOne
+                                                                                                        %>
+                                                                                                </td>
+                                                                                                <% } %>
+                                                                                                    <% if
+                                                                                                        (rowData.sendingToMedia
+                                                                                                        ||
+                                                                                                        rowData.impressionsTwo)
+                                                                                                        { %>
+                                                                                                        <td>
+                                                                                                            <%= rowData.attachmentSize
+                                                                                                                ||
+                                                                                                                rowData.finalFileSize
+                                                                                                                ||
+                                                                                                                rowData.videoMins
+                                                                                                                ||
+                                                                                                                rowData.impressionsOne
+                                                                                                                %>
+                                                                                                        </td>
+                                                                                                        <% } %>
+                                                                                                            <td>
+                                                                                                                <%= rowData.emissions
+                                                                                                                    %>
+                                                                                                            </td>
+                                                                        </tr>
+                                                                        <% } %>
+                                                                            <% }); %>
+                                                                                <% } %>
+                                                                                    <% if (page.tabTitle==="PR Agency" )
+                                                                                        { %>
+                                                                                        <% flightClass.subTypeData.td.forEach(function(rowData,
+                                                                                            rowIndex) { %>
+                                                                                            <% if
+                                                                                                (rowData.meetingRoomArea
+                                                                                                !=="" &&
+                                                                                                rowData.meetingDuration
+                                                                                                !=="" &&
+                                                                                                rowData.emissions !==""
+                                                                                                ) { %>
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <%= rowData.prType
+                                                                                                            %>
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <%= rowData.meetingRoomArea
+                                                                                                            ||
+                                                                                                            rowData.kgs
+                                                                                                            ||
+                                                                                                            rowData.noOfPages
+                                                                                                            ||
+                                                                                                            rowData.kwh
+                                                                                                            ||
+                                                                                                            rowData.noOfKms
+                                                                                                            %>
+                                                                                                    </td>
+                                                                                                    <% if
+                                                                                                        (rowData.meetingDuration
+                                                                                                        ||
+                                                                                                        rowData.noOfDevice)
+                                                                                                        { %>
+                                                                                                        <td>
+                                                                                                            <%= rowData.meetingDuration
+                                                                                                                ||
+                                                                                                                rowData.noOfDevice
+                                                                                                                %>
+                                                                                                        </td>
+                                                                                                        <% } %>
+
+                                                                                                            <td>
+                                                                                                                <%= rowData.emissions
+                                                                                                                    %>
+                                                                                                            </td>
+                                                                                                </tr>
+                                                                                                <% } %>
+                                                                                                    <% }); %>
+                                                                                                        <% } %>
+                                                                                                            <% if
+                                                                                                                (page.tabTitle==="Hospitality"
+                                                                                                                ) { %>
+                                                                                                                <% flightClass.subTypeData.td.forEach(function(rowData,
+                                                                                                                    rowIndex)
+                                                                                                                    { %>
+                                                                                                                    <% if
+                                                                                                                        ((rowData.kgs
+                                                                                                                        !==""
+                                                                                                                        ||
+                                                                                                                        rowData.noOfPax
+                                                                                                                        !==""
+                                                                                                                        ||
+                                                                                                                        rowData.bottle
+                                                                                                                        !==""
+                                                                                                                        )
+                                                                                                                        &&
+                                                                                                                        rowData.emissions
+                                                                                                                        !==""
+                                                                                                                        )
+                                                                                                                        {
+                                                                                                                        %>
+                                                                                                                        <tr>
+                                                                                                                            <td>
+                                                                                                                                <%= rowData.hstType
+                                                                                                                                    %>
+                                                                                                                            </td>
+                                                                                                                            <td>
+                                                                                                                                <%= rowData.kgs
+                                                                                                                                    ||
+                                                                                                                                    rowData.noOfPax
+                                                                                                                                    ||
+                                                                                                                                    rowData.bottle
+                                                                                                                                    %>
+                                                                                                                            </td>
+                                                                                                                            <td>
+                                                                                                                                <%= rowData.emissions
+                                                                                                                                    %>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <% }
+                                                                                                                            %>
+                                                                                                                            <% });
+                                                                                                                                %>
+                                                                                                                                <% }
+                                                                                                                                    %>
+                                                        </tbody>
+                                                    </table>
+                                                    <% } %>
+                                            </div>
+                                            <% } %>
+                                                <% }); %>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    <% }); %>
+                                        <% } %>
+
+                                            <h4 style="margin-top: 35px;">For every $ you spend you are generating <%=
+                                                    eveydolarCo2 %> kgCO<sub>2</sub>e</h4>
+
+    </div>
+</body>
+
+</html>

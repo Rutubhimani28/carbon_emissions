@@ -160,16 +160,52 @@ export default async function sendMail({
         else {
 
             if (allEventsEmissions) {
+                // // Puppeteer only renders static HTML content, and it won’t execute JavaScript for chart generation.
+                // const attachmentsArray = [];
+                // const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
+
+                // const attachmentTemplate = await ejs.renderFile(attachmentTemplatePath, {
+                //     subject,
+                //     allEventsEmissions: allEventsEmissions,
+                //     name,
+                //     activityName
+                // });
+
+                // const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint_chart.pdf');
+                // await createPDF(attachmentTemplate, attachmentPdfFilePath);
+
+                // attachmentsArray.push(
+                //     {
+                //         filename: attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf',
+                //         path: attachmentPdfFilePath,
+                //         contentType: 'application/pdf'
+                //     }
+                // );
+
+                // mailOptions = {
+                //     from: process.env.GMAIL_FROM,
+                //     to: receiver,
+                //     subject: subject,
+                //     // html: emailBodyTemplate,
+                //     attachments: attachmentsArray
+                // };
+
                 // Puppeteer only renders static HTML content, and it won’t execute JavaScript for chart generation.
                 const attachmentsArray = [];
                 const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
+                const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`)
 
-                const attachmentTemplate = await ejs.renderFile(attachmentTemplatePath, {
-                    subject,
-                    allEventsEmissions: allEventsEmissions,
-                    name,
-                    activityName
-                });
+                const [attachmentTemplate, emailBodyTemplate] = await Promise.all([
+                    ejs.renderFile(attachmentTemplatePath, {
+                        subject,
+                        allEventsEmissions: allEventsEmissions,
+                        name,
+                        activityName
+                    }),
+                    ejs.renderFile(emailBodyTemplatePath, {
+                        name,
+                    })
+                ]);
 
                 const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint_chart.pdf');
                 await createPDF(attachmentTemplate, attachmentPdfFilePath);
@@ -186,7 +222,7 @@ export default async function sendMail({
                     from: process.env.GMAIL_FROM,
                     to: receiver,
                     subject: subject,
-                    // html: emailBodyTemplate,
+                    html: emailBodyTemplate,
                     attachments: attachmentsArray
                 };
             }
@@ -196,6 +232,12 @@ export default async function sendMail({
                 const isVirtualEvent = attachmentTemplateNameTwo ? true : false;
                 const isPrEvent = attachmentTemplateNameThree ? true : false;
                 const isDigitalcampaign = attachmentTemplateNameFour ? true : false;
+
+                const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`)
+
+                const emailBodyTemplate = await ejs.renderFile(emailBodyTemplatePath, {
+                    name,
+                });
 
                 const attachmentsArray = [];
 
@@ -315,7 +357,7 @@ export default async function sendMail({
                     from: process.env.GMAIL_FROM,
                     to: receiver,
                     subject: subject,
-                    // html: emailBodyTemplate,
+                    html: emailBodyTemplate,          // added
                     attachments: attachmentsArray
                 };
             }

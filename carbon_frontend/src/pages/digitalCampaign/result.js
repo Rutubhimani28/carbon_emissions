@@ -27,10 +27,22 @@ const Result = ({ value }) => {
     const [sc3, setSc3] = useState(0);
 
     const resultData = [
+        // {
+        //     type: 'Digital Campaign',
+        //     totalEmission: allDigitalCampaignData?.totalEmission
+        // }
         {
-            type: 'Digital Campaign',
-            totalEmission: allDigitalCampaignData?.totalEmission
-        }
+            type: 'Social Media (Image + Video)',
+            totalEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0 + Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0
+        },
+        {
+            type: 'Email / Newsletter',
+            totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0
+        },
+        {
+            type: 'Podcast',
+            totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0
+        },
     ];
 
     const data = {
@@ -194,7 +206,7 @@ const Result = ({ value }) => {
                     const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
 
                     if (page?.tabTitle === "Digital Campaign") {
-                        return ((impressions1 && imgSize) || (impressions2 && videoMins && videoSize) || (noOfEmails && attachmentSize)) && emissions;
+                        return ((impressions1 && imgSize) || (impressions2 && videoMins) || (noOfEmails && attachmentSize) || (noOfListeners && podcastSize)) && emissions;
                     }
 
                     return false;

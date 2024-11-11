@@ -99,10 +99,28 @@
 
         <h2>Total Carbon Footprint:</h2>
         <table>
-            <tr>
+            <!-- <tr>
                 <th>Digital Campaign</th>
                 <td>
                     <%= data.totalDigitalCampaign %> kgCO<sub>2</sub>e
+                </td>
+            </tr> -->
+            <tr>
+                <th>Social Media (Image + Video)</th>
+                <td>
+                    <%= data.socialMediaEmission %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Email / Newsletter</th>
+                <td>
+                    <%= data.emailEmission %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Podcast</th>
+                <td>
+                    <%= data.podcastEmission %> kgCO<sub>2</sub>e
                 </td>
             </tr>
         </table>

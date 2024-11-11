@@ -239,7 +239,7 @@ const PrAgency = (props) => {
                                 emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
                             },
                             {
-                                prType: "Paper Bags- A4 Size",
+                                prType: "Paper Bags",
                                 kgs: values?.paperBagsA4Size,
                                 emissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
                             },
@@ -249,12 +249,12 @@ const PrAgency = (props) => {
                                 emissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
                             },
                             {
-                                prType: "Jute Bags- A4 Size",
+                                prType: "Jute Bags",
                                 kgs: values?.juteBagsA4Size,
                                 emissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
                             },
                             {
-                                prType: "Cotton Bags- A4 Size",
+                                prType: "Cotton Bags",
                                 kgs: values?.cottonBagsA4Size,
                                 emissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
                             }
@@ -619,11 +619,11 @@ const PrAgency = (props) => {
                                         <table className="table-custom-inpt-field">
                                             <tr>
                                                 <th width="30%" />
-                                                <th className="ps-2" width="30%">Weight (kgs)</th>
+                                                <th className="ps-2" width="30%">No.of A4 Units</th>
                                                 <th className="ps-2" width="30%">Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className="ps-2 py-1">Paper Bags- A4 Size</td>
+                                                <td className="ps-2 py-1">Paper Bags</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField size='small' type="number" name="paperBagsA4Size"
                                                         value={formik?.values?.paperBagsA4Size}
@@ -639,7 +639,7 @@ const PrAgency = (props) => {
                                                 </td>
                                             </tr>
 
-                                            <tr>
+                                            {/* <tr>
                                                 <td className="ps-2 py-1">Paper Bags- A5 Size</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField size='small' type="number" name="paperBagsA5Size"
@@ -655,9 +655,9 @@ const PrAgency = (props) => {
                                                 <td className="ps-2 py-1">
                                                     <TextField size='small' type="number" name='paperBagsA5SizeEmission' disabled value={values?.paperBagsA5SizeEmission} onChange={formik.handleChange} />
                                                 </td>
-                                            </tr>
+                                            </tr> */}
                                             <tr>
-                                                <td className="ps-2 py-1">Jute Bags- A4 Size</td>
+                                                <td className="ps-2 py-1">Jute Bags</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField size='small' type="number" name="juteBagsA4Size"
                                                         value={formik?.values?.juteBagsA4Size}
@@ -673,7 +673,7 @@ const PrAgency = (props) => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="ps-2 py-1">Cotton Bags- A4 Size</td>
+                                                <td className="ps-2 py-1">Cotton Bags</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField size='small' type="number" name="cottonBagsA4Size"
                                                         value={formik?.values?.cottonBagsA4Size}
@@ -698,7 +698,7 @@ const PrAgency = (props) => {
                                         <table className="table-custom-inpt-field">
                                             <tr>
                                                 <th width="30%" />
-                                                <th className="ps-2" width="30%">Weight (kgs)</th>
+                                                <th className="ps-2" width="30%">Weight (In kgs)</th>
                                                 <th className="ps-2" width="30%">Emissions</th>
                                             </tr>
                                             <tr>

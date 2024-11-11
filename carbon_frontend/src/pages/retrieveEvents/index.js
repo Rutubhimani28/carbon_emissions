@@ -273,7 +273,7 @@ const MyEventSelector = () => {
             if (Number(item?.grandTotal) > 0) {
                 const obj = {
                     dataOne: dataOne[ind],
-                    attachmentTemplateNameOne: "f2f_event_filled_fields_Template",
+                    attachmentTemplateNameOne: "f2f_event_retrieve_data_filled_fields_Template",
                     totalTonCo2One: (Number(item?.grandTotal) / 1000).toFixed(2) || 0,
                     eveydolarCo2One: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(2) || 0,
                     resultTableDataOne: {
@@ -302,7 +302,7 @@ const MyEventSelector = () => {
             if (Number(item?.grandTotal) > 0) {
                 const obj = {
                     dataTwo: dataTwo[ind],
-                    attachmentTemplateNameTwo: "virtual_event_filled_fields_Template",
+                    attachmentTemplateNameTwo: "virtual_event_retrieve_data_filled_fields_Template",
                     totalTonCo2Two: (Number(item?.grandTotal) / 1000).toFixed(2) || 0,
                     eveydolarCo2Two: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(2) || 0,
                     resultTableDataTwo: {
@@ -332,7 +332,7 @@ const MyEventSelector = () => {
             if (Number(item?.grandTotal) > 0) {
                 const obj = {
                     dataThree: dataThree[ind],
-                    attachmentTemplateNameThree: "pr_event_filled_fields_Template",
+                    attachmentTemplateNameThree: "pr_event_retrieve_data_filled_fields_Template",
                     totalTonCo2Three: (Number(item?.grandTotal) / 1000).toFixed(2) || 0,
                     eveydolarCo2Three: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(2) || 0,
                     resultTableDataThree: {
@@ -361,7 +361,7 @@ const MyEventSelector = () => {
             if (Number(item?.grandTotal) > 0) {
                 const obj = {
                     dataFour: dataFour[ind],
-                    attachmentTemplateNameFour: "digital_campaign_filled_fields_Template",
+                    attachmentTemplateNameFour: "digital_campaign_retrieve_data_filled_fields_Template",
                     totalTonCo2Four: (Number(item?.grandTotal) / 1000).toFixed(2) || 0,
                     eveydolarCo2Four: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(2) || 0,
                     resultTableDataFour: {
@@ -396,7 +396,7 @@ const MyEventSelector = () => {
 
         const apiPath = `api/eventData?_id[]=${selectedValues.join('&_id[]=')}`;
         const response = await apiget(apiPath);
-        const responseData = response.data.data;
+        const responseData = response?.data?.data;
 
         // count total emission by event wise
         const allEventsEmissions = [];
@@ -448,10 +448,10 @@ const MyEventSelector = () => {
             activityName: `${responseData[0]?.activityName} and ${responseData[1]?.activityName}`,
             // receiver: [userData?.loginId],
             receiver: formik.values?.emails,
-            subject: `${responseData[0]?.activityName} vs ${responseData[1]?.activityName} - graph chart`,
+            subject: `${responseData[0]?.activityName} vs ${responseData[1]?.activityName} - Retrieve Graphs`,
             attachmentTemplateName: 'bar_chart',
-            // attachmentPdfName: `${responseData[0]?.activityName} vs ${responseData[1]?.activityName} - graph chart`
-            attachmentPdfName: `Marketing Activity Analytics`
+            attachmentPdfName: `Marketing Activity Analytics`,
+            emailBodyTemplateName: 'retrieve_graph_ebody_Template'
         };
 
         await addEmailForGraphs(payload);
