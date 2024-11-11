@@ -68,4 +68,5 @@ const deleteMany = async (req, res) => {
         res.status(500).send({ success: false, message: 'Server error', error });
     }
 };
+
 export default { index, add, addMany, edit, deleteData, deleteMany }
