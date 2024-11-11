@@ -203,7 +203,7 @@ const Result = ({ value }) => {
                 const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
 
                     const rowData2 = rowData;
-                    const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
+                    const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize, noOfListeners } = rowData2;
 
                     if (page?.tabTitle === "Digital Campaign") {
                         return ((impressions1 && imgSize) || (impressions2 && videoMins) || (noOfEmails && attachmentSize) || (noOfListeners && podcastSize)) && emissions;
