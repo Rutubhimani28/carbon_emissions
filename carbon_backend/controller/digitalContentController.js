@@ -32,6 +32,7 @@ const addMany = async (req, res) => {
         res.status(400).json({ success: false, message: 'Failed to create Data', error: err.toString() });
     }
 };
+
 const edit = async (req, res) => {
     try {
 
