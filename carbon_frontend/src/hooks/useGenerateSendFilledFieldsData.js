@@ -77,7 +77,7 @@ const UseGenerateSendFilledFieldsData = () => {
         isAttachment: true,
         // subject: `${toolFormData?.activityName} activity all events emissions data`,
         subject: `${toolFormData?.activityName}- Data`,
-        receiver: [userData?.loginId, 'kevalrabadiya91prolink@gmail.com'],
+        receiver: userData?.loginId,
         sender: userid,
         name: toolFormData?.name,
         // receiver: values?.emails,
