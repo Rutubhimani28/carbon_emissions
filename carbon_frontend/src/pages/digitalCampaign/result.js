@@ -362,6 +362,6 @@ const Result = ({ value }) => {
             </Container>
         </div>
     )
-}
+};
 
 export default Result;
