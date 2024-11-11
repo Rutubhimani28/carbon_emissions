@@ -33,7 +33,7 @@ const Result = ({ value }) => {
         // }
         {
             type: 'Social Media (Image + Video)',
-            totalEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0 + Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0
+            totalEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0
         },
         {
             type: 'Email / Newsletter',

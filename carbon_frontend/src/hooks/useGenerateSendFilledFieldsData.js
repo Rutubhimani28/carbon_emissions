@@ -146,7 +146,7 @@ const UseGenerateSendFilledFieldsData = () => {
     const dataFour = {
         "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(2),
         "grandTotal": Number(total4).toFixed(2),
-        socialMediaEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission).toFixed(2) || 0 + Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission).toFixed(2) || 0,
+        socialMediaEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0,
         emailEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission).toFixed(2) || 0,
         podcastEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission).toFixed(2) || 0
     };
