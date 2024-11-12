@@ -33,8 +33,10 @@ const PrAgency = (props) => {
         hdpeBannerEmission: '',
         pvcBanners: '',
         pvcBannersEmission: '',
-        cottonBanner: '',
-        cottonBannerEmission: '',
+        // cottonBanner: '',
+        // cottonBannerEmission: '',
+        plasticBadgeHolders: '',
+        plasticBadgeHoldersEmission: '',
 
         paperBagsA4Size: '',
         paperBagsA4SizeEmission: '',
@@ -72,7 +74,8 @@ const PrAgency = (props) => {
             const projectorEmission = values?.noOfHours === 0 || values?.projectorNoOfDevice === 0 ? 0 : Number((values?.noOfHours * values?.projectorNoOfDevice * 0.215).toFixed(2))
             const hdpeBannerEmission = Number(3.11 * Number(values?.hdpeBanner)).toFixed(2);
             const pvcBannersEmission = Number(7.83 * Number(values?.pvcBanners)).toFixed(2);
-            const cottonBannerEmission = Number(14.5 * Number(values?.cottonBanner)).toFixed(2);
+            // const cottonBannerEmission = Number(14.5 * Number(values?.cottonBanner)).toFixed(2);
+            const plasticBadgeHoldersEmission = Number(4.2 * Number(values?.plasticBadgeHolders)).toFixed(2);
             const paperBagsA4SizeEmission = Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2);
             const paperBagsA5SizeEmission = Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2);
             const juteBagsA4SizeEmission = Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2);
@@ -89,7 +92,8 @@ const PrAgency = (props) => {
             if (projectorEmission > 0) formik.setFieldValue('projectorEmission', projectorEmission);
             if (hdpeBannerEmission > 0) formik.setFieldValue('hdpeBannerEmission', hdpeBannerEmission);
             if (pvcBannersEmission > 0) formik.setFieldValue('pvcBannersEmission', pvcBannersEmission);
-            if (cottonBannerEmission > 0) formik.setFieldValue('cottonBannerEmission', cottonBannerEmission);
+            // if (cottonBannerEmission > 0) formik.setFieldValue('cottonBannerEmission', cottonBannerEmission);
+            if (plasticBadgeHoldersEmission > 0) formik.setFieldValue('plasticBadgeHoldersEmission', plasticBadgeHoldersEmission);
             if (paperBagsA4SizeEmission > 0) formik.setFieldValue('paperBagsA4SizeEmission', paperBagsA4SizeEmission);
             if (paperBagsA5SizeEmission > 0) formik.setFieldValue('paperBagsA5SizeEmission', paperBagsA5SizeEmission);
             if (juteBagsA4SizeEmission > 0) formik.setFieldValue('juteBagsA4SizeEmission', juteBagsA4SizeEmission);
@@ -126,9 +130,12 @@ const PrAgency = (props) => {
                     emission: pvcBannersEmission > 0 ? pvcBannersEmission : ''
                 },
                 {
-                    type: 'CottonBanner',
-                    cottonBanner: values?.cottonBanner,
-                    emission: cottonBannerEmission > 0 ? cottonBannerEmission : ''
+                    // type: 'CottonBanner',
+                    // cottonBanner: values?.cottonBanner,
+                    // emission: cottonBannerEmission > 0 ? cottonBannerEmission : ''
+                    type: 'PlasticBadgeHolders',
+                    plasticBadgeHolders: values?.plasticBadgeHolders,
+                    emission: plasticBadgeHoldersEmission > 0 ? plasticBadgeHoldersEmission : ''
                 },
                 {
                     type: 'PaperBagsA4Size',
@@ -156,7 +163,7 @@ const PrAgency = (props) => {
                     emission: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
                 },
                 {
-                    type: 'A4Size75Gsm',
+                    type: 'A4Size75Gsm',    // Black & White
                     a4Size75Gsm: values?.a4Size75Gsm,
                     emission: a4Size75GsmEmission > 0 ? a4Size75GsmEmission : ''
                 },
@@ -234,9 +241,12 @@ const PrAgency = (props) => {
                                 emissions: pvcBannersEmission > 0 ? pvcBannersEmission : ''
                             },
                             {
-                                prType: "Cotton Banner",
-                                kgs: values?.cottonBanner,
-                                emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
+                                // prType: "Cotton Banner",
+                                // kgs: values?.cottonBanner,
+                                // emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
+                                prType: "Plastic Badges",
+                                kgs: values?.plasticBadgeHolders,
+                                emissions: plasticBadgeHoldersEmission > 0 ? plasticBadgeHoldersEmission : ''
                             },
                             {
                                 prType: "Paper Bags",
@@ -327,7 +337,8 @@ const PrAgency = (props) => {
             ];
 
             /* for meeting room, projector, and branding, transportation */
-            const totalBrandingEmission = (Number(hdpeBannerEmission) || 0) + (Number(pvcBannersEmission) || 0) + (Number(cottonBannerEmission) || 0) + (Number(paperBagsA4SizeEmission) || 0) + (Number(paperBagsA5SizeEmission) || 0) + (Number(juteBagsA4SizeEmission) || 0) + (Number(cottonBagsA4SizeEmission) || 0);
+            // const totalBrandingEmission = (Number(hdpeBannerEmission) || 0) + (Number(pvcBannersEmission) || 0) + (Number(cottonBannerEmission) || 0) + (Number(paperBagsA4SizeEmission) || 0) + (Number(paperBagsA5SizeEmission) || 0) + (Number(juteBagsA4SizeEmission) || 0) + (Number(cottonBagsA4SizeEmission) || 0);
+            const totalBrandingEmission = (Number(hdpeBannerEmission) || 0) + (Number(pvcBannersEmission) || 0) + (Number(plasticBadgeHoldersEmission) || 0) + (Number(paperBagsA4SizeEmission) || 0) + (Number(paperBagsA5SizeEmission) || 0) + (Number(juteBagsA4SizeEmission) || 0) + (Number(cottonBagsA4SizeEmission) || 0);
             // const totalTransportationEmission = (Number(petrolEmission) || 0) + (Number(dieselEmission) || 0) || (Number(hybridEmission) || 0) + (Number(electricEmission) || 0);
             const totalTransportationEmission = (Number(petrolEmission) || 0) + (Number(dieselEmission) || 0) || (Number(hybridEmission) || 0);
             const meetingBrandingProjectotTranspotatorEmission = (Number(meetingRoomEmission) || 0) + (Number(projectorEmission) || 0) + (Number(electricityEmission) || 0) + totalBrandingEmission + totalTransportationEmission;
@@ -377,8 +388,10 @@ const PrAgency = (props) => {
             formik.setFieldValue("hdpeBannerEmission", allData[2]?.emission);
             formik.setFieldValue("pvcBanners", allData[3]?.pvcBanners);
             formik.setFieldValue("pvcBannersEmission", allData[3]?.emission);
-            formik.setFieldValue("cottonBanner", allData[4]?.cottonBanner);
-            formik.setFieldValue("cottonBannerEmission", allData[4]?.emission);
+            // formik.setFieldValue("cottonBanner", allData[4]?.cottonBanner);
+            // formik.setFieldValue("cottonBannerEmission", allData[4]?.emission);
+            formik.setFieldValue("plasticBadgeHolders", allData[4]?.plasticBadgeHolders);
+            formik.setFieldValue("plasticBadgeHoldersEmission", allData[4]?.emission);
             formik.setFieldValue("paperBagsA4Size", allData[5]?.paperBagsA4Size);
             formik.setFieldValue("paperBagsA4SizeEmission", allData[5]?.emission);
             formik.setFieldValue("paperBagsA5Size", allData[6]?.paperBagsA5Size);
@@ -761,19 +774,19 @@ const PrAgency = (props) => {
                                                     </td>
                                                 </tr> */}
                                             <tr>
-                                                <td className="py-1">Cotton Banner</td>
+                                                <td className="py-1">Plastic Badge</td>
                                                 <td className="ps-2 py-1">
-                                                    <TextField size='small' type="number" name="cottonBanner"
-                                                        value={formik?.values?.cottonBanner}
+                                                    <TextField size='small' type="number" name="plasticBadgeHolders"
+                                                        value={formik?.values?.plasticBadgeHolders}
                                                         onChange={(e) => {
-                                                            formik.setFieldValue('cottonBanner', e.target.value);
-                                                            formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(e.target.value)).toFixed(2));
+                                                            formik.setFieldValue('plasticBadgeHolders', e.target.value);
+                                                            formik.setFieldValue('plasticBadgeHoldersEmission', Number(4.2 * Number(e.target.value)).toFixed(2));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
                                                 <td className="ps-2 py-1">
-                                                    <TextField size='small' type="number" name='cottonBannerEmission' disabled value={values?.cottonBannerEmission} onChange={formik.handleChange} />
+                                                    <TextField size='small' type="number" name='plasticBadgeHoldersEmission' disabled value={values?.plasticBadgeHoldersEmission} onChange={formik.handleChange} />
                                                 </td>
                                             </tr>
                                         </table>

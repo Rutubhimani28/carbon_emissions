@@ -192,45 +192,138 @@ const Result = ({ value }) => {
         }
     };
 
+    // useEffect(() => {
+    //     let sc1Count = 0;
+    //     let sc2Count = 0;
+    //     let sc3Count = 0;
+
+    //     // resultTableData?.data?.forEach(page => {
+    //     resultTableData?.data?.find((item) => item?.from === "digitalCampaign")?.allDataOfTab?.forEach(page => {
+    //         page?.tabData?.forEach(flightClass => {
+    //             const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+
+    //                 const rowData2 = rowData;
+    //                 const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize, noOfListeners } = rowData2;
+
+    //                 if (page?.tabTitle === "Digital Campaign") {
+    //                     return ((impressions1 && imgSize) || (impressions2 && videoMins) || (noOfEmails && attachmentSize) || (noOfListeners && podcastSize)) && emissions;
+    //                 }
+
+    //                 return false;
+    //             });
+
+    //             if (hasFilledRow) {
+    //                 if (flightClass?.scope === 1) {
+    //                     sc1Count += 1;
+    //                 } else if (flightClass?.scope === 2) {
+    //                     sc2Count += 1;
+    //                 } else if (flightClass?.scope === 3) {
+    //                     sc3Count += 1;
+    //                 }
+    //             }
+    //         });
+    //     });
+
+    //     setSc1(sc1Count);
+    //     setSc2(sc2Count);
+    //     setSc3(sc3Count);
+
+    //     generatePrompt();
+
+    // }, [resultTableData, value, allDigitalCampaignData]);
+
+    // useEffect(() => {
+    //     let sc1Count = 0;
+    //     let sc2Count = 0;
+    //     let sc3Count = 0;
+
+    //     // resultTableData?.data?.forEach(page => {
+    //     resultTableData?.data?.find((item) => item?.from === "digitalCampaign")?.allDataOfTab?.forEach(page => {
+    //         page?.tabData?.forEach(flightClass => {
+    //             const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+
+    //                 const rowData2 = rowData;
+    //                 const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize, noOfListeners } = rowData2;
+
+    //                 if (page?.tabTitle === "Digital Campaign") {
+    //                     return ((impressions1 && imgSize) || (impressions2 && videoMins) || (noOfEmails && attachmentSize) || (noOfListeners && podcastSize)) && emissions;
+    //                 }
+
+    //                 return false;
+    //             });
+
+    //             if (hasFilledRow) {
+    //                 if (flightClass?.scope === 1) {
+    //                     sc1Count += Number(flightClass?.subTypeData?.td?.[0]?.emissions);
+    //                 } else if (flightClass?.scope === 2) {
+    //                     sc2Count += Number(flightClass?.subTypeData?.td?.[0]?.emissions);
+    //                 } else if (flightClass?.scope === 3) {
+    //                     sc3Count += Number(flightClass?.subTypeData?.td?.[0]?.emissions);
+    //                 }
+    //             }
+    //         });
+    //     });
+
+    //     setSc1(sc1Count);
+    //     setSc2(sc2Count);
+    //     setSc3(sc3Count);
+
+    //     generatePrompt();
+
+    // }, [resultTableData, value, allDigitalCampaignData]);
+
     useEffect(() => {
+        const dataForScope = [
+            // Digital Campaign
+            {
+                tabTitle: "Digital Campaign",
+                key: "Image",
+                scope: 3,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Digital Campaign",
+                key: "Video",
+                scope: 3,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+            {
+                tabTitle: "Digital Campaign",
+                key: "Email",
+                scope: 1,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[2].emission) || 0,
+            },
+            {
+                tabTitle: "Digital Campaign",
+                key: "Podcast",
+                scope: 3,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[3].emission) || 0,
+            },
+        ];
+
         let sc1Count = 0;
         let sc2Count = 0;
         let sc3Count = 0;
 
-        // resultTableData?.data?.forEach(page => {
-        resultTableData?.data?.find((item) => item?.from === "digitalCampaign")?.allDataOfTab?.forEach(page => {
-            page?.tabData?.forEach(flightClass => {
-                const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
-
-                    const rowData2 = rowData;
-                    const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize, noOfListeners } = rowData2;
-
-                    if (page?.tabTitle === "Digital Campaign") {
-                        return ((impressions1 && imgSize) || (impressions2 && videoMins) || (noOfEmails && attachmentSize) || (noOfListeners && podcastSize)) && emissions;
-                    }
-
-                    return false;
-                });
-
-                if (hasFilledRow) {
-                    if (flightClass?.scope === 1) {
-                        sc1Count += 1;
-                    } else if (flightClass?.scope === 2) {
-                        sc2Count += 1;
-                    } else if (flightClass?.scope === 3) {
-                        sc3Count += 1;
-                    }
+        dataForScope?.forEach((item) => {
+            if (Number(item?.emission) > 0) {
+                if (item?.scope === 1) {
+                    sc1Count += Number(item?.emission);
+                } else if (item?.scope === 2) {
+                    sc2Count += Number(item?.emission);
+                } else if (item?.scope === 3) {
+                    sc3Count += Number(item?.emission);
                 }
-            });
+            }
         });
-
-        setSc1(sc1Count);
-        setSc2(sc2Count);
-        setSc3(sc3Count);
 
         generatePrompt();
 
-    }, [resultTableData, value, allDigitalCampaignData]);
+        setSc1(Number(Number(sc1Count).toFixed(2)));
+        setSc2(Number(Number(sc2Count).toFixed(2)));
+        setSc3(Number(Number(sc3Count).toFixed(2)));
+
+    }, [value]);
 
     useEffect(() => {
         if (content) {

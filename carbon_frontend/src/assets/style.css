@@ -123,6 +123,10 @@ p {
   border-radius: 6px;
 }
 
+.date-time-color .css-e5dh6b {
+  color: white !important;
+}
+
 .custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input {
   opacity: 1;
   -webkit-text-fill-color: #ffffff !important;

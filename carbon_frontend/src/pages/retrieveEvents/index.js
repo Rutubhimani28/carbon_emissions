@@ -448,7 +448,7 @@ const MyEventSelector = () => {
             activityName: `${responseData[0]?.activityName} and ${responseData[1]?.activityName}`,
             // receiver: [userData?.loginId],
             receiver: formik.values?.emails,
-            subject: `${responseData[0]?.activityName} vs ${responseData[1]?.activityName} - Retrieve Graphs`,
+            subject: 'Retrieve Graphs',
             attachmentTemplateName: 'bar_chart',
             attachmentPdfName: `Marketing Activity Analytics`,
             emailBodyTemplateName: 'retrieve_graph_ebody_Template'

@@ -219,7 +219,6 @@ const Result = ({ value }) => {
     //     contentData += `\n\nWhat are the top three ways to reduce my face-to-face event's carbon footprint by 10-20%? Suggest one actionable point for all the ${categoryCount} categories to achieve this reduction. How do the original and reduced footprints compare? Additionally, how can adopting sustainable measures lead to an approximate 10% cost reduction, considering that the cost savings may not be directly proportional to the carbon reductions?`
     //     setContent(contentData);
     // };
-    
 
     const generatePrompt = async () => {
         let contentData = `Category	Emissions (kgCO2e) \n`;
@@ -305,81 +304,613 @@ const Result = ({ value }) => {
         }
     };
 
+    // useEffect(() => {
+    //     let sc1Count = 0;
+    //     let sc2Count = 0;
+    //     let sc3Count = 0;
+
+    //     // resultTableData?.data?.forEach(page => {
+    //     resultTableData?.data?.find((item) => item?.from === "f2fEvent")?.allDataOfTab?.forEach(page => {
+    //         page?.tabData?.forEach(flightClass => {
+    //             const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+
+    //                 const rowData2 = rowData;
+    //                 const { noOfTrips, emissions, noOfKms, noOfPax, noOfBottles, kgs, area, noOfUnits, kwh, noOfHour, noOfHours, noOfAttendees, bottle, noOfEmails, attachmentSize, fBType, gallons, dgType, hType, country, energyUtilisedKwh, hotelType, geography, roomsOccupied, meetingDuration, totalMeetingRoomArea } = rowData2;
+
+    //                 if (page?.tabTitle === "Air Travel") {
+    //                     return noOfTrips && emissions;
+    //                 }
+    //                 if (page?.tabTitle === "Hotel") {
+    //                     if (hType !== "Hotel Stay") {
+    //                         // "Meeting Room Energy Consumption"
+    //                         if (totalMeetingRoomArea && meetingDuration) {
+    //                             return (totalMeetingRoomArea && meetingDuration) && emissions;
+    //                         }
+    //                         return (energyUtilisedKwh) && emissions;
+    //                     }
+    //                     return (geography?.label && country?.country && hotelType?.value && roomsOccupied) && emissions;
+    //                 }
+    //                 if (page?.tabTitle === "Local Transportation") {
+    //                     return noOfKms && emissions;
+    //                 }
+    //                 if (page?.tabTitle === "Food & Beverages") {
+    //                     if ((fBType === "Customised Food" && rowData?.emissions) || (fBType === "Customised Beverages" && rowData?.emissions)) {
+    //                         return true;
+    //                     }
+    //                     return (noOfPax || noOfBottles) && emissions;
+    //                 }
+    //                 if (page?.tabTitle === "Logistics") {
+    //                     return (noOfKms || kgs) && emissions;
+    //                 }
+    //                 if (page?.tabTitle === "Event Production") {
+    //                     return (kgs || area || noOfUnits || kwh || noOfHour) && emissions;
+    //                 }
+    //                 if (page?.tabTitle === "Energy") {
+    //                     return (kwh || gallons) && emissions;
+    //                 }
+    //                 if (page?.tabTitle === "Digital Comms") {
+    //                     if (dgType !== "Laptops used") {
+    //                         return (noOfEmails && attachmentSize) && emissions;
+    //                     };
+    //                     return (noOfHours && noOfAttendees) && emissions;
+    //                 }
+    //                 if (page?.tabTitle === "Waste") {
+    //                     return (kgs || bottle) && emissions;
+    //                 }
+
+    //                 return false;
+    //             });
+
+    //             if (hasFilledRow) {
+    //                 if (flightClass?.scope === 1) {
+    //                     sc1Count += 1;
+    //                 } else if (flightClass?.scope === 2) {
+    //                     sc2Count += 1;
+    //                 } else if (flightClass?.scope === 3) {
+    //                     sc3Count += 1;
+    //                 }
+    //             }
+    //         });
+    //     });
+
+    //     generatePrompt();
+
+    //     setSc1(sc1Count);
+    //     setSc2(sc2Count);
+    //     setSc3(sc3Count);
+    // }, [resultTableData, value]);
+
     useEffect(() => {
+        const dataForScope = [
+            // Air Travel // Economy Class
+            {
+                tabTitle: "Air Travel",
+                key: "Short Haul Flight (<3hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[0].emissionOne) || 0,
+            },
+            {
+                tabTitle: "Air Travel",
+                key: "Medium Haul Flight (3-6hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[0].emissionTwo) || 0,
+            },
+            {
+                tabTitle: "Air Travel",
+                key: "Long Haul Flight (>6hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[0].emissionThree) || 0,
+            },
+            // Air Travel // Business Class
+            {
+                tabTitle: "Air Travel",
+                key: "Short Haul Flight (<3hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[1].emissionFour) || 0,
+            },
+            {
+                tabTitle: "Air Travel",
+                key: "Medium Haul Flight (3-6hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[1].emissionFive) || 0,
+            },
+            {
+                tabTitle: "Air Travel",
+                key: "Long Haul Flight (>6hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[1].emissionSix) || 0,
+            },
+            // Air Travel // First Class
+            {
+                tabTitle: "Air Travel",
+                key: "Short Haul Flight (<3hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[2].emissionSeven) || 0,
+            },
+            {
+                tabTitle: "Air Travel",
+                key: "Medium Haul Flight (3-6hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[2].emissionEight) || 0,
+            },
+            {
+                tabTitle: "Air Travel",
+                key: "Long Haul Flight (>6hrs)",
+                scope: 3,
+                emission: Number(allAirTravelData?.data?.[0]?.data?.[2].emissionNine) || 0,
+            },
+
+            // Local Transportation // Company Car
+            {
+                tabTitle: "Local Transportation",
+                key: "Petrol",
+                scope: 2,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Local Transportation",
+                key: "Diesel",
+                scope: 2,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+            {
+                tabTitle: "Local Transportation",
+                key: "Hybrid",
+                scope: 2,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[2].emission) || 0,
+            },
+            // Taxi
+            {
+                tabTitle: "Local Transportation",
+                key: "Petrol",
+                scope: 3,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[3].emission) || 0,
+            },
+            {
+                tabTitle: "Local Transportation",
+                key: "Diesel",
+                scope: 3,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[4].emission) || 0,
+            },
+            {
+                tabTitle: "Local Transportation",
+                key: "Hybrid",
+                scope: 3,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[5].emission) || 0,
+            },
+            // Public Transport
+            {
+                tabTitle: "Local Transportation",
+                key: "Bus-Diesel",
+                scope: 3,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[6].emission) || 0,
+            },
+            {
+                tabTitle: "Local Transportation",
+                key: "Subway/ Tram",
+                scope: 3,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[7].emission) || 0,
+            },
+            {
+                tabTitle: "Local Transportation",
+                key: "Ferry",
+                scope: 3,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[8].emission) || 0,
+            },
+
+            // Hotel
+            {
+                tabTitle: "Hotel",
+                key: "Hotel Stay",
+                scope: 3,
+                emission: Number(allHotelData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Hotel",
+                key: "Meeting Room Energy Consumption",
+                scope: 3,
+                emission: Number(allHotelData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+
+            // Food & Beverages // Food
+            {
+                tabTitle: "Food & Beverages",
+                key: "Vegetarian",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Non-Veg (Poultry/ Sea Food)",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Non-Veg (Red Meat)",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[2].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Tea/ Coffee + Cookies",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[3].emission) || 0,
+            },
+            // Food // Customised Food
+            {
+                tabTitle: "Food & Beverages",
+                key: "Customised Food",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[13].emission) || 0,
+            },
+            // Beverages
+            {
+                tabTitle: "Food & Beverages",
+                key: "Soft Drinks",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[4].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Red Wine",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[5].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "White Wine",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[6].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Whisky",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[7].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Gin",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[8].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Rum",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[9].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Vodka",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[10].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Fruit Juices",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[11].emission) || 0,
+            },
+            {
+                tabTitle: "Food & Beverages",
+                key: "Beer",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[12].emission) || 0,
+            },
+            // Beverages // Customised Food
+            {
+                tabTitle: "Food & Beverages",
+                key: "Customised Food",
+                scope: 3,
+                emission: Number(allFoodData?.data?.[0]?.data?.[14].emission) || 0,
+            },
+
+            // Logistics // Mode of Freight
+            {
+                tabTitle: "Logistics",
+                key: "Air Craft",
+                scope: 3,
+                emission: Number(allFreightData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Logistics",
+                key: "Rail",
+                scope: 3,
+                emission: Number(allFreightData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+            {
+                tabTitle: "Logistics",
+                key: "Cargo Ship (Container)",
+                scope: 3,
+                emission: Number(allFreightData?.data?.[0]?.data?.[3].emission) || 0,
+            },
+            {
+                tabTitle: "Logistics",
+                key: "Cargo Ship (Bulk Carrier)",
+                scope: 3,
+                emission: Number(allFreightData?.data?.[0]?.data?.[4].emission) || 0,
+            },
+            {
+                tabTitle: "Logistics",
+                key: "Sea Tanker",
+                scope: 3,
+                emission: Number(allFreightData?.data?.[0]?.data?.[5].emission) || 0,
+            },
+            {
+                tabTitle: "Logistics",
+                key: "Light Goods Vehicle",
+                scope: 3,
+                emission: Number(allFreightData?.data?.[0]?.data?.[6].emission) || 0,
+            },
+            {
+                tabTitle: "Logistics",
+                key: "Heavy Goods Vehicle",
+                scope: 3,
+                emission: Number(allFreightData?.data?.[0]?.data?.[7].emission) || 0,
+            },
+
+            // Event Production  // Production Material // Weight (Kgs)
+            {
+                tabTitle: "Event Production",
+                key: "Wood",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[7].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Steel",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[8].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Aluminium",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[9].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Iron",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[10].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Paper",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[11].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Recycled Paper",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[12].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Paint",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[13].emission) || 0,
+            },
+            // Total Area (m2)
+            {
+                tabTitle: "Event Production",
+                key: "Sawn Timber",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "MDF",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Open Panel Timber Frame",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[2].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Carpet",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[3].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Adhesive Vinyl",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[4].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Cardboard",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[5].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Nylon",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[6].emission) || 0,
+            },
+            // Branding // Weight (In kgs)
+            {
+                tabTitle: "Event Production",
+                key: "Polyethylene Banner",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[17].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "PVC Banners",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[18].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Plastic Badge",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[20].emission) || 0,
+            },
+            // No.of A4 Units
+            {
+                tabTitle: "Event Production",
+                key: "Paper bags",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[22].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Jute bags",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[24].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "Cotton bags",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[25].emission) || 0,
+            },
+            // Stage Screen
+            {
+                tabTitle: "Event Production",
+                key: "Projector",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[14].emission) || 0,
+            },
+            {
+                tabTitle: "Event Production",
+                key: "LED Screen Panel (500mmx500mm)",
+                scope: 3,
+                emission: Number(allProductionData?.data?.[0]?.data?.[15].emission) || 0,
+            },
+
+            // Energy
+            {
+                tabTitle: "Energy",
+                key: "Electricity",
+                scope: 3,
+                emission: Number(allEnergyData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Energy",
+                key: "Petrol (Generator)",
+                scope: 2,
+                emission: Number(allEnergyData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+            {
+                tabTitle: "Energy",
+                key: "Diesel (Generator)",
+                scope: 2,
+                emission: Number(allEnergyData?.data?.[0]?.data?.[2].emission) || 0,
+            },
+
+            // Digital Comms
+            {
+                tabTitle: "Digital Comms",
+                key: "Emails",
+                scope: 2,
+                emission: Number(allDigitalContentData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Digital Comms",
+                key: "Laptops used",
+                scope: 2,
+                emission: Number(allWasteData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+
+            // Waste // Food Waste
+            {
+                tabTitle: "Waste",
+                key: "Food Waste (non-meat)",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[0].emission) || 0,
+            },
+            {
+                tabTitle: "Waste",
+                key: "Food Waste (meat)",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[1].emission) || 0,
+            },
+            {
+                tabTitle: "Waste",
+                key: "Food Waste (All mix)",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[2].emission) || 0,
+            },
+            {
+                tabTitle: "Waste",
+                key: "Fruits & Vegetables",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[3].emission) || 0,
+            },
+            // Plastic Waste
+            {
+                tabTitle: "Waste",
+                key: "250ml",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[4].emission) || 0,
+            },
+            {
+                tabTitle: "Waste",
+                key: "500ml",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[5].emission) || 0,
+            },
+            {
+                tabTitle: "Waste",
+                key: "1000ml",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[6].emission) || 0,
+            },
+            // Event Waste
+            {
+                tabTitle: "Waste",
+                key: "Wood",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[7].emission) || 0,
+            },
+            {
+                tabTitle: "Waste",
+                key: "Carpet",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[8].emission) || 0,
+            },
+            {
+                tabTitle: "Waste",
+                key: "PVC",
+                scope: 3,
+                emission: Number(allWasteData?.data?.[0]?.data?.[9].emission) || 0,
+            },
+        ];
+
         let sc1Count = 0;
         let sc2Count = 0;
         let sc3Count = 0;
 
-        // resultTableData?.data?.forEach(page => {
-        resultTableData?.data?.find((item) => item?.from === "f2fEvent")?.allDataOfTab?.forEach(page => {
-            page?.tabData?.forEach(flightClass => {
-                const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
-
-                    const rowData2 = rowData;
-                    const { noOfTrips, emissions, noOfKms, noOfPax, noOfBottles, kgs, area, noOfUnits, kwh, noOfHour, noOfHours, noOfAttendees, bottle, noOfEmails, attachmentSize, fBType, gallons, dgType, hType, country, energyUtilisedKwh, hotelType, geography, roomsOccupied, meetingDuration, totalMeetingRoomArea } = rowData2;
-
-                    if (page?.tabTitle === "Air Travel") {
-                        return noOfTrips && emissions;
-                    }
-                    if (page?.tabTitle === "Hotel") {
-                        if (hType !== "Hotel Stay") {
-                            // "Meeting Room Energy Consumption"
-                            if (totalMeetingRoomArea && meetingDuration) {
-                                return (totalMeetingRoomArea && meetingDuration) && emissions;
-                            }
-                            return (energyUtilisedKwh) && emissions;
-                        }
-                        return (geography?.label && country?.country && hotelType?.value && roomsOccupied) && emissions;
-                    }
-                    if (page?.tabTitle === "Local Transportation") {
-                        return noOfKms && emissions;
-                    }
-                    if (page?.tabTitle === "Food & Beverages") {
-                        if ((fBType === "Customised Food" && rowData?.emissions) || (fBType === "Customised Beverages" && rowData?.emissions)) {
-                            return true;
-                        }
-                        return (noOfPax || noOfBottles) && emissions;
-                    }
-                    if (page?.tabTitle === "Logistics") {
-                        return (noOfKms || kgs) && emissions;
-                    }
-                    if (page?.tabTitle === "Event Production") {
-                        return (kgs || area || noOfUnits || kwh || noOfHour) && emissions;
-                    }
-                    if (page?.tabTitle === "Energy") {
-                        return (kwh || gallons) && emissions;
-                    }
-                    if (page?.tabTitle === "Digital Comms") {
-                        if (dgType !== "Laptops used") {
-                            return (noOfEmails && attachmentSize) && emissions;
-                        };
-                        return (noOfHours && noOfAttendees) && emissions;
-                    }
-                    if (page?.tabTitle === "Waste") {
-                        return (kgs || bottle) && emissions;
-                    }
-
-                    return false;
-                });
-
-                if (hasFilledRow) {
-                    if (flightClass?.scope === 1) {
-                        sc1Count += 1;
-                    } else if (flightClass?.scope === 2) {
-                        sc2Count += 1;
-                    } else if (flightClass?.scope === 3) {
-                        sc3Count += 1;
-                    }
+        dataForScope?.forEach((item) => {
+            if (Number(item?.emission) > 0) {
+                if (item?.scope === 1) {
+                    sc1Count += Number(item?.emission);
+                } else if (item?.scope === 2) {
+                    sc2Count += Number(item?.emission);
+                } else if (item?.scope === 3) {
+                    sc3Count += Number(item?.emission);
                 }
-            });
+            }
         });
 
         generatePrompt();
 
-        setSc1(sc1Count);
-        setSc2(sc2Count);
-        setSc3(sc3Count);
-    }, [resultTableData, value]);
+        setSc1(Number(Number(sc1Count).toFixed(2)));
+        setSc2(Number(Number(sc2Count).toFixed(2)));
+        setSc3(Number(Number(sc3Count).toFixed(2)));
+
+    }, [value]);
 
     useEffect(() => {
         if (content) {

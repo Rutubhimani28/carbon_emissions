@@ -556,7 +556,7 @@ const Home = () => {
                                 {/* <Grid item xs={12} sm={12} className='table-custom-inpt-field'> */}
                                 <Grid item xs={12} sm={6}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                        <div style={{ display: 'flex', flexDirection: 'column' }} className='date-time-color'>
                                             <FormLabel className="fw-bold text-white mt-1">
                                                 Date and Time <span style={{ color: 'red' }}>*</span>
                                             </FormLabel>
@@ -569,7 +569,7 @@ const Home = () => {
                                                         disabled={isDisabledField}
                                                         error={formik.touched.dateTime && Boolean(formik.errors.dateTime)}
                                                         // helperText={formik.touched.dateTime && formik.errors.dateTime}
-                                                        inputProps={{ style: { color: 'white' } }}
+                                                        inputProps={{ style: { color: 'white !important' } }}
                                                         sx={{
                                                             '& .MuiOutlinedInput-root': {
                                                                 '& fieldset': {
@@ -604,9 +604,7 @@ const Home = () => {
                                                     formik.setFieldValue('dateTime', newValue ? dayjs(newValue).format('YYYY-MM-DD HH:mm') : null);
                                                     formik.setFieldTouched('dateTime', true);
                                                 }}
-
                                                 onOpen={() => {
-                                                    console.log("--- onOpen called ");
                                                     formik.setFieldTouched("dateTime", true); // Set touched on open
                                                 }}
                                                 onError={(error) => {

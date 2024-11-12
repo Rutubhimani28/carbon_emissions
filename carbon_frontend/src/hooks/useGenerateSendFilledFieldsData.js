@@ -214,9 +214,9 @@ const UseGenerateSendFilledFieldsData = () => {
                 receiver: [userData?.loginId],
                 attachmentTemplateName: 'bar_chart',
                 // attachmentPdfName: 'user_all_event_bar_chart'
-                attachmentPdfName: `${toolFormData?.activityName} - graph chart`,
+                attachmentPdfName: `Marketing Activity Analytics`,
                 name: userData?.cnctPerson,
-                subject: `${toolFormData?.activityName} - Retrieve Graphs`,
+                subject: `Retrieve Graphs`,
                 activityName: `${toolFormData?.activityName} - graph chart`,
             };
             await apipost('api/email/addGraph', payload);

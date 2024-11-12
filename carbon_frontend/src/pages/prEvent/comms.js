@@ -83,7 +83,7 @@ const Comms = (props) => {
 
     colouredBrochurePage: '',
     emissionSix: '',
-    a4Size75Gsm: '',
+    a4Size75Gsm: '',          // Black & White
     emissionSeven: '',
   };
 
@@ -168,7 +168,7 @@ const Comms = (props) => {
           emission: emissionSix > 0 ? emissionSix : ''
         },
         {
-          type: 'A4Size75Gsm',
+          type: 'A4Size75Gsm',   // Balck & white
           a4Size75Gsm: values?.a4Size75Gsm,
           emission: emissionSeven > 0 ? emissionSeven : ''
         },

@@ -203,7 +203,6 @@ const DigitalCampaign = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            console.log(allData, "allData")
             formik.setFieldValue('imgSize', allData[0]?.imgSize);
             formik.setFieldValue('uploadEnergy', allData[0]?.uploadEnergy);
             formik.setFieldValue('totalEnergy', allData[0]?.totalEnergy);
@@ -234,8 +233,6 @@ const DigitalCampaign = (props) => {
             formik.setFieldValue('emissionNineteen', allData[3]?.emission);
         }
     }, [value]);
-
-    console.log(values)
 
     return (
         <div>
@@ -445,8 +442,6 @@ const DigitalCampaign = (props) => {
                                                 fullWidth
                                                 onChange={(e) => {
                                                     const podcastTotal = e.target.value * 0.00004296
-                                                    console.log("e.target.value", e.target.value)
-                                                    console.log("values?.podcastKwh", values?.podcastKwh)
                                                     const emissionNineteen = Number(Number(podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
                                                     formik.setFieldValue("podcastSize", Number(e.target.value));
                                                     formik.setFieldValue("podcastTotal", podcastTotal);
