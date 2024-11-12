@@ -450,7 +450,6 @@ const Result = ({ value }) => {
                             </AccordionDetails>
                         </Accordion>
                     </Box>
-
                 </Card>
             </Container>
         </div>
