@@ -446,7 +446,6 @@ const Result = ({ value }) => {
                                     <div>
                                         {suggestion}
                                     </div>}
-
                             </AccordionDetails>
                         </Accordion>
                     </Box>
