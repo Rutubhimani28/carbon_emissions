@@ -589,7 +589,6 @@ const Home = () => {
                                                                 color: 'white !important', // Placeholder color
                                                             },
 
-
                                                             // // Border styling for normal, focus, and error states
                                                             // '& .MuiOutlinedInput-root': {
                                                             //     '& fieldset': {
