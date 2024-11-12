@@ -882,7 +882,6 @@ const Home = () => {
 
                 </Grid>
 
-
                 <Typography className="fs-5 text-center my-4">
                     If you face any problems or have questions, please send your query to{' '}
                     <Link to="mailto:info@sirat.earth" style={{ color: '#ffffd9', textDecoration: 'none' }}>
