@@ -26,10 +26,10 @@ const AirFreight = (props) => {
     const theme = useTheme();
 
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalAirFreightDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalAirFreightDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirFreightDetails?.totalEmission);
     // const scope = useSelector((state) => state?.totalAirFreightDetails?.scope);
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
 
@@ -228,58 +228,58 @@ const AirFreight = (props) => {
         if (resultTableData.eventDataId) {
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to update data:', resultAction.payload);
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
             }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-            if (addResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to save data:', resultAction.payload);
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
             } 
         }
     };
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue('noOfKmsOne', allData[0]?.noOfKmsOne);
-            formik.setFieldValue('efOne', allData[0]?.efOne);
-            formik.setFieldValue('emissionOne', allData[0]?.emission);
-            formik.setFieldValue('kgsOne', allData[0]?.kgsOne);
+            formik.setFieldValue('noOfKmsOne', allData?.[0]?.noOfKmsOne);
+            formik.setFieldValue('efOne', allData?.[0]?.efOne);
+            formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+            formik.setFieldValue('kgsOne', allData?.[0]?.kgsOne);
 
-            formik.setFieldValue('emissionTwo', allData[1]?.emission);
-            formik.setFieldValue('noOfKmsTwo', allData[1]?.noOfKmsTwo);
-            formik.setFieldValue('kgsTwo', allData[1]?.kgsTwo);
-            formik.setFieldValue('efTwo', allData[1]?.efTwo);
+            formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
+            formik.setFieldValue('noOfKmsTwo', allData?.[1]?.noOfKmsTwo);
+            formik.setFieldValue('kgsTwo', allData?.[1]?.kgsTwo);
+            formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
 
-            formik.setFieldValue('emissionThree', allData[2]?.emission);
-            formik.setFieldValue('noOfKmsThree', allData[2]?.noOfKmsThree);
-            formik.setFieldValue('kgsThree', allData[2]?.kgsThree);
-            formik.setFieldValue('efThree', allData[2]?.efThree);
+            formik.setFieldValue('emissionThree', allData?.[2]?.emission);
+            formik.setFieldValue('noOfKmsThree', allData?.[2]?.noOfKmsThree);
+            formik.setFieldValue('kgsThree', allData?.[2]?.kgsThree);
+            formik.setFieldValue('efThree', allData?.[2]?.efThree);
 
-            formik.setFieldValue('emissionFour', allData[3]?.emission);
-            formik.setFieldValue('noOfKmsFour', allData[3]?.noOfKmsFour);
-            formik.setFieldValue('kgsFour', allData[3]?.kgsFour);
-            formik.setFieldValue('efFour', allData[3]?.efFour);
+            formik.setFieldValue('emissionFour', allData?.[3]?.emission);
+            formik.setFieldValue('noOfKmsFour', allData?.[3]?.noOfKmsFour);
+            formik.setFieldValue('kgsFour', allData?.[3]?.kgsFour);
+            formik.setFieldValue('efFour', allData?.[3]?.efFour);
 
-            formik.setFieldValue('emissionFive', allData[4]?.emission);
-            formik.setFieldValue('noOfKmsFive', allData[4]?.noOfKmsFive);
-            formik.setFieldValue('kgsFive', allData[4]?.kgsFive);
-            formik.setFieldValue('efFive', allData[4]?.efFive);
+            formik.setFieldValue('emissionFive', allData?.[4]?.emission);
+            formik.setFieldValue('noOfKmsFive', allData?.[4]?.noOfKmsFive);
+            formik.setFieldValue('kgsFive', allData?.[4]?.kgsFive);
+            formik.setFieldValue('efFive', allData?.[4]?.efFive);
 
-            formik.setFieldValue('emissionSix', allData[5]?.emission);
-            formik.setFieldValue('noOfKmsSix', allData[5]?.noOfKmsSix);
-            formik.setFieldValue('kgsSix', allData[5]?.kgsSix);
-            formik.setFieldValue('efSix', allData[5]?.efSix);
+            formik.setFieldValue('emissionSix', allData?.[5]?.emission);
+            formik.setFieldValue('noOfKmsSix', allData?.[5]?.noOfKmsSix);
+            formik.setFieldValue('kgsSix', allData?.[5]?.kgsSix);
+            formik.setFieldValue('efSix', allData?.[5]?.efSix);
 
-            formik.setFieldValue('emissionSeven', allData[6]?.emission);
-            formik.setFieldValue('noOfKmsSeven', allData[6]?.noOfKmsSeven);
-            formik.setFieldValue('kgsSeven', allData[6]?.kgsSeven);
-            formik.setFieldValue('efSeven', allData[6]?.efSeven);
+            formik.setFieldValue('emissionSeven', allData?.[6]?.emission);
+            formik.setFieldValue('noOfKmsSeven', allData?.[6]?.noOfKmsSeven);
+            formik.setFieldValue('kgsSeven', allData?.[6]?.kgsSeven);
+            formik.setFieldValue('efSeven', allData?.[6]?.efSeven);
 
-            formik.setFieldValue('emissionEight', allData[7]?.emission);
-            formik.setFieldValue('noOfKmsEight', allData[7]?.noOfKmsEight);
-            formik.setFieldValue('kgsEight', allData[7]?.kgsEight);
-            formik.setFieldValue('efEight', allData[7]?.efEight);
+            formik.setFieldValue('emissionEight', allData?.[7]?.emission);
+            formik.setFieldValue('noOfKmsEight', allData?.[7]?.noOfKmsEight);
+            formik.setFieldValue('kgsEight', allData?.[7]?.kgsEight);
+            formik.setFieldValue('efEight', allData?.[7]?.efEight);
         }
     }, [value]);
 

@@ -35,9 +35,9 @@ const Result = ({ value }) => {
     const allHotelData = useSelector((state) => state?.totalHotelDetails);
     const totalResultTableData = useSelector((state) => state?.resultTableDataDetails);
 
-    const toolData = useSelector(state => state.toolDetails?.data);
-    const toolFormData = toolData?.find((item) => item.type === 'toolForm');
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const toolData = useSelector(state => state?.toolDetails?.data);
+    const toolFormData = toolData?.find((item) => item?.type === 'toolForm');
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
 
     const [sc1, setSc1] = useState(0);
     const [sc2, setSc2] = useState(0);
@@ -226,7 +226,7 @@ const Result = ({ value }) => {
 
         resultData?.forEach(item => {
             if (item?.totalEmission > 0) {
-                contentData += `${item.type}: ${item.totalEmission || 0} kgCO2e \n`
+                contentData += `${item?.type}: ${item?.totalEmission || 0} kgCO2e \n`
                 categoryCount += 1;
             }
         });
@@ -262,12 +262,12 @@ const Result = ({ value }) => {
 
         let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From F2F Event : </h3> `;
 
-        formattedSuggestions.split('\n').forEach((line, index) => {
+        formattedSuggestions?.split('\n')?.forEach((line, index) => {
             pdfData += `${line}<br />`;
         });
         setSuggestionForPdf(pdfData);
 
-        return formattedSuggestions.split('\n').map((line, index) => (
+        return formattedSuggestions?.split('\n')?.map((line, index) => (
             <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line }} />
         ));
     };
@@ -289,12 +289,12 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
+                        Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')}`,
                     },
                 }
             );
 
-            const resJson = response.data;
+            const resJson = response?.data;
             const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
             setSuggestion(formattedSuggestions);
         } catch (error) {
@@ -445,57 +445,57 @@ const Result = ({ value }) => {
                 tabTitle: "Local Transportation",
                 key: "Petrol",
                 scope: 2,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Local Transportation",
                 key: "Diesel",
                 scope: 2,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Local Transportation",
                 key: "Hybrid",
                 scope: 2,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[2].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[2]?.emission) || 0,
             },
             // Taxi
             {
                 tabTitle: "Local Transportation",
                 key: "Petrol",
                 scope: 3,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
             {
                 tabTitle: "Local Transportation",
                 key: "Diesel",
                 scope: 3,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[4].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[4]?.emission) || 0,
             },
             {
                 tabTitle: "Local Transportation",
                 key: "Hybrid",
                 scope: 3,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[5].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[5]?.emission) || 0,
             },
             // Public Transport
             {
                 tabTitle: "Local Transportation",
                 key: "Bus-Diesel",
                 scope: 3,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[6].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[6]?.emission) || 0,
             },
             {
                 tabTitle: "Local Transportation",
                 key: "Subway/ Tram",
                 scope: 3,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[7].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[7]?.emission) || 0,
             },
             {
                 tabTitle: "Local Transportation",
                 key: "Ferry",
                 scope: 3,
-                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[8].emission) || 0,
+                emission: Number(allLocalTranspotationData?.data?.[0]?.data?.[8]?.emission) || 0,
             },
 
             // Hotel
@@ -503,13 +503,13 @@ const Result = ({ value }) => {
                 tabTitle: "Hotel",
                 key: "Hotel Stay",
                 scope: 3,
-                emission: Number(allHotelData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allHotelData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Hotel",
                 key: "Meeting Room Energy Consumption",
                 scope: 3,
-                emission: Number(allHotelData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allHotelData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
 
             // Food & Beverages // Food
@@ -517,94 +517,94 @@ const Result = ({ value }) => {
                 tabTitle: "Food & Beverages",
                 key: "Vegetarian",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Non-Veg (Poultry/ Sea Food)",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Non-Veg (Red Meat)",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[2].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[2]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Tea/ Coffee + Cookies",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
             // Food // Customised Food
             {
                 tabTitle: "Food & Beverages",
                 key: "Customised Food",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[13].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[13]?.emission) || 0,
             },
             // Beverages
             {
                 tabTitle: "Food & Beverages",
                 key: "Soft Drinks",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[4].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[4]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Red Wine",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[5].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[5]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "White Wine",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[6].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[6]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Whisky",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[7].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[7]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Gin",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[8].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[8]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Rum",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[9].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[9]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Vodka",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[10].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[10]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Fruit Juices",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[11].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[11]?.emission) || 0,
             },
             {
                 tabTitle: "Food & Beverages",
                 key: "Beer",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[12].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[12]?.emission) || 0,
             },
             // Beverages // Customised Food
             {
                 tabTitle: "Food & Beverages",
                 key: "Customised Food",
                 scope: 3,
-                emission: Number(allFoodData?.data?.[0]?.data?.[14].emission) || 0,
+                emission: Number(allFoodData?.data?.[0]?.data?.[14]?.emission) || 0,
             },
 
             // Logistics // Mode of Freight
@@ -612,43 +612,43 @@ const Result = ({ value }) => {
                 tabTitle: "Logistics",
                 key: "Air Craft",
                 scope: 3,
-                emission: Number(allFreightData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allFreightData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Logistics",
                 key: "Rail",
                 scope: 3,
-                emission: Number(allFreightData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allFreightData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Logistics",
                 key: "Cargo Ship (Container)",
                 scope: 3,
-                emission: Number(allFreightData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allFreightData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
             {
                 tabTitle: "Logistics",
                 key: "Cargo Ship (Bulk Carrier)",
                 scope: 3,
-                emission: Number(allFreightData?.data?.[0]?.data?.[4].emission) || 0,
+                emission: Number(allFreightData?.data?.[0]?.data?.[4]?.emission) || 0,
             },
             {
                 tabTitle: "Logistics",
                 key: "Sea Tanker",
                 scope: 3,
-                emission: Number(allFreightData?.data?.[0]?.data?.[5].emission) || 0,
+                emission: Number(allFreightData?.data?.[0]?.data?.[5]?.emission) || 0,
             },
             {
                 tabTitle: "Logistics",
                 key: "Light Goods Vehicle",
                 scope: 3,
-                emission: Number(allFreightData?.data?.[0]?.data?.[6].emission) || 0,
+                emission: Number(allFreightData?.data?.[0]?.data?.[6]?.emission) || 0,
             },
             {
                 tabTitle: "Logistics",
                 key: "Heavy Goods Vehicle",
                 scope: 3,
-                emission: Number(allFreightData?.data?.[0]?.data?.[7].emission) || 0,
+                emission: Number(allFreightData?.data?.[0]?.data?.[7]?.emission) || 0,
             },
 
             // Event Production  // Production Material // Weight (Kgs)
@@ -656,137 +656,137 @@ const Result = ({ value }) => {
                 tabTitle: "Event Production",
                 key: "Wood",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[7].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[7]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Steel",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[8].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[8]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Aluminium",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[9].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[9]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Iron",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[10].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[10]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Paper",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[11].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[11]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Recycled Paper",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[12].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[12]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Paint",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[13].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[13]?.emission) || 0,
             },
             // Total Area (m2)
             {
                 tabTitle: "Event Production",
                 key: "Sawn Timber",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "MDF",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Open Panel Timber Frame",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[2].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[2]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Carpet",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Adhesive Vinyl",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[4].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[4]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Cardboard",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[5].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[5]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Nylon",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[6].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[6]?.emission) || 0,
             },
             // Branding // Weight (In kgs)
             {
                 tabTitle: "Event Production",
                 key: "Polyethylene Banner",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[17].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[17]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "PVC Banners",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[18].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[18]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Plastic Badge",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[20].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[20]?.emission) || 0,
             },
             // No.of A4 Units
             {
                 tabTitle: "Event Production",
                 key: "Paper bags",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[22].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[22]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Jute bags",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[24].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[24]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "Cotton bags",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[25].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[25]?.emission) || 0,
             },
             // Stage Screen
             {
                 tabTitle: "Event Production",
                 key: "Projector",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[14].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[14]?.emission) || 0,
             },
             {
                 tabTitle: "Event Production",
                 key: "LED Screen Panel (500mmx500mm)",
                 scope: 3,
-                emission: Number(allProductionData?.data?.[0]?.data?.[15].emission) || 0,
+                emission: Number(allProductionData?.data?.[0]?.data?.[15]?.emission) || 0,
             },
 
             // Energy
@@ -794,19 +794,19 @@ const Result = ({ value }) => {
                 tabTitle: "Energy",
                 key: "Electricity",
                 scope: 3,
-                emission: Number(allEnergyData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allEnergyData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Energy",
                 key: "Petrol (Generator)",
                 scope: 2,
-                emission: Number(allEnergyData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allEnergyData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Energy",
                 key: "Diesel (Generator)",
                 scope: 2,
-                emission: Number(allEnergyData?.data?.[0]?.data?.[2].emission) || 0,
+                emission: Number(allEnergyData?.data?.[0]?.data?.[2]?.emission) || 0,
             },
 
             // Digital Comms
@@ -814,13 +814,13 @@ const Result = ({ value }) => {
                 tabTitle: "Digital Comms",
                 key: "Emails",
                 scope: 2,
-                emission: Number(allDigitalContentData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allDigitalContentData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Digital Comms",
                 key: "Laptops used",
                 scope: 2,
-                emission: Number(allWasteData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
 
             // Waste // Food Waste
@@ -828,63 +828,63 @@ const Result = ({ value }) => {
                 tabTitle: "Waste",
                 key: "Food Waste (non-meat)",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Waste",
                 key: "Food Waste (meat)",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Waste",
                 key: "Food Waste (All mix)",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[2].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[2]?.emission) || 0,
             },
             {
                 tabTitle: "Waste",
                 key: "Fruits & Vegetables",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
             // Plastic Waste
             {
                 tabTitle: "Waste",
                 key: "250ml",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[4].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[4]?.emission) || 0,
             },
             {
                 tabTitle: "Waste",
                 key: "500ml",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[5].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[5]?.emission) || 0,
             },
             {
                 tabTitle: "Waste",
                 key: "1000ml",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[6].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[6]?.emission) || 0,
             },
             // Event Waste
             {
                 tabTitle: "Waste",
                 key: "Wood",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[7].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[7]?.emission) || 0,
             },
             {
                 tabTitle: "Waste",
                 key: "Carpet",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[8].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[8]?.emission) || 0,
             },
             {
                 tabTitle: "Waste",
                 key: "PVC",
                 scope: 3,
-                emission: Number(allWasteData?.data?.[0]?.data?.[9].emission) || 0,
+                emission: Number(allWasteData?.data?.[0]?.data?.[9]?.emission) || 0,
             },
         ];
 

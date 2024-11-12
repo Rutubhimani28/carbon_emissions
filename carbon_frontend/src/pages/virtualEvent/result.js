@@ -239,12 +239,12 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
+                        Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')}`,
                     },
                 }
             );
 
-            const resJson = response.data;
+            const resJson = response?.data;
             const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
             setSuggestion(formattedSuggestions);
         } catch (error) {

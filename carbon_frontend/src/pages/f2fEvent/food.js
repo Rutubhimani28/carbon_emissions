@@ -14,10 +14,10 @@ const Food = (props) => {
     const { setValue, value } = props;
     const dispatch = useDispatch()
     const theme = useTheme();
-    const allData = useSelector((state) => state?.totalFoodDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalFoodDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalFoodDetails?.totalEmission);
     // const scope = useSelector((state) => state?.totalFoodDetails?.scope);
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
 
@@ -352,36 +352,36 @@ const Food = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("noOfPaxOne", allData[0]?.noOfPax)
-            formik.setFieldValue("emissionOne", allData[0]?.emission)
-            formik.setFieldValue("noOfPaxTwo", allData[1]?.noOfPax)
-            formik.setFieldValue("emissionTwo", allData[1]?.emission)
-            formik.setFieldValue("noOfPaxThree", allData[2]?.noOfPax)
-            formik.setFieldValue("emissionThree", allData[2]?.emission)
-            formik.setFieldValue("noOfPaxFour", allData[3]?.noOfPax)
-            formik.setFieldValue("emissionFour", allData[3]?.emission)
+            formik.setFieldValue("noOfPaxOne", allData?.[0]?.noOfPax)
+            formik.setFieldValue("emissionOne", allData?.[0]?.emission)
+            formik.setFieldValue("noOfPaxTwo", allData?.[1]?.noOfPax)
+            formik.setFieldValue("emissionTwo", allData?.[1]?.emission)
+            formik.setFieldValue("noOfPaxThree", allData?.[2]?.noOfPax)
+            formik.setFieldValue("emissionThree", allData?.[2]?.emission)
+            formik.setFieldValue("noOfPaxFour", allData?.[3]?.noOfPax)
+            formik.setFieldValue("emissionFour", allData?.[3]?.emission)
 
-            formik.setFieldValue("noOfBottlesOne", allData[4]?.noOfBottles)
-            formik.setFieldValue("emissionSix", allData[4]?.emission)
-            formik.setFieldValue("noOfBottlesTwo", allData[5]?.noOfBottles)
-            formik.setFieldValue("emissionSeven", allData[5]?.emission)
-            formik.setFieldValue("noOfBottlesThree", allData[6]?.noOfBottles)
-            formik.setFieldValue("emissionEight", allData[6]?.emission)
-            formik.setFieldValue("noOfBottlesFour", allData[7]?.noOfBottles)
-            formik.setFieldValue("emissionNine", allData[7]?.emission)
-            formik.setFieldValue("noOfBottlesFive", allData[8]?.noOfBottles)
-            formik.setFieldValue("emissionTen", allData[8]?.emission)
-            formik.setFieldValue("noOfBottlesSix", allData[9]?.noOfBottles)
-            formik.setFieldValue("emissionEleven", allData[9]?.emission)
-            formik.setFieldValue("noOfBottlesSeven", allData[10]?.noOfBottles)
-            formik.setFieldValue("emissionTwelve", allData[10]?.emission)
-            formik.setFieldValue("noOfBottlesEight", allData[11]?.noOfBottles)
-            formik.setFieldValue("emissionThirteen", allData[11]?.emission)
-            formik.setFieldValue("noOfBottlesNine", allData[12]?.noOfBottles)
-            formik.setFieldValue("emissionFourteen", allData[12]?.emission)
+            formik.setFieldValue("noOfBottlesOne", allData?.[4]?.noOfBottles)
+            formik.setFieldValue("emissionSix", allData?.[4]?.emission)
+            formik.setFieldValue("noOfBottlesTwo", allData?.[5]?.noOfBottles)
+            formik.setFieldValue("emissionSeven", allData?.[5]?.emission)
+            formik.setFieldValue("noOfBottlesThree", allData?.[6]?.noOfBottles)
+            formik.setFieldValue("emissionEight", allData?.[6]?.emission)
+            formik.setFieldValue("noOfBottlesFour", allData?.[7]?.noOfBottles)
+            formik.setFieldValue("emissionNine", allData?.[7]?.emission)
+            formik.setFieldValue("noOfBottlesFive", allData?.[8]?.noOfBottles)
+            formik.setFieldValue("emissionTen", allData?.[8]?.emission)
+            formik.setFieldValue("noOfBottlesSix", allData?.[9]?.noOfBottles)
+            formik.setFieldValue("emissionEleven", allData?.[9]?.emission)
+            formik.setFieldValue("noOfBottlesSeven", allData?.[10]?.noOfBottles)
+            formik.setFieldValue("emissionTwelve", allData?.[10]?.emission)
+            formik.setFieldValue("noOfBottlesEight", allData?.[11]?.noOfBottles)
+            formik.setFieldValue("emissionThirteen", allData?.[11]?.emission)
+            formik.setFieldValue("noOfBottlesNine", allData?.[12]?.noOfBottles)
+            formik.setFieldValue("emissionFourteen", allData?.[12]?.emission)
 
-            formik.setFieldValue("custFoodMenuEmission", allData[13]?.emission)
-            formik.setFieldValue("custBeveragesEmission", allData[14]?.emission)
+            formik.setFieldValue("custFoodMenuEmission", allData?.[13]?.emission)
+            formik.setFieldValue("custBeveragesEmission", allData?.[14]?.emission)
         }
     }, [value]);
 

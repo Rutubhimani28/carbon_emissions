@@ -19,10 +19,10 @@ const UseGenerateSendFilledFieldsData = () => {
     const userSessionData = sessionStorage.getItem('user');
     const userData = JSON.parse(userSessionData);
 
-    const toolData = useSelector((state) => state.toolDetails?.data);
-    const toolFormData = toolData.find((item) => item?.type === "toolForm");
+    const toolData = useSelector((state) => state?.toolDetails?.data);
+    const toolFormData = toolData?.find((item) => item?.type === "toolForm");
 
-    const resultTableData = useSelector(state => state.resultTableDataDetails);   // pdf
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);   // pdf
     const userAllEventsData = resultTableData?.userAllEventsData;
 
     // count total emission by event wise

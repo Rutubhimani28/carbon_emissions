@@ -9,16 +9,16 @@ const totalHospitalitySlice = createSlice({
     },
     reducers: {
         addHospitalityData: (state, action) => {
-            const newData = Array.isArray(action.payload) ? action.payload : [action.payload];
+            const newData = Array.isArray(action?.payload) ? action?.payload : [action?.payload];
             newData.forEach((newItem) => {
-                const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
+                const existingItemIndex = state?.data?.findIndex((item) => item?.type === newItem?.type);
                 if (existingItemIndex !== -1) {
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
                 } else {
                     state.data.push(newItem);
                 }
             });
-            state.totalEmission = state.data[0].data.reduce((total, item) => item.emission ? total + Number(item.emission) : total, 0).toFixed(2);
+            state.totalEmission = state?.data?.[0]?.data?.reduce((total, item) => item?.emission ? total + Number(item?.emission) : total, 0).toFixed(2);
         },
         deleteHospitalityData: (state, action) => ({
             ...state,

@@ -15,9 +15,9 @@ const Hospitality = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalHospitalityDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalHospitalityDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHospitalityDetails?.totalEmission);
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
 
@@ -265,45 +265,45 @@ const Hospitality = (props) => {
         if (resultTableData.eventDataId) {
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to update data:', resultAction.payload);
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
             } 
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-            if (addResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to save data:', resultAction.payload);
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
             }
         }
     };
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("noOfPaxOne", allData[0]?.noOfPax);
-            formik.setFieldValue("emissionOne", allData[0]?.emission);
-            formik.setFieldValue("noOfPaxTwo", allData[1]?.noOfPax);
-            formik.setFieldValue("emissionTwo", allData[1]?.emission);
-            formik.setFieldValue("noOfPaxThree", allData[2]?.noOfPax);
-            formik.setFieldValue("emissionThree", allData[2]?.emission);
-            formik.setFieldValue("noOfPaxFour", allData[3]?.noOfPax);
-            formik.setFieldValue("emissionFour", allData[3]?.emission);
+            formik.setFieldValue("noOfPaxOne", allData?.[0]?.noOfPax);
+            formik.setFieldValue("emissionOne", allData?.[0]?.emission);
+            formik.setFieldValue("noOfPaxTwo", allData?.[1]?.noOfPax);
+            formik.setFieldValue("emissionTwo", allData?.[1]?.emission);
+            formik.setFieldValue("noOfPaxThree", allData?.[2]?.noOfPax);
+            formik.setFieldValue("emissionThree", allData?.[2]?.emission);
+            formik.setFieldValue("noOfPaxFour", allData?.[3]?.noOfPax);
+            formik.setFieldValue("emissionFour", allData?.[3]?.emission);
 
-            formik.setFieldValue("foodWasteNonMeatKg", allData[4]?.kgs);
-            formik.setFieldValue("foodWasteNonMeatEmission", allData[4]?.emission);
-            formik.setFieldValue("foodWasteMeatKg", allData[5]?.kgs);
-            formik.setFieldValue("foodWasteMeatEmission", allData[5]?.emission);
-            // formik.setFieldValue("municipalSolidWasteKg", allData[6]?.kgs);
-            // formik.setFieldValue("municipalSolidWasteEmission", allData[6]?.emission);
-            formik.setFieldValue('foodWasteMixKg', allData[6]?.kgs);
-            formik.setFieldValue('foodWasteMixEmission', allData[6]?.emission);
-            formik.setFieldValue('fruitVegetablesKg', allData[7]?.kgs);
-            formik.setFieldValue('fruitVegetablesEmission', allData[7]?.emission);
+            formik.setFieldValue("foodWasteNonMeatKg", allData?.[4]?.kgs);
+            formik.setFieldValue("foodWasteNonMeatEmission", allData?.[4]?.emission);
+            formik.setFieldValue("foodWasteMeatKg", allData?.[5]?.kgs);
+            formik.setFieldValue("foodWasteMeatEmission", allData?.[5]?.emission);
+            // formik.setFieldValue("municipalSolidWasteKg", allData?.[6]?.kgs);
+            // formik.setFieldValue("municipalSolidWasteEmission", allData?.[6]?.emission);
+            formik.setFieldValue('foodWasteMixKg', allData?.[6]?.kgs);
+            formik.setFieldValue('foodWasteMixEmission', allData?.[6]?.emission);
+            formik.setFieldValue('fruitVegetablesKg', allData?.[7]?.kgs);
+            formik.setFieldValue('fruitVegetablesEmission', allData?.[7]?.emission);
 
-            formik.setFieldValue("bottleOne", allData[8]?.bottle);
-            formik.setFieldValue("bottleOneEmission", allData[8]?.emission);
-            formik.setFieldValue("bottleTwo", allData[9]?.bottle);
-            formik.setFieldValue("bottleTwoEmission", allData[9]?.emission);
-            formik.setFieldValue("bottleThree", allData[10]?.bottle);
-            formik.setFieldValue("bottleThreeEmission", allData[10]?.emission);
+            formik.setFieldValue("bottleOne", allData?.[8]?.bottle);
+            formik.setFieldValue("bottleOneEmission", allData?.[8]?.emission);
+            formik.setFieldValue("bottleTwo", allData?.[9]?.bottle);
+            formik.setFieldValue("bottleTwoEmission", allData?.[9]?.emission);
+            formik.setFieldValue("bottleThree", allData?.[10]?.bottle);
+            formik.setFieldValue("bottleThreeEmission", allData?.[10]?.emission);
         }
     }, [value]);
 

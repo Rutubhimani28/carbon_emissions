@@ -29,9 +29,9 @@ const Comms = (props) => {
   const { setValue, value } = props;
   const theme = useTheme();
   const dispatch = useDispatch();
-  const allData = useSelector((state) => state?.totalCommsDetails?.data[0]?.data);
+  const allData = useSelector((state) => state?.totalCommsDetails?.data?.[0]?.data);
   const totalEmission = useSelector((state) => state?.totalCommsDetails?.totalEmission);
-  const resultTableData = useSelector(state => state.resultTableDataDetails);
+  const resultTableData = useSelector(state => state?.resultTableDataDetails);
 
   const eventsData = useEventData();
 
@@ -290,64 +290,64 @@ const Comms = (props) => {
     if (resultTableData.eventDataId) {
       eventData.eventDataId = resultTableData?.eventDataId;
       const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-      if (updateResultTableDatasToDb.rejected.match(resultAction)) {
-        console.error('Failed to update data:', resultAction.payload);
+      if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+        console.error('Failed to update data:', resultAction?.payload);
       }
     } else {
       const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-      if (addResultTableDatasToDb.rejected.match(resultAction)) {
-        console.error('Failed to save data:', resultAction.payload);
+      if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+        console.error('Failed to save data:', resultAction?.payload);
       }
     }
   };
 
   useEffect(() => {
     if (allData?.length > 0) {
-      formik.setFieldValue('noOfEmails', allData[0]?.noOfEmails);
-      formik.setFieldValue('emialEfOne', allData[0]?.emialEfOne);
-      formik.setFieldValue('emialEfTwo', allData[0]?.emialEfTwo);
-      formik.setFieldValue('emailEmissionOne', allData[0]?.emailEmissionOne);
-      formik.setFieldValue('emissionOne', allData[0]?.emission);
-      formik.setFieldValue('emailEmissionTwo', allData[0]?.emailEmissionTwo);
-      formik.setFieldValue('attachmentSize', allData[0]?.attachmentSize);
-      formik.setFieldValue('totalAttachmentSize', allData[0]?.totalAttachmentSize);
-      formik.setFieldValue('efOne', allData[1]?.efOne);
-      formik.setFieldValue('emissionOne', allData[0]?.emission);
+      formik.setFieldValue('noOfEmails', allData?.[0]?.noOfEmails);
+      formik.setFieldValue('emialEfOne', allData?.[0]?.emialEfOne);
+      formik.setFieldValue('emialEfTwo', allData?.[0]?.emialEfTwo);
+      formik.setFieldValue('emailEmissionOne', allData?.[0]?.emailEmissionOne);
+      formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+      formik.setFieldValue('emailEmissionTwo', allData?.[0]?.emailEmissionTwo);
+      formik.setFieldValue('attachmentSize', allData?.[0]?.attachmentSize);
+      formik.setFieldValue('totalAttachmentSize', allData?.[0]?.totalAttachmentSize);
+      formik.setFieldValue('efOne', allData?.[1]?.efOne);
+      formik.setFieldValue('emissionOne', allData?.[0]?.emission);
 
-      // formik.setFieldValue('prFileSizeOne', allData[1]?.prFileSizeOne);
-      formik.setFieldValue('finalFileSizeOne', allData[1]?.finalFileSizeOne);
-      formik.setFieldValue('sendingToMediaOne', allData[1]?.sendingToMediaOne);
-      formik.setFieldValue('efTwo', allData[1]?.ef);
-      formik.setFieldValue('emissionTwo', allData[1]?.emission);
+      // formik.setFieldValue('prFileSizeOne', allData?.[1]?.prFileSizeOne);
+      formik.setFieldValue('finalFileSizeOne', allData?.[1]?.finalFileSizeOne);
+      formik.setFieldValue('sendingToMediaOne', allData?.[1]?.sendingToMediaOne);
+      formik.setFieldValue('efTwo', allData?.[1]?.ef);
+      formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
 
-      // formik.setFieldValue('prFileSizeTwo', allData[2]?.prFileSizeTwo);
-      formik.setFieldValue('finalFileSizeTwo', allData[2]?.finalFileSizeTwo);
-      formik.setFieldValue('sendingToMediaTwo', allData[2]?.sendingToMediaTwo);
-      formik.setFieldValue('emissionThree', allData[2]?.emission);
+      // formik.setFieldValue('prFileSizeTwo', allData?.[2]?.prFileSizeTwo);
+      formik.setFieldValue('finalFileSizeTwo', allData?.[2]?.finalFileSizeTwo);
+      formik.setFieldValue('sendingToMediaTwo', allData?.[2]?.sendingToMediaTwo);
+      formik.setFieldValue('emissionThree', allData?.[2]?.emission);
 
-      // formik.setFieldValue('imgSize', allData[3]?.imgSize);
-      // formik.setFieldValue('deviceEnergy1', allData[3]?.deviceEnergy1);
-      // formik.setFieldValue('somePlatformEnergy1', allData[3]?.somePlatformEnergy1);
-      // formik.setFieldValue('networkEnergy1', allData[3]?.networkEnergy1);
-      // formik.setFieldValue('totalEnergy1', allData[3]?.totalEnergy1);
-      // formik.setFieldValue('efFour', allData[3]?.ef);
-      // formik.setFieldValue('impressionsOne', allData[3]?.impressionsOne);
-      // formik.setFieldValue('emissionFour', allData[3]?.emission);
+      // formik.setFieldValue('imgSize', allData?.[3]?.imgSize);
+      // formik.setFieldValue('deviceEnergy1', allData?.[3]?.deviceEnergy1);
+      // formik.setFieldValue('somePlatformEnergy1', allData?.[3]?.somePlatformEnergy1);
+      // formik.setFieldValue('networkEnergy1', allData?.[3]?.networkEnergy1);
+      // formik.setFieldValue('totalEnergy1', allData?.[3]?.totalEnergy1);
+      // formik.setFieldValue('efFour', allData?.[3]?.ef);
+      // formik.setFieldValue('impressionsOne', allData?.[3]?.impressionsOne);
+      // formik.setFieldValue('emissionFour', allData?.[3]?.emission);
 
-      // formik.setFieldValue('videoSize', allData[4]?.videoSize);
-      // formik.setFieldValue('videoMins', allData[4]?.videoMins);
-      // formik.setFieldValue('deviceEnergy2', allData[4]?.deviceEnergy2);
-      // formik.setFieldValue('somePlatformEnergy2', allData[4]?.somePlatformEnergy2);
-      // formik.setFieldValue('networkEnergy2', allData[4]?.networkEnergy2);
-      // formik.setFieldValue('totalEnergy2', allData[4]?.totalEnergy2);
-      // formik.setFieldValue('efFive', allData[4]?.ef);
-      // formik.setFieldValue('impressionsTwo', allData[4]?.impressionsTwo);
-      // formik.setFieldValue('emissionFive', allData[4]?.emission);
+      // formik.setFieldValue('videoSize', allData?.[4]?.videoSize);
+      // formik.setFieldValue('videoMins', allData?.[4]?.videoMins);
+      // formik.setFieldValue('deviceEnergy2', allData?.[4]?.deviceEnergy2);
+      // formik.setFieldValue('somePlatformEnergy2', allData?.[4]?.somePlatformEnergy2);
+      // formik.setFieldValue('networkEnergy2', allData?.[4]?.networkEnergy2);
+      // formik.setFieldValue('totalEnergy2', allData?.[4]?.totalEnergy2);
+      // formik.setFieldValue('efFive', allData?.[4]?.ef);
+      // formik.setFieldValue('impressionsTwo', allData?.[4]?.impressionsTwo);
+      // formik.setFieldValue('emissionFive', allData?.[4]?.emission);
 
-      formik.setFieldValue("colouredBrochurePage", allData[3]?.colouredBrochurePage);
-      formik.setFieldValue("emissionSix", allData[3]?.emission);
-      formik.setFieldValue("a4Size75Gsm", allData[4]?.a4Size75Gsm);
-      formik.setFieldValue("emissionSeven", allData[4]?.emission);
+      formik.setFieldValue("colouredBrochurePage", allData?.[3]?.colouredBrochurePage);
+      formik.setFieldValue("emissionSix", allData?.[3]?.emission);
+      formik.setFieldValue("a4Size75Gsm", allData?.[4]?.a4Size75Gsm);
+      formik.setFieldValue("emissionSeven", allData?.[4]?.emission);
     }
   }, [value]);
 

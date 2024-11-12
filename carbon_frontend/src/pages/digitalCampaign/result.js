@@ -18,9 +18,9 @@ const Result = ({ value }) => {
     const allDigitalCampaignData = useSelector((state) => state?.totalDigitalCampaignDetails);
 
     const total = Number(allDigitalCampaignData?.totalEmission);
-    const toolData = useSelector(state => state.toolDetails?.data);
-    const toolFormData = toolData?.find((item) => item.type === 'toolForm');
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const toolData = useSelector(state => state?.toolDetails?.data);
+    const toolFormData = toolData?.find((item) => item?.type === 'toolForm');
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
 
     const [sc1, setSc1] = useState(0);
     const [sc2, setSc2] = useState(0);
@@ -150,7 +150,7 @@ const Result = ({ value }) => {
 
         let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Digital Campaign: </h3> `;
 
-        formattedSuggestions.split('\n').forEach((line, index) => {
+        formattedSuggestions?.split('\n')?.forEach((line, index) => {
             pdfData += `${line}<br />`;
         });
         setSuggestionForPdf(pdfData);
@@ -177,12 +177,12 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
+                        Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')}`,
                     },
                 }
             );
 
-            const resJson = response.data;
+            const resJson = response?.data;
             const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
             setSuggestion(formattedSuggestions);
         } catch (error) {
@@ -279,25 +279,25 @@ const Result = ({ value }) => {
                 tabTitle: "Digital Campaign",
                 key: "Image",
                 scope: 3,
-                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Digital Campaign",
                 key: "Video",
                 scope: 3,
-                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Digital Campaign",
                 key: "Email",
                 scope: 1,
-                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[2].emission) || 0,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission) || 0,
             },
             {
                 tabTitle: "Digital Campaign",
                 key: "Podcast",
                 scope: 3,
-                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
         ];
 

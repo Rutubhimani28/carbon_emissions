@@ -588,6 +588,39 @@ const Home = () => {
                                                             '& .MuiInputBase-input::placeholder': {
                                                                 color: 'white !important', // Placeholder color
                                                             },
+
+
+                                                            // // Border styling for normal, focus, and error states
+                                                            // '& .MuiOutlinedInput-root': {
+                                                            //     '& fieldset': {
+                                                            //         borderColor: 'white', // Default border color
+                                                            //     },
+                                                            //     '&:hover fieldset': {
+                                                            //         borderColor: 'white', // Border color on hover
+                                                            //     },
+                                                            //     '&.Mui-focused fieldset': {
+                                                            //         borderColor: 'white', // Border color when focused
+                                                            //     },
+                                                            //     // Border color when there's an error (based on Formik)
+                                                            //     '&.Mui-error fieldset': {
+                                                            //         borderColor: 'red', // Red border on error
+                                                            //     },
+                                                            // },
+                                                            // // Input text color
+                                                            // '& .MuiInputBase-input': {
+                                                            //     color: 'white', // Input text color
+                                                            //     '&::placeholder': {
+                                                            //         color: 'white', // Placeholder color
+                                                            //     },
+                                                            // },
+                                                            // // Disabled state styling
+                                                            // '& .MuiInputBase-input.Mui-disabled': {
+                                                            //     color: 'white', // Disabled input text color
+                                                            //     '-webkit-text-fill-color': 'white', // Disabled input text color for Webkit browsers
+                                                            // },
+                                                            // '& .MuiInputBase-input.Mui-disabled::placeholder': {
+                                                            //     color: 'white', // Disabled placeholder color
+                                                            // },
                                                         }}
                                                         ampm={false}
                                                     />

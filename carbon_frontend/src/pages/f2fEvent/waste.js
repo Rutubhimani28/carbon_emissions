@@ -14,10 +14,10 @@ const Waste = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalWasteDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalWasteDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalWasteDetails?.totalEmission);
     // const scope = useSelector((state) => state?.totalWasteDetails?.scope);
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
     // -----------   initialValues
@@ -327,71 +327,71 @@ const Waste = (props) => {
 
     const handleSaveToDb = async () => {
         const eventData = {
-           ...eventsData,
+            ...eventsData,
         };
 
         if (resultTableData.eventDataId) {
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to update data:', resultAction.payload);
-            } 
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
+            }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-            if (addResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to save data:', resultAction.payload);
-            } 
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
+            }
         }
     };
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue('foodWasteNonMeatKg', allData[0]?.foodWasteNonMeatKg);
-            formik.setFieldValue('foodWasteNonMeatEmission', allData[0]?.emission);
-            formik.setFieldValue('foodWasteMeatKg', allData[1]?.foodWasteMeatKg);
-            formik.setFieldValue('foodWasteMeatEmission', allData[1]?.emission);
-            // formik.setFieldValue('municipalSolidWasteKg', allData[2]?.municipalSolidWasteKg);
-            // formik.setFieldValue('municipalSolidWasteEmission', allData[2]?.emission);
-            formik.setFieldValue('foodWasteMixKg', allData[2]?.foodWasteMixKg);
-            formik.setFieldValue('foodWasteMixEmission', allData[2]?.emission);
-            formik.setFieldValue('fruitVegetablesKg', allData[3]?.fruitVegetablesKg);
-            formik.setFieldValue('fruitVegetablesEmission', allData[3]?.emission);
+            formik.setFieldValue('foodWasteNonMeatKg', allData?.[0]?.foodWasteNonMeatKg);
+            formik.setFieldValue('foodWasteNonMeatEmission', allData?.[0]?.emission);
+            formik.setFieldValue('foodWasteMeatKg', allData?.[1]?.foodWasteMeatKg);
+            formik.setFieldValue('foodWasteMeatEmission', allData?.[1]?.emission);
+            // formik.setFieldValue('municipalSolidWasteKg', allData?.[2]?.municipalSolidWasteKg);
+            // formik.setFieldValue('municipalSolidWasteEmission', allData?.[2]?.emission);
+            formik.setFieldValue('foodWasteMixKg', allData?.[2]?.foodWasteMixKg);
+            formik.setFieldValue('foodWasteMixEmission', allData?.[2]?.emission);
+            formik.setFieldValue('fruitVegetablesKg', allData?.[3]?.fruitVegetablesKg);
+            formik.setFieldValue('fruitVegetablesEmission', allData?.[3]?.emission);
 
-            formik.setFieldValue('bottleOne', allData[4]?.bottleOne);
-            formik.setFieldValue('bottleOneEmission', allData[4]?.emission);
-            formik.setFieldValue('bottleTwo', allData[5]?.bottleTwo);
-            formik.setFieldValue('bottleTwoEmission', allData[5]?.emission);
-            formik.setFieldValue('bottleThree', allData[6]?.bottleThree);
-            formik.setFieldValue('bottleThreeEmission', allData[6]?.emission);
-            // formik.setFieldValue('plasticWrapping', allData[6]?.plasticWrapping);
-            // formik.setFieldValue('plasticWrappingEmission', allData[6]?.emission);
+            formik.setFieldValue('bottleOne', allData?.[4]?.bottleOne);
+            formik.setFieldValue('bottleOneEmission', allData?.[4]?.emission);
+            formik.setFieldValue('bottleTwo', allData?.[5]?.bottleTwo);
+            formik.setFieldValue('bottleTwoEmission', allData?.[5]?.emission);
+            formik.setFieldValue('bottleThree', allData?.[6]?.bottleThree);
+            formik.setFieldValue('bottleThreeEmission', allData?.[6]?.emission);
+            // formik.setFieldValue('plasticWrapping', allData?.[6]?.plasticWrapping);
+            // formik.setFieldValue('plasticWrappingEmission', allData?.[6]?.emission);
 
-            formik.setFieldValue('woodKg', allData[7]?.woodKg);
-            formik.setFieldValue('woodEmission', allData[7]?.emission);
-            formik.setFieldValue('carpetKg', allData[8]?.carpetKg);
-            formik.setFieldValue('carpetEmission', allData[8]?.emission);
-            formik.setFieldValue('pvcKg', allData[9]?.pvcKg);
-            formik.setFieldValue('pvcEmission', allData[9]?.emission);
+            formik.setFieldValue('woodKg', allData?.[7]?.woodKg);
+            formik.setFieldValue('woodEmission', allData?.[7]?.emission);
+            formik.setFieldValue('carpetKg', allData?.[8]?.carpetKg);
+            formik.setFieldValue('carpetEmission', allData?.[8]?.emission);
+            formik.setFieldValue('pvcKg', allData?.[9]?.pvcKg);
+            formik.setFieldValue('pvcEmission', allData?.[9]?.emission);
 
-            // formik.setFieldValue('hdpeBanner', allData[7]?.hdpeBanner);
-            // formik.setFieldValue('hdpeBannerEmission', allData[7]?.emission);
-            // formik.setFieldValue('pvcBanners', allData[8]?.pvcBanners);
-            // formik.setFieldValue('pvcBannersEmission', allData[8]?.emission);
-            // formik.setFieldValue('cottonBanner', allData[9]?.cottonBanner);
-            // formik.setFieldValue('cottonBannerEmission', allData[9]?.emission);
-            // formik.setFieldValue('plasticBadgeHolders', allData[10]?.plasticBadgeHolders);
-            // formik.setFieldValue('plasticBadgeHoldersEmission', allData[10]?.emission);
+            // formik.setFieldValue('hdpeBanner', allData?.[7]?.hdpeBanner);
+            // formik.setFieldValue('hdpeBannerEmission', allData?.[7]?.emission);
+            // formik.setFieldValue('pvcBanners', allData?.[8]?.pvcBanners);
+            // formik.setFieldValue('pvcBannersEmission', allData?.[8]?.emission);
+            // formik.setFieldValue('cottonBanner', allData?.[9]?.cottonBanner);
+            // formik.setFieldValue('cottonBannerEmission', allData?.[9]?.emission);
+            // formik.setFieldValue('plasticBadgeHolders', allData?.[10]?.plasticBadgeHolders);
+            // formik.setFieldValue('plasticBadgeHoldersEmission', allData?.[10]?.emission);
 
-            // formik.setFieldValue('colouredBrochurePage', allData[11]?.colouredBrochurePage);
-            // formik.setFieldValue('colouredBrochurePageEmission', allData[11]?.emission);
-            // formik.setFieldValue('paperBagsA4Size', allData[12]?.paperBagsA4Size);
-            // formik.setFieldValue('paperBagsA4SizeEmission', allData[12]?.emission);
-            // formik.setFieldValue('paperBagsA5Size', allData[13]?.paperBagsA5Size);
-            // formik.setFieldValue('paperBagsA5SizeEmission', allData[13]?.emission);
-            // formik.setFieldValue('juteBagsA4Size', allData[14]?.juteBagsA4Size);
-            // formik.setFieldValue('juteBagsA4SizeEmission', allData[14]?.emission);
-            // formik.setFieldValue('cottonBagsA4Size', allData[15]?.cottonBagsA4Size);
-            // formik.setFieldValue('cottonBagsA4SizeEmission', allData[15]?.emission);
+            // formik.setFieldValue('colouredBrochurePage', allData?.[11]?.colouredBrochurePage);
+            // formik.setFieldValue('colouredBrochurePageEmission', allData?.[11]?.emission);
+            // formik.setFieldValue('paperBagsA4Size', allData?.[12]?.paperBagsA4Size);
+            // formik.setFieldValue('paperBagsA4SizeEmission', allData?.[12]?.emission);
+            // formik.setFieldValue('paperBagsA5Size', allData?.[13]?.paperBagsA5Size);
+            // formik.setFieldValue('paperBagsA5SizeEmission', allData?.[13]?.emission);
+            // formik.setFieldValue('juteBagsA4Size', allData?.[14]?.juteBagsA4Size);
+            // formik.setFieldValue('juteBagsA4SizeEmission', allData?.[14]?.emission);
+            // formik.setFieldValue('cottonBagsA4Size', allData?.[15]?.cottonBagsA4Size);
+            // formik.setFieldValue('cottonBagsA4SizeEmission', allData?.[15]?.emission);
         }
     }, [value]);
 

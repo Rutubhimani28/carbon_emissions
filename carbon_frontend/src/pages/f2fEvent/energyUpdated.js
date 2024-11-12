@@ -16,10 +16,10 @@ const EnergyUpdated = (props) => {
     const theme = useTheme();
     const dispatch = useDispatch();
 
-    const allData = useSelector((state) => state?.totalEnergyUpdatedDetails?.data[0]?.data)
+    const allData = useSelector((state) => state?.totalEnergyUpdatedDetails?.data?.[0]?.data)
     const totalEmission = useSelector((state) => state?.totalEnergyUpdatedDetails?.totalEmission)
     // const scope = useSelector((state) => state?.totalEnergyUpdatedDetails?.scope);
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
     // -----------  validationSchema
@@ -120,25 +120,25 @@ const EnergyUpdated = (props) => {
         if (resultTableData.eventDataId) {
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to update data:', resultAction.payload);
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
             }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-            if (addResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to save data:', resultAction.payload);
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
             } 
         }
     };
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("kwh", allData[0]?.kwh)
-            formik.setFieldValue("emissionOne", allData[0]?.emission)
-            formik.setFieldValue("gallonsOne", allData[1]?.gallonsOne)
-            formik.setFieldValue("emissionTwo", allData[1]?.emission)
-            formik.setFieldValue("gallonsTwo", allData[2]?.gallonsTwo)
-            formik.setFieldValue("emissionThree", allData[2]?.emission)
+            formik.setFieldValue("kwh", allData?.[0]?.kwh)
+            formik.setFieldValue("emissionOne", allData?.[0]?.emission)
+            formik.setFieldValue("gallonsOne", allData?.[1]?.gallonsOne)
+            formik.setFieldValue("emissionTwo", allData?.[1]?.emission)
+            formik.setFieldValue("gallonsTwo", allData?.[2]?.gallonsTwo)
+            formik.setFieldValue("emissionThree", allData?.[2]?.emission)
         }
     }, [value])
 

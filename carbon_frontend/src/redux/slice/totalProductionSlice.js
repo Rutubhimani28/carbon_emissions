@@ -10,16 +10,16 @@ const productionSlice = createSlice({
     },
     reducers: {
         addProductionData: (state, action) => {
-            const newData = Array.isArray(action.payload) ? action.payload : [action.payload];
+            const newData = Array.isArray(action?.payload) ? action?.payload : [action?.payload];
             newData.forEach((newItem) => {
-                const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
+                const existingItemIndex = state.data.findIndex((item) => item?.type === newItem?.type);
                 if (existingItemIndex !== -1) {
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
                 } else {
                     state.data.push(newItem);
                 }
             });
-            state.totalEmission = state.data[0].data.reduce((total, item) => {
+            state.totalEmission = state?.data?.[0]?.data?.reduce((total, item) => {
                 if (item?.emission) {
                     return total + Number(item.emission);
                 }
@@ -37,8 +37,8 @@ const productionSlice = createSlice({
         //     scope: action.payload
         // }),
         setProductionAllData: (state, action) => {
-            state.data = action.payload.data; 
-            state.totalEmission = action.payload.totalEmission; 
+            state.data = action?.payload?.data; 
+            state.totalEmission = action?.payload?.totalEmission; 
             // state.scope = action.payload.scope; 
         },
     },

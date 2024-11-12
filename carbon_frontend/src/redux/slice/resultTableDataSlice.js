@@ -44,7 +44,7 @@ const resultTableDataSlice = createSlice({
         addResultTableData: (state, action) => {
             const { tabTitle, data, from } = action.payload;
 
-            const fromIndex = state.data?.findIndex(item => item.from === from);
+            const fromIndex = state?.data?.findIndex(item => item?.from === from);
             if (fromIndex === -1) {
                 state.data.push({
                     from,
@@ -58,10 +58,10 @@ const resultTableDataSlice = createSlice({
             }
             else {
                 // Get the existing data object based on 'from' value
-                const existingData = state.data?.[fromIndex];
+                const existingData = state?.data?.[fromIndex];
 
                 // Find the index of the tabData with the matching 'tabTitle'
-                const tabIndex = existingData?.allDataOfTab?.findIndex(item => item.tabTitle === tabTitle);
+                const tabIndex = existingData?.allDataOfTab?.findIndex(item => item?.tabTitle === tabTitle);
 
                 if (tabIndex !== -1) {
                     state.data[fromIndex].allDataOfTab[tabIndex] = {
@@ -98,8 +98,8 @@ const resultTableDataSlice = createSlice({
                 if (item.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Air Travel') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Air Travel') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -121,12 +121,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabLocalTransData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Local Transportation') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Local Transportation') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -148,12 +148,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabFBData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Food & Beverages') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Food & Beverages') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -176,12 +176,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabLogisticsData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Logistics') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Logistics') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -201,12 +201,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabProductionData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Event Production') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Event Production') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -231,12 +231,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabEnergyData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Energy') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Energy') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -257,12 +257,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTableDigitalContData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Digital Comms') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Digital Comms') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -283,12 +283,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabWasteData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Waste') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Waste') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -310,12 +310,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabHotelData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "f2fEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Hotel') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Hotel') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -337,12 +337,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabDgCampaignData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "digitalCampaign") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Digital Campaign') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Digital Campaign') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -365,7 +365,7 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabVrtEventData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 // if (item.tabTitle === 'Virtual Event') {
                 // if (item.tabTitle === 'outboundMarketing') {
                 if (item.tabTitle === 'virtualEvent') {
@@ -393,12 +393,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabCommsData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "prEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Comms') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Comms') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -421,12 +421,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabHospitalityData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "prEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'Hospitality') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'Hospitality') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -448,12 +448,12 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabPrAgencyData: (state, action) => {
-            const filteredData = state.data.map(item => {
+            const filteredData = state?.data?.map(item => {
                 if (item?.from === "prEvent") {
                     return {
                         ...item,
-                        allDataOfTab: item.allDataOfTab.map(tab => {
-                            if (tab.tabTitle === 'PR Agency') {
+                        allDataOfTab: item?.allDataOfTab?.map(tab => {
+                            if (tab?.tabTitle === 'PR Agency') {
                                 return {
                                     ...tab,
                                     tabData: [
@@ -481,7 +481,7 @@ const resultTableDataSlice = createSlice({
             const { categories } = action.payload;
 
             categories?.forEach((category) => {
-                const existingIndex = state.prEventEmissionDataCategorywise.findIndex(sitem => sitem.catgName === category.catgName);
+                const existingIndex = state?.prEventEmissionDataCategorywise?.findIndex(sitem => sitem?.catgName === category?.catgName);
 
                 if (existingIndex !== -1) {
                     state.prEventEmissionDataCategorywise[existingIndex] = category;
@@ -493,8 +493,8 @@ const resultTableDataSlice = createSlice({
             });
         },
         deleteCommsCatogorywiseEmission: (state, action) => {
-            const filteredData = state.prEventEmissionDataCategorywise.filter(category => {
-                return category.catgName !== 'Email Invitations' && category.catgName !== "PR Assets";
+            const filteredData = state?.prEventEmissionDataCategorywise?.filter(category => {
+                return category?.catgName !== 'Email Invitations' && category?.catgName !== "PR Assets";
             });
 
             return {
@@ -503,8 +503,8 @@ const resultTableDataSlice = createSlice({
             };
         },
         deletePrAgencyCatogorywiseEmission: (state, action) => {
-            const filteredData = state.prEventEmissionDataCategorywise.filter(category => {
-                return category.catgName !== 'PR Agency';
+            const filteredData = state?.prEventEmissionDataCategorywise?.filter(category => {
+                return category?.catgName !== 'PR Agency';
             });
 
             return {
@@ -513,8 +513,8 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteHospitalityCatogorywiseEmission: (state, action) => {
-            const filteredData = state.prEventEmissionDataCategorywise.filter(category => {
-                return category.catgName !== 'Food/Lunch' && category.catgName !== 'Red Meat' && category.catgName !== 'Food-PetBottleWaste';
+            const filteredData = state?.prEventEmissionDataCategorywise?.filter(category => {
+                return category?.catgName !== 'Food/Lunch' && category?.catgName !== 'Red Meat' && category?.catgName !== 'Food-PetBottleWaste';
             });
 
             return {
@@ -527,8 +527,8 @@ const resultTableDataSlice = createSlice({
             prEventEmissionDataCategorywise: [],
         }),
         setResultTableAllData: (state, action) => {
-            state.data = action.payload.data;
-            state.eventDataId = action.payload.eventDataId;
+            state.data = action?.payload?.data;
+            state.eventDataId = action?.payload?.eventDataId;
         }
     },
     extraReducers: (builder) => {
@@ -538,14 +538,14 @@ const resultTableDataSlice = createSlice({
             })
             .addCase(addResultTableDatasToDb.fulfilled, (state, action) => {
                 state.isLoading = false;
-                // state.data = action.payload;
+                // state.data = action?.payload;
                 state.eventDataId = action?.payload?._id
                 state.error = "";
             })
             .addCase(addResultTableDatasToDb.rejected, (state, action) => {
                 state.isLoading = false;
                 state.data = [];
-                state.error = action.error.message;
+                state.error = action?.error?.message;
             })
             .addCase(updateResultTableDatasToDb.pending, (state) => {
                 state.isLoading = true;
@@ -553,26 +553,26 @@ const resultTableDataSlice = createSlice({
             .addCase(updateResultTableDatasToDb.fulfilled, (state, action) => {
                 state.isLoading = false;
                 // state.data = action.payload;
-                state.eventDataId = action.payload._id;
+                state.eventDataId = action?.payload?._id;
                 state.error = "";
             })
             .addCase(updateResultTableDatasToDb.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.error.message;
+                state.error = action?.error?.message;
             })
             .addCase(fetchResultTableDatasFromDb.pending, (state) => {
                 state.isLoading = true;
             })
             .addCase(fetchResultTableDatasFromDb.fulfilled, (state, action) => {
                 state.isLoading = false;
-                const { data, _id } = action.payload;
+                const { data, _id } = action?.payload;
                 if (!_id) {
                     state.userAllEventsData = data  // Update the state with the fetched data
                 }
             })
             .addCase(fetchResultTableDatasFromDb.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.error.message;
+                state.error = action?.error?.message;
             });
     },
 });

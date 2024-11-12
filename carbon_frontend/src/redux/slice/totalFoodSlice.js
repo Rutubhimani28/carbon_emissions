@@ -10,9 +10,9 @@ const totalFoodSlice = createSlice({
     },
     reducers: {
         addFoodData: (state, action) => {
-            const newData = Array.isArray(action.payload) ? action.payload : [action.payload];
+            const newData = Array.isArray(action?.payload) ? action?.payload : [action?.payload];
             newData.forEach((newItem) => {
-                const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
+                const existingItemIndex = state?.data?.findIndex((item) => item?.type === newItem?.type);
                 if (existingItemIndex !== -1) {
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
                 } else {
@@ -25,7 +25,7 @@ const totalFoodSlice = createSlice({
             //     }
             //     return total;
             // }, 0).toFixed(2);
-            state.totalEmission = state.data[0].data.reduce((total, item) => item.emission ? total + Number(item.emission) : total, 0).toFixed(2);
+            state.totalEmission = state?.data?.[0]?.data?.reduce((total, item) => item?.emission ? total + Number(item?.emission) : total, 0).toFixed(2);
         },
         deleteFoodData: (state, action) => ({
             ...state,
@@ -38,8 +38,8 @@ const totalFoodSlice = createSlice({
         //     scope: action.payload.scope
         // }),
         setFoodAllData: (state, action) => {
-            state.data = action.payload.data; 
-            state.totalEmission = action.payload.totalEmission; 
+            state.data = action?.payload?.data; 
+            state.totalEmission = action?.payload?.totalEmission; 
             // state.scope = action.payload.scope; 
         },
     },

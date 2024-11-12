@@ -10,9 +10,9 @@ const totalHotelSlice = createSlice({
     },
     reducers: {
         addHotelData: (state, action) => {
-            const newData = Array.isArray(action.payload) ? action.payload : [action.payload];
+            const newData = Array.isArray(action?.payload) ? action?.payload : [action?.payload];
             newData.forEach((newItem) => {
-                const existingItemIndex = state.data.findIndex((item) => item.type === newItem.type);
+                const existingItemIndex = state.data.findIndex((item) => item?.type === newItem?.type);
                 if (existingItemIndex !== -1) {
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };
                 } else {
@@ -32,8 +32,8 @@ const totalHotelSlice = createSlice({
         //     scope: action.payload.scope
         // }),
         setHotelAllData: (state, action) => {
-            state.data = action.payload.data; 
-            state.totalEmission = action.payload.totalEmission; 
+            state.data = action?.payload?.data; 
+            state.totalEmission = action?.payload?.totalEmission; 
             // state.scope = action.payload.scope; 
         },
     },

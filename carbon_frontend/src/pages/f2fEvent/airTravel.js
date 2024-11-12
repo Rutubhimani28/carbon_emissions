@@ -17,7 +17,7 @@ const AirTravel = (props) => {
     const dispatch = useDispatch()
     const eventsData = useEventData();
     // const allData = useSelector((state) => state?.totalAirTravelDetails?.data);
-    const allData = useSelector((state) => state?.totalAirTravelDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalAirTravelDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirTravelDetails?.totalEmission);
     const resultTableData = useSelector(state => state.resultTableDataDetails);
 
@@ -214,39 +214,39 @@ const AirTravel = (props) => {
         if (resultTableData.eventDataId) {
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to update data:', resultAction.payload);
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
             }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-            if (addResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to save data:', resultAction.payload);
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
             }
         }
     };
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("noOfTripsOne", allData[0]?.noOfTripsOne);
-            formik.setFieldValue("noOfTripsTwo", allData[0]?.noOfTripsTwo);
-            formik.setFieldValue("noOfTripsThree", allData[0]?.noOfTripsThree);
-            formik.setFieldValue("emissionOne", allData[0]?.emissionOne);
-            formik.setFieldValue("emissionTwo", allData[0]?.emissionTwo);
-            formik.setFieldValue("emissionThree", allData[0]?.emissionThree);
+            formik.setFieldValue("noOfTripsOne", allData?.[0]?.noOfTripsOne);
+            formik.setFieldValue("noOfTripsTwo", allData?.[0]?.noOfTripsTwo);
+            formik.setFieldValue("noOfTripsThree", allData?.[0]?.noOfTripsThree);
+            formik.setFieldValue("emissionOne", allData?.[0]?.emissionOne);
+            formik.setFieldValue("emissionTwo", allData?.[0]?.emissionTwo);
+            formik.setFieldValue("emissionThree", allData?.[0]?.emissionThree);
 
-            formik.setFieldValue("noOfTripsFour", allData[1]?.noOfTripsFour);
-            formik.setFieldValue("noOfTripsFive", allData[1]?.noOfTripsFive);
-            formik.setFieldValue("noOfTripsSix", allData[1]?.noOfTripsSix);
-            formik.setFieldValue("emissionFour", allData[1]?.emissionFour);
-            formik.setFieldValue("emissionFive", allData[1]?.emissionFive);
-            formik.setFieldValue("emissionSix", allData[1]?.emissionSix);
+            formik.setFieldValue("noOfTripsFour", allData?.[1]?.noOfTripsFour);
+            formik.setFieldValue("noOfTripsFive", allData?.[1]?.noOfTripsFive);
+            formik.setFieldValue("noOfTripsSix", allData?.[1]?.noOfTripsSix);
+            formik.setFieldValue("emissionFour", allData?.[1]?.emissionFour);
+            formik.setFieldValue("emissionFive", allData?.[1]?.emissionFive);
+            formik.setFieldValue("emissionSix", allData?.[1]?.emissionSix);
 
-            formik.setFieldValue("noOfTripsSeven", allData[2]?.noOfTripsSeven);
-            formik.setFieldValue("noOfTripsEight", allData[2]?.noOfTripsEight);
-            formik.setFieldValue("noOfTripsNine", allData[2]?.noOfTripsNine);
-            formik.setFieldValue("emissionSeven", allData[2]?.emissionSeven);
-            formik.setFieldValue("emissionEight", allData[2]?.emissionEight);
-            formik.setFieldValue("emissionNine", allData[2]?.emissionNine);
+            formik.setFieldValue("noOfTripsSeven", allData?.[2]?.noOfTripsSeven);
+            formik.setFieldValue("noOfTripsEight", allData?.[2]?.noOfTripsEight);
+            formik.setFieldValue("noOfTripsNine", allData?.[2]?.noOfTripsNine);
+            formik.setFieldValue("emissionSeven", allData?.[2]?.emissionSeven);
+            formik.setFieldValue("emissionEight", allData?.[2]?.emissionEight);
+            formik.setFieldValue("emissionNine", allData?.[2]?.emissionNine);
         }
     }, [value]);
 

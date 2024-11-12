@@ -21,7 +21,7 @@ const Hotel = (props) => {
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
     // const scope = useSelector((state) => state?.totalHotelDetails?.scope);
     const geographyOptions = HotelData?.map((item) => ({ value: item?.geography, label: item?.geography }))
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
     const customStyles = {
@@ -217,34 +217,34 @@ const Hotel = (props) => {
         if (resultTableData.eventDataId) {
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to update data:', resultAction.payload);
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
             }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-            if (addResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to save data:', resultAction.payload);
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
             }
         }
     };
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("geography", allData[0]?.geography)
-            formik.setFieldValue("country", allData[0]?.country)
-            formik.setFieldValue("hotelType", allData[0]?.hotelType)
-            formik.setFieldValue("roomsOccupied", allData[0]?.roomsOccupied)
-            formik.setFieldValue("efOne", allData[0]?.efOne)
-            formik.setFieldValue("emissionsOne", allData[0]?.emission)
-            formik.setFieldValue("filteredCountries", allData[0]?.filteredCountries)
+            formik.setFieldValue("geography", allData?.[0]?.geography)
+            formik.setFieldValue("country", allData?.[0]?.country)
+            formik.setFieldValue("hotelType", allData?.[0]?.hotelType)
+            formik.setFieldValue("roomsOccupied", allData?.[0]?.roomsOccupied)
+            formik.setFieldValue("efOne", allData?.[0]?.efOne)
+            formik.setFieldValue("emissionsOne", allData?.[0]?.emission)
+            formik.setFieldValue("filteredCountries", allData?.[0]?.filteredCountries)
 
-            formik.setFieldValue("meetingDuration", allData[1]?.meetingDuration)
-            formik.setFieldValue("totalMeetingRoomArea", allData[1]?.totalMeetingRoomArea)
-            formik.setFieldValue("emissionsTwo", allData[1]?.emission)
+            formik.setFieldValue("meetingDuration", allData?.[1]?.meetingDuration)
+            formik.setFieldValue("totalMeetingRoomArea", allData?.[1]?.totalMeetingRoomArea)
+            formik.setFieldValue("emissionsTwo", allData?.[1]?.emission)
 
-            formik.setFieldValue("energyUtilisedKwh", allData[2]?.energyUtilisedKwh)
-            formik.setFieldValue("efThree", allData[2]?.efThree)
-            formik.setFieldValue("emissionsThree", allData[2]?.emission)
+            formik.setFieldValue("energyUtilisedKwh", allData?.[2]?.energyUtilisedKwh)
+            formik.setFieldValue("efThree", allData?.[2]?.efThree)
+            formik.setFieldValue("emissionsThree", allData?.[2]?.emission)
         }
     }, [value]);
 
@@ -443,7 +443,7 @@ const Hotel = (props) => {
                                                 onChange={(event) => {
                                                     formik.setFieldValue("hotelType", event);
                                                     // reset fields
-                                                    const selectedHotelTypeData = formik.values?.filteredCountries?.find((item) => item.country === formik.values?.country.country);
+                                                    const selectedHotelTypeData = formik.values?.filteredCountries?.find((item) => item?.country === formik.values?.country.country);
                                                     const hotellTypeEf = event?.value === 4 || event?.value === 4.5 ? selectedHotelTypeData?.stars_four_fourPointHalf : selectedHotelTypeData?.stars_five;
                                                     formik.setFieldValue("efOne", hotellTypeEf);
                                                     formik.handleSubmit();

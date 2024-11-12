@@ -16,10 +16,10 @@ const DigitalContent = (props) => {
     const theme = useTheme();
     const dispatch = useDispatch();
 
-    const allData = useSelector((state) => state?.totalDigitalContentDetails?.data[0]?.data)
+    const allData = useSelector((state) => state?.totalDigitalContentDetails?.data?.[0]?.data)
     const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
     // const scope = useSelector((state) => state?.totalDigitalContentDetails?.scope);
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
 
@@ -155,12 +155,12 @@ const DigitalContent = (props) => {
         if (resultTableData.eventDataId) {
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
                 console.error('Failed to update data:', resultAction.payload);
             } 
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
                 console.error('Failed to save data:', resultAction.payload);
             } 
         }
@@ -168,28 +168,28 @@ const DigitalContent = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            // formik.setFieldValue("count", allData[0]?.count)
-            // formik.setFieldValue("emissionOne", allData[0]?.emission)
-            // formik.setFieldValue("MB", allData[1]?.mb)
-            // formik.setFieldValue("emissionTwo", allData[1]?.emission)
-            // formik.setFieldValue("noOfAttendees", allData[2]?.noOfAttendees)
-            // formik.setFieldValue("noOfHours", allData[2]?.noOfHours)
-            // formik.setFieldValue("serviceLifeOfLaptop", allData[2]?.serviceLifeOfLaptop)
-            // formik.setFieldValue("emissionThree", allData[2]?.emission)
-            formik.setFieldValue('noOfEmails', allData[0]?.noOfEmails);
-            formik.setFieldValue('emialEfOne', allData[0]?.emialEfOne);
-            formik.setFieldValue('emialEfTwo', allData[0]?.emialEfTwo);
-            formik.setFieldValue('emailEmissionOne', allData[0]?.emailEmissionOne);
-            formik.setFieldValue("emissionOne", allData[0]?.emission);
+            // formik.setFieldValue("count", allData?.[0]?.count)
+            // formik.setFieldValue("emissionOne", allData?.[0]?.emission)
+            // formik.setFieldValue("MB", allData?.[1]?.mb)
+            // formik.setFieldValue("emissionTwo", allData?.[1]?.emission)
+            // formik.setFieldValue("noOfAttendees", allData?.[2]?.noOfAttendees)
+            // formik.setFieldValue("noOfHours", allData?.[2]?.noOfHours)
+            // formik.setFieldValue("serviceLifeOfLaptop", allData?.[2]?.serviceLifeOfLaptop)
+            // formik.setFieldValue("emissionThree", allData?.[2]?.emission)
+            formik.setFieldValue('noOfEmails', allData?.[0]?.noOfEmails);
+            formik.setFieldValue('emialEfOne', allData?.[0]?.emialEfOne);
+            formik.setFieldValue('emialEfTwo', allData?.[0]?.emialEfTwo);
+            formik.setFieldValue('emailEmissionOne', allData?.[0]?.emailEmissionOne);
+            formik.setFieldValue("emissionOne", allData?.[0]?.emission);
 
-            formik.setFieldValue('emailEmissionTwo', allData[0]?.emailEmissionTwo);
-            formik.setFieldValue('attachmentSize', allData[0]?.attachmentSize);
-            formik.setFieldValue('totalAttachmentSize', allData[0]?.totalAttachmentSize);
-            formik.setFieldValue('emissionOne', allData[0]?.emission);
-            formik.setFieldValue("noOfAttendees", allData[1]?.noOfAttendees)
-            formik.setFieldValue("noOfHours", allData[1]?.noOfHours)
-            formik.setFieldValue("serviceLifeOfLaptop", allData[1]?.serviceLifeOfLaptop)
-            formik.setFieldValue("emissionTwo", allData[1]?.emission)
+            formik.setFieldValue('emailEmissionTwo', allData?.[0]?.emailEmissionTwo);
+            formik.setFieldValue('attachmentSize', allData?.[0]?.attachmentSize);
+            formik.setFieldValue('totalAttachmentSize', allData?.[0]?.totalAttachmentSize);
+            formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+            formik.setFieldValue("noOfAttendees", allData?.[1]?.noOfAttendees)
+            formik.setFieldValue("noOfHours", allData?.[1]?.noOfHours)
+            formik.setFieldValue("serviceLifeOfLaptop", allData?.[1]?.serviceLifeOfLaptop)
+            formik.setFieldValue("emissionTwo", allData?.[1]?.emission)
         }
     }, [value]);
 

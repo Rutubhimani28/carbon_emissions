@@ -47,10 +47,10 @@ const VirtualEvent = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalVirtualEventDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalVirtualEventDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalVirtualEventDetails?.totalEmission);
     const [openInfo, setOpenInfo] = useState(false);
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
     const initialValues = {
@@ -612,13 +612,13 @@ const VirtualEvent = (props) => {
         if (resultTableData.eventDataId) {
             eventData.eventDataId = resultTableData?.eventDataId;
             const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
-            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to update data:', resultAction.payload);
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
             }
         } else {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
-            if (addResultTableDatasToDb.rejected.match(resultAction)) {
-                console.error('Failed to save data:', resultAction.payload);
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
             }
         }
     };
@@ -628,112 +628,112 @@ const VirtualEvent = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            // formik.setFieldValue('imgSize', allData[0]?.imgSize);
-            // formik.setFieldValue('deviceEnergy1', allData[0]?.deviceEnergy1);
-            // formik.setFieldValue('somePlatformEnergy1', allData[0]?.somePlatformEnergy1);
-            // formik.setFieldValue('networkEnergy1', allData[0]?.networkEnergy1);
-            // formik.setFieldValue('totalEnergy1', allData[0]?.totalEnergy1);
-            // formik.setFieldValue('efOne', allData[0]?.efOne);
-            // formik.setFieldValue('impressionsOne', allData[0]?.impressionsOne);
-            // formik.setFieldValue('emissionOne', allData[0]?.emission);
+            // formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
+            // formik.setFieldValue('deviceEnergy1', allData?.[0]?.deviceEnergy1);
+            // formik.setFieldValue('somePlatformEnergy1', allData?.[0]?.somePlatformEnergy1);
+            // formik.setFieldValue('networkEnergy1', allData?.[0]?.networkEnergy1);
+            // formik.setFieldValue('totalEnergy1', allData?.[0]?.totalEnergy1);
+            // formik.setFieldValue('efOne', allData?.[0]?.efOne);
+            // formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
+            // formik.setFieldValue('emissionOne', allData?.[0]?.emission);
 
-            // formik.setFieldValue('videoSize', allData[1]?.videoSize);
-            // formik.setFieldValue('videoMins', allData[1]?.videoMins);
-            // formik.setFieldValue('deviceEnergy2', allData[1]?.deviceEnergy2);
-            // formik.setFieldValue('somePlatformEnergy2', allData[1]?.somePlatformEnergy2);
-            // formik.setFieldValue('networkEnergy2', allData[1]?.networkEnergy2);
-            // formik.setFieldValue('totalEnergy2', allData[1]?.totalEnergy2);
-            // formik.setFieldValue('efTwo', allData[1]?.efTwo);
-            // formik.setFieldValue('impressionsTwo', allData[1]?.impressionsTwo);
-            // formik.setFieldValue('emissionTwo', allData[1]?.emission);
+            // formik.setFieldValue('videoSize', allData?.[1]?.videoSize);
+            // formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
+            // formik.setFieldValue('deviceEnergy2', allData?.[1]?.deviceEnergy2);
+            // formik.setFieldValue('somePlatformEnergy2', allData?.[1]?.somePlatformEnergy2);
+            // formik.setFieldValue('networkEnergy2', allData?.[1]?.networkEnergy2);
+            // formik.setFieldValue('totalEnergy2', allData?.[1]?.totalEnergy2);
+            // formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
+            // formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
+            // formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
 
-            formik.setFieldValue('noOfMinsOne', allData[2]?.noOfMins);
-            formik.setFieldValue('noOfPeopleOne', allData[2]?.noOfPeople);
-            formik.setFieldValue('efThree', allData[2]?.ef);
-            formik.setFieldValue('emissionThree', allData[2]?.emission);
+            formik.setFieldValue('noOfMinsOne', allData?.[2]?.noOfMins);
+            formik.setFieldValue('noOfPeopleOne', allData?.[2]?.noOfPeople);
+            formik.setFieldValue('efThree', allData?.[2]?.ef);
+            formik.setFieldValue('emissionThree', allData?.[2]?.emission);
 
-            formik.setFieldValue('noOfMinsTwo', allData[3]?.noOfMins);
-            formik.setFieldValue('noOfPeopleTwo', allData[3]?.noOfPeople);
-            formik.setFieldValue('efFour', allData[3]?.ef);
-            formik.setFieldValue('emissionFour', allData[3]?.emission);
+            formik.setFieldValue('noOfMinsTwo', allData?.[3]?.noOfMins);
+            formik.setFieldValue('noOfPeopleTwo', allData?.[3]?.noOfPeople);
+            formik.setFieldValue('efFour', allData?.[3]?.ef);
+            formik.setFieldValue('emissionFour', allData?.[3]?.emission);
 
-            formik.setFieldValue('noOfMinsThree', allData[4]?.noOfMins);
-            formik.setFieldValue('noOfPeopleThree', allData[4]?.noOfPeople);
-            formik.setFieldValue('efFive', allData[4]?.ef);
-            formik.setFieldValue('emissionFive', allData[4]?.emission);
+            formik.setFieldValue('noOfMinsThree', allData?.[4]?.noOfMins);
+            formik.setFieldValue('noOfPeopleThree', allData?.[4]?.noOfPeople);
+            formik.setFieldValue('efFive', allData?.[4]?.ef);
+            formik.setFieldValue('emissionFive', allData?.[4]?.emission);
 
-            formik.setFieldValue('noOfMinsFour', allData[5]?.noOfMins);
-            formik.setFieldValue('noOfPeopleFour', allData[5]?.noOfPeople);
-            formik.setFieldValue('efSix', allData[5]?.ef);
-            formik.setFieldValue('emissionSix', allData[5]?.emission);
+            formik.setFieldValue('noOfMinsFour', allData?.[5]?.noOfMins);
+            formik.setFieldValue('noOfPeopleFour', allData?.[5]?.noOfPeople);
+            formik.setFieldValue('efSix', allData?.[5]?.ef);
+            formik.setFieldValue('emissionSix', allData?.[5]?.emission);
 
-            formik.setFieldValue('noOfMinsFive', allData[6]?.noOfMins);
-            formik.setFieldValue('noOfPeopleFive', allData[6]?.noOfPeople);
-            formik.setFieldValue('efSeven', allData[6]?.ef);
-            formik.setFieldValue('emissionSeven', allData[6]?.emission);
+            formik.setFieldValue('noOfMinsFive', allData?.[6]?.noOfMins);
+            formik.setFieldValue('noOfPeopleFive', allData?.[6]?.noOfPeople);
+            formik.setFieldValue('efSeven', allData?.[6]?.ef);
+            formik.setFieldValue('emissionSeven', allData?.[6]?.emission);
 
-            formik.setFieldValue('noOfMinsSix', allData[7]?.noOfMins);
-            formik.setFieldValue('noOfPeopleSix', allData[7]?.noOfPeople);
-            formik.setFieldValue('efEight', allData[7]?.ef);
-            formik.setFieldValue('emissionEight', allData[7]?.emission);
+            formik.setFieldValue('noOfMinsSix', allData?.[7]?.noOfMins);
+            formik.setFieldValue('noOfPeopleSix', allData?.[7]?.noOfPeople);
+            formik.setFieldValue('efEight', allData?.[7]?.ef);
+            formik.setFieldValue('emissionEight', allData?.[7]?.emission);
 
-            formik.setFieldValue('noOfMinsSeven', allData[8]?.noOfMins);
-            formik.setFieldValue('noOfPeopleSeven', allData[8]?.noOfPeople);
-            formik.setFieldValue('efNine', allData[8]?.ef);
-            formik.setFieldValue('emissionNine', allData[8]?.emission);
+            formik.setFieldValue('noOfMinsSeven', allData?.[8]?.noOfMins);
+            formik.setFieldValue('noOfPeopleSeven', allData?.[8]?.noOfPeople);
+            formik.setFieldValue('efNine', allData?.[8]?.ef);
+            formik.setFieldValue('emissionNine', allData?.[8]?.emission);
 
-            formik.setFieldValue('noOfMinsEight', allData[9]?.noOfMins);
-            formik.setFieldValue('noOfPeopleEight', allData[9]?.noOfPeople);
-            formik.setFieldValue('efTen', allData[9]?.ef);
-            formik.setFieldValue('emissionTen', allData[9]?.emission);
+            formik.setFieldValue('noOfMinsEight', allData?.[9]?.noOfMins);
+            formik.setFieldValue('noOfPeopleEight', allData?.[9]?.noOfPeople);
+            formik.setFieldValue('efTen', allData?.[9]?.ef);
+            formik.setFieldValue('emissionTen', allData?.[9]?.emission);
 
-            formik.setFieldValue('noOfMinsNine', allData[10]?.noOfMins);
-            formik.setFieldValue('noOfPeopleNine', allData[10]?.noOfPeople);
-            formik.setFieldValue('efEleven', allData[10]?.ef);
-            formik.setFieldValue('emissionEleven', allData[10]?.emission);
+            formik.setFieldValue('noOfMinsNine', allData?.[10]?.noOfMins);
+            formik.setFieldValue('noOfPeopleNine', allData?.[10]?.noOfPeople);
+            formik.setFieldValue('efEleven', allData?.[10]?.ef);
+            formik.setFieldValue('emissionEleven', allData?.[10]?.emission);
 
-            formik.setFieldValue('noOfMinsTen', allData[11]?.noOfMins);
-            formik.setFieldValue('noOfPeopleTen', allData[11]?.noOfPeople);
-            formik.setFieldValue('efTwelve', allData[11]?.ef);
-            formik.setFieldValue('emissionTwelve', allData[11]?.emission);
+            formik.setFieldValue('noOfMinsTen', allData?.[11]?.noOfMins);
+            formik.setFieldValue('noOfPeopleTen', allData?.[11]?.noOfPeople);
+            formik.setFieldValue('efTwelve', allData?.[11]?.ef);
+            formik.setFieldValue('emissionTwelve', allData?.[11]?.emission);
 
-            formik.setFieldValue('noOfMinsEleven', allData[12]?.noOfMins);
-            formik.setFieldValue('noOfPeopleEleven', allData[12]?.noOfPeople);
-            formik.setFieldValue('efThirteen', allData[12]?.ef);
-            formik.setFieldValue('emissionThirteen', allData[12]?.emission);
+            formik.setFieldValue('noOfMinsEleven', allData?.[12]?.noOfMins);
+            formik.setFieldValue('noOfPeopleEleven', allData?.[12]?.noOfPeople);
+            formik.setFieldValue('efThirteen', allData?.[12]?.ef);
+            formik.setFieldValue('emissionThirteen', allData?.[12]?.emission);
 
-            formik.setFieldValue('noOfCopiesOne', allData[13]?.noOfCopiesOne);
-            formik.setFieldValue('efFourteen', allData[13]?.ef);
-            formik.setFieldValue('emissionFourteen', allData[13]?.emission);
+            formik.setFieldValue('noOfCopiesOne', allData?.[13]?.noOfCopiesOne);
+            formik.setFieldValue('efFourteen', allData?.[13]?.ef);
+            formik.setFieldValue('emissionFourteen', allData?.[13]?.emission);
 
-            formik.setFieldValue('noOfPages', allData[14]?.noOfPages);
-            formik.setFieldValue('noOfCopiesTwo', allData[14]?.noOfCopiesTwo);
-            formik.setFieldValue('efFifteen', allData[14]?.ef);
-            formik.setFieldValue('emissionFifteen', allData[14]?.emission);
+            formik.setFieldValue('noOfPages', allData?.[14]?.noOfPages);
+            formik.setFieldValue('noOfCopiesTwo', allData?.[14]?.noOfCopiesTwo);
+            formik.setFieldValue('efFifteen', allData?.[14]?.ef);
+            formik.setFieldValue('emissionFifteen', allData?.[14]?.emission);
 
-            formik.setFieldValue('hdpeBanner', allData[15]?.hdpeBanner);
-            formik.setFieldValue('efSixteen', allData[15]?.ef);
-            formik.setFieldValue('emissionSixteen', allData[15]?.emission);
+            formik.setFieldValue('hdpeBanner', allData?.[15]?.hdpeBanner);
+            formik.setFieldValue('efSixteen', allData?.[15]?.ef);
+            formik.setFieldValue('emissionSixteen', allData?.[15]?.emission);
 
-            formik.setFieldValue('pvcBanners', allData[16]?.pvcBanners);
-            formik.setFieldValue('efSeventeen', allData[16]?.ef);
-            formik.setFieldValue('emissionSeventeen', allData[16]?.emission);
+            formik.setFieldValue('pvcBanners', allData?.[16]?.pvcBanners);
+            formik.setFieldValue('efSeventeen', allData?.[16]?.ef);
+            formik.setFieldValue('emissionSeventeen', allData?.[16]?.emission);
 
-            formik.setFieldValue('adDuration', allData[17]?.adDuration);
-            formik.setFieldValue('noOfSlots', allData[17]?.noOfSlots);
-            formik.setFieldValue('viewers', allData[17]?.viewers);
-            formik.setFieldValue('efEighteen', allData[17]?.ef);
-            formik.setFieldValue('emissionEightteen', allData[17]?.emission);
+            formik.setFieldValue('adDuration', allData?.[17]?.adDuration);
+            formik.setFieldValue('noOfSlots', allData?.[17]?.noOfSlots);
+            formik.setFieldValue('viewers', allData?.[17]?.viewers);
+            formik.setFieldValue('efEighteen', allData?.[17]?.ef);
+            formik.setFieldValue('emissionEightteen', allData?.[17]?.emission);
 
-            formik.setFieldValue('podcastSize', allData[18]?.podcastSize);
-            formik.setFieldValue('noOfListeners', allData[18]?.noOfListeners);
-            formik.setFieldValue('podcastKwh', allData[18]?.podcastKwh);
-            formik.setFieldValue('podcastTotal', allData[18]?.podcastTotal);
-            formik.setFieldValue('emissionNineteen', allData[18]?.emission);
+            formik.setFieldValue('podcastSize', allData?.[18]?.podcastSize);
+            formik.setFieldValue('noOfListeners', allData?.[18]?.noOfListeners);
+            formik.setFieldValue('podcastKwh', allData?.[18]?.podcastKwh);
+            formik.setFieldValue('podcastTotal', allData?.[18]?.podcastTotal);
+            formik.setFieldValue('emissionNineteen', allData?.[18]?.emission);
 
-            formik.setFieldValue('energyKwh', allData[19]?.energyKwh);
-            formik.setFieldValue('efTwenty', allData[19]?.ef);
-            formik.setFieldValue('emissionTwenty', allData[19]?.emission);
+            formik.setFieldValue('energyKwh', allData?.[19]?.energyKwh);
+            formik.setFieldValue('efTwenty', allData?.[19]?.ef);
+            formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
         }
     }, [value]);
 

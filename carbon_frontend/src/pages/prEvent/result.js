@@ -23,17 +23,17 @@ const Result = ({ value }) => {
     const allPrAgencyData = useSelector((state) => state?.totalPrAgencyDetails);
     const allHospitalityData = useSelector((state) => state?.totalHospitalityDetails);
 
-    const toolData = useSelector(state => state.toolDetails?.data);
-    const toolFormData = toolData?.find((item) => item.type === 'toolForm');
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
-    const prEventEmissionDataCategorywise = useSelector(state => state.resultTableDataDetails.prEventEmissionDataCategorywise);
+    const toolData = useSelector(state => state?.toolDetails?.data);
+    const toolFormData = toolData?.find((item) => item?.type === 'toolForm');
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const prEventEmissionDataCategorywise = useSelector(state => state?.resultTableDataDetails?.prEventEmissionDataCategorywise);
 
-    const emailInvitationsEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "Email Invitations");
-    const prAssetsEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "PR Assets");
-    const prAgencyEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "PR Agency");
-    const foodEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "Food/Lunch");
-    const redMeatEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "Red Meat");
-    const foodAndPETbottleEmission = prEventEmissionDataCategorywise?.find((category) => category.catgName === "Food-Plastic Waste");
+    const emailInvitationsEmission = prEventEmissionDataCategorywise?.find((category) => category?.catgName === "Email Invitations");
+    const prAssetsEmission = prEventEmissionDataCategorywise?.find((category) => category?.catgName === "PR Assets");
+    const prAgencyEmission = prEventEmissionDataCategorywise?.find((category) => category?.catgName === "PR Agency");
+    const foodEmission = prEventEmissionDataCategorywise?.find((category) => category?.catgName === "Food/Lunch");
+    const redMeatEmission = prEventEmissionDataCategorywise?.find((category) => category?.catgName === "Red Meat");
+    const foodAndPETbottleEmission = prEventEmissionDataCategorywise?.find((category) => category?.catgName === "Food-Plastic Waste");
 
     const [sc1, setSc1] = useState(0);
     const [sc2, setSc2] = useState(0);
@@ -150,23 +150,23 @@ const Result = ({ value }) => {
         // contentData += `\n\nHow do I reduce my total carbon footprint up to 20%? Provide simple steps for each category with percentage targets, prioritizing higher emission categories for greater reduction. Also, indicate the most important category and the overall reduction achieved.`
         // setContent(contentData);
 
-        if (emailInvitationsEmission && emailInvitationsEmission.emission > 0) {
-            contentData += `The email carbon footprint is ${emailInvitationsEmission.emission} kgCO2e, `
+        if (emailInvitationsEmission && emailInvitationsEmission?.emission > 0) {
+            contentData += `The email carbon footprint is ${emailInvitationsEmission?.emission} kgCO2e, `
         }
-        if (prAssetsEmission && prAssetsEmission.emission > 0) {
-            contentData += `while PR assets generate ${prAssetsEmission.emission} kgCO2e`
+        if (prAssetsEmission && prAssetsEmission?.emission > 0) {
+            contentData += `while PR assets generate ${prAssetsEmission?.emission} kgCO2e`
         }
-        if (prAgencyEmission && prAgencyEmission.emission > 0) {
-            contentData += `The meeting room, projector, and branding add ${prAgencyEmission.emission} kgCO2e, `
+        if (prAgencyEmission && prAgencyEmission?.emission > 0) {
+            contentData += `The meeting room, projector, and branding add ${prAgencyEmission?.emission} kgCO2e, `
         }
-        if (foodEmission && foodEmission.emission > 0) {
-            contentData += `and food accounts for ${foodEmission.emission} kgCO2e, `
+        if (foodEmission && foodEmission?.emission > 0) {
+            contentData += `and food accounts for ${foodEmission?.emission} kgCO2e, `
         }
-        if (redMeatEmission && redMeatEmission.emission > 0) {
-            contentData += `with ${redMeatEmission.emission} kgCO2e from red meat. `
+        if (redMeatEmission && redMeatEmission?.emission > 0) {
+            contentData += `with ${redMeatEmission?.emission} kgCO2e from red meat. `
         }
-        if (foodAndPETbottleEmission && foodAndPETbottleEmission.emission > 0) {
-            contentData += `Food and PET bottle waste generate ${foodAndPETbottleEmission.emission} kgCO2e.`
+        if (foodAndPETbottleEmission && foodAndPETbottleEmission?.emission > 0) {
+            contentData += `Food and PET bottle waste generate ${foodAndPETbottleEmission?.emission} kgCO2e.`
         }
         contentData += `\n\nSuggest three steps for each category to reduce the overall footprint by 10-20% and email emissions by over 50%. Show the calculation for comparing the original and reduced carbon footprints. Also, explain how sustainable measures could cut costs by 10%, considering cost savings may not directly match carbon reductions.`
         setContent(contentData);
@@ -190,12 +190,12 @@ const Result = ({ value }) => {
 
         let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From PR Event: </h3> `;
 
-        formattedSuggestions.split('\n').forEach((line, index) => {
+        formattedSuggestions?.split('\n')?.forEach((line, index) => {
             pdfData += `${line}<br />`;
         });
         setSuggestionForPdf(pdfData);
 
-        return formattedSuggestions.split('\n').map((line, index) => (
+        return formattedSuggestions?.split('\n')?.map((line, index) => (
             <Typography key={index} paragraph dangerouslySetInnerHTML={{ __html: line }} />
         ));
     };
@@ -217,12 +217,12 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
+                        Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')}`,
                     },
                 }
             );
 
-            const resJson = response.data;
+            const resJson = response?.data;
             const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
             setSuggestion(formattedSuggestions);
         } catch (error) {
@@ -312,32 +312,32 @@ const Result = ({ value }) => {
                 tabTitle: "Comms",
                 key: "Emails",
                 scope: 1,
-                emission: Number(allCommsData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allCommsData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Comms",
                 key: "Video Byte",
                 scope: 1,
-                emission: Number(allCommsData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allCommsData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Comms",
                 key: "Pictures",
                 scope: 1,
-                emission: Number(allCommsData?.data?.[0]?.data?.[2].emission) || 0,
+                emission: Number(allCommsData?.data?.[0]?.data?.[2]?.emission) || 0,
             },
             // Comms // PR Assets
             {
                 tabTitle: "Comms",
                 key: "Coloured Brochure",
                 scope: 2,
-                emission: Number(allCommsData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allCommsData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
             {
                 tabTitle: "Comms",
                 key: "Black & White", // A4Size75Gsm
                 scope: 2,
-                emission: Number(allCommsData?.data?.[0]?.data?.[4].emission) || 0,
+                emission: Number(allCommsData?.data?.[0]?.data?.[4]?.emission) || 0,
             },
 
 
@@ -346,57 +346,57 @@ const Result = ({ value }) => {
                 tabTitle: "PR Agency",
                 key: "Total Meeting Room Area", // Energy Consumption
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "PR Agency",
                 key: "Projector",
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "PR Agency",
                 key: "Energy Utilised", // Electricity
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[14].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[14]?.emission) || 0,
             },
             // PR Agency // Branding - No.of A4 Units
             {
                 tabTitle: "PR Agency",
                 key: "Paper Bags",   // A4
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[5].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[5]?.emission) || 0,
             },
             {
                 tabTitle: "PR Agency",
                 key: "Jute Bags",   // A4
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[7].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[7]?.emission) || 0,
             },
             {
                 tabTitle: "PR Agency",
                 key: "Cotton Bags",  // A4
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[8].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[8]?.emission) || 0,
             },
             // PR Agency // Branding  - Weight (In kgs)
             {
                 tabTitle: "PR Agency",
                 key: "Polyethylene Banner",    // PolyethyleneHDPEBanner
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[6].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[6]?.emission) || 0,
             },
             {
                 tabTitle: "PR Agency",
                 key: "PVC Banners",
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
             {
                 tabTitle: "PR Agency",
                 key: "Plastic Badge",  // instead of Cotton Banner	
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[4].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[4]?.emission) || 0,
             },
 
             // PR Agency // Transportation 
@@ -404,19 +404,19 @@ const Result = ({ value }) => {
                 tabTitle: "PR Agency",
                 key: "Petrol",
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[11].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[11]?.emission) || 0,
             },
             {
                 tabTitle: "PR Agency",
                 key: "Diesel",
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[12].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[12]?.emission) || 0,
             },
             {
                 tabTitle: "PR Agency",
                 key: "Hybrid",
                 scope: 3,
-                emission: Number(allPrAgencyData?.data?.[0]?.data?.[13].emission) || 0,
+                emission: Number(allPrAgencyData?.data?.[0]?.data?.[13]?.emission) || 0,
             },
 
             // Hospitality // Lunch
@@ -424,69 +424,69 @@ const Result = ({ value }) => {
                 tabTitle: "Hospitality",
                 key: "Vegetarian",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[0].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[0]?.emission) || 0,
             },
             {
                 tabTitle: "Hospitality",
                 key: "Non-Veg (Poultry/ Sea Food)",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[1].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[1]?.emission) || 0,
             },
             {
                 tabTitle: "Hospitality",
                 key: "Non-Veg (Red Meat)",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[2].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[2]?.emission) || 0,
             },
             {
                 tabTitle: "Hospitality",
                 key: "Tea/ Coffee + Cookies",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[3].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[3]?.emission) || 0,
             },
             // Hospitality // Food Waste
             {
                 tabTitle: "Hospitality",
                 key: "Food Waste (non-meat)",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[4].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[4]?.emission) || 0,
             },
             {
                 tabTitle: "Hospitality",
                 key: "Food Waste (meat)",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[5].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[5]?.emission) || 0,
             },
             {
                 tabTitle: "Hospitality",
                 key: "Food Waste (All mix)",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[6].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[6]?.emission) || 0,
             },
             {
                 tabTitle: "Hospitality",
                 key: "Fruits & Vegetables",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[7].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[7]?.emission) || 0,
             },
             // Hospitality // Plastic Waste
             {
                 tabTitle: "Hospitality",
                 key: "250ml",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[8].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[8]?.emission) || 0,
             },
             {
                 tabTitle: "Hospitality",
                 key: "500ml",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[9].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[9]?.emission) || 0,
             },
             {
                 tabTitle: "Hospitality",
                 key: "1000ml",
                 scope: 3,
-                emission: Number(allHospitalityData?.data?.[0]?.data?.[10].emission) || 0,
+                emission: Number(allHospitalityData?.data?.[0]?.data?.[10]?.emission) || 0,
             },
         ];
 
