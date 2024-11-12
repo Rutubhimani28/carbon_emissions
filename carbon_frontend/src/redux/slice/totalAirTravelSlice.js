@@ -11,7 +11,7 @@ const totalAirTravelSlice = createSlice({
         addAirTravelData: (state, action) => {
             const newData = Array.isArray(action?.payload) ? action?.payload : [action?.payload];
             newData.forEach((newItem) => {
-                const existingItemIndex = state.data.findIndex((item) => item?.type === newItem?.type);
+                const existingItemIndex = state?.data?.findIndex((item) => item?.type === newItem?.type);
                 if (existingItemIndex !== -1) {
                     // Update the existing item
                     state.data[existingItemIndex] = { ...state.data[existingItemIndex], ...newItem };

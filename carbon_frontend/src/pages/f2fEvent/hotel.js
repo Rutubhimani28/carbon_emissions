@@ -17,7 +17,7 @@ const Hotel = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalHotelDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalHotelDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
     // const scope = useSelector((state) => state?.totalHotelDetails?.scope);
     const geographyOptions = HotelData?.map((item) => ({ value: item?.geography, label: item?.geography }))

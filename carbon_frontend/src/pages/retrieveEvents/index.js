@@ -445,7 +445,7 @@ const MyEventSelector = () => {
         const payload = {
             allEventsEmissions,
             name: userData?.cnctPerson,
-            activityName: `${responseData[0]?.activityName} and ${responseData[1]?.activityName}`,
+            activityName: `${responseData?.[0]?.activityName} and ${responseData?.[1]?.activityName}`,
             // receiver: [userData?.loginId],
             receiver: formik.values?.emails,
             subject: 'Retrieve Graphs',
