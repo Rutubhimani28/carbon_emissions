@@ -161,8 +161,6 @@ const Home = () => {
     };
 
     const handlePreviousEventSelect = (e) => {
-
-
         formik.setFieldValue("previousEvent", e || null);
         formik.setFieldValue("isDisabledRetrieveButtons", true);
 
@@ -503,7 +501,7 @@ const Home = () => {
                                         name="activityName"
                                         type="text"
                                         size="small"
-                                        className="textborder custom-inpt-field-color"
+                                        className={`textborder custom-inpt-field-color ${formik.touched.activityName && formik.errors.activityName && "textErrorborder"}`}
                                         fullWidth
                                         disabled={isDisabledField}
                                         value={formik.values.activityName}
@@ -524,8 +522,7 @@ const Home = () => {
                                         type="text"
                                         size="small"
                                         fullWidth
-                                        className="textborder custom-inpt-field-color"
-                                        disabled={isDisabledField}
+                                        className={`textborder custom-inpt-field-color ${formik.touched.activityName && formik.errors.activityName && "textErrorborder"}`} disabled={isDisabledField}
                                         value={formik.values.country}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
@@ -554,9 +551,9 @@ const Home = () => {
                                     />
                                 </Grid> */}
                                 {/* <Grid item xs={12} sm={12} className='table-custom-inpt-field'> */}
-                                <Grid item xs={12} sm={6}>
+                                {/* <Grid item xs={12} sm={6}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <div style={{ display: 'flex', flexDirection: 'column' }} className='date-time-color'>
+                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
                                             <FormLabel className="fw-bold text-white mt-1">
                                                 Date and Time <span style={{ color: 'red' }}>*</span>
                                             </FormLabel>
@@ -588,38 +585,6 @@ const Home = () => {
                                                             '& .MuiInputBase-input::placeholder': {
                                                                 color: 'white !important', // Placeholder color
                                                             },
-
-                                                            // // Border styling for normal, focus, and error states
-                                                            // '& .MuiOutlinedInput-root': {
-                                                            //     '& fieldset': {
-                                                            //         borderColor: 'white', // Default border color
-                                                            //     },
-                                                            //     '&:hover fieldset': {
-                                                            //         borderColor: 'white', // Border color on hover
-                                                            //     },
-                                                            //     '&.Mui-focused fieldset': {
-                                                            //         borderColor: 'white', // Border color when focused
-                                                            //     },
-                                                            //     // Border color when there's an error (based on Formik)
-                                                            //     '&.Mui-error fieldset': {
-                                                            //         borderColor: 'red', // Red border on error
-                                                            //     },
-                                                            // },
-                                                            // // Input text color
-                                                            // '& .MuiInputBase-input': {
-                                                            //     color: 'white', // Input text color
-                                                            //     '&::placeholder': {
-                                                            //         color: 'white', // Placeholder color
-                                                            //     },
-                                                            // },
-                                                            // // Disabled state styling
-                                                            // '& .MuiInputBase-input.Mui-disabled': {
-                                                            //     color: 'white', // Disabled input text color
-                                                            //     '-webkit-text-fill-color': 'white', // Disabled input text color for Webkit browsers
-                                                            // },
-                                                            // '& .MuiInputBase-input.Mui-disabled::placeholder': {
-                                                            //     color: 'white', // Disabled placeholder color
-                                                            // },
                                                         }}
                                                         ampm={false}
                                                     />
@@ -658,6 +623,79 @@ const Home = () => {
                                             )}
                                         </div>
                                     </LocalizationProvider>
+                                </Grid> */}
+                                <Grid item xs={12} sm={6}>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                            <FormLabel className="fw-bold text-white mt-1">
+                                                Date and Time <span style={{ color: 'red' }}>*</span>
+                                            </FormLabel>
+                                            <DateTimePicker
+                                                renderInput={(props) => (
+                                                    <TextField
+                                                        {...props}
+                                                        size="small"
+                                                        fullWidth
+                                                        disabled={isDisabledField}
+                                                        error={formik.touched.dateTime && Boolean(formik.errors.dateTime)}
+                                                        // helperText={formik.touched.dateTime && formik.errors.dateTime}
+                                                        inputProps={{ style: { color: 'white !important' } }}
+                                                        // sx={{
+                                                        //     '& .MuiOutlinedInput-root': {
+                                                        //         '& fieldset': {
+                                                        //             borderColor: 'red', // Border color
+                                                        //         },
+                                                        //         '&:hover fieldset': {
+                                                        //             borderColor: 'red', // Border color on hover
+                                                        //         },
+                                                        //         '&.Mui-focused fieldset': {
+                                                        //             borderColor: 'red', // Border color when focused
+                                                        //         },
+                                                        //     },
+                                                        //     '& .MuiInputBase-input': {
+                                                        //         color: 'white !important', // Input text color
+                                                        //     },
+                                                        //     '& .MuiInputBase-input::placeholder': {
+                                                        //         color: 'white !important', // Placeholder color
+                                                        //     },
+                                                        // }}
+                                                        ampm={false}
+                                                    />
+                                                )}
+                                                disabled={isDisabledField}
+                                                value={formik.values.dateTime ? dayjs(formik.values.dateTime) : null}
+                                                // onChange={(newValue) => {
+                                                //     // Store date as UTC
+                                                //     // formik.setFieldValue("dateTime", newValue ? newValue.toISOString() : null);
+                                                //     formik.setFieldValue("dateTime", newValue);
+                                                //     formik.setFieldTouched("dateTime", true); // Mark as touched here
+                                                // }}
+                                                onChange={(newValue) => {
+                                                    formik.setFieldValue('dateTime', newValue ? dayjs(newValue).format('YYYY-MM-DD HH:mm') : null);
+                                                    formik.setFieldTouched('dateTime', true);
+                                                }}
+                                                onOpen={() => {
+                                                    formik.setFieldTouched("dateTime", true); // Set touched on open
+                                                }}
+                                                onError={(error) => {
+                                                    if (error) {
+                                                        formik.setFieldTouched("dateTime", true);
+                                                        formik.setFieldError("dateTime", "Date is required");
+                                                    }
+                                                }}
+                                                defaultValue={null}
+                                                className={`custom-dateTimePicker-field ${formik.touched.dateTime && formik.errors.dateTime && ' custom-dateTimePicker-fieldError'}`}
+                                                format="YYYY-MM-DD HH:mm"
+                                                ampm={false}
+
+                                            />
+                                            {formik.touched.dateTime && formik.errors.dateTime && (
+                                                <FormLabel className="mt-1" style={{ fontSize: '0.75rem', color: '#FF4842' }}>
+                                                    {formik.errors.dateTime}
+                                                </FormLabel>
+                                            )}
+                                        </div>
+                                    </LocalizationProvider>
                                 </Grid>
                                 {/* <Grid item xs={12} sm={6} className='table-custom-inpt-field'> */}
                                 <Grid item xs={12} sm={6}>
@@ -668,8 +706,7 @@ const Home = () => {
                                         name="budget"
                                         type="number"
                                         size="small"
-                                        className="textborder custom-inpt-field-color"
-                                        fullWidth
+                                        className={`textborder custom-inpt-field-color ${formik.touched.activityName && formik.errors.activityName && "textErrorborder"}`} fullWidth
                                         disabled={isDisabledField}
                                         value={formik.values.budget}
                                         onChange={formik.handleChange}

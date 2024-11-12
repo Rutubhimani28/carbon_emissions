@@ -41,6 +41,7 @@ import Blog2 from './layouts/user/components/newsRoom/blog2';
 import Blog3 from './layouts/user/components/newsRoom/blog3';
 import Bot from './layouts/user/components/bot';
 import Blog4 from './layouts/user/components/newsRoom/blog4';
+import Blog5 from './layouts/user/components/newsRoom/blog5';
 import DashboardLayout from './layouts/dashboard/DashboardLayout';
 // ----------------------------------------------------------------------
 
@@ -94,6 +95,7 @@ export default function App() {
               <Route path="/news-room/blog2" element={<Blog2 />} />
               <Route path="/news-room/blog3" element={<Blog3 />} />
               <Route path="/news-room/blog4" element={<Blog4 />} />
+              <Route path="/news-room/blog5" element={<Blog5 />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/faqs" element={<Faq />} />

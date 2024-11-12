@@ -77,6 +77,17 @@
             margin-bottom: 10px;
         }
 
+        p {
+            font-weight: bold;
+            font-size: 12;
+        }
+
+        .title2 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 25px;
+        }
+
         /* div {
             page-break-inside: avoid;
         } */
@@ -89,7 +100,7 @@
             Activity Name: <%= activityName %>
         </h3>
 
-        <h2 style="font-size: 16px; font-weight: 900;">Total Carbon Footprint :</h2>
+        <p>Total Carbon Footprint:</p>
 
         <table>
             <tr>
@@ -162,9 +173,9 @@
                         , "Event Production" , "Energy" , "Digital Comms" , "Waste" , "Hotel" ]; %>
                         <% if (validTabTitles.includes(page.tabTitle)) { %>
                             <div class="page">
-                                <h3 class="title">
+                                <h4 class="title2">
                                     <%= page.tabTitle %>
-                                </h3>
+                                </h4>
                                 <% page.tabData.forEach(function(flightClass) { %>
                                     <% if (flightClass.subTypeData && flightClass.subTypeData.td &&
                                         flightClass.subTypeData.td.some(rowData=> rowData.emissions !== "")) { %>

@@ -34,6 +34,23 @@
             border-collapse: collapse;
             border: 1px solid #ddd;
             margin: 0;
+            page-break-inside: auto;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        tbody {
+            display: table-row-group;
+        }
+
+        tr {
+            page-break-inside: avoid;
         }
 
         th,
@@ -59,6 +76,17 @@
             margin-top: 20px;
             margin-bottom: 10px;
         }
+
+        p {
+            font-weight: bold;
+            font-size: 12;
+        }
+
+        .title2 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 25px;
+        }
     </style>
 </head>
 
@@ -68,7 +96,7 @@
             Activity Name: <%= activityName %>
         </h3>
 
-        <h2>Total Carbon Footprint:</h2>
+        <p>Total Carbon Footprint:</p>
         <table>
             <!-- <tr>
                 <th>Virtual Event</th>
@@ -122,9 +150,9 @@
                 <% if (page.tabData && page.tabData.length> 0) { %>
                     <% if (page.tabTitle==="Outbound Marketing" ) { %>
                         <div class="page">
-                            <h3 class="title">
+                            <h4 class="title2">
                                 <%= page.tabTitle %>
-                            </h3>
+                            </h4>
                             <% page.tabData.forEach(function(flightClass) { %>
                                 <% if (flightClass.subTypeData && flightClass.subTypeData.td) { %>
                                     <% if (flightClass.subTypeData.td.some(rowData=> rowData.emissions !== "")) { %>
