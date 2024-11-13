@@ -131,7 +131,7 @@ p {
   color: white !important;
 }
 
-.custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input {
+/* .custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input {
   opacity: 1;
   -webkit-text-fill-color: #ffffff !important;
   padding: 9px 14px;
@@ -140,6 +140,12 @@ p {
 .custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
   opacity: 1;
   -webkit-text-fill-color: #ffffff !important;
+} */
+
+.custom-dateTimePicker-field input {
+  color: #fff; 
+  -webkit-text-fill-color: #fff ;
+  padding: 9px 14px;
 }
 
 .custom-dateTimePicker-field>div svg {
@@ -149,6 +155,11 @@ p {
 .custom-dateTimePicker-field>div {
   color: #ffffff !important;
   border: 1px solid white;
+}
+
+.custom-dateTimePicker-field .Mui-disabled {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 .custom-dateTimePicker-fieldError>div {
