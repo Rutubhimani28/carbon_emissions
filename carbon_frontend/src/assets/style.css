@@ -112,10 +112,10 @@ p {
   -webkit-text-fill-color: #fff;
 } */
 
-.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input {
+/* .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input {
   border: 1px solid white !important;
   border-radius: 6px;
-}
+} */
 
 .table-custom-inpt-field .custom-dateTimePicker-field {
   color: white !important;

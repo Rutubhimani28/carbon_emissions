@@ -1067,14 +1067,15 @@ const VirtualEvent = (props) => {
                             <Grid item xs={12} sm={12} md={6}>
                                 <Box>
                                     <div className="table-responsive">
-                                        <table className="table-custom-inpt-field">
-                                            <tr>
+                                        {/* <table className="table-custom-inpt-field textborder"> */}
+                                        <table className="textborder">
+                                            <tr className="text-white">
                                                 <th />
-                                                <th className="ps-2">Wight (Kgs)</th>
+                                                <th className="ps-2">Weight (Kgs)</th>
                                                 <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className="ps-4 py-1">Polyethylene</td>
+                                                <td className="ps-4 py-1 text-white">Polyethylene</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField
                                                         fullWidth
@@ -1102,7 +1103,7 @@ const VirtualEvent = (props) => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="ps-4 py-1">PVC</td>
+                                                <td className="ps-4 py-1 text-white">PVC</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField
                                                         fullWidth
@@ -1139,14 +1140,15 @@ const VirtualEvent = (props) => {
                             <Grid item xs={12} sm={12} md={6}>
                                 <Box>
                                     <div className="table-responsive">
-                                        <table className="table-custom-inpt-field">
-                                            <tr>
+                                        {/* <table className="table-custom-inpt-field textborder"> */}
+                                        <table className="textborder">
+                                            <tr className='text-white'>
                                                 <th width={'122px'} />
                                                 <th className="ps-2">kwh</th>
                                                 <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
-                                                <td className="ps-4 py-1">Energy</td>
+                                                <td className="ps-4 py-1 text-white">Energy</td>
                                                 <td className="ps-2 py-1">
                                                     <TextField
                                                         fullWidth
