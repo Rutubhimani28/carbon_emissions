@@ -5,16 +5,19 @@ import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductionData, deleteProductionData } from '../../redux/slice/totalProductionSlice';
-import { addResultTableData, deleteResTabProductionData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabProductionData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import ProductionImg from '../../assets/production.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const Production = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalProductionDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalProductionDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalProductionDetails?.totalEmission);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const eventsData = useEventData();
 
     const fieldDataOne = [
         { name: 'Sawn Timber', ef: 0.263, fieldName: 'sawnTimber' },
@@ -43,7 +46,8 @@ const Production = (props) => {
     ];
 
     const fieldDataFive = [
-        { name: 'Polyethylene HDPE Banner', ef: 3.11, fieldName: 'hdpeBanner' },
+        // { name: 'Polyethylene HDPE Banner', ef: 3.11, fieldName: 'hdpeBanner' },
+        { name: 'Polyethylene Banner', ef: 3.11, fieldName: 'hdpeBanner' },
         { name: 'PVC Banners', ef: 7.83, fieldName: 'pvcBanners' },
         { name: 'Cotton Banner', ef: 14.5, fieldName: 'cottonBanner' },
         { name: 'Plastic Badge Holders (Polycorbonate)', ef: 4.2, fieldName: 'plasticBadgeHolders' },
@@ -51,10 +55,10 @@ const Production = (props) => {
 
     const fieldDataSix = [
         { name: 'Printing a Coloured Brochure/ Page (<130 GSM)', ef: 1.56, fieldName: 'colouredBrochurePage' },
-        { name: 'Giveway Paper bags (200 GSM)- A4 Size', ef: 0.3125, fieldName: 'paperBagsA4Size' },
-        { name: 'Giveway Paper bags (200 GSM)- A5 Size', ef: 0.125, fieldName: 'paperBagsA5Size' },
-        { name: 'Giveway Jute bags*- A4 Size', ef: 0.73, fieldName: 'juteBagsA4Size' },
-        { name: 'Giveway Cotton bags- A4 Size', ef: 17, fieldName: 'cottonBagsA4Size' },
+        { name: 'Giveaway Paper bags (200 GSM)- A4 Size', ef: 0.3125, fieldName: 'paperBagsA4Size' },
+        { name: 'Giveaway Paper bags (200 GSM)- A5 Size', ef: 0.125, fieldName: 'paperBagsA5Size' },
+        { name: 'Giveaway Jute bags*- A4 Size', ef: 0.73, fieldName: 'juteBagsA4Size' },
+        { name: 'Giveaway Cotton bags- A4 Size', ef: 17, fieldName: 'cottonBagsA4Size' },
     ];
 
 
@@ -507,7 +511,7 @@ const Production = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Production Material",
@@ -551,7 +555,7 @@ const Production = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Branding",
@@ -559,7 +563,8 @@ const Production = (props) => {
                         th: ["", "In Kgs", "Emissions"],
                         td: [
                             {
-                                pType: "Polyethylene HDPE Banner",
+                                // pType: "Polyethylene HDPE Banner",
+                                pType: "Polyethylene Banner",
                                 kgs: values?.hdpeBanner,
                                 emissions: hdpeBannerEmission > 0 ? hdpeBannerEmission : ''
                             },
@@ -574,13 +579,14 @@ const Production = (props) => {
                                 emissions: cottonBannerEmission > 0 ? cottonBannerEmission : ''
                             },
                             {
-                                pType: "Plastic Badge Holders (Polycorbonate)",
+                                // pType: "Plastic Badge Holders (Polycorbonate)",
+                                pType: "Plastic Badges",
                                 kgs: values?.plasticBadgeHolders,
                                 emissions: plasticBadgeHoldersEmission > 0 ? plasticBadgeHoldersEmission : ''
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Branding",
@@ -593,28 +599,31 @@ const Production = (props) => {
                                 emissions: colouredBrochurePageEmission > 0 ? colouredBrochurePageEmission : ''
                             },
                             {
-                                pType: "Giveway Paper bags (200 GSM)- A4 Size",
+                                // pType: "Giveaway Paper bags (200 GSM)- A4 Size",
+                                pType: "Paper Bags",
                                 noOfUnits: values?.paperBagsA4Size,
                                 emissions: paperBagsA4SizeEmission > 0 ? paperBagsA4SizeEmission : ''
                             },
                             {
-                                pType: "Giveway Paper bags (200 GSM)- A5 Size",
+                                pType: "Giveaway Paper bags (200 GSM)- A5 Size",
                                 noOfUnits: values?.paperBagsA5Size,
                                 emissions: paperBagsA5SizeEmission > 0 ? paperBagsA5SizeEmission : ''
                             },
                             {
-                                pType: "Giveway Jute bags*- A4 Size",
+                                // pType: "Giveaway Jute bags*- A4 Size",
+                                pType: "Jute Bags",
                                 noOfUnits: values?.juteBagsA4Size,
                                 emissions: juteBagsA4SizeEmission > 0 ? juteBagsA4SizeEmission : ''
                             },
                             {
-                                pType: "Giveway Cotton bags- A4 Size",
+                                // pType: "Giveaway Cotton bags- A4 Size",
+                                pType: "Cotton Bags",
                                 noOfUnits: values?.cottonBagsA4Size,
                                 emissions: cottonBagsA4SizeEmission > 0 ? cottonBagsA4SizeEmission : ''
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Stage Screen",
@@ -635,7 +644,7 @@ const Production = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Stage Lighting & AV",
@@ -649,18 +658,37 @@ const Production = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 
             dispatch(addProductionData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Event Production" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Event Production" }));
         },
     });
 
     const handeleDelete = () => {
         dispatch(deleteProductionData());
         dispatch(deleteResTabProductionData());
+    };
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
+            }
+        }
     };
 
     useEffect(() => {
@@ -687,65 +715,65 @@ const Production = (props) => {
             //     formik.setFieldValue(`${item?.fieldName}Emission`, allData[i]?.emission);
             // });
 
-            formik.setFieldValue('sawnTimberArea', allData[0]?.area);
-            formik.setFieldValue('sawnTimberEmission', allData[0]?.emission);
-            formik.setFieldValue('mdfArea', allData[1]?.area);
-            formik.setFieldValue('mdfEmission', allData[1]?.emission);
-            formik.setFieldValue('openPanelTimberFrameArea', allData[2]?.area);
-            formik.setFieldValue('openPanelTimberFrameEmission', allData[2]?.emission);
-            formik.setFieldValue('carpetArea', allData[3]?.area);
-            formik.setFieldValue('carpetEmission', allData[3]?.emission);
-            formik.setFieldValue('adhesiveVinylArea', allData[4]?.area);
-            formik.setFieldValue('adhesiveVinylEmission', allData[4]?.emission);
-            formik.setFieldValue('cardboardArea', allData[5]?.area);
-            formik.setFieldValue('cardboardEmission', allData[5]?.emission);
-            formik.setFieldValue('nylonArea', allData[6]?.area);
-            formik.setFieldValue('nylonEmission', allData[6]?.emission);
+            formik.setFieldValue('sawnTimberArea', allData?.[0]?.area);
+            formik.setFieldValue('sawnTimberEmission', allData?.[0]?.emission);
+            formik.setFieldValue('mdfArea', allData?.[1]?.area);
+            formik.setFieldValue('mdfEmission', allData?.[1]?.emission);
+            formik.setFieldValue('openPanelTimberFrameArea', allData?.[2]?.area);
+            formik.setFieldValue('openPanelTimberFrameEmission', allData?.[2]?.emission);
+            formik.setFieldValue('carpetArea', allData?.[3]?.area);
+            formik.setFieldValue('carpetEmission', allData?.[3]?.emission);
+            formik.setFieldValue('adhesiveVinylArea', allData?.[4]?.area);
+            formik.setFieldValue('adhesiveVinylEmission', allData?.[4]?.emission);
+            formik.setFieldValue('cardboardArea', allData?.[5]?.area);
+            formik.setFieldValue('cardboardEmission', allData?.[5]?.emission);
+            formik.setFieldValue('nylonArea', allData?.[6]?.area);
+            formik.setFieldValue('nylonEmission', allData?.[6]?.emission);
 
-            formik.setFieldValue('woodKgs', allData[7]?.kgs);
-            formik.setFieldValue('woodEmission', allData[7]?.emission);
-            formik.setFieldValue('steelKgs', allData[8]?.kgs);
-            formik.setFieldValue('steelEmission', allData[8]?.emission);
-            formik.setFieldValue('aluminiumKgs', allData[9]?.kgs);
-            formik.setFieldValue('aluminiumEmission', allData[9]?.emission);
-            formik.setFieldValue('ironKgs', allData[10]?.kgs);
-            formik.setFieldValue('ironEmission', allData[10]?.emission);
-            formik.setFieldValue('paperKgs', allData[11]?.kgs);
-            formik.setFieldValue('paperEmission', allData[11]?.emission);
-            formik.setFieldValue('recycledPaperKgs', allData[12]?.kgs);
-            formik.setFieldValue('recycledPaperEmission', allData[12]?.emission);
-            formik.setFieldValue('paintKgs', allData[13]?.kgs);
-            formik.setFieldValue('paintEmission', allData[13]?.emission);
+            formik.setFieldValue('woodKgs', allData?.[7]?.kgs);
+            formik.setFieldValue('woodEmission', allData?.[7]?.emission);
+            formik.setFieldValue('steelKgs', allData?.[8]?.kgs);
+            formik.setFieldValue('steelEmission', allData?.[8]?.emission);
+            formik.setFieldValue('aluminiumKgs', allData?.[9]?.kgs);
+            formik.setFieldValue('aluminiumEmission', allData?.[9]?.emission);
+            formik.setFieldValue('ironKgs', allData?.[10]?.kgs);
+            formik.setFieldValue('ironEmission', allData?.[10]?.emission);
+            formik.setFieldValue('paperKgs', allData?.[11]?.kgs);
+            formik.setFieldValue('paperEmission', allData?.[11]?.emission);
+            formik.setFieldValue('recycledPaperKgs', allData?.[12]?.kgs);
+            formik.setFieldValue('recycledPaperEmission', allData?.[12]?.emission);
+            formik.setFieldValue('paintKgs', allData?.[13]?.kgs);
+            formik.setFieldValue('paintEmission', allData?.[13]?.emission);
 
-            formik.setFieldValue('projectorNoOfHour', allData[14]?.noOfHour);
-            formik.setFieldValue('projectorNoOfDevice', allData[14]?.noOfDevice);
-            formik.setFieldValue('projectorEmission', allData[14]?.emission);
-            formik.setFieldValue('ledScreenPanelNoOfHour', allData[15]?.noOfHour);
-            formik.setFieldValue('ledScreenPanelNoOfDevice', allData[15]?.noOfDevice);
-            formik.setFieldValue('ledScreenPanelEmission', allData[15]?.emission);
+            formik.setFieldValue('projectorNoOfHour', allData?.[14]?.noOfHour);
+            formik.setFieldValue('projectorNoOfDevice', allData?.[14]?.noOfDevice);
+            formik.setFieldValue('projectorEmission', allData?.[14]?.emission);
+            formik.setFieldValue('ledScreenPanelNoOfHour', allData?.[15]?.noOfHour);
+            formik.setFieldValue('ledScreenPanelNoOfDevice', allData?.[15]?.noOfDevice);
+            formik.setFieldValue('ledScreenPanelEmission', allData?.[15]?.emission);
 
-            formik.setFieldValue('kwh', allData[16]?.kwh);
-            formik.setFieldValue('kwhEmission', allData[16]?.emission);
+            formik.setFieldValue('kwh', allData?.[16]?.kwh);
+            formik.setFieldValue('kwhEmission', allData?.[16]?.emission);
 
-            formik.setFieldValue('hdpeBanner', allData[17]?.hdpeBanner);
-            formik.setFieldValue('hdpeBannerEmission', allData[17]?.emission);
-            formik.setFieldValue('pvcBanners', allData[18]?.pvcBanners);
-            formik.setFieldValue('pvcBannersEmission', allData[18]?.emission);
-            formik.setFieldValue('cottonBanner', allData[19]?.cottonBanner);
-            formik.setFieldValue('cottonBannerEmission', allData[19]?.emission);
-            formik.setFieldValue('plasticBadgeHolders', allData[20]?.plasticBadgeHolders);
-            formik.setFieldValue('plasticBadgeHoldersEmission', allData[20]?.emission);
+            formik.setFieldValue('hdpeBanner', allData?.[17]?.hdpeBanner);
+            formik.setFieldValue('hdpeBannerEmission', allData?.[17]?.emission);
+            formik.setFieldValue('pvcBanners', allData?.[18]?.pvcBanners);
+            formik.setFieldValue('pvcBannersEmission', allData?.[18]?.emission);
+            formik.setFieldValue('cottonBanner', allData?.[19]?.cottonBanner);
+            formik.setFieldValue('cottonBannerEmission', allData?.[19]?.emission);
+            formik.setFieldValue('plasticBadgeHolders', allData?.[20]?.plasticBadgeHolders);
+            formik.setFieldValue('plasticBadgeHoldersEmission', allData?.[20]?.emission);
 
-            formik.setFieldValue('colouredBrochurePage', allData[21]?.colouredBrochurePage);
-            formik.setFieldValue('colouredBrochurePageEmission', allData[21]?.emission);
-            formik.setFieldValue('paperBagsA4Size', allData[22]?.paperBagsA4Size);
-            formik.setFieldValue('paperBagsA4SizeEmission', allData[22]?.emission);
-            formik.setFieldValue('paperBagsA5Size', allData[23]?.paperBagsA5Size);
-            formik.setFieldValue('paperBagsA5SizeEmission', allData[23]?.emission);
-            formik.setFieldValue('juteBagsA4Size', allData[24]?.juteBagsA4Size);
-            formik.setFieldValue('juteBagsA4SizeEmission', allData[24]?.emission);
-            formik.setFieldValue('cottonBagsA4Size', allData[25]?.cottonBagsA4Size);
-            formik.setFieldValue('cottonBagsA4SizeEmission', allData[25]?.emission);
+            formik.setFieldValue('colouredBrochurePage', allData?.[21]?.colouredBrochurePage);
+            formik.setFieldValue('colouredBrochurePageEmission', allData?.[21]?.emission);
+            formik.setFieldValue('paperBagsA4Size', allData?.[22]?.paperBagsA4Size);
+            formik.setFieldValue('paperBagsA4SizeEmission', allData?.[22]?.emission);
+            formik.setFieldValue('paperBagsA5Size', allData?.[23]?.paperBagsA5Size);
+            formik.setFieldValue('paperBagsA5SizeEmission', allData?.[23]?.emission);
+            formik.setFieldValue('juteBagsA4Size', allData?.[24]?.juteBagsA4Size);
+            formik.setFieldValue('juteBagsA4SizeEmission', allData?.[24]?.emission);
+            formik.setFieldValue('cottonBagsA4Size', allData?.[25]?.cottonBagsA4Size);
+            formik.setFieldValue('cottonBagsA4SizeEmission', allData?.[25]?.emission);
         }
     }, [value]);
 
@@ -773,15 +801,15 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="172" />
-                                                    <th className="ps-2">Weight (Kgs)</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th width="30%" />
+                                                    <th className="ps-2" width="30%">Weight (Kgs)</th>
+                                                    <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
                                                 {fieldDataTwo &&
                                                     fieldDataTwo?.map((ite) => (
                                                         <>
                                                             <tr key={`two${ite}`}>
-                                                                <td className="ps-2 py-1">{ite.name}</td>
+                                                                <td className="py-1">{ite.name}</td>
                                                                 <td className="ps-2 py-1">
                                                                     <TextField
                                                                         size="small"
@@ -823,9 +851,9 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="250" />
-                                                    <th className="ps-2" width="150">Total Area (m<sup>2</sup>)</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th width="30%" />
+                                                    <th className="ps-2" width="30%">Total Area (m<sup>2</sup>)</th>
+                                                    <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
                                                 {fieldDataOne &&
                                                     fieldDataOne?.map((item) => (
@@ -878,12 +906,12 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="172" />
-                                                    <th className="ps-2">In Kgs</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th width="30%" />
+                                                    <th className="ps-2" width="30%">Weight (In kgs)</th>
+                                                    <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Polyethylene HDPE Banner *</td>
+                                                    <td className="py-1">Polyethylene Banner*</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -910,7 +938,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">PVC Banners</td>
+                                                    <td className="py-1">PVC Banners</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -936,7 +964,7 @@ const Production = (props) => {
                                                         />
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                {/* <tr>
                                                     <td className="ps-2 py-1">Cotton Banner</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
@@ -962,9 +990,9 @@ const Production = (props) => {
                                                             disabled
                                                         />
                                                     </td>
-                                                </tr>
+                                                </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Plastic Badge Holders (Polycorbonate)</td>
+                                                    <td className="py-1">Plastic Badge</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -999,11 +1027,11 @@ const Production = (props) => {
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="250" />
-                                                    <th className="ps-2" width="150">No. of Units</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th width="30%" />
+                                                    <th className="ps-2" width="30%">No.of A4 Units</th>
+                                                    <th className="ps-2" width="30%">Emissions</th>
                                                 </tr>
-                                                <tr>
+                                                {/* <tr>
                                                     <td className="ps-2 py-1">Printing a Coloured Brochure/ Page (&gt;130 GSM)</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
@@ -1029,9 +1057,9 @@ const Production = (props) => {
                                                             onChange={formik.handleChange}
                                                         />
                                                     </td>
-                                                </tr>
+                                                </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A4 Size</td>
+                                                    <td className="ps-2 py-1">Paper bags</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1058,8 +1086,8 @@ const Production = (props) => {
                                                         />
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A5 Size</td>
+                                                {/* <tr>
+                                                    <td className="ps-2 py-1">Giveaway Paper bags (200 GSM)- A5 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1085,9 +1113,9 @@ const Production = (props) => {
                                                             onChange={formik.handleChange}
                                                         />
                                                     </td>
-                                                </tr>
+                                                </tr> */}
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Jute bags*- A4 Size</td>
+                                                    <td className="ps-2 py-1">Jute bags*</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1115,7 +1143,7 @@ const Production = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Cotton bags- A4 Size</td>
+                                                    <td className="ps-2 py-1">Cotton bags</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1148,18 +1176,19 @@ const Production = (props) => {
                                     </Box>
                                 </Grid>
 
-                                <Grid item xs={12} sm={12} md={6}>
-                                    <Box>
+                                <Grid item xs={12} sm={12} md={0.5} />
+                                <Grid item xs={12} sm={12} md={11}>
+                                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
                                         <Typography variant="h4" className="text-center text-white mb-4">
                                             Stage Screen
                                         </Typography>
                                         <div className="table-responsive">
                                             <table className="table-custom-inpt-field">
                                                 <tr>
-                                                    <th width="172" />
-                                                    <th className="ps-2">No of Hours</th>
-                                                    <th className="ps-2">No of Devices/ Panels</th>
-                                                    <th className="ps-2">Emissions</th>
+                                                    <th width="25%" />
+                                                    <th className="ps-2" width="25%">No of Hours</th>
+                                                    <th className="ps-2" width="25%">No of Devices/ Panels</th>
+                                                    <th className="ps-2" width="25%">Emissions</th>
                                                 </tr>
                                                 {fieldDataThree &&
                                                     fieldDataThree?.map((it) => (
@@ -1217,7 +1246,9 @@ const Production = (props) => {
                                         </div>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={12} md={6}>
+                                <Grid item xs={12} sm={12} md={0.5} />
+
+                                {/* <Grid item xs={12} sm={12} md={6}>
                                     <Box>
                                         <Typography variant="h4" className="text-center text-white mb-4">
                                             Stage Lighting & AV
@@ -1229,8 +1260,6 @@ const Production = (props) => {
                                                     <th className="ps-2">kwh</th>
                                                     <th className="ps-2">Emissions</th>
                                                 </tr>
-                                                {/* {fieldDataFour && */}
-                                                {/* fieldDataFour?.map((i) => ( */}
                                                 <>
                                                     <tr >
                                                         <td className="ps-2 py-1">Electricity</td>
@@ -1263,11 +1292,10 @@ const Production = (props) => {
                                                         </td>
                                                     </tr>
                                                 </>
-                                                {/* ))}/ */}
                                             </table>
                                         </div>
                                     </Box>
-                                </Grid>
+                                </Grid> */}
 
                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
                                     <Typography color="white">Note:</Typography>
@@ -1281,6 +1309,7 @@ const Production = (props) => {
                                             variant="contained"
                                             onClick={() => {
                                                 formik.handleSubmit();
+                                                handleSaveToDb();
                                                 setValue(value - 1);
                                             }}
                                             className="custom-btn"
@@ -1292,6 +1321,7 @@ const Production = (props) => {
                                             variant="contained"
                                             onClick={() => {
                                                 formik.handleSubmit();
+                                                handleSaveToDb();
                                                 setValue(value + 1);
                                             }}
                                             className="custom-btn"
@@ -1308,6 +1338,7 @@ const Production = (props) => {
                                         >
                                             Go To Result
                                         </Button>
+                                        {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                         <Button
                                             variant="outlined"
                                             onClick={() => {

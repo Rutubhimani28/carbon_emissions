@@ -5,17 +5,19 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addWasteData, deleteWasteData } from '../../redux/slice/totalWasteSlice';
-import { addResultTableData, deleteResTabWasteData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabWasteData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import { IconDiv } from '../../components/IconDiv';
 import WasteImg from '../../assets/Waste.png';
+import useEventData from '../../hooks/useEventData';
 
 const Waste = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalWasteDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalWasteDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalWasteDetails?.totalEmission);
-    const scope = useSelector((state) => state?.totalWasteDetails?.scope);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const eventsData = useEventData();
 
     // -----------   initialValues
     const initialValues = {
@@ -251,7 +253,7 @@ const Waste = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Plastic Waste",
@@ -280,7 +282,7 @@ const Waste = (props) => {
                             // },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Event Waste",
@@ -309,11 +311,11 @@ const Waste = (props) => {
                             // },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Waste" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Waste" }));
         },
     });
 
@@ -322,54 +324,73 @@ const Waste = (props) => {
         dispatch(deleteResTabWasteData());
     };
 
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
+            }
+        }
+    };
+
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue('foodWasteNonMeatKg', allData[0]?.foodWasteNonMeatKg);
-            formik.setFieldValue('foodWasteNonMeatEmission', allData[0]?.emission);
-            formik.setFieldValue('foodWasteMeatKg', allData[1]?.foodWasteMeatKg);
-            formik.setFieldValue('foodWasteMeatEmission', allData[1]?.emission);
-            // formik.setFieldValue('municipalSolidWasteKg', allData[2]?.municipalSolidWasteKg);
-            // formik.setFieldValue('municipalSolidWasteEmission', allData[2]?.emission);
-            formik.setFieldValue('foodWasteMixKg', allData[2]?.foodWasteMixKg);
-            formik.setFieldValue('foodWasteMixEmission', allData[2]?.emission);
-            formik.setFieldValue('fruitVegetablesKg', allData[3]?.fruitVegetablesKg);
-            formik.setFieldValue('fruitVegetablesEmission', allData[3]?.emission);
+            formik.setFieldValue('foodWasteNonMeatKg', allData?.[0]?.foodWasteNonMeatKg);
+            formik.setFieldValue('foodWasteNonMeatEmission', allData?.[0]?.emission);
+            formik.setFieldValue('foodWasteMeatKg', allData?.[1]?.foodWasteMeatKg);
+            formik.setFieldValue('foodWasteMeatEmission', allData?.[1]?.emission);
+            // formik.setFieldValue('municipalSolidWasteKg', allData?.[2]?.municipalSolidWasteKg);
+            // formik.setFieldValue('municipalSolidWasteEmission', allData?.[2]?.emission);
+            formik.setFieldValue('foodWasteMixKg', allData?.[2]?.foodWasteMixKg);
+            formik.setFieldValue('foodWasteMixEmission', allData?.[2]?.emission);
+            formik.setFieldValue('fruitVegetablesKg', allData?.[3]?.fruitVegetablesKg);
+            formik.setFieldValue('fruitVegetablesEmission', allData?.[3]?.emission);
 
-            formik.setFieldValue('bottleOne', allData[4]?.bottleOne);
-            formik.setFieldValue('bottleOneEmission', allData[4]?.emission);
-            formik.setFieldValue('bottleTwo', allData[5]?.bottleTwo);
-            formik.setFieldValue('bottleTwoEmission', allData[5]?.emission);
-            formik.setFieldValue('bottleThree', allData[6]?.bottleThree);
-            formik.setFieldValue('bottleThreeEmission', allData[6]?.emission);
-            // formik.setFieldValue('plasticWrapping', allData[6]?.plasticWrapping);
-            // formik.setFieldValue('plasticWrappingEmission', allData[6]?.emission);
+            formik.setFieldValue('bottleOne', allData?.[4]?.bottleOne);
+            formik.setFieldValue('bottleOneEmission', allData?.[4]?.emission);
+            formik.setFieldValue('bottleTwo', allData?.[5]?.bottleTwo);
+            formik.setFieldValue('bottleTwoEmission', allData?.[5]?.emission);
+            formik.setFieldValue('bottleThree', allData?.[6]?.bottleThree);
+            formik.setFieldValue('bottleThreeEmission', allData?.[6]?.emission);
+            // formik.setFieldValue('plasticWrapping', allData?.[6]?.plasticWrapping);
+            // formik.setFieldValue('plasticWrappingEmission', allData?.[6]?.emission);
 
-            formik.setFieldValue('woodKg', allData[7]?.woodKg);
-            formik.setFieldValue('woodEmission', allData[7]?.emission);
-            formik.setFieldValue('carpetKg', allData[8]?.carpetKg);
-            formik.setFieldValue('carpetEmission', allData[8]?.emission);
-            formik.setFieldValue('pvcKg', allData[9]?.pvcKg);
-            formik.setFieldValue('pvcEmission', allData[9]?.emission);
+            formik.setFieldValue('woodKg', allData?.[7]?.woodKg);
+            formik.setFieldValue('woodEmission', allData?.[7]?.emission);
+            formik.setFieldValue('carpetKg', allData?.[8]?.carpetKg);
+            formik.setFieldValue('carpetEmission', allData?.[8]?.emission);
+            formik.setFieldValue('pvcKg', allData?.[9]?.pvcKg);
+            formik.setFieldValue('pvcEmission', allData?.[9]?.emission);
 
-            // formik.setFieldValue('hdpeBanner', allData[7]?.hdpeBanner);
-            // formik.setFieldValue('hdpeBannerEmission', allData[7]?.emission);
-            // formik.setFieldValue('pvcBanners', allData[8]?.pvcBanners);
-            // formik.setFieldValue('pvcBannersEmission', allData[8]?.emission);
-            // formik.setFieldValue('cottonBanner', allData[9]?.cottonBanner);
-            // formik.setFieldValue('cottonBannerEmission', allData[9]?.emission);
-            // formik.setFieldValue('plasticBadgeHolders', allData[10]?.plasticBadgeHolders);
-            // formik.setFieldValue('plasticBadgeHoldersEmission', allData[10]?.emission);
+            // formik.setFieldValue('hdpeBanner', allData?.[7]?.hdpeBanner);
+            // formik.setFieldValue('hdpeBannerEmission', allData?.[7]?.emission);
+            // formik.setFieldValue('pvcBanners', allData?.[8]?.pvcBanners);
+            // formik.setFieldValue('pvcBannersEmission', allData?.[8]?.emission);
+            // formik.setFieldValue('cottonBanner', allData?.[9]?.cottonBanner);
+            // formik.setFieldValue('cottonBannerEmission', allData?.[9]?.emission);
+            // formik.setFieldValue('plasticBadgeHolders', allData?.[10]?.plasticBadgeHolders);
+            // formik.setFieldValue('plasticBadgeHoldersEmission', allData?.[10]?.emission);
 
-            // formik.setFieldValue('colouredBrochurePage', allData[11]?.colouredBrochurePage);
-            // formik.setFieldValue('colouredBrochurePageEmission', allData[11]?.emission);
-            // formik.setFieldValue('paperBagsA4Size', allData[12]?.paperBagsA4Size);
-            // formik.setFieldValue('paperBagsA4SizeEmission', allData[12]?.emission);
-            // formik.setFieldValue('paperBagsA5Size', allData[13]?.paperBagsA5Size);
-            // formik.setFieldValue('paperBagsA5SizeEmission', allData[13]?.emission);
-            // formik.setFieldValue('juteBagsA4Size', allData[14]?.juteBagsA4Size);
-            // formik.setFieldValue('juteBagsA4SizeEmission', allData[14]?.emission);
-            // formik.setFieldValue('cottonBagsA4Size', allData[15]?.cottonBagsA4Size);
-            // formik.setFieldValue('cottonBagsA4SizeEmission', allData[15]?.emission);
+            // formik.setFieldValue('colouredBrochurePage', allData?.[11]?.colouredBrochurePage);
+            // formik.setFieldValue('colouredBrochurePageEmission', allData?.[11]?.emission);
+            // formik.setFieldValue('paperBagsA4Size', allData?.[12]?.paperBagsA4Size);
+            // formik.setFieldValue('paperBagsA4SizeEmission', allData?.[12]?.emission);
+            // formik.setFieldValue('paperBagsA5Size', allData?.[13]?.paperBagsA5Size);
+            // formik.setFieldValue('paperBagsA5SizeEmission', allData?.[13]?.emission);
+            // formik.setFieldValue('juteBagsA4Size', allData?.[14]?.juteBagsA4Size);
+            // formik.setFieldValue('juteBagsA4SizeEmission', allData?.[14]?.emission);
+            // formik.setFieldValue('cottonBagsA4Size', allData?.[15]?.cottonBagsA4Size);
+            // formik.setFieldValue('cottonBagsA4SizeEmission', allData?.[15]?.emission);
         }
     }, [value]);
 
@@ -377,7 +398,6 @@ const Waste = (props) => {
         <div>
             <Container maxWidth>
                 <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
-                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
 
                         <Box
@@ -919,7 +939,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Paper bags (200 GSM)- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -945,7 +965,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Paper bags (200 GSM)- A5 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Paper bags (200 GSM)- A5 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -971,7 +991,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Jute bags*- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Jute bags*- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -997,7 +1017,7 @@ const Waste = (props) => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td className="ps-2 py-1">Giveway Cotton bags- A4 Size</td>
+                                                    <td className="ps-2 py-1">Giveaway Cotton bags- A4 Size</td>
                                                     <td className="ps-2 py-1">
                                                         <TextField
                                                             size="small"
@@ -1032,7 +1052,8 @@ const Waste = (props) => {
                                         <Button
                                             variant="contained"
                                             onClick={() => {
-                                                formik.handleSubmit();
+                                                // formik.handleSubmit();
+                                                handleSaveToDb();
                                                 setValue(value - 1);
                                             }}
                                             startIcon={<FaAngleDoubleLeft />}
@@ -1043,7 +1064,8 @@ const Waste = (props) => {
                                         <Button
                                             variant="contained"
                                             onClick={() => {
-                                                formik.handleSubmit();
+                                                // formik.handleSubmit();
+                                                handleSaveToDb();
                                                 setValue(value + 1);
                                             }}
                                             className="custom-btn"
@@ -1053,6 +1075,7 @@ const Waste = (props) => {
                                             Save and Next Page
                                         </Button>
                                         {/* <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button> */}
+                                        {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                         <Button
                                             variant="outlined"
                                             onClick={() => {

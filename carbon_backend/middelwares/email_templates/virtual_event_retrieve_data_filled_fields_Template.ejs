@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emissions Report</title>
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 20px 20px 20px;
+            box-sizing: border-box;
+        }
+
+        .page {
+            margin: 20px;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin: 0;
+            page-break-inside: auto;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        tbody {
+            display: table-row-group;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .sub-title {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-weight: bold;
+            font-size: 12;
+        }
+
+        .title2 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3 style="text-align: center;" class="title">
+            Activity Name: <%= activityName %>
+        </h3>
+
+        <p>Total Carbon Footprint:</p>
+        <table>
+            <!-- <tr>
+                <th>Virtual Event</th>
+                <th>Outbound Marketing</th>
+                <td>
+                    <%= data.totalVirtualEvent %> kgCO<sub>2</sub>e
+                </td>
+            </tr> -->
+            <tr>
+                <th>TV Ad</th>
+                <td>
+                    <%= data.totalTvAd %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Newspaper- Full page Ad</th>
+                <td>
+                    <%= data.totalNewspaper %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Magazine</th>
+                <td>
+                    <%= data.totalMagazine %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Podcast</th>
+                <td>
+                    <%= data.totalPodcast %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Polyethylene Banner</th>
+                <td>
+                    <%= data.totalPolyethylene %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>PVC Banner</th>
+                <td>
+                    <%= data.totalPVC %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+        </table>
+
+        <h4>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
+
+        <% if (resultTableData && resultTableData.allDataOfTab) { %>
+            <% resultTableData.allDataOfTab.forEach(function(page) { %>
+                <% if (page.tabData && page.tabData.length> 0) { %>
+                    <% if (page.tabTitle==="Outbound Marketing" ) { %>
+                        <div class="page">
+                            <h4 class="title2">
+                                <%= page.tabTitle %>
+                            </h4>
+                            <% page.tabData.forEach(function(flightClass) { %>
+                                <% if (flightClass.subTypeData && flightClass.subTypeData.td) { %>
+                                    <% if (flightClass.subTypeData.td.some(rowData=> rowData.emissions !== "")) { %>
+                                        <div class="table-container">
+                                            <% if (flightClass.subTypeData.th && flightClass.subTypeData.th.length> 0) {
+                                                %>
+                                                <h5 class="sub-title">
+                                                    <%= flightClass.subType %>
+                                                </h5>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <% flightClass.subTypeData.th.forEach(function(header) { %>
+                                                                <th>
+                                                                    <%= header %>
+                                                                </th>
+                                                                <% }); %>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% flightClass.subTypeData.td.forEach(function(rowData) { %>
+                                                            <% if (rowData.emissions !=="" ) { %>
+                                                                <tr>
+                                                                    <% if (page.tabTitle==="Outbound Marketing" ) { %>
+                                                                        <td>
+                                                                            <%= rowData.vtType %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= rowData.imgSize || rowData.videoSize ||
+                                                                                rowData.noOfMins || rowData.kgs ||
+                                                                                rowData.adDuration ||
+                                                                                rowData.noOfCopiesOne ||
+                                                                                rowData.podcastSize || rowData.energyKwh
+                                                                                || rowData.noOfPages %>
+                                                                        </td>
+                                                                        <% if (rowData.videoMins ||
+                                                                            rowData.impressionsOne || rowData.noOfPeople
+                                                                            || rowData.noOfListeners ||
+                                                                            rowData.noOfCopiesTwo || rowData.noOfSlots)
+                                                                            { %>
+                                                                            <td>
+                                                                                <%= rowData.videoMins ||
+                                                                                    rowData.impressionsOne ||
+                                                                                    rowData.noOfPeople ||
+                                                                                    rowData.noOfSlots ||
+                                                                                    rowData.noOfListeners ||
+                                                                                    rowData.noOfCopiesTwo %>
+                                                                            </td>
+                                                                            <% } %>
+
+                                                                                <% if (rowData.impressionsTwo ||
+                                                                                    rowData.viewers) { %>
+                                                                                    <td>
+                                                                                        <%= rowData.impressionsTwo ||
+                                                                                            rowData.viewers%>
+                                                                                    </td>
+                                                                                    <% } %>
+                                                                                        <td>
+                                                                                            <%= rowData.emissions %>
+                                                                                        </td>
+                                                                                        <% } %>
+                                                                </tr>
+                                                                <% } %>
+                                                                    <% }); %>
+                                                    </tbody>
+                                                </table>
+                                                <% } %>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                                                <% }); %>
+                        </div>
+                        <% } %>
+                            <% } %>
+                                <% }); %>
+                                    <% } %>
+
+                                        <h4 style="margin-top: 35px;">For every $ you spend you are generating <%=
+                                                eveydolarCo2 %> kgCO<sub>2</sub>e</h4>
+
+    </div>
+</body>
+
+</html>

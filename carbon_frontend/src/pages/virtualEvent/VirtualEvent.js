@@ -22,11 +22,12 @@ import { FaSnapchat, FaTwitch, FaTiktok, FaAngleDoubleRight, FaImage, FaFileVide
 import { GiVideoConference } from "react-icons/gi";
 import { IconDiv } from '../../components/IconDiv';
 import { addVirtualEventData, deleteVirtualEventData } from '../../redux/slice/totalVirtualEventSlice';
-import { addResultTableData, deleteResTabVrtEventData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabVrtEventData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import VirtualEventIcon from '../../layouts/user/assets/images/virtualEvent.png';
 import outboundIcon from '../../assets/outboundIcon.png';
 import podcastIcon from '../../assets/podcastIcon.png';
 import TVImg from '../../layouts/user/assets/images/tv.png';
+import useEventData from '../../hooks/useEventData';
 
 const style = {
     position: 'absolute',
@@ -46,9 +47,11 @@ const VirtualEvent = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalVirtualEventDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalVirtualEventDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalVirtualEventDetails?.totalEmission);
     const [openInfo, setOpenInfo] = useState(false);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const eventsData = useEventData();
 
     const initialValues = {
         // imgSize: '',
@@ -395,7 +398,7 @@ const VirtualEvent = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -410,7 +413,7 @@ const VirtualEvent = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -429,7 +432,7 @@ const VirtualEvent = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -445,7 +448,7 @@ const VirtualEvent = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -460,7 +463,7 @@ const VirtualEvent = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -474,7 +477,7 @@ const VirtualEvent = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 // {
                 //     subType: "Event Promotion on Social Media",
@@ -582,12 +585,15 @@ const VirtualEvent = (props) => {
                             },
                         ]
                     },
-                    scope: 2
+                    // scope: 2
                 }
             ];
 
-            // dispatch(addResultTableData({ data: tableData, tabTitle: "Virtual Event" }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Outbound Marketing" }));
+            // dispatch(addResultTableData({ from: "outboundMarketing", data: tableData, tabTitle: "Outbound Marketing" }));
+            // dispatch(addResultTableData({ from: "outboundMarketing", data: tableData, tabTitle: "Outbound Marketing" }));
+            dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
+            dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
+
         },
     });
 
@@ -598,117 +604,136 @@ const VirtualEvent = (props) => {
         dispatch(deleteResTabVrtEventData());
     };
 
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
+            }
+        }
+    };
+
     const handleOpenInfo = () => setOpenInfo(true);
     const handleInfoClose = () => setOpenInfo(false);
 
     useEffect(() => {
         if (allData?.length > 0) {
-            // formik.setFieldValue('imgSize', allData[0]?.imgSize);
-            // formik.setFieldValue('deviceEnergy1', allData[0]?.deviceEnergy1);
-            // formik.setFieldValue('somePlatformEnergy1', allData[0]?.somePlatformEnergy1);
-            // formik.setFieldValue('networkEnergy1', allData[0]?.networkEnergy1);
-            // formik.setFieldValue('totalEnergy1', allData[0]?.totalEnergy1);
-            // formik.setFieldValue('efOne', allData[0]?.efOne);
-            // formik.setFieldValue('impressionsOne', allData[0]?.impressionsOne);
-            // formik.setFieldValue('emissionOne', allData[0]?.emission);
+            // formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
+            // formik.setFieldValue('deviceEnergy1', allData?.[0]?.deviceEnergy1);
+            // formik.setFieldValue('somePlatformEnergy1', allData?.[0]?.somePlatformEnergy1);
+            // formik.setFieldValue('networkEnergy1', allData?.[0]?.networkEnergy1);
+            // formik.setFieldValue('totalEnergy1', allData?.[0]?.totalEnergy1);
+            // formik.setFieldValue('efOne', allData?.[0]?.efOne);
+            // formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
+            // formik.setFieldValue('emissionOne', allData?.[0]?.emission);
 
-            // formik.setFieldValue('videoSize', allData[1]?.videoSize);
-            // formik.setFieldValue('videoMins', allData[1]?.videoMins);
-            // formik.setFieldValue('deviceEnergy2', allData[1]?.deviceEnergy2);
-            // formik.setFieldValue('somePlatformEnergy2', allData[1]?.somePlatformEnergy2);
-            // formik.setFieldValue('networkEnergy2', allData[1]?.networkEnergy2);
-            // formik.setFieldValue('totalEnergy2', allData[1]?.totalEnergy2);
-            // formik.setFieldValue('efTwo', allData[1]?.efTwo);
-            // formik.setFieldValue('impressionsTwo', allData[1]?.impressionsTwo);
-            // formik.setFieldValue('emissionTwo', allData[1]?.emission);
+            // formik.setFieldValue('videoSize', allData?.[1]?.videoSize);
+            // formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
+            // formik.setFieldValue('deviceEnergy2', allData?.[1]?.deviceEnergy2);
+            // formik.setFieldValue('somePlatformEnergy2', allData?.[1]?.somePlatformEnergy2);
+            // formik.setFieldValue('networkEnergy2', allData?.[1]?.networkEnergy2);
+            // formik.setFieldValue('totalEnergy2', allData?.[1]?.totalEnergy2);
+            // formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
+            // formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
+            // formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
 
-            formik.setFieldValue('noOfMinsOne', allData[2]?.noOfMins);
-            formik.setFieldValue('noOfPeopleOne', allData[2]?.noOfPeople);
-            formik.setFieldValue('efThree', allData[2]?.ef);
-            formik.setFieldValue('emissionThree', allData[2]?.emission);
+            formik.setFieldValue('noOfMinsOne', allData?.[2]?.noOfMins);
+            formik.setFieldValue('noOfPeopleOne', allData?.[2]?.noOfPeople);
+            formik.setFieldValue('efThree', allData?.[2]?.ef);
+            formik.setFieldValue('emissionThree', allData?.[2]?.emission);
 
-            formik.setFieldValue('noOfMinsTwo', allData[3]?.noOfMins);
-            formik.setFieldValue('noOfPeopleTwo', allData[3]?.noOfPeople);
-            formik.setFieldValue('efFour', allData[3]?.ef);
-            formik.setFieldValue('emissionFour', allData[3]?.emission);
+            formik.setFieldValue('noOfMinsTwo', allData?.[3]?.noOfMins);
+            formik.setFieldValue('noOfPeopleTwo', allData?.[3]?.noOfPeople);
+            formik.setFieldValue('efFour', allData?.[3]?.ef);
+            formik.setFieldValue('emissionFour', allData?.[3]?.emission);
 
-            formik.setFieldValue('noOfMinsThree', allData[4]?.noOfMins);
-            formik.setFieldValue('noOfPeopleThree', allData[4]?.noOfPeople);
-            formik.setFieldValue('efFive', allData[4]?.ef);
-            formik.setFieldValue('emissionFive', allData[4]?.emission);
+            formik.setFieldValue('noOfMinsThree', allData?.[4]?.noOfMins);
+            formik.setFieldValue('noOfPeopleThree', allData?.[4]?.noOfPeople);
+            formik.setFieldValue('efFive', allData?.[4]?.ef);
+            formik.setFieldValue('emissionFive', allData?.[4]?.emission);
 
-            formik.setFieldValue('noOfMinsFour', allData[5]?.noOfMins);
-            formik.setFieldValue('noOfPeopleFour', allData[5]?.noOfPeople);
-            formik.setFieldValue('efSix', allData[5]?.ef);
-            formik.setFieldValue('emissionSix', allData[5]?.emission);
+            formik.setFieldValue('noOfMinsFour', allData?.[5]?.noOfMins);
+            formik.setFieldValue('noOfPeopleFour', allData?.[5]?.noOfPeople);
+            formik.setFieldValue('efSix', allData?.[5]?.ef);
+            formik.setFieldValue('emissionSix', allData?.[5]?.emission);
 
-            formik.setFieldValue('noOfMinsFive', allData[6]?.noOfMins);
-            formik.setFieldValue('noOfPeopleFive', allData[6]?.noOfPeople);
-            formik.setFieldValue('efSeven', allData[6]?.ef);
-            formik.setFieldValue('emissionSeven', allData[6]?.emission);
+            formik.setFieldValue('noOfMinsFive', allData?.[6]?.noOfMins);
+            formik.setFieldValue('noOfPeopleFive', allData?.[6]?.noOfPeople);
+            formik.setFieldValue('efSeven', allData?.[6]?.ef);
+            formik.setFieldValue('emissionSeven', allData?.[6]?.emission);
 
-            formik.setFieldValue('noOfMinsSix', allData[7]?.noOfMins);
-            formik.setFieldValue('noOfPeopleSix', allData[7]?.noOfPeople);
-            formik.setFieldValue('efEight', allData[7]?.ef);
-            formik.setFieldValue('emissionEight', allData[7]?.emission);
+            formik.setFieldValue('noOfMinsSix', allData?.[7]?.noOfMins);
+            formik.setFieldValue('noOfPeopleSix', allData?.[7]?.noOfPeople);
+            formik.setFieldValue('efEight', allData?.[7]?.ef);
+            formik.setFieldValue('emissionEight', allData?.[7]?.emission);
 
-            formik.setFieldValue('noOfMinsSeven', allData[8]?.noOfMins);
-            formik.setFieldValue('noOfPeopleSeven', allData[8]?.noOfPeople);
-            formik.setFieldValue('efNine', allData[8]?.ef);
-            formik.setFieldValue('emissionNine', allData[8]?.emission);
+            formik.setFieldValue('noOfMinsSeven', allData?.[8]?.noOfMins);
+            formik.setFieldValue('noOfPeopleSeven', allData?.[8]?.noOfPeople);
+            formik.setFieldValue('efNine', allData?.[8]?.ef);
+            formik.setFieldValue('emissionNine', allData?.[8]?.emission);
 
-            formik.setFieldValue('noOfMinsEight', allData[9]?.noOfMins);
-            formik.setFieldValue('noOfPeopleEight', allData[9]?.noOfPeople);
-            formik.setFieldValue('efTen', allData[9]?.ef);
-            formik.setFieldValue('emissionTen', allData[9]?.emission);
+            formik.setFieldValue('noOfMinsEight', allData?.[9]?.noOfMins);
+            formik.setFieldValue('noOfPeopleEight', allData?.[9]?.noOfPeople);
+            formik.setFieldValue('efTen', allData?.[9]?.ef);
+            formik.setFieldValue('emissionTen', allData?.[9]?.emission);
 
-            formik.setFieldValue('noOfMinsNine', allData[10]?.noOfMins);
-            formik.setFieldValue('noOfPeopleNine', allData[10]?.noOfPeople);
-            formik.setFieldValue('efEleven', allData[10]?.ef);
-            formik.setFieldValue('emissionEleven', allData[10]?.emission);
+            formik.setFieldValue('noOfMinsNine', allData?.[10]?.noOfMins);
+            formik.setFieldValue('noOfPeopleNine', allData?.[10]?.noOfPeople);
+            formik.setFieldValue('efEleven', allData?.[10]?.ef);
+            formik.setFieldValue('emissionEleven', allData?.[10]?.emission);
 
-            formik.setFieldValue('noOfMinsTen', allData[11]?.noOfMins);
-            formik.setFieldValue('noOfPeopleTen', allData[11]?.noOfPeople);
-            formik.setFieldValue('efTwelve', allData[11]?.ef);
-            formik.setFieldValue('emissionTwelve', allData[11]?.emission);
+            formik.setFieldValue('noOfMinsTen', allData?.[11]?.noOfMins);
+            formik.setFieldValue('noOfPeopleTen', allData?.[11]?.noOfPeople);
+            formik.setFieldValue('efTwelve', allData?.[11]?.ef);
+            formik.setFieldValue('emissionTwelve', allData?.[11]?.emission);
 
-            formik.setFieldValue('noOfMinsEleven', allData[12]?.noOfMins);
-            formik.setFieldValue('noOfPeopleEleven', allData[12]?.noOfPeople);
-            formik.setFieldValue('efThirteen', allData[12]?.ef);
-            formik.setFieldValue('emissionThirteen', allData[12]?.emission);
+            formik.setFieldValue('noOfMinsEleven', allData?.[12]?.noOfMins);
+            formik.setFieldValue('noOfPeopleEleven', allData?.[12]?.noOfPeople);
+            formik.setFieldValue('efThirteen', allData?.[12]?.ef);
+            formik.setFieldValue('emissionThirteen', allData?.[12]?.emission);
 
-            formik.setFieldValue('noOfCopiesOne', allData[13]?.noOfCopiesOne);
-            formik.setFieldValue('efFourteen', allData[13]?.ef);
-            formik.setFieldValue('emissionFourteen', allData[13]?.emission);
+            formik.setFieldValue('noOfCopiesOne', allData?.[13]?.noOfCopiesOne);
+            formik.setFieldValue('efFourteen', allData?.[13]?.ef);
+            formik.setFieldValue('emissionFourteen', allData?.[13]?.emission);
 
-            formik.setFieldValue('noOfPages', allData[14]?.noOfPages);
-            formik.setFieldValue('noOfCopiesTwo', allData[14]?.noOfCopiesTwo);
-            formik.setFieldValue('efFifteen', allData[14]?.ef);
-            formik.setFieldValue('emissionFifteen', allData[14]?.emission);
+            formik.setFieldValue('noOfPages', allData?.[14]?.noOfPages);
+            formik.setFieldValue('noOfCopiesTwo', allData?.[14]?.noOfCopiesTwo);
+            formik.setFieldValue('efFifteen', allData?.[14]?.ef);
+            formik.setFieldValue('emissionFifteen', allData?.[14]?.emission);
 
-            formik.setFieldValue('hdpeBanner', allData[15]?.hdpeBanner);
-            formik.setFieldValue('efSixteen', allData[15]?.ef);
-            formik.setFieldValue('emissionSixteen', allData[15]?.emission);
+            formik.setFieldValue('hdpeBanner', allData?.[15]?.hdpeBanner);
+            formik.setFieldValue('efSixteen', allData?.[15]?.ef);
+            formik.setFieldValue('emissionSixteen', allData?.[15]?.emission);
 
-            formik.setFieldValue('pvcBanners', allData[16]?.pvcBanners);
-            formik.setFieldValue('efSeventeen', allData[16]?.ef);
-            formik.setFieldValue('emissionSeventeen', allData[16]?.emission);
+            formik.setFieldValue('pvcBanners', allData?.[16]?.pvcBanners);
+            formik.setFieldValue('efSeventeen', allData?.[16]?.ef);
+            formik.setFieldValue('emissionSeventeen', allData?.[16]?.emission);
 
-            formik.setFieldValue('adDuration', allData[17]?.adDuration);
-            formik.setFieldValue('noOfSlots', allData[17]?.noOfSlots);
-            formik.setFieldValue('viewers', allData[17]?.viewers);
-            formik.setFieldValue('efEighteen', allData[17]?.ef);
-            formik.setFieldValue('emissionEightteen', allData[17]?.emission);
+            formik.setFieldValue('adDuration', allData?.[17]?.adDuration);
+            formik.setFieldValue('noOfSlots', allData?.[17]?.noOfSlots);
+            formik.setFieldValue('viewers', allData?.[17]?.viewers);
+            formik.setFieldValue('efEighteen', allData?.[17]?.ef);
+            formik.setFieldValue('emissionEightteen', allData?.[17]?.emission);
 
-            formik.setFieldValue('podcastSize', allData[18]?.podcastSize);
-            formik.setFieldValue('noOfListeners', allData[18]?.noOfListeners);
-            formik.setFieldValue('podcastKwh', allData[18]?.podcastKwh);
-            formik.setFieldValue('podcastTotal', allData[18]?.podcastTotal);
-            formik.setFieldValue('emissionNineteen', allData[18]?.emission);
+            formik.setFieldValue('podcastSize', allData?.[18]?.podcastSize);
+            formik.setFieldValue('noOfListeners', allData?.[18]?.noOfListeners);
+            formik.setFieldValue('podcastKwh', allData?.[18]?.podcastKwh);
+            formik.setFieldValue('podcastTotal', allData?.[18]?.podcastTotal);
+            formik.setFieldValue('emissionNineteen', allData?.[18]?.emission);
 
-            formik.setFieldValue('energyKwh', allData[19]?.energyKwh);
-            formik.setFieldValue('efTwenty', allData[19]?.ef);
-            formik.setFieldValue('emissionTwenty', allData[19]?.emission);
+            formik.setFieldValue('energyKwh', allData?.[19]?.energyKwh);
+            formik.setFieldValue('efTwenty', allData?.[19]?.ef);
+            formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
         }
     }, [value]);
 
@@ -735,7 +760,7 @@ const VirtualEvent = (props) => {
                     {/* <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}> */}
                     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
                         {/* <IconDiv><img width={100} src={VirtualEventIcon} alt="Virtual Event" className="tabImgWhite" /></IconDiv> */}
-                        <IconDiv><img width={100} src={outboundIcon} alt="Outbound Marketing" className="tabImgWhite" /></IconDiv>
+                        <IconDiv><img width={100} src={outboundIcon} alt="Outdoor Marketing" className="tabImgWhite" /></IconDiv>
 
                         {/* <TiInfoLarge className="fs-3 bg-white text-dark rounded-circle mx-3 p-1" onClick={() => handleOpenInfo()} style={{ cursor: 'pointer', position: 'absolute', right: '4px' }} /> */}
 
@@ -985,7 +1010,7 @@ const VirtualEvent = (props) => {
                                     />
                                 </CardContent>
                             </Card>
-                            <Card
+                            {/* <Card
                                 sx={{
                                     width: 260,
                                     maxWidth: '100%',
@@ -1034,11 +1059,11 @@ const VirtualEvent = (props) => {
                                         sx={{ marginTop: 2 }}
                                     />
                                 </CardContent>
-                            </Card>
+                            </Card> */}
                         </Box>
 
                         <Box className="mb-4">
-                            <Typography variant="h4" className="text-center text-white mt-4 mb-2">Outdoor Banner</Typography>
+                            <Typography variant="h4" className="text-center text-white mt-4 mb-2">Outdoor Billboard</Typography>
                             <Grid item xs={12} sm={12} md={6}>
                                 <Box>
                                     <div className="table-responsive">
@@ -1656,10 +1681,12 @@ const VirtualEvent = (props) => {
                     </Box>
                     <Grid>
                         <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button><Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
+                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button>
+                                {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
+                                <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
                         </Grid>
                         {/* <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid> */}
-                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Outbound Marketing Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
+                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Outdoor Marketing Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
                     </Grid>
                 </Card>
 

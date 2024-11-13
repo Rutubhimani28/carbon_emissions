@@ -5,17 +5,20 @@ import { useTheme } from '@mui/material/styles';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFoodData, deleteFoodData } from '../../redux/slice/totalFoodSlice';
-import { addResultTableData, deleteResTabFBData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabFBData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import { IconDiv } from '../../components/IconDiv';
 import FoodImg from '../../assets/Food & Beverage.png';
+import useEventData from '../../hooks/useEventData';
 
 const Food = (props) => {
     const { setValue, value } = props;
     const dispatch = useDispatch()
     const theme = useTheme();
-    const allData = useSelector((state) => state?.totalFoodDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalFoodDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalFoodDetails?.totalEmission);
-    const scope = useSelector((state) => state?.totalFoodDetails?.scope);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const eventsData = useEventData();
+
 
     // -----------   initialValues
     const initialValues = {
@@ -228,7 +231,7 @@ const Food = (props) => {
                             // }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Food",
@@ -241,7 +244,7 @@ const Food = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Beverages",
@@ -300,7 +303,7 @@ const Food = (props) => {
                             // },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Beverages",
@@ -313,12 +316,12 @@ const Food = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 
             dispatch(addFoodData({ data }))
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Food & Beverages" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Food & Beverages" }));
         },
     });
 
@@ -327,38 +330,57 @@ const Food = (props) => {
         dispatch(deleteResTabFBData());
     };
 
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to update data:', resultAction.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb.rejected.match(resultAction)) {
+                console.error('Failed to save data:', resultAction.payload);
+            }
+        }
+    };
+
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("noOfPaxOne", allData[0]?.noOfPax)
-            formik.setFieldValue("emissionOne", allData[0]?.emission)
-            formik.setFieldValue("noOfPaxTwo", allData[1]?.noOfPax)
-            formik.setFieldValue("emissionTwo", allData[1]?.emission)
-            formik.setFieldValue("noOfPaxThree", allData[2]?.noOfPax)
-            formik.setFieldValue("emissionThree", allData[2]?.emission)
-            formik.setFieldValue("noOfPaxFour", allData[3]?.noOfPax)
-            formik.setFieldValue("emissionFour", allData[3]?.emission)
+            formik.setFieldValue("noOfPaxOne", allData?.[0]?.noOfPax)
+            formik.setFieldValue("emissionOne", allData?.[0]?.emission)
+            formik.setFieldValue("noOfPaxTwo", allData?.[1]?.noOfPax)
+            formik.setFieldValue("emissionTwo", allData?.[1]?.emission)
+            formik.setFieldValue("noOfPaxThree", allData?.[2]?.noOfPax)
+            formik.setFieldValue("emissionThree", allData?.[2]?.emission)
+            formik.setFieldValue("noOfPaxFour", allData?.[3]?.noOfPax)
+            formik.setFieldValue("emissionFour", allData?.[3]?.emission)
 
-            formik.setFieldValue("noOfBottlesOne", allData[4]?.noOfBottles)
-            formik.setFieldValue("emissionSix", allData[4]?.emission)
-            formik.setFieldValue("noOfBottlesTwo", allData[5]?.noOfBottles)
-            formik.setFieldValue("emissionSeven", allData[5]?.emission)
-            formik.setFieldValue("noOfBottlesThree", allData[6]?.noOfBottles)
-            formik.setFieldValue("emissionEight", allData[6]?.emission)
-            formik.setFieldValue("noOfBottlesFour", allData[7]?.noOfBottles)
-            formik.setFieldValue("emissionNine", allData[7]?.emission)
-            formik.setFieldValue("noOfBottlesFive", allData[8]?.noOfBottles)
-            formik.setFieldValue("emissionTen", allData[8]?.emission)
-            formik.setFieldValue("noOfBottlesSix", allData[9]?.noOfBottles)
-            formik.setFieldValue("emissionEleven", allData[9]?.emission)
-            formik.setFieldValue("noOfBottlesSeven", allData[10]?.noOfBottles)
-            formik.setFieldValue("emissionTwelve", allData[10]?.emission)
-            formik.setFieldValue("noOfBottlesEight", allData[11]?.noOfBottles)
-            formik.setFieldValue("emissionThirteen", allData[11]?.emission)
-            formik.setFieldValue("noOfBottlesNine", allData[12]?.noOfBottles)
-            formik.setFieldValue("emissionFourteen", allData[12]?.emission)
+            formik.setFieldValue("noOfBottlesOne", allData?.[4]?.noOfBottles)
+            formik.setFieldValue("emissionSix", allData?.[4]?.emission)
+            formik.setFieldValue("noOfBottlesTwo", allData?.[5]?.noOfBottles)
+            formik.setFieldValue("emissionSeven", allData?.[5]?.emission)
+            formik.setFieldValue("noOfBottlesThree", allData?.[6]?.noOfBottles)
+            formik.setFieldValue("emissionEight", allData?.[6]?.emission)
+            formik.setFieldValue("noOfBottlesFour", allData?.[7]?.noOfBottles)
+            formik.setFieldValue("emissionNine", allData?.[7]?.emission)
+            formik.setFieldValue("noOfBottlesFive", allData?.[8]?.noOfBottles)
+            formik.setFieldValue("emissionTen", allData?.[8]?.emission)
+            formik.setFieldValue("noOfBottlesSix", allData?.[9]?.noOfBottles)
+            formik.setFieldValue("emissionEleven", allData?.[9]?.emission)
+            formik.setFieldValue("noOfBottlesSeven", allData?.[10]?.noOfBottles)
+            formik.setFieldValue("emissionTwelve", allData?.[10]?.emission)
+            formik.setFieldValue("noOfBottlesEight", allData?.[11]?.noOfBottles)
+            formik.setFieldValue("emissionThirteen", allData?.[11]?.emission)
+            formik.setFieldValue("noOfBottlesNine", allData?.[12]?.noOfBottles)
+            formik.setFieldValue("emissionFourteen", allData?.[12]?.emission)
 
-            formik.setFieldValue("custFoodMenuEmission", allData[13]?.emission)
-            formik.setFieldValue("custBeveragesEmission", allData[14]?.emission)
+            formik.setFieldValue("custFoodMenuEmission", allData?.[13]?.emission)
+            formik.setFieldValue("custBeveragesEmission", allData?.[14]?.emission)
         }
     }, [value]);
 
@@ -381,7 +403,6 @@ const Food = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-3 custom-inner-bg textborder' style={{ padding: '20px' }}>
-                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
@@ -570,9 +591,10 @@ const Food = (props) => {
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                     <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
-                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
-                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(9); }} className='custom-btn'>Go To Result</Button>
+                                        {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                         <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                     </Stack>
                                 </Grid>

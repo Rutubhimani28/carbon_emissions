@@ -10,16 +10,18 @@ import { addHotelData, deleteHotelData } from '../../redux/slice/totalHotelSlice
 import Accomodation from '../../assets/Accommodation.png';
 import { IconDiv } from '../../components/IconDiv';
 import HotelData from '../accomodation/data.json';
-import { addResultTableData, deleteResTabHotelData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabHotelData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
+import useEventData from '../../hooks/useEventData';
 
 const Hotel = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalHotelDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalHotelDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
-    const scope = useSelector((state) => state?.totalHotelDetails?.scope);
     const geographyOptions = HotelData?.map((item) => ({ value: item?.geography, label: item?.geography }))
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const eventsData = useEventData();
 
     const customStyles = {
         control: (provided) => ({
@@ -163,7 +165,7 @@ const Hotel = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -178,7 +180,7 @@ const Hotel = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -192,12 +194,12 @@ const Hotel = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 
             dispatch(addHotelData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Hotel" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Hotel" }));
         },
     });
 
@@ -206,23 +208,42 @@ const Hotel = (props) => {
         dispatch(deleteResTabHotelData());
     };
 
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
+            }
+        }
+    };
+
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("geography", allData[0]?.geography)
-            formik.setFieldValue("country", allData[0]?.country)
-            formik.setFieldValue("hotelType", allData[0]?.hotelType)
-            formik.setFieldValue("roomsOccupied", allData[0]?.roomsOccupied)
-            formik.setFieldValue("efOne", allData[0]?.efOne)
-            formik.setFieldValue("emissionsOne", allData[0]?.emission)
-            formik.setFieldValue("filteredCountries", allData[0]?.filteredCountries)
+            formik.setFieldValue("geography", allData?.[0]?.geography)
+            formik.setFieldValue("country", allData?.[0]?.country)
+            formik.setFieldValue("hotelType", allData?.[0]?.hotelType)
+            formik.setFieldValue("roomsOccupied", allData?.[0]?.roomsOccupied)
+            formik.setFieldValue("efOne", allData?.[0]?.efOne)
+            formik.setFieldValue("emissionsOne", allData?.[0]?.emission)
+            formik.setFieldValue("filteredCountries", allData?.[0]?.filteredCountries)
 
-            formik.setFieldValue("meetingDuration", allData[1]?.meetingDuration)
-            formik.setFieldValue("totalMeetingRoomArea", allData[1]?.totalMeetingRoomArea)
-            formik.setFieldValue("emissionsTwo", allData[1]?.emission)
+            formik.setFieldValue("meetingDuration", allData?.[1]?.meetingDuration)
+            formik.setFieldValue("totalMeetingRoomArea", allData?.[1]?.totalMeetingRoomArea)
+            formik.setFieldValue("emissionsTwo", allData?.[1]?.emission)
 
-            formik.setFieldValue("energyUtilisedKwh", allData[2]?.energyUtilisedKwh)
-            formik.setFieldValue("efThree", allData[2]?.efThree)
-            formik.setFieldValue("emissionsThree", allData[2]?.emission)
+            formik.setFieldValue("energyUtilisedKwh", allData?.[2]?.energyUtilisedKwh)
+            formik.setFieldValue("efThree", allData?.[2]?.efThree)
+            formik.setFieldValue("emissionsThree", allData?.[2]?.emission)
         }
     }, [value]);
 
@@ -232,7 +253,6 @@ const Hotel = (props) => {
         <div>
             <Container maxWidth>
                 <Card className='p-4 custom-inner-bg ' style={{ padding: '20px' }}>
-                    {/* <Typography variant='h4' className='text-center text-white mb-4'>{`Scope.${scope} Emissions`}</Typography> */}
                     <Box style={{ display: 'flex', justifyContent: 'center' }}>
                         <Box className='table-custom-inpt-field' mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
                             <IconDiv>
@@ -240,15 +260,15 @@ const Hotel = (props) => {
                             </IconDiv>
                             <Grid
                                 container
-                                rowSpacing={3}
-                                columnSpacing={{ xs: 0, sm: 5, md: 5 }}
+                                rowSpacing={1}
+                                columnSpacing={{ xs: 0, sm: 4, md: 4 }}
                                 style={{ justifyContent: 'center' }}
                             >
-                                <Grid item xs={12} sm={4} md={4}>
-                                    <Typography variant='h4'>
+                                <Grid item xs={12} sm={4} md={5} >
+                                    <Typography variant='h4' display={"flex"} justifyContent={"center"} >
                                         Hotel Stay
                                     </Typography>
-                                    <Grid mt={2}>
+                                    <Grid mt={2} display={"flex"} justifyContent={"flex-end"} flexDirection={"column"}>
                                         <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Geography</FormLabel>
                                         <FormControl fullWidth>
                                             {/* <Autocomplete
@@ -422,7 +442,7 @@ const Hotel = (props) => {
                                                 onChange={(event) => {
                                                     formik.setFieldValue("hotelType", event);
                                                     // reset fields
-                                                    const selectedHotelTypeData = formik.values?.filteredCountries?.find((item) => item.country === formik.values?.country.country);
+                                                    const selectedHotelTypeData = formik.values?.filteredCountries?.find((item) => item?.country === formik.values?.country.country);
                                                     const hotellTypeEf = event?.value === 4 || event?.value === 4.5 ? selectedHotelTypeData?.stars_four_fourPointHalf : selectedHotelTypeData?.stars_five;
                                                     formik.setFieldValue("efOne", hotellTypeEf);
                                                     formik.handleSubmit();
@@ -481,19 +501,23 @@ const Hotel = (props) => {
                                         />
                                     </Grid>
                                 </Grid>
-                                <Grid item xs={12} sm={8} textAlign={"center"}>
-                                    <Typography variant='h4' justifyContent={"center"}>
-                                        Meeting Room Energy Consumption
-                                    </Typography>
+                                {/* <Grid item xs={0} sm={2} /> */}
+                                <Grid item xs={12} sm={7} >
                                     <Grid
                                         container
-                                        rowSpacing={3}
+                                        // rowSpacing={1}
                                         textAlign={"left"}
-                                        columnSpacing={{ xs: 0, sm: 5, md: 5 }}
-                                        style={{ justifyContent: 'center' }}
+                                        columnSpacing={{ xs: 0, sm: 3, md: 3 }}
+                                        // style={{ justifyContent: 'center' }}
                                         className='textborder'
                                     >
-                                        <Grid item xs={12} sm={6} md={6}>
+                                        <Grid item xs={12}>
+                                            <Typography variant='h4' display={"flex"} justifyContent={"center"}>
+                                                Meeting Room Energy Consumption
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12} sm={3} />
+                                        <Grid item xs={12} sm={6} md={8} display={"flex"} justifyContent={"center"} flexDirection={"column"}>
 
                                             <Grid mt={2}>
                                                 <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Total Meeting Room Area (Sqft)</FormLabel>
@@ -566,7 +590,9 @@ const Hotel = (props) => {
                                                 />
                                             </Grid>
                                         </Grid>
-                                        <Grid item xs={12} sm={6} md={6}>
+                                        <Grid item xs={12} sm={1} />
+
+                                        {/* <Grid item xs={12} sm={6} md={6}>
                                             <Grid mt={2}>
                                                 <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Energy Utilised (kwh) *</FormLabel>
                                                 <TextField
@@ -615,16 +641,18 @@ const Hotel = (props) => {
                                             <Grid mt={2}>
                                                 <Typography> * If you have the exact energy consumption from hotel</Typography>
                                             </Grid>
-                                        </Grid>
+                                        </Grid> */}
                                     </Grid>
 
                                 </Grid>
+
                                 <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                                    <Stack  columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
+                                    <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                         {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
-                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
-                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                        <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
+                                        <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(9) }} className='custom-btn'>Go To Result</Button>
+                                        {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                         <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                     </Stack>
                                 </Grid>

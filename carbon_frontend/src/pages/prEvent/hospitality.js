@@ -4,18 +4,22 @@ import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addHospitalityData, deleteHospitalityData, scopeChange } from '../../redux/slice/totalHospitalitySlice';
-import { addResultTableData, deleteResTabHospitalityData, prEventEmissionCatogorywise, deleteHospitalityCatogorywiseEmission } from '../../redux/slice/resultTableDataSlice';
+import { addHospitalityData, deleteHospitalityData } from '../../redux/slice/totalHospitalitySlice';
+import { addResultTableData, deleteResTabHospitalityData, prEventEmissionCatogorywise, deleteHospitalityCatogorywiseEmission, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import hospitalityImg from '../../assets/hospitality.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const Hospitality = (props) => {
 
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalHospitalityDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalHospitalityDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHospitalityDetails?.totalEmission);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const eventsData = useEventData();
+
 
     // -----------   initialValues
     const initialValues = {
@@ -172,7 +176,7 @@ const Hospitality = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -206,7 +210,7 @@ const Hospitality = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -230,7 +234,7 @@ const Hospitality = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 }
             ];
 
@@ -242,7 +246,7 @@ const Hospitality = (props) => {
             const foodPlasticWasteEmission = foodWasteEmission + totalPlasticWasteEmissiom;
 
             dispatch(addHospitalityData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Hospitality" }));
+            dispatch(addResultTableData({ from: "prEvent", data: tableData, tabTitle: "Hospitality" }));
             dispatch(prEventEmissionCatogorywise({ categories: [{ catgName: 'Food/Lunch', emission: totalLunchEmission }, { catgName: 'Red Meat', emission: emissionThree }, { catgName: 'Food-PetBottleWaste', emission: foodPlasticWasteEmission }] }));
         },
     });
@@ -253,34 +257,53 @@ const Hospitality = (props) => {
         dispatch(deleteHospitalityCatogorywiseEmission());
     };
 
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
+            } 
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
+            }
+        }
+    };
+
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("noOfPaxOne", allData[0]?.noOfPax);
-            formik.setFieldValue("emissionOne", allData[0]?.emission);
-            formik.setFieldValue("noOfPaxTwo", allData[1]?.noOfPax);
-            formik.setFieldValue("emissionTwo", allData[1]?.emission);
-            formik.setFieldValue("noOfPaxThree", allData[2]?.noOfPax);
-            formik.setFieldValue("emissionThree", allData[2]?.emission);
-            formik.setFieldValue("noOfPaxFour", allData[3]?.noOfPax);
-            formik.setFieldValue("emissionFour", allData[3]?.emission);
+            formik.setFieldValue("noOfPaxOne", allData?.[0]?.noOfPax);
+            formik.setFieldValue("emissionOne", allData?.[0]?.emission);
+            formik.setFieldValue("noOfPaxTwo", allData?.[1]?.noOfPax);
+            formik.setFieldValue("emissionTwo", allData?.[1]?.emission);
+            formik.setFieldValue("noOfPaxThree", allData?.[2]?.noOfPax);
+            formik.setFieldValue("emissionThree", allData?.[2]?.emission);
+            formik.setFieldValue("noOfPaxFour", allData?.[3]?.noOfPax);
+            formik.setFieldValue("emissionFour", allData?.[3]?.emission);
 
-            formik.setFieldValue("foodWasteNonMeatKg", allData[4]?.kgs);
-            formik.setFieldValue("foodWasteNonMeatEmission", allData[4]?.emission);
-            formik.setFieldValue("foodWasteMeatKg", allData[5]?.kgs);
-            formik.setFieldValue("foodWasteMeatEmission", allData[5]?.emission);
-            // formik.setFieldValue("municipalSolidWasteKg", allData[6]?.kgs);
-            // formik.setFieldValue("municipalSolidWasteEmission", allData[6]?.emission);
-            formik.setFieldValue('foodWasteMixKg', allData[6]?.kgs);
-            formik.setFieldValue('foodWasteMixEmission', allData[6]?.emission);
-            formik.setFieldValue('fruitVegetablesKg', allData[7]?.kgs);
-            formik.setFieldValue('fruitVegetablesEmission', allData[7]?.emission);
+            formik.setFieldValue("foodWasteNonMeatKg", allData?.[4]?.kgs);
+            formik.setFieldValue("foodWasteNonMeatEmission", allData?.[4]?.emission);
+            formik.setFieldValue("foodWasteMeatKg", allData?.[5]?.kgs);
+            formik.setFieldValue("foodWasteMeatEmission", allData?.[5]?.emission);
+            // formik.setFieldValue("municipalSolidWasteKg", allData?.[6]?.kgs);
+            // formik.setFieldValue("municipalSolidWasteEmission", allData?.[6]?.emission);
+            formik.setFieldValue('foodWasteMixKg', allData?.[6]?.kgs);
+            formik.setFieldValue('foodWasteMixEmission', allData?.[6]?.emission);
+            formik.setFieldValue('fruitVegetablesKg', allData?.[7]?.kgs);
+            formik.setFieldValue('fruitVegetablesEmission', allData?.[7]?.emission);
 
-            formik.setFieldValue("bottleOne", allData[8]?.bottle);
-            formik.setFieldValue("bottleOneEmission", allData[8]?.emission);
-            formik.setFieldValue("bottleTwo", allData[9]?.bottle);
-            formik.setFieldValue("bottleTwoEmission", allData[9]?.emission);
-            formik.setFieldValue("bottleThree", allData[10]?.bottle);
-            formik.setFieldValue("bottleThreeEmission", allData[10]?.emission);
+            formik.setFieldValue("bottleOne", allData?.[8]?.bottle);
+            formik.setFieldValue("bottleOneEmission", allData?.[8]?.emission);
+            formik.setFieldValue("bottleTwo", allData?.[9]?.bottle);
+            formik.setFieldValue("bottleTwoEmission", allData?.[9]?.emission);
+            formik.setFieldValue("bottleThree", allData?.[10]?.bottle);
+            formik.setFieldValue("bottleThreeEmission", allData?.[10]?.emission);
         }
     }, [value]);
 
@@ -523,9 +546,10 @@ const Hospitality = (props) => {
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(3)} className='custom-btn'>Go To Result</Button>
+                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(3) }} className='custom-btn'>Go To Result</Button>
+                                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
                             </Grid>

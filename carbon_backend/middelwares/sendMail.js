@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
+// import { dirname } from 'path';
 import ejs from 'ejs';
 import { fileURLToPath } from 'url';
 
@@ -46,7 +47,39 @@ const createPDF = async (htmlContent, outputPath) => {
     return outputPath;
 };
 
-const sendMail = async ({
+// // Sample data from allEventsEmissions
+// const allEventsEmissions = [
+//     {
+//         f2fEventTotalEmission: "4382.00",
+//         virtualEventTotalEmission: "25.00",
+//         prEventTotalEmission: "2405.47",
+//         digitalCampaignTotalEmission: "12434.03",
+//         activity: "A1 - 2024-09-30T00:00:00.000Z",
+//     },
+//     {
+//         f2fEventTotalEmission: "29140.31",
+//         virtualEventTotalEmission: "234.00",
+//         prEventTotalEmission: "400.00",
+//         digitalCampaignTotalEmission: "5000.00",
+//         activity: "A2 - 2024-10-02T00:00:00.000Z",
+//     },
+//     {
+//         f2fEventTotalEmission: "4382.00",
+//         virtualEventTotalEmission: "25.00",
+//         prEventTotalEmission: "20405.47",
+//         digitalCampaignTotalEmission: "12434.03",
+//         activity: "A3 - 2024-09-30T00:00:00.000Z",
+//     },
+//     {
+//         f2fEventTotalEmission: "29140.31",
+//         virtualEventTotalEmission: "234.00",
+//         prEventTotalEmission: "400.00",
+//         digitalCampaignTotalEmission: "5000.00",
+//         activity: "A4 - 2024-10-02T00:00:00.000Z",
+//     },
+// ];
+
+export default async function sendMail({
     receiver,
     subject,
     data,
@@ -62,8 +95,35 @@ const sendMail = async ({
     resetPswdLink,
     resultTableData,
     chatSuggestion,
-    isHighPriority
-}) => {
+    isHighPriority,
+    // below for retrieve and send all events filled fields data
+    totalTonCo2One,
+    totalTonCo2Two,
+    totalTonCo2Three,
+    totalTonCo2Four,
+    eveydolarCo2One,
+    eveydolarCo2Two,
+    eveydolarCo2Three,
+    eveydolarCo2Four,
+    resultTableDataOne,
+    resultTableDataTwo,
+    resultTableDataThree,
+    resultTableDataFour,
+    attachmentTemplateNameOne,
+    attachmentPdfNameOne,
+    attachmentTemplateNameTwo,
+    attachmentPdfNameTwo,
+    attachmentTemplateNameThree,
+    attachmentPdfNameThree,
+    attachmentTemplateNameFour,
+    attachmentPdfNameFour,
+    dataOne,
+    dataTwo,
+    dataThree,
+    dataFour,
+    // for graph chart
+    allEventsEmissions
+}) {
     try {
         let mailOptions = {
             bcc: process.env.GMAIL_FROM
@@ -96,12 +156,215 @@ const sendMail = async ({
                     'Importance': 'High'
                 };
             }
-        } else {
-            // if (attachmentTemplateName && emailBodyTemplateName) {
-            if (attachmentTemplateName && emailBodyTemplateName && chatSuggestion) {
+        }
+        else {
+
+            if (allEventsEmissions) {
+                // // Puppeteer only renders static HTML content, and it won’t execute JavaScript for chart generation.
+                // const attachmentsArray = [];
+                // const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
+
+                // const attachmentTemplate = await ejs.renderFile(attachmentTemplatePath, {
+                //     subject,
+                //     allEventsEmissions: allEventsEmissions,
+                //     name,
+                //     activityName
+                // });
+
+                // const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint_chart.pdf');
+                // await createPDF(attachmentTemplate, attachmentPdfFilePath);
+
+                // attachmentsArray.push(
+                //     {
+                //         filename: attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf',
+                //         path: attachmentPdfFilePath,
+                //         contentType: 'application/pdf'
+                //     }
+                // );
+
+                // mailOptions = {
+                //     from: process.env.GMAIL_FROM,
+                //     to: receiver,
+                //     subject: subject,
+                //     // html: emailBodyTemplate,
+                //     attachments: attachmentsArray
+                // };
+
+                // Puppeteer only renders static HTML content, and it won’t execute JavaScript for chart generation.
+                const attachmentsArray = [];
+                const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
+                const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`)
+
+                const [attachmentTemplate, emailBodyTemplate] = await Promise.all([
+                    ejs.renderFile(attachmentTemplatePath, {
+                        subject,
+                        allEventsEmissions: allEventsEmissions,
+                        name,
+                        activityName
+                    }),
+                    ejs.renderFile(emailBodyTemplatePath, {
+                        name,
+                    })
+                ]);
+
+                const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint_chart.pdf');
+                await createPDF(attachmentTemplate, attachmentPdfFilePath);
+
+                attachmentsArray.push(
+                    {
+                        filename: attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf',
+                        path: attachmentPdfFilePath,
+                        contentType: 'application/pdf'
+                    }
+                );
+
+                mailOptions = {
+                    from: process.env.GMAIL_FROM,
+                    to: receiver,
+                    subject: subject,
+                    html: emailBodyTemplate,
+                    attachments: attachmentsArray
+                };
+            }
+            else if (attachmentTemplateNameOne && attachmentPdfNameOne || attachmentTemplateNameTwo && attachmentPdfNameTwo || attachmentTemplateNameThree && attachmentPdfNameThree || attachmentTemplateNameFour && attachmentPdfNameFour) {
+
+                const isf2fEvent = attachmentTemplateNameOne ? true : false;
+                const isVirtualEvent = attachmentTemplateNameTwo ? true : false;
+                const isPrEvent = attachmentTemplateNameThree ? true : false;
+                const isDigitalcampaign = attachmentTemplateNameFour ? true : false;
+
+                const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`)
+
+                const emailBodyTemplate = await ejs.renderFile(emailBodyTemplatePath, {
+                    name,
+                });
+
+                const attachmentsArray = [];
+
+                if (isf2fEvent) {
+                    const attachmentTemplatePathOne = path.join(__dirname, '/email_templates', `${attachmentTemplateNameOne}.ejs`);
+                    const attachmentTemplateOne = await ejs.renderFile(attachmentTemplatePathOne, {
+                        subject,
+                        data: dataOne,
+                        name,
+                        activityName,
+                        totalTonCo2: totalTonCo2One,
+                        eveydolarCo2: eveydolarCo2One,
+                        resultTableData: resultTableDataOne,
+                    });
+
+                    const attachmentPdfFilePathOne = path.join(__dirname, attachmentPdfNameOne ? `${attachmentPdfNameOne}.pdf` : 'carbon_footprint.pdf');
+
+                    await createPDF(attachmentTemplateOne, attachmentPdfFilePathOne);
+
+                    attachmentsArray.push(
+                        {
+                            filename: attachmentPdfNameOne ? `${attachmentPdfNameOne}.pdf` : 'carbon_footprint.pdf',
+                            path: attachmentPdfFilePathOne,
+                            contentType: 'application/pdf'
+                        }
+                    );
+
+                    // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    // await createPDF(chatSuggestion, chatPdfFilePath);
+                }
+
+                if (isVirtualEvent) {
+                    const attachmentTemplatePathTwo = path.join(__dirname, '/email_templates', `${attachmentTemplateNameTwo}.ejs`);
+                    const attachmentTemplateTwo = await ejs.renderFile(attachmentTemplatePathTwo, {
+                        subject,
+                        data: dataTwo,
+                        name,
+                        activityName,
+                        totalTonCo2: totalTonCo2Two,
+                        eveydolarCo2: eveydolarCo2Two,
+                        resultTableData: resultTableDataTwo,
+                    });
+
+                    const attachmentPdfFilePathTwo = path.join(__dirname, attachmentPdfNameTwo ? `${attachmentPdfNameTwo}.pdf` : 'carbon_footprint.pdf');
+
+                    await createPDF(attachmentTemplateTwo, attachmentPdfFilePathTwo);
+
+                    attachmentsArray.push(
+                        {
+                            filename: attachmentPdfNameTwo ? `${attachmentPdfNameTwo}.pdf` : 'carbon_footprint.pdf',
+                            path: attachmentPdfFilePathTwo,
+                            contentType: 'application/pdf'
+                        }
+                    );
+
+                    // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    // await createPDF(chatSuggestion, chatPdfFilePath);
+                }
+
+                if (isPrEvent) {
+                    const attachmentTemplatePathThree = path.join(__dirname, '/email_templates', `${attachmentTemplateNameThree}.ejs`);
+                    const attachmentTemplateThree = await ejs.renderFile(attachmentTemplatePathThree, {
+                        subject,
+                        data: dataThree,
+                        name,
+                        activityName,
+                        totalTonCo2: totalTonCo2Three,
+                        eveydolarCo2: eveydolarCo2Three,
+                        resultTableData: resultTableDataThree,
+                    });
+
+                    const attachmentPdfFilePathThree = path.join(__dirname, attachmentPdfNameThree ? `${attachmentPdfNameThree}.pdf` : 'carbon_footprint.pdf');
+
+                    await createPDF(attachmentTemplateThree, attachmentPdfFilePathThree);
+
+                    attachmentsArray.push(
+                        {
+                            filename: attachmentPdfNameThree ? `${attachmentPdfNameThree}.pdf` : 'carbon_footprint.pdf',
+                            path: attachmentPdfFilePathThree,
+                            contentType: 'application/pdf'
+                        }
+                    );
+
+                    // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    // await createPDF(chatSuggestion, chatPdfFilePath);
+                }
+
+                if (isDigitalcampaign) {
+                    const attachmentTemplatePathFour = path.join(__dirname, '/email_templates', `${attachmentTemplateNameFour}.ejs`);
+                    const attachmentTemplateFour = await ejs.renderFile(attachmentTemplatePathFour, {
+                        subject,
+                        data: dataFour,
+                        name,
+                        activityName,
+                        totalTonCo2: totalTonCo2Four,
+                        eveydolarCo2: eveydolarCo2Four,
+                        resultTableData: resultTableDataFour,
+                    });
+
+                    const attachmentPdfFilePathFour = path.join(__dirname, attachmentPdfNameFour ? `${attachmentPdfNameFour}.pdf` : 'carbon_footprint.pdf');
+
+                    await createPDF(attachmentTemplateFour, attachmentPdfFilePathFour);
+
+                    attachmentsArray.push(
+                        {
+                            filename: attachmentPdfNameFour ? `${attachmentPdfNameFour}.pdf` : 'carbon_footprint.pdf',
+                            path: attachmentPdfFilePathFour,
+                            contentType: 'application/pdf'
+                        }
+                    );
+
+                    // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    // await createPDF(chatSuggestion, chatPdfFilePath);
+                }
+
+                mailOptions = {
+                    from: process.env.GMAIL_FROM,
+                    to: receiver,
+                    subject: subject,
+                    html: emailBodyTemplate,          // added
+                    attachments: attachmentsArray
+                };
+            }
+
+            else if (attachmentTemplateName && emailBodyTemplateName && chatSuggestion) {                  // else if (attachmentTemplateName && emailBodyTemplateName) {
                 const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
                 const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`);
-                console.log("--- data ", data);
 
                 const [attachmentTemplate, emailBodyTemplate] = await Promise.all([
                     ejs.renderFile(attachmentTemplatePath, {
@@ -129,10 +392,10 @@ const sendMail = async ({
                 ]);
 
                 const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf');
-                const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
 
                 await createPDF(attachmentTemplate, attachmentPdfFilePath);
-                await createPDF(chatSuggestion, chatPdfFilePath);
+                // await createPDF(chatSuggestion, chatPdfFilePath);
 
                 mailOptions = {
                     from: process.env.GMAIL_FROM,
@@ -153,7 +416,9 @@ const sendMail = async ({
                     ]
                 };
 
-            } else if (attachmentTemplateName) {
+            }
+
+            else if (attachmentTemplateName) {
                 const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
                 const attachmentTemplate = await ejs.renderFile(attachmentTemplatePath, {
                     data,
@@ -182,8 +447,9 @@ const sendMail = async ({
                         }
                     ]
                 };
+            }
 
-            } else {
+            else {
                 const bodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`);
                 const bodyTemplate = await ejs.renderFile(bodyTemplatePath, {
                     data,
@@ -220,4 +486,105 @@ const sendMail = async ({
     }
 };
 
-export default sendMail;
+export const sendMailForTwoEvents = async ({ eventsData }) => {       // for two events filled calculation datas 
+    try {
+        const transporter = nodemailer.createTransport({
+            // host: 'smtp.office365.com',
+            host: 'smtpout.secureserver.net',
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_PASSWORD
+            },
+            tls: { rejectUnauthorized: false }
+        });
+
+        const attachmentsArray = [];
+
+        const combinedData = {};
+
+        // Combine data from both events
+        for (const event of eventsData) {
+            const {
+                receiver,
+                subject,
+                dataOne,
+                totalTonCo2One,
+                eveydolarCo2One,
+                resultTableDataOne,
+                attachmentTemplateNameOne,
+                attachmentPdfNameOne,
+                dataTwo,
+                totalTonCo2Two,
+                eveydolarCo2Two,
+                resultTableDataTwo,
+                attachmentTemplateNameTwo,
+                attachmentPdfNameTwo,
+                name,
+                activityName,
+            } = event;
+
+            // Append data to combinedData
+            combinedData.dataOne = dataOne;
+            combinedData.totalTonCo2One = totalTonCo2One;
+            combinedData.eveydolarCo2One = eveydolarCo2One;
+            combinedData.resultTableDataOne = resultTableDataOne;
+
+            combinedData.dataTwo = dataTwo;
+            combinedData.totalTonCo2Two = totalTonCo2Two;
+            combinedData.eveydolarCo2Two = eveydolarCo2Two;
+            combinedData.resultTableDataTwo = resultTableDataTwo;
+
+            combinedData.name = name;
+            combinedData.activityName = activityName;
+
+            // Handle attachments
+            const templatePaths = [
+                { templateName: attachmentTemplateNameOne, pdfName: attachmentPdfNameOne, data: dataOne, totalTonCo2: totalTonCo2One, eveydolarCo2: eveydolarCo2One, resultTableData: resultTableDataOne },
+                { templateName: attachmentTemplateNameTwo, pdfName: attachmentPdfNameTwo, data: dataTwo, totalTonCo2: totalTonCo2Two, eveydolarCo2: eveydolarCo2Two, resultTableData: resultTableDataTwo },
+            ];
+
+            for (const { templateName, pdfName, data, totalTonCo2, eveydolarCo2, resultTableData } of templatePaths) {
+                if (templateName) {
+                    const templatePath = path.join(__dirname, '/email_templates', `${templateName}.ejs`);
+                    const renderedTemplate = await ejs.renderFile(templatePath, {
+                        subject,
+                        data,
+                        name,
+                        activityName,
+                        totalTonCo2,
+                        eveydolarCo2,
+                        resultTableData,
+                    });
+
+                    const pdfFilePath = path.join(__dirname, pdfName ? `${pdfName}.pdf` : 'carbon_footprint.pdf');
+                    await createPDF(renderedTemplate, pdfFilePath);
+
+                    attachmentsArray.push({
+                        filename: pdfName ? `${pdfName}.pdf` : 'carbon_footprint.pdf',
+                        path: pdfFilePath,
+                        contentType: 'application/pdf',
+                    });
+                }
+            }
+        }
+
+        // Construct mail options for the combined events
+        const mailOptions = {
+            bcc: process.env.GMAIL_FROM,
+            from: process.env.GMAIL_FROM,
+            to: eventsData[0].receiver, // Assuming the receiver is the same for all events
+            subject: eventsData[0].subject, // Assuming the subject is the same for all events
+            attachments: attachmentsArray,
+        };
+
+        // Send email
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully from sendMailForTwoEvents');
+
+    } catch (error) {
+        console.log('Error sending email from sendMailForTwoEvents :', error);
+        throw error;
+    }
+};

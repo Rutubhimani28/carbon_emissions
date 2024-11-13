@@ -70,12 +70,13 @@ const SendMail = (props) => {
                 emailBodyTemplateName: "virtual_event_grand_total_result_Template",
                 attachmentTemplateName: "virtual_event_filled_fields_Template",
                 // attachmentPdfName: `Virtual Event- ${values?.subject}`,
-                attachmentPdfName: `Outbound Marketing- ${values?.subject}`,
+                attachmentPdfName: `Outdoor Marketing- ${values?.subject}`,
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
                 totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
                 eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
-                resultTableData,
+                resultTableData: resultTableData?.data?.find(item => item.from === "virtualEvent"),
+                // resultTableData: resultTableData?.data?.find(item => item.from === "outboundMarketing"),
                 chatSuggestion
             };
 
@@ -145,6 +146,7 @@ const SendMail = (props) => {
         // setEmails(newTags);
         formik.setFieldValue('emails', newTags);
     };
+
     return (
         <div>
             <Dialog

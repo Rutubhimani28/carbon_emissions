@@ -87,28 +87,48 @@
 <body>
     <div class="container">
         <h4>Dear <%= name %>,</h4>
-        <p>Thank you for using our <strong>NetZero Platform</strong> to measure the carbon footprint generated from your
+        <p>Thank you for choosing our <strong>NetZero Platform</strong> to measure the carbon footprint of your
             <strong>
                 <%= activityName %>
             </strong> activity.
+            We're pleased to provide you with a concise analytics report, giving you a clear
+            snapshot
+            of your
+            current impact.
         </p>
-        <p>We're pleased to provide you with the carbon footprint report, detailing the emissions associated with the
-            mentioned activity.</p>
 
         <h2>Total Carbon Footprint:</h2>
         <table>
-            <tr>
+            <!-- <tr>
                 <th>Digital Campaign</th>
                 <td>
                     <%= data.totalDigitalCampaign %> kgCO<sub>2</sub>e
+                </td>
+            </tr> -->
+            <tr>
+                <th>Social Media (Image + Video)</th>
+                <td>
+                    <%= data.socialMediaEmission %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Email / Newsletter</th>
+                <td>
+                    <%= data.emailEmission %> kgCO<sub>2</sub>e
+                </td>
+            </tr>
+            <tr>
+                <th>Podcast</th>
+                <td>
+                    <%= data.podcastEmission %> kgCO<sub>2</sub>e
                 </td>
             </tr>
         </table>
 
         <h4>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
 
-        <% if (resultTableData && resultTableData.data) { %>
-            <% resultTableData.data.forEach(function(page) { %>
+        <% if (resultTableData && resultTableData.allDataOfTab) { %>
+            <% resultTableData.allDataOfTab.forEach(function(page) { %>
                 <% if (page.tabData && page.tabData.length> 0) { %>
                     <% if (page.tabTitle==="Digital Campaign" ) { %>
                         <div class="page">
@@ -144,12 +164,14 @@
                                                                         </td>
                                                                         <td>
                                                                             <%= rowData.imgSize || rowData.noOfEmails ||
-                                                                                rowData.videoMins %>
+                                                                                rowData.videoMins || rowData.podcastSize
+                                                                                %>
                                                                         </td>
                                                                         <td>
                                                                             <%= rowData.impressions1 ||
                                                                                 rowData.impressions2 ||
-                                                                                rowData.attachmentSize %>
+                                                                                rowData.attachmentSize ||
+                                                                                rowData.noOfListeners %>
                                                                         </td>
 
                                                                         <td>

@@ -108,14 +108,72 @@ p {
   color: white;
 }
 
-.table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+/* .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
   -webkit-text-fill-color: #fff;
-}
+} */
 
 .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input {
   border: 1px solid white !important;
   border-radius: 6px;
 }
+
+.table-custom-inpt-field .custom-dateTimePicker-field {
+  color: white !important;
+  border: 1px solid white !important;
+  border-radius: 6px;
+}
+
+.date-time-color>div>div {
+  color: white !important;
+}
+
+.date-time-color svg {
+  color: white !important;
+}
+
+.custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input {
+  opacity: 1;
+  -webkit-text-fill-color: #ffffff !important;
+  padding: 9px 14px;
+}
+
+.custom-dateTimePicker-field .css-e9crry-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.custom-dateTimePicker-field>div svg {
+  color: #ffffff !important;
+}
+
+.custom-dateTimePicker-field>div {
+  color: #ffffff !important;
+  border: 1px solid white;
+}
+
+.custom-dateTimePicker-fieldError>div {
+  border: 1px solid #ff0000 !important;
+}
+
+/* .custom-dateTimePicker-field>div .Mui-disabled {
+  color: #ffffff !important;
+  border: 1px solid white;
+} */
+
+.custom-dateTimePicker-field>div .Mui-disabled svg {
+  color: #ffffff !important;
+}
+
+.custom-placeholder::placeholder {
+  color: white;
+}
+
+.custom-inpt-field-color input {
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+}
+
+
 
 /* .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input:hover,
 .table-custom-inpt-field .css-1j6hc4w-MuiInputBase-input-MuiOutlinedInput-input:focus {
@@ -204,6 +262,11 @@ p {
 
 .textborder input {
   border: 1px solid white;
+  border-radius: 6px;
+}
+
+.textErrorborder input {
+  border: 1px solid #ff0000;
   border-radius: 6px;
 }
 

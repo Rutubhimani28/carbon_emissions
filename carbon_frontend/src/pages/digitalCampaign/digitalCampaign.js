@@ -6,16 +6,20 @@ import { FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
 import { MdEmail } from "react-icons/md";
 import { useTheme } from '@mui/material/styles';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
-import { addResultTableData, deleteResTabDgCampaignData } from '../../redux/slice/resultTableDataSlice';
+import { addResultTableData, deleteResTabDgCampaignData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import Phone from '../../assets/phone2.png';
+import podcastIcon from '../../assets/podcastIcon.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const DigitalCampaign = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalDigitalCampaignDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalDigitalCampaignDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails?.totalEmission);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const eventsData = useEventData();
 
     const initialValues = {
         imgSize: '',         // No of Mb   
@@ -40,7 +44,14 @@ const DigitalCampaign = (props) => {
         emailEmissionTwo: '',         // (totalAttachmentSize * emialEfTwo) / 1000
         attachmentSize: '',
         totalAttachmentSize: '',      // noOfEmails * attachmentSize
-        emissionThree: ''             // emailEmissionOne + emailEmissionTwo          // emissions
+        emissionThree: '',           // emailEmissionOne + emailEmissionTwo          // emissions
+
+        podcastSize: '',    // Podcast Size (in Mb)
+        noOfListeners: '',
+        podcastKwh: 0.00004296,
+        podcastTotal: '',        // podcastSize * podcastKwh
+        emissionNineteen: '',    // podcastTotal * noOfListeners
+
     };
 
     const formik = useFormik({
@@ -49,12 +60,12 @@ const DigitalCampaign = (props) => {
             const emissionOne = values?.totalEnergyKwh === 0 ? 0 : Number(values?.totalEnergyKwh * 0.716).toFixed(2);
             const emissionTwo = values?.videoEnergy === 0 || values?.impressionsTwo === 0 ? 0 : Number((Number(values?.videoEnergy) * Number(values?.impressionsTwo) * 0.716)).toFixed(2)
             const emissionThree = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2)
-
+            const emissionNineteen = values?.podcastTotal === 0 || values?.noOfListeners === 0 ? 0 : Number(Number(values?.podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
 
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
             if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
-
+            if (emissionNineteen > 0) formik.setFieldValue('emissionNineteen', emissionNineteen);
             const data = [
                 {
                     type: 'Image',
@@ -75,7 +86,7 @@ const DigitalCampaign = (props) => {
                     emission: emissionTwo > 0 ? emissionTwo : ''
                 },
                 {
-                    type: 'Emails',
+                    name: 'Emails',
                     noOfEmails: values?.noOfEmails,
                     emialEfOne: values?.emialEfOne,
                     emialEfTwo: values?.emialEfTwo,
@@ -84,6 +95,14 @@ const DigitalCampaign = (props) => {
                     attachmentSize: values?.attachmentSize,
                     totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
                     emission: emissionThree > 0 ? emissionThree : '',
+                },
+                {
+                    name: 'Podcast',
+                    podcastSize: values?.podcastSize,
+                    noOfListeners: values?.noOfListeners,
+                    podcastKwh: values?.podcastKwh,
+                    podcastTotal: values?.podcastTotal,
+                    emission: emissionNineteen > 0 ? emissionNineteen : '',
                 },
             ];
 
@@ -101,7 +120,7 @@ const DigitalCampaign = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -116,7 +135,7 @@ const DigitalCampaign = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Email / Newsletter",
@@ -132,12 +151,27 @@ const DigitalCampaign = (props) => {
                             },
                         ]
                     },
-                    scope: 1
+                    // scope: 1
+                },
+                {
+                    subType: "Podcast",
+                    subTypeData: {
+                        th: ["", "Podcast Size (in Mb)", "No of Listeners", "Emissions"],
+                        td: [
+                            {
+                                dgType: "Podcast",
+                                podcastSize: values?.podcastSize,
+                                noOfListeners: values?.noOfListeners,
+                                emissions: emissionNineteen > 0 ? emissionNineteen : '',
+                            }
+                        ]
+                    },
+                    // scope: 3
                 },
             ];
 
             dispatch(addCampaignData({ data }));
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Digital Campaign" }));
+            dispatch(addResultTableData({ from: "digitalCampaign", data: tableData, tabTitle: "Digital Campaign" }));
         },
     });
 
@@ -148,30 +182,55 @@ const DigitalCampaign = (props) => {
         dispatch(deleteResTabDgCampaignData());
     };
 
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
+            }
+        }
+    };
+
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue('imgSize', allData[0]?.imgSize);
-            formik.setFieldValue('uploadEnergy', allData[0]?.uploadEnergy);
-            formik.setFieldValue('totalEnergy', allData[0]?.totalEnergy);
-            formik.setFieldValue('totalEnergyKwh', allData[0]?.totalEnergyKwh);
-            formik.setFieldValue('downloadEnergy', allData[0]?.downloadEnergy);
-            formik.setFieldValue('impressionsOne', allData[0]?.impressionsOne);
-            formik.setFieldValue('emissionOne', allData[0]?.emission);
+            formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
+            formik.setFieldValue('uploadEnergy', allData?.[0]?.uploadEnergy);
+            formik.setFieldValue('totalEnergy', allData?.[0]?.totalEnergy);
+            formik.setFieldValue('totalEnergyKwh', allData?.[0]?.totalEnergyKwh);
+            formik.setFieldValue('downloadEnergy', allData?.[0]?.downloadEnergy);
+            formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
+            formik.setFieldValue('emissionOne', allData?.[0]?.emission);
 
-            formik.setFieldValue('videoMins', allData[1]?.videoMins);
-            formik.setFieldValue('videoEnergy', allData[1]?.videoEnergy);
-            formik.setFieldValue('efTwo', allData[1]?.efTwo);
-            formik.setFieldValue('impressionsTwo', allData[1]?.impressionsTwo);
-            formik.setFieldValue('emissionTwo', allData[1]?.emission);
+            formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
+            formik.setFieldValue('videoEnergy', allData?.[1]?.videoEnergy);
+            formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
+            formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
+            formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
 
-            formik.setFieldValue('noOfEmails', allData[2]?.noOfEmails);
-            formik.setFieldValue('emialEfOne', allData[2]?.emialEfOne);
-            formik.setFieldValue('emialEfTwo', allData[2]?.emialEfTwo);
-            formik.setFieldValue('emailEmissionOne', allData[2]?.emailEmissionOne);
-            formik.setFieldValue('emailEmissionTwo', allData[2]?.emailEmissionTwo);
-            formik.setFieldValue('attachmentSize', allData[2]?.attachmentSize);
-            formik.setFieldValue('totalAttachmentSize', allData[2]?.totalAttachmentSize);
-            formik.setFieldValue('emissionThree', allData[2]?.emission);
+            formik.setFieldValue('noOfEmails', allData?.[2]?.noOfEmails);
+            formik.setFieldValue('emialEfOne', allData?.[2]?.emialEfOne);
+            formik.setFieldValue('emialEfTwo', allData?.[2]?.emialEfTwo);
+            formik.setFieldValue('emailEmissionOne', allData?.[2]?.emailEmissionOne);
+            formik.setFieldValue('emailEmissionTwo', allData?.[2]?.emailEmissionTwo);
+            formik.setFieldValue('attachmentSize', allData?.[2]?.attachmentSize);
+            formik.setFieldValue('totalAttachmentSize', allData?.[2]?.totalAttachmentSize);
+            formik.setFieldValue('emissionThree', allData?.[2]?.emission);
+
+            formik.setFieldValue('podcastSize', allData?.[3]?.podcastSize);
+            formik.setFieldValue('noOfListeners', allData?.[3]?.noOfListeners);
+            formik.setFieldValue('podcastKwh', allData?.[3]?.podcastKwh);
+            formik.setFieldValue('podcastTotal', allData?.[3]?.podcastTotal);
+            formik.setFieldValue('emissionNineteen', allData?.[3]?.emission);
         }
     }, [value]);
 
@@ -299,80 +358,138 @@ const DigitalCampaign = (props) => {
                         </Box>
 
                         <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
-                            <Typography variant="h4" className="text-center text-white mt-4">Email / Newsletter</Typography>
+                            {/* <Typography variant="h4" className="text-center text-white mt-4">Email / Newsletter</Typography> */}
                             <Box style={{ padding: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }}>
-                                <Card
-                                    sx={{
-                                        width: 260,
-                                        // height: 382,
-                                        maxWidth: '100%',
-                                        boxShadow: 'lg',
-                                        marginY: '16px'
-                                    }}
-                                >
-                                    <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
-                                        <Icon component={MdEmail} sx={{ fontSize: 60, color: 'black' }} />
-                                        <Typography variant="h6" sx={{ marginY: 1 }}>Email</Typography>
-                                        <TextField size='small' type="number" name={'noOfEmails'} value={values?.noOfEmails}
-                                            label="No of Emails"
-                                            variant="outlined"
-                                            fullWidth
-                                            onChange={(e) => {
-                                                const emailEmissionOne = e.target.value === 0 ? 0 : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(2));
-                                                const totalAttachmentSize = e.target.value === 0 || values?.attachmentSize === 0 ? 0 : Number((e.target.value * values?.attachmentSize).toFixed(2));
-                                                const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+                                <Box>
+                                    <Typography variant="h4" className="text-center text-white mt-4">Email / Newsletter</Typography>
+                                    <Card
+                                        sx={{
+                                            width: 260,
+                                            // height: 382,
+                                            maxWidth: '100%',
+                                            boxShadow: 'lg',
+                                            marginY: '16px'
+                                        }}
+                                    >
+                                        <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                            <Icon component={MdEmail} sx={{ fontSize: 60, color: 'black' }} />
+                                            <Typography variant="h6" sx={{ marginY: 1 }}>Email</Typography>
+                                            <TextField size='small' type="number" name={'noOfEmails'} value={values?.noOfEmails}
+                                                label="No of Emails"
+                                                variant="outlined"
+                                                fullWidth
+                                                onChange={(e) => {
+                                                    const emailEmissionOne = e.target.value === 0 ? 0 : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(2));
+                                                    const totalAttachmentSize = e.target.value === 0 || values?.attachmentSize === 0 ? 0 : Number((e.target.value * values?.attachmentSize).toFixed(2));
+                                                    const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
 
-                                                formik.setFieldValue("noOfEmails", e.target.value);
-                                                formik.setFieldValue("emailEmissionOne", emailEmissionOne);
-                                                formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
-                                                formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
-                                                formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
-                                                formik.handleSubmit();
-                                            }}
-                                            sx={{ marginTop: 2 }}
-                                            inputProps={{ style: { color: 'black' } }}
-                                        />
-                                        <TextField size='small' type="number" name={'attachmentSize'} value={values?.attachmentSize}
-                                            label="Attachment Size (Mb)"
-                                            variant="outlined"
-                                            fullWidth
-                                            onChange={(e) => {
-                                                const emailEmissionOne = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2));
-                                                const totalAttachmentSize = e.target.value === 0 || values?.noOfEmails === 0 ? 0 : Number((e.target.value * values?.noOfEmails).toFixed(2));
-                                                const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+                                                    formik.setFieldValue("noOfEmails", e.target.value);
+                                                    formik.setFieldValue("emailEmissionOne", emailEmissionOne);
+                                                    formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
+                                                    formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
+                                                    formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
+                                                    formik.handleSubmit();
+                                                }}
+                                                sx={{ marginTop: 2 }}
+                                                inputProps={{ style: { color: 'black' } }}
+                                            />
+                                            <TextField size='small' type="number" name={'attachmentSize'} value={values?.attachmentSize}
+                                                label="Attachment Size (Mb)"
+                                                variant="outlined"
+                                                fullWidth
+                                                onChange={(e) => {
+                                                    const emailEmissionOne = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2));
+                                                    const totalAttachmentSize = e.target.value === 0 || values?.noOfEmails === 0 ? 0 : Number((e.target.value * values?.noOfEmails).toFixed(2));
+                                                    const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
 
-                                                formik.setFieldValue("attachmentSize", e.target.value);
-                                                formik.setFieldValue("emailEmissionOne", emailEmissionOne);
-                                                formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
-                                                formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
-                                                formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
-                                                formik.handleSubmit();
-                                            }}
-                                            sx={{ marginTop: 2 }}
-                                            inputProps={{ style: { color: 'black' } }}
-                                        />
-                                        <TextField size='small' type="number" disabled name={`emissionThree`}
-                                            label="Emissions"
-                                            variant="outlined"
-                                            fullWidth
-                                            value={values?.emissionThree}
-                                            onChange={formik.handleChange}
-                                            sx={{ marginTop: 2 }}
-                                        />
-                                    </CardContent>
-                                </Card>
+                                                    formik.setFieldValue("attachmentSize", e.target.value);
+                                                    formik.setFieldValue("emailEmissionOne", emailEmissionOne);
+                                                    formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
+                                                    formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
+                                                    formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
+                                                    formik.handleSubmit();
+                                                }}
+                                                sx={{ marginTop: 2 }}
+                                                inputProps={{ style: { color: 'black' } }}
+                                            />
+                                            <TextField size='small' type="number" disabled name={`emissionThree`}
+                                                label="Emissions"
+                                                variant="outlined"
+                                                fullWidth
+                                                value={values?.emissionThree}
+                                                onChange={formik.handleChange}
+                                                sx={{ marginTop: 2 }}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </Box>
+                                <Box>
+                                    <Typography variant="h4" className="text-center text-white mt-4">Podcast</Typography>
+                                    <Card
+                                        sx={{
+                                            width: 260,
+                                            maxWidth: '100%',
+                                            boxShadow: 'lg',
+                                            marginY: '16px'
+                                        }}
+                                    >
+                                        <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                            <img src={podcastIcon} alt="tv" style={{ width: "55px", height: '55px', margin: "auto" }} />
+                                            <Typography variant="h6" sx={{ marginY: 1 }}>Podcast</Typography>
+                                            <TextField size='small' type="number" name='podcastSize' value={values?.podcastSize}
+                                                label="Podcast Size (in Mb)"
+                                                variant="outlined"
+                                                fullWidth
+                                                onChange={(e) => {
+                                                    const podcastTotal = e.target.value * 0.00004296
+                                                    const emissionNineteen = Number(Number(podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
+                                                    formik.setFieldValue("podcastSize", Number(e.target.value));
+                                                    formik.setFieldValue("podcastTotal", podcastTotal);
+                                                    formik.setFieldValue("emissionNineteen", emissionNineteen);
+                                                    formik.handleSubmit();
+                                                }}
+                                                sx={{ marginTop: 2 }}
+                                                inputProps={{ style: { color: 'black' } }}
+                                            />
+                                            <TextField size='small' type="number" name={'noOfListeners'} value={values?.noOfListeners}
+                                                label="No of Listeners"
+                                                variant="outlined"
+                                                fullWidth
+                                                onChange={(e) => {
+                                                    const emissionNineteen = Number(Number(values?.podcastTotal) * Number(e.target.value)).toFixed(2);
+                                                    formik.setFieldValue("noOfListeners", Number(e.target.value));
+                                                    formik.setFieldValue("emissionNineteen", emissionNineteen);
+                                                    formik.handleSubmit();
+                                                }}
+                                                sx={{ marginTop: 2 }}
+                                                inputProps={{ style: { color: 'black' } }}
+                                            />
+                                            <TextField size='small' type="number" disabled
+                                                label="Emissions"
+                                                variant="outlined"
+                                                fullWidth
+                                                name={'emissionNineteen'}
+                                                value={values?.emissionNineteen}
+                                                onChange={formik.handleChange}
+                                                sx={{ marginTop: 2 }}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </Box>
                             </Box>
                         </Box>
                     </Box>
                     <Grid>
                         <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
-                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button><Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
+                            <Stack direction={"row"} spacing={2}><Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'>Save and Next Page</Button>
+                                {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
+                                <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
                     </Grid>
                 </Card>
             </Container>
-        </div>
+        </div >
     );
 };
 export default DigitalCampaign;

@@ -4,20 +4,22 @@ import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLocalTranspotationData, deleteLocalTranspotationData, scopeChange } from '../../redux/slice/totalLocalTranspotationSlice';
-import { addResultTableData, deleteResTabLocalTransData } from '../../redux/slice/resultTableDataSlice';
+import { addLocalTranspotationData, deleteLocalTranspotationData } from '../../redux/slice/totalLocalTranspotationSlice';
+import { addResultTableData, deleteResTabLocalTransData, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import LocalTransportImg from '../../assets/Transportation.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const LocalTranspotation = (props) => {
     const { setValue, value } = props;
     const theme = useTheme();
     const dispatch = useDispatch();
-    const allData = useSelector((state) => state?.totalLocalTranspotationDetails?.data[0]?.data);
+    const allData = useSelector((state) => state?.totalLocalTranspotationDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalLocalTranspotationDetails?.totalEmission);
-    const scope1 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope1);
-    const scope2 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope2);
-    const scope3 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope3);
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
+    const toolData = useSelector(state => state?.toolDetails?.data);
+    const toolFormData = toolData?.find((item) => item?.type === "toolForm");
+    const eventsData = useEventData();
 
     // -----------   initialValues
     const initialValues = {
@@ -152,7 +154,7 @@ const LocalTranspotation = (props) => {
                             },
                         ]
                     },
-                    scope: 1
+                    // scope: 1
                 },
                 {
                     subType: "Taxi",
@@ -176,7 +178,7 @@ const LocalTranspotation = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Public Transport",
@@ -200,12 +202,12 @@ const LocalTranspotation = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 
             dispatch(addLocalTranspotationData({ data }))
-            dispatch(addResultTableData({ data: tableData, tabTitle: "Local Transportation" }));
+            dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Local Transportation" }));
         },
     });
 
@@ -217,36 +219,55 @@ const LocalTranspotation = (props) => {
     useEffect(() => {
         if (allData?.length > 0) {
 
-            formik.setFieldValue("petrolCarKms", allData[0]?.petrolCarKms);
-            formik.setFieldValue("petrolCarEmission", allData[0]?.emission);
+            formik.setFieldValue("petrolCarKms", allData?.[0]?.petrolCarKms);
+            formik.setFieldValue("petrolCarEmission", allData?.[0]?.emission);
 
-            formik.setFieldValue("dieselCarKms", allData[1]?.dieselCarKms);
-            formik.setFieldValue("dieselCarEmission", allData[1]?.emission);
+            formik.setFieldValue("dieselCarKms", allData?.[1]?.dieselCarKms);
+            formik.setFieldValue("dieselCarEmission", allData?.[1]?.emission);
 
-            formik.setFieldValue("hybridCarKms", allData[2]?.hybridCarKms);
-            formik.setFieldValue("hybridCarEmission", allData[2]?.emission);
+            formik.setFieldValue("hybridCarKms", allData?.[2]?.hybridCarKms);
+            formik.setFieldValue("hybridCarEmission", allData?.[2]?.emission);
 
-            formik.setFieldValue("petrolCarKms2", allData[3]?.petrolCarKms2);
-            formik.setFieldValue("petrolCarEmission2", allData[3]?.emission);
+            formik.setFieldValue("petrolCarKms2", allData?.[3]?.petrolCarKms2);
+            formik.setFieldValue("petrolCarEmission2", allData?.[3]?.emission);
 
-            formik.setFieldValue("dieselCarKms2", allData[4]?.dieselCarKms2);
+            formik.setFieldValue("dieselCarKms2", allData?.[4]?.dieselCarKms2);
             formik.setFieldValue("dieselCarEmission2", allData[4]?.emission);
 
-            formik.setFieldValue("hybridCarKms2", allData[5]?.hybridCarKms2);
-            formik.setFieldValue("hybridCarEmission2", allData[5]?.emission);
+            formik.setFieldValue("hybridCarKms2", allData?.[5]?.hybridCarKms2);
+            formik.setFieldValue("hybridCarEmission2", allData?.[5]?.emission);
 
-            formik.setFieldValue("busDieselKms", allData[6]?.busDieselKms);
-            formik.setFieldValue("busDieselEmission", allData[6]?.emission);
+            formik.setFieldValue("busDieselKms", allData?.[6]?.busDieselKms);
+            formik.setFieldValue("busDieselEmission", allData?.[6]?.emission);
 
-            formik.setFieldValue("subwayTramKms", allData[7]?.subwayTramKms);
-            formik.setFieldValue("subwayTramEmission", allData[7]?.emission);
+            formik.setFieldValue("subwayTramKms", allData?.[7]?.subwayTramKms);
+            formik.setFieldValue("subwayTramEmission", allData?.[7]?.emission);
 
-            formik.setFieldValue("ferryKms", allData[8]?.ferryKms);
-            formik.setFieldValue("ferryEmission", allData[8]?.emission);
+            formik.setFieldValue("ferryKms", allData?.[8]?.ferryKms);
+            formik.setFieldValue("ferryEmission", allData?.[8]?.emission);
         }
     }, [value]);
 
     const { values, handleChange, setFieldValue, handleSubmit } = formik;
+
+    const handleSaveToDb = async () => {
+        const eventData = {
+            ...eventsData,
+        };
+
+        if (resultTableData.eventDataId) {
+            eventData.eventDataId = resultTableData?.eventDataId;
+            const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+            if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to update data:', resultAction?.payload);
+            }
+        } else {
+            const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+            if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+                console.error('Failed to save data:', resultAction?.payload);
+            }
+        }
+    };
 
     return (
         <div>
@@ -436,9 +457,10 @@ const LocalTranspotation = (props) => {
                             <Grid item xs={12} sm={12} md={12} display={"flex"} justifyContent={"center"}>
                                 <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { formik.handleSubmit(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button>
+                                    <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
+                                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(9); }} className='custom-btn'>Go To Result</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>
                                 </Stack>
                             </Grid>

@@ -6,6 +6,7 @@ import Room1 from '../../assets/images/room1.jpeg';
 import Room2 from '../../assets/images/room2.jpeg';
 import Room3 from '../../assets/images/room3.jpg';
 import Room4 from '../../assets/images/room4.png';
+import Room5 from '../../assets/images/room5.jpg';
 
 const Index = () => {
     const theme = useTheme();
@@ -53,6 +54,33 @@ const Index = () => {
                     </Grid>
                 </Grid> */}
 
+                <Card sx={{ display: 'flex', marginBottom: 4, flexWrap: 'wrap', width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px' }}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} md={8} className={'order-1'}>
+                            <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%' }}>
+                                <CardContent sx={{ flex: '1 0 auto', flexWrap: 'wrap', wordBreak: 'break-word' }}>
+                                    <Link className='text-decoration-none' to='/news-room/blog5'>
+                                        <Typography component="div" variant="h5">
+                                            Leading the NetZero charge: How sustainable marketing can transform the future of business
+                                        </Typography>
+                                    </Link>
+                                    <Typography variant="subtitle1" color="text.secondary" component="div" className='mt-1'>
+                                        November 8, 2024
+                                    </Typography>
+                                </CardContent>
+                            </Box>
+                        </Grid>
+                        <Grid item md={4} xs={12} >
+                            <CardMedia
+                                component="img"
+                                image={Room5}
+                                className='img-thumbnail'
+                                alt="Blog5"
+                                sx={{ height: '100%', objectFit: 'cover' }}
+                            />
+                        </Grid>
+                    </Grid>
+                </Card>
                 <Card sx={{ display: 'flex', marginBottom: 4, flexWrap: 'wrap', fontSize: useMediaQuery(theme.breakpoints.up('md')) ? '20px' : '10px', width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px' }}>
                     <Grid container spacing={0} >
                         <Grid item xs={12} md={8}

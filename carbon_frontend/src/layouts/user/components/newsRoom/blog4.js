@@ -1,9 +1,9 @@
 import { Typography } from '@mui/material';
-import { FaFacebookF, FaLinkedinIn, FaPinterestP } from 'react-icons/fa';
-import { FaChevronLeft, FaChevronRight, FaXTwitter } from 'react-icons/fa6';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import blog4 from '../../assets/images/room4.png';
-import Room1 from '../../assets/images/room1.jpeg';
+import blog3 from '../../assets/images/room3.jpg';
+import Room5 from '../../assets/images/room5.jpg';
 
 const Blog4 = () => {
     return (
@@ -16,14 +16,27 @@ const Blog4 = () => {
                     <Link to="https://forceforgood.insead.edu/article/mohammed-shafeeq-ilpse-c10-pioneering-sustainable-entrepreneurship-marketing" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing</Link>
                 </Typography>
             </div>
-            <div style={{ position: "fixed", bottom: "70px", right: "0"}}>
-                <Link to='/news-room/blog1' className='d-flex nextBlogRight'>
+            <div style={{ position: "fixed", bottom: "70px", left: "0", }} >
+                <Link to='/news-room/blog3' className='d-flex nextBlog'>
+                    <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px" }}>
+                        <FaChevronLeft />
+                    </div>
+                    <img src={blog3} alt="blog3" height={"80px"} width={"100px"} />
+                    <div className='nextBlogContent'>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue" }}>
+                            Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing Operations- Zee News
+                        </Typography>
+                    </div>
+                </Link>
+            </div>
+            <div style={{ position: "fixed", bottom: "70px", right: "0" }}>
+                <Link to='/news-room/blog5' className='d-flex nextBlogRight'>
                     <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px" }}>
                         <FaChevronRight />
                     </div>
-                    <img src={Room1} alt="blog2" height={"80px"} width={"100px"} />
+                    <img src={Room5} alt="blog5" height={"80px"} width={"100px"} />
                     <div className='nextBlogContentRight'>
-                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue"  }}>Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to make a green footprint</Typography>
+                        <Typography variant='h6' className='fontFamily fs-6 fw-bold p-2 px-3' style={{ color: "blue" }}>Leading the NetZero charge: How sustainable marketing can transform the future of business</Typography>
                     </div>
                 </Link>
             </div>

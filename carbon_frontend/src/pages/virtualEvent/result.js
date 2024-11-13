@@ -21,6 +21,7 @@ const Result = ({ value }) => {
 
     const allVirtualEventData = useSelector((state) => state?.totalVirtualEventDetails)
     const total = Number(allVirtualEventData?.totalEmission);
+    const totalResultTableData = useSelector((state) => state?.resultTableDataDetails);
 
     const chartData = [
         Number(allVirtualEventData?.totalEmission) || 0,
@@ -68,6 +69,8 @@ const Result = ({ value }) => {
         "totalPVC": Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(2),
         "grandTotal": Number(total).toFixed(2)
     };
+
+    const outdoorBilboardEmission = Number(data.totalPolyethylene) + Number(data?.totalPVC) + Number(allVirtualEventData?.data?.[0]?.data?.[19]?.emission) || 0;
 
     const toolData = useSelector(state => state.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item.type === 'toolForm');
@@ -162,16 +165,19 @@ const Result = ({ value }) => {
             // sentenceParts.push(`Magazine ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e.`);
             sentenceParts.push(`magazine with ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfPages} pages and ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfCopiesTwo} copies generated ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgco2e, `);
         }
-        if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
-            // sentenceParts.push(`Podcast ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e.`);
-            sentenceParts.push(`podcast of ${allVirtualEventData?.data?.[0]?.data?.[18]?.podcastSize}mb with ${allVirtualEventData?.data?.[0]?.data?.[18]?.noOfListeners} listeners generated ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgco2e. `);
-        }
+        // if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
+        //     // sentenceParts.push(`Podcast ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e.`);
+        //     sentenceParts.push(`podcast of ${allVirtualEventData?.data?.[0]?.data?.[18]?.podcastSize}mb with ${allVirtualEventData?.data?.[0]?.data?.[18]?.noOfListeners} listeners generated ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgco2e. `);
+        // }
         // if (allVirtualEventData?.data?.[0]?.data?.[15]?.emission) {
         //     sentenceParts.push(`Polyethylene ${allVirtualEventData?.data?.[0]?.data?.[15]?.emission} kgCO2e.`);
         // }
-        if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
-            // sentenceParts.push(`PVC banner ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgCO2e.`);
-            sentenceParts.push(`and PVC banner generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e,`);
+        // if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
+        //     // sentenceParts.push(`PVC banner ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgCO2e.`);
+        //     sentenceParts.push(`and PVC banner generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e,`);
+        // }
+        if (outdoorBilboardEmission) {
+            sentenceParts.push(`and outdoor billboard generated ${outdoorBilboardEmission} kgco2e. `);
         }
         if (totalCarbonFootprint) {
             // sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);
@@ -201,7 +207,7 @@ const Result = ({ value }) => {
         }).join('\n');
 
         // let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Virtual Event : </h3> `;
-        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Outbound Marketing : </h3> `;
+        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Outdoor Marketing : </h3> `;
 
         formattedSuggestions.split('\n').forEach((line, index) => {
             pdfData += `${line}<br />`;
@@ -233,12 +239,12 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
+                        Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')}`,
                     },
                 }
             );
 
-            const resJson = response.data;
+            const resJson = response?.data;
             const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
             setSuggestion(formattedSuggestions);
         } catch (error) {
@@ -249,39 +255,39 @@ const Result = ({ value }) => {
     };
 
     useEffect(() => {
-        let sc1Count = 0;
-        let sc2Count = 0;
-        let sc3Count = 0;
+        // let sc1Count = 0;
+        // let sc2Count = 0;
+        // let sc3Count = 0;
 
-        resultTableData?.data?.forEach(page => {
-            page?.tabData?.forEach(flightClass => {
-                const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+        // resultTableData?.data?.forEach(page => {
+        //     page?.tabData?.forEach(flightClass => {
+        //         const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
 
-                    const rowData2 = rowData;
-                    const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
+        //             const rowData2 = rowData;
+        //             const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
 
-                    if (page?.tabTitle === "Digital Campaign") {
-                        return ((impressions1 && imgSize) || (impressions2 && videoMins && videoSize) || (noOfEmails && attachmentSize)) && emissions;
-                    }
+        //             if (page?.tabTitle === "Digital Campaign") {
+        //                 return ((impressions1 && imgSize) || (impressions2 && videoMins && videoSize) || (noOfEmails && attachmentSize)) && emissions;
+        //             }
 
-                    return false;
-                });
+        //             return false;
+        //         });
 
-                if (hasFilledRow) {
-                    if (flightClass?.scope === 1) {
-                        sc1Count += 1;
-                    } else if (flightClass?.scope === 2) {
-                        sc2Count += 1;
-                    } else if (flightClass?.scope === 3) {
-                        sc3Count += 1;
-                    }
-                }
-            });
-        });
+        //         if (hasFilledRow) {
+        //             if (flightClass?.scope === 1) {
+        //                 sc1Count += 1;
+        //             } else if (flightClass?.scope === 2) {
+        //                 sc2Count += 1;
+        //             } else if (flightClass?.scope === 3) {
+        //                 sc3Count += 1;
+        //             }
+        //         }
+        //     });
+        // });
 
-        setSc1(sc1Count);
-        setSc2(sc2Count);
-        setSc3(sc3Count);
+        // setSc1(sc1Count);
+        // setSc2(sc2Count);
+        // setSc3(sc3Count);
 
         generatePrompt();
     }, [resultTableData, value, allVirtualEventData]);
@@ -297,8 +303,9 @@ const Result = ({ value }) => {
             <SendMail open={open} close={() => setOpen(false)} datas={{ ...data, totalVirtualEvent: Number(allVirtualEventData?.totalEmission).toFixed(2) }} setOpen chatSuggestion={suggestionForPdf} />
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
+                    {/* {resultTableData?.data?.filter((item) => item.tabTitle === "Virtual Event")?.map((page, pageIndex) => ( */}
                     {/* <Box style={{ width: "100%", color: 'white' }}>
-                        {resultTableData?.data?.filter((item) => item.tabTitle === "Virtual Event")?.map((page, pageIndex) => (
+                        {resultTableData?.data?.find((item) => item?.from === "virtualEvent")?.allDataOfTab?.map((page, pageIndex) => (
                             <Box key={pageIndex} style={{ margin: "20px" }}>
                                 {page?.tabData.some(flightClass =>
                                     flightClass?.subTypeData?.td?.some(rowData =>
@@ -324,8 +331,9 @@ const Result = ({ value }) => {
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            // {page.tabTitle === "Virtual Event" && 
-                                                                            {page.tabTitle === "Outbound Marketing" &&
+
+                                                                            {
+                                                                                page.tabTitle === "Outbound Marketing" &&
                                                                                 flightClass?.subTypeData?.td?.map((rowData, rowIndex) => (
                                                                                     (rowData.imgSize !== "" || rowData.impressionsOne !== "" || rowData.impressionsTwo !== "" || rowData.videoSize !== "" || rowData.videoMins !== "" || rowData.noOfPeople !== "" || rowData.noOfMins !== "") && rowData.emissions !== "" && (
                                                                                         <tr key={rowIndex}>
@@ -336,7 +344,8 @@ const Result = ({ value }) => {
                                                                                             <td>{rowData.emissions}</td>
                                                                                         </tr>
                                                                                     )
-                                                                                ))}
+                                                                                ))
+                                                                            }
                                                                         </tbody>
                                                                     </table>
                                                                 </>

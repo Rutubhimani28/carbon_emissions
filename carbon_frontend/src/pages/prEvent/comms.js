@@ -19,17 +19,21 @@ import { useEffect } from 'react';
 import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCommsData, deleteCommsData, scopeChange } from '../../redux/slice/totalCommsSlice';
-import { addResultTableData, deleteResTabCommsData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission } from '../../redux/slice/resultTableDataSlice';
+import { addCommsData, deleteCommsData } from '../../redux/slice/totalCommsSlice';
+import { addResultTableData, deleteResTabCommsData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
 import commsImg from '../../assets/comms.png';
 import { IconDiv } from '../../components/IconDiv';
+import useEventData from '../../hooks/useEventData';
 
 const Comms = (props) => {
   const { setValue, value } = props;
   const theme = useTheme();
   const dispatch = useDispatch();
-  const allData = useSelector((state) => state?.totalCommsDetails?.data[0]?.data);
+  const allData = useSelector((state) => state?.totalCommsDetails?.data?.[0]?.data);
   const totalEmission = useSelector((state) => state?.totalCommsDetails?.totalEmission);
+  const resultTableData = useSelector(state => state?.resultTableDataDetails);
+
+  const eventsData = useEventData();
 
   // -----------   initialValues
   const initialValues = {
@@ -79,7 +83,7 @@ const Comms = (props) => {
 
     colouredBrochurePage: '',
     emissionSix: '',
-    a4Size75Gsm: '',
+    a4Size75Gsm: '',          // Black & White
     emissionSeven: '',
   };
 
@@ -164,7 +168,7 @@ const Comms = (props) => {
           emission: emissionSix > 0 ? emissionSix : ''
         },
         {
-          type: 'A4Size75Gsm',
+          type: 'A4Size75Gsm',   // Balck & white
           a4Size75Gsm: values?.a4Size75Gsm,
           emission: emissionSeven > 0 ? emissionSeven : ''
         },
@@ -184,7 +188,7 @@ const Comms = (props) => {
               },
             ],
           },
-          scope: 1,
+          // scope: 1,
         },
         {
           subType: '',
@@ -207,7 +211,7 @@ const Comms = (props) => {
                 emissions: emissionThree > 0 ? emissionThree : '',
               },
             ],
-            scope: 1,
+            // scope: 1,
           },
         },
         // {
@@ -247,18 +251,18 @@ const Comms = (props) => {
             th: ["", "No. of Pages", "Emissions"],
             td: [
               {
-                cmType: "Printing a Coloured Brochure",
+                cmType: "Coloured Brochure",
                 noOfPages: values?.colouredBrochurePage,
                 emissions: emissionSix > 0 ? emissionSix : ''
               },
               {
-                cmType: "A4 Size (75GSM)",
+                cmType: "Black & White",
                 noOfPages: values?.a4Size75Gsm,
                 emissions: emissionSeven > 0 ? emissionSeven : ''
               },
             ]
           },
-          scope: 2
+          // scope: 2
         },
       ];
 
@@ -267,7 +271,7 @@ const Comms = (props) => {
       const prAssestsEmission = (Number(emissionSix) || 0) + (Number(emissionSeven) || 0);
 
       dispatch(addCommsData({ data }));
-      dispatch(addResultTableData({ data: tableData, tabTitle: 'Comms' }));
+      dispatch(addResultTableData({ from: "prEvent", data: tableData, tabTitle: 'Comms' }));
       dispatch(prEventEmissionCatogorywise({ categories: [{ catgName: 'Email Invitations', emission: emailInvitationEmission }, { catgName: 'PR Assets', emission: prAssestsEmission }] }));
     },
   });
@@ -278,53 +282,72 @@ const Comms = (props) => {
     dispatch(deleteCommsCatogorywiseEmission());
   };
 
+  const handleSaveToDb = async () => {
+    const eventData = {
+      ...eventsData,
+    };
+
+    if (resultTableData.eventDataId) {
+      eventData.eventDataId = resultTableData?.eventDataId;
+      const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
+      if (updateResultTableDatasToDb?.rejected?.match(resultAction)) {
+        console.error('Failed to update data:', resultAction?.payload);
+      }
+    } else {
+      const resultAction = await dispatch(addResultTableDatasToDb(eventData));
+      if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
+        console.error('Failed to save data:', resultAction?.payload);
+      }
+    }
+  };
+
   useEffect(() => {
     if (allData?.length > 0) {
-      formik.setFieldValue('noOfEmails', allData[0]?.noOfEmails);
-      formik.setFieldValue('emialEfOne', allData[0]?.emialEfOne);
-      formik.setFieldValue('emialEfTwo', allData[0]?.emialEfTwo);
-      formik.setFieldValue('emailEmissionOne', allData[0]?.emailEmissionOne);
-      formik.setFieldValue('emissionOne', allData[0]?.emission);
-      formik.setFieldValue('emailEmissionTwo', allData[0]?.emailEmissionTwo);
-      formik.setFieldValue('attachmentSize', allData[0]?.attachmentSize);
-      formik.setFieldValue('totalAttachmentSize', allData[0]?.totalAttachmentSize);
-      formik.setFieldValue('efOne', allData[1]?.efOne);
-      formik.setFieldValue('emissionOne', allData[0]?.emission);
+      formik.setFieldValue('noOfEmails', allData?.[0]?.noOfEmails);
+      formik.setFieldValue('emialEfOne', allData?.[0]?.emialEfOne);
+      formik.setFieldValue('emialEfTwo', allData?.[0]?.emialEfTwo);
+      formik.setFieldValue('emailEmissionOne', allData?.[0]?.emailEmissionOne);
+      formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+      formik.setFieldValue('emailEmissionTwo', allData?.[0]?.emailEmissionTwo);
+      formik.setFieldValue('attachmentSize', allData?.[0]?.attachmentSize);
+      formik.setFieldValue('totalAttachmentSize', allData?.[0]?.totalAttachmentSize);
+      formik.setFieldValue('efOne', allData?.[1]?.efOne);
+      formik.setFieldValue('emissionOne', allData?.[0]?.emission);
 
-      // formik.setFieldValue('prFileSizeOne', allData[1]?.prFileSizeOne);
-      formik.setFieldValue('finalFileSizeOne', allData[1]?.finalFileSizeOne);
-      formik.setFieldValue('sendingToMediaOne', allData[1]?.sendingToMediaOne);
-      formik.setFieldValue('efTwo', allData[1]?.ef);
-      formik.setFieldValue('emissionTwo', allData[1]?.emission);
+      // formik.setFieldValue('prFileSizeOne', allData?.[1]?.prFileSizeOne);
+      formik.setFieldValue('finalFileSizeOne', allData?.[1]?.finalFileSizeOne);
+      formik.setFieldValue('sendingToMediaOne', allData?.[1]?.sendingToMediaOne);
+      formik.setFieldValue('efTwo', allData?.[1]?.ef);
+      formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
 
-      // formik.setFieldValue('prFileSizeTwo', allData[2]?.prFileSizeTwo);
-      formik.setFieldValue('finalFileSizeTwo', allData[2]?.finalFileSizeTwo);
-      formik.setFieldValue('sendingToMediaTwo', allData[2]?.sendingToMediaTwo);
-      formik.setFieldValue('emissionThree', allData[2]?.emission);
+      // formik.setFieldValue('prFileSizeTwo', allData?.[2]?.prFileSizeTwo);
+      formik.setFieldValue('finalFileSizeTwo', allData?.[2]?.finalFileSizeTwo);
+      formik.setFieldValue('sendingToMediaTwo', allData?.[2]?.sendingToMediaTwo);
+      formik.setFieldValue('emissionThree', allData?.[2]?.emission);
 
-      // formik.setFieldValue('imgSize', allData[3]?.imgSize);
-      // formik.setFieldValue('deviceEnergy1', allData[3]?.deviceEnergy1);
-      // formik.setFieldValue('somePlatformEnergy1', allData[3]?.somePlatformEnergy1);
-      // formik.setFieldValue('networkEnergy1', allData[3]?.networkEnergy1);
-      // formik.setFieldValue('totalEnergy1', allData[3]?.totalEnergy1);
-      // formik.setFieldValue('efFour', allData[3]?.ef);
-      // formik.setFieldValue('impressionsOne', allData[3]?.impressionsOne);
-      // formik.setFieldValue('emissionFour', allData[3]?.emission);
+      // formik.setFieldValue('imgSize', allData?.[3]?.imgSize);
+      // formik.setFieldValue('deviceEnergy1', allData?.[3]?.deviceEnergy1);
+      // formik.setFieldValue('somePlatformEnergy1', allData?.[3]?.somePlatformEnergy1);
+      // formik.setFieldValue('networkEnergy1', allData?.[3]?.networkEnergy1);
+      // formik.setFieldValue('totalEnergy1', allData?.[3]?.totalEnergy1);
+      // formik.setFieldValue('efFour', allData?.[3]?.ef);
+      // formik.setFieldValue('impressionsOne', allData?.[3]?.impressionsOne);
+      // formik.setFieldValue('emissionFour', allData?.[3]?.emission);
 
-      // formik.setFieldValue('videoSize', allData[4]?.videoSize);
-      // formik.setFieldValue('videoMins', allData[4]?.videoMins);
-      // formik.setFieldValue('deviceEnergy2', allData[4]?.deviceEnergy2);
-      // formik.setFieldValue('somePlatformEnergy2', allData[4]?.somePlatformEnergy2);
-      // formik.setFieldValue('networkEnergy2', allData[4]?.networkEnergy2);
-      // formik.setFieldValue('totalEnergy2', allData[4]?.totalEnergy2);
-      // formik.setFieldValue('efFive', allData[4]?.ef);
-      // formik.setFieldValue('impressionsTwo', allData[4]?.impressionsTwo);
-      // formik.setFieldValue('emissionFive', allData[4]?.emission);
+      // formik.setFieldValue('videoSize', allData?.[4]?.videoSize);
+      // formik.setFieldValue('videoMins', allData?.[4]?.videoMins);
+      // formik.setFieldValue('deviceEnergy2', allData?.[4]?.deviceEnergy2);
+      // formik.setFieldValue('somePlatformEnergy2', allData?.[4]?.somePlatformEnergy2);
+      // formik.setFieldValue('networkEnergy2', allData?.[4]?.networkEnergy2);
+      // formik.setFieldValue('totalEnergy2', allData?.[4]?.totalEnergy2);
+      // formik.setFieldValue('efFive', allData?.[4]?.ef);
+      // formik.setFieldValue('impressionsTwo', allData?.[4]?.impressionsTwo);
+      // formik.setFieldValue('emissionFive', allData?.[4]?.emission);
 
-      formik.setFieldValue("colouredBrochurePage", allData[3]?.colouredBrochurePage);
-      formik.setFieldValue("emissionSix", allData[3]?.emission);
-      formik.setFieldValue("a4Size75Gsm", allData[4]?.a4Size75Gsm);
-      formik.setFieldValue("emissionSeven", allData[4]?.emission);
+      formik.setFieldValue("colouredBrochurePage", allData?.[3]?.colouredBrochurePage);
+      formik.setFieldValue("emissionSix", allData?.[3]?.emission);
+      formik.setFieldValue("a4Size75Gsm", allData?.[4]?.a4Size75Gsm);
+      formik.setFieldValue("emissionSeven", allData?.[4]?.emission);
     }
   }, [value]);
 
@@ -691,7 +714,7 @@ const Comms = (props) => {
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
-                  Printing a Coloured Brochure
+                  Coloured Brochure
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
@@ -706,7 +729,7 @@ const Comms = (props) => {
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small'className='ps-2' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} />
+                  <TextField size='small' className='ps-2' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
@@ -714,7 +737,7 @@ const Comms = (props) => {
                 <Grid item xs={12} sm={12} md={12} m={0.5} />
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
-                  A4 Size (75GSM)
+                  Black & White
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
@@ -727,7 +750,7 @@ const Comms = (props) => {
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small'className='ps-2' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} />
+                  <TextField size='small' className='ps-2' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
@@ -737,7 +760,7 @@ const Comms = (props) => {
                 <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                   <Stack direction={'row'} spacing={2}>
                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
-                    <Button
+                    {/* <Button
                       variant="contained"
                       startIcon={<FaAngleDoubleLeft />}
                       onClick={() => {
@@ -747,12 +770,13 @@ const Comms = (props) => {
                       className="custom-btn"
                     >
                       Save and Previous Page
-                    </Button>
+                    </Button> */}
                     <Button
                       variant="contained"
                       endIcon={<FaAngleDoubleRight />}
                       onClick={() => {
-                        formik.handleSubmit();
+                        // formik.handleSubmit();
+                        handleSaveToDb();
                         setValue(value + 1);
                       }}
                       className="custom-btn"
@@ -763,11 +787,15 @@ const Comms = (props) => {
                     <Button
                       variant="contained"
                       endIcon={<FaAngleDoubleRight />}
-                      onClick={() => setValue(3)}
+                      onClick={() => {
+                        handleSaveToDb();
+                        setValue(3)
+                      }}
                       className="custom-btn"
                     >
                       Go To Result
                     </Button>
+                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                     <Button
                       variant="outlined"
                       onClick={() => {

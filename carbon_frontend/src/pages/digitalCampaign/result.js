@@ -18,19 +18,31 @@ const Result = ({ value }) => {
     const allDigitalCampaignData = useSelector((state) => state?.totalDigitalCampaignDetails);
 
     const total = Number(allDigitalCampaignData?.totalEmission);
-    const toolData = useSelector(state => state.toolDetails?.data);
-    const toolFormData = toolData?.find((item) => item.type === 'toolForm');
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+    const toolData = useSelector(state => state?.toolDetails?.data);
+    const toolFormData = toolData?.find((item) => item?.type === 'toolForm');
+    const resultTableData = useSelector(state => state?.resultTableDataDetails);
 
     const [sc1, setSc1] = useState(0);
     const [sc2, setSc2] = useState(0);
     const [sc3, setSc3] = useState(0);
 
     const resultData = [
+        // {
+        //     type: 'Digital Campaign',
+        //     totalEmission: allDigitalCampaignData?.totalEmission
+        // }
         {
-            type: 'Digital Campaign',
-            totalEmission: allDigitalCampaignData?.totalEmission
-        }
+            type: 'Social Media (Image + Video)',
+            totalEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0
+        },
+        {
+            type: 'Email / Newsletter',
+            totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0
+        },
+        {
+            type: 'Podcast',
+            totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0
+        },
     ];
 
     const data = {
@@ -80,19 +92,20 @@ const Result = ({ value }) => {
     const sentenceParts = [];
     const liveBroadcastParts = [];
     // const wantInResult = 'Please note that the results are sensitive to the choice of viewing device, type of network connection and resolution. \n What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
-    // const wantInResult = 'What are the top three ways to cut this by over 50%? Show the calculation for comparing the original and reduced carbon footprints. While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
-    const wantInResult = ' How can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, and what tools can be used to compress image & video.';
+    const wantInResult = '\n What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
 
     const imgSize = allDigitalCampaignData?.data?.[0]?.data?.[0]?.imgSize || 0;
-    const imageEmission = allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission || 0;
     const videoSize = allDigitalCampaignData?.data?.[0]?.data?.[1]?.videoSize || 0;
-    const videoEmission = allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission || 0;
     const videoMins = allDigitalCampaignData?.data?.[0]?.data?.[1]?.videoMins || 0;
-    const noOfMinsOne = allDigitalCampaignData?.data?.[0]?.data?.[1]?.noOfMins || 0;
+    const noOfMinsOne = allDigitalCampaignData?.data?.[0]?.data?.[2]?.noOfMins || 0;
     const emailEmission = allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0;
+    const imageEmission = allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission || 0;
+    const videoEmission = allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission || 0;
+    const podcastEmission = allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0;
+    const podcastNoOfListeners = allDigitalCampaignData?.data?.[0]?.data?.[3]?.noOfListeners || 0;
+    const podcastSize = allDigitalCampaignData?.data?.[0]?.data?.[3]?.podcastSize || 0;
 
     const contentData = resultData.map(item => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
-    // const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
     const totalCarbonFootprint = `${Number(total).toFixed(2)} kgCO2e`;
     const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
     const carbonPerDollar = `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`;
@@ -109,6 +122,9 @@ const Result = ({ value }) => {
         }
         if (emailEmission) {
             sentenceParts.push(`and email campaigns generating ${emailEmission} kgCO2e.`);
+        }
+        if (podcastEmission) {
+            sentenceParts.push(`and podcast of ${podcastSize}mb with ${podcastNoOfListeners} listeners generated ${podcastEmission} kgCO2e.`);
         }
 
         // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
@@ -134,7 +150,7 @@ const Result = ({ value }) => {
 
         let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From Digital Campaign: </h3> `;
 
-        formattedSuggestions.split('\n').forEach((line, index) => {
+        formattedSuggestions?.split('\n')?.forEach((line, index) => {
             pdfData += `${line}<br />`;
         });
         setSuggestionForPdf(pdfData);
@@ -161,12 +177,12 @@ const Result = ({ value }) => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${constant.chatKeyOne.replace('skC-', '') + constant.chatKeyTwo.replace('dEf-', '')}`,
+                        Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')}`,
                     },
                 }
             );
 
-            const resJson = response.data;
+            const resJson = response?.data;
             const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
             setSuggestion(formattedSuggestions);
         } catch (error) {
@@ -176,44 +192,138 @@ const Result = ({ value }) => {
         }
     };
 
+    // useEffect(() => {
+    //     let sc1Count = 0;
+    //     let sc2Count = 0;
+    //     let sc3Count = 0;
+
+    //     // resultTableData?.data?.forEach(page => {
+    //     resultTableData?.data?.find((item) => item?.from === "digitalCampaign")?.allDataOfTab?.forEach(page => {
+    //         page?.tabData?.forEach(flightClass => {
+    //             const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+
+    //                 const rowData2 = rowData;
+    //                 const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize, noOfListeners } = rowData2;
+
+    //                 if (page?.tabTitle === "Digital Campaign") {
+    //                     return ((impressions1 && imgSize) || (impressions2 && videoMins) || (noOfEmails && attachmentSize) || (noOfListeners && podcastSize)) && emissions;
+    //                 }
+
+    //                 return false;
+    //             });
+
+    //             if (hasFilledRow) {
+    //                 if (flightClass?.scope === 1) {
+    //                     sc1Count += 1;
+    //                 } else if (flightClass?.scope === 2) {
+    //                     sc2Count += 1;
+    //                 } else if (flightClass?.scope === 3) {
+    //                     sc3Count += 1;
+    //                 }
+    //             }
+    //         });
+    //     });
+
+    //     setSc1(sc1Count);
+    //     setSc2(sc2Count);
+    //     setSc3(sc3Count);
+
+    //     generatePrompt();
+
+    // }, [resultTableData, value, allDigitalCampaignData]);
+
+    // useEffect(() => {
+    //     let sc1Count = 0;
+    //     let sc2Count = 0;
+    //     let sc3Count = 0;
+
+    //     // resultTableData?.data?.forEach(page => {
+    //     resultTableData?.data?.find((item) => item?.from === "digitalCampaign")?.allDataOfTab?.forEach(page => {
+    //         page?.tabData?.forEach(flightClass => {
+    //             const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
+
+    //                 const rowData2 = rowData;
+    //                 const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize, noOfListeners } = rowData2;
+
+    //                 if (page?.tabTitle === "Digital Campaign") {
+    //                     return ((impressions1 && imgSize) || (impressions2 && videoMins) || (noOfEmails && attachmentSize) || (noOfListeners && podcastSize)) && emissions;
+    //                 }
+
+    //                 return false;
+    //             });
+
+    //             if (hasFilledRow) {
+    //                 if (flightClass?.scope === 1) {
+    //                     sc1Count += Number(flightClass?.subTypeData?.td?.[0]?.emissions);
+    //                 } else if (flightClass?.scope === 2) {
+    //                     sc2Count += Number(flightClass?.subTypeData?.td?.[0]?.emissions);
+    //                 } else if (flightClass?.scope === 3) {
+    //                     sc3Count += Number(flightClass?.subTypeData?.td?.[0]?.emissions);
+    //                 }
+    //             }
+    //         });
+    //     });
+
+    //     setSc1(sc1Count);
+    //     setSc2(sc2Count);
+    //     setSc3(sc3Count);
+
+    //     generatePrompt();
+
+    // }, [resultTableData, value, allDigitalCampaignData]);
+
     useEffect(() => {
+        const dataForScope = [
+            // Digital Campaign
+            {
+                tabTitle: "Digital Campaign",
+                key: "Image",
+                scope: 3,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0,
+            },
+            {
+                tabTitle: "Digital Campaign",
+                key: "Video",
+                scope: 3,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0,
+            },
+            {
+                tabTitle: "Digital Campaign",
+                key: "Email",
+                scope: 1,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission) || 0,
+            },
+            {
+                tabTitle: "Digital Campaign",
+                key: "Podcast",
+                scope: 3,
+                emission: Number(allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission) || 0,
+            },
+        ];
+
         let sc1Count = 0;
         let sc2Count = 0;
         let sc3Count = 0;
 
-        resultTableData?.data?.forEach(page => {
-            page?.tabData?.forEach(flightClass => {
-                const hasFilledRow = flightClass?.subTypeData?.td?.some(rowData => {
-
-                    const rowData2 = rowData;
-                    const { impressions1, imgSize, impressions2, emissions, videoMins, videoSize, noOfEmails, attachmentSize } = rowData2;
-
-                    if (page?.tabTitle === "Digital Campaign") {
-                        return ((impressions1 && imgSize) || (impressions2 && videoMins && videoSize) || (noOfEmails && attachmentSize)) && emissions;
-                    }
-
-                    return false;
-                });
-
-                if (hasFilledRow) {
-                    if (flightClass?.scope === 1) {
-                        sc1Count += 1;
-                    } else if (flightClass?.scope === 2) {
-                        sc2Count += 1;
-                    } else if (flightClass?.scope === 3) {
-                        sc3Count += 1;
-                    }
+        dataForScope?.forEach((item) => {
+            if (Number(item?.emission) > 0) {
+                if (item?.scope === 1) {
+                    sc1Count += Number(item?.emission);
+                } else if (item?.scope === 2) {
+                    sc2Count += Number(item?.emission);
+                } else if (item?.scope === 3) {
+                    sc3Count += Number(item?.emission);
                 }
-            });
+            }
         });
-
-        setSc1(sc1Count);
-        setSc2(sc2Count);
-        setSc3(sc3Count);
 
         generatePrompt();
 
-    }, [resultTableData, value, allDigitalCampaignData]);
+        setSc1(Number(Number(sc1Count).toFixed(2)));
+        setSc2(Number(Number(sc2Count).toFixed(2)));
+        setSc3(Number(Number(sc3Count).toFixed(2)));
+
+    }, [value]);
 
     useEffect(() => {
         if (content) {
@@ -227,8 +337,9 @@ const Result = ({ value }) => {
 
             <Container maxWidth>
                 <Card className='custom-inner-bg'>
+                    {/* {resultTableData?.data?.filter((item) => item.tabTitle === "Digital Campaign")?.map((page, pageIndex) => ( */}
                     {/* <Box style={{ width: "100%", color: 'white' }}>
-                        {resultTableData?.data?.filter((item) => item.tabTitle === "Digital Campaign")?.map((page, pageIndex) => (
+                        {resultTableData?.data?.find((item) => item?.from === "digitalCampaign")?.allDataOfTab?.map((page, pageIndex) => (
                             <Box key={pageIndex} style={{ margin: "20px" }}>
                                 {page?.tabData.some(flightClass =>
                                     flightClass?.subTypeData?.td?.some(rowData =>
@@ -335,15 +446,13 @@ const Result = ({ value }) => {
                                     <div>
                                         {suggestion}
                                     </div>}
-
                             </AccordionDetails>
                         </Accordion>
                     </Box>
-
                 </Card>
             </Container>
         </div>
     )
-}
+};
 
 export default Result;

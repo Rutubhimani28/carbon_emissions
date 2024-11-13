@@ -86,6 +86,9 @@ export default function Header({ onOpenNav }) {
               <ListItemButton onClick={() => navigate('/dashboard/home')} className='text-dark text-capitalize'>
                 <ListItemText primary={'Home'} />
               </ListItemButton>
+              <ListItemButton onClick={() => navigate('/dashboard/retrieve-events')} className='text-dark text-capitalize'>
+                <ListItemText primary={'Retrieve Data'} />
+              </ListItemButton>
               {userdata?.role === 'admin' && <ListItemButton onClick={() => navigate('/dashboard/user')} className='text-dark text-capitalize'>
                 <ListItemText primary={'User'} />
               </ListItemButton>
