@@ -16,7 +16,6 @@ const Waste = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalWasteDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalWasteDetails?.totalEmission);
-    // const scope = useSelector((state) => state?.totalWasteDetails?.scope);
     const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
@@ -254,7 +253,7 @@ const Waste = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Plastic Waste",
@@ -283,7 +282,7 @@ const Waste = (props) => {
                             // },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Event Waste",
@@ -312,7 +311,7 @@ const Waste = (props) => {
                             // },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 

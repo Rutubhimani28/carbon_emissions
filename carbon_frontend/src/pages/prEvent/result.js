@@ -80,7 +80,7 @@ const Result = ({ value }) => {
         dispatch(deletePrAgencyData())
         dispatch(deleteHospitalityData())
         dispatch(deleteprEventEmissionCatogorywise())
-    }
+    };
 
     const chartOptions = {
         labels: ['Scope.1', 'Scope.2', 'Scope.3'],
@@ -495,7 +495,6 @@ const Result = ({ value }) => {
         let sc3Count = 0;
 
         dataForScope?.forEach((item) => {
-            console.log("=== item.emission ", item.emission)
             if (Number(item?.emission) > 0) {
                 if (item?.scope === 1) {
                     sc1Count += Number(item?.emission);

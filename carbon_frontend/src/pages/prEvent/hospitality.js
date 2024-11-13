@@ -176,7 +176,7 @@ const Hospitality = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -210,7 +210,7 @@ const Hospitality = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -234,7 +234,7 @@ const Hospitality = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 }
             ];
 

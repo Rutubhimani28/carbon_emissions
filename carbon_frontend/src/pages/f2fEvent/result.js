@@ -43,22 +43,6 @@ const Result = ({ value }) => {
     const [sc2, setSc2] = useState(0);
     const [sc3, setSc3] = useState(0);
 
-    // const scope1Count = 0;
-    // const scope2Count = 0;
-    // const scope3Count = 0;
-
-    // const allFieldsData = [allDigitalContentData, allFreightData, allEnergyData, allFoodData, allWasteData, allProductionData, allLocalTranspotationData, allAirTravelData, allHotelData];
-
-    // // allFieldsData?.forEach((item) => {
-    // //     if (item.scope === 1 || item.scope1 === 1 || item.scope2 === 1 || item.scope3 === 1) {
-    // //         scope1Count += 1;
-    // //     } else if (item.scope === 2 || item.scope1 === 2 || item.scope2 === 2 || item.scope2 === 2) {
-    // //         scope2Count += 1;
-    // //     } else {
-    // //         scope3Count += 1;
-    // //     }
-    // // });
-
     const total = Number(allProductionData?.totalEmission) + Number(allFreightData?.totalEmission) + Number(allFoodData?.totalEmission) + Number(allEnergyData?.totalEmission) + Number(allAirTravelData?.totalEmission) + Number(allDigitalContentData?.totalEmission) + Number(allLocalTranspotationData?.totalEmission) + Number(allHotelData?.totalEmission) + Number(allWasteData?.totalEmission)
 
     const chartData = [
@@ -195,7 +179,6 @@ const Result = ({ value }) => {
         }]
     };
 
-    // const chartSeries = [scope1Count, scope2Count, scope3Count];
     const chartSeries = [sc1, sc2, sc3];
 
     // const generatePrompt = async () => {

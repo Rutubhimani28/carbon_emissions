@@ -511,7 +511,7 @@ const Production = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Production Material",
@@ -555,7 +555,7 @@ const Production = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Branding",
@@ -586,7 +586,7 @@ const Production = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Branding",
@@ -623,7 +623,7 @@ const Production = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Stage Screen",
@@ -644,7 +644,7 @@ const Production = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Stage Lighting & AV",
@@ -658,7 +658,7 @@ const Production = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 

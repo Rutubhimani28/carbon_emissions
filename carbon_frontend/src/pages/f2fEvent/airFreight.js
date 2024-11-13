@@ -28,7 +28,6 @@ const AirFreight = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalAirFreightDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalAirFreightDetails?.totalEmission);
-    // const scope = useSelector((state) => state?.totalAirFreightDetails?.scope);
     const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
@@ -206,7 +205,7 @@ const AirFreight = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 }
             ];
 
@@ -235,7 +234,7 @@ const AirFreight = (props) => {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
             if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
                 console.error('Failed to save data:', resultAction?.payload);
-            } 
+            }
         }
     };
 

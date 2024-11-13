@@ -16,9 +16,6 @@ const LocalTranspotation = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalLocalTranspotationDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalLocalTranspotationDetails?.totalEmission);
-    // const scope1 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope1);
-    // const scope2 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope2);
-    // const scope3 = useSelector((state) => state?.totalLocalTranspotationDetails?.scope3);
     const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const toolData = useSelector(state => state?.toolDetails?.data);
     const toolFormData = toolData?.find((item) => item?.type === "toolForm");
@@ -157,7 +154,7 @@ const LocalTranspotation = (props) => {
                             },
                         ]
                     },
-                    scope: 1
+                    // scope: 1
                 },
                 {
                     subType: "Taxi",
@@ -181,7 +178,7 @@ const LocalTranspotation = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Public Transport",
@@ -205,7 +202,7 @@ const LocalTranspotation = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 
@@ -268,7 +265,7 @@ const LocalTranspotation = (props) => {
             const resultAction = await dispatch(addResultTableDatasToDb(eventData));
             if (addResultTableDatasToDb?.rejected?.match(resultAction)) {
                 console.error('Failed to save data:', resultAction?.payload);
-            } 
+            }
         }
     };
 
@@ -461,7 +458,7 @@ const LocalTranspotation = (props) => {
                                 <Stack columnGap={2} rowGap={2} className='flex-xl-row flex-md-row flex-sm-column'>
                                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                                     <Button variant='contained' startIcon={<FaAngleDoubleLeft />} onClick={() => { handleSaveToDb(); setValue(value - 1); }} className='custom-btn'>Save and Previous Page</Button>
-                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
+                                    <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(value + 1); }} className='custom-btn'> Save and Next Page</Button>
                                     {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                     <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { handleSaveToDb(); setValue(9); }} className='custom-btn'>Go To Result</Button>
                                     <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete() }} color='error'>Clear</Button>

@@ -16,7 +16,6 @@ const Food = (props) => {
     const theme = useTheme();
     const allData = useSelector((state) => state?.totalFoodDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalFoodDetails?.totalEmission);
-    // const scope = useSelector((state) => state?.totalFoodDetails?.scope);
     const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
@@ -232,7 +231,7 @@ const Food = (props) => {
                             // }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Food",
@@ -245,7 +244,7 @@ const Food = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Beverages",
@@ -304,7 +303,7 @@ const Food = (props) => {
                             // },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Beverages",
@@ -317,7 +316,7 @@ const Food = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 

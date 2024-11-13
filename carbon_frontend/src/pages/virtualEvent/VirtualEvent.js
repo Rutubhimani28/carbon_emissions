@@ -398,7 +398,7 @@ const VirtualEvent = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -413,7 +413,7 @@ const VirtualEvent = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -432,7 +432,7 @@ const VirtualEvent = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -448,7 +448,7 @@ const VirtualEvent = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -463,7 +463,7 @@ const VirtualEvent = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -477,7 +477,7 @@ const VirtualEvent = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 // {
                 //     subType: "Event Promotion on Social Media",
@@ -585,7 +585,7 @@ const VirtualEvent = (props) => {
                             },
                         ]
                     },
-                    scope: 2
+                    // scope: 2
                 }
             ];
 

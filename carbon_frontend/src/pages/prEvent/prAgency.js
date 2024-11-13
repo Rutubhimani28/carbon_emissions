@@ -208,7 +208,7 @@ const PrAgency = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Projector",
@@ -223,7 +223,7 @@ const PrAgency = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Branding",
@@ -270,7 +270,7 @@ const PrAgency = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "PR Assets",
@@ -289,7 +289,7 @@ const PrAgency = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Transportation",
@@ -318,7 +318,7 @@ const PrAgency = (props) => {
                             // },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Energy",
@@ -332,7 +332,7 @@ const PrAgency = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 

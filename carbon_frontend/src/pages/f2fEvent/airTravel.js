@@ -144,7 +144,7 @@ const AirTravel = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Business Class",
@@ -168,7 +168,7 @@ const AirTravel = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "First Class",
@@ -192,7 +192,7 @@ const AirTravel = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 

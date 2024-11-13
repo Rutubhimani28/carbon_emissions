@@ -188,7 +188,7 @@ const Comms = (props) => {
               },
             ],
           },
-          scope: 1,
+          // scope: 1,
         },
         {
           subType: '',
@@ -211,7 +211,7 @@ const Comms = (props) => {
                 emissions: emissionThree > 0 ? emissionThree : '',
               },
             ],
-            scope: 1,
+            // scope: 1,
           },
         },
         // {
@@ -262,7 +262,7 @@ const Comms = (props) => {
               },
             ]
           },
-          scope: 2
+          // scope: 2
         },
       ];
 

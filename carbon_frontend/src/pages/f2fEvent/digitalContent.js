@@ -18,7 +18,6 @@ const DigitalContent = (props) => {
 
     const allData = useSelector((state) => state?.totalDigitalContentDetails?.data?.[0]?.data)
     const totalEmission = useSelector((state) => state?.totalDigitalContentDetails?.totalEmission)
-    // const scope = useSelector((state) => state?.totalDigitalContentDetails?.scope);
     const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
 
@@ -117,7 +116,7 @@ const DigitalContent = (props) => {
                             },
                         ]
                     },
-                    scope: 1
+                    // scope: 1
                 },
                 {
                     subType: "",
@@ -132,7 +131,7 @@ const DigitalContent = (props) => {
                             },
                         ]
                     },
-                    scope: 1
+                    // scope: 1
                 },
             ];
 

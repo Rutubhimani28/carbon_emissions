@@ -43,8 +43,8 @@ const resultTableDataSlice = createSlice({
     reducers: {
         addResultTableData: (state, action) => {
             const { tabTitle, data, from } = action.payload;
+            const fromIndex = state?.data?.findIndex(item => item?.from === from);       // event-category: fr2Event
 
-            const fromIndex = state?.data?.findIndex(item => item?.from === from);
             if (fromIndex === -1) {
                 state.data.push({
                     from,
@@ -63,16 +63,19 @@ const resultTableDataSlice = createSlice({
                 // Find the index of the tabData with the matching 'tabTitle'
                 const tabIndex = existingData?.allDataOfTab?.findIndex(item => item?.tabTitle === tabTitle);
 
+                // fromIndex - event-category Like, fr2Event -> has from, allDataOfTab
+                // tabIndex - sub tab Like, Air Travel, Local Transportation
+
                 if (tabIndex !== -1) {
                     state.data[fromIndex].allDataOfTab[tabIndex] = {
                         tabTitle,
                         tabData: data
                     };
                 } else {
-                    existingData?.allDataOfTab?.push({
-                        tabTitle,
-                        tabData: data
-                    });
+                    // existingData?.allDataOfTab?.push({
+                    //     tabTitle,
+                    //     tabData: data
+                    // });   // existingData and state.data[fromIndex] refer to the same object in memory. it will push twice if uncomment
                     state.data?.[fromIndex]?.allDataOfTab?.push({
                         tabTitle,
                         tabData: data
@@ -103,9 +106,12 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Economy Class", scope: 3 },
-                                        { subType: "Business Class", scope: 3 },
-                                        { subType: "First Class", scope: 3 }
+                                        // { subType: "Economy Class", scope: 3 },
+                                        // { subType: "Business Class", scope: 3 },
+                                        // { subType: "First Class", scope: 3 }
+                                        { subType: "Economy Class" },
+                                        { subType: "Business Class" },
+                                        { subType: "First Class" }
                                     ]
                                 };
                             }
@@ -130,9 +136,12 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Company Car", scope: 1 },
-                                        { subType: "Taxi", scope: 3 },
-                                        { subType: "Public Transport", scope: 3 }
+                                        // { subType: "Company Car", scope: 1 },
+                                        // { subType: "Taxi", scope: 3 },
+                                        // { subType: "Public Transport", scope: 3 }
+                                        { subType: "Company Car" },
+                                        { subType: "Taxi" },
+                                        { subType: "Public Transport" }
                                     ]
                                 };
                             }
@@ -157,10 +166,14 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Food", scope: 3 },
-                                        { subType: "Beverages", scope: 3 },
-                                        { subType: "Food", scope: 3 },
-                                        { subType: "Beverages", scope: 3 },
+                                        // { subType: "Food", scope: 3 },
+                                        // { subType: "Beverages", scope: 3 },
+                                        // { subType: "Food", scope: 3 },
+                                        // { subType: "Beverages", scope: 3 },
+                                        { subType: "Food" },
+                                        { subType: "Beverages" },
+                                        { subType: "Food" },
+                                        { subType: "Beverages" },
                                     ]
                                 };
                             }
@@ -185,7 +198,8 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Mode of Freight", scope: 3 },
+                                        // { subType: "Mode of Freight", scope: 3 },
+                                        { subType: "Mode of Freight" },
                                     ]
                                 };
                             }
@@ -210,12 +224,18 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Production Material", scope: 3 },
-                                        { subType: "Production Material", scope: 3 },
-                                        { subType: "Branding", scope: 3 },
-                                        { subType: "Branding", scope: 3 },
-                                        { subType: "Stage Screen", scope: 3 },
-                                        { subType: "Stage Lighting & AV", scope: 3 },
+                                        // { subType: "Production Material", scope: 3 },
+                                        // { subType: "Production Material", scope: 3 },
+                                        // { subType: "Branding", scope: 3 },
+                                        // { subType: "Branding", scope: 3 },
+                                        // { subType: "Stage Screen", scope: 3 },
+                                        // { subType: "Stage Lighting & AV", scope: 3 },
+                                        { subType: "Production Material" },
+                                        { subType: "Production Material" },
+                                        { subType: "Branding" },
+                                        { subType: "Branding" },
+                                        { subType: "Stage Screen" },
+                                        { subType: "Stage Lighting & AV" },
                                     ]
                                 };
                             }
@@ -240,8 +260,10 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "", scope: 3 },
-                                        { subType: "", scope: 2 },
+                                        // { subType: "", scope: 3 },
+                                        // { subType: "", scope: 2 },
+                                        { subType: "" },
+                                        { subType: "" },
                                     ]
                                 };
                             }
@@ -266,8 +288,10 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "", scope: 3 },
-                                        { subType: "", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        { subType: "" },
+                                        { subType: "" },
                                     ]
                                 };
                             }
@@ -292,9 +316,12 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Food Waste", scope: 3 },
-                                        { subType: "Plastic Waste", scope: 3 },
-                                        { subType: "Event Waste", scope: 3 },
+                                        // { subType: "Food Waste", scope: 3 },
+                                        // { subType: "Plastic Waste", scope: 3 },
+                                        // { subType: "Event Waste", scope: 3 },
+                                        { subType: "Food Waste" },
+                                        { subType: "Plastic Waste" },
+                                        { subType: "Event Waste" },
                                     ]
                                 };
                             }
@@ -319,9 +346,12 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "", scope: 3 },
-                                        { subType: "", scope: 3 },
-                                        { subType: "", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        { subType: "" },
+                                        { subType: "" },
+                                        { subType: "" },
                                     ]
                                 };
                             }
@@ -346,10 +376,14 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Social Media", scope: 3 },
-                                        { subType: "", scope: 3 },
-                                        { subType: "Email / Newsletter", scope: 1 },
-                                        { subType: "Podcast", scope: 3 },
+                                        // { subType: "Social Media", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        // { subType: "Email / Newsletter", scope: 1 },
+                                        // { subType: "Podcast", scope: 3 },
+                                        { subType: "Social Media" },
+                                        { subType: "" },
+                                        { subType: "Email / Newsletter" },
+                                        { subType: "Podcast" },
                                     ]
                                 };
                             }
@@ -373,15 +407,24 @@ const resultTableDataSlice = createSlice({
                         // tabTitle: "Virtual Event",
                         tabTitle: "Outbound Marketing",
                         tabData: [
-                            { subType: "", scope: 3 },
-                            { subType: "", scope: 3 },
-                            { subType: "", scope: 3 },
-                            { subType: "", scope: 3 },
-                            { subType: "", scope: 3 },
-                            { subType: "", scope: 3 },
-                            // { subType: "Event Promotion on Social Media", scope: 3 },
-                            { subType: "", scope: 3 },
-                            // { subType: "Live Broadcasting", scope: 1 },
+                            // { subType: "", scope: 3 },
+                            // { subType: "", scope: 3 },
+                            // { subType: "", scope: 3 },
+                            // { subType: "", scope: 3 },
+                            // { subType: "", scope: 3 },
+                            // { subType: "", scope: 3 },
+                            // // { subType: "Event Promotion on Social Media", scope: 3 },
+                            // { subType: "", scope: 3 },
+                            // // { subType: "Live Broadcasting", scope: 1 },
+                            { subType: "" },
+                            { subType: "" },
+                            { subType: "" },
+                            { subType: "" },
+                            { subType: "" },
+                            { subType: "" },
+                            // { subType: "Event Promotion on Social Media" },
+                            { subType: "" },
+                            // { subType: "Live Broadcasting" },
                         ]
                     };
                 }
@@ -402,10 +445,14 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Email Invitations", scope: 1 },
-                                        { subType: "", scope: 1 },
-                                        // { subType: "Social Media", scope: 3 },
-                                        { subType: "PR Assets", scope: 2 },
+                                        // { subType: "Email Invitations", scope: 1 },
+                                        // { subType: "", scope: 1 },
+                                        // // { subType: "Social Media", scope: 3 },
+                                        // { subType: "PR Assets", scope: 2 },
+                                        { subType: "Email Invitations" },
+                                        { subType: "" },
+                                        // { subType: "Social Media" },
+                                        { subType: "PR Assets" },
                                     ]
                                 };
                             }
@@ -430,9 +477,12 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "", scope: 3 },
-                                        { subType: "", scope: 3 },
-                                        { subType: "", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        // { subType: "", scope: 3 },
+                                        { subType: "" },
+                                        { subType: "" },
+                                        { subType: "" },
                                     ]
                                 };
                             }
@@ -457,12 +507,18 @@ const resultTableDataSlice = createSlice({
                                 return {
                                     ...tab,
                                     tabData: [
-                                        { subType: "Meeting / Ball Room", scope: 3 },
-                                        { subType: "Projector", scope: 3 },
-                                        { subType: "Branding", scope: 3 },
-                                        { subType: "PR Assets", scope: 3 },
-                                        { subType: "Transportation", scope: 3 },
-                                        { subType: "Energy", scope: 3 },
+                                        // { subType: "Meeting / Ball Room", scope: 3 },
+                                        // { subType: "Projector", scope: 3 },
+                                        // { subType: "Branding", scope: 3 },
+                                        // { subType: "PR Assets", scope: 3 },
+                                        // { subType: "Transportation", scope: 3 },
+                                        // { subType: "Energy", scope: 3 },
+                                        { subType: "Meeting / Ball Room" },
+                                        { subType: "Projector" },
+                                        { subType: "Branding" },
+                                        { subType: "PR Assets" },
+                                        { subType: "Transportation" },
+                                        { subType: "Energy" },
                                     ]
                                 };
                             }

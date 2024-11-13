@@ -84,7 +84,7 @@ const EnergyUpdated = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -103,7 +103,7 @@ const EnergyUpdated = (props) => {
                             },
                         ]
                     },
-                    scope: 2
+                    // scope: 2
                 },
             ];
 

@@ -5,7 +5,6 @@ const totalHospitalitySlice = createSlice({
     initialState: {
         data: [],
         totalEmission: 0,
-        // scope: 3,
     },
     reducers: {
         addHospitalityData: (state, action) => {
@@ -24,16 +23,10 @@ const totalHospitalitySlice = createSlice({
             ...state,
             data: [],
             totalEmission: 0,
-            // scope: 3
         }),
-        // scopeChange: (state, action) => ({
-        //     ...state,
-        //     scope: action.payload.scope
-        // }),
         setHospitalityAllData: (state, action) => {
             state.data = action?.payload?.data; 
             state.totalEmission = action?.payload?.totalEmission; 
-            // state.scope = action.payload.scope; 
         },
     },
 });

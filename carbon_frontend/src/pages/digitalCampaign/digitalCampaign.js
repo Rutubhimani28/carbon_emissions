@@ -120,7 +120,7 @@ const DigitalCampaign = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -135,7 +135,7 @@ const DigitalCampaign = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "Email / Newsletter",
@@ -151,7 +151,7 @@ const DigitalCampaign = (props) => {
                             },
                         ]
                     },
-                    scope: 1
+                    // scope: 1
                 },
                 {
                     subType: "Podcast",
@@ -166,7 +166,7 @@ const DigitalCampaign = (props) => {
                             }
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 

@@ -19,7 +19,6 @@ const Hotel = (props) => {
     const dispatch = useDispatch();
     const allData = useSelector((state) => state?.totalHotelDetails?.data?.[0]?.data);
     const totalEmission = useSelector((state) => state?.totalHotelDetails?.totalEmission);
-    // const scope = useSelector((state) => state?.totalHotelDetails?.scope);
     const geographyOptions = HotelData?.map((item) => ({ value: item?.geography, label: item?.geography }))
     const resultTableData = useSelector(state => state?.resultTableDataDetails);
     const eventsData = useEventData();
@@ -166,7 +165,7 @@ const Hotel = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -181,7 +180,7 @@ const Hotel = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
                 {
                     subType: "",
@@ -195,7 +194,7 @@ const Hotel = (props) => {
                             },
                         ]
                     },
-                    scope: 3
+                    // scope: 3
                 },
             ];
 
