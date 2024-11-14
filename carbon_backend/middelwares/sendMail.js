@@ -381,10 +381,10 @@ export default async function sendMail({
                 ]);
 
                 const attachmentPdfFilePath = path.join(__dirname, attachmentPdfName ? `${attachmentPdfName}.pdf` : 'carbon_footprint.pdf');
-                // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
 
                 await createPDF(attachmentTemplate, attachmentPdfFilePath);
-                // await createPDF(chatSuggestion, chatPdfFilePath);
+                await createPDF(chatSuggestion, chatPdfFilePath);
 
                 mailOptions = {
                     from: process.env.GMAIL_FROM,
