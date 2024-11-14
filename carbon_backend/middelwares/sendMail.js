@@ -10,12 +10,16 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Read the image file and convert it to Base64
+const logoPath = path.join(__dirname, 'email_templates', 'logo.png');
+const logoBase64 = fs.readFileSync(logoPath, 'base64');
+
 // Define PDF options
 const pdfOptions = {
     format: 'A4',
     printBackground: true,
     margin: {
-        top: '1cm',
+        top: '2cm',
         right: '1cm',
         bottom: '1cm',
         left: '1cm'
@@ -38,46 +42,31 @@ const createPDF = async (htmlContent, outputPath) => {
 
     const page = await browser.newPage();
     await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+
+    // Define the header template with the logo in the top-right corner
+    const headerTemplate = `
+        <div style="width: 100%; text-align: right; padding-right: 20px;">
+            <img src="data:image/png;base64,${logoBase64}" style="width: 150px; height: auto; max-height: 50px;" alt="Logo"/>
+        </div>
+    `;
+
+    const footerTemplate = `
+        <div style="font-size: 10px; text-align: center; width: 100%;">
+            <span class="pageNumber"></span> / <span class="totalPages"></span>
+        </div>
+    `;
+
     await page.pdf({
         path: outputPath,
-        ...pdfOptions
+        ...pdfOptions,
+        displayHeaderFooter: true, // Enable header and footer
+        headerTemplate: headerTemplate, // Add custom header
+        footerTemplate
     });
 
     await browser.close();
     return outputPath;
 };
-
-// // Sample data from allEventsEmissions
-// const allEventsEmissions = [
-//     {
-//         f2fEventTotalEmission: "4382.00",
-//         virtualEventTotalEmission: "25.00",
-//         prEventTotalEmission: "2405.47",
-//         digitalCampaignTotalEmission: "12434.03",
-//         activity: "A1 - 2024-09-30T00:00:00.000Z",
-//     },
-//     {
-//         f2fEventTotalEmission: "29140.31",
-//         virtualEventTotalEmission: "234.00",
-//         prEventTotalEmission: "400.00",
-//         digitalCampaignTotalEmission: "5000.00",
-//         activity: "A2 - 2024-10-02T00:00:00.000Z",
-//     },
-//     {
-//         f2fEventTotalEmission: "4382.00",
-//         virtualEventTotalEmission: "25.00",
-//         prEventTotalEmission: "20405.47",
-//         digitalCampaignTotalEmission: "12434.03",
-//         activity: "A3 - 2024-09-30T00:00:00.000Z",
-//     },
-//     {
-//         f2fEventTotalEmission: "29140.31",
-//         virtualEventTotalEmission: "234.00",
-//         prEventTotalEmission: "400.00",
-//         digitalCampaignTotalEmission: "5000.00",
-//         activity: "A4 - 2024-10-02T00:00:00.000Z",
-//     },
-// ];
 
 export default async function sendMail({
     receiver,
