@@ -56,10 +56,20 @@ const Index = () => {
 
                 <Card sx={{ display: 'flex', marginBottom: 4, flexWrap: 'wrap', width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px' }}>
                     <Grid container spacing={0}>
-                        <Grid item xs={12} md={8} className={'order-1'}>
-                            <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%' }}>
-                                <CardContent sx={{ flex: '1 0 auto', flexWrap: 'wrap', wordBreak: 'break-word' }}>
-                                    <Link className='text-decoration-none' to='/news-room/blog5'>
+                        <Grid item md={4} xs={12}
+                            className={useMediaQuery(theme.breakpoints.up('md')) ? "order-1" : ''}>
+                            <CardMedia
+                                component="img"
+                                image={Room5}
+                                className='img-thumbnail'
+                                alt="Blog5"
+                                sx={{ height: '100%', objectFit: 'cover' }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={8} className={useMediaQuery(theme.breakpoints.up('md')) ? "" : 'order-1'}>
+                            <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%', flexWrap: 'wrap' }}>
+                                <CardContent sx={{ flex: '1 0 auto', wordBreak: 'break-word' }}>
+                                    <Link className='text-decoration-none' to='/news-room/blog1'>
                                         <Typography component="div" variant="h5">
                                             Leading the NetZero charge: How sustainable marketing can transform the future of business
                                         </Typography>
@@ -69,15 +79,6 @@ const Index = () => {
                                     </Typography>
                                 </CardContent>
                             </Box>
-                        </Grid>
-                        <Grid item md={4} xs={12} >
-                            <CardMedia
-                                component="img"
-                                image={Room5}
-                                className='img-thumbnail'
-                                alt="Blog5"
-                                sx={{ height: '100%', objectFit: 'cover' }}
-                            />
                         </Grid>
                     </Grid>
                 </Card>
