@@ -346,12 +346,12 @@ const Home = () => {
             setIsDisabledField(formPrevData?.actionChoice === "retrieve");
         }
         else {
-            formik.setFieldValue('name', '');
-            formik.setFieldValue('activityName', '');
-            formik.setFieldValue('country', '');
-            formik.setFieldValue('budget', '');
-            formik.setFieldValue('dateTime', '');
-            formik.setFieldValue('email', '');
+            // formik.setFieldValue('name', '');
+            // formik.setFieldValue('activityName', '');
+            // formik.setFieldValue('country', '');
+            // formik.setFieldValue('budget', '');
+            // formik.setFieldValue('dateTime', '');
+            // formik.setFieldValue('email', '');
             formik.setFieldValue('previousEvent', null);
             formik.setFieldValue('isDirtyData', false);
             formik.setFieldValue('isValidData', false);
