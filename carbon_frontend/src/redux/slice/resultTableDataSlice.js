@@ -585,7 +585,13 @@ const resultTableDataSlice = createSlice({
         setResultTableAllData: (state, action) => {
             state.data = action?.payload?.data;
             state.eventDataId = action?.payload?.eventDataId;
-        }
+        },
+        clearResultTableData: (state) => {
+            state.data = [];
+            state.prEventEmissionDataCategorywise = [];
+            state.eventDataId = '';
+            state.userAllEventsData = [];
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -633,5 +639,5 @@ const resultTableDataSlice = createSlice({
     },
 });
 
-export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData, deleteResTabCommsData, deleteResTabHospitalityData, deleteResTabPrAgencyData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission, deletePrAgencyCatogorywiseEmission, deleteHospitalityCatogorywiseEmission, deleteprEventEmissionCatogorywise, setResultTableAllData } = resultTableDataSlice.actions;
+export const { addResultTableData, deleteResultTableAllData, deleteResTabAirTravelData, deleteResTabLocalTransData, deleteResTabFBData, deleteResTabLogisticsData, deleteResTabProductionData, deleteResTabEnergyData, deleteResTableDigitalContData, deleteResTabWasteData, deleteResTabHotelData, deleteResTabDgCampaignData, deleteResTabVrtEventData, deleteResTabCommsData, deleteResTabHospitalityData, deleteResTabPrAgencyData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission, deletePrAgencyCatogorywiseEmission, deleteHospitalityCatogorywiseEmission, deleteprEventEmissionCatogorywise, setResultTableAllData, clearResultTableData } = resultTableDataSlice.actions;
 export default resultTableDataSlice.reducer;
