@@ -47,7 +47,10 @@ const Result = ({ value }) => {
 
     const data = {
         "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(2),
-        "grandTotal": Number(total).toFixed(2)
+        "grandTotal": Number(total).toFixed(2),
+        socialMediaEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0,
+        emailEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0,
+        podcastEmission: allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0
     };
 
     const handeleDelete = () => {
