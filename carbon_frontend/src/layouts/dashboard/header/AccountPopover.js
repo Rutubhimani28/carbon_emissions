@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
@@ -7,12 +8,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import Jwt from 'jwt-decode';
 import { toast } from 'react-toastify';
 import account from '../../../_mock/account';
+import { persistor } from '../../../redux/store';
+import { clearToolData } from '../../../redux/slice/toolSlice';
+import { clearResultTableData } from '../../../redux/slice/resultTableDataSlice';
+
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-
-  const user = JSON.parse(sessionStorage.getItem('user'))
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  const dispatch = useDispatch();
 
   const MENU_OPTIONS = [
     {
@@ -41,8 +46,11 @@ export default function AccountPopover() {
 
   const logout = () => {
     try {
+      dispatch(clearToolData());
+      dispatch(clearResultTableData());
       sessionStorage.clear();
       localStorage.clear();
+      persistor.purge();
       navigate('/login');
     } catch (error) {
       console.error("Error while navigating:", error);
