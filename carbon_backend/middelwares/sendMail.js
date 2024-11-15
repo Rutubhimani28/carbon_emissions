@@ -46,7 +46,7 @@ const createPDF = async (htmlContent, outputPath) => {
     // Define the header template with the logo in the top-right corner
     const headerTemplate = `
         <div style="width: 100%; text-align: right; padding-right: 20px;">
-            <img src="data:image/png;base64,${logoBase64}" style="width: 150px; height: auto; max-height: 50px;" alt="Logo"/>
+            <img src="data:image/png;base64,${logoBase64}" style="width: 100px; height: auto; max-height: 50px;" alt="Sirat-Logo"/>
         </div>
     `;
 
@@ -129,7 +129,7 @@ export default async function sendMail({
             tls: { rejectUnauthorized: false }
         });
 
-        if (message) {
+        if (message) {             // for bot, buy credits
             mailOptions = {
                 from: process.env.GMAIL_FROM,
                 to: process.env.GMAIL_FROM,
@@ -137,7 +137,7 @@ export default async function sendMail({
                 text: message,
             };
 
-            if (isHighPriority) {
+            if (isHighPriority) {   // for bot
                 mailOptions.priority = 'high';
                 mailOptions.headers = {
                     'X-Priority': '1 (Highest)',
@@ -148,7 +148,7 @@ export default async function sendMail({
         }
         else {
 
-            if (allEventsEmissions) {
+            if (allEventsEmissions) {    // for graph (Retrieve Data tab)
                 // // Puppeteer only renders static HTML content, and it won’t execute JavaScript for chart generation.
                 // const attachmentsArray = [];
                 // const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
@@ -215,8 +215,7 @@ export default async function sendMail({
                     attachments: attachmentsArray
                 };
             }
-            else if (attachmentTemplateNameOne && attachmentPdfNameOne || attachmentTemplateNameTwo && attachmentPdfNameTwo || attachmentTemplateNameThree && attachmentPdfNameThree || attachmentTemplateNameFour && attachmentPdfNameFour) {
-
+            else if (attachmentTemplateNameOne && attachmentPdfNameOne || attachmentTemplateNameTwo && attachmentPdfNameTwo || attachmentTemplateNameThree && attachmentPdfNameThree || attachmentTemplateNameFour && attachmentPdfNameFour) {  // for events filled fields data - Retrieve Data(Home page)
                 const isf2fEvent = attachmentTemplateNameOne ? true : false;
                 const isVirtualEvent = attachmentTemplateNameTwo ? true : false;
                 const isPrEvent = attachmentTemplateNameThree ? true : false;
@@ -351,7 +350,7 @@ export default async function sendMail({
                 };
             }
 
-            else if (attachmentTemplateName && emailBodyTemplateName && chatSuggestion) {                  // else if (attachmentTemplateName && emailBodyTemplateName) {
+            else if (attachmentTemplateName && emailBodyTemplateName && chatSuggestion) {  // for summary tab. chat + filled field data.  // else if (attachmentTemplateName && emailBodyTemplateName) {
                 const attachmentTemplatePath = path.join(__dirname, '/email_templates', `${attachmentTemplateName}.ejs`);
                 const emailBodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`);
 
@@ -438,7 +437,7 @@ export default async function sendMail({
                 };
             }
 
-            else {
+            else {     // for register/signup - email verification + forgot_password
                 const bodyTemplatePath = path.join(__dirname, '/email_templates', `${emailBodyTemplateName}.ejs`);
                 const bodyTemplate = await ejs.renderFile(bodyTemplatePath, {
                     data,
@@ -448,7 +447,7 @@ export default async function sendMail({
                     eveydolarCo2,
                     mailVerifiLink,
                     resetPswdLink,
-                    resultTableData
+                    resultTableData,
                 });
 
                 mailOptions = {
