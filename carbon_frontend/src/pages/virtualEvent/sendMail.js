@@ -19,7 +19,6 @@ const SendMail = (props) => {
     const { open, close, setUserAction, datas, setOpen, chatSuggestion } = props;
     const [isLoading, setIsLoading] = useState(false);
     const [emails, setEmails] = useState([])
-    const [err, setErr] = useState('')
     const [messageType, setMessageType] = useState("template");
     const [emailInput, setEmailInput] = useState('')
 
@@ -52,7 +51,7 @@ const SendMail = (props) => {
         // formik.setFieldValue('emails', []);
         formik.setFieldValue('emails', formik.values?.[0]);
         setEmailInput('');
-        setErr('');
+        formik.setFieldError('addEmail', '');
         close();
     }
 
@@ -106,9 +105,17 @@ const SendMail = (props) => {
             if (!Object.prototype.hasOwnProperty.call(formik.errors, 'addEmail') && values.emails.length < 1) {
                 errors.addEmail = 'Add at least one email';
             }
+
+            if (values.addEmail && values.emails.includes(values.addEmail)) {
+                errors.addEmail = 'Email already exists';
+            }
+
             return errors;
         },
         onSubmit: async (values) => {
+            if (!formik.isValid) {
+                return;
+            }
             addEmail(values);
         }
     });
@@ -124,17 +131,18 @@ const SendMail = (props) => {
 
         if (emailInput !== '') {
             if (regex.test(emailInput)) {
-                // if (emails?.find(email => email === emailInput)) {
+                // Check if email already exists in the list
                 if (formik.values?.emails?.find(email => email === emailInput)) {
-                    setErr("email is already exists");
+                    formik.setFieldError('addEmail', 'Email already exists');
+                    formik.setFieldTouched('addEmail', true);
+
                 } else {
-                    // setEmails([...emails, emailInput]);
+                    // Add email to the list
                     formik.setFieldValue('emails', [...formik.values?.emails, emailInput]);
                     setEmailInput('');
-                    setErr("");
+                    formik.setFieldError('addEmail', '');
+                    formik.setFieldTouched('addEmail', true);
                 }
-            } else {
-                setErr("email not valid");
             }
         }
     };
