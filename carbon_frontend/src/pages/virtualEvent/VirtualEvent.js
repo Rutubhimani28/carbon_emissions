@@ -421,12 +421,12 @@ const VirtualEvent = (props) => {
                         th: ["", "Weight (Kgs)", "Emissions"],
                         td: [
                             {
-                                vtType: "Polyethylene HDPE Banner",
+                                vtType: "Polyethylene", // "Polyethylene HDPE Banner"
                                 kgs: values?.hdpeBanner,
                                 emissions: emissionSixteen > 0 ? emissionSixteen : '',
                             },
                             {
-                                vtType: "PVC Banners",
+                                vtType: "PVC",  // PVC Banners
                                 kgs: values?.pvcBanners,
                                 emissions: emissionSeventeen > 0 ? emissionSeventeen : '',
                             },
