@@ -188,7 +188,7 @@ const Result = ({ value }) => {
             return line;
         }).join('\n');
 
-        let pdfData = `<h3>Suggestions for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From PR Event: </h3> `;
+        let pdfData = `<h3>Recommendations for reducing the Carbon Footprint of your ${toolFormData?.activityName} activity From PR Event: </h3> `;
 
         formattedSuggestions?.split('\n')?.forEach((line, index) => {
             pdfData += `${line}<br />`;
@@ -207,12 +207,13 @@ const Result = ({ value }) => {
                 "https://api.openai.com/v1/chat/completions",
                 {
                     // model: "gpt-3.5-turbo",
-                    model: "gpt-4o",
+                    // model: "gpt-4o",
+                    model: "o1-mini",
                     messages: [{
                         "role": "user",
                         "content": content
                     }],
-                    temperature: 0.7,
+                    // temperature: 0.7,
                 },
                 {
                     headers: {

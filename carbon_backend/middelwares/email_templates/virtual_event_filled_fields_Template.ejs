@@ -10,14 +10,13 @@
             color: black;
             background-color: white;
             font-family: Arial, sans-serif;
-            margin-top: 0cm;
+            margin-top: 0.1cm;
         }
 
         .container {
             width: 100%;
-            padding: 20px;
+            padding: 0 20px 20px 20px;
             box-sizing: border-box;
-            margin-top: -40px;
         }
 
         .page {
@@ -36,6 +35,23 @@
             border-collapse: collapse;
             border: 1px solid #ddd;
             margin: 0;
+            page-break-inside: auto;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        tbody {
+            display: table-row-group;
+        }
+
+        tr {
+            page-break-inside: avoid;
         }
 
         th,
@@ -53,7 +69,7 @@
         .title {
             font-size: 1.5em;
             text-align: center;
-            margin-top: 25px;
+            margin-top: -8px;
         }
 
         .sub-title {
@@ -61,23 +77,27 @@
             margin-top: 20px;
             margin-bottom: 10px;
         }
+
+        p {
+            font-weight: bold;
+            font-size: 12;
+        }
+
+        .title2 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 25px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h4>Dear <%= name %>,</h4>
-        <p>Thank you for choosing our <strong>NetZero Platform</strong> to measure the carbon footprint of your
-            <strong>
-                <%= activityName %>
-            </strong> activity.
-            We're pleased to provide you with a concise analytics report, giving you a clear
-            snapshot
-            of your
-            current impact.
-        </p>
+        <h3 style="text-align: center;" class="title">
+            Activity Name: <%= activityName %>
+        </h3>
 
-        <h2>Total Carbon Footprint:</h2>
+        <p>Total Carbon Footprint:</p>
         <table>
             <!-- <tr>
                 <th>Virtual Event</th>
@@ -131,9 +151,9 @@
                 <% if (page.tabData && page.tabData.length> 0) { %>
                     <% if (page.tabTitle==="Outbound Marketing" ) { %>
                         <div class="page">
-                            <h3 class="title">
+                            <h4 class="title2">
                                 <%= page.tabTitle %>
-                            </h3>
+                            </h4>
                             <% page.tabData.forEach(function(flightClass) { %>
                                 <% if (flightClass.subTypeData && flightClass.subTypeData.td) { %>
                                     <% if (flightClass.subTypeData.td.some(rowData=> rowData.emissions !== "")) { %>
@@ -211,19 +231,9 @@
                                 <% }); %>
                                     <% } %>
 
-                                        <h4 style="margin-top: 35px;">For every $ you spend you are generating <%=
-                                                eveydolarCo2 %> kgCO<sub>2</sub>e</h4>
+                                        <h4 style="margin-top: 35px; margin-bottom: 0;">For every $ you spend you are
+                                            generating <%= eveydolarCo2 %> kgCO<sub>2</sub>e</h4>
 
-                                        <p>We deeply value your commitment to sustainability and appreciate your
-                                            proactive approach in understanding and
-                                            mitigating your environmental impact.</p>
-                                        <p>If you have any questions or need further assistance on how to reduce the
-                                            carbon emissions from your
-                                            activity, please contact us at <a
-                                                href="mailto:info@sirat.earth">info@sirat.earth</a>.</p>
-                                        <br />
-                                        <p>Best regards,</p>
-                                        <p style="margin-bottom:0; font-weight: bold;">Team Sirāt</p>
     </div>
 </body>
 

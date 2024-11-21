@@ -10,12 +10,14 @@
             color: black;
             background-color: white;
             font-family: Arial, sans-serif;
-            margin-top: 0cm;
+            /* margin-top: 0cm; */
+            margin-top: 0.1cm;
         }
 
         .container {
             width: 100%;
-            padding: 20px;
+            /* padding: 20px; */
+            padding: 0 20px 20px 20px;
             box-sizing: border-box;
             margin-top: -40px;
         }
@@ -79,6 +81,17 @@
             margin-bottom: 10px;
         }
 
+        p {
+            font-weight: bold;
+            font-size: 12;
+        }
+
+        .title2 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 25px;
+        }
+
         /* div {
             page-break-inside: avoid;
         } */
@@ -87,8 +100,11 @@
 
 <body>
     <div class="container">
-        <h4>Dear <%= name %>,</h4>
-        <p>Thank you for choosing our <strong>NetZero Platform</strong> to measure the carbon footprint of your
+        <h3 style="text-align: center;" class="title">
+            Activity Name: <%= activityName %>
+        </h3>
+        <!-- <h4>Dear <%= name %>,</h4> -->
+        <!-- <p>Thank you for choosing our <strong>NetZero Platform</strong> to measure the carbon footprint of your
             <strong>
                 <%= activityName %>
             </strong> activity.
@@ -96,9 +112,10 @@
             snapshot
             of your
             current impact.
-        </p>
+        </p> -->
 
-        <h2 style="font-size: 16px; font-weight: 900;">Total Carbon Footprint :</h2>
+        <!-- <h2 style="font-size: 16px; font-weight: 900;">Total Carbon Footprint :</h2> -->
+        <p>Total Carbon Footprint:</p>
 
         <table>
             <tr>
@@ -171,9 +188,9 @@
                         , "Event Production" , "Energy" , "Digital Comms" , "Waste" , "Hotel" ]; %>
                         <% if (validTabTitles.includes(page.tabTitle)) { %>
                             <div class="page">
-                                <h3 class="title">
+                                <h4 class="title2">
                                     <%= page.tabTitle %>
-                                </h3>
+                                </h4>
                                 <% page.tabData.forEach(function(flightClass) { %>
                                     <% if (flightClass.subTypeData && flightClass.subTypeData.td &&
                                         flightClass.subTypeData.td.some(rowData=> rowData.emissions !== "")) { %>
@@ -421,19 +438,19 @@
                                                     eveydolarCo2 %>
                                                     kgCO<sub>2</sub>e</h4>
 
-                                            <p>We deeply value your commitment to sustainability and appreciate your
+                                            <!-- <p>We deeply value your commitment to sustainability and appreciate your
                                                 proactive approach in
                                                 understanding and
-                                                mitigating your environmental impact.</p>
-                                            <p>If you have any questions or need further assistance on how to reduce the
+                                                mitigating your environmental impact.</p> -->
+                                            <!-- <p>If you have any questions or need further assistance on how to reduce the
                                                 carbon emissions
                                                 from your
                                                 activity, please contact at
                                                 <a href="info@sirat.earth" target="_blank">info@sirat.earth</a>.
-                                            </p>
-                                            <br />
-                                            <p>Best regards,</p>
-                                            <p style="margin-bottom:0; font-weight: bold;">Team Sirāt</p>
+                                            </p> -->
+                                            <!-- <br /> -->
+                                            <!-- <p>Best regards,</p> -->
+                                            <!-- <p style="margin-bottom:0; font-weight: bold;">Team Sirāt</p> -->
     </div>
 </body>
 
