@@ -562,7 +562,7 @@ export const sendMailForTwoEvents = async ({ eventsData }) => {       // for two
         const mailOptions = {
             bcc: process.env.GMAIL_FROM,
             from: process.env.GMAIL_FROM,
-            to: eventsData[0].receiver, // Assuming the receiver is the same for all events
+            to: eventsData[0].receiver,     // Assuming the receiver is the same for all events
             subject: eventsData[0].subject, // Assuming the subject is the same for all events
             attachments: attachmentsArray,
         };
