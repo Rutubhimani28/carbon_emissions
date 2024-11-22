@@ -100,7 +100,7 @@ const Header = (props) => {
                                     >
                                         {item?.name}
                                     </Button> */}
-                                    {/* <ExpandMoreIcon
+                    {/* <ExpandMoreIcon
                                     {/* className="expand-icon"
                                     onClick={handleMenuToggle}
                                     style={{ cursor: 'pointer' }}
@@ -121,8 +121,8 @@ const Header = (props) => {
                                         </li>
                                     </div>
                                 )} */}
-                                {/* </div>  */}
-                            {/* ) : (
+                    {/* </div>  */}
+                    {/* ) : (
                                 <ListItem key={item.name} disablePadding>
                                     <ListItemButton onClick={() => navigate(item.path)} className='text-dark'>
                                         <ListItemText primary={item.name} />
@@ -130,11 +130,11 @@ const Header = (props) => {
                                 </ListItem>
                             )
                     ))} */}
-                    <ListItem disablePadding>
+                    {/* <ListItem disablePadding>
                         <ListItemButton className='text-dark'>
                             <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
                         </ListItemButton>
-                    </ListItem>
+                    </ListItem> */}
                     {/* <ListItem disablePadding>
                         <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
                             <Button className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
@@ -198,7 +198,7 @@ const Header = (props) => {
                                 </>
                             )
                         ))}
-                        <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
+                        {/* <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button> */}
                         {/* <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                             login
                         </Button> */}
@@ -207,7 +207,7 @@ const Header = (props) => {
                         url="https://calendly.com/mohammed-sirat"
                         pageSettings={pageSettings}
                         utm={utm}
-                        style={{overflowY:'hidden'}}
+                        style={{ overflowY: 'hidden' }}
                         onModalClose={() => setIsOpenCalendly(false)}
                         open={isOpenCalendly}
                         rootElement={document.getElementById('root')}
