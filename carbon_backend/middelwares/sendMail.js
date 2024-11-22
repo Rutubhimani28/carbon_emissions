@@ -253,7 +253,7 @@ export default async function sendMail({
                         }
                     );
 
-                    // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    // const chatPdfFilePath = path.join(__dirname, 'GenAI Recommendations.pdf');
                     // await createPDF(chatSuggestion, chatPdfFilePath);
                 }
 
@@ -281,7 +281,7 @@ export default async function sendMail({
                         }
                     );
 
-                    // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    // const chatPdfFilePath = path.join(__dirname, 'GenAI Recommendations.pdf');
                     // await createPDF(chatSuggestion, chatPdfFilePath);
                 }
 
@@ -309,7 +309,7 @@ export default async function sendMail({
                         }
                     );
 
-                    // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    // const chatPdfFilePath = path.join(__dirname, 'GenAI Recommendations.pdf');
                     // await createPDF(chatSuggestion, chatPdfFilePath);
                 }
 
@@ -337,7 +337,7 @@ export default async function sendMail({
                         }
                     );
 
-                    // const chatPdfFilePath = path.join(__dirname, 'carbon_reduction_suggestions.pdf');
+                    // const chatPdfFilePath = path.join(__dirname, 'GenAI Recommendations.pdf');
                     // await createPDF(chatSuggestion, chatPdfFilePath);
                 }
 
@@ -397,7 +397,7 @@ export default async function sendMail({
                             contentType: 'application/pdf'
                         },
                         {
-                            filename: 'carbon_reduction_suggestions.pdf',
+                            filename: 'GenAI Recommendations.pdf',
                             path: chatPdfFilePath,
                             contentType: 'application/pdf'
                         },
