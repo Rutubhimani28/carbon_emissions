@@ -143,6 +143,7 @@ const SendMail = (props) => {
                     // Add email to the list
                     formik.setFieldValue('emails', [...formik.values?.emails, emailInput]);
                     setEmailInput('');
+                    formik.setFieldValue('addEmail', '');
                     formik.setFieldError('addEmail', '');
                     formik.setFieldTouched('addEmail', true);
                 }
