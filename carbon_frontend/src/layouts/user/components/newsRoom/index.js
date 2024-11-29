@@ -69,7 +69,7 @@ const Index = () => {
                         <Grid item xs={12} md={8} className={useMediaQuery(theme.breakpoints.up('md')) ? "" : 'order-1'}>
                             <Box sx={{ display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex', flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column', height: '100%', flexWrap: 'wrap' }}>
                                 <CardContent sx={{ flex: '1 0 auto', wordBreak: 'break-word' }}>
-                                    <Link className='text-decoration-none' to='/news-room/blog1'>
+                                    <Link className='text-decoration-none' to='/news-room/blog5'>
                                         <Typography component="div" variant="h5">
                                             Leading the NetZero charge: How sustainable marketing can transform the future of business
                                         </Typography>
