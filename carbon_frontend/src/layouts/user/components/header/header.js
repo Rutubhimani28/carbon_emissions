@@ -26,71 +26,72 @@ import logo from '../../assets/images/logo5.gif';
 
 const drawerWidth = 240;
 const navItems = [
-    { name: 'Home', path: "/" },
-    { name: 'NetZero Platform', path: "/netzero-platform" },
-    { name: 'NetZero Consulting', path: "/netzero-consulting" },
-    { name: 'News Room', path: '/news-room' },
-    { name: 'About Us', path: '/about-us' }];
+  { name: 'Home', path: '/' },
+  { name: 'NetZero Platform', path: '/netzero-platform' },
+  { name: 'Enterprise Solutions', path: '/enterprise-solutions' },
+  { name: 'Contact Us', path: '/contact' },
+  { name: 'About Us', path: '/about-us' },
+];
 
 const Header = (props) => {
-    const { window } = props;
-    const navigate = useNavigate()
-    const location = useLocation()
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isOpenCalendly, setIsOpenCalendly] = useState(false);
+  const { window } = props;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpenCalendly, setIsOpenCalendly] = useState(false);
 
-    const routeName = location?.pathname;
+  const routeName = location?.pathname;
 
-    const pageSettings = {
-        backgroundColor: '#ffffff',
-        hideEventTypeDetails: false,
-        hideLandingPageDetails: false,
-        primaryColor: '#00a2ff',
-        textColor: '#4d5055',
-    };
-    const utm = {
-        utmCampaign: 'Spring Sale 2019',
-        utmContent: 'Shoe and Shirts',
-        utmMedium: 'Ad',
-        utmSource: 'Facebook',
-        utmTerm: 'Spring',
-    };
+  const pageSettings = {
+    backgroundColor: '#ffffff',
+    hideEventTypeDetails: false,
+    hideLandingPageDetails: false,
+    primaryColor: '#00a2ff',
+    textColor: '#4d5055',
+  };
+  const utm = {
+    utmCampaign: 'Spring Sale 2019',
+    utmContent: 'Shoe and Shirts',
+    utmMedium: 'Ad',
+    utmSource: 'Facebook',
+    utmTerm: 'Spring',
+  };
 
-    const handleMenuToggle = (event) => {
-        event.stopPropagation();
-        setIsMenuOpen(!isMenuOpen);
-    };
-    const handleDrawerToggle = () => {
-        setMobileOpen((prevState) => !prevState);
-    };
+  const handleMenuToggle = (event) => {
+    event.stopPropagation();
+    setIsMenuOpen(!isMenuOpen);
+  };
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
 
-    const home = () => {
-        navigate('/')
-    }
+  const home = () => {
+    navigate('/');
+  };
 
-    const drawer = (
-        <>
-            <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" sx={{ my: 2, display: "flex", justifyContent: "center", cursor: "pointer" }} onClick={home}>
-                    {/* <img src={logo} width={'100'} alt="logo" /> */}
-                    <img src={logo} width={'100vh'} alt="logo" />
-                </Typography>
-                <Divider />
-                <List>
+  const drawer = (
+    <>
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+        <Typography
+          variant="h6"
+          sx={{ my: 2, display: 'flex', justifyContent: 'center', cursor: 'pointer' }}
+          onClick={home}
+        >
+          {/* <img src={logo} width={'100'} alt="logo" /> */}
+          <img src={logo} width={'100vh'} alt="logo" />
+        </Typography>
+        <Divider />
+        <List>
+          {navItems.map((item) => (
+            <ListItem key={item.name} disablePadding>
+              <ListItemButton onClick={() => navigate(item.path)} className="text-dark">
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </ListItem>
+          ))}
 
-                    {
-                        navItems.map((item) => (
-                            <ListItem key={item.name} disablePadding>
-                                <ListItemButton onClick={() => navigate(item.path)} className='text-dark'>
-                                    <ListItemText primary={item.name} />
-                                </ListItemButton>
-                            </ListItem>
-                        ))
-
-                    }
-
-                    {/* {navItems.map((item) => (
+          {/* {navItems.map((item) => (
                         item?.name === 'NetZero Consulting'
                             ? (
                                 <div key={item.name} style={{ display: 'inline', marginLeft: "-56px" }} className='esg_menu'>
@@ -100,7 +101,7 @@ const Header = (props) => {
                                     >
                                         {item?.name}
                                     </Button> */}
-                    {/* <ExpandMoreIcon
+          {/* <ExpandMoreIcon
                                     {/* className="expand-icon"
                                     onClick={handleMenuToggle}
                                     style={{ cursor: 'pointer' }}
@@ -108,21 +109,21 @@ const Header = (props) => {
                                 {isMenuOpen && (
                                     <div className='esg_menuItem' style={{ zIndex: "9" }}>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/netzero-consulting/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link>
+                                            <Link to="/enterprise-solutions/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/netzero-consulting/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link>
+                                            <Link to="/enterprise-solutions/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/netzero-consulting/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link>
+                                            <Link to="/enterprise-solutions/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link>
                                         </li>
                                         <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }}>
-                                            <Link to="/netzero-consulting/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link>
+                                            <Link to="/enterprise-solutions/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link>
                                         </li>
                                     </div>
                                 )} */}
-                    {/* </div>  */}
-                    {/* ) : (
+          {/* </div>  */}
+          {/* ) : (
                                 <ListItem key={item.name} disablePadding>
                                     <ListItemButton onClick={() => navigate(item.path)} className='text-dark'>
                                         <ListItemText primary={item.name} />
@@ -130,116 +131,118 @@ const Header = (props) => {
                                 </ListItem>
                             )
                     ))} */}
-                    {/* <ListItem disablePadding>
+          {/* <ListItem disablePadding>
                         <ListItemButton className='text-dark'>
                             <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button>
                         </ListItemButton>
                     </ListItem> */}
-                    {/* <ListItem disablePadding>
+          {/* <ListItem disablePadding>
                         <ListItemButton onClick={() => navigate('/login')} className='text-dark'>
                             <Button className='text-capitalize w-100 fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                                 login
                             </Button>
                         </ListItemButton>
                     </ListItem> */}
-                </List>
-            </Box>
-        </>
-    );
+        </List>
+      </Box>
+    </>
+  );
 
-    const container = window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
-    return (
-        <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <AppBar component="nav" style={{ backgroundColor: "#fff" }}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { md: 'none' }, color: "#4ABD43", order: "1" }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, display: 'flex' }}
-                    >
-                        <Link sx={{ cursor: "pointer" }} to={"/"}>
-                            <img src={logo} width={"160vh"} alt="logo" />
-                        </Link>
-                    </Typography>
-                    <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                        {navItems.map((item) => (
-                            item?.name === 'NetZero Consulting' ? (
-                                <div key={item.name} style={{ display: 'inline' }} className='esg_menu'>
-                                    <Button
-                                        className={` text-capitalize  fs-6 ${routeName === item?.path ? 'tab-text-color' : 'text-dark'}`}
-                                        onClick={() => navigate(item.path)}
-                                    >
-                                        {/* {item?.name}<ExpandMoreIcon /> */}
-                                        {item?.name}
-                                    </Button>
-                                    {/* <div className='esg_menuItem'>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netzero-consulting/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netzero-consulting/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netzero-consulting/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
-                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/netzero-consulting/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar component="nav" style={{ backgroundColor: '#fff' }}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { md: 'none' }, color: '#4ABD43', order: '1' }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: 'flex' }}>
+            <Link sx={{ cursor: 'pointer' }} to={'/'}>
+              <img src={logo} width={'160vh'} alt="logo" />
+            </Link>
+          </Typography>
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+            {navItems.map((item) =>
+              item?.name === 'NetZero Consulting' ? (
+                <div key={item.name} style={{ display: 'inline' }} className="esg_menu">
+                  <Button
+                    className={` text-capitalize  fs-6 ${routeName === item?.path ? 'tab-text-color' : 'text-dark'}`}
+                    onClick={() => navigate(item.path)}
+                  >
+                    {/* {item?.name}<ExpandMoreIcon /> */}
+                    {item?.name}
+                  </Button>
+                  {/* <div className='esg_menuItem'>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/enterprise-solutions/organisations/" style={{ textDecoration: "none", color: "#000" }}>Organisations</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/enterprise-solutions/service-providers/" style={{ textDecoration: "none", color: "#000" }}>Agencies</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/enterprise-solutions/hospitality-industry/" style={{ textDecoration: "none", color: "#000" }}>Hospitality</Link></li>
+                                        <li style={{ width: "180px", padding: "5px 0", cursor: "pointer" }} ><Link to="/enterprise-solutions/exhibition-organiser/" style={{ textDecoration: "none", color: "#000" }}>Exhibitions</Link></li>
                                     </div> */}
-                                </div>
-                            ) : (
-                                <>
-                                    <Button key={item.name} className={` text-capitalize fs-6 mx-1 ${routeName === item?.path ? 'tab-text-color' : 'text-dark'}`} onClick={() => navigate(item.path)}>
-                                        {item.name}
-                                    </Button>
-                                </>
-                            )
-                        ))}
-                        {/* <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button> */}
-                        {/* <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
+                </div>
+              ) : (
+                <>
+                  <Button
+                    key={item.name}
+                    className={` text-capitalize fs-6 mx-1 ${
+                      routeName === item?.path ? 'tab-text-color' : 'text-dark'
+                    }`}
+                    onClick={() => navigate(item.path)}
+                  >
+                    {item.name}
+                  </Button>
+                </>
+              )
+            )}
+            {/* <Button onClick={() => setIsOpenCalendly(true)} className='text-capitalize fs-6 ' style={{ backgroundColor: "#054723 ", color: "white", marginLeft: "15px" }}>Book a Demo</Button> */}
+            {/* <Button onClick={() => navigate('/login')} className='text-capitalize fs-6 ' style={{ backgroundColor: "#fff", color: "#4ABD43", border: "1px solid #4ABD43", marginLeft: "15px" }}>
                             login
                         </Button> */}
-                    </Box>
-                    <PopupModal
-                        url="https://calendly.com/mohammed-sirat"
-                        pageSettings={pageSettings}
-                        utm={utm}
-                        style={{ overflowY: 'hidden' }}
-                        onModalClose={() => setIsOpenCalendly(false)}
-                        open={isOpenCalendly}
-                        rootElement={document.getElementById('root')}
-                    />
-                </Toolbar>
-            </AppBar>
-            <nav>
-                <Drawer
-                    container={container}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', md: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-            </nav>
-            <Box component="main" >
-                <Toolbar />
-            </Box>
-        </Box>
-    );
-}
+          </Box>
+          <PopupModal
+            url="https://calendly.com/mohammed-sirat"
+            pageSettings={pageSettings}
+            utm={utm}
+            style={{ overflowY: 'hidden' }}
+            onModalClose={() => setIsOpenCalendly(false)}
+            open={isOpenCalendly}
+            rootElement={document.getElementById('root')}
+          />
+        </Toolbar>
+      </AppBar>
+      <nav>
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: 'block', md: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </nav>
+      <Box component="main">
+        <Toolbar />
+      </Box>
+    </Box>
+  );
+};
 
 Header.propTypes = {
-    window: PropTypes.func,
+  window: PropTypes.func,
 };
 
 export default Header;

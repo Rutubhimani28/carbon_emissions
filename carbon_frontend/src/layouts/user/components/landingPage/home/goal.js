@@ -1,28 +1,92 @@
-import React from 'react'
-import { useTheme } from '@emotion/react'
-import { Box, Card, CardContent, CardMedia, Grid, Typography, makeStyles, useMediaQuery } from '@mui/material'
-import { Link } from 'react-router-dom'
-import { PopupButton } from 'react-calendly'
-import "../../../assets/css/style.css"
-import goal1 from '../../../assets/images/goal1.png'
-import goal2 from '../../../assets/images/goal2.png'
-import TrustOne from '../../../assets/images/Aster CMI Logo.png';
-import bgImg from '../../../assets/images/bg.png';
-import TrustTwo from '../../../assets/images/GoFig2.png';
-import mission from '../../../assets/images/mission.png'
-import vision from '../../../assets/images/visionary.png'
-import collbrate from '../../../assets/images/Collaborat.jpeg';
-import commited from '../../../assets/images/CommitedLogo.png'
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useTheme } from '@emotion/react';
+import { Box, Button, Card, CardContent, CardMedia, Grid, Typography, makeStyles, useMediaQuery } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { PopupButton } from 'react-calendly';
+import '../../../assets/css/style.css';
+import commited from '../../../assets/images/CommitedLogo.png';
 // import Pledge from '../../../assets/images/PledgeTonetZERO.png'
-import Pledge from '../../../assets/images/PledgeTonetZERO2.jpg'
-import greenview from '../../../assets/images/GreenView.png'
+import Pledge from '../../../assets/images/PledgeTonetZERO2.jpg';
+import greenview from '../../../assets/images/GreenView.png';
+import Room1 from '../../../assets/images/room1.jpeg';
+import Room2 from '../../../assets/images/room2.jpeg';
+import Room3 from '../../../assets/images/room3.jpg';
+import Room4 from '../../../assets/images/room4.png';
+import Room5 from '../../../assets/images/room5.jpg';
 
 const Goal = () => {
-    const theme = useTheme();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const navigate = useNavigate(); // Hook for navigation
 
-    return (
-        <div>
-            <div className='pb-5'>
+  const handleReadArtical = (link) => {
+    navigate(link);
+  };
+
+  // Data array for images and descriptions
+  const carouselData = [
+    {
+      id: 1,
+      image: Room5,
+      description: 'Leading the NetZero charge: How sustainable marketing can transform the future of business',
+      link: '/news-room/blog5',
+    },
+    {
+      id: 2,
+      image: Room4,
+      description: 'Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing',
+      link: '/news-room/blog4',
+    },
+    {
+      id: 3,
+      image: Room1,
+      description: 'Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore…',
+      link: '/news-room/blog1',
+    },
+    {
+      id: 4,
+      image: Room2,
+      description: 'Empowering organizations: Meeting net-zero through the reduction of single-use plastics',
+      link: '/news-room/blog2',
+    },
+    {
+      id: 5,
+      image: Room3,
+      description:
+        'Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing...',
+      link: '/news-room/blog3',
+    },
+  ];
+  const settings = {
+    dots: false, // Show dots below the slider
+    infinite: true, // Infinite scrolling
+    speed: 500, // Transition speed in ms
+    slidesToShow: 3, // Number of slides (images) to show at once
+    slidesToScroll: 1, // Number of slides to scroll at a time
+    autoplay: false, // Enable autoplay
+    autoplaySpeed: 2000, // Autoplay interval (in ms)
+    responsive: [
+      {
+        breakpoint: 1024, // For screens < 1024px
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768, // For screens < 768px
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+  return (
+    <div>
+      {/* <div className='pb-5'>
                 <Typography variant='h6' className='text-center fs-3 green pt-5 pb-3 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-white' >Our Mission & Vision</Typography>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid item xs={0} md={2.1} />
@@ -42,8 +106,8 @@ const Goal = () => {
                     </Grid>
                     <Grid item xs={0} md={2.1} />
                 </Grid>
-            </div>
-            <Grid container justifyContent="center" className='wow animate__animated animate__fadeInRight animate__slow pb-3 bg-light mx-auto' color="#054723" style={{ marginBottom: '50px' }}>
+            </div> */}
+      {/* <Grid container justifyContent="center" className='wow animate__animated animate__fadeInRight animate__slow pb-3 bg-light mx-auto' color="#054723" style={{ marginBottom: '50px' }}>
                 <Grid item sm={12} md={12} className="d-flex justify-content-center pt-3">
                     <Typography className='fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow' item sm={12} md={12}>Trusted By</Typography>
                 </Grid>
@@ -55,44 +119,228 @@ const Goal = () => {
                         <img src={TrustTwo} alt='img' width={100} />
                     </Box>
                 </Grid>
-            </Grid>
+            </Grid> */}
 
-            {/* collabrate */}
-            <div className="container-fuild collabrate d-flex justify-content-center main " style={{ overflowX: "hidden" }}>
-                <div className="row d-flex justify-content-center mb-xl-3">
-                    <div className="col-xl-5 col-md-12 ps-xl-2 mt-2">
-                        <h1 className='fontFamily text-light fw-bold mt-3'>Collaborating for Sustainable Development</h1>
-                        <p className='text-light fs-5 mt-1'>Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring your organization is never alone in addressing systemic sustainability challenges, enabling a positive climate impact.
-                        </p>
-                        <p className='text-light fs-5 mt-2'>
-                            Sirāt invites a wide range of stakeholders to partner with us for sustainable development, including companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.
-                        </p>
-                    </div>
-                    <div className="col-xl-7 col-md-12 mt-xl-2">
-                        <div className='row d-flex justify-content-center mt-2'>
-                            <div className='col-md-4'>
-                                <img src={commited} alt="img" className='img-fuild pt-xl-2 pt-sm-5' width={useMediaQuery(theme.breakpoints.up("sm")) ? "150px" : "200px"} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} />
-                                <p style={{ marginBottom: '15px', paddingBottom: useMediaQuery(theme.breakpoints.up('md')) ? "" : "15px", borderBottom: useMediaQuery(theme.breakpoints.up('sm')) ? "" : "2px solid white" }}>
-                                    We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized companies to take climate action and build more resilient businesses. In making the commitment, we have joined the United Nations <strong>Race to Zero</strong> campaign.
-                                </p>
-                            </div>
-                            <div className='col-md-4' style={{ borderLeft: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0, borderRight: useMediaQuery(theme.breakpoints.up('md')) ? "2px solid white" : 0 }} >
-                                <img src={Pledge} alt="img" width={100} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} className='img-fuild pt-xl-2 pt-sm-5' />
-                                <p className='p-xl-2' style={{ marginBottom: '15px', paddingBottom: useMediaQuery(theme.breakpoints.up('md')) ? "" : "15px", borderBottom: useMediaQuery(theme.breakpoints.up('sm')) ? "" : "2px solid white" }}>
-                                    We have made a 'Pledge to Net Zero' and are committed to reducing our GHG emissions. Pledge to Net Zero' is the environmental industry’s global commitment, requiring science-based targets from its signatories to tackle greenhouse gas emissions within their organisations.
-                                </p>
-                            </div>
-                            <div className='col-md-4 mb-sm-3'>
-                                <img src={greenview} className='tabImgWhite img-fuild pt-xl-2 pt-sm-5' alt="img" width={200} style={{ height: "100px", margin: useMediaQuery(theme.breakpoints.up("md")) ? "0 auto" : "20px auto", marginBottom: "10px" }} />
-                                <p className='ps-xl-2 ' style={{ marginBottom: '15px', paddingBottom: useMediaQuery(theme.breakpoints.up("sm")) ? "0" : "28px" }}>
-                                    We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels worldwide - the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.                                </p>
-                            </div>
-                        </div>
-                    </div>
+      {/* LTAEST NEWS */}
+      <Typography
+        sx={{
+          fontSize: 'clamp(20px, 3vw, 1.75rem)', // Adjust font size further
+          marginTop: { xs: '-50px', sm: '5px' }, // Smaller margin for extra-small screens
+          marginBottom: { xs: '-15px', sm: '5px' }, // Smaller margin for extra-small screens
+          lineHeight: '1.2',
+        }}
+        className="fontFamily fs-3 mt-1 mb-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white"
+      >
+        Latest News
+      </Typography>
+
+      <Grid
+        container
+        justifyContent="center"
+        className="wow animate__animated animate__fadeInRight animate__slow pb-3 mx-auto"
+        sx={{ color: '#054723' }}
+      >
+        <Box
+          sx={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: '90%',
+            margin: '0 auto',
+            padding: { xs: '0 5px', sm: '0 10px', md: '0 20px' },
+          }}
+        >
+          <Slider
+            {...settings}
+            style={{
+              position: 'relative',
+            }}
+          >
+            {carouselData?.map((item) => (
+              <div style={{ border: '1px solid black' }}>
+                <div
+                  key={item.id}
+                  style={{
+                    border: '1px solid black',
+                    display: 'flex',
+                    alignContent: 'center',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    margin: '0 5px',
+                  }}
+                >
+                  <img
+                    src={item.image}
+                    className="img-fluid"
+                    alt={`Slide ${item.id}`}
+                    style={{
+                      width: '100%',
+                      maxWidth: item.id === 4 ? '350px' : '400px',
+                      height: item.id === 4 ? '350px' : '380px',
+                      maxHeight: '300px',
+                      borderRadius: '8px',
+                      objectFit: 'contain',
+                      margin: '0',
+                    }}
+                  />
+                  <p
+                    style={{
+                      textAlign:'start',
+                      color: 'white',
+                      width: '100%',
+                      maxWidth: '400px',
+                      fontSize: 'clamp(15px, 1vw, 20px)',
+                      marginTop: '5px',
+                      paddingLeft: { sm: '10px',md:"0px"}
+                    }}
+                  >
+                    {item.description}
+                  </p>
+                  <Box sx={{display:'flex', justifyContent:"flex-start",alignContent:'flex-start' ,alignItems: 'center', width: '100%' , paddingLeft: { xs: '10px', sm: '40px', md: '70px' } }}>
+                  <Button
+                    className="template-inner-theme text-white mb-2"
+                    onClick={() => handleReadArtical(item.link)}
+                    sx={{
+                      display:'flex',
+                      justifyContent:'flex-start',
+                      marginTop: '5px',
+                      fontSize: { xs: '10px', sm: '12px', md: '14px' }, 
+                      padding: { xs: '4px 8px', sm: '5px 10px' }, 
+                    }}
+                  >
+                    Read Article <ArrowForwardIcon />
+                  </Button>
+                  </Box>
+                 
+                  
                 </div>
-            </div>
+              </div>
+            ))}
+          </Slider>
+        </Box>
+      </Grid>
 
-            {/* <div className='collabrate d-flex  justify-content-center'>
+      <Grid
+        container
+        justifyContent="center"
+        className="wow animate__animated animate__fadeInRight animate__slow pb-3 mt-3 mx-auto"
+        color="#054723"
+      >
+        <Box>
+          <Typography className="fontFamily fs-3 mb-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white">
+            Are you ready?
+          </Typography>
+          <Typography className="fontFamily mb-3 fs-5 text-center wow animate__animated animate__fadeInLeft animate__slow text-white">
+            Ready to lead with sustainability? Explore Sirāt’s NetZero Platform today.
+          </Typography>
+          <Typography className="fontFamily fs-5 mt-2 text-center wow animate__animated animate__fadeInLeft animate__slow text-white">
+            <Link to={'/contact'}>Contact Us</Link>
+          </Typography>
+        </Box>
+      </Grid>
+
+      {/* collabrate */}
+      {/* <div className="container-fuild collabrate d-flex justify-content-center main " style={{ overflowX: 'hidden' }}>
+        <div className="row d-flex justify-content-center mb-xl-3">
+          <div className="col-xl-5 col-md-12 ps-xl-2 mt-2">
+            <h1 className="fontFamily text-light fw-bold mt-3">Collaborating for Sustainable Development</h1>
+            <p className="text-light fs-5 mt-1">
+              Through our cross-sector partnerships and collaborative efforts, we demonstrate our commitment to ensuring
+              your organization is never alone in addressing systemic sustainability challenges, enabling a positive
+              climate impact.
+            </p>
+            <p className="text-light fs-5 mt-2">
+              Sirāt invites a wide range of stakeholders to partner with us for sustainable development, including
+              companies, advisors, partners, as well as external collaborations and alliances to meet the climate goals.
+            </p>
+          </div>
+          <div className="col-xl-7 col-md-12 mt-xl-2">
+            <div className="row d-flex justify-content-center mt-2">
+              <div className="col-md-4">
+                <img
+                  src={commited}
+                  alt="img"
+                  className="img-fuild pt-xl-2 pt-sm-5"
+                  width={useMediaQuery(theme.breakpoints.up('sm')) ? '150px' : '200px'}
+                  style={{
+                    height: '100px',
+                    margin: useMediaQuery(theme.breakpoints.up('md')) ? '0 auto' : '20px auto',
+                    marginBottom: '10px',
+                  }}
+                />
+                <p
+                  style={{
+                    marginBottom: '15px',
+                    paddingBottom: useMediaQuery(theme.breakpoints.up('md')) ? '' : '15px',
+                    borderBottom: useMediaQuery(theme.breakpoints.up('sm')) ? '' : '2px solid white',
+                  }}
+                >
+                  We are a proud member of the SME Climate Hub, a global initiative that empowers small to medium sized
+                  companies to take climate action and build more resilient businesses. In making the commitment, we
+                  have joined the United Nations <strong>Race to Zero</strong> campaign.
+                </p>
+              </div>
+              <div
+                className="col-md-4"
+                style={{
+                  borderLeft: useMediaQuery(theme.breakpoints.up('md')) ? '2px solid white' : 0,
+                  borderRight: useMediaQuery(theme.breakpoints.up('md')) ? '2px solid white' : 0,
+                }}
+              >
+                <img
+                  src={Pledge}
+                  alt="img"
+                  width={100}
+                  style={{
+                    height: '100px',
+                    margin: useMediaQuery(theme.breakpoints.up('md')) ? '0 auto' : '20px auto',
+                    marginBottom: '10px',
+                  }}
+                  className="img-fuild pt-xl-2 pt-sm-5"
+                />
+                <p
+                  className="p-xl-2"
+                  style={{
+                    marginBottom: '15px',
+                    paddingBottom: useMediaQuery(theme.breakpoints.up('md')) ? '' : '15px',
+                    borderBottom: useMediaQuery(theme.breakpoints.up('sm')) ? '' : '2px solid white',
+                  }}
+                >
+                  We have made a 'Pledge to Net Zero' and are committed to reducing our GHG emissions. Pledge to Net
+                  Zero' is the environmental industry’s global commitment, requiring science-based targets from its
+                  signatories to tackle greenhouse gas emissions within their organisations.
+                </p>
+              </div>
+              <div className="col-md-4 mb-sm-3">
+                <img
+                  src={greenview}
+                  className="tabImgWhite img-fuild pt-xl-2 pt-sm-5"
+                  alt="img"
+                  width={200}
+                  style={{
+                    height: '100px',
+                    margin: useMediaQuery(theme.breakpoints.up('md')) ? '0 auto' : '20px auto',
+                    marginBottom: '10px',
+                  }}
+                />
+                <p
+                  className="ps-xl-2 "
+                  style={{
+                    marginBottom: '15px',
+                    paddingBottom: useMediaQuery(theme.breakpoints.up('sm')) ? '0' : '28px',
+                  }}
+                >
+                  We partnered with Greenview and using their dataset to measure the Hotel carbon Footprint generated
+                  from staying in Hotels across the world. Their global benchmarking index includes over 27,000 hotels
+                  worldwide - the Cornell Hotel Sustainability Benchmarking (CHSB) index 2024.{' '}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> */}
+
+      {/* <div className='collabrate d-flex  justify-content-center'>
                 <div style={{ display: 'flex', maxWidth: "50%", wordBreak: 'break-word' }}  >
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
 
@@ -141,8 +389,8 @@ const Goal = () => {
                 </div>
 
             </div> */}
-        </div>
-    )
-}
+    </div>
+  );
+};
 
-export default Goal
+export default Goal;

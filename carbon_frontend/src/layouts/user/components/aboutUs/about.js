@@ -27,7 +27,9 @@ const About = () => {
                 <img src={banner} alt="img" width={"100%"} className="h-xl-75 h-sm-100" />
             </div>
             <div className='py-4'>
-                <p className='py-4 fontFamily setHome_padding wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }}> In today's world, industries are not just seeking solutions; they are searching for sustainable partners who share their values. We believe in driving innovation for a greater purpose. Our journey began with a commitment to introduce NetZero Consulting within the Chief Marketing Officer (CMO) vertical and their stakeholders, aiming to create a positive impact. We further provide a user-friendly NetZero Platform to help to identify, optimise (through our NetZero Consulting) and measure the emissions generated from marketing operations.</p>
+                <p className='py-4 fontFamily setHome_padding wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }}>
+                Sirat is dedicated to transforming marketing into a force for environmental good. We partner with businesses to integrate sustainable practices into their strategies, reducing carbon footprints and creating meaningful environmental impact. Our solutions are tailored to meet the unique needs of organizations, exhibitions, and agencies, ensuring measurable results. With Sirat, you can align profitability with responsibility, making a lasting difference for your business and the planet.
+                </p>
             </div>
             <div>
                 <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow'>Targeted Sustainable Development Goals (SDGs)</Typography>
