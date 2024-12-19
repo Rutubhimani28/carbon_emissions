@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useTheme } from '@emotion/react';
 import { Box, Button, Card, CardContent, CardMedia, Grid, Typography, makeStyles, useMediaQuery } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
@@ -56,8 +57,7 @@ const Goal = () => {
     {
       id: 5,
       image: Room3,
-      description:
-        'Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing...',
+      description: 'Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing...',
       link: '/news-room/blog3',
     },
   ];
@@ -129,7 +129,7 @@ const Goal = () => {
           marginBottom: { xs: '-15px', sm: '5px' }, // Smaller margin for extra-small screens
           lineHeight: '1.2',
         }}
-        className="fontFamily fs-3 mt-1 mb-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white"
+        className="fontFamily fs-3 mt-1 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white"
       >
         Latest News
       </Typography>
@@ -152,21 +152,33 @@ const Goal = () => {
           <Slider
             {...settings}
             style={{
+              margin: '5px',
               position: 'relative',
             }}
           >
             {carouselData?.map((item) => (
-              <div style={{ border: '1px solid black' }}>
+              <div
+                style={{
+                  border: '1px solid black',
+                  display: 'flex',
+                  alignContent: 'center',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  margin: '0 20px',
+                }}
+              >
                 <div
                   key={item.id}
                   style={{
+                    height: '320px',
+                    maxWidth: '300px',
                     border: '1px solid black',
                     display: 'flex',
-                    alignContent: 'center',
                     flexDirection: 'column',
                     alignItems: 'center',
                     textAlign: 'center',
-                    margin: '0 5px',
+                    margin: '0 auto',
                   }}
                 >
                   <img
@@ -176,43 +188,79 @@ const Goal = () => {
                     style={{
                       width: '100%',
                       maxWidth: item.id === 4 ? '350px' : '400px',
-                      height: item.id === 4 ? '350px' : '380px',
-                      maxHeight: '300px',
+                      height: item.id === 4 ? '175px' : '175px',
+                      maxHeight: '145px',
                       borderRadius: '8px',
                       objectFit: 'contain',
-                      margin: '0',
+                      margin: '0 auto',
+                      padding: '6px',
                     }}
                   />
                   <p
                     style={{
-                      textAlign:'start',
+                      textAlign: 'start',
                       color: 'white',
                       width: '100%',
                       maxWidth: '400px',
-                      fontSize: 'clamp(15px, 1vw, 20px)',
+                      height: '90px',
+                      fontSize: 'clamp(16px, 1vw, 20px)',
                       marginTop: '5px',
-                      paddingLeft: { sm: '10px',md:"0px"}
+                      padding: '0px 10px 13px 10px',
+                      paddingLeft: { sm: '10px', md: '20px' },
                     }}
                   >
                     {item.description}
                   </p>
-                  <Box sx={{display:'flex', justifyContent:"flex-start",alignContent:'flex-start' ,alignItems: 'center', width: '100%' , paddingLeft: { xs: '10px', sm: '40px', md: '70px' } }}>
-                  <Button
-                    className="template-inner-theme text-white mb-2"
-                    onClick={() => handleReadArtical(item.link)}
+
+                  <Box
                     sx={{
-                      display:'flex',
-                      justifyContent:'flex-start',
-                      marginTop: '5px',
-                      fontSize: { xs: '10px', sm: '12px', md: '14px' }, 
-                      padding: { xs: '4px 8px', sm: '5px 10px' }, 
+                      display: 'flex',
+                      justifyContent: 'flex-start',
+                      alignContent: 'flex-start',
+                      alignItems: 'center',
+                      width: '100%',
+                      paddingLeft: '10px',
                     }}
                   >
-                    Read Article <ArrowForwardIcon />
-                  </Button>
+                    <Button
+                      className="fs-5 text-white mb-2"
+                      onClick={() => handleReadArtical(item.link)}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        marginTop: '5px',
+                        fontSize: { xs: '10px', sm: '12px', md: '14px' },
+                        padding: { xs: '4px 0px', sm: '5px 1px' },
+                      }}
+                    >
+                      Read Article
+                      <ArrowRightAltIcon style={{ color: '#003d99', fontSize: '50px' }} />
+                    </Button>
                   </Box>
-                 
-                  
+                  {/* <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'flex-start',
+                      alignContent: 'flex-start',
+                      alignItems: 'center',
+                      width: '100%',
+                      paddingLeft: { xs: '10px', sm: '40px', md: '10px', xl: '195px' },
+                    }}
+                  >
+                    <Button
+                      className="template-inner-theme text-white mb-2"
+                      onClick={() => handleReadArtical(item.link)}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        marginTop: '5px',
+                        fontSize: { xs: '10px', sm: '12px', md: '14px' },
+                        padding: { xs: '4px 8px', sm: '5px 10px' },
+                      }}
+                    >
+                      Read Article <ArrowForwardIcon />
+                    </Button>
+                  </Box> */}
                 </div>
               </div>
             ))}
@@ -220,21 +268,20 @@ const Goal = () => {
         </Box>
       </Grid>
 
-      <Grid
-        container
-        justifyContent="center"
-        className="wow animate__animated animate__fadeInRight animate__slow pb-3 mt-3 mx-auto"
-        color="#054723"
-      >
+      <Grid container justifyContent="center" className="pb-3 mt-3 mx-auto" color="#054723">
         <Box>
-          <Typography className="fontFamily fs-3 mb-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white">
-            Are you ready?
+          <Typography className="fontFamily fs-3 mb-3 fw-bold text-center text-white">Are you ready?</Typography>
+          <Typography className="fontFamily mb-3 fs-5 text-center text-white px-2">
+            Ready to lead with sustainability? Explore Sirāt's NetZero Platform today.
           </Typography>
-          <Typography className="fontFamily mb-3 fs-5 text-center wow animate__animated animate__fadeInLeft animate__slow text-white">
-            Ready to lead with sustainability? Explore Sirāt’s NetZero Platform today.
-          </Typography>
-          <Typography className="fontFamily fs-5 mt-2 text-center wow animate__animated animate__fadeInLeft animate__slow text-white">
-            <Link to={'/contact'}>Contact Us</Link>
+          <Typography className="fontFamily fs-5 mt-2 text-center text-white">
+            <Link
+              // style={{ color: 'rgb(255, 255, 217)', textDecoration: 'none', }}
+              style={{ color: '#003d99', textDecoration: 'none' }}
+              to={'/contact'}
+            >
+              Contact Us
+            </Link>
           </Typography>
         </Box>
       </Grid>

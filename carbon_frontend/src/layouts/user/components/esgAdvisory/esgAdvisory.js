@@ -161,16 +161,16 @@ const EsgAdvisory = () => {
         style={{ textAlign: 'left', fontSize: '18px' }}
         className=" setHome_padding mt-3 fontFamily wow animate__animated animate__fadeInLeft animate__slow text-white"
       >
-        The Sirāt’s AI enabled NetZero platform empowers you to identify, measure and reduce the marketing carbon
+        The Sirāt's AI enabled NetZero platform empowers you to identify, measure and reduce the marketing carbon
         footprint. And manage your diverse marketing activities by keeping Sustainability at the center stage and look
-        beyond the carbon footprint generated from supply chain and improve your overall company’s performance to meet
+        beyond the carbon footprint generated from supply chain and improve your overall company's performance to meet
         NetZero goals.
       </Typography>
       <Typography
         style={{ textAlign: 'left', fontSize: '18px' }}
         className=" setHome_padding fontFamily wow animate__animated animate__fadeInLeft animate__slow text-white"
       >
-        Transform your marketing impact by embedding sustainability into every step. Sirāt’s AI-powered NetZero platform
+        Transform your marketing impact by embedding sustainability into every step. Sirāt's AI-powered NetZero platform
         empowers you to identify, measure, reduce, and manage your carbon footprint with precision.
       </Typography>
       <div className="container">
@@ -188,15 +188,15 @@ const EsgAdvisory = () => {
               md={5.5}
               lg={2.8}
               className="shadow text-start  py-2 m-2 template-inner-theme"
-              style={{ paddingLeft: '-30px', borderRadius: '20px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
+              style={{ borderRadius: '5px', paddingLeft: '-30px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
             >
-              <Typography variant="h6" className="fs-4 fontFamily fw-bold pb-2 pt-2">
+              <Typography variant="h6" className="fs-4 fontFamily fw-bold box-title-padding pt-2">
                 <a href="#identify" style={{ textDecoration: 'none', color: 'inherit' }}>
                   Identify
                 </a>
               </Typography>
-              <p className="fontFamily fs-6 text-start">
-                Pinpoint the origins of your carbon footprint across various marketing activities. Sirāt’s NetZero
+              <p style={{ paddingRight: '3px' }} className="fontFamily fs-6 text-start pb-2">
+                Pinpoint the origins of your carbon footprint across various marketing activities. Sirāt's NetZero
                 Platform creates awareness by highlighting the emission hotspots tailored to your activity types.
               </p>
             </Grid>
@@ -206,15 +206,15 @@ const EsgAdvisory = () => {
               md={5.5}
               lg={2.8}
               className="shadow text-start py-2 m-2 template-inner-theme"
-              style={{ borderRadius: '20px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
+              style={{ borderRadius: '5px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
             >
-              <Typography variant="h6" className=" fs-4 fontFamily fw-bold pb-2 pt-2">
+              <Typography variant="h6" className=" fs-4 fontFamily fw-bold box-title-padding pt-2">
                 <a href="#measure" style={{ textDecoration: 'none', color: 'inherit' }}>
                   Measure
                 </a>
               </Typography>
-              <p className="fontFamily fs-6">
-                Quantify the carbon footprint of your diverse marketing activities with ease. Sirāt’s NetZero Platform
+              <p style={{ paddingRight: '3px' }} className="fontFamily fs-6 pb-2">
+                Quantify the carbon footprint of your diverse marketing activities with ease. Sirāt's NetZero Platform
                 provides accurate, real-time data to help you understand the environmental impact of your operations.
               </p>
             </Grid>
@@ -224,16 +224,16 @@ const EsgAdvisory = () => {
               md={5.5}
               lg={2.8}
               className="shadow text-start py-2 m-2 template-inner-theme"
-              style={{ borderRadius: '20px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
+              style={{ borderRadius: '5px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
             >
-              <Typography variant="h6" className=" fs-4 fontFamily fw-bold pb-2 pt-2">
+              <Typography variant="h6" className=" fs-4 fontFamily fw-bold box-title-padding pt-2">
                 {' '}
                 <a href="#reduce" style={{ textDecoration: 'none', color: 'inherit' }}>
                   Reduce
                 </a>
               </Typography>
-              <p className="fontFamily fs-6">
-                Leverage AI-driven recommendations to minimize your carbon footprint. Sirāt’s NetZero Platform delivers
+              <p style={{ paddingRight: '3px' }} className="fontFamily fs-6 pb-2">
+                Leverage AI-driven recommendations to minimize your carbon footprint. Sirāt's NetZero Platform delivers
                 precise strategies to optimize emissions under each category, fostering sustainable marketing practices.
               </p>
             </Grid>
@@ -243,15 +243,15 @@ const EsgAdvisory = () => {
               md={5.5}
               lg={2.8}
               className="shadow text-start py-2 m-2 template-inner-theme"
-              style={{ borderRadius: '20px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
+              style={{ borderRadius: '5px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
             >
-              <Typography variant="h6" className=" fs-4 fontFamily fw-bold pb-2 pt-2">
+              <Typography variant="h6" className=" fs-4 fontFamily fw-bold box-title-padding pt-2">
                 <a href="#manage" style={{ textDecoration: 'none', color: 'inherit' }}>
                   Manage
                 </a>
               </Typography>
-              <p className="fontFamily fs-6 pe-2">
-                Streamline your sustainability efforts with comprehensive analytical reports. Sirāt’s NetZero Platform
+              <p style={{ paddingRight: '3px' }} className="fontFamily fs-6 pb-2">
+                Streamline your sustainability efforts with comprehensive analytical reports. Sirāt's NetZero Platform
                 enables you to compare emissions over time and manage progress towards your NetZero goals seamlessly.
               </p>
             </Grid>

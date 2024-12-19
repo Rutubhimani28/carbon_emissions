@@ -173,7 +173,7 @@ const Index = () => {
             {/* First Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
-                <Typography className="fontFamily fs-3 fw-bold">5-25%</Typography>
+                <Typography className="fontFamily fs-3 fw-bold box-title-padding">5-25%</Typography>
                 <Typography>Reduce your carbon footprint from the very first activity by 5-25%.</Typography>
               </Box>
             </Grid>
@@ -181,7 +181,7 @@ const Index = () => {
             {/* Second Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
-                <Typography className="fontFamily fs-3 fw-bold">7%</Typography>
+                <Typography className="fontFamily fs-3 fw-bold box-title-padding">7%</Typography>
                 <Typography>Reduce your marketing budgets by up to 7% in the first year itself.</Typography>
               </Box>
             </Grid>
@@ -189,7 +189,7 @@ const Index = () => {
             {/* Third Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
-                <Typography className="fontFamily fs-3 fw-bold">100%</Typography>
+                <Typography className="fontFamily fs-3 fw-bold box-title-padding">100%</Typography>
                 <Typography>Achieve more than 100% Return on Investment (RoI) from the first year.</Typography>
               </Box>
             </Grid>
@@ -251,13 +251,16 @@ const Index = () => {
         <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInLeft animate__slow mb-5">
           <Box
             className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
-            style={{ boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px' }}
+            style={{
+              height: { sm: '300px', md: '320px' },
+              boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
+            }}
           >
             {/* <img src={mission} alt="img" width={50} className='tabImgWhite' /> */}
-            <Typography variant="h6" className="text-start fs-5 pt-2 pb-4 fontFamily fw-bold">
+            <Typography variant="h6" className="text-start fs-5 pb-4 fontFamily fw-bold">
               Mission
             </Typography>
-            <p className="text-start fs-6">
+            <p className="text-start fs-6 ">
               To promote sustainable marketing and generate awareness to look beyond supply chain emissions and
               emphasize the importance of adopting sustainable practices in marketing.
             </p>
@@ -266,13 +269,16 @@ const Index = () => {
         <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInRight animate__slow mb-5">
           <Box
             className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
-            style={{ boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px' }}
+            style={{
+              height: { sm: '300px', md: '320px' },
+              boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
+            }}
           >
             {/* <img src={vision} alt="img" width={50} className='tabImgWhite' /> */}
-            <Typography variant="h6" className="text-start fs-5  pt-2 pb-4 fontFamily fw-bold">
+            <Typography variant="h6" className="text-start fs-5 pb-4 fontFamily fw-bold">
               Vision
             </Typography>
-            <p className="text-start fs-6">
+            <p className="text-start fs-6 ">
               We aspire to remove 100 Gigaton of carbon equivalent (1 MtCO<sub>2</sub>e) by 2030, driving meaningful
               environmental impact through sustainable marketing practices by collaboration.{' '}
             </p>
