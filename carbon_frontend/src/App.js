@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 // routes
 import { ToastContainer } from 'react-toastify';
-import { RiRobot2Fill } from "react-icons/ri";
+import { RiRobot2Fill } from 'react-icons/ri';
 import Routers from './routes';
 
 // theme
@@ -46,12 +46,11 @@ import DashboardLayout from './layouts/dashboard/DashboardLayout';
 // ----------------------------------------------------------------------
 
 export default function App() {
-
   const token = sessionStorage.getItem('token');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps, prefer-const
-  const user = JSON.parse(sessionStorage.getItem('user'))
-  useNavigate()
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  useNavigate();
 
   const [openBot, setOpenBot] = useState(false);
   const handleCloseBot = () => setOpenBot(false);
@@ -68,11 +67,10 @@ export default function App() {
         </>
       ) : (
         <>
-          {
-            window.location.pathname !== "/login" && window.location.pathname !== "/forgot-password" && window.location.pathname !== "/reset-password" &&
-            <Header />
-          }
-          <div className='template-outer-theme'>
+          {window.location.pathname !== '/login' &&
+            window.location.pathname !== '/forgot-password' &&
+            window.location.pathname !== '/reset-password' && <Header />}
+          <div className="template-outer-theme">
             <Routes>
               <Route path="*" element={<Navigate to="/" />} />
               <Route path="/" element={<UserLayout />} />
@@ -80,15 +78,15 @@ export default function App() {
               <Route path="/forgot-password" element={<ForgotPswdPage />} />
               <Route path="/reset-password" element={<ResetPswdPage />} />
               <Route path="/netzero-platform" element={<Services />} />
-              <Route path="/netzero-consulting" element={<EsgAdvisory />} />
-              <Route path="/netzero-consulting/organisations/" element={<Organisations />} />
+              <Route path="/enterprise-solutions" element={<EsgAdvisory />} />
+              <Route path="/enterprise-solutions/organisations/" element={<Organisations />} />
               {/* <Route path="/event-venue" element={<EventVenue />} /> */}
               {/* <Route path="/event-execution-agency" element={<EventExecutionAgency />} /> */}
-              <Route path="/netzero-consulting/organisations/esg-consulting" element={<Counsulting />} />
-              <Route path="/netzero-consulting/organisations/sustainable-events" element={<SustainableEvents />} />
-              <Route path="/netzero-consulting/service-providers/" element={<Agencies />} />
-              <Route path="/netzero-consulting/hospitality-industry/" element={<Hospitality />} />
-              <Route path="/netzero-consulting/exhibition-organiser/" element={<Exhibitions />} />
+              <Route path="/enterprise-solutions/organisations/esg-consulting" element={<Counsulting />} />
+              <Route path="/enterprise-solutions/organisations/sustainable-events" element={<SustainableEvents />} />
+              <Route path="/enterprise-solutions/service-providers/" element={<Agencies />} />
+              <Route path="/enterprise-solutions/hospitality-industry/" element={<Hospitality />} />
+              <Route path="/enterprise-solutions/exhibition-organiser/" element={<Exhibitions />} />
               <Route path="/about-us" element={<About />} />
               <Route path="/news-room" element={<NewRoom />} />
               <Route path="/news-room/blog1" element={<Blog1 />} />
@@ -116,14 +114,14 @@ export default function App() {
               backgroundColor: 'rgba(255, 255, 255, 0.5)',
               borderRadius: '30%',
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-              border: 'none'
-            }}>
+              border: 'none',
+            }}
+          >
             <RiRobot2Fill style={{ fontSize: '3rem', color: '#007BFF' }} />
           </button>
-          <Bot openBot={openBot} handleCloseBot={handleCloseBot} subject='Feedback or Questions' />
+          <Bot openBot={openBot} handleCloseBot={handleCloseBot} subject="Feedback or Questions" />
           <Footer />
         </>
-
       )}
     </ThemeProvider>
   );
