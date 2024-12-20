@@ -27,7 +27,7 @@ import logo from '../../assets/images/logo5.gif';
 const drawerWidth = 240;
 const navItems = [
   { name: 'Home', path: '/' },
-  { name: 'NetZero Platform', path: '/netzero-platform' },
+  // { name: 'NetZero Platform', path: '/netzero-platform' },
   { name: 'Enterprise Solutions', path: '/enterprise-solutions' },
   { name: 'Contact Us', path: '/contact' },
   { name: 'About Us', path: '/about-us' },
