@@ -13,7 +13,7 @@ const Blog4 = () => {
                     <img src={blog4} alt="blog2" width={'65%'} className="blogImageRadius" />
                 </div>
                 <Typography variant='h6' className='text-center fs-2 pt-4 my-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >
-                    <Link to="https://forceforgood.insead.edu/article/mohammed-shafeeq-ilpse-c10-pioneering-sustainable-entrepreneurship-marketing" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing</Link>
+                    <Link to="https://forceforgood.insead.edu/article/mohammed-shafeeq-ilpse-c10-pioneering-sustainable-entrepreneurship-marketing" target="_blank" style={{ textDecoration: 'none', color: '#1f9e6d' }}>Mohammed Shafeeq ILPSE C10, Pioneering Sustainable Entrepreneurship in Marketing</Link>
                 </Typography>
             </div>
             <div style={{ position: "fixed", bottom: "70px", left: "0", }} >

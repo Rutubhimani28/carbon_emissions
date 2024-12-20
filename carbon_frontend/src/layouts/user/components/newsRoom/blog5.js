@@ -13,7 +13,7 @@ const Blog5 = () => {
                     <img src={blog5} alt="blog2" width={'65%'} className="blogImageRadius" />
                 </div>
                 <Typography variant='h6' className='text-center fs-2 pt-4 my-4 fontFamily fw-bold px-3 wow animate__animated animate__fadeInUp animate__slow' >
-                    <Link to="https://etedge-insights.com/sdgs-and-esg/sustainability/leading-the-netzero-charge-how-sustainable-marketing-can-transform-the-future-of-business/" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>Leading the NetZero charge: How sustainable marketing can transform the future of business</Link>
+                    <Link to="https://etedge-insights.com/sdgs-and-esg/sustainability/leading-the-netzero-charge-how-sustainable-marketing-can-transform-the-future-of-business/" target="_blank" style={{ textDecoration: 'none', color: '#1f9e6d' }}>Leading the NetZero charge: How sustainable marketing can transform the future of business</Link>
                 </Typography>
             </div>
             <div style={{ position: "fixed", bottom: "70px", left: "0", }} >
