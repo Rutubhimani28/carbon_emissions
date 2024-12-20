@@ -172,7 +172,7 @@ const Index = () => {
           <Grid container justifyContent="center" spacing={2} sx={{ mt: 2 }}>
             {/* First Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
-              <Box className="bg-light template-inner-theme-2 p-3 rounded-1 text-start">
+              <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">5-25%</Typography>
                 <Typography>Reduce your carbon footprint from the very first activity by 5-25%.</Typography>
               </Box>
@@ -180,7 +180,7 @@ const Index = () => {
 
             {/* Second Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
-              <Box className="bg-light template-inner-theme-2 p-3 rounded-1 text-start">
+              <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">7%</Typography>
                 <Typography>Reduce your marketing budgets by up to 7% in the first year itself.</Typography>
               </Box>
@@ -188,7 +188,7 @@ const Index = () => {
 
             {/* Third Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
-              <Box className="bg-light template-inner-theme-2 p-3 rounded-1 text-start">
+              <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">100%</Typography>
                 <Typography>Achieve more than 100% Return on Investment (RoI) from the first year.</Typography>
               </Box>
@@ -224,7 +224,7 @@ const Index = () => {
               poster={posterImg}
               style={{
                 objectFit: 'cover',
-                width: useMediaQuery(theme.breakpoints.up('md')) ? '55%' : '75%',
+                width: useMediaQuery(theme.breakpoints.up('md')) ? '45%' : '65%',
                 margin: '0 auto',
               }}
             >
@@ -246,7 +246,7 @@ const Index = () => {
         <Grid item xs={0} md={2.1} />
         <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInLeft animate__slow mb-5">
           <Box
-            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme-2"
+            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
             sx={{
               height: { xs: '200px', sm:"260px", md: '220px' },
               boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
@@ -264,7 +264,7 @@ const Index = () => {
         </Grid>
         <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInRight animate__slow mb-5">
           <Box
-            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme-2"
+            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
             sx={{
               height: { xs: '200px', sm:"260px", md: '220px' }, 
               boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',

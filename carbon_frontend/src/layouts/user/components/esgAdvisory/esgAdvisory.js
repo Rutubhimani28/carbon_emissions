@@ -108,8 +108,8 @@ const EsgAdvisory = () => {
         </div>
       </div>
 
-      <div style={{ paddingTop: '30px', paddingBottom: '30px' }}>
-        <Typography className="fontFamily pb-2 fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white">
+      <div style={{ paddingTop: '30px', paddingBottom: '16px' }}>
+        <Typography className="fontFamily pb-2 fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme-2">
           Committed to Sustainability
         </Typography>
         <p
@@ -121,7 +121,7 @@ const EsgAdvisory = () => {
           aligning with environmental and social responsibility, we build trust, foster loyalty, and drive lasting
           growth.
         </p>
-        <Typography className="fontFamily fs-3 p-2 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white mb-3">
+        <Typography className="fontFamily fs-3 p-2 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme-2 mb-3">
           Identify . Measure . Reduce . Manage
         </Typography>
       </div>
@@ -159,7 +159,7 @@ const EsgAdvisory = () => {
 
       <Typography
         style={{ textAlign: 'left', fontSize: '18px' }}
-        className=" setHome_padding mt-5 fontFamily wow animate__animated animate__fadeInLeft animate__slow text-white"
+        className=" setHome_padding mt-5 fontFamily wow animate__animated animate__fadeInLeft animate__slow template-outer-theme"
       >
         The Sirāt's AI enabled NetZero platform empowers you to identify, measure and reduce the marketing carbon
         footprint. And manage your diverse marketing activities by keeping Sustainability at the center stage and look
@@ -168,19 +168,19 @@ const EsgAdvisory = () => {
       </Typography>
       <Typography
         style={{ textAlign: 'left', fontSize: '18px' }}
-        className=" setHome_padding fontFamily wow animate__animated animate__fadeInLeft animate__slow text-white"
+        className=" setHome_padding fontFamily mt-3 wow animate__animated animate__fadeInLeft animate__slow"
       >
         Transform your marketing impact by embedding sustainability into every step. Sirāt's AI-powered NetZero platform
         empowers you to identify, measure, reduce, and manage your carbon footprint with precision.
       </Typography>
-      <div className="container">
+      <div className="container text-white">
         <div className="d-block mx-auto">
           {/* <Typography variant='h6' className='fs-1 pt-2 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-center' >Industries</Typography> */}
           <Grid
             container
             spacing={2}
             style={{ marginLeft: '-8px' }}
-            className="  my-4 d-flex  justify-content-xl-between justify-content-sm-center   wow animate__animated animate__fadeInUp animate__slow"
+            className=" my-4 d-flex  justify-content-xl-between justify-content-sm-center wow animate__animated animate__fadeInUp animate__slow"
           >
             <Grid
               item
@@ -267,7 +267,7 @@ const EsgAdvisory = () => {
           >
             <Box className="organise p-3" style={{ borderRadius: '20px' }}>
               <img src={Organisations} alt="img" width={'100%'} />
-              <Typography variant="h6" className="text-center pt-3 fontFamily" color="#054723">
+              <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Organisations
               </Typography>
             </Box>
@@ -284,6 +284,7 @@ const EsgAdvisory = () => {
               style={{
                 textAlign: 'left',
                 fontSize: '30px',
+                color:"#1f9e6d",
                 fontWeight: 'bold',
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 24px 40px' : '0px 0px 20px 0px',
               }}
@@ -295,6 +296,7 @@ const EsgAdvisory = () => {
               style={{
                 textAlign: 'left',
                 fontSize: '18px',
+                color:"#1f9e6d",
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '0 0px',
                 // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
               }}
@@ -313,7 +315,7 @@ const EsgAdvisory = () => {
           >
             <Box className="organise p-3" style={{ borderRadius: '20px' }}>
               <img src={Agencies} alt="img" width={'100%'} />
-              <Typography variant="h6" className="text-center pt-3 fontFamily" color="#054723">
+              <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Agencies
               </Typography>
             </Box>
@@ -324,13 +326,14 @@ const EsgAdvisory = () => {
             md={8}
             sx={{ order: { xs: '2', md: '1' } }}
             className="wow animate__animated animate__fadeInLeft animate__slow  ps-3 d-flex flex-column  justify-content-center align-items-start"
-            style={{ margin: useMediaQuery(theme.breakpoints.up('sm')) ? '0 0' : '12px -6px' }}
+            style={{ color:"#1f9e6d" , margin: useMediaQuery(theme.breakpoints.up('sm')) ? '0 0' : '12px -6px' }}
           >
             <p
               style={{
                 textAlign: 'left',
                 fontSize: '30px',
                 fontWeight: 'bold',
+                color:"1f9e6d",
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 24px 40px' : '0px 0px 20px 0px',
                 // padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '0 0px',
               }}
@@ -341,6 +344,7 @@ const EsgAdvisory = () => {
               style={{
                 textAlign: 'left',
                 fontSize: '18px',
+                color:"#1f9e6d",
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '0 0px',
                 // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '15px',
               }}
@@ -411,7 +415,7 @@ const EsgAdvisory = () => {
           >
             <Box className="organise p-3" style={{ borderRadius: '20px' }}>
               <img src={Exhibitions} alt="img" width={'100%'} className="img-fuild" />
-              <Typography variant="h6" className="text-center pt-3 fontFamily" color="#054723">
+              <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Exhibitions
               </Typography>
             </Box>
@@ -422,7 +426,7 @@ const EsgAdvisory = () => {
             md={8}
             sx={{ order: { xs: '2', md: '1' } }}
             className="wow animate__animated animate__fadeInRight animate__slow  ps-3 d-flex flex-column  justify-content-center align-items-start"
-            style={{ margin: useMediaQuery(theme.breakpoints.up('sm')) ? '0 0' : '0 -6px' }}
+            style={{ color:"#1f9e6d" , margin: useMediaQuery(theme.breakpoints.up('sm')) ? '0 0' : '0 -6px' }}
           >
             <p
               style={{
@@ -439,6 +443,7 @@ const EsgAdvisory = () => {
               style={{
                 textAlign: 'left',
                 fontSize: '18px',
+                color:"#1f9e6d",
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '0 0px',
                 // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '15px',
               }}

@@ -5,7 +5,7 @@ import React from 'react'
 const TermConditions = () => {
     const theme = useTheme()
     return (
-        <div className='py-3 text-white setHome_padding' >
+        <div className='py-3 setHome_padding' >
             <Typography variant='h6' className='text-center fs-1 mb-1 fontFamily fw-bold py-2' >Terms & Conditions</Typography>
 
             <ol>

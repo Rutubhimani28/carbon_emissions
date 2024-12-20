@@ -174,7 +174,7 @@ const Goal = () => {
                   key={item.id}
                   style={{
                     height: '300px',
-                    maxWidth: '290px',
+                    maxWidth: '280px',
                     border: '1px solid black',
                     borderRadius: '6px',
                     display: 'flex',
@@ -227,7 +227,7 @@ const Goal = () => {
                   >
                     <Button
                       // className="fs-5 text-white mb-2"
-                      className="fs-5 template-outer-theme-2"
+                      className="fs-5 template-outer-theme"
                       onClick={() => handleReadArtical(item.link)}
                       sx={{
                         display: 'flex',
@@ -272,7 +272,7 @@ const Goal = () => {
         </Box>
       </Grid>
 
-      <Grid container justifyContent="center" className="pb-3 mt-3 mx-auto template-outer-theme-2" color="#054723">
+      <Grid container justifyContent="center" className="pb-3 mt-3 mx-auto template-outer-theme" color="#054723">
         <Box>
           <Typography className="fontFamily fs-3 mb-3 fw-bold text-center">Are you ready?</Typography>
           <Typography className="fontFamily mb-3 fs-5 text-center  px-2">

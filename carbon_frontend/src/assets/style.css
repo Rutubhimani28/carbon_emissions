@@ -231,24 +231,24 @@ p {
 }
 
 .template-outer-theme {
-  background: #1f9e6d !important;
-  color: white !important;
-}
-
-.template-outer-theme-2 {
   background: white !important;
   color: #1f9e6d !important;
 }
 
-.template-inner-theme {
-  background: #054723 !important;
-  /* color: white; */
-}
+/* .template-outer-theme-2 {
+  background: white !important;
+  color: #1f9e6d !important;
+} */
 
-.template-inner-theme-2 {
+.template-inner-theme {
   background: #054723 !important;
   color: white;
 }
+
+/* .template-inner-theme-2 {
+  background: #054723 !important;
+  color: white;
+} */
 
 .slick-arrow.slick-prev,
 .slick-arrow.slick-next {

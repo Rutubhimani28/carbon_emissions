@@ -6,7 +6,7 @@ import EsgAdvisory from './esgAdvisory'
 
 const Index = () => {
     return (
-        <div>
+        <div className='template-outer-theme-2'>
             <EsgAdvisory />
         </div>
     )
