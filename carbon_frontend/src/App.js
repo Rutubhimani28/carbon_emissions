@@ -77,7 +77,7 @@ export default function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/forgot-password" element={<ForgotPswdPage />} />
               <Route path="/reset-password" element={<ResetPswdPage />} />
-              <Route path="/netzero-platform" element={<Services />} />
+              {/* <Route path="/netzero-platform" element={<Services />} /> */}
               <Route path="/enterprise-solutions" element={<EsgAdvisory />} />
               <Route path="/enterprise-solutions/organisations/" element={<Organisations />} />
               {/* <Route path="/event-venue" element={<EventVenue />} /> */}

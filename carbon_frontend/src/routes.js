@@ -70,7 +70,7 @@ export default function Router() {
       ],
     },
     { path: '/', element: <UserLayout /> },
-    { path: '/netzero-platform', element: <Services /> },
+    // { path: '/netzero-platform', element: <Services /> },
     {
       element: <SimpleLayout />,
       children: [

@@ -129,7 +129,8 @@ const Goal = () => {
           marginBottom: { xs: '-15px', sm: '5px' }, // Smaller margin for extra-small screens
           lineHeight: '1.2',
         }}
-        className="fontFamily fs-3 mt-1 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white"
+        // className="fontFamily fs-3 mt-1 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white"
+        className="fontFamily fs-3 mt-1 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow"
       >
         Latest News
       </Typography>
@@ -160,6 +161,7 @@ const Goal = () => {
               <div
                 style={{
                   border: '1px solid black',
+                  borderRadius: '48px',
                   display: 'flex',
                   alignContent: 'center',
                   flexDirection: 'column',
@@ -171,9 +173,10 @@ const Goal = () => {
                 <div
                   key={item.id}
                   style={{
-                    height: '320px',
-                    maxWidth: '300px',
+                    height: '300px',
+                    maxWidth: '290px',
                     border: '1px solid black',
+                    borderRadius: '6px',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -199,10 +202,10 @@ const Goal = () => {
                   <p
                     style={{
                       textAlign: 'start',
-                      color: 'white',
+                      // color: 'white',
                       width: '100%',
                       maxWidth: '400px',
-                      height: '90px',
+                      height: '85px',
                       fontSize: 'clamp(16px, 1vw, 20px)',
                       marginTop: '5px',
                       padding: '0px 10px 13px 10px',
@@ -223,12 +226,13 @@ const Goal = () => {
                     }}
                   >
                     <Button
-                      className="fs-5 text-white mb-2"
+                      // className="fs-5 text-white mb-2"
+                      className="fs-5 template-outer-theme-2"
                       onClick={() => handleReadArtical(item.link)}
                       sx={{
                         display: 'flex',
                         justifyContent: 'flex-start',
-                        marginTop: '5px',
+                        marginTop: '0px',
                         fontSize: { xs: '10px', sm: '12px', md: '14px' },
                         padding: { xs: '4px 0px', sm: '5px 1px' },
                       }}
@@ -268,10 +272,10 @@ const Goal = () => {
         </Box>
       </Grid>
 
-      <Grid container justifyContent="center" className="pb-3 mt-3 mx-auto" color="#054723">
+      <Grid container justifyContent="center" className="pb-3 mt-3 mx-auto template-outer-theme-2" color="#054723">
         <Box>
-          <Typography className="fontFamily fs-3 mb-3 fw-bold text-center text-white">Are you ready?</Typography>
-          <Typography className="fontFamily mb-3 fs-5 text-center text-white px-2">
+          <Typography className="fontFamily fs-3 mb-3 fw-bold text-center">Are you ready?</Typography>
+          <Typography className="fontFamily mb-3 fs-5 text-center  px-2">
             Ready to lead with sustainability? Explore Sirāt's NetZero Platform today.
           </Typography>
           <Typography className="fontFamily fs-5 mt-2 text-center text-white">

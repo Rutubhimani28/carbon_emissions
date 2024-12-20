@@ -161,10 +161,10 @@ const Index = () => {
           <Typography>
             We aim to seamlessly integrate Environmental, Social and Governance (ESG) considerations into your
             organization's CMO strategies by deeply understanding your needs. Our Advisory Services and an AI enabled
-            carbon accounting{' '}
-            <Link to="/netzero-platform" style={{ color: '#ffffd9', textDecoration: 'none' }}>
+            carbon accounting NetZero Platform
+            {/* <Link to="/netzero-platform" style={{ color: '#ffffd9', textDecoration: 'none' }}>
               NetZero Platform
-            </Link>
+            </Link> */}
             , designed to measure the CO<sub>2</sub> footprint generated from your marketing operations.
           </Typography>
 
@@ -172,7 +172,7 @@ const Index = () => {
           <Grid container justifyContent="center" spacing={2} sx={{ mt: 2 }}>
             {/* First Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
-              <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
+              <Box className="bg-light template-inner-theme-2 p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">5-25%</Typography>
                 <Typography>Reduce your carbon footprint from the very first activity by 5-25%.</Typography>
               </Box>
@@ -180,7 +180,7 @@ const Index = () => {
 
             {/* Second Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
-              <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
+              <Box className="bg-light template-inner-theme-2 p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">7%</Typography>
                 <Typography>Reduce your marketing budgets by up to 7% in the first year itself.</Typography>
               </Box>
@@ -188,7 +188,7 @@ const Index = () => {
 
             {/* Third Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
-              <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
+              <Box className="bg-light template-inner-theme-2 p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">100%</Typography>
                 <Typography>Achieve more than 100% Return on Investment (RoI) from the first year.</Typography>
               </Box>
@@ -196,42 +196,38 @@ const Index = () => {
           </Grid>
         </Grid>
 
-        <Grid className="fs-5" item xs={12} sm={2} md={2} />
+        {/* <Grid className="" item xs={12} sm={2} md={2} /> */}
 
         <Grid
           item
           xs={12}
           sm={12}
           md={10}
-          className="fs-5 d-block mx-auto wow animate__animated animate__fadeInLeft animate__slow"
+          className="fs-5 mx-auto wow animate__animated animate__fadeInLeft animate__slow"
         >
           <div
             className="video-responsive"
             style={{
-              position: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+
+              margin: '0 auto',
               paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? '42px' : '25px',
-              display: 'block',
-              margin: 'auto',
             }}
           >
-            {/* <video loop muted playsInline controls poster={posterImg} width="100%" height="100%"> */}
             <video
               loop
               muted
               controls
               playsInline
               poster={posterImg}
-              height="100%"
               style={{
                 objectFit: 'cover',
-                width: useMediaQuery(theme.breakpoints.up('md')) ? '80%' : '100%',
-                margin: useMediaQuery(theme.breakpoints.up('md')) ? 'auto' : '0',
+                width: useMediaQuery(theme.breakpoints.up('md')) ? '55%' : '75%',
+                margin: '0 auto',
               }}
             >
-              {/* <source src={"https://sirat.earth/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
-                            <source src={"https://sirat.earth/static/media/CEO Video-Updates3.b10a4ac41f4b0d1d500d.mov"} type={"video/mov"} /> */}
-              {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates.c5e3c45bb4cd3273eb6d.mp4"} type={"video/mp4"} />
-                            <source src={"https://carbon-emissions-sigma.vercel.app/static/media/CEO Video-Updates3.b10a4ac41f4b0d1d500d.mov"} type={"video/mov"} />  */}
               <source src={'https://sirat.earth:8000/videos/CEO Video-Updates.mp4'} type={'video/mp4'} />
               <source src={'https://sirat.earth:8000/videos/CEO Video-Updates3.mov'} type={'video/mov'} />
               <p>
@@ -243,16 +239,16 @@ const Index = () => {
             </video>
           </div>
         </Grid>
-        <Grid className="fs-5" item xs={12} sm={2} md={2} />
+        {/* <Grid className="fs-5" item xs={12} sm={2} md={2} /> */}
       </Grid>
 
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className="mt-3">
         <Grid item xs={0} md={2.1} />
         <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInLeft animate__slow mb-5">
           <Box
-            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
-            style={{
-              height: { sm: '300px', md: '320px' },
+            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme-2"
+            sx={{
+              height: { xs: '200px', sm:"260px", md: '220px' },
               boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
             }}
           >
@@ -268,9 +264,9 @@ const Index = () => {
         </Grid>
         <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInRight animate__slow mb-5">
           <Box
-            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
-            style={{
-              height: { sm: '300px', md: '320px' },
+            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme-2"
+            sx={{
+              height: { xs: '200px', sm:"260px", md: '220px' }, 
               boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
             }}
           >
@@ -279,7 +275,7 @@ const Index = () => {
               Vision
             </Typography>
             <p className="text-start fs-6 ">
-              We aspire to remove 100 Gigaton of carbon equivalent (1 MtCO<sub>2</sub>e) by 2030, driving meaningful
+              We aspire to remove 100 Megaton of carbon equivalent (1 MtCO<sub>2</sub>e) by 2030, driving meaningful
               environmental impact through sustainable marketing practices by collaboration.{' '}
             </p>
           </Box>
@@ -296,14 +292,17 @@ const Index = () => {
       >
         <Grid item sm={12} md={12} className="d-flex justify-content-center pt-3 mb-4">
           <Typography
-            style={{ color: 'rgb(5, 71, 35);' }}
-            className="fontFamily fs-3  mb-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow"
+            className="fontFamily fs-3  mb-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme-2"
           >
             Our Customers
           </Typography>
         </Grid>
 
-        <Grid container item xs={12} sm={12} md={8} spacing={2} className="d-flex justify-content-center ">
+        <Grid container item xs={12} sm={12} md={8} spacing={2} className="d-flex justify-content-center"
+          style={{
+            marginLeft:"18x",
+          }}
+        >
           {/* TrustOne Box */}
           <Box
             className=" d-flex justify-content-center flex-column align-items-center p-4 mx-0"

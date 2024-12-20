@@ -17,10 +17,10 @@ const Footer = () => {
           Home{' '}
         </Link>{' '}
         |
-        <Link to="/netzero-platform" className="px-2 text-decoration-none text-light">
+        {/* <Link to="/netzero-platform" className="px-2 text-decoration-none text-light">
           NetZero Platform{' '}
         </Link>
-        |
+        | */}
         <Link to="/enterprise-solutions" className="px-2 text-decoration-none text-light">
           {' '}
           Enterprise Solutions{' '}
