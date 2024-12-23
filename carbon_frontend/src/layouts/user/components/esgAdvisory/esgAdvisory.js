@@ -126,7 +126,8 @@ const EsgAdvisory = () => {
         </Typography>
       </div>
 
-      <div style={{ maxWidth: '100%', maxHeight: '750px', overflow: 'hidden', padding: '0 10%' }}>
+      <div style={{ overflow: 'hidden' }}>
+        {/* <div style={{ overflow: 'hidden', padding: '0 10%' , height:"100vh" , width:"100%"}}> */}
         <video
           width={'100%'}
           autoPlay
@@ -140,7 +141,7 @@ const EsgAdvisory = () => {
             objectFit: 'contain',
             margin: '0 auto',
             display: 'block',
-            height: useMediaQuery(theme.breakpoints.down('md')) ? 'auto' : '66vh',
+            // height: useMediaQuery(theme.breakpoints.down('md')) ? 'auto' : '66vh',
           }}
         >
           {/* <source src={"https://sirat.earth/static/media/NetZero Consulting.76cf997a4ada4ef7a99c.mp4"} type={"video/mp4"} width={"100%"} />
@@ -257,12 +258,25 @@ const EsgAdvisory = () => {
             </Grid>
           </Grid>
         </div>
-        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 2 }} className="py-3" id="organisation">
+
+        <Grid
+          container
+          rowSpacing={3}
+          columnSpacing={{ xs: 1, sm: 2, md: 2 }}
+          id="organisation"
+          style={{
+            marginTop: '20px',
+            border: 'solid 1px #1F9E6D',
+            boxShadow: ' 0 0 2px 0 rgba(145, 158, 171, 0.2), 0 12px 24px -4px rgba(145, 158, 171, 0.12)',
+            borderRadius: '21px',
+          }}
+        >
           <Grid
             item
             xs={12}
             md={4}
             sx={{ order: { md: '1' } }}
+            style={{ padding: '5px' }}
             className="wow animate__animated animate__fadeInLeft animate__slow"
           >
             <Box className="organise p-3" style={{ borderRadius: '20px' }}>
@@ -284,7 +298,7 @@ const EsgAdvisory = () => {
               style={{
                 textAlign: 'left',
                 fontSize: '30px',
-                color:"#1f9e6d",
+                color: '#1f9e6d',
                 fontWeight: 'bold',
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 24px 40px' : '0px 0px 20px 0px',
               }}
@@ -296,7 +310,7 @@ const EsgAdvisory = () => {
               style={{
                 textAlign: 'left',
                 fontSize: '18px',
-                color:"#1f9e6d",
+                color: '#1f9e6d',
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '0 0px',
                 // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
               }}
@@ -305,13 +319,25 @@ const EsgAdvisory = () => {
             </p>
           </Grid>
         </Grid>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className="py-3" id="agencies">
+        <Grid
+          container
+          rowSpacing={1}
+          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          id="agencies"
+          style={{
+            marginTop: '20px',
+            border: 'solid 1px #1F9E6D',
+            boxShadow: ' 0 0 2px 0 rgba(145, 158, 171, 0.2), 0 12px 24px -4px rgba(145, 158, 171, 0.12)',
+            borderRadius: '21px',
+          }}
+        >
           <Grid
             item
             xs={12}
             md={4}
             sx={{ order: { md: '2' } }}
             className="wow animate__animated animate__fadeInRight animate__slow"
+            style={{ padding: '5px' }}
           >
             <Box className="organise p-3" style={{ borderRadius: '20px' }}>
               <img src={Agencies} alt="img" width={'100%'} />
@@ -326,14 +352,14 @@ const EsgAdvisory = () => {
             md={8}
             sx={{ order: { xs: '2', md: '1' } }}
             className="wow animate__animated animate__fadeInLeft animate__slow  ps-3 d-flex flex-column  justify-content-center align-items-start"
-            style={{ color:"#1f9e6d" , margin: useMediaQuery(theme.breakpoints.up('sm')) ? '0 0' : '12px -6px' }}
+            style={{ color: '#1f9e6d', margin: useMediaQuery(theme.breakpoints.up('sm')) ? '0 0' : '12px -6px' }}
           >
             <p
               style={{
                 textAlign: 'left',
                 fontSize: '30px',
                 fontWeight: 'bold',
-                color:"1f9e6d",
+                color: '1f9e6d',
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 24px 40px' : '0px 0px 20px 0px',
                 // padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '0 0px',
               }}
@@ -344,7 +370,7 @@ const EsgAdvisory = () => {
               style={{
                 textAlign: 'left',
                 fontSize: '18px',
-                color:"#1f9e6d",
+                color: '#1f9e6d',
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '0 0px',
                 // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '15px',
               }}
@@ -405,12 +431,24 @@ const EsgAdvisory = () => {
             </p>
           </Grid>
         </Grid> */}
-        <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 2 }} className="py-3" id="organisation">
+        <Grid
+          container
+          rowSpacing={3}
+          columnSpacing={{ xs: 1, sm: 2, md: 2 }}
+          id="organisation"
+          style={{
+            border: 'solid 1px #1F9E6D',
+            marginTop: '20px',
+            boxShadow: ' 0 0 2px 0 rgba(145, 158, 171, 0.2), 0 12px 24px -4px rgba(145, 158, 171, 0.12)',
+            borderRadius: '21px',
+          }}
+        >
           <Grid
             item
             xs={12}
             md={4}
             sx={{ order: { md: '1' } }}
+            style={{ padding: '5px' }}
             className="wow animate__animated animate__fadeInLeft animate__slow"
           >
             <Box className="organise p-3" style={{ borderRadius: '20px' }}>
@@ -426,7 +464,7 @@ const EsgAdvisory = () => {
             md={8}
             sx={{ order: { xs: '2', md: '1' } }}
             className="wow animate__animated animate__fadeInRight animate__slow  ps-3 d-flex flex-column  justify-content-center align-items-start"
-            style={{ color:"#1f9e6d" , margin: useMediaQuery(theme.breakpoints.up('sm')) ? '0 0' : '0 -6px' }}
+            style={{ color: '#1f9e6d', margin: useMediaQuery(theme.breakpoints.up('sm')) ? '0 0' : '0 -6px' }}
           >
             <p
               style={{
@@ -443,7 +481,7 @@ const EsgAdvisory = () => {
               style={{
                 textAlign: 'left',
                 fontSize: '18px',
-                color:"#1f9e6d",
+                color: '#1f9e6d',
                 padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '0 0px',
                 // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '15px',
               }}
@@ -457,7 +495,7 @@ const EsgAdvisory = () => {
           <img
             src={Services}
             alt="services"
-            style={{marginTop:useMediaQuery(theme.breakpoints.up('md')) ? '40px' : '15px'}}
+            style={{ marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '40px' : '15px' }}
             className="pb-5 wow animate__animated animate__fadeInUp animate__slow"
           />
         </div>
