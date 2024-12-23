@@ -279,7 +279,7 @@ const EsgAdvisory = () => {
             style={{ padding: '5px' }}
             className="wow animate__animated animate__fadeInLeft animate__slow"
           >
-            <Box className="organise p-3" style={{ borderRadius: '20px' }}>
+            <Box className="organise-2 p-3" style={{ borderRadius: '20px' }}>
               <img src={Organisations} alt="img" width={'100%'} />
               {/* <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Organisations
@@ -339,7 +339,7 @@ const EsgAdvisory = () => {
             className="wow animate__animated animate__fadeInRight animate__slow"
             style={{ padding: '5px' }}
           >
-            <Box className="organise p-3" style={{ borderRadius: '20px' }}>
+            <Box className="organise-2 p-3" style={{ borderRadius: '20px' }}>
               <img src={Agencies} alt="img" width={'100%'} />
               {/* <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Agencies
@@ -399,7 +399,7 @@ const EsgAdvisory = () => {
             style={{ padding: '5px' }}
             className="wow animate__animated animate__fadeInLeft animate__slow"
           >
-            <Box className="organise p-3" style={{ borderRadius: '20px' }}>
+            <Box className="organise-2 p-3" style={{ borderRadius: '20px' }}>
               <img src={Hospitality} alt="img" width={'100%'} />
               {/* <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Hospitality
@@ -460,7 +460,7 @@ const EsgAdvisory = () => {
             style={{ padding: '5px' }}
             className="wow animate__animated animate__fadeInLeft animate__slow"
           >
-            <Box className="organise p-3" style={{ borderRadius: '20px' }}>
+            <Box className="organise-2 p-3" style={{ borderRadius: '20px' }}>
               <img src={Exhibitions} alt="img" width={'100%'} className="img-fuild" />
               {/* <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Exhibitions

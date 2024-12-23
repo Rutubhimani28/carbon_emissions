@@ -186,7 +186,7 @@ const MyEventSelector = () => {
         const apiPath = `api/eventData?_id[]=${selectedValues.join('&_id[]=')}`;
         const response = await apiget(apiPath);
         const responseData = response.data.data;
-
+    
         const virtualEventsDataCreate = (data) => {
             const dataTwo = [];
 
@@ -292,7 +292,7 @@ const MyEventSelector = () => {
                     sender: userid,
                     name: userData?.cnctPerson,
                 };
-
+               
                 returnArr[ind] = { ...returnArr[ind], ...obj };
             }
         });
@@ -322,7 +322,6 @@ const MyEventSelector = () => {
                     sender: userid,
                     name: userData?.cnctPerson,
                 };
-
                 returnArr[ind] = { ...returnArr[ind], ...obj };
             }
         });
@@ -384,9 +383,11 @@ const MyEventSelector = () => {
                 returnArr[ind] = { ...returnArr[ind], ...obj };
             }
         });
+        const filteredReturnArr = returnArr.filter(item => item !== undefined && item !== null);
 
-        await addEmail(returnArr); // send all selected two events filled fields data as pdf
-        setIsFieldsLoading(false);
+        // await addEmail(returnArr); // send all selected two events filled fields data as pdf
+        await addEmail(filteredReturnArr); // send all selected two events filled fields data as pdf
+setIsFieldsLoading(false);
     };
 
     const handleRetrieveGraphs = async () => {
@@ -995,14 +996,14 @@ const MyEventSelector = () => {
                     )
                 }
                 <Box sx={{ display: 'flex', gap: 2, marginTop: '16px', marginLeft: '5px', justifyContent: 'flex-start' }}>
-                    {/* <Button
+                    <Button
                         variant="contained"
                         style={{ backgroundColor: '#054723' }}
                         onClick={handleRetrieveCalculations}
                         disabled={formik.values.selectedEvents.length !== 2} // Enabled only if exactly 2 events are selected
                     >
                         Retrieve Calculations
-                    </Button> */}
+                    </Button>
                     <Button
                         variant="contained"
                         style={{ backgroundColor: '#054723' }}
