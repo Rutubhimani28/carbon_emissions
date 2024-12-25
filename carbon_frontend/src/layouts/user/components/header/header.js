@@ -29,8 +29,8 @@ const navItems = [
   { name: 'Home', path: '/' },
   // { name: 'NetZero Platform', path: '/netzero-platform' },
   { name: 'Enterprise Solutions', path: '/enterprise-solutions' },
-  { name: 'Contact Us', path: '/contact' },
   { name: 'About Us', path: '/about-us' },
+  { name: 'Contact', path: '/contact' },
 ];
 
 const Header = (props) => {
@@ -174,7 +174,7 @@ const Header = (props) => {
               item?.name === 'NetZero Consulting' ? (
                 <div key={item.name} style={{ display: 'inline' }} className="esg_menu">
                   <Button
-                    className={` text-capitalize  fs-6 ${routeName === item?.path ? 'tab-text-color' : 'text-dark'}`}
+                    className={`text-capitalize  fs-6 ${routeName === item?.path ? 'tab-text-color' : 'text-dark'}`}
                     onClick={() => navigate(item.path)}
                   >
                     {/* {item?.name}<ExpandMoreIcon /> */}
@@ -191,7 +191,7 @@ const Header = (props) => {
                 <>
                   <Button
                     key={item.name}
-                    className={` text-capitalize fs-6 mx-1 ${
+                    className={`text-capitalize fs-6 mx-1 ${
                       routeName === item?.path ? 'tab-text-color' : 'text-dark'
                     }`}
                     onClick={() => navigate(item.path)}

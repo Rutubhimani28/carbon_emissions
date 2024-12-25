@@ -18,6 +18,7 @@ import Room2 from '../../../assets/images/room2.jpeg';
 import Room3 from '../../../assets/images/room3.jpg';
 import Room4 from '../../../assets/images/room4.png';
 import Room5 from '../../../assets/images/room5.jpg';
+import AreYouReadyImg from '../../../assets/images/Are-you-ready-img.png';
 
 const Goal = () => {
   const theme = useTheme();
@@ -272,23 +273,62 @@ const Goal = () => {
         </Box>
       </Grid>
 
-      <Grid container justifyContent="center" className="pb-3 mt-3 mx-auto template-outer-theme" color="#054723">
-        <Box>
-          <Typography className="fontFamily fs-3 mb-3 fw-bold text-center">Are you ready?</Typography>
-          <Typography className="fontFamily mb-3 fs-5 text-center  px-2">
-            Ready to lead with sustainability? Explore Sirāt's NetZero Platform today.
-          </Typography>
-          <Typography className="fontFamily fs-5 mt-2 text-center text-white">
-            <Link
-              // style={{ color: 'rgb(255, 255, 217)', textDecoration: 'none', }}
-              style={{ color: '#003d99', textDecoration: 'none' }}
-              to={'/contact'}
-            >
-              Contact Us
-            </Link>
-          </Typography>
-        </Box>
-      </Grid>
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+          maxHeight: '500px',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Background Image */}
+        <img
+          src={AreYouReadyImg}
+          alt="ESG Advisory Services"
+          style={{
+            width: '100%',
+            height: useMediaQuery(theme.breakpoints.up('sm')) ? '300px' : '250px',
+            objectFit: 'cover',
+            display: 'block',
+            aspectRatio: '40/15',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#035b03c7',
+            top: 0,
+            left: 0,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: 'white',
+            textAlign: 'center',
+            fontSize: 'clamp(10px, 4vw, 45px)',
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+            zIndex: 2,
+            padding: '0 20px',
+          }}
+        >
+          <Grid container justifyContent="center" className="pb-3 mt-3 mx-auto">
+            <Box>
+              <Typography className="fontFamily fs-3 mb-3 fw-bold text-center">Are you ready?</Typography>
+              <Typography className="fontFamily mb-3 fs-5 text-center px-2">
+                Ready to lead with sustainability? Explore Sirāt's NetZero Platform today.
+              </Typography>
+              <Typography className="fontFamily fs-5 mt-2 text-center text-white">
+                <Link style={{ color: 'rgb(50 132 255)', textDecoration: 'none' }} to={'/contact'}>
+                  Contact
+                </Link>
+              </Typography>
+            </Box>
+          </Grid>
+        </div>
+      </div>
 
       {/* collabrate */}
       {/* <div className="container-fuild collabrate d-flex justify-content-center main " style={{ overflowX: 'hidden' }}>
