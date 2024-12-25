@@ -12,6 +12,7 @@ import ESGAdvisoryServices from '../../assets/images/ESG Advisory Services.jpeg'
 import bannerVideo1 from '../../assets/images/NetZero Consulting.mp4';
 import bannerVideo2 from '../../assets/images/NetZero Consulting.mov';
 import EnterpriseSolution from '../../assets/images/Enterprise_Solutions.png';
+import EnterpriseSolution2 from '../../assets/images/Enterprise_Solutions_2.jpg';
 
 const EsgAdvisory = () => {
   const theme = useTheme();
@@ -78,7 +79,7 @@ const EsgAdvisory = () => {
       >
         {/* Background Image */}
         <img
-          src={EnterpriseSolution}
+          src={EnterpriseSolution2}
           alt="ESG Advisory Services"
           style={{
             width: '100%',
@@ -160,35 +161,35 @@ const EsgAdvisory = () => {
 
       <Typography
         style={{ textAlign: 'left', fontSize: '18px' }}
-        className=" setHome_padding mt-5 fontFamily wow animate__animated animate__fadeInLeft animate__slow template-outer-theme"
+        className="setHome_padding mt-5 fontFamily wow animate__animated animate__fadeInLeft animate__slow template-outer-theme"
       >
         The Sirāt's AI enabled NetZero platform empowers you to identify, measure and reduce the marketing carbon
-        footprint. And manage your diverse marketing activities by keeping Sustainability at the center stage and look
+        footprint. And manage your diverse marketing activities by keeping sustainability at the center stage and look
         beyond the carbon footprint generated from supply chain and improve your overall company's performance to meet
         NetZero goals.
       </Typography>
       <Typography
         style={{ textAlign: 'left', fontSize: '18px' }}
-        className=" setHome_padding fontFamily mt-3 wow animate__animated animate__fadeInLeft animate__slow"
+        className="setHome_padding fontFamily mt-3 wow animate__animated animate__fadeInLeft animate__slow"
       >
         Transform your marketing impact by embedding sustainability into every step. Sirāt's AI-powered NetZero platform
         empowers you to identify, measure, reduce, and manage your carbon footprint with precision.
       </Typography>
-      <div className="container text-white">
+      <div className="container">
         <div className="d-block mx-auto">
           {/* <Typography variant='h6' className='fs-1 pt-2 fontFamily fw-bold wow animate__animated animate__fadeInUp animate__slow text-center' >Industries</Typography> */}
           <Grid
             container
             spacing={2}
-            style={{ marginLeft: '-8px' }}
-            className=" my-4 d-flex  justify-content-xl-between justify-content-sm-center wow animate__animated animate__fadeInUp animate__slow"
+            style={{ paddingLeft: '20px', paddingRight: '6px' }}
+            className="my-4 d-flex justify-content-xl-between justify-content-sm-center wow animate__animated animate__fadeInUp animate__slow"
           >
             <Grid
               item
               xs={12}
               md={5.5}
               lg={2.8}
-              className="shadow text-start  py-2 m-2 template-inner-theme"
+              className="shadow text-start py-2 m-2 template-inner-theme"
               style={{ borderRadius: '5px', paddingLeft: '-30px', boxShadow: '0 0rem 1rem rgb(0 0 0 / 41%)' }}
             >
               <Typography variant="h6" className="fs-4 fontFamily fw-bold box-title-padding pt-2">
@@ -258,8 +259,185 @@ const EsgAdvisory = () => {
             </Grid>
           </Grid>
         </div>
+      </div>
+      <Grid
+        container
+        spacing={2}
+        style={{
+          padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 50px' : '0px 13px 0px 31px ',
+        }}
+        className="my-4 d-flex justify-content-xl-between justify-content-sm-center"
+      >
+        <Grid item sm={12} md={12} className="d-flex justify-content-center">
+          <Typography
+            className="fontFamily fs-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow pb-4"
+            item
+            sm={12}
+            md={12}
+          >
+            Explore how our NetZero Platform drives innovation in sustainable marketing and carbon accounting
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={5.5}
+          lg={2.8}
+          className="text-start py-2 template-inner-theme-2 pb-4"
+          style={{ paddingLeft: useMediaQuery(theme.breakpoints.up('sm')) ? '10px' : '0px' }}
+        >
+          <Box>
+            <img
+              src={Organisations}
+              alt="img"
+              width={'100%'}
+              style={{ paddingLeft: '0px', height: '165px', objectFit: 'cover', borderRadius: '6px' }}
+            />
+          </Box>
+          <p
+            style={{
+              textAlign: 'left',
+              fontSize: '19px',
+              color: '#1f9e6d',
+              fontWeight: 'bold',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '10px 2px 4px 4px' : '10px 0px 4px 0px',
+            }}
+          >
+            {' '}
+            Organizations
+          </p>
+          <p
+            style={{
+              textAlign: 'left',
+              color: '#1f9e6d',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
+            }}
+          >
+            Optimize your carbon footprint with solutions tailored to your diverse marketing activities.
+          </p>
+        </Grid>
 
         <Grid
+          item
+          xs={12}
+          md={5.5}
+          lg={2.8}
+          className="text-start py-2 template-inner-theme-2"
+          style={{ paddingLeft: '0px' }}
+        >
+          <Box>
+            <img
+              src={Agencies}
+              alt="img"
+              width={'100%'}
+              style={{ height: '165px', objectFit: 'cover', borderRadius: '6px' }}
+            />
+          </Box>
+          <p
+            style={{
+              textAlign: 'left',
+              fontSize: '19px',
+              color: '#1f9e6d',
+              fontWeight: 'bold',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '10px 2px 4px 4px' : '10px 0px 4px 0px',
+            }}
+          >
+            {' '}
+            Agencies
+          </p>
+          <p
+            style={{
+              textAlign: 'left',
+              color: '#1f9e6d',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
+            }}
+          >
+            Go beyond execution by offering sustainable practices to your clients and attracting more business.
+          </p>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={5.5}
+          lg={2.8}
+          className="text-start py-2 template-inner-theme-2"
+          style={{ paddingLeft: '0px' }}
+        >
+          <Box>
+            <img
+              src={Hospitality}
+              alt="img"
+              width={'100%'}
+              style={{ paddingLeft: '0px', height: '165px', objectFit: 'cover', borderRadius: '6px' }}
+            />
+          </Box>
+          <p
+            style={{
+              textAlign: 'left',
+              fontSize: '19px',
+              color: '#1f9e6d',
+              fontWeight: 'bold',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '10px 2px 4px 4px' : '10px 0px 4px 0px',
+            }}
+          >
+            {' '}
+            Hospitality
+          </p>
+          <p
+            style={{
+              textAlign: 'left',
+              color: '#1f9e6d',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
+            }}
+          >
+            Host events that matter by attracting companies seeking sustainable venues.
+          </p>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          md={5.5}
+          lg={2.8}
+          className="text-start py-2 template-inner-theme-2"
+          style={{ paddingLeft: '0px' }}
+        >
+          <Box>
+            <img
+              src={Exhibitions}
+              alt="img"
+              width={'100%'}
+              style={{ paddingLeft: '0px', height: '165px', objectFit: 'cover', borderRadius: '6px' }}
+            />
+          </Box>
+          <p
+            style={{
+              textAlign: 'left',
+              fontSize: '19px',
+              color: '#1f9e6d',
+              fontWeight: 'bold',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '10px 2px 4px 4px' : '10px 0px 4px 0px',
+            }}
+          >
+            {' '}
+            Exhibitions
+          </p>
+          <p
+            style={{
+              textAlign: 'left',
+              color: '#1f9e6d',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
+            }}
+          >
+            Tailored solutions to make your exhibitions greener and attract more exhibitors and attendees.
+          </p>
+        </Grid>
+      </Grid>
+      {/* <Grid
           container
           rowSpacing={3}
           columnSpacing={{ xs: 1, sm: 2, md: 2 }}
@@ -281,9 +459,9 @@ const EsgAdvisory = () => {
           >
             <Box className="organise-2 p-3" style={{ borderRadius: '20px' }}>
               <img src={Organisations} alt="img" width={'100%'} />
-              {/* <Typography variant="h6" className="text-center pt-3 fontFamily">
+              <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Organisations
-              </Typography> */}
+              </Typography>
             </Box>
           </Grid>
           <Grid
@@ -318,8 +496,8 @@ const EsgAdvisory = () => {
               Optimize your carbon footprint with solutions tailored to your diverse marketing activities.
             </p>
           </Grid>
-        </Grid>
-        <Grid
+        </Grid> */}
+      {/* <Grid
           container
           rowSpacing={1}
           columnSpacing={{ xs: 1, sm: 2, md: 3 }}
@@ -341,9 +519,9 @@ const EsgAdvisory = () => {
           >
             <Box className="organise-2 p-3" style={{ borderRadius: '20px' }}>
               <img src={Agencies} alt="img" width={'100%'} />
-              {/* <Typography variant="h6" className="text-center pt-3 fontFamily">
+              <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Agencies
-              </Typography> */}
+              </Typography>
             </Box>
           </Grid>
           <Grid
@@ -378,8 +556,8 @@ const EsgAdvisory = () => {
               Go beyond execution by offering sustainable practices to your clients and attracting more business.
             </p>
           </Grid>
-        </Grid>
-        <Grid
+        </Grid> */}
+      {/* <Grid
           container
           rowSpacing={3}
           columnSpacing={{ xs: 1, sm: 2, md: 2 }}
@@ -401,9 +579,9 @@ const EsgAdvisory = () => {
           >
             <Box className="organise-2 p-3" style={{ borderRadius: '20px' }}>
               <img src={Hospitality} alt="img" width={'100%'} />
-              {/* <Typography variant="h6" className="text-center pt-3 fontFamily">
+              <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Hospitality
-              </Typography> */}
+              </Typography>
             </Box>
           </Grid>
           <Grid
@@ -438,8 +616,8 @@ const EsgAdvisory = () => {
               Host events that matter by attracting companies seeking sustainable venues.
             </p>
           </Grid>
-        </Grid>
-        <Grid
+        </Grid> */}
+      {/* <Grid
           container
           rowSpacing={3}
           columnSpacing={{ xs: 1, sm: 2, md: 2 }}
@@ -447,7 +625,7 @@ const EsgAdvisory = () => {
           style={{
             border: 'solid 1px #1F9E6D',
             marginTop: '20px',
-            marginBottom:"20px",
+            marginBottom: '20px',
             boxShadow: ' 0 0 2px 0 rgba(145, 158, 171, 0.2), 0 12px 24px -4px rgba(145, 158, 171, 0.12)',
             borderRadius: '21px',
           }}
@@ -462,9 +640,9 @@ const EsgAdvisory = () => {
           >
             <Box className="organise-2 p-3" style={{ borderRadius: '20px' }}>
               <img src={Exhibitions} alt="img" width={'100%'} className="img-fuild" />
-              {/* <Typography variant="h6" className="text-center pt-3 fontFamily">
+              <Typography variant="h6" className="text-center pt-3 fontFamily">
                 Exhibitions
-              </Typography> */}
+              </Typography>
             </Box>
           </Grid>
           <Grid
@@ -498,9 +676,9 @@ const EsgAdvisory = () => {
               Tailored solutions to make your exhibitions greener and attract more exhibitors and attendees.
             </p>
           </Grid>
-        </Grid>
+        </Grid> */}
 
-        {/* <div>
+      {/* <div>
           <img
             src={Services}
             alt="services"
@@ -508,7 +686,7 @@ const EsgAdvisory = () => {
             className="pb-5 wow animate__animated animate__fadeInUp animate__slow"
           />
         </div> */}
-        {/* <p style={{ fontSize: '18px', padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '10px 0px' }}>
+      {/* <p style={{ fontSize: '18px', padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0 40px' : '10px 0px' }}>
           We would like to partner with you to reduce your carbon footprint, fostering long-term business value creation
           with a deep understanding of your needs.
         </p>
@@ -525,7 +703,6 @@ const EsgAdvisory = () => {
           />
           <span className="fs-5"> with us to know more.</span>
         </p> */}
-      </div>
     </div>
   );
 };

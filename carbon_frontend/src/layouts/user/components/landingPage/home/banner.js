@@ -31,6 +31,7 @@ import { apipost } from '../../../../../service/api';
 import TrustOne from '../../../assets/images/Aster CMI Logo.png';
 import TrustTwo from '../../../assets/images/GoFig2.png';
 import Hutch from '../../../assets/images/Hutch.png';
+import OurCustomersBgImg2 from '../../../assets/images/OurCustomersBgImg2.jpg';
 
 const Index = () => {
   const theme = useTheme();
@@ -190,7 +191,7 @@ const Index = () => {
             <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">100%</Typography>
-                <Typography>Achieve more than 100% Return on Investment (RoI) from the first year.</Typography>
+                <Typography>Achieve 100% Return on Investment from the first year.</Typography>
               </Box>
             </Grid>
           </Grid>
@@ -248,7 +249,7 @@ const Index = () => {
           <Box
             className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
             sx={{
-              height: { xs: '200px', sm:"260px", md: '220px' },
+              height: { xs: '200px', sm: '260px', md: '220px' },
               boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
             }}
           >
@@ -266,7 +267,7 @@ const Index = () => {
           <Box
             className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
             sx={{
-              height: { xs: '200px', sm:"260px", md: '220px' }, 
+              height: { xs: '200px', sm: '260px', md: '220px' },
               boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
             }}
           >
@@ -286,58 +287,75 @@ const Index = () => {
       <Grid
         container
         justifyContent="center"
-        className="bg-white wow animate__animated animate__fadeInRight animate__slow pb-3 mx-auto"
+        className="bg-white wow animate__animated animate__fadeInRight animate__slow mx-auto"
         color="#054723"
-        style={{ marginBottom: '50px' }}
       >
-        <Grid item sm={12} md={12} className="d-flex justify-content-center pt-3 mb-4">
-          <Typography
-            className="fontFamily fs-3  mb-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme-2"
-          >
+        <Grid item sm={12} md={12} className="d-flex justify-content-center pt-3">
+          <Typography className="fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme">
             Our Customers
           </Typography>
         </Grid>
-
-        <Grid container item xs={12} sm={12} md={8} spacing={2} className="d-flex justify-content-center"
+        <div
           style={{
-            marginLeft:"18x",
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            maxHeight: '500px',
+            overflow: 'hidden',
           }}
         >
-          {/* TrustOne Box */}
-          <Box
-            className=" d-flex justify-content-center flex-column align-items-center p-4 mx-0"
-            sx={{
-              borderRight: { xs: 'none', sm: 'none', md: '1px solid black' }, // Remove border for small screens
-              width: { xs: 'auto', sm: 200, md: 250 }, // Adjust width for different breakpoints
-              maxWidth: 200, // Ensure it doesn’t grow too large on larger screens
+          {/* Background Image */}
+          <img
+            src={OurCustomersBgImg2}
+            alt="ESG Advisory Services"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: 'block',
             }}
-          >
-            <img src={TrustOne} alt="img" width={200} />
-          </Box>
+          />
 
-          {/* TrustTwo Box */}
-          <Box
-            className="d-flex justify-content-center flex-column align-items-center p-4  mx-0"
-            sx={{
-              borderRight: { xs: 'none', sm: 'none', md: '1px solid black' }, // Remove border for small screens
-              width: { xs: 'auto', sm: 200, md: 250 },
-              maxWidth: 200,
+          <div
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              top: 0,
+              left: useMediaQuery(theme.breakpoints.up('sm')) ? '110px' : '60px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: 'white',
+              textAlign: 'center',
+              fontSize: 'clamp(10px, 4vw, 45px)',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+              zIndex: 2,
+              padding: '0 20px',
             }}
           >
-            <img src={Hutch} alt="img" width={200} />
-          </Box>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: useMediaQuery(theme.breakpoints.up('sm')) ? '600px' : '270px',
+              }}
+            >
+              <div className="box-with-border d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
+                <img src={TrustOne} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
+              </div>
 
-          {/* TrustThree Box */}
-          <Box
-            className="d-flex justify-content-center flex-column align-items-center p-4  mx-0"
-            sx={{
-              width: { xs: 'auto', sm: 200, md: 250 },
-              maxWidth: 200,
-            }}
-          >
-            <img src={TrustTwo} alt="img" width={200} />
-          </Box>
-        </Grid>
+              <div className="box-with-border d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
+                <img src={Hutch} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
+              </div>
+
+              <div className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
+                <img src={TrustTwo} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
+              </div>
+            </div>
+          </div>
+        </div>
       </Grid>
 
       {/* <Grid container item xs={12} sm={12} md={4} spacing={2} justifyContent="center">
@@ -357,7 +375,7 @@ const Index = () => {
                     width: { xs: 'auto', sm: 200, md: 220 },
                     maxWidth: 220
                 }}>
-                <img src={TrustOne} alt='img' style={{ width: '100%', maxWidth: '300px' }} />
+                <img src={Hutch} alt='img' style={{ width: '100%', maxWidth: '300px' }} />
             </Box>
         </Grid>
         

@@ -27,13 +27,16 @@ const About = () => {
                 <img src={banner} alt="img" width={"100%"} className="h-xl-75 h-sm-100" />
             </div>
             <div className='py-4'>
-                <p className='py-4 fontFamily setHome_padding wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }}>
-                Sirat is dedicated to transforming marketing into a force for environmental good. We partner with businesses to integrate sustainable practices into their strategies, reducing carbon footprints and creating meaningful environmental impact. Our solutions are tailored to meet the unique needs of organizations, exhibitions, and agencies, ensuring measurable results. With Sirat, you can align profitability with responsibility, making a lasting difference for your business and the planet.
+                <p className='pt-4 fontFamily setHome_padding wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }}>
+                Sirat is dedicated to transforming marketing into a force for environmental good. We partner with businesses to integrate sustainable practices into their strategies, reducing carbon footprints and creating meaningful environmental impact.
+                </p>
+                <p className='py-1 pt-4 fontFamily setHome_padding wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }}>
+                Our solutions are tailored to meet the unique needs of organizations, exhibitions, and agencies, ensuring measurable results. With Sirat, you can align profitability with responsibility, making a lasting difference for your business and the planet.
                 </p>
             </div>
             <div>
                 <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow'>Targeted Sustainable Development Goals (SDGs)</Typography>
-                <p className='text-center  fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow ' style={{ padding: useMediaQuery(theme.breakpoints.up('sm')) ? "14px 10px" : '14px 10px' }}>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs</a>.</p>
+                <p className='text-center fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow' style={{ padding: useMediaQuery(theme.breakpoints.up('sm')) ? "14px 10px" : '14px 10px' }}>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#ffffd9" }}> 17 UN SDGs</a>.</p>
             </div>
             <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
                 <img src={goal1} alt='img' width={164} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
@@ -108,7 +111,7 @@ const About = () => {
                 // style={{ width: useMediaQuery (theme.breakpoints.up('sm')) ? "1550px" : '388px' }}
                 // style={{marginLeft : useMediaQuery(theme.breakpoints.up('sm')) ? "0" : '-3px'}}
                 >
-                    <Grid item xs={12} md={9} sx={{ order: { xs: "2", md: "1" }, borderRadius: { xs: "0px 0px 10px 10px", md: "10px 0px 0px 10px" } }} className=' wow animate__animated animate__fadeInLeft animate__slow template-inner-theme d-flex flex-column justify-content-center' style={{ textAlign: 'center' }}>
+                    <Grid item xs={12} md={9} sx={{ order: { xs: "2", md: "1" }, borderRadius: { xs: "0px 0px 10px 10px", md: "10px 0px 0px 10px" } }} className='wow animate__animated animate__fadeInLeft animate__slow template-inner-theme d-flex flex-column justify-content-center' style={{ textAlign: 'center' }}>
 
                         <Box className="text-center" style={{ marginBottom: '20px' }}>
                             <div className='d-flex flex-column justify-content-between align-items-center'>

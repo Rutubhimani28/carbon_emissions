@@ -26,14 +26,14 @@ const Footer = () => {
           Enterprise Solutions{' '}
         </Link>
         |
-        <Link to="/news-room" className="px-2 text-decoration-none text-light">
-          {' '}
-          News Room{' '}
-        </Link>
-        |
         <Link to="/about-us" className="px-2 text-decoration-none text-light">
           {' '}
           About Us{' '}
+        </Link>
+        |
+        <Link to="/news-room" className="px-2 text-decoration-none text-light">
+          {' '}
+          News Room{' '}
         </Link>
         |
         <Link to="/contact" className="px-2 text-decoration-none text-light">

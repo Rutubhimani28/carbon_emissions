@@ -137,17 +137,6 @@
   color: #fff;
 }
 
-.organise-2 {
-  max-width: 400px;
-  /* background-color: #fff; */
-  transition: all 0.4s linear;
-  position: relative;
-  z-index: 99;
-  overflow: hidden;
-  background-color: rgb(5, 71, 35);
-  color: #fff;
-}
-
 .organise:after {
   content: '';
   position: absolute;
