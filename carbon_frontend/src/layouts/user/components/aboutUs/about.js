@@ -1,34 +1,39 @@
-import { Link } from "react-router-dom";
-import { PopupButton } from "react-calendly";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
-import RemoveIcon from '@mui/icons-material/Remove'
-import { Box, Card, Grid, Typography, useMediaQuery } from '@mui/material'
-import { FaLinkedin } from "react-icons/fa"
-import { FaXTwitter } from "react-icons/fa6"
-import { useTheme } from "@mui/material/styles";
-import banner from '../../assets/images/AboutBg.jpeg'
-import ceo from '../../assets/images/CEO.png'
-import what from '../../assets/images/What.png'
-import net from '../../assets/images/net.png'
-import goal1 from '../../assets/images/goal1.png'
-import goal2 from '../../assets/images/goal2.png'
-import goal3 from '../../assets/images/goal3.png'
-import goal4 from '../../assets/images/goal4.png'
-import goal5 from '../../assets/images/goal5.png'
-import goal6 from '../../assets/images/goal6.png'
-import goal7 from '../../assets/images/goal7.png'
+import { Link } from 'react-router-dom';
+import { PopupButton } from 'react-calendly';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { Box, Card, Grid, Typography, useMediaQuery } from '@mui/material';
+import { FaLinkedin } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { useTheme } from '@mui/material/styles';
+import banner from '../../assets/images/AboutBg.jpeg';
+import ceo from '../../assets/images/CEO.png';
+import what from '../../assets/images/What.png';
+import net from '../../assets/images/net.png';
+import goal1 from '../../assets/images/goal1.png';
+import goal2 from '../../assets/images/goal2.png';
+import goal3 from '../../assets/images/goal3.png';
+import goal4 from '../../assets/images/goal4.png';
+import goal5 from '../../assets/images/goal5.png';
+import goal6 from '../../assets/images/goal6.png';
+import goal7 from '../../assets/images/goal7.png';
 
 const About = () => {
-    const theme = useTheme()
+  const theme = useTheme();
   return (
     <div>
       {/* banner */}
       <div>
-                <img src={banner} alt="img" width={"100%"} className="h-xl-75 h-sm-100" />
+        <img src={banner} alt="img" width={'100%'} className="h-xl-75 h-sm-100" />
       </div>
-            <div className='py-4'>
-                <p className='pt-4 fontFamily setHome_padding wow animate__animated animate__fadeInUp animate__slow' style={{ fontSize: "18px" }}>
-                Sirat is dedicated to transforming marketing into a force for environmental good. We partner with businesses to integrate sustainable practices into their strategies, reducing carbon footprints and creating meaningful environmental impact.
+      <div className="py-4">
+        <p
+          className="pt-4 fontFamily setHome_padding wow animate__animated animate__fadeInUp animate__slow"
+          style={{ fontSize: '18px' }}
+        >
+          Sirat is dedicated to transforming marketing into a force for environmental good. We partner with businesses
+          to integrate sustainable practices into their strategies, reducing carbon footprints and creating meaningful
+          environmental impact.
         </p>
         <p
           className="py-1 pt-4 fontFamily setHome_padding wow animate__animated animate__fadeInUp animate__slow"
@@ -39,18 +44,110 @@ const About = () => {
           difference for your business and the planet.
         </p>
       </div>
+
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className="mt-3">
+        <Grid item xs={0} md={2.1} />
+        <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInLeft animate__slow mb-5">
+          <Box
+            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
+            sx={{
+              height: { xs: '200px', sm: '260px', md: '220px' },
+              boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
+            }}
+          >
+            {/* <img src={mission} alt="img" width={50} className='tabImgWhite' /> */}
+            <Typography variant="h6" className="text-start fs-5 pb-4 fontFamily fw-bold">
+              Mission
+            </Typography>
+            <p className="text-start fs-6 ">
+              To promote sustainable marketing and generate awareness to look beyond supply chain emissions and
+              emphasize the importance of adopting sustainable practices in marketing.
+            </p>
+          </Box>
+        </Grid>
+        <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInRight animate__slow mb-5">
+          <Box
+            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
+            sx={{
+              height: { xs: '200px', sm: '260px', md: '220px' },
+              boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
+            }}
+          >
+            {/* <img src={vision} alt="img" width={50} className='tabImgWhite' /> */}
+            <Typography variant="h6" className="text-start fs-5 pb-4 fontFamily fw-bold">
+              Vision
+            </Typography>
+            <p className="text-start fs-6 ">
+              We aspire to remove 100 Megaton of carbon equivalent (100 MtCO<sub>2</sub>e) by 2030, driving meaningful
+              environmental impact through sustainable marketing practices by collaboration.{' '}
+            </p>
+          </Box>
+        </Grid>
+        <Grid item xs={0} md={2.1} />
+      </Grid>
+
       <div>
-            <Typography variant='h6' className='text-center fs-3 pt-4 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow'>Targeted Sustainable Development Goals (SDGs)</Typography>
-            <p className='text-center fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow' style={{ padding: useMediaQuery(theme.breakpoints.up('sm')) ? "14px 10px" : '14px 10px' }}>As part of our framework, we are actively and directly contributing to the following 7 SDGs out of<a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}> 17 UN SDGs</a>.</p>
+        <Typography
+          variant="h6"
+          className="text-center fs-3 fontFamily fw-bold justify-content-center wow animate__animated animate__fadeInUp animate__slow"
+        >
+          Targeted Sustainable Development Goals (SDGs)
+        </Typography>
+        <p
+          className="text-center fontFamily justify-content-center wow animate__animated animate__fadeInUp animate__slow"
+          style={{ padding: useMediaQuery(theme.breakpoints.up('sm')) ? '14px 10px' : '14px 10px' }}
+        >
+          As part of our framework, we are actively and directly contributing to the following 7 SDGs out of
+          <a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
+            {' '}
+            17 UN SDGs
+          </a>
+          .
+        </p>
       </div>
-            <div className='d-flex align-align-items-center flex-wrap justify-content-center'>
-                <img src={goal1} alt='img' width={164} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
-                <img src={goal2} alt='img' width={164} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
-                <img src={goal3} alt='img' width={164} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
-                <img src={goal4} alt='img' width={164} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
-                <img src={goal5} alt='img' width={164} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
-                <img src={goal6} alt='img' width={164} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow' />
-                <img src={goal7} alt='img' width={164} className='mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow ' />
+      <div className="d-flex align-align-items-center flex-wrap justify-content-center">
+        <img
+          src={goal1}
+          alt="img"
+          width={164}
+          className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
+        />
+        <img
+          src={goal2}
+          alt="img"
+          width={164}
+          className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
+        />
+        <img
+          src={goal3}
+          alt="img"
+          width={164}
+          className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
+        />
+        <img
+          src={goal4}
+          alt="img"
+          width={164}
+          className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
+        />
+        <img
+          src={goal5}
+          alt="img"
+          width={164}
+          className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
+        />
+        <img
+          src={goal6}
+          alt="img"
+          width={164}
+          className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
+        />
+        <img
+          src={goal7}
+          alt="img"
+          width={164}
+          className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow "
+        />
       </div>
       {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='py-5 main d-flex justify-content-center align-items-center ' >
                 <Grid item xs={12} md={6} sx={{ order: { xs: "2", md: "1" } }} className='wow animate__animated animate__fadeInLeft animate__slow'>
@@ -294,7 +391,7 @@ const About = () => {
             className="d-flex justify-content-center align-items-center flex-column wow animate__animated pe-4 animate__fadeInRight animate__slow"
             sx={{ order: { md: '1' }, borderRadius: { xs: '10px 10px 0px 0px', md: '0px 10px 10px 0px' } }}
             style={{
-              paddingBottom:"10px",
+              paddingBottom: '10px',
               borderTop: '2px solid #054723 ',
               borderBottom: useMediaQuery(theme.breakpoints.up('md')) ? '2px solid #054723' : 'none',
               borderLeft: useMediaQuery(theme.breakpoints.up('md')) ? 'none' : '2px solid #054723',
@@ -317,7 +414,7 @@ const About = () => {
         </Grid>
       </div>
     </div>
-    )
-}
+  );
+};
 
-export default About
+export default About;

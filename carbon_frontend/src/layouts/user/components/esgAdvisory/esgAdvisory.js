@@ -329,6 +329,46 @@ const EsgAdvisory = () => {
         >
           <Box>
             <img
+              src={Exhibitions}
+              alt="img"
+              width={'100%'}
+              style={{ paddingLeft: '0px', height: '165px', objectFit: 'cover', borderRadius: '6px' }}
+            />
+          </Box>
+          <p
+            style={{
+              textAlign: 'left',
+              fontSize: '19px',
+              color: '#1f9e6d',
+              fontWeight: 'bold',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '10px 2px 4px 4px' : '10px 0px 4px 0px',
+            }}
+          >
+            {' '}
+            Exhibitions
+          </p>
+          <p
+            style={{
+              textAlign: 'left',
+              color: '#1f9e6d',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
+            }}
+          >
+            Tailored solutions to make your exhibitions greener and attract more exhibitors and attendees.
+          </p>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          md={5.5}
+          lg={2.8}
+          className="text-start py-2 template-inner-theme-2"
+          style={{ paddingLeft: '0px' }}
+        >
+          <Box>
+            <img
               src={Agencies}
               alt="img"
               width={'100%'}
@@ -395,46 +435,6 @@ const EsgAdvisory = () => {
             }}
           >
             Host events that matter by attracting companies seeking sustainable venues.
-          </p>
-        </Grid>
-
-        <Grid
-          item
-          xs={12}
-          md={5.5}
-          lg={2.8}
-          className="text-start py-2 template-inner-theme-2"
-          style={{ paddingLeft: '0px' }}
-        >
-          <Box>
-            <img
-              src={Exhibitions}
-              alt="img"
-              width={'100%'}
-              style={{ paddingLeft: '0px', height: '165px', objectFit: 'cover', borderRadius: '6px' }}
-            />
-          </Box>
-          <p
-            style={{
-              textAlign: 'left',
-              fontSize: '19px',
-              color: '#1f9e6d',
-              fontWeight: 'bold',
-              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '10px 2px 4px 4px' : '10px 0px 4px 0px',
-            }}
-          >
-            {' '}
-            Exhibitions
-          </p>
-          <p
-            style={{
-              textAlign: 'left',
-              color: '#1f9e6d',
-              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
-              // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
-            }}
-          >
-            Tailored solutions to make your exhibitions greener and attract more exhibitors and attendees.
           </p>
         </Grid>
       </Grid>
