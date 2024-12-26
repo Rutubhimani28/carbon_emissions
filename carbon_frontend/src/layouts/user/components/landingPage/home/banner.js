@@ -122,6 +122,7 @@ const Index = () => {
 
         <img
           src={home3}
+          alt="Home Banner"
           style={{
             width: '100%',
             height: '100%',
