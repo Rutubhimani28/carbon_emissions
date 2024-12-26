@@ -82,6 +82,7 @@ const EsgAdvisory = () => {
           src={EnterpriseSolution2}
           alt="ESG Advisory Services"
           style={{
+            filter:"brightness(0.8)",
             width: '100%',
             height: '100%',
             objectFit: 'cover',
@@ -268,9 +269,9 @@ const EsgAdvisory = () => {
         }}
         className="my-4 d-flex justify-content-xl-between justify-content-sm-center"
       >
-        <Grid item sm={12} md={12} className="d-flex justify-content-center">
+        <Grid item sm={12} md={12} className="d-flex justify-content-center mb-3">
           <Typography
-            className="fontFamily fs-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow pb-4"
+            className="fontFamily fs-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow"
             item
             sm={12}
             md={12}

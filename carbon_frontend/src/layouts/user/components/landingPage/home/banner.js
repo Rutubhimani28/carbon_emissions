@@ -32,6 +32,7 @@ import TrustOne from '../../../assets/images/Aster CMI Logo.png';
 import TrustTwo from '../../../assets/images/GoFig2.png';
 import Hutch from '../../../assets/images/Hutch.png';
 import OurCustomersBgImg2 from '../../../assets/images/OurCustomersBgImg2.jpg';
+import home3 from '../../../assets/images/Home3.png';
 
 const Index = () => {
   const theme = useTheme();
@@ -89,14 +90,14 @@ const Index = () => {
     setOpenCredit(false);
   };
 
-  useEffect(() => {
-    videoRef.current.playbackRate = 0.5;
-  }, []);
+  // useEffect(() => {
+  //   videoRef.current.playbackRate = 0.5;
+  // }, []);
 
   return (
     <div>
-      <div style={{ maxHeight: '700px', overflow: 'hidden', position: 'relative' }}>
-        <video
+      <div style={{ maxHeight: '580px', overflow: 'hidden', position: 'relative' }}>
+        {/* <video
           width="100%"
           height="100%"
           autoPlay
@@ -105,19 +106,30 @@ const Index = () => {
           ref={videoRef}
           loop
           playsInline
-          // controls
-        >
-          {/* <source src={"https://sirat.earth/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
+          controls
+        > */}
+        {/* <source src={"https://sirat.earth/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
                     <source src={"https://sirat.earth/static/media/Home2.be01049ec23c63b9ce2d.mov"} type="video/mov" /> */}
-          {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
+        {/* <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.69b541e3251c33325f07.mp4"} type={"video/mp4"} />
                     <source src={"https://carbon-emissions-sigma.vercel.app/static/media/Home2.be01049ec23c63b9ce2d.mov"} type="video/mov" /> */}
-          <source src={'https://sirat.earth:8000/videos/Home2.mp4'} type={'video/mp4'} />
+        {/* <source src={'https://sirat.earth:8000/videos/Home2.mp4'} type={'video/mp4'} />
           <source src={'https://sirat.earth:8000/videos/Home2.mov'} type="video/mov" />
           <track kind="captions" src="captions.vtt" label="English" />
           Sorry, your browser doesn't support embedded videos, but don't worry, you can
           <a href="https://sirat.earth:8000/videos/Home2.mp4">download it</a>
           and watch it with your favorite video player!
-        </video>
+        </video> */}
+
+        <img
+          src={home3}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+          }}
+        />
+
         <div
           className="ms-xl-1 ms-md-2 ms-sm-5 ps-4"
           style={{
@@ -276,7 +288,7 @@ const Index = () => {
               Vision
             </Typography>
             <p className="text-start fs-6 ">
-              We aspire to remove 100 Megaton of carbon equivalent (1 MtCO<sub>2</sub>e) by 2030, driving meaningful
+              We aspire to remove 100 Megaton of carbon equivalent (100 MtCO<sub>2</sub>e) by 2030, driving meaningful
               environmental impact through sustainable marketing practices by collaboration.{' '}
             </p>
           </Box>
@@ -347,7 +359,7 @@ const Index = () => {
               </div>
 
               <div className="box-with-border d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
-                <img src={Hutch} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
+                <img src={Hutch} alt="img" style={{ width: useMediaQuery(theme.breakpoints.up('sm')) ? '180px' : '45px' , maxWidth: '300px' }} />
               </div>
 
               <div className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">

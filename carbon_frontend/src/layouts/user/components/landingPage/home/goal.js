@@ -311,7 +311,7 @@ const Goal = () => {
             fontWeight: 'bold',
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
             zIndex: 2,
-            padding: '0 20px',
+            padding: '0 0px',
           }}
         >
           <Grid container justifyContent="center" className="pb-3 mt-3 mx-auto">
@@ -320,8 +320,8 @@ const Goal = () => {
               <Typography className="fontFamily mb-3 fs-5 text-center px-2">
                 Ready to lead with sustainability? Explore Sirāt's NetZero Platform today.
               </Typography>
-              <Typography className="fontFamily fs-5 mt-2 text-center text-white">
-                <Link style={{ color: 'rgb(50 132 255)', textDecoration: 'none' }} to={'/contact'}>
+              <Typography className="fontFamily fs-5 mt-4 text-center text-white">
+                <Link className='btn-contact' to={'/contact'}>
                   Contact
                 </Link>
               </Typography>
