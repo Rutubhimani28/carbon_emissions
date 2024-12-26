@@ -318,12 +318,12 @@ const Index = () => {
               <div className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
                 <img src={TrustOne} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
               </div>
-              <div className="box-with-border" style={{ height:  useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }}></div>
+              <div className="box-with-border" style={{ height:  useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }} />
 
               <div className=" d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
                 <img src={Hutch} alt="img" style={{ width: useMediaQuery(theme.breakpoints.up('sm')) ? '145px' : '45px' , maxWidth: '300px' }} />
               </div>
-              <div className="box-with-border" style={{ height:  useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }}></div>
+              <div className="box-with-border" style={{ height:  useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }} />
 
               <div className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
                 <img src={TrustTwo} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
