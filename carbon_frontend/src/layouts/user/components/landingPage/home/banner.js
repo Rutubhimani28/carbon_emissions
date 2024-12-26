@@ -204,7 +204,7 @@ const Index = () => {
             <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">100%</Typography>
-                <Typography>Achieve 100% Return on Investment from the first year.</Typography>
+                <Typography>Achieve close to 100% Return on Investment from the first year.</Typography>
               </Box>
             </Grid>
           </Grid>
@@ -228,6 +228,7 @@ const Index = () => {
 
               margin: '0 auto',
               paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? '42px' : '25px',
+              paddingBottom : useMediaQuery(theme.breakpoints.up('md')) ? '20px' : '25px',
             }}
           >
             <video
@@ -256,54 +257,13 @@ const Index = () => {
         {/* <Grid className="fs-5" item xs={12} sm={2} md={2} /> */}
       </Grid>
 
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className="mt-3">
-        <Grid item xs={0} md={2.1} />
-        <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInLeft animate__slow mb-5">
-          <Box
-            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
-            sx={{
-              height: { xs: '200px', sm: '260px', md: '220px' },
-              boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
-            }}
-          >
-            {/* <img src={mission} alt="img" width={50} className='tabImgWhite' /> */}
-            <Typography variant="h6" className="text-start fs-5 pb-4 fontFamily fw-bold">
-              Mission
-            </Typography>
-            <p className="text-start fs-6 ">
-              To promote sustainable marketing and generate awareness to look beyond supply chain emissions and
-              emphasize the importance of adopting sustainable practices in marketing.
-            </p>
-          </Box>
-        </Grid>
-        <Grid item sm={12} md={3.9} className="wow animate__animated animate__fadeInRight animate__slow mb-5">
-          <Box
-            className="d-flex justify-content-center flex-column align-items-start p-4 rounded-3 bg-white mx-3 template-inner-theme"
-            sx={{
-              height: { xs: '200px', sm: '260px', md: '220px' },
-              boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
-            }}
-          >
-            {/* <img src={vision} alt="img" width={50} className='tabImgWhite' /> */}
-            <Typography variant="h6" className="text-start fs-5 pb-4 fontFamily fw-bold">
-              Vision
-            </Typography>
-            <p className="text-start fs-6 ">
-              We aspire to remove 100 Megaton of carbon equivalent (100 MtCO<sub>2</sub>e) by 2030, driving meaningful
-              environmental impact through sustainable marketing practices by collaboration.{' '}
-            </p>
-          </Box>
-        </Grid>
-        <Grid item xs={0} md={2.1} />
-      </Grid>
-
       <Grid
         container
         justifyContent="center"
         className="bg-white wow animate__animated animate__fadeInRight animate__slow mx-auto"
         color="#054723"
       >
-        <Grid item sm={12} md={12} className="d-flex justify-content-center pt-3">
+        <Grid item sm={12} md={12} className="d-flex justify-content-center pt-4">
           <Typography className="fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme">
             Our Customers
           </Typography>
@@ -320,7 +280,7 @@ const Index = () => {
           {/* Background Image */}
           <img
             src={OurCustomersBgImg2}
-            alt="ESG Advisory Services"
+            alt="Customers img"
             style={{
               width: '100%',
               height: '100%',
@@ -355,13 +315,15 @@ const Index = () => {
                 width: useMediaQuery(theme.breakpoints.up('sm')) ? '600px' : '270px',
               }}
             >
-              <div className="box-with-border d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
+              <div className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
                 <img src={TrustOne} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
               </div>
+              <div className="box-with-border" style={{ height:  useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }}></div>
 
-              <div className="box-with-border d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
-                <img src={Hutch} alt="img" style={{ width: useMediaQuery(theme.breakpoints.up('sm')) ? '180px' : '45px' , maxWidth: '300px' }} />
+              <div className=" d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
+                <img src={Hutch} alt="img" style={{ width: useMediaQuery(theme.breakpoints.up('sm')) ? '145px' : '45px' , maxWidth: '300px' }} />
               </div>
+              <div className="box-with-border" style={{ height:  useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }}></div>
 
               <div className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
                 <img src={TrustTwo} alt="img" style={{ width: '100%', maxWidth: '300px' }} />

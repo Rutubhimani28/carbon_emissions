@@ -321,7 +321,7 @@ const Goal = () => {
                 Ready to lead with sustainability? Explore Sirāt's NetZero Platform today.
               </Typography>
               <Typography className="fontFamily fs-5 mt-4 text-center text-white">
-                <Link className='btn-contact' to={'/contact'}>
+                <Link className='btn-contact' to={'/contact'} style={{color:"white"}}>
                   Contact
                 </Link>
               </Typography>
