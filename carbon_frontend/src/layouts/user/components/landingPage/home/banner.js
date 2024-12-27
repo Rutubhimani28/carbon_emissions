@@ -96,7 +96,7 @@ const Index = () => {
 
   return (
     <div>
-      <div style={{ maxHeight: '580px', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ maxHeight: '650px', overflow: 'hidden', position: 'relative' }}>
         {/* <video
           width="100%"
           height="100%"
@@ -179,7 +179,7 @@ const Index = () => {
             {/* <Link to="/netzero-platform" style={{ color: '#ffffd9', textDecoration: 'none' }}>
               NetZero Platform
             </Link> */}
-            , designed to measure the CO<sub>2</sub> footprint generated from your marketing operations.
+            , designed to measure the CO<sub>2</sub> footprint generated from your diverse marketing activities.
           </Typography>
 
           {/* Boxes Section */}
