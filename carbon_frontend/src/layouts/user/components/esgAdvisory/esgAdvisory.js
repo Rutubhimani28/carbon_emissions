@@ -284,13 +284,18 @@ const EsgAdvisory = () => {
           md={5.5}
           lg={2.8}
           className="text-start py-2 template-inner-theme-2 pb-4"
-          style={{ paddingLeft: useMediaQuery(theme.breakpoints.up('sm')) ? '10px' : '0px' }}
+          style={{ paddingLeft: useMediaQuery(theme.breakpoints.up('sm')) ? '10px' : '0px'
+          }}
         >
-          <Box>
+          <Box 
+          // style={{
+          //    margin:"0px 5px"
+          // }}
+          >
             <img
               src={Organisations}
               alt="img"
-              width={'100%'}
+              width={'96%'}
               style={{ paddingLeft: '0px', height: '165px', objectFit: 'cover', borderRadius: '6px' }}
             />
           </Box>
@@ -310,7 +315,7 @@ const EsgAdvisory = () => {
             style={{
               textAlign: 'left',
               color: '#1f9e6d',
-              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 6px 0px 4px' : '0px 0px 12px 0px',
               // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
             }}
           >
@@ -326,11 +331,13 @@ const EsgAdvisory = () => {
           className="text-start py-2 template-inner-theme-2"
           style={{ paddingLeft: '0px' }}
         >
-          <Box>
+          <Box style={{
+            //  margin:"0px 5px"
+          }}>
             <img
               src={Exhibitions}
               alt="img"
-              width={'100%'}
+              width={'96%'}
               style={{ paddingLeft: '0px', height: '165px', objectFit: 'cover', borderRadius: '6px' }}
             />
           </Box>
@@ -350,7 +357,7 @@ const EsgAdvisory = () => {
             style={{
               textAlign: 'left',
               color: '#1f9e6d',
-              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 6px 0px 4px' : '0px 0px 12px 0px',
               // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
             }}
           >
@@ -366,11 +373,13 @@ const EsgAdvisory = () => {
           className="text-start py-2 template-inner-theme-2"
           style={{ paddingLeft: '0px' }}
         >
-          <Box>
+          <Box style={{
+            //  margin:"0px 5px"
+          }}>
             <img
               src={Agencies}
               alt="img"
-              width={'100%'}
+              width={'96%'}
               style={{ height: '165px', objectFit: 'cover', borderRadius: '6px' }}
             />
           </Box>
@@ -390,7 +399,7 @@ const EsgAdvisory = () => {
             style={{
               textAlign: 'left',
               color: '#1f9e6d',
-              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 6px 0px 4px' : '0px 0px 12px 0px',
               // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
             }}
           >
@@ -405,11 +414,11 @@ const EsgAdvisory = () => {
           className="text-start py-2 template-inner-theme-2"
           style={{ paddingLeft: '0px' }}
         >
-          <Box>
+          <Box >
             <img
               src={Hospitality}
               alt="img"
-              width={'100%'}
+              width={'96%'}
               style={{ paddingLeft: '0px', height: '165px', objectFit: 'cover', borderRadius: '6px' }}
             />
           </Box>
@@ -429,7 +438,7 @@ const EsgAdvisory = () => {
             style={{
               textAlign: 'left',
               color: '#1f9e6d',
-              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 0px 0px 4px' : '0px 0px 12px 0px',
+              padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 6px 0px 4px' : '0px 0px 12px 0px',
               // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
             }}
           >

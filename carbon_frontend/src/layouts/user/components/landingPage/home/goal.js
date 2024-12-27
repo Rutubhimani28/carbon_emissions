@@ -131,7 +131,8 @@ const Goal = () => {
           lineHeight: '1.2',
         }}
         // className="fontFamily fs-3 mt-1 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white"
-        className="fontFamily fs-3 mt-1 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow"
+        className="fontFamily fs-3 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow"
+        style={{margin:useMediaQuery(theme.breakpoints.up('md')) ? '0px': "26px"}}
       >
         Latest News
       </Typography>
