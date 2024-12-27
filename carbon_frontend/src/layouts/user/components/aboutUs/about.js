@@ -109,43 +109,43 @@ const About = () => {
         <img
           src={goal1}
           alt="img"
-          width={164}
+          width={130}
           className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
         />
         <img
           src={goal2}
           alt="img"
-          width={164}
+          width={130}
           className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
         />
         <img
           src={goal3}
           alt="img"
-          width={164}
+          width={130}
           className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
         />
         <img
           src={goal4}
           alt="img"
-          width={164}
+          width={130}
           className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
         />
         <img
           src={goal5}
           alt="img"
-          width={164}
+          width={130}
           className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
         />
         <img
           src={goal6}
           alt="img"
-          width={164}
+          width={130}
           className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow"
         />
         <img
           src={goal7}
           alt="img"
-          width={164}
+          width={130}
           className="mx-2 my-2 justify-content-center wow animate__animated animate__fadeInUp animate__slow "
         />
       </div>
@@ -388,9 +388,10 @@ const About = () => {
             item
             xs={12}
             md={3}
-            className="d-flex justify-content-center align-items-center flex-column wow animate__animated pe-4 animate__fadeInRight animate__slow"
+            className="d-flex justify-content-center align-items-center flex-column wow animate__animated animate__fadeInRight animate__slow"
             sx={{ order: { md: '1' }, borderRadius: { xs: '10px 10px 0px 0px', md: '0px 10px 10px 0px' } }}
             style={{
+              paddingRight: useMediaQuery(theme.breakpoints.up('md')) ? '0px' : '23px',
               paddingBottom: '10px',
               borderTop: '2px solid #054723 ',
               borderBottom: useMediaQuery(theme.breakpoints.up('md')) ? '2px solid #054723' : 'none',
@@ -398,7 +399,9 @@ const About = () => {
               borderRight: '2px solid #054723',
             }}
           >
-            <Box>
+            <Box style={{
+              maxWidth:useMediaQuery(theme.breakpoints.up('md')) ? '200px': "100%"
+            }}>
               <img
                 src={ceo}
                 alt="img"

@@ -164,10 +164,9 @@ const EsgAdvisory = () => {
         style={{ textAlign: 'left', fontSize: '18px' }}
         className="setHome_padding mt-5 fontFamily wow animate__animated animate__fadeInLeft animate__slow template-outer-theme"
       >
-        The Sirāt's AI enabled NetZero platform empowers you to identify, measure and reduce the marketing carbon
-        footprint. And manage your diverse marketing activities by keeping sustainability at the center stage and look
-        beyond the carbon footprint generated from supply chain and improve your overall company's performance to meet
-        NetZero goals.
+        Sirāt's AI-enabled NetZero platform helps you take control of your marketing carbon footprint by accurately
+        measuring and reducing its impact. With sustainability at the forefront, it streamlines your marketing
+        activities and enhances your company's overall performance to achieve NetZero objectives effectively.
       </Typography>
       <Typography
         style={{ textAlign: 'left', fontSize: '18px' }}
