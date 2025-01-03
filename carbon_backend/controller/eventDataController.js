@@ -378,7 +378,7 @@ const dataFind = async (req, res) => {
             </style>
         </head>
         <body>
-            <h2>Report from ${startDate} to ${endDate} (Based on the dates selection)</h2>
+            <h2>Report from ${startDate} to ${endDate}</h2>
             <table>
                 <thead>
                     <tr>
