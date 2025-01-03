@@ -382,3 +382,7 @@ text {
 .box-title-padding {
   padding-bottom: 20px;
 }
+
+.rs-picker-popup-daterange{
+  z-index: 99999999 !important;
+}

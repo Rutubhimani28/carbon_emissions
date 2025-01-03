@@ -18,6 +18,7 @@ import Room2 from '../../../assets/images/room2.jpeg';
 import Room3 from '../../../assets/images/room3.jpg';
 import Room4 from '../../../assets/images/room4.png';
 import Room5 from '../../../assets/images/room5.jpg';
+import Room6 from '../../../assets/images/room6.jpg';
 import AreYouReadyImg from '../../../assets/images/Are-you-ready-img.png';
 
 const Goal = () => {
@@ -60,6 +61,12 @@ const Goal = () => {
       image: Room3,
       description: 'Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing...',
       link: '/news-room/blog3',
+    },
+    {
+      id: 6,
+      image: Room6,
+      description: 'Sirāt Files Patent for Innovative NetZero Platform',
+      link: '/news-room/blog6',
     },
   ];
   const settings = {
@@ -319,7 +326,7 @@ const Goal = () => {
             <Box>
               <Typography className="fontFamily fs-3 mb-3 fw-bold text-center">Are you ready?</Typography>
               <Typography className="fontFamily mb-3 fs-5 text-center px-2">
-                Ready to lead with sustainability? Explore Sirāt's NetZero Platform today.
+                Explore Sirāt's NetZero Platform today.
               </Typography>
               <Typography className="fontFamily fs-5 mt-4 text-center text-white">
                 <Link className='btn-contact' to={'/contact'} style={{color:"white"}}>

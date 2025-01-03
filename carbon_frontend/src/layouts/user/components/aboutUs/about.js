@@ -344,10 +344,10 @@ const About = () => {
                 </p>
               </div>
               <p className="fs-5 setMeetFounderText text-start">
-                A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate
-                boasts a rich global marketing background. His career has taken him across various markets, including
-                India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability
-                and understanding.
+                A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.
+              </p>
+              <p className="fs-5 setMeetFounderText text-start">
+              One of the Finalist for INSEAD Business Sustainability Award 2025.
               </p>
             </Box>
             <div
@@ -400,7 +400,7 @@ const About = () => {
             }}
           >
             <Box style={{
-              maxWidth:useMediaQuery(theme.breakpoints.up('md')) ? '200px': "100%"
+              maxWidth:useMediaQuery(theme.breakpoints.up('md')) ? '220px': "100%"
             }}>
               <img
                 src={ceo}

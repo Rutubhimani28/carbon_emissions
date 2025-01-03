@@ -7,6 +7,7 @@ import Room2 from '../../assets/images/room2.jpeg';
 import Room3 from '../../assets/images/room3.jpg';
 import Room4 from '../../assets/images/room4.png';
 import Room5 from '../../assets/images/room5.jpg';
+import Room6 from '../../assets/images/room6.jpg';
 
 const Index = () => {
   const theme = useTheme();
@@ -53,6 +54,48 @@ const Index = () => {
                         </Grid>
                     </Grid>
                 </Grid> */}
+        <Card
+          sx={{
+            display: 'flex',
+            marginBottom: 4,
+            flexWrap: 'wrap',
+            fontSize: useMediaQuery(theme.breakpoints.up('md')) ? '20px' : '10px',
+            width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px',
+            border: 'solid 1px #1F9E6D',
+          }}
+        >
+          <Grid container spacing={0}>
+            <Grid item xs={12} md={8} className={'order-2'}>
+              <Box
+                sx={{
+                  display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex',
+                  flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column',
+                  height: '100%',
+                }}
+              >
+                <CardContent sx={{ flex: '1 0 auto', flexWrap: 'wrap', wordBreak: 'break-word' }}>
+                  <Link className="text-decoration-none" to="/news-room/blog6">
+                    <Typography component="div" variant="h5">
+                      Sirāt Files Patent for Innovative NetZero Platform
+                      </Typography>
+                  </Link>
+                  <Typography variant="subtitle1" color="text.secondary" component="div" className="mt-1">
+                    Janu 03, 2025
+                  </Typography>
+                </CardContent>
+              </Box>
+            </Grid>
+            <Grid item md={4} xs={12}>
+              <CardMedia
+                component="img"
+                image={Room6}
+                className="img-thumbnail"
+                alt="Blog6"
+                sx={{ height: '100%', objectFit: 'contain' }}
+              />
+            </Grid>
+          </Grid>
+        </Card>
 
         <Card
           sx={{
