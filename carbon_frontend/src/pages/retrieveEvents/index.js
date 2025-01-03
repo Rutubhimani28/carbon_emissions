@@ -1,25 +1,45 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useFormik } from 'formik';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
-import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
-import Select, { components } from 'react-select';
-import { IoIosArrowDown } from 'react-icons/io';
-import { FaPlus } from 'react-icons/fa';
-import { Box, Button, Typography, CircularProgress, Grid, Container, Stack, IconButton, Menu, MenuItem, Card, TextField } from '@mui/material';
-import { DataGrid, GridToolbar, GridToolbarColumnsButton, GridToolbarDensitySelector, GridToolbarFilterButton } from '@mui/x-data-grid';
-import { MoreVert as MoreVertIcon } from '@mui/icons-material';
-import { CiExport } from 'react-icons/ci';
-import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  Box,
+  Button,
+  Card,
+  CircularProgress,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import {
+  DataGrid,
+  GridToolbarColumnsButton,
+  GridToolbarDensitySelector,
+  GridToolbarFilterButton,
+} from '@mui/x-data-grid';
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+import { useFormik } from 'formik';
+import moment from 'moment';
+import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { CiExport } from 'react-icons/ci';
+import { IoIosArrowDown } from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Select, { components } from 'react-select';
+import { DateRangePicker } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
+import * as yup from 'yup';
 import TableStyle from '../../components/TableStyle';
-import { apiget, apipost, apidelete } from '../../service/api';
-import { commonUtils } from '../../utils/utils';
 import { fetchEventsEmissionsData } from '../../redux/slice/eventsEmissionsDataSlice';
+import { apiget, apipost } from '../../service/api';
+import { commonUtils } from '../../utils/utils';
 
 // Extend dayjs with plugins
 dayjs.extend(utc);
@@ -35,34 +55,34 @@ dayjs.extend(timezone);
 const MyEventSelector = () => {
   const columns = [
     {
-            "field": "activityName",
-            "headerName": "Activity Name",
-            "width": 175
+      field: 'activityName',
+      headerName: 'Activity Name',
+      width: 175,
     },
     {
-            "field": "f2fEventTotalEmission",
-            "headerName": "F2F Event Emission",
-            "width": 175
+      field: 'f2fEventTotalEmission',
+      headerName: 'F2F Event Emission',
+      width: 175,
     },
     {
-            "field": "virtualEventTotalEmission",
+      field: 'virtualEventTotalEmission',
       // "headerName": "Virtual Event Emission",
-            "headerName": "Outdoor Marketing Emission",
-            "width": 175
+      headerName: 'Outdoor Marketing Emission',
+      width: 175,
     },
     {
-            "field": "prEventTotalEmission",
-            "headerName": "PR Event Emission",
-            "width": 175
+      field: 'prEventTotalEmission',
+      headerName: 'PR Event Emission',
+      width: 175,
     },
     {
-            "field": "digitalCampaignTotalEmission",
-            "headerName": "Digital Campaign Emission",
-            "width": 175
+      field: 'digitalCampaignTotalEmission',
+      headerName: 'Digital Campaign Emission',
+      width: 175,
     },
     {
-            field: "dateTime",
-            headerName: "Date/Time",
+      field: 'dateTime',
+      headerName: 'Date/Time',
       width: 175,
       valueFormatter: (params) => {
         return params.value;
@@ -70,25 +90,25 @@ const MyEventSelector = () => {
       },
     },
     {
-            "field": "budget",
-            "headerName": "Budget ($)",
+      field: 'budget',
+      headerName: 'Budget ($)',
     },
     {
-            "field": "createdBy",
-            "headerName": "Created By",
-            "width": 175
-        }
+      field: 'createdBy',
+      headerName: 'Created By',
+      width: 175,
+    },
   ];
 
   const csvColumns = [
-        { Header: "Activity Name", accessor: 'activityName' },
-        { Header: "F2F Event Emission", accessor: 'f2fEventTotalEmission' },
-        { Header: "Outdoor Marketing Emission", accessor: 'virtualEventTotalEmission' },
-        { Header: "PR Event Emission", accessor: 'prEventTotalEmission' },
-        { Header: "Digital Campaign Emission", accessor: 'digitalCampaignTotalEmission' },
-        { Header: "Date/Time", accessor: 'dateTime' },
-        { Header: "Budget ($)", accessor: 'budget' },
-        { Header: "Created By", accessor: 'createdBy' },
+    { Header: 'Activity Name', accessor: 'activityName' },
+    { Header: 'F2F Event Emission', accessor: 'f2fEventTotalEmission' },
+    { Header: 'Outdoor Marketing Emission', accessor: 'virtualEventTotalEmission' },
+    { Header: 'PR Event Emission', accessor: 'prEventTotalEmission' },
+    { Header: 'Digital Campaign Emission', accessor: 'digitalCampaignTotalEmission' },
+    { Header: 'Date/Time', accessor: 'dateTime' },
+    { Header: 'Budget ($)', accessor: 'budget' },
+    { Header: 'Created By', accessor: 'createdBy' },
   ];
   const selectRef = useRef(null);
 
@@ -97,26 +117,30 @@ const MyEventSelector = () => {
   const userData = JSON.parse(userSessionData);
   const isAdmin = userData?.role === 'admin';
   // const isAdmin = false;
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+  const resultTableData = useSelector((state) => state.resultTableDataDetails);
   // const previousEvents = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm')}` }));
 
   const [isGraphLoading, setIsGraphLoading] = useState(false);
   const [isFieldsLoading, setIsFieldsLoading] = useState(false);
   const [previousAllAccounts, setPreviousAllAccounts] = useState([]);
   const [previousEvents, setPreviousEvents] = useState([]);
-    const [selectedAccountPreviousEvents, setselectedAccountPreviousEvents] = useState([]);      // for options
+  const [selectedAccountPreviousEvents, setselectedAccountPreviousEvents] = useState([]); // for options
 
-    const [userAction, setUserAction] = useState(null)
+  const [userAction, setUserAction] = useState(null);
   const [selectedRowIds, setSelectedRowIds] = useState([]);
+  const [dateRange, setDateRange] = useState([new Date(), new Date()]);
 
   const [emailInput, setEmailInput] = useState('');
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { data, isLoading } = useSelector((state) => state?.eventsEmissionsDetails);
-    const [selectedData, setselectedData] = useState([]);      // for options
+  const [selectedData, setselectedData] = useState([]); // for options
   const [filteredTableData, setFilteredTableData] = useState(data);
+
+  const [open, setOpen] = React.useState(false);
+  const [range, setRange] = useState([null, null]);
 
   const formatOptionLabel = ({ label }) => (
     <Typography noWrap title={label}>
@@ -124,13 +148,16 @@ const MyEventSelector = () => {
     </Typography>
   );
 
+  const handleChange = (value) => {
+    setRange(value);
+  };
+
   const validationSchema = yup.object({
     addEmail: yup.string().email('Email not valid'),
-        selectedAccount: yup.object().required('Account is required').test(
-            'is-not-null',
-            'Account is required',
-            (value) => value !== null
-        ),
+    selectedAccount: yup
+      .object()
+      .required('Account is required')
+      .test('is-not-null', 'Account is required', (value) => value !== null),
   });
 
   const formik = useFormik({
@@ -151,7 +178,7 @@ const MyEventSelector = () => {
       }
       return errors;
     },
-        onSubmit: values => {
+    onSubmit: (values) => {
       // console.log('Selected events:', values.selectedEvents);
     },
   });
@@ -161,7 +188,7 @@ const MyEventSelector = () => {
     try {
       await apipost('api/email/add-email-for-two-events', { eventsData });
     } catch (error) {
-            console.error("--- addEmail error ", error);
+      console.error('--- addEmail error ', error);
     }
     setIsFieldsLoading(false);
   };
@@ -171,7 +198,7 @@ const MyEventSelector = () => {
     try {
       await apipost('api/email/addGraph', payload);
     } catch (error) {
-            console.error("--- addEmail error ", error);
+      console.error('--- addEmail error ', error);
     }
   };
 
@@ -179,7 +206,7 @@ const MyEventSelector = () => {
     setIsFieldsLoading(true);
     const returnArr = [];
 
-        const selectedValues = formik.values.selectedEvents.map(event => event.value);
+    const selectedValues = formik.values.selectedEvents.map((event) => event.value);
 
     const apiPath = `api/eventData?_id[]=${selectedValues.join('&_id[]=')}`;
     const response = await apiget(apiPath);
@@ -193,13 +220,13 @@ const MyEventSelector = () => {
 
         if (emissionsData && emissionsData.length > 0) {
           const obj = {
-                        totalTvAd: Number(emissionsData.find(i => i?.name === "TV Ad")?.emission) || 0,
-                        totalNewspaper: Number(emissionsData.find(i => i?.name === "Newspaper- Full page Ad")?.emission) || 0,
-                        totalMagazine: Number(emissionsData.find(i => i?.name === "Magazine")?.emission) || 0,
-                        totalPodcast: Number(emissionsData.find(i => i?.name === "Podcast")?.emission) || 0,
-                        totalPolyethylene: Number(emissionsData.find(i => i?.name === "Polyethylene HDPE Banner")?.emission) || 0,
-                        totalPVC: Number(emissionsData.find(i => i?.name === "PVC Banners")?.emission) || 0,
-                        grandTotal: Number(item?.vitrualEventAllData?.totalEmission).toFixed(2) || 0
+            totalTvAd: Number(emissionsData.find((i) => i?.name === 'TV Ad')?.emission) || 0,
+            totalNewspaper: Number(emissionsData.find((i) => i?.name === 'Newspaper- Full page Ad')?.emission) || 0,
+            totalMagazine: Number(emissionsData.find((i) => i?.name === 'Magazine')?.emission) || 0,
+            totalPodcast: Number(emissionsData.find((i) => i?.name === 'Podcast')?.emission) || 0,
+            totalPolyethylene: Number(emissionsData.find((i) => i?.name === 'Polyethylene HDPE Banner')?.emission) || 0,
+            totalPVC: Number(emissionsData.find((i) => i?.name === 'PVC Banners')?.emission) || 0,
+            grandTotal: Number(item?.vitrualEventAllData?.totalEmission).toFixed(2) || 0,
           };
           dataTwo.push(obj);
         } else {
@@ -210,7 +237,7 @@ const MyEventSelector = () => {
             totalPodcast: 0,
             totalPolyethylene: 0,
             totalPVC: 0,
-                        grandTotal: 0
+            grandTotal: 0,
           };
           dataTwo.push(obj);
         }
@@ -515,6 +542,68 @@ const MyEventSelector = () => {
     }
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setRange([null, null]);
+  };
+
+  const descriptionElementRef = React.useRef(null);
+  React.useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
+
+  const handleGenerateReport = async () => {
+    const sDate = range[0];
+    const eDate = range[1];
+    const startDate = sDate.toISOString().split('T')[0];
+    const endDate = eDate.toISOString().split('T')[0];
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/eventData/events-data-find', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ startDate, endDate }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch the PDF');
+      }
+
+      // Convert the response to a Blob
+      const blob = await response.blob();
+
+      // Create a link to download the file
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+
+      // Set the download filename (you can customize it)
+      link.download = 'Generate report.pdf';
+      link.click();
+
+      // Clean up the URL object
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error generating report:', error);
+    }
+  };
+
+  const disabledDate = (date) => {
+    // Example: Disable all future dates
+    return date > new Date();
+  };
+
   const removeTag = (index) => {
     // const newTags = [...emails];
     const newTags = [...formik.values?.emails];
@@ -579,18 +668,6 @@ const MyEventSelector = () => {
       </div>
     </components.DropdownIndicator>
   );
-
-  const handleChange = (selectedOptions) => {
-    if (selectedOptions.length > 2) {
-      selectedOptions = selectedOptions.slice(0, 2);
-    }
-
-    formik.setFieldValue('selectedEvents', selectedOptions);
-
-    if (selectRef.current) {
-      selectRef.current.blur();
-    }
-  };
 
   // const handlePlusClick = () => {
   //     if (selectRef.current) {
@@ -1041,6 +1118,11 @@ const MyEventSelector = () => {
             {/* {isGraphLoading ? <CircularProgress size={27} /> : 'Retrieve Graphs'} */}
             Retrieve Graphs
           </Button>
+          {userData?.role === 'admin' && (
+            <Button variant="contained" style={{ backgroundColor: '#054723' }} onClick={handleClickOpen}>
+              Generate report
+            </Button>
+          )}
         </Box>
 
         {/* Loader Overlay */}
@@ -1064,6 +1146,34 @@ const MyEventSelector = () => {
           </Box>
         )}
       </Box>
+      <>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="scroll-dialog-title"
+          aria-describedby="scroll-dialog-description"
+        >
+          <DialogTitle id="scroll-dialog-title">Generate report</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="scroll-dialog-description" ref={descriptionElementRef} tabIndex={-1}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
+                <p style={{ marginBottom: '10px', fontWeight: 'bold', color:"" }}>Select Date:</p>
+                <DateRangePicker
+                  placement="leftStart"
+                  disabledDate={disabledDate}
+                  value={range} 
+                  onChange={handleChange} 
+                  format="yyyy-MM-dd"
+                />
+              </div>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleGenerateReport}>Generate</Button>
+          </DialogActions>
+        </Dialog>
+      </>
 
       {userData?.role === 'admin' && (
         <Container maxWidth style={{ marginTop: '36px' }}>
