@@ -30,7 +30,7 @@ const Blog5 = () => {
                 </Link>
             </div>
             <div style={{ position: "fixed", bottom: "70px", right: "0px" }}>
-                <Link to='/news-room/blog1' className='d-flex nextBlogRight'>
+                <Link to='/news-room/blog6' className='d-flex nextBlogRight'>
                     <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px" }}>
                         <FaChevronRight />
                     </div>

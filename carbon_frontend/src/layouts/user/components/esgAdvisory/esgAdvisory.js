@@ -73,7 +73,7 @@ const EsgAdvisory = () => {
           position: 'relative',
           width: '100%',
           height: '100%',
-          maxHeight: '750px',
+          maxHeight: '600px',
           overflow: 'hidden',
         }}
       >
@@ -87,7 +87,6 @@ const EsgAdvisory = () => {
             height: '100%',
             objectFit: 'cover',
             display: 'block',
-            aspectRatio: '40/15',
           }}
         />
 

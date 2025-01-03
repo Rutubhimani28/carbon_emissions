@@ -96,7 +96,7 @@ const Index = () => {
 
   return (
     <div>
-      <div style={{ maxHeight: '650px', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ maxHeight: '600px', overflow: 'hidden', position: 'relative' }}>
         {/* <video
           width="100%"
           height="100%"
@@ -184,19 +184,19 @@ const Index = () => {
 
           {/* Boxes Section */}
           <Grid container justifyContent="center" spacing={2} sx={{ mt: 2 }}>
-            {/* First Box */}
+
+             {/* First Box */}
+             <Grid item lg={3} xs={12} sm={6} md={4}>
+              <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
+                <Typography className="fontFamily fs-3 fw-bold box-title-padding">5%</Typography>
+                <Typography>Reduce your marketing budgets by up to 5% in the first year itself.</Typography>
+              </Box>
+            </Grid>
+              {/* Second Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">5-25%</Typography>
                 <Typography>Reduce your carbon footprint from the very first activity by 5-25%.</Typography>
-              </Box>
-            </Grid>
-
-            {/* Second Box */}
-            <Grid item lg={3} xs={12} sm={6} md={4}>
-              <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
-                <Typography className="fontFamily fs-3 fw-bold box-title-padding">7%</Typography>
-                <Typography>Reduce your marketing budgets by up to 7% in the first year itself.</Typography>
               </Box>
             </Grid>
 

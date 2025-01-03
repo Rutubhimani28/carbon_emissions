@@ -43,7 +43,7 @@ const Blog1 = () => {
                 <span className='mx-2 fs-5' ><Link style={{ color: "#1e149d" }} to='https://pinterest.com/pin/find/?url=https%3A%2F%2Fgosustainable.ai%2F2024%2F03%2F18%2Fgoing-eco-friendly-with-go-sustainable-aster-cmi-hospital-bangalore%2F'><FaPinterestP /></Link></span>
             </div>
             <div style={{ position: "fixed", bottom: "70px", left: "0", }} >
-                <Link to='/news-room/blog4' className='d-flex nextBlog'>
+                <Link to='/news-room/blog6' className='d-flex nextBlog'>
                     <div style={{ backgroundColor: "#ffffd9", padding: "25px 10px"}}>
                         <FaChevronLeft />
                     </div>

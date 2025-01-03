@@ -460,7 +460,7 @@ export default async function sendMail({
         }
 
         // Send email
-        await transporter.sendMail(mailOptions);
+        // await transporter.sendMail(mailOptions);
         console.log('Email sent successfully');
 
         // // Clean up the PDF file
@@ -568,7 +568,7 @@ export const sendMailForTwoEvents = async ({ eventsData }) => {       // for two
         };
 
         // Send email
-        await transporter.sendMail(mailOptions);
+        // await transporter.sendMail(mailOptions);
         console.log('Email sent successfully from sendMailForTwoEvents');
 
     } catch (error) {
