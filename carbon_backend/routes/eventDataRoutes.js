@@ -9,6 +9,6 @@ router.get('/events-emissions-list', auth, eventDataController.getEventsEmission
 router.get('/events-users-list', auth, eventDataController.getUserRecords);
 router.post('/add', auth, eventDataController.add);
 router.put('/:id', auth, eventDataController.edit);
-router.post("/events-data-find", eventDataController.dataFind);
+router.post("/events-data-find", eventDataController.generateDateReport);
 
 export default router;

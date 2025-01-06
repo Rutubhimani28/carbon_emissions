@@ -79,7 +79,7 @@ const Blog6 = () => {
           And we continue to innovate and transform the way organizations approach sustainability.
         </p>
         <p className="fs-5 pt-5 setMeetFounderText text-start">
-            ABlog by: <br/>
+            Blog by: <br/>
             Mohammed Shafeeq  <br/>
             Founder & CEO, Sirāt
         </p>

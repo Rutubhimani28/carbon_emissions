@@ -564,8 +564,8 @@ const MyEventSelector = () => {
   const handleGenerateReport = async () => {
     const sDate = range[0];
     const eDate = range[1];
-    const startDate = sDate.toISOString().split('T')[0];
-    const endDate = eDate.toISOString().split('T')[0];
+    const startDate = sDate?.toISOString().split('T')[0];
+    const endDate = eDate?.toISOString().split('T')[0];
 
     try {
       const response = await fetch('http://127.0.0.1:8000/api/eventData/events-data-find', {
@@ -1099,7 +1099,7 @@ const MyEventSelector = () => {
           </Typography>
         )}
         <Box sx={{ display: 'flex', gap: 2, marginTop: '16px', marginLeft: '5px', justifyContent: 'flex-start' }}>
-          {userData?.role === 'admin' && (
+          {/* {userData?.role === 'admin' && (
             <Button
               variant="contained"
               style={{ backgroundColor: '#054723' }}
@@ -1108,7 +1108,7 @@ const MyEventSelector = () => {
             >
               Retrieve Calculations
             </Button>
-          )}
+          )} */}
           <Button
             variant="contained"
             style={{ backgroundColor: '#054723' }}
