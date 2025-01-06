@@ -80,7 +80,7 @@ const Index = () => {
                       </Typography>
                   </Link>
                   <Typography variant="subtitle1" color="text.secondary" component="div" className="mt-1">
-                    Janu 03, 2025
+                    January  03, 2025
                   </Typography>
                 </CardContent>
               </Box>

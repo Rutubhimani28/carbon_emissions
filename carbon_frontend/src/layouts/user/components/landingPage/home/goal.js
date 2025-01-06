@@ -33,6 +33,12 @@ const Goal = () => {
   // Data array for images and descriptions
   const carouselData = [
     {
+      id: 6,
+      image: Room6,
+      description: 'Sirāt Files Patent for Innovative NetZero Platform',
+      link: '/news-room/blog6',
+    },
+    {
       id: 1,
       image: Room5,
       description: 'Leading the NetZero charge: How sustainable marketing can transform the future of business',
@@ -61,12 +67,6 @@ const Goal = () => {
       image: Room3,
       description: 'Go Sustainable Unveils Net-Zero Framework To Reduce Carbon Footprint In Marketing...',
       link: '/news-room/blog3',
-    },
-    {
-      id: 6,
-      image: Room6,
-      description: 'Sirāt Files Patent for Innovative NetZero Platform',
-      link: '/news-room/blog6',
     },
   ];
   const settings = {

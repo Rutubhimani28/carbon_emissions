@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .container {
+        margin: 0px auto;
+        max-width: 600px;
+      }
+
+      h4 {
+        margin-top:0px ;
+        font-size: 18px;
+      }
+      
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f4f4f4;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      tbody tr {
+        page-break-inside: avoid;
+      }
+
+      tfoot {
+        display: table-footer-group;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    <h4>Report from <%= startDate %> to <%= endDate %></h4>
+      <main>
+        <table>
+          <thead>
+            <tr>
+              <th>Activity Type</th>
+              <th>Activity Name</th>
+              <th>Date</th>
+              <th>Carbon Footprint</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% pdfData.forEach(data => { %>
+            <tr>
+              <td><%= data.activityType %></td>
+              <td><%= data.activityName %></td>
+              <td><%= data.date %></td>
+              <td><%= data.carbon %> tCO2e</td>
+            </tr>
+            <% }) %>
+            <tr>
+              <td colspan="3" style="text-align: center; font-weight: bold">
+                Total
+              </td>
+              <td style="font-weight: bold">
+                <%= totalCarbonEmissions %> tCO2e
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
+  </body>
+</html>

@@ -96,7 +96,7 @@ const Index = () => {
 
   return (
     <div>
-      <div style={{ maxHeight: '600px', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ maxHeight: '580px', overflow: 'hidden', position: 'relative' }}>
         {/* <video
           width="100%"
           height="100%"
@@ -195,8 +195,8 @@ const Index = () => {
               {/* Second Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
-                <Typography className="fontFamily fs-3 fw-bold box-title-padding">5-25%</Typography>
-                <Typography>Reduce your carbon footprint from the very first activity by 5-25%.</Typography>
+                <Typography className="fontFamily fs-3 fw-bold box-title-padding">20%</Typography>
+                <Typography>Reduce your marketing carbon footprint by up to 20% in one year.</Typography>
               </Box>
             </Grid>
 
