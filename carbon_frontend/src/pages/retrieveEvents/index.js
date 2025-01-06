@@ -571,11 +571,6 @@ const MyEventSelector = () => {
     try {
       const response = await apipostBlob(
         'api/eventData/events-data-find',
-        //  {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
         { startDate, endDate }
       );
 
