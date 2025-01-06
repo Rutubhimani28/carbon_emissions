@@ -427,12 +427,13 @@ const generateDateReport = async (req, res) => {
       return outputPath;
     };
 
-    const outputPath = "carbon_footprint_chart";
+    // const outputPath = "carbon_footprint_chart";
+    const outputPath = "Carbon_Emission_Report";
     const attachmentPdfFilePath = path.join(__dirname, `${outputPath}.pdf`);
     await createPDF(html, attachmentPdfFilePath);
 
     // Send the PDF file in the response
-    res.download(attachmentPdfFilePath, "Carbon_Emission_Report.pdf", (err) => {
+    res.download(attachmentPdfFilePath, `Carbon_Emission_Report_${start}_to_${end}.pdf`, (err) => {
       if (err) {
         console.error("Error sending the PDF file:", err);
         res.status(500).send("Failed to send the PDF file.");

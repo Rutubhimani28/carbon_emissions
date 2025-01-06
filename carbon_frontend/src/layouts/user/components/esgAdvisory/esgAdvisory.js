@@ -73,7 +73,7 @@ const EsgAdvisory = () => {
           position: 'relative',
           width: '100%',
           height: '100%',
-          maxHeight: '580px',
+          maxHeight: useMediaQuery(theme.breakpoints.down('md')) ? '190px' : '580px',
           overflow: 'hidden',
         }}
       >

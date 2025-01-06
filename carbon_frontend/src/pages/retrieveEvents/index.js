@@ -24,6 +24,7 @@ import {
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import { saveAs } from 'file-saver';
 import { useFormik } from 'formik';
 import moment from 'moment';
 import * as React from 'react';
@@ -38,7 +39,7 @@ import 'rsuite/dist/rsuite.min.css';
 import * as yup from 'yup';
 import TableStyle from '../../components/TableStyle';
 import { fetchEventsEmissionsData } from '../../redux/slice/eventsEmissionsDataSlice';
-import { apiget, apipost } from '../../service/api';
+import { apiget, apipost, apipostBlob } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
 
 // Extend dayjs with plugins
@@ -568,32 +569,37 @@ const MyEventSelector = () => {
     const endDate = eDate?.toISOString().split('T')[0];
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/eventData/events-data-find', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ startDate, endDate }),
-      });
+      const response = await apipostBlob(
+        'api/eventData/events-data-find',
+        //  {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        { startDate, endDate }
+      );
 
-      if (!response.ok) {
+      if (!response.status === 200) {
         throw new Error('Failed to fetch the PDF');
       }
+      const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+      saveAs(pdfBlob, `Carbon_Emission_Report_${startDate}_to_${endDate}.pdf`);
 
       // Convert the response to a Blob
-      const blob = await response.blob();
+      // const blob = await response.blob();
 
-      // Create a link to download the file
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
+      // // Create a link to download the file
+      // const url = window.URL.createObjectURL(blob);
+      // const link = document.createElement('a');
+      // link.href = url;
 
-      // Set the download filename (you can customize it)
-      link.download = 'Generate report.pdf';
-      link.click();
+      // // Set the download filename (you can customize it)
+      // // link.download = 'Generate report.pdf';
+      // link.download = `Carbon_Emission_Report_${startDate}_to_${endDate}.pdf`;
+      // link.click();
 
-      // Clean up the URL object
-      window.URL.revokeObjectURL(url);
+      // // Clean up the URL object
+      // window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error generating report:', error);
     }
@@ -1157,12 +1163,12 @@ const MyEventSelector = () => {
           <DialogContent>
             <DialogContentText id="scroll-dialog-description" ref={descriptionElementRef} tabIndex={-1}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
-                <p style={{ marginBottom: '10px', fontWeight: 'bold', color:"" }}>Select Date:</p>
+                <p style={{ marginBottom: '10px', fontWeight: 'bold', color: '' }}>Select Date:</p>
                 <DateRangePicker
                   placement="leftStart"
                   disabledDate={disabledDate}
-                  value={range} 
-                  onChange={handleChange} 
+                  value={range}
+                  onChange={handleChange}
                   format="yyyy-MM-dd"
                 />
               </div>
