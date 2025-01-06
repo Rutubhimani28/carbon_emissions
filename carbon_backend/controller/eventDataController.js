@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import pdf from "html-pdf";
 import ejs from "ejs";
 import puppeteer from "puppeteer";
 import fs from "fs";
