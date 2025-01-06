@@ -143,3 +143,33 @@ export const deleteManyApi = async (path, data) => {
         }
     }
 }
+
+
+export const apipostBlob = async (path, data) => {
+    try {
+        const response = await axios.post(constant.baseUrl + path, data, {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            },
+            responseType:"blob"
+        });
+
+        if (response && response.status === 200 || response.status === 201) {
+            toast.success(response.data.message);
+            // toast.success(<div dangerouslySetInnerHTML={{ __html: response.data.message }} />);
+        }
+        return response;
+    } catch (error) {
+        if (error && error.response) {
+            if (error && error.response.data && error.response.status === 401) {
+                if (error.response.data.message) {
+                    toast.error(error.response.data.message)
+                    // toast.error(<div dangerouslySetInnerHTML={{ __html: error.response.data.message }} />)
+                } else {
+                    toast.error("Something went wrong")
+                }
+            }
+        }
+        return error;
+    }
+}

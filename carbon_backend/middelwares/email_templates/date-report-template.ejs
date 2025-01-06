@@ -51,7 +51,7 @@
   </head>
   <body>
     <div class="container">
-    <h4>Report from <%= startDate %> to <%= endDate %></h4>
+      <h4>Report from <%= startDate %> to <%= endDate %></h4>
       <main>
         <table>
           <thead>
@@ -63,25 +63,36 @@
             </tr>
           </thead>
           <tbody>
-            <% pdfData.forEach(data => { %>
-            <tr>
-              <td><%= data.activityType %></td>
-              <td><%= data.activityName %></td>
-              <td><%= data.date %></td>
-              <td><%= data.carbon %> tCO2e</td>
-            </tr>
-            <% }) %>
-            <tr>
-              <td colspan="3" style="text-align: center; font-weight: bold">
-                Total
-              </td>
-              <td style="font-weight: bold">
-                <%= totalCarbonEmissions %> tCO2e
-              </td>
-            </tr>
+            <% if (pdfData.length > 0) { %>
+              <% pdfData.forEach(data => { %>
+              <tr>
+                <td><%= data.activityType %></td>
+                <td><%= data.activityName %></td>
+                <td><%= data.date %></td>
+                <td><%= data.carbon %> tCO2e</td>
+              </tr>
+              <% }) %>
+              <tr>
+                <td colspan="3" style="text-align: center; font-weight: bold">
+                  Total
+                </td>
+                <td style="font-weight: bold">
+                  <%= totalCarbonEmissions %> tCO2e
+                </td>
+              </tr>
+            <% } else { %>
+              <tr>
+                <td colspan="4" style="text-align: center; font-weight: bold;">
+                  Data not found
+                </td>
+              </tr>
+            <% } %>
           </tbody>
         </table>
       </main>
     </div>
+  </body>
+  
+  
   </body>
 </html>
