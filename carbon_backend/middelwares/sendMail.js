@@ -639,21 +639,20 @@ export const sendMailForDateRangeEvents = async ({
       path: pdfFilePath,
       contentType: "application/pdf",
     });
-
     const htmlData = `
-      <body>
-        <p>Dear ${name},</p>
-
-        <p>We're pleased to provide you the carbon footprint report from ${startDate} to ${endDate}.</p>
-
-        <p>If you have any questions or need further assistance, please contact us at <a href="mailto:info@sirat.earth">info@sirat.earth</a>.</p>
-
-        <p>Best regards,</p>
-
-        <p>Team Sirāt</p>
-      </body>
-    `;
-
+    <body>
+      <p>Dear ${name},</p>
+  
+      <p>We're pleased to provide you the carbon footprint report from ${startDate} to ${endDate}.</p>
+  
+      <p>If you have any questions or need further assistance, please contact us at <a href="mailto:info@sirat.earth">info@sirat.earth</a>.</p>
+      <br />
+      <p>Best regards,</p>
+  
+      <p><strong>Team Sirāt</strong></p>
+    </body>
+  `;
+  
     const mailOptions = {
       from: process.env.GMAIL_FROM,
       to: receiver,
@@ -663,9 +662,9 @@ export const sendMailForDateRangeEvents = async ({
     };
 
     // Send the email with the combined PDF
-    await transporter.sendMail(mailOptions);
+    // await transporter.sendMail(mailOptions);
 
-    fs.unlinkSync(pdfFilePath); // Delete the combined PDF after sending
+    // fs.unlinkSync(pdfFilePath); // Delete the combined PDF after sending
   } catch (error) {
     console.error("Error sending email for date range events:", error);
     throw error;

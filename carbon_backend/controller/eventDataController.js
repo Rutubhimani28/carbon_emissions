@@ -355,15 +355,15 @@ const generateDateReport = async (req, res) => {
     });
 
     const eventsData = eventsWithEmissions.map((event) => ({
-      activityType: event.activityType,
-      activityName: event.activityName,
+      activityType: event?.activityType,
+      activityName: event?.activityName,
       carbon: (
-        Number(event.f2fEventTotalEmission) +
-        Number(event.virtualEventTotalEmission) +
-        Number(event.prEventTotalEmission) +
-        Number(event.digitalCampaignTotalEmission)
+        Number(event?.f2fEventTotalEmission) +
+        Number(event?.virtualEventTotalEmission) +
+        Number(event?.prEventTotalEmission) +
+        Number(event?.digitalCampaignTotalEmission)
       ).toFixed(2),
-      date: event.dateTime,
+      date: event?.dateTime?.replace(' ', ', '),
     }));
 
     const totalCarbonEmissions = eventsData
