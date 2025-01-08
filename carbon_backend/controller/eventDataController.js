@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 import ejs from "ejs";
-import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import EventData from "../models/eventData.js";
 import User from "../models/user.js";
+import { sendMailForDateRangeEvents } from '../middelwares/sendMail.js'
 
 const index = async (req, res) => {
   const userId = req.user.userId;
@@ -182,8 +182,6 @@ const getEventsEmissionsRecords = async (req, res) => {
         event?.digitalCampaignAllData?.totalEmission || 0;
       const digitalCampaignTotalEmission = Number(digitalCampaignEmission);
 
-      // console.log("=== createdBy ", event?.createdBy);
-
       return {
         // ...event.toObject(), // Convert Mongoose Document to plain object
         f2fEventTotalEmission: f2fEventTotalEmission.toFixed(2),
@@ -245,22 +243,22 @@ const getUserRecords = async (req, res) => {
   }
 };
 
+const formatDate = (date) => {
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, '0'); // Ensure 2 digits for day
+  const month = String(d.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+  const year = d.getFullYear();
+  return `${day}-${month}-${year}`;
+};
+
 const generateDateReport = async (req, res) => {
-  const { startDate, endDate } = req.body;
+  const { startDate, endDate, name, email } = req.body;
   const start = new Date(startDate);
   const end = new Date(endDate);
-  const pdfOptions = {
-    format: "A4",
-    printBackground: true,
-    margin: {
-      top: "2cm",
-      right: "1cm",
-      bottom: "1cm",
-      left: "1cm",
-    },
-    landscape: false,
-  };
 
+  const formattedStart = formatDate(startDate);
+  const formattedEnd = formatDate(endDate);
+  
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
@@ -356,7 +354,7 @@ const generateDateReport = async (req, res) => {
       };
     });
 
-    const pdfData = eventsWithEmissions.map((event) => ({
+    const eventsData = eventsWithEmissions.map((event) => ({
       activityType: event.activityType,
       activityName: event.activityName,
       carbon: (
@@ -368,7 +366,7 @@ const generateDateReport = async (req, res) => {
       date: event.dateTime,
     }));
 
-    const totalCarbonEmissions = pdfData
+    const totalCarbonEmissions = eventsData
       .reduce((total, data) => total + Number(data.carbon), 0)
       .toFixed(2);
 
@@ -377,71 +375,25 @@ const generateDateReport = async (req, res) => {
       {
         startDate,
         endDate,
-        pdfData: pdfData,
         totalCarbonEmissions: totalCarbonEmissions,
+        eventsData: eventsData,
         logoBase64: logoBase64,
       }
     );
-
-    const createPDF = async (htmlContent, outputPath) => {
-      const browser = await puppeteer.launch({
-        headless: true,
-        args: [
-          "--no-sandbox",
-          "--disable-setuid-sandbox",
-          "--disable-dev-shm-usage",
-          "--disable-gpu",
-          "--disable-software-rasterizer",
-          "--single-process",
-          "--no-zygote",
-        ],
-      });
-
-      const page = await browser.newPage();
-      await page.setContent(htmlContent, {
-        waitUntil: "networkidle2",
-        timeout: 60000,
-      });
-
-      const headerTemplate = `
-        <div style="width: 100%; text-align: right; padding-right: 20px;">
-          <img src="data:image/png;base64,${logoBase64}" style="width: 100px; height: auto; max-height: 50px;" alt="Sirat-Logo"/>
-        </div>
-      `;
-
-      const footerTemplate = `
-        <div style="font-size: 10px; text-align: center; width: 100%;">
-          <span class="pageNumber"></span> / <span class="totalPages"></span>
-        </div>
-      `;
-
-      await page.pdf({
-        path: outputPath,
-        ...pdfOptions,
-        displayHeaderFooter: true,
-        headerTemplate,
-        footerTemplate,
-      });
-
-      await browser.close();
-      return outputPath;
+    
+    const sendMailPayload = {
+      eventsData,
+      startDate: formattedStart, 
+      endDate :formattedEnd,
+      totalCarbonEmissions, name,
+      receiver: email,
+      subject: `Carbon Emissions Report from ${formattedStart} to ${formattedEnd}`,
     };
+    
+    await sendMailForDateRangeEvents(sendMailPayload); // Send email with updated recipient
+    
+    return res.status(201).json({ success: true, message: 'Email Sent successfully!' });
 
-    // const outputPath = "carbon_footprint_chart";
-    const outputPath = "Carbon_Emission_Report";
-    const attachmentPdfFilePath = path.join(__dirname, `${outputPath}.pdf`);
-    await createPDF(html, attachmentPdfFilePath);
-
-    // Send the PDF file in the response
-    res.download(attachmentPdfFilePath, `Carbon_Emission_Report_${start}_to_${end}.pdf`, (err) => {
-      if (err) {
-        console.error("Error sending the PDF file:", err);
-        res.status(500).send("Failed to send the PDF file.");
-      } else {
-        // Optionally delete the file after sending
-        fs.unlinkSync(attachmentPdfFilePath);
-      }
-    });
   } catch (err) {
     console.error("Failed to retrieve or process event data:", err);
     res.status(500).json({
@@ -450,8 +402,6 @@ const generateDateReport = async (req, res) => {
     });
   }
 };
-
-
 export default {
   index,
   add,
