@@ -251,6 +251,18 @@ const formatDate = (date) => {
   return `${day}-${month}-${year}`;
 };
 
+function formatDateTime(input) {
+  // Split date and time
+  const [datePart, timePart] = input.split(' ');
+
+  // Reorder the date part
+  const [year, month, day] = datePart.split('-');
+  const formattedDate = `${day}-${month}-${year}`;
+
+  // Combine with time part
+  return `${formattedDate}, ${timePart}`;
+}
+
 const generateDateReport = async (req, res) => {
   const { startDate, endDate, name, email } = req.body;
   const start = new Date(startDate);
@@ -363,7 +375,7 @@ const generateDateReport = async (req, res) => {
         Number(event?.prEventTotalEmission) +
         Number(event?.digitalCampaignTotalEmission)
       ).toFixed(2),
-      date: event?.dateTime?.replace(' ', ', '),
+      date: formatDateTime(event?.dateTime),
     }));
 
     const totalCarbonEmissions = eventsData
