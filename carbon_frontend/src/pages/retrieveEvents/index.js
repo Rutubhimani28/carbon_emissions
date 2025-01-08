@@ -625,6 +625,7 @@ const MyEventSelector = () => {
       if (response.status !== 201) {
         throw new Error('Failed to fetch the PDF');
       }
+      handleClose();
     } catch (error) {
       console.error('Error generating report:', error);
     } finally {
