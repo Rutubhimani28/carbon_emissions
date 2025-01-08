@@ -662,9 +662,9 @@ export const sendMailForDateRangeEvents = async ({
     };
 
     // Send the email with the combined PDF
-    // await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
-    // fs.unlinkSync(pdfFilePath); // Delete the combined PDF after sending
+    fs.unlinkSync(pdfFilePath); // Delete the combined PDF after sending
   } catch (error) {
     console.error("Error sending email for date range events:", error);
     throw error;
