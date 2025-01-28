@@ -14,6 +14,7 @@ import {
   Stack,
   TextField,
   Typography,
+  FormLabel,
 } from '@mui/material';
 import {
   DataGrid,
@@ -21,12 +22,15 @@ import {
   GridToolbarDensitySelector,
   GridToolbarFilterButton,
 } from '@mui/x-data-grid';
+import Grid from '@mui/material/Grid';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import { saveAs } from 'file-saver';
 import { useFormik } from 'formik';
 import moment from 'moment';
 import * as React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useRef, useState } from 'react';
 import { CiExport } from 'react-icons/ci';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -36,11 +40,16 @@ import Select, { components } from 'react-select';
 import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
 import * as yup from 'yup';
+// import TableStyle from '../../components/TableStyle';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import TableStyle from '../../components/TableStyle';
 import { fetchEventsEmissionsData } from '../../redux/slice/eventsEmissionsDataSlice';
-import { apiget, apipost } from '../../service/api';
+import { apiget, apipost, apipostBlob } from '../../service/api';
 import { commonUtils } from '../../utils/utils';
-
+import 'react-toastify/dist/ReactToastify.css';
 // Extend dayjs with plugins
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -136,11 +145,18 @@ const MyEventSelector = () => {
   const dispatch = useDispatch();
 
   const { data, isLoading } = useSelector((state) => state?.eventsEmissionsDetails);
-  const [selectedData, setselectedData] = useState([]); // for options
   const [filteredTableData, setFilteredTableData] = useState(data);
+  const [selectedData, setselectedData] = useState([]); // for options
 
-  const [open, setOpen] = React.useState(false);
+  const [isopen, setIsOpen] = React.useState(false);
   const [range, setRange] = useState([null, null]);
+  const [sDate, setSDate] = useState(null);
+  const [eDate, setEDate] = useState(null); // for options
+
+  const [emails, setEmails] = useState([]);
+  const [emailsDate, setEmailsDate] = useState(emails || []);
+  const [emailInputDate, setEmailInputDate] = useState('');
+  const [isLoadingDate, setIsLoadingDate] = useState(false);
 
   const formatOptionLabel = ({ label }) => (
     <Typography noWrap title={label}>
@@ -160,10 +176,23 @@ const MyEventSelector = () => {
       .test('is-not-null', 'Account is required', (value) => value !== null),
   });
 
+  const dateValidationSchema = yup.object({
+    emailInputDate: yup.string().email('Email not valid'),
+    sDate: yup.string().nullable().required('Start Date is required'),
+    eDate: yup
+      .string()
+      .nullable()
+      .required('To Date is required')
+      .test('is-greater', 'To Date must be greater than or equal to Start Date', (value, context) => {
+        const sDate = context.parent.sDate;
+        return !value || !sDate || value >= sDate;
+      }),
+  });
+
   const formik = useFormik({
     initialValues: {
       selectedEvents: [],
-      emails: [`${userData?.loginId}`],
+      emails: userData?.loginId ? [`${userData.loginId}`] : emails, // Safely handle undefined userData
       addEmail: '',
       selectedAccount: null,
     },
@@ -179,7 +208,24 @@ const MyEventSelector = () => {
       return errors;
     },
     onSubmit: (values) => {
-      // console.log('Selected events:', values.selectedEvents);
+      // Handle form submission
+    },
+  });
+
+  // formik for Generate Date Report
+  const formikDate = useFormik({
+    initialValues: {
+      selectedEvents: [],
+      emailsDate: [`${userData.loginId}`],
+      emailInputDate: '',
+      addEmail: '',
+      selectedAccount: null,
+      sDate: null,
+      eDate: null,
+    },
+    validationSchema: dateValidationSchema, // <-- Correctly assign the validation schema
+    onSubmit: async (values) => {
+      await handleGenerateReport();
     },
   });
 
@@ -543,65 +589,48 @@ const MyEventSelector = () => {
   };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setIsOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
-    setRange([null, null]);
+    setIsOpen(false);
+    setSDate(null);
+    setEDate(null);
+    setEmailInputDate('');
+    formikDate.resetForm();
   };
 
   const descriptionElementRef = React.useRef(null);
   React.useEffect(() => {
-    if (open) {
+    if (isopen) {
       const { current: descriptionElement } = descriptionElementRef;
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
     }
-  }, [open]);
+  }, [isopen]);
 
   const handleGenerateReport = async () => {
-    const sDate = range[0];
-    const eDate = range[1];
-    const startDate = sDate?.toISOString().split('T')[0];
-    const endDate = eDate?.toISOString().split('T')[0];
+    const startDate = formikDate.values.sDate;
+    const endDate = formikDate.values.eDate;
+    const email = formikDate.values.emailsDate;
+    const name = userData?.cnctPerson;
+
+    setIsLoadingDate(true);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/eventData/events-data-find', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ startDate, endDate }),
-      });
+      const response = await apipost('api/eventData/events-data-find', { startDate, endDate, email, name });
 
-      if (!response.ok) {
+      // Correct status check: if the response status is not 200
+      if (response.status !== 201) {
         throw new Error('Failed to fetch the PDF');
       }
-
-      // Convert the response to a Blob
-      const blob = await response.blob();
-
-      // Create a link to download the file
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-
-      // Set the download filename (you can customize it)
-      link.download = 'Generate report.pdf';
-      link.click();
-
-      // Clean up the URL object
-      window.URL.revokeObjectURL(url);
+      handleClose();
     } catch (error) {
       console.error('Error generating report:', error);
+    } finally {
+      setIsLoadingDate(false); // Re-enable the button
     }
-  };
-
-  const disabledDate = (date) => {
-    // Example: Disable all future dates
-    return date > new Date();
   };
 
   const removeTag = (index) => {
@@ -612,10 +641,23 @@ const MyEventSelector = () => {
     formik.setFieldValue('emails', newTags);
   };
 
+  const removeEmailTag = (index) => {
+    // const newTags = [...emails];
+    const newTags = [...formikDate.values?.emailsDate];
+    newTags.splice(index, 1);
+    // setEmails(newTags);
+    formikDate.setFieldValue('emailsDate', newTags);
+  };
+
   const handleInputChange = (e) => {
     setEmailInput(e.target.value);
     formik.setFieldValue('addEmail', e.target.value);
     formik.setFieldTouched('addEmail', true);
+  };
+
+  const handleEmailInputChange = (event) => {
+    setEmailInputDate(event.target.value);
+    formikDate.setFieldValue('emailInputDate', event.target.value);
   };
 
   const addTagsButton = (e) => {
@@ -638,23 +680,27 @@ const MyEventSelector = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(fetchEventsEmissionsData());
-  }, []);
-  // }, [userAction])
+  const addTagButtonForDate = (e) => {
+    e.preventDefault();
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      // try {
-      const res = await apiget('api/eventData/events-users-list');
-      setPreviousAllAccounts(res?.data?.data);
-      // } catch (error) {
-      //     console.error("--- addEmail error ", error);
-      // }
-    };
-
-    fetchUsers(); // Call the async function
-  }, []);
+    if (emailInputDate !== '') {
+      if (regex.test(emailInputDate)) {
+        // if (emails?.find(email => email === emailInput)) {
+        if (formikDate.values?.emailsDate?.find((email) => email === emailInputDate)) {
+          formikDate.setFieldError('emailInputDate', 'Email is already exists');
+          // formikDate.setFieldTouched('emailInputDate', true);
+        } else {
+          // setEmails([...emails, emailInput]);
+          formikDate.setFieldValue('emailsDate', [...formikDate.values?.emailsDate, emailInputDate]);
+          setEmailInputDate('');
+          formikDate.setFieldValue('emailInputDate', '');
+        }
+      } else {
+        formikDate.setFieldError('emailInputDate', 'Email not valid');
+      }
+    }
+  };
 
   const CustomDropdownIndicator = (props) => (
     <components.DropdownIndicator {...props}>
@@ -688,6 +734,24 @@ const MyEventSelector = () => {
     }
     setSelectedOptions(options);
   };
+
+  useEffect(() => {
+    dispatch(fetchEventsEmissionsData());
+  }, []);
+  // }, [userAction])
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      // try {
+      const res = await apiget('api/eventData/events-users-list');
+      setPreviousAllAccounts(res?.data?.data);
+      // } catch (error) {
+      //     console.error("--- addEmail error ", error);
+      // }
+    };
+
+    fetchUsers(); // Call the async function
+  }, []);
 
   return (
     <>
@@ -776,7 +840,13 @@ const MyEventSelector = () => {
           </>
         )}
         <Box
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%', marginTop: '10px' }}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            width: '100%',
+            marginTop: '10px',
+          }}
         >
           <Typography variant="h6" className="text-white" gutterBottom>
             Select Previous Activities
@@ -1148,30 +1218,126 @@ const MyEventSelector = () => {
       </Box>
       <>
         <Dialog
-          open={open}
+          open={isopen}
           onClose={handleClose}
           aria-labelledby="scroll-dialog-title"
           aria-describedby="scroll-dialog-description"
         >
-          <DialogTitle id="scroll-dialog-title">Generate report</DialogTitle>
+          <DialogTitle id="scroll-dialog-title">Generate Report</DialogTitle>
           <DialogContent>
             <DialogContentText id="scroll-dialog-description" ref={descriptionElementRef} tabIndex={-1}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
-                <p style={{ marginBottom: '10px', fontWeight: 'bold', color:"" }}>Select Date:</p>
-                <DateRangePicker
-                  placement="leftStart"
-                  disabledDate={disabledDate}
-                  value={range} 
-                  onChange={handleChange} 
-                  format="yyyy-MM-dd"
-                />
+                <div style={{ display: 'flex', gap: '20px' }}>
+                  {/* From Date Field */}
+                  <div style={{ flex: 1 }}>
+                    <FormLabel className="fontFamily fw-bold text-dark mt-1">
+                      From Date <span style={{ color: 'red' }}>*</span>
+                    </FormLabel>
+                    <TextField
+                      type="date"
+                      name="sDate"
+                      size="small"
+                      fullWidth
+                      value={formikDate.values.sDate}
+                      onChange={(e) => formikDate.setFieldValue('sDate', e.target.value)}
+                      error={formikDate.touched.sDate && Boolean(formikDate.errors.sDate)}
+                      helperText={formikDate.touched.sDate && formikDate.errors.sDate}
+                    />
+                  </div>
+
+                  {/* To Date Field */}
+                  <div style={{ flex: 1 }}>
+                    <FormLabel className="fontFamily fw-bold text-dark mt-1">
+                      To Date <span style={{ color: 'red' }}>*</span>
+                    </FormLabel>
+                    <TextField
+                      type="date"
+                      name="eDate"
+                      size="small"
+                      fullWidth
+                      value={formikDate.values.eDate}
+                      onChange={(e) => formikDate.setFieldValue('eDate', e.target.value)}
+                      error={formikDate.touched.eDate && Boolean(formikDate.errors.eDate)}
+                      helperText={formikDate.touched.eDate && formikDate.errors.eDate}
+                    />
+                  </div>
+                </div>
               </div>
+
+              <Grid container spacing={2}>
+                {/* Email tags display */}
+                <Grid item xs={12}>
+                  <ul
+                    id="email-tags"
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      width: '100%',
+                      border: formikDate.values.emailsDate?.length > 0 ? '1px solid #dce0e4' : '0',
+                      padding: formikDate.values.emailsDate?.length > 0 ? '5px' : '0',
+                    }}
+                  >
+                    {formikDate.values.emailsDate?.map((email, index) => (
+                      <li
+                        key={index}
+                        style={{
+                          display: 'flex',
+                          listStyle: 'none',
+                          margin: '0 5px 5px 5px',
+                          backgroundColor: 'grey',
+                          padding: '2px 5px 2px 8px',
+                          borderRadius: '20px',
+                          color: '#fff',
+                          fontSize: '14px',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <span>{email}</span>
+                        {index === 0 ? (
+                          ''
+                        ) : (
+                          <CloseIcon
+                            style={{ fontSize: '14px', color: '#fff', marginLeft: '5px', cursor: 'pointer' }}
+                            onClick={() => removeEmailTag(index)}
+                          />
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </Grid>
+
+                {/* Email input field */}
+                <Grid item xs={11}>
+                  <TextField
+                    name="emailInputDate"
+                    type="text"
+                    size="small"
+                    fullWidth
+                    value={formikDate.values.emailInputDate}
+                    placeholder="Add Email"
+                    onChange={handleEmailInputChange}
+                    // error={formikDate.touched.emailInputDate && Boolean(formikDate.errors.emailInputDate)}
+                    // helperText={formikDate.touched.emailInputDate && formikDate.errors.emailInputDate}
+                  />
+                  <span style={{ color: '#ff4842', fontSize: '12px', margin: '4px 14px 0px' }}>
+                    {formikDate.errors.emailInputDate}
+                  </span>
+                </Grid>
+
+                {/* Add email button */}
+                <Grid item xs={1} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                  <AddCircleOutlineIcon onClick={addTagButtonForDate} style={{ fontSize: '30px', cursor: 'pointer' }} />
+                </Grid>
+              </Grid>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleGenerateReport}>Generate</Button>
+            <Button type="submit" onClick={() => formikDate.handleSubmit()} disabled={isLoadingDate}>
+              Send
+            </Button>
           </DialogActions>
+          <ToastContainer position="top-right" autoClose={5000} />
         </Dialog>
       </>
 

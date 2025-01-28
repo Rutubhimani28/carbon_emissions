@@ -119,7 +119,7 @@ const Home = () => {
         previousEvent: null,
         isDisabledRetrieveButtons: true
     };
-
+ 
     const validationSchema = yup.object({
         // name: yup.string().required('Name is required'),
         // email: yup.string().email('Invalid Email').required('Business Email is required'),
