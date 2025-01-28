@@ -33,6 +33,9 @@ import TrustTwo from '../../../assets/images/GoFig2.png';
 import Hutch from '../../../assets/images/Hutch.png';
 import OurCustomersBgImg2 from '../../../assets/images/OurCustomersBgImg2.jpg';
 import home3 from '../../../assets/images/Home3.png';
+import testimonial1 from '../../../assets/images/customerTestimonials1.jpg';
+import testimonial2 from '../../../assets/images/customerTestimonials2.jpg';
+import testimonial3 from '../../../assets/images/customerTestimonials3.jpg';
 
 const Index = () => {
   const theme = useTheme();
@@ -185,14 +188,14 @@ const Index = () => {
           {/* Boxes Section */}
           <Grid container justifyContent="center" spacing={2} sx={{ mt: 2 }}>
 
-             {/* First Box */}
-             <Grid item lg={3} xs={12} sm={6} md={4}>
+            {/* First Box */}
+            <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">5%</Typography>
                 <Typography>Reduce your marketing budgets by up to 5% in the first year itself.</Typography>
               </Box>
             </Grid>
-              {/* Second Box */}
+            {/* Second Box */}
             <Grid item lg={3} xs={12} sm={6} md={4}>
               <Box className="bg-light template-inner-theme p-3 rounded-1 text-start">
                 <Typography className="fontFamily fs-3 fw-bold box-title-padding">20%</Typography>
@@ -228,7 +231,7 @@ const Index = () => {
 
               margin: '0 auto',
               paddingTop: useMediaQuery(theme.breakpoints.up('md')) ? '42px' : '25px',
-              paddingBottom : useMediaQuery(theme.breakpoints.up('md')) ? '20px' : '25px',
+              paddingBottom: useMediaQuery(theme.breakpoints.up('md')) ? '20px' : '25px',
             }}
           >
             <video
@@ -318,12 +321,12 @@ const Index = () => {
               <div className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
                 <img src={TrustOne} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
               </div>
-              <div className="box-with-border" style={{ height:  useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }} />
+              <div className="box-with-border" style={{ height: useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }} />
 
               <div className=" d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
-                <img src={Hutch} alt="img" style={{ width: useMediaQuery(theme.breakpoints.up('sm')) ? '145px' : '45px' , maxWidth: '300px' }} />
+                <img src={Hutch} alt="img" style={{ width: useMediaQuery(theme.breakpoints.up('sm')) ? '145px' : '45px', maxWidth: '300px' }} />
               </div>
-              <div className="box-with-border" style={{ height:  useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }} />
+              <div className="box-with-border" style={{ height: useMediaQuery(theme.breakpoints.up('sm')) ? '120px' : '40px', color: '#054723' }} />
 
               <div className="d-flex justify-content-center flex-column align-items-center p-4 rounded-3 mx-0">
                 <img src={TrustTwo} alt="img" style={{ width: '100%', maxWidth: '300px' }} />
@@ -331,6 +334,29 @@ const Index = () => {
             </div>
           </div>
         </div>
+      </Grid>
+
+      <Typography className="fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme pt-5 pb-4">
+        Customer Testimonials
+      </Typography>
+
+      <Grid
+        container
+        rowSpacing={2}
+        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        className="bg-white wow animate__animated animate__fadeInRight animate__slow setHome_padding"
+      >
+        <Grid item xs={12} sm={4} md={4} sx={{ marginTop: '5px' }}>
+          <img src={testimonial1} alt="Client Testimonial 1" style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: '8px' }} />
+        </Grid>
+
+        <Grid item xs={12} sm={4} md={4} sx={{ marginTop: '5px' }}>
+          <img src={testimonial2} alt="Client Testimonial 2" style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: '8px' }} />
+        </Grid>
+
+        <Grid item xs={12} sm={4} md={4}>
+          <img src={testimonial3} alt="Client Testimonial 3" style={{ width: '100%', maxHeight: '305px', objectFit:'contain', borderRadius: '8px' }} />
+        </Grid>
       </Grid>
 
       {/* <Grid container item xs={12} sm={12} md={4} spacing={2} justifyContent="center">

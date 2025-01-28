@@ -1116,7 +1116,7 @@ const MyEventSelector = () => {
             disabled={formik.values.selectedEvents.length !== 2} // Enabled only if exactly 2 events are selected
           >
             {/* {isGraphLoading ? <CircularProgress size={27} /> : 'Retrieve Graphs'} */}
-            Retrieve Graphs
+            Retrieve Analytics
           </Button>
           {userData?.role === 'admin' && (
             <Button variant="contained" style={{ backgroundColor: '#054723' }} onClick={handleClickOpen}>
