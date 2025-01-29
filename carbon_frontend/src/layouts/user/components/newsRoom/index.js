@@ -8,6 +8,7 @@ import Room3 from '../../assets/images/room3.jpg';
 import Room4 from '../../assets/images/room4.png';
 import Room5 from '../../assets/images/room5.jpg';
 import Room6 from '../../assets/images/room6.jpg';
+import Room7 from '../../assets/images/room7.jpg';
 
 const Index = () => {
   const theme = useTheme();
@@ -54,6 +55,50 @@ const Index = () => {
                         </Grid>
                     </Grid>
                 </Grid> */}
+
+        <Card
+          sx={{
+            display: 'flex',
+            marginBottom: 4,
+            flexWrap: 'wrap',
+            width: useMediaQuery(theme.breakpoints.up('sm')) ? '80%' : '340px',
+            border: 'solid 1px #1F9E6D',
+          }}
+        >
+          <Grid container spacing={0}>
+            <Grid item md={4} xs={12} className={useMediaQuery(theme.breakpoints.up('md')) ? 'order-1' : ''}>
+              <CardMedia
+                component="img"
+                image={Room7}
+                className="img-thumbnail"
+                alt="Blog7"
+                sx={{ height: '100%', objectFit: 'cover' }}
+              />
+            </Grid>
+            <Grid item xs={12} md={8} className={useMediaQuery(theme.breakpoints.up('md')) ? '' : 'order-1'}>
+              <Box
+                sx={{
+                  display: useMediaQuery(theme.breakpoints.up('md')) ? 'block' : 'flex',
+                  flexDirection: useMediaQuery(theme.breakpoints.up('md')) ? 'row' : 'column',
+                  height: '100%',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <CardContent sx={{ flex: '1 0 auto', wordBreak: 'break-word' }}>
+                  <Link className="text-decoration-none" to="/news-room/blog7">
+                    <Typography component="div" variant="h5">
+                      HUTCH Deepens Commitment to Sustainability with Adoption of Sirāt NetZero Platform
+                    </Typography>
+                  </Link>
+                  <Typography variant="subtitle1" color="text.secondary" component="div" className="mt-1">
+                    January 20, 2025
+                  </Typography>
+                </CardContent>
+              </Box>
+            </Grid>
+          </Grid>
+        </Card>
+
         <Card
           sx={{
             display: 'flex',

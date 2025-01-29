@@ -19,6 +19,7 @@ import Room3 from '../../../assets/images/room3.jpg';
 import Room4 from '../../../assets/images/room4.png';
 import Room5 from '../../../assets/images/room5.jpg';
 import Room6 from '../../../assets/images/room6.jpg';
+import Room7 from '../../../assets/images/room7.jpg';
 import AreYouReadyImg from '../../../assets/images/Are-you-ready-img.png';
 
 const Goal = () => {
@@ -32,6 +33,12 @@ const Goal = () => {
 
   // Data array for images and descriptions
   const carouselData = [
+    {
+      id: 7,
+      image: Room7,
+      description: 'HUTCH Deepens Commitment to Sustainability with Adoption of Sirāt NetZero Platform',
+      link: '/news-room/blog7',
+    },
     {
       id: 6,
       image: Room6,
@@ -138,7 +145,7 @@ const Goal = () => {
           lineHeight: '1.2',
         }}
         // className="fontFamily fs-3 mt-1 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white"
-        className="fontFamily fs-3 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow"
+        className="fontFamily fs-3 mb-4 mt-5 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow"
         style={{margin:useMediaQuery(theme.breakpoints.up('md')) ? '0px': "26px"}}
       >
         Latest News

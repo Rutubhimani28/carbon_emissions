@@ -2,9 +2,9 @@ import { Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
-import blog6 from '../../assets/images/room6.jpg';
-import blog1 from '../../assets/images/room1.jpeg';
 import blog5 from '../../assets/images/room5.jpg';
+import blog6 from '../../assets/images/room6.jpg';
+import blog7 from '../../assets/images/room7.jpg';
 
 const Blog6 = () => {
     const theme = useTheme();
@@ -89,11 +89,10 @@ const Blog6 = () => {
           <div style={{ backgroundColor: '#ffffd9', padding: '25px 10px' }}>
             <FaChevronLeft />
           </div>
-          <img src={blog1} alt="blog1" height={'80px'} width={'100px'} />
+          <img src={blog7} alt="blog7" height={'80px'} width={'100px'} />
           <div className="nextBlogContent">
             <Typography variant="h6" className="fontFamily fs-6 fw-bold p-2 px-3" style={{ color: 'blue' }}>
-            Going Eco-Friendly with Go Sustainable: Aster CMI Hospital, Bangalore, hosts 2nd IAP-PEM Conference to
-            make a green footprint
+            HUTCH Deepens Commitment to Sustainability with Adoption of Sirāt NetZero Platform
             </Typography>
           </div>
         </Link>
