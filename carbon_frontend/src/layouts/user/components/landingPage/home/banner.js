@@ -336,26 +336,33 @@ const Index = () => {
         </div>
       </Grid>
 
-      <Typography className="fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme pt-5 pb-4">
+      <Typography
+        className="fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme pb-4"
+        sx={{
+          pt: 4, 
+          pb: 4,
+          '@media (min-width:600px)': { pt: 5 },
+        }}
+      >
         Customer Testimonials
       </Typography>
-
+      
       <Grid
         container
         rowSpacing={2}
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
         className="bg-white wow animate__animated animate__fadeInRight animate__slow setHome_padding"
       >
-        <Grid item xs={12} sm={4} md={4} sx={{ marginTop: '5px' }}>
+        <Grid item xs={12} sm={12} md={4} sx={{ marginTop: '5px' }}>
           <img src={testimonial1} alt="Client Testimonial 1" style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: '8px' }} />
         </Grid>
 
-        <Grid item xs={12} sm={4} md={4} sx={{ marginTop: '5px' }}>
+        <Grid item xs={12} sm={12} md={4} sx={{ marginTop: '5px' }}>
           <img src={testimonial2} alt="Client Testimonial 2" style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: '8px' }} />
         </Grid>
 
-        <Grid item xs={12} sm={4} md={4}>
-          <img src={testimonial3} alt="Client Testimonial 3" style={{ width: '100%', maxHeight: '305px', objectFit:'contain', borderRadius: '8px' }} />
+        <Grid item xs={12} sm={12} md={4}>
+          <img src={testimonial3} alt="Client Testimonial 3" style={{ width: '100%', maxHeight: '305px', objectFit: 'contain', borderRadius: '8px' }} />
         </Grid>
       </Grid>
 
