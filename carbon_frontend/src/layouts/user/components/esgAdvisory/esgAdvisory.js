@@ -82,7 +82,7 @@ const EsgAdvisory = () => {
           src={EnterpriseSolution2}
           alt="ESG Advisory Services"
           style={{
-            filter:"brightness(0.8)",
+            filter: 'brightness(0.8)',
             width: '100%',
             height: '100%',
             objectFit: 'cover',
@@ -163,9 +163,10 @@ const EsgAdvisory = () => {
         style={{ textAlign: 'left', fontSize: '18px' }}
         className="setHome_padding mt-5 fontFamily wow animate__animated animate__fadeInLeft animate__slow template-outer-theme"
       >
-        Sirāt's AI-enabled NetZero platform helps you take control of your marketing carbon footprint by accurately
-        measuring and reducing its impact. With sustainability at the forefront, it streamlines your marketing
-        activities and enhances your company's overall performance to achieve NetZero objectives effectively.
+        Sirāt's AI-enabled NetZero platform <b>based on GHG protocol framework </b> helps you take control of your
+        marketing carbon footprint by accurately measuring and reducing its impact. With sustainability at the
+        forefront, it streamlines your marketing activities and enhances your company's overall performance to achieve
+        NetZero objectives effectively.
       </Typography>
       <Typography
         style={{ textAlign: 'left', fontSize: '18px' }}
@@ -283,10 +284,9 @@ const EsgAdvisory = () => {
           md={5.5}
           lg={2.8}
           className="text-start py-2 template-inner-theme-2 pb-4"
-          style={{ paddingLeft: useMediaQuery(theme.breakpoints.up('sm')) ? '10px' : '0px'
-          }}
+          style={{ paddingLeft: useMediaQuery(theme.breakpoints.up('sm')) ? '10px' : '0px' }}
         >
-          <Box 
+          <Box
           // style={{
           //    margin:"0px 5px"
           // }}
@@ -330,9 +330,13 @@ const EsgAdvisory = () => {
           className="text-start py-2 template-inner-theme-2"
           style={{ paddingLeft: '0px' }}
         >
-          <Box style={{
-            //  margin:"0px 5px"
-          }}>
+          <Box
+            style={
+              {
+                //  margin:"0px 5px"
+              }
+            }
+          >
             <img
               src={Exhibitions}
               alt="img"
@@ -372,9 +376,13 @@ const EsgAdvisory = () => {
           className="text-start py-2 template-inner-theme-2"
           style={{ paddingLeft: '0px' }}
         >
-          <Box style={{
-            //  margin:"0px 5px"
-          }}>
+          <Box
+            style={
+              {
+                //  margin:"0px 5px"
+              }
+            }
+          >
             <img
               src={Agencies}
               alt="img"
@@ -413,7 +421,7 @@ const EsgAdvisory = () => {
           className="text-start py-2 template-inner-theme-2"
           style={{ paddingLeft: '0px' }}
         >
-          <Box >
+          <Box>
             <img
               src={Hospitality}
               alt="img"
