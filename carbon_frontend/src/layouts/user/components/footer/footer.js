@@ -6,6 +6,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 import { FaLinkedin, FaQq } from 'react-icons/fa';
 import { Box, Button } from '@mui/material';
 import { Padding } from '@mui/icons-material';
+import TweetMetrics from '../../../../components/twitterAnalytics';
 
 const Footer = () => {
   const date = new Date();
@@ -87,6 +88,7 @@ const Footer = () => {
           }}
         >
           <Link target="_blank" to="https://x.com/Sirat_Earth">
+            <TweetMetrics tweetId="1891457655572738048" />
             <FaXTwitter style={{ cursor: 'pointer', color: 'white' }} />
           </Link>
         </Box>

@@ -10,10 +10,11 @@ import useResponsive from '../hooks/useResponsive';
 import { LoginForm } from '../sections/auth/login';
 // import Logo from '../layouts/user/assets/images/logo.png'
 // import Logo from '../layouts/user/assets/images/logo4.gif'
-import Logo from '../layouts/user/assets/images/logo5.gif'
+import Logo from '../layouts/user/assets/images/logo5.gif';
 import Header from '../layouts/user/components/header/header';
 import Footer from '../layouts/user/components/footer/footer';
-
+import GoogleAnalytics from '../components/GoogleAnalytics';
+import TweetMetrics from '../components/twitterAnalytics';
 
 // ----------------------------------------------------------------------
 
@@ -24,7 +25,6 @@ const StyledRoot = styled('div')(({ theme }) => ({
 }));
 
 const StyledSection = styled('div')(({ theme }) => ({
-
   width: '100%',
   maxWidth: 480,
   display: 'flex',
@@ -39,7 +39,7 @@ const StyledContent = styled('div')(({ theme }) => ({
   margin: 'auto',
   // minHeight: '100vh',
   display: 'flex',
-  alignContent:'start',
+  alignContent: 'start',
   justifyContent: 'center',
   flexDirection: 'column',
   padding: theme.spacing(18, 0),
@@ -52,10 +52,8 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className='bg-img'>
-
+      <div className="bg-img">
         <StyledRoot>
-
           {/* {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
@@ -67,15 +65,19 @@ export default function LoginPage() {
 
           <Container maxWidth="sm">
             <StyledContent>
-              <div className='d-flex justify-content-center  align-self-top  flex-column align-items-center'>
+              <div className="d-flex justify-content-center  align-self-top  flex-column align-items-center">
                 {/* <img src={Logo} width={200} /> */}
                 <img src={Logo} width={300} />
-                <Typography variant="h3"  mb={2}>
+                <Typography variant="h3" mb={2}>
                   Sign in
                 </Typography>
               </div>
               <LoginForm />
-              <Link to="/forgot-password" className='text-center text-decoration-none mt-3'>Forgot Password?</Link>
+              {/* <GoogleAnalytics /> */}
+{/* <TweetMetrics /> */}
+              <Link to="/forgot-password" className="text-center text-decoration-none mt-3">
+                Forgot Password?
+              </Link>
             </StyledContent>
           </Container>
         </StyledRoot>

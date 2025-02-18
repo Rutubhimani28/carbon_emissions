@@ -38,8 +38,35 @@ app.get('/', async (req, res) => {
     res.send('Welcome to my world...')
 });
 
+// app.get('/api/tweet-stats', async (req, res) => {
+//     const tweetId = req.query.tweetId;
+  
+//     // Twitter API endpoint to get tweet metrics
+//     const apiUrl = `https://api.twitter.com/2/tweets/${tweetId}?tweet.fields=public_metrics`;
+  
+//     try {
+//       const response = await axios.get(apiUrl, {
+//         headers: {
+//             Authorization: `Bearer AAAAAAAAAAAAAAAAAAAAAFNYzQEAAAAAjnchyPep4Tmngj9%2FPcV0lBjr1VE%3D14GTOoVdjvgpl8uIIYnOUvz2mpU2tFgLh8XjQzyoEAVikuEDOQ`, // Replace with your Bearer Token
+//         },
+//       });
+  
+//       const tweetMetrics = response.data.data.public_metrics;
+  
+//       // Extract the tweet engagement metrics
+//       const stats = {
+//         likes: tweetMetrics.like_count,
+//         retweets: tweetMetrics.retweet_count,
+//         comments: tweetMetrics.reply_count,
+//       };
+  
+//       res.json(stats); // Send metrics as JSON response
+//     } catch (error) {
+//       console.error('Error fetching tweet metrics:', error);
+//       res.status(500).json({ error: 'Failed to fetch tweet stats' });
+//     }
+//   });
 
-// Creating object of key and certificate  // for SSL
 const options = {
     key: fs.readFileSync("./openSSL/server.key"),
     cert: fs.readFileSync("./openSSL/server.cert"),
