@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
+import axios from 'axios';
+import { Line } from 'react-chartjs-2';
 import 'slick-carousel/slick/slick-theme.css';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useTheme } from '@emotion/react';
-import { Box, Button, Card, CardContent, CardMedia, Grid, Typography, makeStyles, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+  makeStyles,
+  useMediaQuery,
+  CircularProgress,
+} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { PopupButton } from 'react-calendly';
 import '../../../assets/css/style.css';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 import commited from '../../../assets/images/CommitedLogo.png';
 // import Pledge from '../../../assets/images/PledgeTonetZERO.png'
 import Pledge from '../../../assets/images/PledgeTonetZERO2.jpg';
@@ -22,15 +45,84 @@ import Room6 from '../../../assets/images/room6.jpg';
 import Room7 from '../../../assets/images/room7.jpg';
 import AreYouReadyImg from '../../../assets/images/Are-you-ready-img.png';
 
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 const Goal = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   const handleReadArtical = (link) => {
     navigate(link);
   };
+  const [accounts, setAccounts] = useState([]);
+  const [instgramData, setInstagramData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchAccounts = async () => {
+      try {
+        const response = await axios.get(
+          'https://graph.facebook.com/v18.0/me/accounts?access_token=EACGHvj52RzwBO5dbZAP5eH0LWYvANFoM71plxszc8a0QhQZAUwf9CiWVyc9q4tN2XYgdRsvQwkQxYpLfOL88PLMnG9thEO9nFaIRHvNJySeFyfxEi4ACCWhRHaUZBaA9sMSZAkMCcLzeU2RgISqZCsaCFEreJvu3ZASuAZCUjrKhM2bnwkEXq4F0j1C'
+        );
+        setAccounts(response.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchAccounts();
+  }, []);
+
+  const { data: [{ id, access_token: accessToken } = {}] = [] } = accounts || {};
+  console.log(id, accessToken, 'accounts id and access token');
+  console.log(id, 'accounts id');
+
+  const handleInstagram = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://graph.facebook.com/${id}/insights?access_token=${accessToken}&metric=page_impressions&since=2025-02-17&until=2025-02-20`
+      );
+      setInstagramData(response.data.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  console.log(instgramData, 'instagram');
+  let chartData = null;
+  if (instgramData && instgramData.length > 0) {
+    const dailyData = instgramData.find((item) => item.period === 'day') || instgramData[0];
+    const labels = dailyData.values.map((val) => new Date(val.end_time).toLocaleDateString());
+    const impressions = dailyData.values.map((val) => val.value);
+
+    chartData = {
+      labels,
+      datasets: [
+        {
+          label: dailyData.title,
+          data: impressions,
+          borderColor: 'rgba(75,192,192,1)',
+          backgroundColor: 'rgba(75,192,192,0.2)',
+          fill: true,
+        },
+      ],
+    };
+  }
+
+  // Helper function to get the item for a given period ("day", "week", "days_28")
+  const getPeriodData = (period) => {
+    if (!instgramData) return null;
+    return instgramData.find((item) => item.period === period);
+  };
+
+  // Extract the three known items (Daily, Weekly, 28 Days)
+  const dailyItem = getPeriodData('day');
+  const weeklyItem = getPeriodData('week');
+  const monthlyItem = getPeriodData('days_28');
   // Data array for images and descriptions
   const carouselData = [
     {
@@ -137,6 +229,89 @@ const Goal = () => {
             </Grid> */}
 
       {/* LTAEST NEWS */}
+      <Box sx={{ p: 2 }}>
+        {/* Button to fetch data */}
+        <Button variant="contained" onClick={handleInstagram}>
+          Fetch Data
+        </Button>
+
+        {/* Loading Indicator */}
+        {loading && (
+          <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+            <CircularProgress />
+          </Box>
+        )}
+
+        {/* Once data is fetched, display chart + cards */}
+        {instgramData && instgramData.length > 0 && (
+          <Grid container spacing={2} sx={{ mt: 2 }}>
+            {/* Chart on the left (4 columns on md and up, 12 columns on xs/sm) */}
+            {chartData && (
+              <Grid item xs={12} md={4}>
+                <Box
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    border: '1px solid #ddd',
+                    borderRadius: 2,
+                    p: 2,
+                  }}
+                >
+                  <Typography variant="h6" align="center" gutterBottom>
+                    Facebook Impressions (Day)
+                  </Typography>
+                  {/* Make the chart a bit narrower */}
+                  <Box sx={{ mx: 'auto', width: '100%', maxWidth: 400 }}>
+                    <Line data={chartData} />
+                  </Box>
+                </Box>
+              </Grid>
+            )}
+
+            {/* Cards on the right (8 columns on md and up, 12 columns on xs/sm) */}
+            <Grid item xs={12} md={chartData ? 8 : 12}>
+              <Grid container spacing={2}>
+                {/* If you have exactly 3 items, display them side by side */}
+                {[dailyItem, weeklyItem, monthlyItem].map(
+                  (item, index) =>
+                    item && (
+                      <Grid item xs={12} sm={6} md={4} key={index}>
+                        <Card sx={{ height: '100%' }}>
+                          <CardContent>
+                            <Typography variant="h6" gutterBottom>
+                              {item.title}
+                            </Typography>
+                            <Typography variant="subtitle1" color="textSecondary">
+                              {item.description}
+                            </Typography>
+                            <Typography variant="body2" sx={{ mt: 1 }}>
+                              <strong>Name:</strong> {item.name}
+                            </Typography>
+                            <Typography variant="body2">
+                              <strong>Period:</strong> {item.period}
+                            </Typography>
+                            {item.values &&
+                              item.values.map((val, idx) => (
+                                <Box key={idx} sx={{ ml: 2, mt: 1 }}>
+                                  <Typography variant="body2">
+                                    <strong>Value:</strong> {val.value}
+                                  </Typography>
+                                  <Typography variant="body2">
+                                    <strong>End Time:</strong> {new Date(val.end_time).toLocaleString()}
+                                  </Typography>
+                                </Box>
+                              ))}
+                          </CardContent>
+                        </Card>
+                      </Grid>
+                    )
+                )}
+              </Grid>
+            </Grid>
+          </Grid>
+        )}
+      </Box>
       <Typography
         sx={{
           fontSize: 'clamp(20px, 3vw, 1.75rem)', // Adjust font size further
@@ -146,7 +321,7 @@ const Goal = () => {
         }}
         // className="fontFamily fs-3 mt-1 mb-4 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow text-white"
         className="fontFamily fs-3 mb-4 mt-5 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow"
-        style={{margin:useMediaQuery(theme.breakpoints.up('md')) ? '0px': "26px"}}
+        style={{ margin: useMediaQuery(theme.breakpoints.up('md')) ? '0px' : '26px' }}
       >
         Latest News
       </Typography>
@@ -336,7 +511,7 @@ const Goal = () => {
                 Explore Sirāt's NetZero Platform today.
               </Typography>
               <Typography className="fontFamily fs-5 mt-4 text-center text-white">
-                <Link className='btn-contact' to={'/contact'} style={{color:"white"}}>
+                <Link className="btn-contact" to={'/contact'} style={{ color: 'white' }}>
                   Contact Us
                 </Link>
               </Typography>

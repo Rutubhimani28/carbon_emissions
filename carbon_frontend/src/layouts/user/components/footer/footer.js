@@ -7,6 +7,7 @@ import { FaLinkedin, FaQq } from 'react-icons/fa';
 import { Box, Button } from '@mui/material';
 import { Padding } from '@mui/icons-material';
 import TweetMetrics from '../../../../components/twitterAnalytics';
+import LinkedInButton, { handleLogoClick } from '../../../../components/Linkendin';
 
 const Footer = () => {
   const date = new Date();
@@ -62,6 +63,7 @@ const Footer = () => {
         {/* <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#ff0000", color: "#fff", borderRadius: "5px" }}><MdMail /></Box> */}
         {/* <Box style={{ padding: "2px 10px 4px 10px", fontSize: "20px", marginRight: "10px", backgroundColor: "#69727d", color: "#fff", borderRadius: "5px" }}><IoCallOutline /></Box> */}
         <Box
+          onClick={handleLogoClick}
           style={{
             padding: '2px 10px 4px 10px',
             fontSize: '20px',
@@ -73,6 +75,7 @@ const Footer = () => {
           }}
         >
           <Link target="_blank" to="https://www.linkedin.com/company/sirat-earth/">
+          {/* <LinkedInButton/> */}
             <FaLinkedin style={{ cursor: 'pointer', color: 'white' }} />
           </Link>
         </Box>
