@@ -98,7 +98,7 @@ const EsgAdvisory = () => {
   };
   const handleClickOpen = (plan) => {
     setSelectedPlan(plan.title);
-    sendEmail(plan)
+    // sendEmail(plan)
     setOpen(true);
   };
 
