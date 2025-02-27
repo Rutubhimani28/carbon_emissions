@@ -347,7 +347,8 @@ const About = () => {
                 A seasoned Marketing and Communications leader with over 30 years of experience, this INSEAD graduate boasts a rich global marketing background. His career has taken him across various markets, including India, APAC, China, the Middle East & Africa, and Eastern Europe, enhancing his cultural adaptability and understanding.
               </p>
               <p className="fs-5 setMeetFounderText text-start">
-              One of the Finalist for INSEAD Business Sustainability Award 2025.
+              {/* One of the Finalist for INSEAD Business Sustainability Award 2025. */}
+              Proud Finalist for the INSEAD Business Sustainability Award 2025
               </p>
             </Box>
             <div
