@@ -1,8 +1,32 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import { PopupButton } from 'react-calendly';
-import { Grid, Typography, Box, useMediaQuery } from '@mui/material';
+import {
+  Grid,
+  Typography,
+  Box,
+  useMediaQuery,
+  Card,
+  CardContent,
+  Button,
+  Container,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  IconButton,
+  InputAdornment,
+  CircularProgress,
+} from '@mui/material';
+import { useFormik } from 'formik';
+import { LoadingButton } from '@mui/lab';
+
 import { useTheme } from '@mui/material/styles';
+import CheckIcon from '@mui/icons-material/Check';
+import { AccountCircle } from '@mui/icons-material';
+
 import Services from '../../assets/images/Services2.jpg';
 import Agencies from '../../assets/images/Agencies2.jpeg';
 import Organisations from '../../assets/images/Organisations2.jpg';
@@ -13,15 +37,101 @@ import bannerVideo1 from '../../assets/images/NetZero Consulting.mp4';
 import bannerVideo2 from '../../assets/images/NetZero Consulting.mov';
 import EnterpriseSolution from '../../assets/images/Enterprise_Solutions.png';
 import EnterpriseSolution2 from '../../assets/images/Enterprise_Solutions_2.jpg';
+// import Logo from '../layouts/user/assets/images/logo5.gif';
+import Logo from '../../assets/images/logo5.gif';
+import { apipost } from '../../../../service/api';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const EsgAdvisory = () => {
   const theme = useTheme();
   const videoRef = useRef();
 
+  const [open, setOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('');
+  //  const { openBot, handleCloseBot, subject } = props;
+  const [isLoading, setLoading] = React.useState(false);
+  const initialValues = {
+    name: '',
+    email: '',
+    message: '',
+  };
+
+  const token = localStorage.getItem('authToken');
+  const validationSchema = yup.object({
+    name: yup.string().required('Name is required'),
+    email: yup.string().email('Email is invalid').required('Email is required'),
+    message: yup.string().required('Message is required'),
+  });
+
+  const formik = useFormik({
+    initialValues,
+    enableReinitialize: true,
+    validationSchema,
+    onSubmit: async (values) => {
+      setLoading(true);
+      const payload = {
+        name: values.name,
+        email: values.email,
+        subject: `Select your plan- ${selectedPlan}`,
+        message: `Contact Name: ${values.name} \nContact EmailId: ${values.email} \n\n${values.message}`,
+        isHighPriority: true,
+      };
+
+      try {
+        const result = await apipost('api/email/addEmailPlan', payload);
+
+        if (result && (result.status === 200 || result.status === 201)) {
+          formik.resetForm();
+          handleClose();
+        }
+      } catch (error) {
+        console.log('Error sending bot mail:', error);
+      }
+      setLoading(false);
+    },
+  });
+
+  const { values, resetForm, errors, handleChange, handleSubmit } = formik;
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleClickOpen = (plan) => {
+    setSelectedPlan(plan.title);
+    // sendEmail(plan)
+    setOpen(true);
+  };
+  // const sendEmail = (plan) => {
+  //   const templateParams = {
+  //     to_name: 'shrustithummar2002@gmail.com',
+  //     subject: `Select your plan - ${plan}`, // Dynamically set subject based on the plan
+  //     message: `A user has selected the ${plan} plan. Please follow up accordingly.`,
+  //   };
+  // }
+
   useEffect(() => {
     videoRef.current.playbackRate = 0.5;
   }, []);
-
+  const plans = [
+    {
+      title: 'Standard',
+      features: ['1 Software license', '3 Hours of advisory services', 'Reporting'],
+      bgColor: '#B2E6C1',
+      isStandard: true,
+    },
+    {
+      title: 'Premium',
+      features: ['1 Software license', '5 Hours of advisory services', 'Reporting + Auditing'],
+      bgColor: '#279B56',
+      isStandard: false,
+    },
+    {
+      title: 'Custom',
+      features: ['Software licenses based on budgets', 'Advisory - based on Software licenses', 'Reporting + Auditing'],
+      bgColor: '#1A6739',
+      isStandard: false,
+    },
+  ];
   return (
     // <div>
     //     <video
@@ -278,6 +388,7 @@ const EsgAdvisory = () => {
             Explore how our NetZero Platform drives innovation in sustainable marketing and carbon accounting
           </Typography>
         </Grid>
+
         <Grid
           item
           xs={12}
@@ -453,6 +564,179 @@ const EsgAdvisory = () => {
           </p>
         </Grid>
       </Grid>
+      <div>
+        <Grid container spacing={3} justifyContent="center">
+          <Grid item sm={12} md={12} className="d-flex justify-content-center mb-1">
+            <Typography className="fs-3" sx={{ color: 'green', fontWeight: 'bold', mb: 2 }}>
+              Select your plan
+            </Typography>
+          </Grid>
+          <Grid item sm={12} md={12} className="d-flex justify-content-center mb-3">
+            <Typography sx={{ mb: 4, fontSize: '18px', color: 'black', fontWeight: 500 }}>
+              We offer a choice of plans, provide analytics, and an option for your yearly audit report based on your
+              requirements - SBTi, BRSR, CSRD etc.
+            </Typography>
+          </Grid>
+          <Grid container spacing={3} justifyContent="center" sx={{ marginBottom: '20px' }}>
+            {plans.map((plan, index) => (
+              <Grid item xs={12} md={5.5} lg={3.3} key={index}>
+                <Card
+                  sx={{
+                    backgroundColor: plan.bgColor,
+                    color: plan.isStandard ? 'black' : 'white',
+                    textAlign: 'left',
+                    height: '100%',
+                    borderRadius: '0px',
+                  }}
+                >
+                  <CardContent sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                    <Typography
+                      className="fs-1"
+                      sx={{
+                        fontWeight: 'bold',
+                        mb: 1,
+                        color: plan.isStandard ? 'black' : 'white',
+                        paddingBottom: '35px',
+                        fontSize: '18px',
+                      }}
+                    >
+                      {plan.title}
+                    </Typography>
+                    <ul style={{ listStyle: 'none', padding: 0, flexGrow: 1 }}>
+                      {plan.features.map((feature, i) => (
+                        <li
+                          key={i}
+                          style={{
+                            marginBottom: '8px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            fontWeight: 'lighter',
+                            paddingBottom: '17px',
+                            fontSize: '20px',
+                          }}
+                        >
+                          <CheckIcon sx={{ marginRight: '8px' }} /> {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button
+                      onClick={() => handleClickOpen(plan)}
+                      // variant="contained"
+                      sx={{
+                        backgroundColor: 'white',
+                        color: '#1A6739',
+                        // width: '50px',
+                        mt: 2,
+                        alignSelf: 'center', // centers the button horizontally
+                        display: 'flex', // enables flexbox layout
+                        justifyContent: 'center', // centers content horizontally within the button
+                        alignItems: 'center',
+                        fontSize: '20px',
+                        padding: '5px 20px',
+                      }}
+                    >
+                      Get Started
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+
+        <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
+          <DialogTitle sx={{ textAlign: 'center' }}>
+            <div className="d-flex justify-content-center  align-self-top  flex-column align-items-center">
+              {/* <img src={Logo} width={200} /> */}
+              <img src={Logo} width={200} alt="carbon" />
+            </div>
+            <span
+              className="d-block mb-2"
+              style={{ fontWeight: 500, marginTop: '20px', fontSize: '20px', textAlign: 'left' }}
+            >
+              Fill out the form below. We'll reply within 24-48 hrs.
+            </span>
+            {/* <img src="/path/to/logo.png" alt="Logo" style={{ width: '100px', marginBottom: '10px' }} /> Add your logo image */}
+          </DialogTitle>
+
+          <DialogContent sx={{ paddingTop: '8px !important' }}>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <TextField
+                  autoFocus
+                  label="Name"
+                  variant="outlined"
+                  fullWidth
+                  name="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  helperText={formik.touched.name && formik.errors.name}
+                  // inputProps={{ style: { fontSize: '12px' } }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <AccountCircle />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  label="Email"
+                  variant="outlined"
+                  fullWidth
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  inputProps={{ style: { fontSize: '12px' } }}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  label="Message"
+                  variant="outlined"
+                  multiline
+                  rows={2}
+                  fullWidth
+                  name="message"
+                  value={values.message}
+                  onChange={handleChange}
+                  error={formik.touched.message && Boolean(formik.errors.message)}
+                  helperText={formik.touched.message && formik.errors.message}
+                  inputProps={{ style: { fontSize: '12px' } }}
+                />
+              </Grid>
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <LoadingButton
+              type="submit"
+              onClick={handleSubmit}
+              variant="contained"
+              disabled={!!isLoading}
+              size="small"
+              style={{ background: '#054723' }}
+            >
+              {isLoading ? <CircularProgress size={27} /> : 'Submit'}
+            </LoadingButton>
+            <Button
+              variant="contained"
+              onClick={() => {
+                resetForm();
+                handleClose();
+              }}
+              size="small"
+            >
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+
       {/* <Grid
           container
           rowSpacing={3}
@@ -461,7 +745,7 @@ const EsgAdvisory = () => {
           style={{
             marginTop: '20px',
             border: 'solid 1px #1F9E6D',
-            boxShadow: ' 0 0 2px 0 rgba(145, 158, 171, 0.2), 0 12px 24px -4px rgba(145, 158, 171, 0.12)',
+            boxShadow: ' 0 0 2px 0 rgba(88, 92, 97, 0.2) 12px 24px -4px rgba(145, 158, 171, 0.12)',
             borderRadius: '21px',
           }}
         >
