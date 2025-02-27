@@ -98,16 +98,10 @@ const EsgAdvisory = () => {
   };
   const handleClickOpen = (plan) => {
     setSelectedPlan(plan.title);
-    // sendEmail(plan)
+    sendEmail(plan)
     setOpen(true);
   };
-  // const sendEmail = (plan) => {
-  //   const templateParams = {
-  //     to_name: 'shrustithummar2002@gmail.com',
-  //     subject: `Select your plan - ${plan}`, // Dynamically set subject based on the plan
-  //     message: `A user has selected the ${plan} plan. Please follow up accordingly.`,
-  //   };
-  // }
+
 
   useEffect(() => {
     videoRef.current.playbackRate = 0.5;
