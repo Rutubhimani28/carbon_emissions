@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import axios from 'axios';
-import { Line } from 'react-chartjs-2';
 import 'slick-carousel/slick/slick-theme.css';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useTheme } from '@emotion/react';
+import { Bar, Line } from 'react-chartjs-2';
 import {
   Box,
   Button,
@@ -44,6 +44,7 @@ import Room5 from '../../../assets/images/room5.jpg';
 import Room6 from '../../../assets/images/room6.jpg';
 import Room7 from '../../../assets/images/room7.jpg';
 import AreYouReadyImg from '../../../assets/images/Are-you-ready-img.png';
+import LinkedInStats from '../../Linkendin/Linkendin';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -58,6 +59,8 @@ const Goal = () => {
   const [accounts, setAccounts] = useState([]);
   const [instgramData, setInstagramData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState(null);
+  const [error, setError] = useState(null);
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
@@ -75,6 +78,75 @@ const Goal = () => {
     fetchAccounts();
   }, []);
 
+  const LINKEDIN_ACCESS_TOKEN =
+    'AQVofqtTLTD6Kp8SIX2aaUlMN5fMaozsAnXHqZq7yQ2AaNPLdEgb3rgx0PYH8HJXuG8iUWyPUy2B_qg72swkZIx-k1LAPB5SAPLKdXBDyR20k7wIN-g4wZF803fyKWwe4Fu1A_PkfAvemveRwy24sLw2uS--WybT2q53v3TPjmVlrG058iJPDtq4wnvPTPijU4hgWh6b6ilwGx_lq7niHeijxIX2GPWfSwu-0dBKrbqtfARZpxeJTyLUIVotZkKJaA88U5HZSk_dk3AcrfepKmTRsFWan9ArKb6LufTWqPyNtNpTdymZXxW-PRZo08HpCt34_Gc5TH2gfLoiY9rxRSgvoxDr7g';
+  const ORGANIZATION_ID = '106264553';
+
+  const fetchLinkedInStats = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.linkedin.com/v2/organizationalEntityShareStatistics?q=organizationalEntity&organizationalEntity=urn:li:organization:${ORGANIZATION_ID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${LINKEDIN_ACCESS_TOKEN}`,
+          },
+        }
+      );
+      console.log(response.data, 'LinkedIn Response');
+      setStats(response.data);
+    } catch (err) {
+      console.error('Error fetching LinkedIn stats:', err);
+      setError(err.message);
+    }
+  };
+
+  useEffect(() => {
+    // fetchLinkedInStats();
+  }, []);
+  const fetchStats = async () => {
+    // setLoading(true);
+    setError(null);
+
+    try {
+      // Calling your backend endpoint
+      // const response = await fetch('http://127.0.0.1:8000/linkedin-stats');
+      // console.log(response, 'response');
+      // if (!response) {
+      //   console.log('yyyyyyy');
+      // }
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
+      // }
+      // const data = await response.json();
+      // setStats(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+  console.log(stats, 'stats');
+
+  // const chartLinkedinData = {
+  //   labels: ['Impressions', 'Clicks', 'Likes', 'Shares', 'Comments'],
+  //   datasets: [
+  //     {
+  //       label: 'Engagement Stats',
+  //       data: [
+  //         stats.impressionCount,
+  //         stats.clickCount,
+  //         stats.likeCount,
+  //         stats.shareCount,
+  //         stats.commentCount,
+  //       ],
+  //       backgroundColor: ['#3b82f6', '#f97316', '#10b981', '#ef4444', '#a855f7'],
+  //     },
+  //   ],
+  // };
   const { data: [{ id, access_token: accessToken } = {}] = [] } = accounts || {};
   console.log(id, accessToken, 'accounts id and access token');
   console.log(id, 'accounts id');
@@ -227,8 +299,45 @@ const Goal = () => {
                     </Box>
                 </Grid>
             </Grid> */}
+      {/* <Grid container spacing={3}>
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Total Impressions</Typography>
+              <Typography variant="h4">{stats.impressionCount}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
 
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Total Clicks</Typography>
+              <Typography variant="h4">{stats.clickCount}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Total Likes</Typography>
+              <Typography variant="h4">{stats.likeCount}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Engagement Overview</Typography>
+              <Bar data={chartLinkendinData} />
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid> */}
       {/* LTAEST NEWS */}
+      <LinkedInStats />
       <Box sx={{ p: 2 }}>
         {/* Button to fetch data */}
         <Button variant="contained" onClick={handleInstagram}>

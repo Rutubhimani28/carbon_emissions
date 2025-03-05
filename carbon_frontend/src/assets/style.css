@@ -319,10 +319,6 @@ text {
   fill: #fff !important;
 }
 
-.apexcharts-menu {
-  background-color: #1f9e6d !important;
-}
-
 .apexcharts-theme-light .apexcharts-menu-item:hover {
   background: #054723 !important;
 }

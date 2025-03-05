@@ -42,7 +42,7 @@ app.use("/file", express.static("uploads/images/"));
 // app.use("/file", express.static('uploads/'));
 app.use("/videos", express.static("uploads/videos/"));
 app.use("/logo", express.static("middelwares/email_templates/"));
-
+                          
 app.get("/", async (req, res) => {
   res.send("Welcome to my world...");
 });
@@ -84,30 +84,52 @@ app.get("/api/tweet-impressions", async (req, res) => {
     }
   }
 });
-// In-memory impression counter (production ma DB use karo)
-let impressionCount = 0;
+let accessToken = null;
+let expiresAt = null;
+async function refreshAccessToken() {
+  try {
+    const response = await axios.post(
+      "https://www.linkedin.com/oauth/v2/accessToken",
+      null,
+      {
+        params: {
+          grant_type: "refresh_token",
+          refresh_token:
+            "AQXQrs_e9oV6RpWS-M0zZ2PUs3qNbS65im-SncjJBNSBPa6mIglf6kI3_SbTjmep8uxb8BaZ8JM-qz1q2bLiiADWbRw1Av411MU22q8VKOOJY_HwjOZ1cxXBAK9nPNTu8tlENdhiAlS7aEoobvhqzt8Q4C8u4gSeWeUbigpcmQALl5LCgmn0W-pwOs3C0uoEcJ2K1Ld0jrQQP7cZrlV9tIWQ8Ef82pwpfcKTqK2KmXisOrR1EssrvE1w72k9XzMw3RqTg6rYclTOr5yzC1IWs_NEWKFMKlNDdRYNhxmMhhDAGNBCCxz5G6ld3N6Xg9s4NzaGed5xQnYctYvgcypUwQuY9Tc17A",
+          client_id: "78zlzugkv3i3g5",
+          client_secret: "WPL_AP1.ScEjtIs017qIZSqV.TekPPw==",
+        },
+      }
+    );
 
-// Endpoint to increment impression count
-app.post("/api/impressions", (req, res) => {
-  impressionCount++;
-  res.json({ impressions: impressionCount });
-});
+    accessToken = response.data.access_token;
+    expiresAt = Date.now() + response.data.expires_in * 1000;
+  } catch (error) {
+    console.error(
+      "Error refreshing token:",
+      error.response?.data || error.message
+    );
+  }
+}
 
-// (Optional) Endpoint to get current impression count
-app.get("/api/impressions", (req, res) => {
-  res.json({ impressions: impressionCount });
-});
+// Middleware to check token expiration
+async function ensureValidToken(req, res, next) {
+  if (!accessToken || Date.now() >= expiresAt) {
+    await refreshAccessToken();
+  }
+  req.accessToken = accessToken;
+  next();
+}
 
+// const LINKEDIN_ACCESS_TOKEN =
+//   "AQVofqtTLTD6Kp8SIX2aaUlMN5fMaozsAnXHqZq7yQ2AaNPLdEgb3rgx0PYH8HJXuG8iUWyPUy2B_qg72swkZIx-k1LAPB5SAPLKdXBDyR20k7wIN-g4wZF803fyKWwe4Fu1A_PkfAvemveRwy24sLw2uS--WybT2q53v3TPjmVlrG058iJPDtq4wnvPTPijU4hgWh6b6ilwGx_lq7niHeijxIX2GPWfSwu-0dBKrbqtfARZpxeJTyLUIVotZkKJaA88U5HZSk_dk3AcrfepKmTRsFWan9ArKb6LufTWqPyNtNpTdymZXxW-PRZo08HpCt34_Gc5TH2gfLoiY9rxRSgvoxDr7g";
 const LINKEDIN_ACCESS_TOKEN =
-  "AQVofqtTLTD6Kp8SIX2aaUlMN5fMaozsAnXHqZq7yQ2AaNPLdEgb3rgx0PYH8HJXuG8iUWyPUy2B_qg72swkZIx-k1LAPB5SAPLKdXBDyR20k7wIN-g4wZF803fyKWwe4Fu1A_PkfAvemveRwy24sLw2uS--WybT2q53v3TPjmVlrG058iJPDtq4wnvPTPijU4hgWh6b6ilwGx_lq7niHeijxIX2GPWfSwu-0dBKrbqtfARZpxeJTyLUIVotZkKJaA88U5HZSk_dk3AcrfepKmTRsFWan9ArKb6LufTWqPyNtNpTdymZXxW-PRZo08HpCt34_Gc5TH2gfLoiY9rxRSgvoxDr7g";
+  "AQUroKGX2x0O9uDPcXgSk84OuhnliXWDu6RO_eMjo-bKvJyEImUD_cG_nrxxiGiYgtArCEMdTdzSwppdqLLtbn1mLvW8csAfHw7WGfKE-T2uFDzv3k2Eo1KcLAjZeyRDSYrt2Q07zX70F6eTRAcnWGNPGoFaa1VRAUSYJL_Akhwpd-kzMIrviKO2nnB3q9k4AOLAYgVVRxtXPMAKExSWN7QzNCKsHkf40T6VeKU2_FB5F5RKE9gHzuqJrKwXXkbMwWnqShqynSW4edAaFapX5PiB97O0ColChJYHuz3Rc3HAjFyz8dsPyB-MIBVbAn7B6rsxJEllyMxmycBqm3-cjg7umIMR3g";
+
 const ORGANIZATION_ID = "106264553";
 
-app.get("/linkedin/impressions", async (req, res) => {
-  console.log("Linkendin API");
-
+app.get("/linkedin-stats", ensureValidToken, async (req, res) => {
   try {
-    console.log("yyyyyyy");
-
     const response = await axios.get(
       `https://api.linkedin.com/v2/organizationalEntityShareStatistics?q=organizationalEntity&organizationalEntity=urn:li:organization:${ORGANIZATION_ID}`,
       {
@@ -116,29 +138,15 @@ app.get("/linkedin/impressions", async (req, res) => {
         },
       }
     );
-    console.log(response, "prolink-infotech-222013625");
-    res.json(response.data);
+    // console.log(response, "prolink-infotech-222013625");
+    // res.json(response.data);
+    // res.status(200).json({ response });
+    return res.send(response?.data);
   } catch (error) {
+    console.log("error--::", error);
     res.status(500).json({ error: error.response?.data || error.message });
   }
 });
-async function getAccessToken(authCode) {
-  const CLIENT_ID = "78zlzugkv3i3g5";
-  const CLIENT_SECRET = "WPL_AP1.ScEjtIs017qIZSqV.TekPPw==";
-  const REDIRECT_URI = "http://localhost:3000/auth/callback";
-
-  const tokenURL = "https://www.linkedin.com/oauth/v2/accessToken";
-  const data = new URLSearchParams({
-    grant_type: "authorization_code",
-    code: authCode,
-    redirect_uri: REDIRECT_URI,
-    client_id: CLIENT_ID,
-    client_secret: CLIENT_SECRET,
-  });
-
-  const response = await axios.post(tokenURL, data);
-  return response.data.access_token;
-}
 
 app.get("/auth/callback", async (req, res) => {
   const authCode = req.query.code;

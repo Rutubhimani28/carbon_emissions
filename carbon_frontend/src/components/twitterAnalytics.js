@@ -57,12 +57,12 @@ const TweetMetrics = ({ tweetId }) => {
   //   }
   // }, []);
 
-  useEffect(() => {
-    fetchRecentTweets('1891457655572738048');
-    if (tweetId) {
-      fetchTweetMetrics(tweetId);
-    }
-  }, [tweetId]);
+  // useEffect(() => {
+  //   fetchRecentTweets('1891457655572738048');
+  //   if (tweetId) {
+  //     fetchTweetMetrics(tweetId);
+  //   }
+  // }, [tweetId]);
 
 
 
