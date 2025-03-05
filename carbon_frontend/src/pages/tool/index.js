@@ -802,7 +802,7 @@ const Home = () => {
 
                 <Grid xs={3} md={6} spacing={2}>
 
-                    <Typography className="mb-2 fs-5 text-center">Choose your Marketing activity</Typography>
+                    <Typography className="mb-2 fs-5 text-center">Choose your activity type</Typography>
                     <Grid xl={3} md={6} sm={12}>
                         <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
                             <Box onClick={() => isSubmited && navigate('/dashboard/f2f-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
