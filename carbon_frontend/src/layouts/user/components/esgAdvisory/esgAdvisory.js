@@ -582,9 +582,9 @@ const EsgAdvisory = () => {
               requirements - SBTi, BRSR, CSRD etc.
             </p>
           </Grid>
-          <Grid container spacing={3} justifyContent="center" sx={{ marginBottom: '20px' }}>
+          <Grid container spacing={3} justifyContent="center" sx={{ marginBottom: '20px' , padding : "10px" }}>
             {plans.map((plan, index) => (
-              <Grid item xs={12} md={5.5} lg={2.8} key={index}>
+              <Grid item xs={12} sm={6} md={5.5} lg={2.7} key={index}>
                 <Card
                   sx={{
                     backgroundColor: plan.bgColor,
