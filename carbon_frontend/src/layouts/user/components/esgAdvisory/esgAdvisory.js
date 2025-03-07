@@ -102,7 +102,6 @@ const EsgAdvisory = () => {
     setOpen(true);
   };
 
-
   useEffect(() => {
     videoRef.current.playbackRate = 0.5;
   }, []);
@@ -122,7 +121,7 @@ const EsgAdvisory = () => {
     {
       title: 'Custom',
       features: ['Software licenses based on budgets', 'Advisory - based on Software licenses', 'Reporting + Auditing'],
-      bgColor: '#1A6739',
+      bgColor: '#054723',
       isStandard: false,
     },
   ];
@@ -560,32 +559,45 @@ const EsgAdvisory = () => {
       </Grid>
       <div>
         <Grid container spacing={3} justifyContent="center">
-          <Grid item sm={12} md={12} className="d-flex justify-content-center mb-1">
+          {/* <Grid item sm={12} md={12} className="d-flex justify-content-center mb-1">
             <Typography className="fs-3" sx={{ color: 'green', fontWeight: 'bold', mb: 2 }}>
               Select your plan
             </Typography>
-          </Grid>
-          <Grid item sm={12} md={12} className="d-flex justify-content-center mb-3">
-            <Typography sx={{ mb: 4, fontSize: '18px', color: 'black', fontWeight: 500 }}>
-              We offer a choice of plans, provide analytics, and an option for your yearly audit report based on your
-              requirements - SBTi, BRSR, CSRD etc.
+          </Grid> */}
+          <Grid item sm={12} md={12} className="d-flex justify-content-center">
+            <Typography className="fontFamily fs-3 fw-bold text-center wow animate__animated animate__fadeInLeft animate__slow template-outer-theme-2">
+              Select your plan
             </Typography>
           </Grid>
-          <Grid container spacing={3} justifyContent="center" sx={{ marginBottom: '20px' }}>
+          <Grid item sm={12} md={12} className="d-flex justify-content-center mb-3 pt-2">
+            <p
+              style={{
+                textAlign: 'left',
+                color: '#1f9e6d',
+                padding: useMediaQuery(theme.breakpoints.up('sm')) ? '0px 6px 0px 4px' : '0px 0px 12px 0px',
+                // marginTop: useMediaQuery(theme.breakpoints.up('md')) ? '0' : '0px',
+              }}
+            >
+              We offer a choice of plans, provide analytics, and an option for your yearly audit report based on your
+              requirements - SBTi, BRSR, CSRD etc.
+            </p>
+          </Grid>
+          <Grid container spacing={3} justifyContent="center" sx={{ marginBottom: '20px' , padding : "10px" }}>
             {plans.map((plan, index) => (
-              <Grid item xs={12} md={5.5} lg={3.3} key={index}>
+              <Grid item xs={12} sm={6} md={5.5} lg={2.7} key={index}>
                 <Card
                   sx={{
                     backgroundColor: plan.bgColor,
                     color: plan.isStandard ? 'black' : 'white',
                     textAlign: 'left',
                     height: '100%',
-                    borderRadius: '0px',
+                    borderRadius: '6px',
                   }}
                 >
                   <CardContent sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                     <Typography
-                      className="fs-1"
+                      variant="h6"
+                      className="fontFamily fs-4 fw-bold box-title-padding"
                       sx={{
                         fontWeight: 'bold',
                         mb: 1,
@@ -596,9 +608,10 @@ const EsgAdvisory = () => {
                     >
                       {plan.title}
                     </Typography>
-                    <ul style={{ listStyle: 'none', padding: 0, flexGrow: 1 }}>
+                    <ul style={{ listStyle: 'none', padding: 0, flexGrow: 1 }} className="fontFamily box-title-padding">
                       {plan.features.map((feature, i) => (
                         <li
+                          className="fontFamily box-title-padding"
                           key={i}
                           style={{
                             marginBottom: '8px',
@@ -609,13 +622,13 @@ const EsgAdvisory = () => {
                             fontSize: '20px',
                           }}
                         >
-                          <CheckIcon sx={{ marginRight: '8px' }} /> {feature}
+                          <CheckIcon sx={{ marginRight: '8px' }} />
+                          <p className="fontFamily fs-6 pb-1">{feature}</p>
                         </li>
                       ))}
                     </ul>
                     <Button
                       onClick={() => handleClickOpen(plan)}
-                      // variant="contained"
                       sx={{
                         backgroundColor: 'white',
                         color: '#1A6739',
@@ -627,6 +640,9 @@ const EsgAdvisory = () => {
                         alignItems: 'center',
                         fontSize: '20px',
                         padding: '5px 20px',
+                        '&:hover': {
+                          backgroundColor: 'white',
+                        },
                       }}
                     >
                       Get Started
