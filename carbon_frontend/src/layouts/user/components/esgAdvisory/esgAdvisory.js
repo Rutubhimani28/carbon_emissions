@@ -623,7 +623,7 @@ const EsgAdvisory = () => {
                           }}
                         >
                           <CheckIcon sx={{ marginRight: '8px' }} />
-                          <p className="fontFamily fs-6 pb-2">{feature}</p>
+                          <p className="fontFamily fs-6 pb-1">{feature}</p>
                         </li>
                       ))}
                     </ul>
