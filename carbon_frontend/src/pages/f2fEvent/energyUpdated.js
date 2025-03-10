@@ -41,14 +41,28 @@ const EnergyUpdated = (props) => {
         emissionTwo: '',
         gallonsTwo: '',
         emissionThree: '',
+    renewable: '',
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
-            const emissionOne = Number((values?.kwh * 0.716).toFixed(2))
-            const emissionTwo = Number((values?.gallonsOne * 2.288).toFixed(2))
-            const emissionThree = Number((values?.gallonsTwo * 2.91).toFixed(2))
+      let renewable = Number(values?.renewable);
+      if (renewable > 100) {
+        renewable = 100;
+        formik.setFieldValue('renewable', 100);
+      }
+      const energyused = 100 - values?.renewable;
+
+      const emissionsValue = Number((values?.kwh * 0.716).toFixed(2));
+      // const emissionOne = Number((values?.kwh * 0.716).toFixed(2));
+      // const emissionOne = Number(((emissionsValue * energyused) / 100).toFixed(2))=== 100 ? 0 : Number(((emissionsValue * energyused) / 100).toFixed(2));
+      let emissionOne = Number(((emissionsValue * energyused) / 100).toFixed(2));
+      const emissionTwo = Number((values?.gallonsOne * 2.288).toFixed(2));
+      const emissionThree = Number((values?.gallonsTwo * 2.91).toFixed(2));
+      if (Number(values?.renewable) === 100) {
+        emissionOne = 0;
+      }
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
             if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
@@ -57,7 +71,9 @@ const EnergyUpdated = (props) => {
                 {
                     type: 'Electricity',
                     kwh: values?.kwh,
-                    emission: emissionOne > 0 ? Number((values?.kwh * 0.716).toFixed(2)) : ''
+          // renuwable
+          renewable: values?.renewable,
+          emission: emissionOne > 0 ? Number(((emissionsValue * energyused) / 100).toFixed(2)) : 0,
                 },
                 {
                     type: 'Petrol (Generator)',
@@ -75,12 +91,13 @@ const EnergyUpdated = (props) => {
                 {
                     subType: "",
                     subTypeData: {
-                        th: ["", "In Kgs", "Emissions"],
+            th: ['', 'In Kgs', ' Renewable', 'Emissions'],
                         td: [
                             {
                                 eType: "Electricity",
                                 kwh: values?.kwh,
-                                emissions: emissionOne > 0 ? emissionOne : ''
+                renewable: values?.renewable,
+                emissions: emissionOne > 0 ? emissionOne : '',
                             },
                         ]
                     },
@@ -133,12 +150,15 @@ const EnergyUpdated = (props) => {
 
     useEffect(() => {
         if (allData?.length > 0) {
-            formik.setFieldValue("kwh", allData?.[0]?.kwh)
-            formik.setFieldValue("emissionOne", allData?.[0]?.emission)
-            formik.setFieldValue("gallonsOne", allData?.[1]?.gallonsOne)
-            formik.setFieldValue("emissionTwo", allData?.[1]?.emission)
-            formik.setFieldValue("gallonsTwo", allData?.[2]?.gallonsTwo)
-            formik.setFieldValue("emissionThree", allData?.[2]?.emission)
+      formik.setFieldValue('kwh', allData?.[0]?.kwh);
+      formik.setFieldValue('renewable', allData?.[0]?.renewable);
+      formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+      formik.setFieldValue('gallonsOne', allData?.[1]?.gallonsOne);
+      formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
+      formik.setFieldValue('gallonsTwo', allData?.[2]?.gallonsTwo);
+      formik.setFieldValue('emissionThree', allData?.[2]?.emission);
+      // formik.setFieldValue('renewable', allData?.[3]?.renewable);
+      // formik.setFieldValue('adjustedEmission', allData?.[3]?.emission);
         }
     }, [value])
 
@@ -192,7 +212,47 @@ const EnergyUpdated = (props) => {
                                     />
                                 </Grid>
                                 <Grid mt={2}>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" className='label-white'>Emissions</FormLabel>
+                  <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
+                    Renewable Energy (%)
+                  </FormLabel>
+                  {/* <FormLabel className="label-white">Input (Max 100)</FormLabel> */}
+                  <TextField
+                    id="renewable"
+                    name="renewable"
+                    type="number"
+                    fullWidth
+                    size="small"
+                    value={formik.values.renewable}
+                    onChange={(e) => {
+                      let val = Number(e.target.value);
+                      if (val === '') {
+                        val = 0;
+                      } else {
+                        val = Math.min(100, val);
+                      }
+                      formik.handleChange(e);
+                      formik.setFieldValue('renewable', val);
+
+                      // Recalculate emissionOne based on the new renewable value
+                      const emissionsValue = Number((formik.values.kwh * 0.716).toFixed(2));
+                      const energyused = 100 - val;
+                      let emissionOne = Number(((emissionsValue * energyused) / 100).toFixed(2));
+                      if (val === 100) {
+                        emissionOne = 0;
+                      }
+                      formik.setFieldValue('emissionOne', emissionOne);
+
+                      formik.handleSubmit();
+                    }}
+                    error={formik.touched.renewable && Boolean(formik.errors.renewable)}
+                    helperText={formik.touched.renewable && formik.errors.renewable}
+                    inputProps={{ style: { color: 'white' }, maxLength: 3, min: 0, max: 100 }}
+                  />
+                </Grid>
+                <Grid mt={2}>
+                  <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
+                    Emissions
+                  </FormLabel>
                                     <TextField
                                         id="emissionOne"
                                         name="emissionOne"

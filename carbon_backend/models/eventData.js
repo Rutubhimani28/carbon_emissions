@@ -46,6 +46,8 @@ const EventDataSchema = new mongoose.Schema(
         hospitalityAllData: oneTabAllDataSchema,
         digitalCampaignAllData: oneTabAllDataSchema,
         dateTime: { type: String, required: true },
+        dateFrom: { type: String},
+        dateTo: { type: String},
         createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Assuming 'User' is the name of your user model
     },
     {

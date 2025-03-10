@@ -63,6 +63,7 @@ const PrAgency = (props) => {
 
         electricityKwh: '',
         electricityEmission: '',
+    renewableEnergy: '',
     };
 
     const formik = useFormik({
@@ -86,7 +87,17 @@ const PrAgency = (props) => {
             const dieselEmission = values?.dieselKms === 0 ? 0 : Number(0.168 * values?.dieselKms).toFixed(2);
             const hybridEmission = values?.hybridKms === 0 ? 0 : Number(0.118 * values?.hybridKms).toFixed(2);
             // const electricEmission = values?.electricKms === 0 ? 0 : Number(0.047 * values?.electricKms).toFixed(2);
-            const electricityEmission = values?.electricityKwh === 0 ? 0 : Number(0.716 * values?.electricityKwh).toFixed(2);
+      //   const electricityEmission = values?.electricityKwh === 0 ? 0 : Number(0.716 * values?.electricityKwh).toFixed(2);
+      let renewableEnergy = Number(values?.renewableEnergy);
+      if (renewableEnergy > 100) {
+        renewableEnergy = 100;
+        formik.setFieldValue('renewableEnergy', 100);
+      }
+      const energyused = 100 - values?.renewableEnergy;
+
+      const emissionsValue = values?.electricityKwh === 0 ? 0 : Number(0.716 * values?.electricityKwh).toFixed(2);
+      // const emissionOne = Number((values?.kwh * 0.716).toFixed(2));
+      const electricityEmission = Number(((emissionsValue * energyused) / 100).toFixed(2));
 
             if (meetingRoomEmission > 0) formik.setFieldValue('meetingRoomEmission', meetingRoomEmission);
             if (projectorEmission > 0) formik.setFieldValue('projectorEmission', projectorEmission);
@@ -190,8 +201,9 @@ const PrAgency = (props) => {
                 {
                     type: 'Electricity',
                     electricityKwh: values?.electricityKwh,
-                    emission: electricityEmission > 0 ? electricityEmission : ''
-                }
+          renewableEnergy: values?.renewableEnergy,
+          emission: electricityEmission > 0 ? electricityEmission : '',
+        },
             ];
 
             const tableData = [
@@ -323,12 +335,13 @@ const PrAgency = (props) => {
                 {
                     subType: "Energy",
                     subTypeData: {
-                        th: ["", "kwh", "Emissions"],
+            th: ['', 'kwh', 'RenewableEnergy', 'Emissions'],
                         td: [
                             {
                                 prType: "Electricity",
                                 kwh: values?.electricityKwh,
-                                emissions: electricityEmission > 0 ? electricityEmission : ''
+                renewableEnergy: values?.renewableEnergy,
+                emissions: electricityEmission > 0 ? electricityEmission : '',
                             },
                         ]
                     },
@@ -412,8 +425,9 @@ const PrAgency = (props) => {
             formik.setFieldValue("hybridEmission", allData?.[13]?.emission);
             // formik.setFieldValue("electricKms", allData?.[14]?.electricKms);
             // formik.setFieldValue("electricEmission", allData?.[14]?.emission);
-            formik.setFieldValue("electricityKwh", allData?.[14]?.electricityKwh);
-            formik.setFieldValue("electricityEmission", allData?.[14]?.emission);
+      formik.setFieldValue('electricityKwh', allData?.[14]?.electricityKwh);
+      formik.setFieldValue('renewableEnergy', allData?.[14]?.renewableEnergy);
+      formik.setFieldValue('electricityEmission', allData?.[14]?.emission);
         }
     }, [value]);
 
@@ -440,14 +454,9 @@ const PrAgency = (props) => {
                                         {/* <Typography variant='h4' className='text-white mb-4 d-flex justify-content-center align-items-center my-4 '></Typography> */}
                                         <table className='table-custom-inpt-field'>
                                             <tr>
-                                                {/* <th className='ps-2' /> */}
-                                                {/* <th className='ps-5'>No of Hours</th>
-                                                <th className='ps-5'>No of Devices</th>
-                                                <th className='ps-2'>Emissions</th> */}
-                                                <td className='ps-5 '>Total Meeting Room Area(Sqft)</td>
-                                                <td className=' ps-5'>Projector(No Of Hours)</td>
-                                                <td className='ps-5  me-5 mb-xl-1 mb-md-5 SETPrinting'>Energy Utilised(kwh)*</td>
-
+                        <td className="ps-5">Total Meeting Room Area(Sqft)</td>
+                        <td className="ps-5">Projector(No Of Hours)</td>
+                        <td className="ps-5">Energy Utilised(kwh)*</td>
                                             </tr>
                                             <tr>
 
@@ -488,30 +497,33 @@ const PrAgency = (props) => {
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }} />
                                                 </td>
-                                                {/* <td className='ps-2 py-1 ms-4'>
-                                                    <TextField size='small' type="number" disabled name='projectorEmission' value={values?.projectorEmission} onChange={formik.handleChange} />
-                                                </td>  */}
                                             </tr>
 
                                             <tr>
-                                                <td className='ps-5 pt-2'>Metting Duration(No of Hrs)</td>
-                                                <td className='ps-5 pt-2'> Projector(No of Device)</td>
-                                                <td className='ps-5 pt-2'>Emissions</td>
-
-                                                {/* <td className='ps-2'>Emissions</td> */}
+                        <td className="ps-5 pt-2">Meeting Duration(No of Hrs)</td>
+                        <td className="ps-5 pt-2">Projector(No of Device)</td>
+                        <td className="ps-5">Renewable Energy (%)</td>
                                             </tr>
                                             <tr>
-                                                <td className='ps-5 py-1'>
-                                                    <TextField size='small' type="number" name="meetingDuration"
-                                                        label=""
+                        <td className="ps-5 py-1">
+                          <TextField
+                            size="small"
+                            type="number"
+                            name="meetingDuration"
                                                         fullWidth
                                                         value={formik.values.meetingDuration}
                                                         onChange={(e) => {
                                                             formik.setFieldValue('meetingDuration', e.target.value);
-                                                            formik.setFieldValue('meetingRoomEmission', (e.target.value === 0 || values?.meetingRoomArea === 0) ? 0 : Number((0.00104 * e.target.value * values?.meetingRoomArea).toFixed(2)));
+                              formik.setFieldValue(
+                                'meetingRoomEmission',
+                                e.target.value === 0 || values?.meetingRoomArea === 0
+                                  ? 0
+                                  : Number((0.00104 * e.target.value * values?.meetingRoomArea).toFixed(2))
+                              );
                                                             formik.handleSubmit();
                                                         }}
-                                                        inputProps={{ style: { color: 'white' } }} />
+                            inputProps={{ style: { color: 'white' } }}
+                          />
                                                 </td>
                                                 {/* Projector(No of Device) */}
                                                 <td className='ps-5'>
@@ -528,14 +540,26 @@ const PrAgency = (props) => {
                                                         inputProps={{ style: { color: 'white' } }}
                                                     />
                                                 </td>
-                                                <td className='ps-5 py-1'><TextField size='small' type="number" name='electricityEmission' disabled value={values?.electricityEmission} onChange={formik.handleChange} /></td>
-
+                        <td className="ps-5 py-1">
+                          <TextField
+                            size="small"
+                            type="number"
+                            name="renewableEnergy"
+                            fullWidth
+                            value={formik.values.renewableEnergy}
+                            onChange={(e) => {
+                              formik.setFieldValue('renewableEnergy', e.target.value);
+                              formik.handleSubmit();
+                            }}
+                            inputProps={{ style: { color: 'white' } }}
+                          />
+                        </td>
                                             </tr>
 
                                             <tr>
-                                                <td className='ps-5  pt-2'>Emissions</td>
-                                                <td className='ps-5  pt-2'>Emissions</td>
-                                                <td />
+                        <td className="ps-5 pt-2">Emissions</td>
+                        <td className="ps-5 pt-2">Emissions</td>
+                        <td className="ps-5 pt-2">Emissions</td>
                                             </tr>
                                             <tr>
                                                 <td className='ps-5 '>
@@ -544,10 +568,22 @@ const PrAgency = (props) => {
                                                 <td className='ps-2 ps-5'>
                                                     <TextField size='small' type="number" disabled name='projectorEmission' value={values?.projectorEmission} onChange={formik.handleChange} />
                                                 </td>
-                                                <td className='ps-5 pt-3' style={{ maxWidth: "250px" }}>* If you have the exact energy consumption from hotel</td>
-
+                        <td className="ps-5 py-1">
+                          <TextField
+                            size="small"
+                            type="number"
+                            name="electricityEmission"
+                            disabled
+                            value={values?.electricityEmission}
+                            onChange={formik.handleChange}
+                          />
+                        </td>
                                             </tr>
-
+                      <tr>
+                        <td colSpan="3" className="ps-5 py-2">
+                          <Typography color={'white'}>* If you have the exact energy consumption from hotel</Typography>
+                        </td>
+                      </tr>
                                         </table>
                                     </div>
                                 </Box>
