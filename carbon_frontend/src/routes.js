@@ -4,12 +4,12 @@ import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 //
 // import User from './pages/user/User'
-import User from './pages/user/User'
-import UserView from './pages/user/View'
+import User from './pages/user/User';
+import UserView from './pages/user/View';
 import DashboardAppPage from './pages/DashboardAppPage';
 import ImportView from './components/Import/ImportView';
 import UserLayout from './layouts/user';
-import Services from './layouts/user/components/services/index'
+import Services from './layouts/user/components/services/index';
 import DigitalContent from './pages/digitalContent';
 import F2fEvent from './pages/f2fEvent';
 import VirtualEvent from './pages/virtualEvent';

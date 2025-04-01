@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // @mui
-import { RiRobot2Fill } from "react-icons/ri";
+import { RiRobot2Fill } from 'react-icons/ri';
 import { styled } from '@mui/material/styles';
 //
 // import { fetchCustomFieldData } from '../../redux/slice/customFieldSlice';
@@ -30,7 +30,7 @@ const APP_BAR_DESKTOP = 92;
 const StyledRoot = styled('div')({
   display: 'flex',
   minHeight: '100%',
-  background: "#1f9e6d",
+  background: '#1f9e6d',
   overflow: 'hidden',
 });
 
@@ -59,7 +59,7 @@ export default function DashboardLayout() {
 
   const toolDataToolDetails = useSelector((state) => state.toolDetails);
   const toolData = useSelector((state) => state.toolDetails?.data);
-  const toolFormData = toolData.find((item) => item?.type === "toolForm");
+  const toolFormData = toolData.find((item) => item?.type === 'toolForm');
   const userdata = JSON.parse(sessionStorage.getItem('user'));
 
   // const dispatch = useDispatch();
@@ -86,21 +86,19 @@ export default function DashboardLayout() {
           <Route path="/dashboard/home" element={<ToolHome />} />
           <Route path="/dashboard/retrieve-events" element={<RetrieveEventsData />} />
           <Route path="/dashboard/terms-conditions" element={<TermConditions />} />
-          {
-            (toolFormData?.isSubmited) &&
+          {toolFormData?.isSubmited && (
             <>
               <Route path="/dashboard/f2f-event" element={<F2fEvent />} />
               <Route path="/dashboard/virtual-event" element={<VirtualEvent />} />
               <Route path="/dashboard/pr-event" element={<PrEvent />} />
               <Route path="/dashboard/campaign" element={<DigitalCampaign />} />
             </>
-          }
-          {
-            (userdata?.role === 'admin') &&
+          )}
+          {userdata?.role === 'admin' && (
             <>
               <Route path="/dashboard/user" element={<User />} />
             </>
-          }
+          )}
         </Routes>
 
         <button
@@ -115,12 +113,12 @@ export default function DashboardLayout() {
             backgroundColor: 'rgba(255, 255, 255, 0.5)',
             borderRadius: '30%',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-            border: 'none'
-          }}>
+            border: 'none',
+          }}
+        >
           <RiRobot2Fill style={{ fontSize: '3rem', color: '#007BFF' }} />
         </button>
-        <Bot openBot={openBot} handleCloseBot={handleCloseBot} subject='NetZero Platform- Customer Query' />
-
+        <Bot openBot={openBot} handleCloseBot={handleCloseBot} subject="NetZero Platform- Customer Query" />
       </Main>
     </StyledRoot>
   );
