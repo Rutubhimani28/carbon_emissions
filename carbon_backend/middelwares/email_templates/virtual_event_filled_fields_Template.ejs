@@ -87,6 +87,7 @@
             font-size: 1.2em;
             text-align: center;
             margin-top: 25px;
+            margin-bottom: 10%;
         }
     </style>
 </head>
@@ -98,7 +99,7 @@
         </h3>
 
         <p>Total Carbon Footprint:</p>
-        <table>
+        <table style="margin-bottom: 20px;">
             <!-- <tr>
                 <th>Virtual Event</th>
                 <th>Outbound Marketing</th>
@@ -118,12 +119,12 @@
                     <%= data.totalNewspaper %> kgCO<sub>2</sub>e
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <th>Magazine</th>
                 <td>
                     <%= data.totalMagazine %> kgCO<sub>2</sub>e
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <th>Podcast</th>
                 <td>
@@ -186,12 +187,14 @@
                                                                                 rowData.noOfMins || rowData.kgs ||
                                                                                 rowData.adDuration ||
                                                                                 rowData.noOfCopiesOne ||
+                                                                                rowData.noOfCopiesHalf ||
                                                                                 rowData.podcastSize || rowData.energyKwh
                                                                                 || rowData.noOfPages %>
                                                                         </td>
                                                                         <% if (rowData.videoMins ||
                                                                             rowData.impressionsOne || rowData.noOfPeople
-                                                                            || rowData.noOfListeners ||
+                                                                            || rowData.noOfListeners
+                                                                            ||rowData.energyRenewable||
                                                                             rowData.noOfCopiesTwo || rowData.noOfSlots)
                                                                             { %>
                                                                             <td>
@@ -200,6 +203,7 @@
                                                                                     rowData.noOfPeople ||
                                                                                     rowData.noOfSlots ||
                                                                                     rowData.noOfListeners ||
+                                                                                    rowData.energyRenewable||
                                                                                     rowData.noOfCopiesTwo %>
                                                                             </td>
                                                                             <% } %>

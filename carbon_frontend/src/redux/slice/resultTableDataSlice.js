@@ -399,7 +399,9 @@ const resultTableDataSlice = createSlice({
             };
         },
         deleteResTabVrtEventData: (state, action) => {
-            const filteredData = state?.data?.map(item => {
+            console.log('action', action.payload);
+            const filteredData = state?.data?.allDataOfTab?.map(item => {
+                console.log("item :::" , item.tabTitle);
                 // if (item.tabTitle === 'Virtual Event') {
                 // if (item.tabTitle === 'outboundMarketing') {
                 if (item.tabTitle === 'virtualEvent') {
@@ -430,6 +432,7 @@ const resultTableDataSlice = createSlice({
                 }
                 return item;
             });
+            console.log('filteredData', filteredData);
             return {
                 ...state,
                 data: filteredData,

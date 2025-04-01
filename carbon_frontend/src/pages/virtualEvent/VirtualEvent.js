@@ -27,6 +27,8 @@ import VirtualEventIcon from '../../layouts/user/assets/images/virtualEvent.png'
 import outboundIcon from '../../assets/outboundIcon.png';
 import podcastIcon from '../../assets/podcastIcon.png';
 import TVImg from '../../layouts/user/assets/images/tv.png';
+// import PrintImg from '../../layouts/user/assets/images/print.png'
+import PrintImg from '../../layouts/user/assets/images/printer2.png'
 import useEventData from '../../hooks/useEventData';
 
 const style = {
@@ -133,7 +135,7 @@ const VirtualEvent = (props) => {
 
         // Newspaper- Full page Ad
         noOfCopiesOne: '',
-        efFourteen: 0.023125,
+        efFourteen: 0.025,
         emissionFourteen: '',
 
         // Magazine
@@ -145,19 +147,20 @@ const VirtualEvent = (props) => {
         //  Outdoor Branding:
         // Polyethylene HDPE Banner
         hdpeBanner: '',              // Weight (kgs)
-        efSixteen: 3.11,
+        efSixteen: 2.15,
         emissionSixteen: '',
         // PVC Banners
         pvcBanners: '',              // Weight (kgs)
-        efSeventeen: 7.83,
+        efSeventeen: 2.42,
         emissionSeventeen: '',
 
         // TV Ad
         adDuration: '',            // Ad Duration (In Sec)
         noOfSlots: '',
         viewers: '',
-        efEighteen: 0.002,
+        efEighteen: 0.0000222,
         emissionEightteen: '',
+        efEighteen1: 0.727,
 
         // Podcast
         podcastSize: '',    // Podcast Size (in Mb)
@@ -168,13 +171,33 @@ const VirtualEvent = (props) => {
 
         // Energy
         energyKwh: '',
-        efTwenty: 0.716,
-        emissionTwenty: ''
+        efTwenty: 0.727,
+        energyRenewable: '',
+        emissionTwenty: '',
+
+        // Newspaper- Half page Ad
+        noOfCopiesHalf: '',
+        efHalf: 0.0125,
+        emissionHalf: '',
+
+        // Print Ad
+        colourNoOfPage: '',
+        efColour: 0.976,
+        emissionColour: '',
+
+        // blackWhite Ad
+        blackWhiteNoOfPage: '',
+        efBlackWhite: 0.946,
+        emissionBlackWhite: '',
+
     };
 
     const formik = useFormik({
         initialValues,
         onSubmit: async (values) => {
+
+
+
             // Image
             const emissionOne = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0 ? 0 : (Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2));
             // Video
@@ -198,10 +221,15 @@ const VirtualEvent = (props) => {
             const emissionFifteen = values?.noOfPages === 0 || values?.noOfCopiesTwo === 0 ? 0 : Number(Number(values?.noOfPages) * Number(values?.noOfCopiesTwo) * Number(values?.efFifteen)).toFixed(2);
             const emissionSixteen = values?.hdpeBanner === 0 ? 0 : Number(Number(values?.hdpeBanner) * Number(values?.efSixteen)).toFixed(2);
             const emissionSeventeen = values?.pvcBanners === 0 ? 0 : Number(Number(values?.pvcBanners) * Number(values?.efSeventeen)).toFixed(2);
-            const emissionEightteen = values?.adDuration === 0 ? 0 : Number(Number(values?.adDuration) * Number(values?.noOfSlots) * Number(values?.viewers) * Number(values?.efEighteen)).toFixed(2);
-
+            const emissionEightteen = values?.adDuration === 0 ? 0 : Number(Number(values?.adDuration) * Number(values?.noOfSlots) * Number(values?.viewers) * Number(values?.efEighteen) * Number(values?.efEighteen1)).toFixed(2);
             const emissionNineteen = values?.podcastTotal === 0 || values?.noOfListeners === 0 ? 0 : Number(Number(values?.podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
-            const emissionTwenty = values?.energyKwh === 0 ? 0 : Number(Number(values?.energyKwh) * Number(values?.efTwenty)).toFixed(2);
+            // const emissionTwenty = values?.energyKwh === 0 ? 0 : Number(Number(values?.energyKwh) * Number(values?.efTwenty)).toFixed(2);
+            const minusRenewanle = 100 - values?.energyRenewable
+            const emissionTwenty = values?.energyKwh === 0 ? 0 : Number((Number(values?.energyKwh) * Number(values?.efTwenty)) * minusRenewanle / 100).toFixed(2);
+            const emissionHalf = values?.noOfCopiesHalf === 0 ? 0 : Number(Number(values?.noOfCopiesHalf) * Number(values?.efHalf)).toFixed(2);
+            const emissionColour = values?.colourNoOfPage === 0 ? 0 : Number(Number(values?.colourNoOfPage) * Number(values?.efColour)).toFixed(2);
+            const emissionBlackWhite = values?.blackWhiteNoOfPage === 0 ? 0 : Number(Number(values?.blackWhiteNoOfPage) * Number(values?.efBlackWhite)).toFixed(2);
+
 
             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 
@@ -228,6 +256,11 @@ const VirtualEvent = (props) => {
 
             if (emissionNineteen > 0) formik.setFieldValue('emissionNineteen', emissionNineteen);
             if (emissionTwenty > 0) formik.setFieldValue('emissionTwenty', emissionTwenty);
+            if (emissionHalf > 0) formik.setFieldValue('emissionHalf', emissionHalf);
+            if (emissionColour > 0) formik.setFieldValue('emissionColour', emissionColour);
+            if (emissionBlackWhite > 0) formik.setFieldValue('emissionBlackWhite', emissionBlackWhite);
+
+
 
 
             const data = [
@@ -259,70 +292,70 @@ const VirtualEvent = (props) => {
                     name: 'Tiktok',
                     noOfMins: values?.noOfMinsOne,
                     noOfPeople: values?.noOfPeopleOne,
-                    ef: values?.efThree,
+                    // ef: values?.efThree,
                     emission: emissionThree > 0 ? emissionThree : '',
                 },
                 {
                     name: 'Reditt',
                     noOfMins: values?.noOfMinsTwo,
                     noOfPeople: values?.noOfPeopleTwo,
-                    ef: values?.efFour,
+                    // ef: values?.efFour,
                     emission: emissionFour > 0 ? emissionFour : '',
                 },
                 {
                     name: 'Pinterest',
                     noOfMins: values?.noOfMinsThree,
                     noOfPeople: values?.noOfPeopleThree,
-                    ef: values?.efFive,
+                    // ef: values?.efFive,
                     emission: emissionFive > 0 ? emissionFive : '',
                 },
                 {
                     name: 'Instagram Live',
                     noOfMins: values?.noOfMinsFour,
                     noOfPeople: values?.noOfPeopleFour,
-                    ef: values?.efSix,
+                    // ef: values?.efSix,
                     emission: emissionSix > 0 ? emissionSix : '',
                 },
                 {
                     name: 'Snapchat',
                     noOfMins: values?.noOfMinsFive,
                     noOfPeople: values?.noOfPeopleFive,
-                    ef: values?.efSeven,
+                    // ef: values?.efSeven,
                     emission: emissionSeven > 0 ? emissionSeven : '',
                 },
                 {
                     name: 'Facebook Live',
                     noOfMins: values?.noOfMinsSix,
                     noOfPeople: values?.noOfPeopleSix,
-                    ef: values?.efEight,
+                    // ef: values?.efEight,
                     emission: emissionEight > 0 ? emissionEight : '',
                 },
                 {
                     name: 'LinkedIn Live',
                     noOfMins: values?.noOfMinsSeven,
                     noOfPeople: values?.noOfPeopleSeven,
-                    ef: values?.efNine,
+                    // ef: values?.efNine,
                     emission: emissionNine > 0 ? emissionNine : '',
                 },
                 {
                     name: 'Twitter Live',
                     noOfMins: values?.noOfMinsEight,
                     noOfPeople: values?.noOfPeopleEight,
-                    ef: values?.efTen,
+                    // ef: values?.efTen,
                     emission: emissionTen > 0 ? emissionTen : '',
                 },
                 {
                     name: 'Twitch',
                     noOfMins: values?.noOfMinsNine,
                     noOfPeople: values?.noOfPeopleNine,
-                    ef: values?.efEleven,
+                    // ef: values?.efEleven,
                     emission: emissionEleven > 0 ? emissionEleven : '',
                 },
                 {
                     name: 'Youtube',
                     noOfMins: values?.noOfMinsTen,
                     noOfPeople: values?.noOfPeopleTen,
-                    ef: values?.efTwelve,
+                    // ef: values?.efTwelve,
                     emission: emissionTwelve > 0 ? emissionTwelve : '',
                 },
 
@@ -330,33 +363,33 @@ const VirtualEvent = (props) => {
                     name: 'Video Conferencing',
                     noOfMins: values?.noOfMinsEleven,
                     noOfPeople: values?.noOfPeopleEleven,
-                    ef: values?.efThirteen,
+                    // ef: values?.efThirteen,
                     emission: emissionThirteen > 0 ? emissionThirteen : '',
                 },
 
                 {
                     name: 'Newspaper- Full page Ad',
                     noOfCopiesOne: values?.noOfCopiesOne,
-                    ef: values?.efFourteen,
+                    // ef: values?.efFourteen,
                     emission: emissionFourteen > 0 ? emissionFourteen : '',
                 },
-                {
-                    name: 'Magazine',
-                    noOfPages: values?.noOfPages,
-                    noOfCopiesTwo: values?.noOfCopiesTwo,
-                    ef: values?.efFifteen,
-                    emission: emissionFifteen > 0 ? emissionFifteen : '',
-                },
+                // {
+                //     name: 'Magazine',
+                //     noOfPages: values?.noOfPages,
+                //     noOfCopiesTwo: values?.noOfCopiesTwo,
+                //     // ef: values?.efFifteen,
+                //     emission: emissionFifteen > 0 ? emissionFifteen : '',
+                // },
                 {
                     name: 'Polyethylene HDPE Banner',
                     hdpeBanner: values?.hdpeBanner,
-                    ef: values?.efSixteen,
+                    // ef: values?.efSixteen,
                     emission: emissionSixteen > 0 ? emissionSixteen : '',
                 },
                 {
                     name: 'PVC Banners',
                     pvcBanners: values?.pvcBanners,
-                    ef: values?.efSeventeen,
+                    // ef: values?.efSeventeen,
                     emission: emissionSeventeen > 0 ? emissionSeventeen : '',
                 },
                 {
@@ -364,7 +397,7 @@ const VirtualEvent = (props) => {
                     adDuration: values?.adDuration,
                     noOfSlots: values?.noOfSlots,
                     viewers: values?.viewers,
-                    ef: values?.efEighteen,
+                    // ef: values?.efEighteen,
                     emission: emissionEightteen > 0 ? emissionEightteen : '',
                 },
 
@@ -379,17 +412,36 @@ const VirtualEvent = (props) => {
                 {
                     name: 'Energy',
                     energyKwh: values?.energyKwh,
-                    ef: values?.efTwenty,
+                    // ef: values?.efTwenty,
+                    energyRenewable: values?.energyRenewable,
                     emission: emissionTwenty > 0 ? emissionTwenty : '',
+                },
+                {
+                    name: 'Newspaper- Half page Ad',
+                    noOfCopiesHalf: values?.noOfCopiesHalf,
+                    // ef: values?.efHalf,
+                    emission: emissionHalf > 0 ? emissionHalf : '',
+                },
+                {
+                    name: 'Colour Print Ad',
+                    colourNoOfPage: values?.colourNoOfPage,
+                    // ef: values?.efColour,
+                    emission: emissionColour > 0 ? emissionColour : '',
+                },
+                {
+                    name: 'Black & White',
+                    blackWhiteNoOfPage: values?.blackWhiteNoOfPage,
+                    // ef: values?.efBlackWhite,
+                    emission: emissionBlackWhite > 0 ? emissionBlackWhite : '',
                 }
             ];
-            dispatch(addVirtualEventData({ data }));
+            dispatch(addVirtualEventData({ data }))
 
             const tableData = [
                 {
                     subType: "",
                     subTypeData: {
-                        th: ["", "No of copies", "Emissions"],
+                        th: ["", "No. of copies", "Emissions"],
                         td: [
                             {
                                 vtType: "Newspaper- Full page Ad",
@@ -400,21 +452,21 @@ const VirtualEvent = (props) => {
                     },
                     // scope: 3
                 },
-                {
-                    subType: "",
-                    subTypeData: {
-                        th: ["", "No of pages", "No of copies", "Emissions"],
-                        td: [
-                            {
-                                vtType: "Magazine",
-                                noOfPages: values?.noOfPages,
-                                noOfCopiesTwo: values?.noOfCopiesTwo,
-                                emissions: emissionFifteen > 0 ? emissionFifteen : '',
-                            },
-                        ]
-                    },
-                    // scope: 3
-                },
+                // {
+                //     subType: "",
+                //     subTypeData: {
+                //         th: ["", "No of pages", "No of copies", "Emissions"],
+                //         td: [
+                //             {
+                //                 vtType: "Magazine",
+                //                 noOfPages: values?.noOfPages,
+                //                 noOfCopiesTwo: values?.noOfCopiesTwo,
+                //                 emissions: emissionFifteen > 0 ? emissionFifteen : '',
+                //             },
+                //         ]
+                //     },
+                //     // scope: 3
+                // },
                 {
                     subType: "",
                     subTypeData: {
@@ -437,7 +489,7 @@ const VirtualEvent = (props) => {
                 {
                     subType: "",
                     subTypeData: {
-                        th: ["", "Ad duration (In Sec)", "No of slots", "Viewers", "Emissions"],
+                        th: ["", "Ad duration (In Sec)", "No. of slots", "Viewers", "Emissions"],
                         td: [
                             {
                                 vtType: "TV Ad",
@@ -453,7 +505,7 @@ const VirtualEvent = (props) => {
                 {
                     subType: "",
                     subTypeData: {
-                        th: ["", "Podcast Size (in Mb)", "No of Listeners", "Emissions"],
+                        th: ["", "Podcast Size (in Mb)", "No. of Listeners", "Emissions"],
                         td: [
                             {
                                 vtType: "Podcast",
@@ -468,11 +520,12 @@ const VirtualEvent = (props) => {
                 {
                     subType: "",
                     subTypeData: {
-                        th: ["", "kwh", "Emissions"],
+                        th: ["", "kwh", "Renewable", "Emissions"],
                         td: [
                             {
                                 vtType: "Energy",
                                 energyKwh: values?.energyKwh,
+                                energyRenewable: values?.energyRenewable,
                                 emissions: emissionTwenty > 0 ? emissionTwenty : '',
                             }
                         ]
@@ -515,7 +568,7 @@ const VirtualEvent = (props) => {
                 {
                     subType: "Live Broadcasting",
                     subTypeData: {
-                        th: ["", "No of Minutes", "No of People", "Emissions"],
+                        th: ["", "No. of Minutes", "No. of People", "Emissions"],
                         td: [
                             {
                                 vtType: "Tiktok",
@@ -586,11 +639,45 @@ const VirtualEvent = (props) => {
                         ]
                     },
                     // scope: 2
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "No. of copies", "Emissions"],
+                        td: [
+                            {
+                                vtType: "Newspaper- Half page Ad",
+                                noOfCopiesHalf: values?.noOfCopiesHalf,
+                                emissions: emissionHalf > 0 ? emissionHalf : '',
+                            },
+                        ]
+                    },
+                },
+                {
+                    subType: "",
+                    subTypeData: {
+                        th: ["", "No. of Page", "Emissions"],
+                        td: [
+                            {
+                                vtType: "Colour Print Ad",
+                                noOfPages: values?.colourNoOfPage,
+                                emissions: emissionColour > 0 ? emissionColour : '',
+                            },
+                            {
+                                vtType: "Black & White",
+                                noOfPages: values?.blackWhiteNoOfPage,
+                                emissions: emissionBlackWhite > 0 ? emissionBlackWhite : '',
+                            },
+                        ]
+                    }
                 }
             ];
+            // dispatch(addVirtualEventData({ data }));
 
-            // dispatch(addResultTableData({ from: "outboundMarketing", data: tableData, tabTitle: "Outbound Marketing" }));
-            // dispatch(addResultTableData({ from: "outboundMarketing", data: tableData, tabTitle: "Outbound Marketing" }));
+            // dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
+            // dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
+            // dispatch(addVirtualEventData({ data }));
+            // dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
             dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
             dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
 
@@ -626,114 +713,196 @@ const VirtualEvent = (props) => {
     const handleOpenInfo = () => setOpenInfo(true);
     const handleInfoClose = () => setOpenInfo(false);
 
+    // useEffect(() => {
+    //     if (allData?.length > 0) {
+    //         // formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
+    //         // formik.setFieldValue('deviceEnergy1', allData?.[0]?.deviceEnergy1);
+    //         // formik.setFieldValue('somePlatformEnergy1', allData?.[0]?.somePlatformEnergy1);
+    //         // formik.setFieldValue('networkEnergy1', allData?.[0]?.networkEnergy1);
+    //         // formik.setFieldValue('totalEnergy1', allData?.[0]?.totalEnergy1);
+    //         // formik.setFieldValue('efOne', allData?.[0]?.efOne);
+    //         // formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
+    //         // formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+
+    //         // formik.setFieldValue('videoSize', allData?.[1]?.videoSize);
+    //         // formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
+    //         // formik.setFieldValue('deviceEnergy2', allData?.[1]?.deviceEnergy2);
+    //         // formik.setFieldValue('somePlatformEnergy2', allData?.[1]?.somePlatformEnergy2);
+    //         // formik.setFieldValue('networkEnergy2', allData?.[1]?.networkEnergy2);
+    //         // formik.setFieldValue('totalEnergy2', allData?.[1]?.totalEnergy2);
+    //         // formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
+    //         // formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
+    //         // formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
+
+    //         formik.setFieldValue('noOfMinsOne', allData?.[2]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleOne', allData?.[2]?.noOfPeople);
+    //         formik.setFieldValue('efThree', allData?.[2]?.ef);
+    //         formik.setFieldValue('emissionThree', allData?.[2]?.emission);
+
+    //         formik.setFieldValue('noOfMinsTwo', allData?.[3]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleTwo', allData?.[3]?.noOfPeople);
+    //         formik.setFieldValue('efFour', allData?.[3]?.ef);
+    //         formik.setFieldValue('emissionFour', allData?.[3]?.emission);
+
+    //         formik.setFieldValue('noOfMinsThree', allData?.[4]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleThree', allData?.[4]?.noOfPeople);
+    //         formik.setFieldValue('efFive', allData?.[4]?.ef);
+    //         formik.setFieldValue('emissionFive', allData?.[4]?.emission);
+
+    //         formik.setFieldValue('noOfMinsFour', allData?.[5]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleFour', allData?.[5]?.noOfPeople);
+    //         formik.setFieldValue('efSix', allData?.[5]?.ef);
+    //         formik.setFieldValue('emissionSix', allData?.[5]?.emission);
+
+    //         formik.setFieldValue('noOfMinsFive', allData?.[6]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleFive', allData?.[6]?.noOfPeople);
+    //         formik.setFieldValue('efSeven', allData?.[6]?.ef);
+    //         formik.setFieldValue('emissionSeven', allData?.[6]?.emission);
+
+    //         formik.setFieldValue('noOfMinsSix', allData?.[7]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleSix', allData?.[7]?.noOfPeople);
+    //         formik.setFieldValue('efEight', allData?.[7]?.ef);
+    //         formik.setFieldValue('emissionEight', allData?.[7]?.emission);
+
+    //         formik.setFieldValue('noOfMinsSeven', allData?.[8]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleSeven', allData?.[8]?.noOfPeople);
+    //         formik.setFieldValue('efNine', allData?.[8]?.ef);
+    //         formik.setFieldValue('emissionNine', allData?.[8]?.emission);
+
+    //         formik.setFieldValue('noOfMinsEight', allData?.[9]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleEight', allData?.[9]?.noOfPeople);
+    //         formik.setFieldValue('efTen', allData?.[9]?.ef);
+    //         formik.setFieldValue('emissionTen', allData?.[9]?.emission);
+
+    //         formik.setFieldValue('noOfMinsNine', allData?.[10]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleNine', allData?.[10]?.noOfPeople);
+    //         formik.setFieldValue('efEleven', allData?.[10]?.ef);
+    //         formik.setFieldValue('emissionEleven', allData?.[10]?.emission);
+
+    //         formik.setFieldValue('noOfMinsTen', allData?.[11]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleTen', allData?.[11]?.noOfPeople);
+    //         formik.setFieldValue('efTwelve', allData?.[11]?.ef);
+    //         formik.setFieldValue('emissionTwelve', allData?.[11]?.emission);
+
+    //         formik.setFieldValue('noOfMinsEleven', allData?.[12]?.noOfMins);
+    //         formik.setFieldValue('noOfPeopleEleven', allData?.[12]?.noOfPeople);
+    //         formik.setFieldValue('efThirteen', allData?.[12]?.ef);
+    //         formik.setFieldValue('emissionThirteen', allData?.[12]?.emission);
+
+    //         formik.setFieldValue('noOfCopiesOne', allData?.[13]?.noOfCopiesOne);
+    //         formik.setFieldValue('efFourteen', allData?.[13]?.ef);
+    //         formik.setFieldValue('emissionFourteen', allData?.[13]?.emission);
+
+    //         formik.setFieldValue('noOfPages', allData?.[14]?.noOfPages);
+    //         formik.setFieldValue('noOfCopiesTwo', allData?.[14]?.noOfCopiesTwo);
+    //         formik.setFieldValue('efFifteen', allData?.[14]?.ef);
+    //         formik.setFieldValue('emissionFifteen', allData?.[14]?.emission);
+
+    //         formik.setFieldValue('hdpeBanner', allData?.[15]?.hdpeBanner);
+    //         formik.setFieldValue('efSixteen', allData?.[15]?.ef);
+    //         formik.setFieldValue('emissionSixteen', allData?.[15]?.emission);
+
+    //         formik.setFieldValue('pvcBanners', allData?.[16]?.pvcBanners);
+    //         formik.setFieldValue('efSeventeen', allData?.[16]?.ef);
+    //         formik.setFieldValue('emissionSeventeen', allData?.[16]?.emission);
+
+    //         formik.setFieldValue('adDuration', allData?.[17]?.adDuration);
+    //         formik.setFieldValue('noOfSlots', allData?.[17]?.noOfSlots);
+    //         formik.setFieldValue('viewers', allData?.[17]?.viewers);
+    //         formik.setFieldValue('efEighteen', allData?.[17]?.ef);
+    //         formik.setFieldValue('emissionEightteen', allData?.[17]?.emission);
+
+    //         formik.setFieldValue('podcastSize', allData?.[18]?.podcastSize);
+    //         formik.setFieldValue('noOfListeners', allData?.[18]?.noOfListeners);
+    //         formik.setFieldValue('podcastKwh', allData?.[18]?.podcastKwh);
+    //         formik.setFieldValue('podcastTotal', allData?.[18]?.podcastTotal);
+    //         formik.setFieldValue('emissionNineteen', allData?.[18]?.emission);
+
+    //         formik.setFieldValue('energyKwh', allData?.[19]?.energyKwh);
+    //         formik.setFieldValue('efTwenty', allData?.[19]?.ef);
+    //         formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
+    //     }
+    // }, [value]);
+
     useEffect(() => {
         if (allData?.length > 0) {
-            // formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
-            // formik.setFieldValue('deviceEnergy1', allData?.[0]?.deviceEnergy1);
-            // formik.setFieldValue('somePlatformEnergy1', allData?.[0]?.somePlatformEnergy1);
-            // formik.setFieldValue('networkEnergy1', allData?.[0]?.networkEnergy1);
-            // formik.setFieldValue('totalEnergy1', allData?.[0]?.totalEnergy1);
-            // formik.setFieldValue('efOne', allData?.[0]?.efOne);
-            // formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
-            // formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+            const formValues = {
+                ...initialValues
+            };
 
-            // formik.setFieldValue('videoSize', allData?.[1]?.videoSize);
-            // formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
-            // formik.setFieldValue('deviceEnergy2', allData?.[1]?.deviceEnergy2);
-            // formik.setFieldValue('somePlatformEnergy2', allData?.[1]?.somePlatformEnergy2);
-            // formik.setFieldValue('networkEnergy2', allData?.[1]?.networkEnergy2);
-            // formik.setFieldValue('totalEnergy2', allData?.[1]?.totalEnergy2);
-            // formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
-            // formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
-            // formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
+            allData.forEach(item => {
+                //         if (item.name === "Tiktok" || item.type === "Tiktok") {
+                //             formValues.noOfMinsOne = item.noOfMins;
+                //             formValues.noOfPeopleOne = item.noOfPeople;
+                //             formValues.emissionThree = item.emission;
+                //         }
+                //         else if (item.name === "Reditt" || item.type === "Reditt") {
+                //             formValues.noOfMinsTwo = item.noOfMins;
+                //             formValues.noOfPeopleTwo = item.noOfPeople;
+                //             formValues.emissionFour = item.emission;
+                //         }
+                //         else if (item.name === "Pinterest" || item.type === "Pinterest") {
+                //             formValues.noOfMinsThree = item.noOfMins;
+                //             formValues.noOfPeopleThree = item.noOfPeople;
+                //             formValues.emissionFive = item.emission;
+                //         }
+                //         // Continue for all other platforms...
+                if (item.name === "Newspaper- Full page Ad" || item.type === "Newspaper- Full page Ad") {
+                    formValues.noOfCopiesOne = item.noOfCopiesOne;
+                    formValues.emissionFourteen = item.emission;
+                }
+                // else if (item.name === "Magazine" || item.type === "Magazine") {
+                //     formValues.noOfPages = item.noOfPages;
+                //     formValues.noOfCopiesTwo = item.noOfCopiesTwo;
+                //     formValues.emissionFifteen = item.emission;
+                // }
+                else if (item.name === "Polyethylene HDPE Banner" || item.type === "Polyethylene HDPE Banner") {
+                    formValues.hdpeBanner = item.hdpeBanner;
+                    formValues.emissionSixteen = item.emission;
+                }
+                else if (item.name === "PVC Banners" || item.type === "PVC Banners") {
+                    formValues.pvcBanners = item.pvcBanners;
+                    formValues.emissionSeventeen = item.emission;
+                }
+                else if (item.name === "TV Ad" || item.type === "TV Ad") {
+                    formValues.adDuration = item.adDuration;
+                    formValues.noOfSlots = item.noOfSlots;
+                    formValues.viewers = item.viewers;
+                    formValues.emissionEightteen = item.emission;
 
-            formik.setFieldValue('noOfMinsOne', allData?.[2]?.noOfMins);
-            formik.setFieldValue('noOfPeopleOne', allData?.[2]?.noOfPeople);
-            formik.setFieldValue('efThree', allData?.[2]?.ef);
-            formik.setFieldValue('emissionThree', allData?.[2]?.emission);
+                    // adDuration: values?.adDuration,
+                    // noOfSlots: values?.noOfSlots,
+                    // viewers: values?.viewers,
+                    // ef: values?.efEighteen,
+                    // emission: emissionEightteen > 0 ? emissionEightteen : '',
+                }
+                //         else if (item.name === "Podcast" || item.type === "Podcast") {
+                //             formValues.podcastSize = item.podcastSize;
+                //             formValues.noOfListeners = item.noOfListeners;
+                //             formValues.podcastTotal = item.podcastTotal;
+                //             formValues.emissionNineteen = item.emission;
+                //         }
+                else if (item.name === "Energy" || item.type === "Energy") {
+                    formValues.energyKwh = item.energyKwh;
+                    formValues.energyRenewable = item.energyRenewable;
+                    formValues.emissionTwenty = item.emission;
+                }
+                else if (item.name === "Newspaper- Half page Ad" || item.type === "Newspaper- Half page Ad") {
+                    formValues.noOfCopiesHalf = item.noOfCopiesHalf;
+                    formValues.emissionHalf = item.emission;
+                }
+                else if (item.name === "Colour Print Ad" || item.type === "Colour Print Ad") {
+                    formValues.colourNoOfPage = item.colourNoOfPage;
+                    formValues.emissionColour = item.emission;
+                }
+                else if (item.name === "Black & White" || item.type === "Black & White") {
+                    formValues.blackWhiteNoOfPage = item.blackWhiteNoOfPage;
+                    formValues.emissionBlackWhite = item.emission;
+                }
 
-            formik.setFieldValue('noOfMinsTwo', allData?.[3]?.noOfMins);
-            formik.setFieldValue('noOfPeopleTwo', allData?.[3]?.noOfPeople);
-            formik.setFieldValue('efFour', allData?.[3]?.ef);
-            formik.setFieldValue('emissionFour', allData?.[3]?.emission);
+            });
 
-            formik.setFieldValue('noOfMinsThree', allData?.[4]?.noOfMins);
-            formik.setFieldValue('noOfPeopleThree', allData?.[4]?.noOfPeople);
-            formik.setFieldValue('efFive', allData?.[4]?.ef);
-            formik.setFieldValue('emissionFive', allData?.[4]?.emission);
-
-            formik.setFieldValue('noOfMinsFour', allData?.[5]?.noOfMins);
-            formik.setFieldValue('noOfPeopleFour', allData?.[5]?.noOfPeople);
-            formik.setFieldValue('efSix', allData?.[5]?.ef);
-            formik.setFieldValue('emissionSix', allData?.[5]?.emission);
-
-            formik.setFieldValue('noOfMinsFive', allData?.[6]?.noOfMins);
-            formik.setFieldValue('noOfPeopleFive', allData?.[6]?.noOfPeople);
-            formik.setFieldValue('efSeven', allData?.[6]?.ef);
-            formik.setFieldValue('emissionSeven', allData?.[6]?.emission);
-
-            formik.setFieldValue('noOfMinsSix', allData?.[7]?.noOfMins);
-            formik.setFieldValue('noOfPeopleSix', allData?.[7]?.noOfPeople);
-            formik.setFieldValue('efEight', allData?.[7]?.ef);
-            formik.setFieldValue('emissionEight', allData?.[7]?.emission);
-
-            formik.setFieldValue('noOfMinsSeven', allData?.[8]?.noOfMins);
-            formik.setFieldValue('noOfPeopleSeven', allData?.[8]?.noOfPeople);
-            formik.setFieldValue('efNine', allData?.[8]?.ef);
-            formik.setFieldValue('emissionNine', allData?.[8]?.emission);
-
-            formik.setFieldValue('noOfMinsEight', allData?.[9]?.noOfMins);
-            formik.setFieldValue('noOfPeopleEight', allData?.[9]?.noOfPeople);
-            formik.setFieldValue('efTen', allData?.[9]?.ef);
-            formik.setFieldValue('emissionTen', allData?.[9]?.emission);
-
-            formik.setFieldValue('noOfMinsNine', allData?.[10]?.noOfMins);
-            formik.setFieldValue('noOfPeopleNine', allData?.[10]?.noOfPeople);
-            formik.setFieldValue('efEleven', allData?.[10]?.ef);
-            formik.setFieldValue('emissionEleven', allData?.[10]?.emission);
-
-            formik.setFieldValue('noOfMinsTen', allData?.[11]?.noOfMins);
-            formik.setFieldValue('noOfPeopleTen', allData?.[11]?.noOfPeople);
-            formik.setFieldValue('efTwelve', allData?.[11]?.ef);
-            formik.setFieldValue('emissionTwelve', allData?.[11]?.emission);
-
-            formik.setFieldValue('noOfMinsEleven', allData?.[12]?.noOfMins);
-            formik.setFieldValue('noOfPeopleEleven', allData?.[12]?.noOfPeople);
-            formik.setFieldValue('efThirteen', allData?.[12]?.ef);
-            formik.setFieldValue('emissionThirteen', allData?.[12]?.emission);
-
-            formik.setFieldValue('noOfCopiesOne', allData?.[13]?.noOfCopiesOne);
-            formik.setFieldValue('efFourteen', allData?.[13]?.ef);
-            formik.setFieldValue('emissionFourteen', allData?.[13]?.emission);
-
-            formik.setFieldValue('noOfPages', allData?.[14]?.noOfPages);
-            formik.setFieldValue('noOfCopiesTwo', allData?.[14]?.noOfCopiesTwo);
-            formik.setFieldValue('efFifteen', allData?.[14]?.ef);
-            formik.setFieldValue('emissionFifteen', allData?.[14]?.emission);
-
-            formik.setFieldValue('hdpeBanner', allData?.[15]?.hdpeBanner);
-            formik.setFieldValue('efSixteen', allData?.[15]?.ef);
-            formik.setFieldValue('emissionSixteen', allData?.[15]?.emission);
-
-            formik.setFieldValue('pvcBanners', allData?.[16]?.pvcBanners);
-            formik.setFieldValue('efSeventeen', allData?.[16]?.ef);
-            formik.setFieldValue('emissionSeventeen', allData?.[16]?.emission);
-
-            formik.setFieldValue('adDuration', allData?.[17]?.adDuration);
-            formik.setFieldValue('noOfSlots', allData?.[17]?.noOfSlots);
-            formik.setFieldValue('viewers', allData?.[17]?.viewers);
-            formik.setFieldValue('efEighteen', allData?.[17]?.ef);
-            formik.setFieldValue('emissionEightteen', allData?.[17]?.emission);
-
-            formik.setFieldValue('podcastSize', allData?.[18]?.podcastSize);
-            formik.setFieldValue('noOfListeners', allData?.[18]?.noOfListeners);
-            formik.setFieldValue('podcastKwh', allData?.[18]?.podcastKwh);
-            formik.setFieldValue('podcastTotal', allData?.[18]?.podcastTotal);
-            formik.setFieldValue('emissionNineteen', allData?.[18]?.emission);
-
-            formik.setFieldValue('energyKwh', allData?.[19]?.energyKwh);
-            formik.setFieldValue('efTwenty', allData?.[19]?.ef);
-            formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
+            formik.setValues(formValues);
         }
     }, [value]);
 
@@ -966,6 +1135,36 @@ const VirtualEvent = (props) => {
                             </Card>
                             <Card
                                 sx={{
+                                    width: 280,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    <Icon component={IoNewspaper} sx={{ fontSize: 60, color: 'black' }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Newspaper- Half page Ad</Typography>
+                                    <TextField size='small' type="number" name={'noOfCopiesHalf'} value={values?.noOfCopiesHalf}
+                                        label="No of copies"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("noOfCopiesHalf", Number(e.target.value));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled name={'emissionHalf'}
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={values?.emissionHalf} onChange={formik.handleChange} sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            {/* <Card
+                                sx={{
                                     width: 260,
                                     maxWidth: '100%',
                                     boxShadow: 'lg',
@@ -1009,7 +1208,7 @@ const VirtualEvent = (props) => {
                                         sx={{ marginTop: 2 }}
                                     />
                                 </CardContent>
-                            </Card>
+                            </Card> */}
                             {/* <Card
                                 sx={{
                                     width: 260,
@@ -1060,6 +1259,79 @@ const VirtualEvent = (props) => {
                                     />
                                 </CardContent>
                             </Card> */}
+                        </Box>
+
+                        <Box style={{ padding: '0px !important', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px' }} className="mt-5">
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    {/* <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} /> */}
+                                    <img src={TVImg} alt="printer" style={{ width: "65px", margin: "auto" }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Colour Print Ad</Typography>
+                                    <TextField size='small' type="number" name={'colourNoOfPage'} value={values?.colourNoOfPage}
+                                        label="No of page"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("colourNoOfPage", Number(e.target.value));
+                                            // formik.setFieldValue("emissionColour", Number(Number(e.target.value) * Number(values?.colour)  * Number(values?.efPage)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionColour'}
+                                        value={values?.emissionColour}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
+                            <Card
+                                sx={{
+                                    width: 260,
+                                    maxWidth: '100%',
+                                    boxShadow: 'lg',
+                                    marginY: '16px'
+                                }}
+                            >
+                                <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
+                                    {/* <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} /> */}
+                                    <img src={TVImg} alt="tv" style={{ width: "65px", margin: "auto" }} />
+                                    <Typography variant="h6" sx={{ marginY: 1 }}>Black & White Print Ad</Typography>
+                                    <TextField size='small' type="number" name={'blackWhiteNoOfPage'} value={values?.blackWhiteNoOfPage}
+                                        label="No of page"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => {
+                                            formik.setFieldValue("blackWhiteNoOfPage", Number(e.target.value));
+                                            // formik.setFieldValue("emissionColour", Number(Number(e.target.value) * Number(values?.colour)  * Number(values?.efPage)).toFixed(2));
+                                            formik.handleSubmit();
+                                        }}
+                                        sx={{ marginTop: 2 }}
+                                        inputProps={{ style: { color: 'black' } }}
+                                    />
+                                    <TextField size='small' type="number" disabled
+                                        label="Emissions"
+                                        variant="outlined"
+                                        fullWidth
+                                        name={'emissionBlackWhite'}
+                                        value={values?.emissionBlackWhite}
+                                        onChange={formik.handleChange}
+                                        sx={{ marginTop: 2 }}
+                                    />
+                                </CardContent>
+                            </Card>
                         </Box>
 
                         <Box className="mb-4">
@@ -1145,6 +1417,7 @@ const VirtualEvent = (props) => {
                                             <tr className='text-white'>
                                                 <th width={'122px'} />
                                                 <th className="ps-2">kwh</th>
+                                                <th className="ps-2">% Renewable</th>
                                                 <th className="ps-2">Emissions</th>
                                             </tr>
                                             <tr>
@@ -1158,6 +1431,21 @@ const VirtualEvent = (props) => {
                                                         value={values?.energyKwh}
                                                         onChange={(e) => {
                                                             formik.setFieldValue("energyKwh", Number(e.target.value));
+                                                            formik.handleSubmit();
+                                                        }}
+                                                        inputProps={{ style: { color: 'white' } }}
+                                                    />
+                                                </td>
+                                                {/* <td className="ps-4 py-1 text-white">% Renewable</td> */}
+                                                <td className="ps-2 py-1">
+                                                    <TextField
+                                                        fullWidth
+                                                        size='small'
+                                                        type="number"
+                                                        name={'energyRenewable'}
+                                                        value={values?.energyRenewable}
+                                                        onChange={(e) => {
+                                                            formik.setFieldValue("energyRenewable", Number(e.target.value));
                                                             formik.handleSubmit();
                                                         }}
                                                         inputProps={{ style: { color: 'white' } }}
