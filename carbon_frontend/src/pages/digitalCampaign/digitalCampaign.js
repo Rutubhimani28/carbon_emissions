@@ -145,7 +145,7 @@ const DigitalCampaign = (props) => {
                         td: [
                             {
                                 dgType: "Emails",
-                                noOfEmails: values?.noOfEmails,
+                                noOfDevice: values?.noOfEmails,
                                 attachmentSize: values?.attachmentSize,
                                 emissions: emissionThree > 0 ? emissionThree : ''
                             },

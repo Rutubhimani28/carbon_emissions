@@ -222,6 +222,9 @@
                                                                             <%= rowData.noOfTrips %>
                                                                         </td>
                                                                         <td>
+                                                                            <%= rowData.noOfPassengers %>
+                                                                        </td>
+                                                                        <td>
                                                                             <%= rowData.emissions %>
                                                                         </td>
                                                                         <% } else if
@@ -229,6 +232,10 @@
                                                                             %>
                                                                             <td>
                                                                                 <%= rowData.journeyType %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= rowData.noOfCars ||
+                                                                                    rowData.noOfPassengers %>
                                                                             </td>
                                                                             <td>
                                                                                 <%= rowData.noOfKms %>
@@ -259,10 +266,10 @@
                                                                                                 <%= rowData.frType %>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <%= rowData.noOfKms %>
+                                                                                                <%= rowData.noOfTone %>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <%= rowData.kgs %>
+                                                                                                <%= rowData.noofKms %>
                                                                                             </td>
                                                                                             <td>
                                                                                                 <%= rowData.emissions %>
@@ -304,11 +311,14 @@
                                                                                                             <td>
                                                                                                                 <%= rowData.kwh
                                                                                                                     ||
+                                                                                                                    rowData.reEnergy
+                                                                                                                    ||
                                                                                                                     rowData.gallons
                                                                                                                     %>
                                                                                                             </td>
                                                                                                             <td>
-                                                                                                                <%= rowData.emissions
+                                                                                                                <%=rowData.reEnergy||
+                                                                                                                    rowData.emissions
                                                                                                                     %>
                                                                                                             </td>
                                                                                                             <% } else if

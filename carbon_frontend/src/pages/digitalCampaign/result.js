@@ -25,6 +25,8 @@ const Result = ({ value }) => {
     const [sc1, setSc1] = useState(0);
     const [sc2, setSc2] = useState(0);
     const [sc3, setSc3] = useState(0);
+    
+    console.log('allDigitalCampaignData', allDigitalCampaignData);
 
     const resultData = [
         // {
@@ -32,22 +34,32 @@ const Result = ({ value }) => {
         //     totalEmission: allDigitalCampaignData?.totalEmission
         // }
         {
-            type: 'Social Media (Image + Video)',
-            totalEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0
+            type :'Image',
+            totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission || 0
         },
         {
-            type: 'Email / Newsletter',
-            totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0
+            type : 'Video',
+            totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission || 0
         },
-        {
-            type: 'Podcast',
-            totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0
-        },
+        // {
+        //     type: 'Social Media (Image + Video)',
+        //     totalEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0
+        // },
+        // {
+        //     type: 'Email / Newsletter',
+        //     totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0
+        // },
+        // {
+        //     type: 'Podcast',
+        //     totalEmission: allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0
+        // },
     ];
 
     const data = {
         "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(2),
         "grandTotal": Number(total).toFixed(2),
+        imageEmission: allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission || 0,
+        videoEmission: allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission || 0,
         socialMediaEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0,
         emailEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0,
         podcastEmission: allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0
@@ -331,7 +343,7 @@ const Result = ({ value }) => {
 
     useEffect(() => {
         if (content) {
-            chat();
+            // chat();
         }
     }, [content]);
 
