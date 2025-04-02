@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Grid,
   Typography,
@@ -28,23 +28,13 @@ import {
   updateResultTableDatasToDb,
 } from '../../redux/slice/resultTableDataSlice';
 
-// import { useEffect } from 'react';
 // import { useTheme } from '@mui/material/styles';
 
 const Image = (props) => {
   const { setValue, value } = props;
   const allData = useSelector((state) => state?.totalDigitalCampaignDetails?.data?.[0]?.data);
-  console.log(
-    useSelector((state) => state?.totalDigitalCampaignDetails?.totalEmission),
-    allData?.reduce((total, item) => {
-      if (item?.emission) {
-        return total + Number(item?.emission);
-      }
-      return total;
-    }, 0),
-    'allData'
-  );
-  const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails?.totalEmission);
+  console.log(allData, 'allDataImage');
+  const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails);
   console.log(totalEmission, 'totalEmission');
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
   const eventsData = useEventData();
@@ -84,7 +74,7 @@ const Image = (props) => {
       const wifiEF6 = Number(values?.wifi5GImpression) * 0.000000189 * values?.contentSize;
       const wifiTotalEF = wifiEF2 + wifiEF4 + wifiEF6;
       const wifiTotalEmissions = wifiTotalEF * 0.727;
-
+      // console.log("wifiTotalEmissions", wifiTotalEmissions)
       const EFMobile2 = Number(values?.mobileDevice) * values?.EFMobile1;
       const mobileDeviceEmissions = EFMobile2 * values?.EFMobile3;
       const tabletEF2 = Number(values?.tabletDevice) * values?.tabletEF1;
@@ -120,18 +110,18 @@ const Image = (props) => {
           wifi: values?.wifiImpression,
           wifi4g: values?.wifi4GImpression,
           wifi5g: values?.wifi5GImpression,
-          emission: Number(wifiTotalEmissions).toFixed(2) > 0 ? Number(wifiTotalEmissions).toFixed(2) : '',
+          emission: Number(wifiTotalEmissions).toFixed(5) > 0 ? Number(wifiTotalEmissions).toFixed(5) : '',
         },
         {
           type: 'Device Emissions',
           mobile: values?.mobileDevice,
-          mobileEmission: mobileDeviceEmissions > 0 ? mobileDeviceEmissions : '',
+          mobileEmission: Number(mobileDeviceEmissions).toFixed(5) > 0 ? Number(mobileDeviceEmissions).toFixed(5) : '',
           tablet: values?.tabletDevice,
-          tabletEmission: tabletDeviceEmissions > 0 ? tabletDeviceEmissions : '',
+          tabletEmission: Number(tabletDeviceEmissions).toFixed(5) > 0 ? Number(tabletDeviceEmissions).toFixed(5) : '',
           laptop: values?.laptopDevice,
-          laptopEmission: laptopDeviceEmissions > 0 ? laptopDeviceEmissions : '',
+          laptopEmission: Number(laptopDeviceEmissions).toFixed(5) > 0 ? Number(laptopDeviceEmissions).toFixed(5) : '',
           desktop: values?.desktopDevice,
-          desktopEmission: desktopDeviceEmissions > 0 ? desktopDeviceEmissions : '',
+          desktopEmission: Number(desktopDeviceEmissions).toFixed(5) > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
         },
         {
           type: 'Data Center Emissions',
@@ -240,6 +230,30 @@ const Image = (props) => {
     (Number(formik.values.wifiTotalEmissions) || 0) +
     (Number(totalDevice) || 0) +
     (Number(formik?.values?.dataEmissions) || 0);
+
+  useEffect(() => {
+    if (allData?.length > 0) {
+      console.log(" allData?.[0]?.wifi:::", allData?.[0]?.wifi)
+      formik.setFieldValue('wifiImpression', allData?.[0]?.wifi)
+      formik.setFieldValue('wifi4GImpression', allData?.[0]?.wifi4g)
+      formik.setFieldValue('wifi5GImpression', allData?.[0]?.wifi5g)
+      formik.setFieldValue('wifiTotalEmissions', allData?.[0]?.emission)
+
+      formik.setFieldValue('mobileDevice', allData?.[1]?.mobile)
+      formik.setFieldValue('mobileDeviceEmissions', allData?.[1]?.mobileEmission)
+      formik.setFieldValue('tabletDevice', allData?.[1]?.tablet)
+      formik.setFieldValue('tabletDeviceEmissions', allData?.[1]?.tabletEmission)
+      formik.setFieldValue('laptopDevice', allData?.[1]?.laptop)
+      formik.setFieldValue('laptopDeviceEmissions', allData?.[1]?.laptopEmission)
+      formik.setFieldValue('desktopDevice', allData?.[1]?.desktop)
+      formik.setFieldValue('desktopDeviceEmissions', allData?.[1]?.desktopEmission)
+
+      formik.setFieldValue('dataCenter', allData?.[2]?.dataCenter)
+      formik.setFieldValue('dataRenewable', allData?.[2]?.renewable)
+      formik.setFieldValue('dataEmissions', allData?.[2]?.emission)
+
+    }
+  }, [value]);
 
   return (
     <Container maxWidth>
