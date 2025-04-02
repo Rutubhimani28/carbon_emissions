@@ -42,13 +42,26 @@ const Result = ({ value }) => {
             type: 'Newspaper- Full page Ad',
             totalEmission: allVirtualEventData?.data?.[0]?.data?.[13]?.emission
         },
+        {
+            type: 'Newspaper- Half page Ad',
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[19]?.emission
+        },
         // {
         //     type: 'Magazine',
         //     totalEmission: allVirtualEventData?.data?.[0]?.data?.[14]?.emission
         // },
+        // {
+        //     type: 'Podcast',
+        //     totalEmission: allVirtualEventData?.data?.[0]?.data?.[17]?.emission
+        // },
         {
-            type: 'Podcast',
-            totalEmission: allVirtualEventData?.data?.[0]?.data?.[17]?.emission
+            type : 'Colour Print Ad',
+            totalEmission : allVirtualEventData?.data?.[0]?.data?.[20]?.emission
+            
+        },
+        {
+            type : 'Black & White',
+            totalEmission : allVirtualEventData?.data?.[0]?.data?.[21]?.emission
         },
         {
             type: 'Polyethylene Banner',
@@ -58,6 +71,10 @@ const Result = ({ value }) => {
             type: 'PVC Banner',
             totalEmission: allVirtualEventData?.data?.[0]?.data?.[15]?.emission
         },
+        {
+            type : 'Energy',
+            totalEmission : allVirtualEventData?.data?.[0]?.data?.[18]?.emission
+        }
     ];
 
     console.log("resultData" , resultData)
@@ -66,10 +83,14 @@ const Result = ({ value }) => {
         // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(2),
         "totalTvAd": Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(2),
         "totalNewspaper": Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission).toFixed(2),
+        "totalHafepaper" : Number(allVirtualEventData?.data?.[0]?.data?.[19]?.emission).toFixed(2),
+        "colorPrint" : Number(allVirtualEventData?.data?.[0]?.data?.[20]?.emission).toFixed(2),
+        "blackAndWhite" : Number(allVirtualEventData?.data?.[0]?.data?.[21]?.emission).toFixed(2),
         // "totalMagazine": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
-        "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(2),
+        // "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(2),
         "totalPolyethylene": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
         "totalPVC": Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission).toFixed(2),
+        "Energy": Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission).toFixed(2),
         "grandTotal": Number(total).toFixed(2)
     };
 
