@@ -12,7 +12,7 @@ const Result = ({ value }) => {
     const [open, setOpen] = useState(false);
     const [content, setContent] = useState('');
     const [suggestion, setSuggestion] = useState('');
-    const [suggestionForPdf, setSuggestionForPdf] = useState('');
+    const [suggestionForPdf, setSuggestionForPdf] = useState('ABC');
     const [isLoading, setIsLoading] = useState(false);
 
     const [sc1, setSc1] = useState(0);
@@ -20,6 +20,7 @@ const Result = ({ value }) => {
     const [sc3, setSc3] = useState(0);
 
     const allVirtualEventData = useSelector((state) => state?.totalVirtualEventDetails)
+    console.log(allVirtualEventData , "allVirtualEventData")
     const total = Number(allVirtualEventData?.totalEmission);
     const totalResultTableData = useSelector((state) => state?.resultTableDataDetails);
 
@@ -35,38 +36,40 @@ const Result = ({ value }) => {
         // },
         {
             type: 'TV Ad',
-            totalEmission: allVirtualEventData?.data?.[0]?.data?.[17]?.emission
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[16]?.emission
         },
         {
             type: 'Newspaper- Full page Ad',
             totalEmission: allVirtualEventData?.data?.[0]?.data?.[13]?.emission
         },
-        {
-            type: 'Magazine',
-            totalEmission: allVirtualEventData?.data?.[0]?.data?.[14]?.emission
-        },
+        // {
+        //     type: 'Magazine',
+        //     totalEmission: allVirtualEventData?.data?.[0]?.data?.[14]?.emission
+        // },
         {
             type: 'Podcast',
-            totalEmission: allVirtualEventData?.data?.[0]?.data?.[18]?.emission
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[17]?.emission
         },
         {
             type: 'Polyethylene Banner',
-            totalEmission: allVirtualEventData?.data?.[0]?.data?.[15]?.emission
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[14]?.emission
         },
         {
             type: 'PVC Banner',
-            totalEmission: allVirtualEventData?.data?.[0]?.data?.[16]?.emission
+            totalEmission: allVirtualEventData?.data?.[0]?.data?.[15]?.emission
         },
     ];
 
+    console.log("resultData" , resultData)
+
     const data = {
         // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(2),
-        "totalTvAd": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(2),
+        "totalTvAd": Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(2),
         "totalNewspaper": Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission).toFixed(2),
-        "totalMagazine": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
-        "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission).toFixed(2),
-        "totalPolyethylene": Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission).toFixed(2),
-        "totalPVC": Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(2),
+        // "totalMagazine": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
+        "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(2),
+        "totalPolyethylene": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
+        "totalPVC": Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission).toFixed(2),
         "grandTotal": Number(total).toFixed(2)
     };
 
@@ -161,10 +164,10 @@ const Result = ({ value }) => {
             // sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
             sentenceParts.push(`Newspaper ad with ${allVirtualEventData?.data?.[0]?.data?.[13]?.noOfCopiesOne} copies generated ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgco2e, `);
         }
-        if (allVirtualEventData?.data?.[0]?.data?.[14]?.emission) {
-            // sentenceParts.push(`Magazine ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e.`);
-            sentenceParts.push(`magazine with ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfPages} pages and ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfCopiesTwo} copies generated ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgco2e, `);
-        }
+        // if (allVirtualEventData?.data?.[0]?.data?.[14]?.emission) {
+        //     // sentenceParts.push(`Magazine ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e.`);
+        //     sentenceParts.push(`magazine with ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfPages} pages and ${allVirtualEventData?.data?.[0]?.data?.[14]?.noOfCopiesTwo} copies generated ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgco2e, `);
+        // }
         // if (allVirtualEventData?.data?.[0]?.data?.[18]?.emission) {
         //     // sentenceParts.push(`Podcast ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgCO2e.`);
         //     sentenceParts.push(`podcast of ${allVirtualEventData?.data?.[0]?.data?.[18]?.podcastSize}mb with ${allVirtualEventData?.data?.[0]?.data?.[18]?.noOfListeners} listeners generated ${allVirtualEventData?.data?.[0]?.data?.[18]?.emission} kgco2e. `);
@@ -294,7 +297,7 @@ const Result = ({ value }) => {
 
     useEffect(() => {
         if (content) {
-            chat();
+            // chat();
         }
     }, [content]);
 
