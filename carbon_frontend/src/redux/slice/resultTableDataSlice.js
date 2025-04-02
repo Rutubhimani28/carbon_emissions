@@ -63,7 +63,7 @@ const resultTableDataSlice = createSlice({
         const tabIndex = existingData?.allDataOfTab?.findIndex((item) => item?.tabTitle === tabTitle);
 
         // fromIndex - event-category Like, fr2Event -> has from, allDataOfTab
-        // tabIndex - sub tab Like, Air Travel, Local Transportation
+        // tabIndex - sub tab Like, Air Travel, Transportation
 
         if (tabIndex !== -1) {
           state.data[fromIndex].allDataOfTab[tabIndex] = {
@@ -132,7 +132,7 @@ const resultTableDataSlice = createSlice({
           return {
             ...item,
             allDataOfTab: item?.allDataOfTab?.map((tab) => {
-              if (tab?.tabTitle === 'Local Transportation') {
+              if (tab?.tabTitle === 'Transportation') {
                 return {
                   ...tab,
                   tabData: [
@@ -163,7 +163,7 @@ const resultTableDataSlice = createSlice({
           return {
             ...item,
             allDataOfTab: item?.allDataOfTab?.map((tab) => {
-              if (tab?.tabTitle === 'Food & Beverages') {
+              if (tab?.tabTitle === 'Food') {
                 return {
                   ...tab,
                   tabData: [
@@ -221,7 +221,7 @@ const resultTableDataSlice = createSlice({
           return {
             ...item,
             allDataOfTab: item?.allDataOfTab?.map((tab) => {
-              if (tab?.tabTitle === 'Event Production') {
+              if (tab?.tabTitle === 'Event Agency') {
                 return {
                   ...tab,
                   tabData: [
@@ -285,7 +285,7 @@ const resultTableDataSlice = createSlice({
           return {
             ...item,
             allDataOfTab: item?.allDataOfTab?.map((tab) => {
-              if (tab?.tabTitle === 'Digital Comms') {
+              if (tab?.tabTitle === 'Communications ') {
                 return {
                   ...tab,
                   tabData: [

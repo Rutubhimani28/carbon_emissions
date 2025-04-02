@@ -100,45 +100,45 @@ const LocalTranspotation = (props) => {
     initialValues,
     onSubmit: async (values) => {
       // const petrolCarEmission =
-      //   values?.petrolCarKms === 0 ? 0 : Number(Number(values?.efOne) * Number(values?.petrolCarKms)).toFixed(2);
+      //   values?.petrolCarKms === 0 ? 0 : Number(Number(values?.efOne) * Number(values?.petrolCarKms)).toFixed(5);
       // const dieselCarEmission =
-      //   values?.dieselCarKms === 0 ? 0 : Number(Number(values?.efTwo) * Number(values?.dieselCarKms)).toFixed(2);
+      //   values?.dieselCarKms === 0 ? 0 : Number(Number(values?.efTwo) * Number(values?.dieselCarKms)).toFixed(5);
       // const hybridCarEmission =
-      //   values?.hybridCarKms === 0 ? 0 : Number(Number(values?.efThree) * Number(values?.hybridCarKms)).toFixed(2);
+      //   values?.hybridCarKms === 0 ? 0 : Number(Number(values?.efThree) * Number(values?.hybridCarKms)).toFixed(5);
 
       // const petrolCarEmission2 =
-      //   values?.petrolCarKms2 === 0 ? 0 : Number(Number(values?.efFour) * Number(values?.petrolCarKms2)).toFixed(2);
+      //   values?.petrolCarKms2 === 0 ? 0 : Number(Number(values?.efFour) * Number(values?.petrolCarKms2)).toFixed(5);
       // const dieselCarEmission2 =
-      //   values?.dieselCarKms2 === 0 ? 0 : Number(Number(values?.efFive) * Number(values?.dieselCarKms2)).toFixed(2);
+      //   values?.dieselCarKms2 === 0 ? 0 : Number(Number(values?.efFive) * Number(values?.dieselCarKms2)).toFixed(5);
       // const hybridCarEmission2 =
-      //   values?.hybridCarKms2 === 0 ? 0 : Number(Number(values?.efSix) * Number(values?.hybridCarKms2)).toFixed(2);
+      //   values?.hybridCarKms2 === 0 ? 0 : Number(Number(values?.efSix) * Number(values?.hybridCarKms2)).toFixed(5);
 
       // const busDieselEmission =
-      //   values?.busDieselKms === 0 ? 0 : Number(Number(values?.efSeven) * Number(values?.busDieselKms)).toFixed(2);
+      //   values?.busDieselKms === 0 ? 0 : Number(Number(values?.efSeven) * Number(values?.busDieselKms)).toFixed(5);
       // const subwayTramEmission =
-      //   values?.subwayTramKms === 0 ? 0 : Number(Number(values?.efEight) * Number(values?.subwayTramKms)).toFixed(2);
+      //   values?.subwayTramKms === 0 ? 0 : Number(Number(values?.efEight) * Number(values?.subwayTramKms)).toFixed(5);
       // const ferryEmission =
-      //   values?.ferryKms === 0 ? 0 : Number(Number(values?.efNine) * Number(values?.ferryKms)).toFixed(2);
+      //   values?.ferryKms === 0 ? 0 : Number(Number(values?.efNine) * Number(values?.ferryKms)).toFixed(5);
 
       const metroEmission =
         values?.metroPassenger === '' || values?.metroPassengerkms === ''
           ? 0
           : Number(
               Number(values?.metroPassenger) * Number(values?.metroPassengerkms) * Number(values?.metroef)
-            ).toFixed(2);
+            ).toFixed(5);
       const busEmission =
         values?.busPassenger === '' || values?.busPassengerkms === ''
           ? 0
-          : Number(Number(values?.busPassenger) * Number(values?.busPassengerkms) * Number(values?.busef)).toFixed(2);
+          : Number(Number(values?.busPassenger) * Number(values?.busPassengerkms) * Number(values?.busef)).toFixed(5);
 
       const passengerEmission =
         values?.passengerOfCar === '' || values?.passengerOfCarKms === ''
           ? 0
-          : Number(Number(values?.passengerOfCar) * Number(values?.passengerOfCarKms) * Number(values?.pef)).toFixed(2);
+          : Number(Number(values?.passengerOfCar) * Number(values?.passengerOfCarKms) * Number(values?.pef)).toFixed(5);
       const cabTaxiEmission =
         values?.cabTaxiCars === '' || values?.cabTaxiCarsKms === ''
           ? 0
-          : Number(Number(values?.cabTaxiCars) * Number(values?.cabTaxiCarsKms) * Number(values?.cabTaxief)).toFixed(2);
+          : Number(Number(values?.cabTaxiCars) * Number(values?.cabTaxiCarsKms) * Number(values?.cabTaxief)).toFixed(5);
       if (metroEmission > 0) formik.setFieldValue('metroEmission', metroEmission);
       if (busEmission > 0) formik.setFieldValue('busEmission', busEmission);
       if (passengerEmission > 0) formik.setFieldValue('passengerEmission', passengerEmission);
@@ -278,31 +278,6 @@ const LocalTranspotation = (props) => {
         //   // scope: 3
         // },
         {
-          subType: 'Public Transport',
-          subTypeData: {
-            th: ['', 'No. of Passenegers', 'Total No. of kms/ Passenger', 'Emissions (Kg CO2e)'],
-            td: [
-              {
-                journeyType: 'Metro',
-                noOfCars: values?.metroPassenger,
-                noOfKms: values?.metroPassengerkms,
-                emissions: metroEmission > 0 ? metroEmission : '',
-                // noOfKms: values?.busDieselKms,
-                // emissions: busDieselEmission > 0 ? busDieselEmission : '',
-              },
-              {
-                journeyType: 'Bus',
-                noOfCars: values?.busPassenger,
-                noOfKms: values?.busPassengerkms,
-                emissions: busEmission > 0 ? busEmission : '',
-                // noOfKms: values?.subwayTramKms,
-                // emissions: subwayTramEmission > 0 ? subwayTramEmission : '',
-              },
-            ],
-          },
-          // scope: 3
-        },
-        {
           subType: 'Private Transport',
           subTypeData: {
             th: ['', 'Total No. of Cars', 'Total No. of kms/ Car', 'Emissions (Kg CO2e)'],
@@ -320,6 +295,31 @@ const LocalTranspotation = (props) => {
                 noOfPassengers: values?.cabTaxiCars,
                 noOfKms: values?.cabTaxiCarsKms,
                 emissions: cabTaxiEmission > 0 ? cabTaxiEmission : '',
+                // noOfKms: values?.subwayTramKms,
+                // emissions: subwayTramEmission > 0 ? subwayTramEmission : '',
+              },
+            ],
+          },
+          // scope: 3
+        },
+        {
+          subType: 'Public Transport',
+          subTypeData: {
+            th: ['', 'No. of Passenegers', 'Total No. of kms/ Passenger', 'Emissions (Kg CO2e)'],
+            td: [
+              {
+                journeyType: 'Metro',
+                noOfCars: values?.metroPassenger,
+                noOfKms: values?.metroPassengerkms,
+                emissions: metroEmission > 0 ? metroEmission : '',
+                // noOfKms: values?.busDieselKms,
+                // emissions: busDieselEmission > 0 ? busDieselEmission : '',
+              },
+              {
+                journeyType: 'Bus',
+                noOfCars: values?.busPassenger,
+                noOfKms: values?.busPassengerkms,
+                emissions: busEmission > 0 ? busEmission : '',
                 // noOfKms: values?.subwayTramKms,
                 // emissions: subwayTramEmission > 0 ? subwayTramEmission : '',
               },
@@ -352,10 +352,10 @@ const LocalTranspotation = (props) => {
         //   // scope: 3
         // },
       ];
-      console.log('Local Transportation tableData', tableData);
+      console.log('Transportation tableData', tableData);
 
       dispatch(addLocalTranspotationData({ data }));
-      dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Local Transportation' }));
+      dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Transportation' }));
     },
   });
 
@@ -446,7 +446,7 @@ const LocalTranspotation = (props) => {
             flexDirection={'column'}
           >
             <IconDiv>
-              <img src={LocalTransportImg} alt="Local Transportation" width={100} className="tabImgWhite" />
+              <img src={LocalTransportImg} alt="Transportation" width={100} className="tabImgWhite" />
             </IconDiv>
             <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
               {/* <Grid item xs={12} sm={12} md={6}>
@@ -478,7 +478,7 @@ const LocalTranspotation = (props) => {
                               formik.handleChange(e);
                               setFieldValue(
                                 'petrolCarEmission',
-                                Number(Number(values?.efOne) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efOne) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -508,7 +508,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               setFieldValue(
                                 'dieselCarEmission',
-                                Number(Number(values?.efTwo) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efTwo) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -538,7 +538,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               setFieldValue(
                                 'hybridCarEmission',
-                                Number(Number(values?.efThree) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efThree) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -590,7 +590,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               setFieldValue(
                                 'petrolCarEmission2',
-                                Number(Number(values?.efFour) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efFour) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -620,7 +620,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               setFieldValue(
                                 'dieselCarEmission2',
-                                Number(Number(values?.efFive) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efFive) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -650,7 +650,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               setFieldValue(
                                 'hybridCarEmission2',
-                                Number(Number(values?.efSix) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efSix) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -696,7 +696,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               setFieldValue(
                                 'busDieselEmission',
-                                Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -726,7 +726,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               setFieldValue(
                                 'subwayTramEmission',
-                                Number(Number(values?.efEight) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efEight) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -756,7 +756,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               setFieldValue(
                                 'ferryEmission',
-                                Number(Number(values?.efNine) * Number(e.target.value)).toFixed(2)
+                                Number(Number(values?.efNine) * Number(e.target.value)).toFixed(5)
                               );
                               handleSubmit();
                             }}
@@ -790,7 +790,7 @@ const LocalTranspotation = (props) => {
                     <table className="table-custom-inpt-field">
                       <tr>
                         <th className="ps-2" width="100" />
-                          {/* Public Transport */}
+                        {/* Public Transport */}
                         <th className="ps-3">Total No. of Cars</th>
                         <th className="ps-2">Total No. of Kms/ Car</th>
                         <th>Emissions</th>
@@ -807,7 +807,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               const passengerValue = Number(e.target.value);
                               const kmsValue = Number(values?.passengerOfCarKms) || 0;
-                              const emissionValue = (passengerValue * kmsValue * Number(values?.pef)).toFixed(2);
+                              const emissionValue = (passengerValue * kmsValue * Number(values?.pef)).toFixed(5);
 
                               setFieldValue('passengerEmission', kmsValue > 0 ? emissionValue : 0);
                               handleSubmit();
@@ -816,7 +816,7 @@ const LocalTranspotation = (props) => {
                             //   handleChange(e);
                             //   setFieldValue(
                             //     'metroEmission',
-                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2)
+                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(5)
                             //   );
                             //   handleSubmit();
                             // }}
@@ -833,7 +833,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               const kmsValue = Number(e.target.value);
                               const passengerValue = Number(values?.passengerOfCar) || 0;
-                              const emissionValue = (passengerValue * kmsValue * Number(values?.pef)).toFixed(2);
+                              const emissionValue = (passengerValue * kmsValue * Number(values?.pef)).toFixed(5);
 
                               setFieldValue('passengerEmission', passengerValue > 0 ? emissionValue : 0);
                               handleSubmit();
@@ -842,7 +842,7 @@ const LocalTranspotation = (props) => {
                             //   handleChange(e);
                             //   setFieldValue(
                             //     'metroEmission',
-                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2)
+                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(5)
                             //   );
                             //   handleSubmit();
                             // }}
@@ -872,7 +872,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               const passengerValue = Number(e.target.value);
                               const kmsValue = Number(values?.cabTaxiCarsKms) || 0;
-                              const emissionValue = (passengerValue * kmsValue * Number(values?.cabTaxief)).toFixed(2);
+                              const emissionValue = (passengerValue * kmsValue * Number(values?.cabTaxief)).toFixed(5);
 
                               setFieldValue('cabTaxiEmission', kmsValue > 0 ? emissionValue : 0);
                               handleSubmit();
@@ -881,7 +881,7 @@ const LocalTranspotation = (props) => {
                             //   handleChange(e);
                             //   setFieldValue(
                             //     'metroEmission',
-                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2)
+                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(5)
                             //   );
                             //   handleSubmit();
                             // }}
@@ -898,7 +898,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               const kmsValue = Number(e.target.value);
                               const passengerValue = Number(values?.cabTaxiCars) || 0;
-                              const emissionValue = (passengerValue * kmsValue * Number(values?.cabTaxief)).toFixed(2);
+                              const emissionValue = (passengerValue * kmsValue * Number(values?.cabTaxief)).toFixed(5);
 
                               setFieldValue('cabTaxiEmission', passengerValue > 0 ? emissionValue : 0);
                               handleSubmit();
@@ -907,7 +907,7 @@ const LocalTranspotation = (props) => {
                             //   handleChange(e);
                             //   setFieldValue(
                             //     'metroEmission',
-                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2)
+                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(5)
                             //   );
                             //   handleSubmit();
                             // }}
@@ -943,8 +943,8 @@ const LocalTranspotation = (props) => {
                     <table className="table-custom-inpt-field">
                       <tr>
                         <th className="ps-2" width="100" />
-                          {/* Public Transport */}
-                        
+                        {/* Public Transport */}
+
                         <th className="ps-3">No. of Passenegers</th>
                         <th className="ps-2">Total No. of Kms/ Passenger </th>
                         <th>Emissions</th>
@@ -961,7 +961,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               const passengerValue = Number(e.target.value);
                               const kmsValue = Number(values?.metroPassengerkms) || 0;
-                              const emissionValue = (passengerValue * kmsValue * Number(values?.metroef)).toFixed(2);
+                              const emissionValue = (passengerValue * kmsValue * Number(values?.metroef)).toFixed(5);
 
                               setFieldValue('metroEmission', kmsValue > 0 ? emissionValue : 0);
                               handleSubmit();
@@ -970,7 +970,7 @@ const LocalTranspotation = (props) => {
                             //   handleChange(e);
                             //   setFieldValue(
                             //     'metroEmission',
-                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2)
+                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(5)
                             //   );
                             //   handleSubmit();
                             // }}
@@ -987,7 +987,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               const kmsValue = Number(e.target.value);
                               const passengerValue = Number(values?.metroPassenger) || 0;
-                              const emissionValue = (passengerValue * kmsValue * Number(values?.metroef)).toFixed(2);
+                              const emissionValue = (passengerValue * kmsValue * Number(values?.metroef)).toFixed(5);
 
                               setFieldValue('metroEmission', passengerValue > 0 ? emissionValue : 0);
                               handleSubmit();
@@ -996,7 +996,7 @@ const LocalTranspotation = (props) => {
                             //   handleChange(e);
                             //   setFieldValue(
                             //     'metroEmission',
-                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2)
+                            //     Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(5)
                             //   );
                             //   handleSubmit();
                             // }}
@@ -1026,7 +1026,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               const passengerValue = Number(e.target.value);
                               const kmsValue = Number(values?.busPassengerkms) || 0;
-                              const emissionValue = (passengerValue * kmsValue * Number(values?.busef)).toFixed(2);
+                              const emissionValue = (passengerValue * kmsValue * Number(values?.busef)).toFixed(5);
 
                               setFieldValue('busEmission', kmsValue > 0 ? emissionValue : 0);
                               handleSubmit();
@@ -1035,7 +1035,7 @@ const LocalTranspotation = (props) => {
                             //   handleChange(e);
                             //   setFieldValue(
                             //     'busEmission',
-                            //     Number(Number(values?.efEight) * Number(e.target.value)).toFixed(2)
+                            //     Number(Number(values?.efEight) * Number(e.target.value)).toFixed(5)
                             //   );
                             //   handleSubmit();
                             // }}
@@ -1052,7 +1052,7 @@ const LocalTranspotation = (props) => {
                               handleChange(e);
                               const kmsValue = Number(e.target.value);
                               const passengerValue = Number(values?.busPassenger) || 0;
-                              const emissionValue = (passengerValue * kmsValue * Number(values?.busef)).toFixed(2);
+                              const emissionValue = (passengerValue * kmsValue * Number(values?.busef)).toFixed(5);
 
                               setFieldValue('busEmission', passengerValue > 0 ? emissionValue : 0);
                               handleSubmit();
@@ -1061,7 +1061,7 @@ const LocalTranspotation = (props) => {
                             //   handleChange(e);
                             //   setFieldValue(
                             //     'busEmission',
-                            //     Number(Number(values?.efEight) * Number(e.target.value)).toFixed(2)
+                            //     Number(Number(values?.efEight) * Number(e.target.value)).toFixed(5)
                             //   );
                             //   handleSubmit();
                             // }}
@@ -1138,7 +1138,7 @@ const LocalTranspotation = (props) => {
               </Grid>
               <Grid item xs={12} sm={12} md={12} marginY={2}>
                 <Typography color="white">
-                  {`Total Local Transportation Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
+                  {`Total Transportation Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
                 </Typography>
               </Grid>
             </Grid>
@@ -1211,17 +1211,17 @@ export default LocalTranspotation;
 //         initialValues,
 //         onSubmit: async (values) => {
 
-//             const petrolCarEmission = values?.petrolCarKms === 0 ? 0 : Number(Number(values?.efOne) * Number(values?.petrolCarKms)).toFixed(2);
-//             const dieselCarEmission = values?.dieselCarKms === 0 ? 0 : Number(Number(values?.efTwo) * Number(values?.dieselCarKms)).toFixed(2);
-//             const hybridCarEmission = values?.hybridCarKms === 0 ? 0 : Number(Number(values?.efThree) * Number(values?.hybridCarKms)).toFixed(2);
+//             const petrolCarEmission = values?.petrolCarKms === 0 ? 0 : Number(Number(values?.efOne) * Number(values?.petrolCarKms)).toFixed(5);
+//             const dieselCarEmission = values?.dieselCarKms === 0 ? 0 : Number(Number(values?.efTwo) * Number(values?.dieselCarKms)).toFixed(5);
+//             const hybridCarEmission = values?.hybridCarKms === 0 ? 0 : Number(Number(values?.efThree) * Number(values?.hybridCarKms)).toFixed(5);
 
-//             const petrolCarEmission2 = values?.petrolCarKms2 === 0 ? 0 : Number(Number(values?.efFour) * Number(values?.petrolCarKms2)).toFixed(2);
-//             const dieselCarEmission2 = values?.dieselCarKms2 === 0 ? 0 : Number(Number(values?.efFive) * Number(values?.dieselCarKms2)).toFixed(2);
-//             const hybridCarEmission2 = values?.hybridCarKms2 === 0 ? 0 : Number(Number(values?.efSix) * Number(values?.hybridCarKms2)).toFixed(2);
+//             const petrolCarEmission2 = values?.petrolCarKms2 === 0 ? 0 : Number(Number(values?.efFour) * Number(values?.petrolCarKms2)).toFixed(5);
+//             const dieselCarEmission2 = values?.dieselCarKms2 === 0 ? 0 : Number(Number(values?.efFive) * Number(values?.dieselCarKms2)).toFixed(5);
+//             const hybridCarEmission2 = values?.hybridCarKms2 === 0 ? 0 : Number(Number(values?.efSix) * Number(values?.hybridCarKms2)).toFixed(5);
 
-//             const busDieselEmission = values?.busDieselKms === 0 ? 0 : Number(Number(values?.efSeven) * Number(values?.busDieselKms)).toFixed(2);
-//             const subwayTramEmission = values?.subwayTramKms === 0 ? 0 : Number(Number(values?.efEight) * Number(values?.subwayTramKms)).toFixed(2);
-//             const ferryEmission = values?.ferryKms === 0 ? 0 : Number(Number(values?.efNine) * Number(values?.ferryKms)).toFixed(2);
+//             const busDieselEmission = values?.busDieselKms === 0 ? 0 : Number(Number(values?.efSeven) * Number(values?.busDieselKms)).toFixed(5);
+//             const subwayTramEmission = values?.subwayTramKms === 0 ? 0 : Number(Number(values?.efEight) * Number(values?.subwayTramKms)).toFixed(5);
+//             const ferryEmission = values?.ferryKms === 0 ? 0 : Number(Number(values?.efNine) * Number(values?.ferryKms)).toFixed(5);
 
 //             if (petrolCarEmission > 0) formik.setFieldValue('petrolCarEmission', petrolCarEmission);
 //             if (dieselCarEmission > 0) formik.setFieldValue('dieselCarEmission', dieselCarEmission);
@@ -1360,7 +1360,7 @@ export default LocalTranspotation;
 //             ];
 
 //             dispatch(addLocalTranspotationData({ data }))
-//             dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Local Transportation" }));
+//             dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Transportation" }));
 //         },
 //     });
 
@@ -1428,7 +1428,7 @@ export default LocalTranspotation;
 //                 <Card className='p-4 custom-inner-bg textborder' style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
 //                     <Box mx={useMediaQuery(theme.breakpoints.up('lg')) && 15} display={'flex'} alignItems={'center'} flexDirection={'column'}>
 //                         <IconDiv>
-//                             <img src={LocalTransportImg} alt="Local Transportation" width={100} className='tabImgWhite' />
+//                             <img src={LocalTransportImg} alt="Transportation" width={100} className='tabImgWhite' />
 //                         </IconDiv>
 //                         <Grid
 //                             container
@@ -1451,7 +1451,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='petrolCarKms' value={values?.petrolCarKms}
 //                                                         onChange={(e) => {
 //                                                             formik.handleChange(e);
-//                                                             setFieldValue("petrolCarEmission", Number(Number(values?.efOne) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("petrolCarEmission", Number(Number(values?.efOne) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1465,7 +1465,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='dieselCarKms' value={values?.dieselCarKms}
 //                                                         onChange={(e) => {
 //                                                             handleChange(e);
-//                                                             setFieldValue("dieselCarEmission", Number(Number(values?.efTwo) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("dieselCarEmission", Number(Number(values?.efTwo) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1479,7 +1479,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='hybridCarKms' value={values?.hybridCarKms}
 //                                                         onChange={(e) => {
 //                                                             handleChange(e);
-//                                                             setFieldValue("hybridCarEmission", Number(Number(values?.efThree) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("hybridCarEmission", Number(Number(values?.efThree) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1508,7 +1508,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='petrolCarKms2' value={values?.petrolCarKms2}
 //                                                         onChange={(e) => {
 //                                                             handleChange(e);
-//                                                             setFieldValue("petrolCarEmission2", Number(Number(values?.efFour) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("petrolCarEmission2", Number(Number(values?.efFour) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1522,7 +1522,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='dieselCarKms2' value={values?.dieselCarKms2}
 //                                                         onChange={(e) => {
 //                                                             handleChange(e);
-//                                                             setFieldValue("dieselCarEmission2", Number(Number(values?.efFive) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("dieselCarEmission2", Number(Number(values?.efFive) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1536,7 +1536,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='hybridCarKms2' value={values?.hybridCarKms2}
 //                                                         onChange={(e) => {
 //                                                             handleChange(e);
-//                                                             setFieldValue("hybridCarEmission2", Number(Number(values?.efSix) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("hybridCarEmission2", Number(Number(values?.efSix) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1565,7 +1565,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='busDieselKms' value={values?.busDieselKms}
 //                                                         onChange={(e) => {
 //                                                             handleChange(e);
-//                                                             setFieldValue("busDieselEmission", Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("busDieselEmission", Number(Number(values?.efSeven) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1578,7 +1578,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='subwayTramKms' value={values?.subwayTramKms}
 //                                                         onChange={(e) => {
 //                                                             handleChange(e);
-//                                                             setFieldValue("subwayTramEmission", Number(Number(values?.efEight) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("subwayTramEmission", Number(Number(values?.efEight) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1591,7 +1591,7 @@ export default LocalTranspotation;
 //                                                     <TextField size='small' type="number" name='ferryKms' value={values?.ferryKms}
 //                                                         onChange={(e) => {
 //                                                             handleChange(e);
-//                                                             setFieldValue("ferryEmission", Number(Number(values?.efNine) * Number(e.target.value)).toFixed(2));
+//                                                             setFieldValue("ferryEmission", Number(Number(values?.efNine) * Number(e.target.value)).toFixed(5));
 //                                                             handleSubmit();
 //                                                         }}
 //                                                         inputProps={{ style: { color: 'white' } }} />
@@ -1618,7 +1618,7 @@ export default LocalTranspotation;
 //                                 </Stack>
 //                             </Grid>
 //                             <Grid item xs={12} sm={12} md={12} marginY={2}>
-//                                 <Typography color='white'>{`Total Local Transportation Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+//                                 <Typography color='white'>{`Total Transportation Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
 //                             </Grid>
 //                         </Grid>
 //                     </Box>

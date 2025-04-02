@@ -136,47 +136,47 @@ const Production = (props) => {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      const sawnTimberEmission = values?.sawnTimberArea === 0 ? 0 : Number((values?.sawnTimberArea * 862.9).toFixed(2));
-      const mdfEmission = values?.mdfArea === 0 ? 0 : Number((values?.mdfArea * 1292.82).toFixed(2));
+      const sawnTimberEmission = values?.sawnTimberArea === 0 ? 0 : Number((values?.sawnTimberArea * 862.9).toFixed(5));
+      const mdfEmission = values?.mdfArea === 0 ? 0 : Number((values?.mdfArea * 1292.82).toFixed(5));
       const openPanelTimberFrameEmission =
-        values?.openPanelTimberFrameArea === 0 ? 0 : Number((values?.openPanelTimberFrameArea * 0.345).toFixed(2));
-      const carpetEmission = values?.carpetArea === 0 ? 0 : Number((values?.carpetArea * 6.7).toFixed(2));
+        values?.openPanelTimberFrameArea === 0 ? 0 : Number((values?.openPanelTimberFrameArea * 0.345).toFixed(5));
+      const carpetEmission = values?.carpetArea === 0 ? 0 : Number((values?.carpetArea * 6.7).toFixed(5));
       const adhesiveVinylEmission =
-        values?.adhesiveVinylArea === 0 ? 0 : Number((values?.adhesiveVinylArea * 3.1).toFixed(2));
-      const cardboardEmission = values?.cardboardArea === 0 ? 0 : Number((values?.cardboardArea * 0.94).toFixed(2));
-      const nylonEmission = values?.nylonArea === 0 ? 0 : Number((values?.nylonArea * 12.7).toFixed(2));
-      const woodEmission = values?.woodKgs === 0 ? 0 : Number((values?.woodKgs * 1.8).toFixed(2));
-      const steelEmission = values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 2.55).toFixed(2));
-      const aluminiumEmission = values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 20.88).toFixed(2));
-      const cottenBagesEmission = values?.cottenBages === 0 ? 0 : Number((values?.cottenBages * 0.09).toFixed(2));
-      const JutebagsEmission = values?.Jutebags === 0 ? 0 : Number((values?.Jutebags * 0.03962).toFixed(2));
-      const PaperbagsEmission = values?.Paperbags === 0 ? 0 : Number((values?.Paperbags * 0.28).toFixed(2));
+        values?.adhesiveVinylArea === 0 ? 0 : Number((values?.adhesiveVinylArea * 3.1).toFixed(5));
+      const cardboardEmission = values?.cardboardArea === 0 ? 0 : Number((values?.cardboardArea * 0.94).toFixed(5));
+      const nylonEmission = values?.nylonArea === 0 ? 0 : Number((values?.nylonArea * 12.7).toFixed(5));
+      const woodEmission = values?.woodKgs === 0 ? 0 : Number((values?.woodKgs * 1.8).toFixed(5));
+      const steelEmission = values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 2.55).toFixed(5));
+      const aluminiumEmission = values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 20.88).toFixed(5));
+      const cottenBagesEmission = values?.cottenBages === 0 ? 0 : Number((values?.cottenBages * 0.09).toFixed(5));
+      const JutebagsEmission = values?.Jutebags === 0 ? 0 : Number((values?.Jutebags * 0.03962).toFixed(5));
+      const PaperbagsEmission = values?.Paperbags === 0 ? 0 : Number((values?.Paperbags * 0.28).toFixed(5));
       const RecycledpaperbagsEmission =
-        values?.Recycledpaperbags === 0 ? 0 : Number((values?.Recycledpaperbags * 0.17665).toFixed(2));
-      const ironEmission = values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 0.64).toFixed(2));
-      const paperEmission = values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 0.0005).toFixed(2));
+        values?.Recycledpaperbags === 0 ? 0 : Number((values?.Recycledpaperbags * 0.17665).toFixed(5));
+      const ironEmission = values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 0.64).toFixed(5));
+      const paperEmission = values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 0.0005).toFixed(5));
       const recycledPaperEmission =
-        values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 0.02).toFixed(2));
-      const paintEmission = values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(2));
+        values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 0.02).toFixed(5));
+      const paintEmission = values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(5));
       const projectorEmission =
         values?.projectorNoOfHour === 0 || values?.projectorNoOfDevice === 0
           ? 0
-          : Number((values?.projectorNoOfHour * values?.projectorNoOfDevice * 0.215).toFixed(2));
+          : Number((values?.projectorNoOfHour * values?.projectorNoOfDevice * 0.215).toFixed(5));
       const ledScreenPanelEmission =
         values?.ledScreenPanelNoOfHour === 0 || values?.ledScreenPanelNoOfDevice === 0
           ? 0
-          : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(2));
-      const kwhEmission = Number((values?.kwh * 0.716).toFixed(2));
-      // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2)
-      const hdpeBannerEmission = Number(2.21 * Number(values?.hdpeBanner)).toFixed(2);
-      const pvcBannersEmission = Number(2.15 * Number(values?.pvcBanners)).toFixed(2);
-      const cottonBannerEmission = Number(14.5 * Number(values?.cottonBanner)).toFixed(2);
-      const plasticBadgeHoldersEmission = Number(1.84 * Number(values?.plasticBadgeHolders)).toFixed(2);
-      const juteCarpetEmissions = Number(7.5561 * Number(values?.juteCarpet)).toFixed(2);
-      const WoddenEmissions = Number(14.6 * Number(values?.wooden)).toFixed(2);
-      const pvcFlooringEmission = Number(5.8786 * Number(values?.pvcFlooring)).toFixed(2);
-      const juteBagsA4SizeEmission = Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2);
-      const cottonBagsA4SizeEmission = Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2);
+          : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(5));
+      const kwhEmission = Number((values?.kwh * 0.716).toFixed(5));
+      // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(5)
+      const hdpeBannerEmission = Number(2.21 * Number(values?.hdpeBanner)).toFixed(5);
+      const pvcBannersEmission = Number(2.15 * Number(values?.pvcBanners)).toFixed(5);
+      const cottonBannerEmission = Number(14.5 * Number(values?.cottonBanner)).toFixed(5);
+      const plasticBadgeHoldersEmission = Number(1.84 * Number(values?.plasticBadgeHolders)).toFixed(5);
+      const juteCarpetEmissions = Number(7.5561 * Number(values?.juteCarpet)).toFixed(5);
+      const WoddenEmissions = Number(14.6 * Number(values?.wooden)).toFixed(5);
+      const pvcFlooringEmission = Number(5.8786 * Number(values?.pvcFlooring)).toFixed(5);
+      const juteBagsA4SizeEmission = Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(5);
+      const cottonBagsA4SizeEmission = Number(17 * Number(values?.cottonBagsA4Size)).toFixed(5);
 
       if (sawnTimberEmission > 0) formik.setFieldValue('sawnTimberEmission', sawnTimberEmission);
       if (mdfEmission > 0) formik.setFieldValue('mdfEmission', mdfEmission);
@@ -217,7 +217,7 @@ const Production = (props) => {
       if (cottonBagsA4SizeEmission > 0) formik.setFieldValue('cottonBagsA4SizeEmission', cottonBagsA4SizeEmission);
 
       // const dataFieldOne = fieldDataOne?.map((item) => {
-      //     const emission = values?.[`${item?.fieldName}Area`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Area`] * item?.ef).toFixed(2)) || 0;
+      //     const emission = values?.[`${item?.fieldName}Area`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Area`] * item?.ef).toFixed(5)) || 0;
       //     return {
       //         type: item?.name,
       //         area: values?.[`${item?.fieldName}Area`],
@@ -226,7 +226,7 @@ const Production = (props) => {
       // });
 
       // const dataFieldTwo = fieldDataTwo?.map((item) => {
-      //     const emission = values?.[`${item?.fieldName}Kgs`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Kgs`] * item?.ef).toFixed(2)) || 0;
+      //     const emission = values?.[`${item?.fieldName}Kgs`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Kgs`] * item?.ef).toFixed(5)) || 0;
       //     return {
       //         type: item?.name,
       //         kgs: values?.[`${item?.fieldName}Kgs`],
@@ -235,7 +235,7 @@ const Production = (props) => {
       // });
 
       // const dataFieldThree = fieldDataThree?.map((item) => {
-      //     const emission = values?.[`${item?.fieldName}NoOfHour`] === 0 || values?.[`${item?.fieldName}NoOfDevice`] === 0 ? 0 : Number((values?.[`${item?.fieldName}NoOfHour`] * values?.[`${item?.fieldName}NoOfDevice`] * item?.ef).toFixed(2)) || 0;
+      //     const emission = values?.[`${item?.fieldName}NoOfHour`] === 0 || values?.[`${item?.fieldName}NoOfDevice`] === 0 ? 0 : Number((values?.[`${item?.fieldName}NoOfHour`] * values?.[`${item?.fieldName}NoOfDevice`] * item?.ef).toFixed(5)) || 0;
       //     return {
       //         type: item?.name,
       //         noOfHour: values?.[`${item?.fieldName}NoOfHour`],
@@ -245,7 +245,7 @@ const Production = (props) => {
       // });
 
       // const dataFieldFour = fieldDataFour?.map((item) => {
-      //     const emission = values?.[`${item?.fieldName}NoOfHour`] === 0 || values?.[`${item?.fieldName}NoOfLight`] === 0 ? 0 : Number((values?.[`${item?.fieldName}NoOfHour`] * values?.[`${item?.fieldName}NoOfLight`] * item?.ef).toFixed(2)) || 0;
+      //     const emission = values?.[`${item?.fieldName}NoOfHour`] === 0 || values?.[`${item?.fieldName}NoOfLight`] === 0 ? 0 : Number((values?.[`${item?.fieldName}NoOfHour`] * values?.[`${item?.fieldName}NoOfLight`] * item?.ef).toFixed(5)) || 0;
       //     return {
       //         type: item?.name,
       //         noOfHour: values?.[`${item?.fieldName}NoOfHour`],
@@ -537,7 +537,7 @@ const Production = (props) => {
       ];
 
       dispatch(addProductionData({ data }));
-      dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Event Production' }));
+      dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Event Agency' }));
     },
   });
 
@@ -650,7 +650,7 @@ const Production = (props) => {
                                       formik.handleChange(e);
                                       formik.setFieldValue(
                                         `${ite?.fieldName}Emission`,
-                                        Number((e.target.value * ite?.ef).toFixed(2))
+                                        Number((e.target.value * ite?.ef).toFixed(5))
                                       );
                                       formik.handleSubmit();
                                     }}
@@ -703,7 +703,7 @@ const Production = (props) => {
                                       formik.handleChange(e);
                                       formik.setFieldValue(
                                         `${item?.fieldName}Emission`,
-                                        Number((e.target.value * item?.ef).toFixed(2))
+                                        Number((e.target.value * item?.ef).toFixed(5))
                                       );
                                       formik.handleSubmit();
                                     }}
@@ -756,7 +756,7 @@ const Production = (props) => {
                                 formik.setFieldValue('juteCarpet', e.target.value);
                                 formik.setFieldValue(
                                   'juteCarpetEmissions',
-                                  Number(7.5561 * Number(e.target.value)).toFixed(2)
+                                  Number(7.5561 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -786,7 +786,7 @@ const Production = (props) => {
                                 formik.setFieldValue('wooden', e.target.value);
                                 formik.setFieldValue(
                                   'WoddenEmissions',
-                                  Number(14.6 * Number(e.target.value)).toFixed(2)
+                                  Number(14.6 * Number(e.target.value)).toFixed(5)
                                 );
 
                                 formik.handleSubmit();
@@ -817,7 +817,7 @@ const Production = (props) => {
                                 formik.setFieldValue('pvcFlooring', e.target.value);
                                 formik.setFieldValue(
                                   'pvcFlooringEmission',
-                                  Number(5.8786 * Number(e.target.value)).toFixed(2)
+                                  Number(5.8786 * Number(e.target.value)).toFixed(5)
                                 );
 
                                 formik.handleSubmit();
@@ -869,7 +869,7 @@ const Production = (props) => {
                                 formik.setFieldValue('hdpeBanner', e.target.value);
                                 formik.setFieldValue(
                                   'hdpeBannerEmission',
-                                  Number(2.21 * Number(e.target.value)).toFixed(2)
+                                  Number(2.21 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -899,7 +899,7 @@ const Production = (props) => {
                                 formik.setFieldValue('pvcBanners', e.target.value);
                                 formik.setFieldValue(
                                   'pvcBannersEmission',
-                                  Number(2.15 * Number(e.target.value)).toFixed(2)
+                                  Number(2.15 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -929,7 +929,7 @@ const Production = (props) => {
                                 formik.setFieldValue('plasticBadgeHolders', e.target.value);
                                 formik.setFieldValue(
                                   'plasticBadgeHoldersEmission',
-                                  Number(1.84 * Number(e.target.value)).toFixed(2)
+                                  Number(1.84 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -980,7 +980,7 @@ const Production = (props) => {
                                 formik.setFieldValue('cottenBages', e.target.value);
                                 formik.setFieldValue(
                                   'cottenBagesEmission',
-                                  Number(0.09 * Number(e.target.value)).toFixed(2)
+                                  Number(0.09 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -1010,7 +1010,7 @@ const Production = (props) => {
                                 formik.setFieldValue('Jutebags', e.target.value);
                                 formik.setFieldValue(
                                   'JutebagsEmission',
-                                  Number(0.03962 * Number(e.target.value)).toFixed(2)
+                                  Number(0.03962 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -1040,7 +1040,7 @@ const Production = (props) => {
                                 formik.setFieldValue('Paperbags', e.target.value);
                                 formik.setFieldValue(
                                   'PaperbagsEmission',
-                                  Number(0.28 * Number(e.target.value)).toFixed(2)
+                                  Number(0.28 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -1070,7 +1070,7 @@ const Production = (props) => {
                                 formik.setFieldValue('Recycledpaperbags', e.target.value);
                                 formik.setFieldValue(
                                   'RecycledpaperbagsEmission',
-                                  Number(0.17665 * Number(e.target.value)).toFixed(2)
+                                  Number(0.17665 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -1100,7 +1100,7 @@ const Production = (props) => {
                   </li>
                   <li className="text-white ms-3">100% Recyclable/ Biodegradable</li>
                 </Grid> */}
-                
+
                 <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                   <Stack columnGap={2} rowGap={2} className="flex-xl-row flex-md-row flex-sm-column">
                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
@@ -1152,7 +1152,7 @@ const Production = (props) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
                   <Typography color="white">
-                    {`Total Event Production Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
+                    {`Total Event Agency Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
                   </Typography>
                 </Grid>
               </Grid>
@@ -1394,33 +1394,33 @@ export default Production;
 //         initialValues,
 //         onSubmit: async (values) => {
 
-//             const sawnTimberEmission = values?.sawnTimberArea === 0 ? 0 : Number((values?.sawnTimberArea * 0.263).toFixed(2))
-//             const mdfEmission = values?.mdfArea === 0 ? 0 : Number((values?.mdfArea * 0.856).toFixed(2))
-//             const openPanelTimberFrameEmission = values?.openPanelTimberFrameArea === 0 ? 0 : Number((values?.openPanelTimberFrameArea * 0.345).toFixed(2))
-//             const carpetEmission = values?.carpetArea === 0 ? 0 : Number((values?.carpetArea * 6.7).toFixed(2))
-//             const adhesiveVinylEmission = values?.adhesiveVinylArea === 0 ? 0 : Number((values?.adhesiveVinylArea * 3.1).toFixed(2))
-//             const cardboardEmission = values?.cardboardArea === 0 ? 0 : Number((values?.cardboardArea * 0.94).toFixed(2))
-//             const nylonEmission = values?.nylonArea === 0 ? 0 : Number((values?.nylonArea * 12.7).toFixed(2))
-//             const woodEmission = values?.woodKgs === 0 ? 0 : Number((values?.woodKgs * 1.8).toFixed(2))
-//             const steelEmission = values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 1.36).toFixed(2))
-//             const aluminiumEmission = values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 2.663).toFixed(2))
-//             const ironEmission = values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 0.64).toFixed(2))
-//             const paperEmission = values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 0.0005).toFixed(2))
-//             const recycledPaperEmission = values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 0.02).toFixed(2))
-//             const paintEmission = values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(2))
-//             const projectorEmission = values?.projectorNoOfHour === 0 || values?.projectorNoOfDevice === 0 ? 0 : Number((values?.projectorNoOfHour * values?.projectorNoOfDevice * 0.215).toFixed(2))
-//             const ledScreenPanelEmission = values?.ledScreenPanelNoOfHour === 0 || values?.ledScreenPanelNoOfDevice === 0 ? 0 : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(2))
-//             const kwhEmission = Number((values?.kwh * 0.716).toFixed(2))
-//             // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2)
-//             const hdpeBannerEmission = Number(3.11 * Number(values?.hdpeBanner)).toFixed(2)
-//             const pvcBannersEmission = Number(7.83 * Number(values?.pvcBanners)).toFixed(2)
-//             const cottonBannerEmission = Number(14.5 * Number(values?.cottonBanner)).toFixed(2)
-//             const plasticBadgeHoldersEmission = Number(4.2 * Number(values?.plasticBadgeHolders)).toFixed(2);
-//             const colouredBrochurePageEmission = Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2)
-//             const paperBagsA4SizeEmission = Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2)
-//             const paperBagsA5SizeEmission = Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2)
-//             const juteBagsA4SizeEmission = Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2)
-//             const cottonBagsA4SizeEmission = Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2)
+//             const sawnTimberEmission = values?.sawnTimberArea === 0 ? 0 : Number((values?.sawnTimberArea * 0.263).toFixed(5))
+//             const mdfEmission = values?.mdfArea === 0 ? 0 : Number((values?.mdfArea * 0.856).toFixed(5))
+//             const openPanelTimberFrameEmission = values?.openPanelTimberFrameArea === 0 ? 0 : Number((values?.openPanelTimberFrameArea * 0.345).toFixed(5))
+//             const carpetEmission = values?.carpetArea === 0 ? 0 : Number((values?.carpetArea * 6.7).toFixed(5))
+//             const adhesiveVinylEmission = values?.adhesiveVinylArea === 0 ? 0 : Number((values?.adhesiveVinylArea * 3.1).toFixed(5))
+//             const cardboardEmission = values?.cardboardArea === 0 ? 0 : Number((values?.cardboardArea * 0.94).toFixed(5))
+//             const nylonEmission = values?.nylonArea === 0 ? 0 : Number((values?.nylonArea * 12.7).toFixed(5))
+//             const woodEmission = values?.woodKgs === 0 ? 0 : Number((values?.woodKgs * 1.8).toFixed(5))
+//             const steelEmission = values?.steelKgs === 0 ? 0 : Number((values?.steelKgs * 1.36).toFixed(5))
+//             const aluminiumEmission = values?.aluminiumKgs === 0 ? 0 : Number((values?.aluminiumKgs * 2.663).toFixed(5))
+//             const ironEmission = values?.ironKgs === 0 ? 0 : Number((values?.ironKgs * 0.64).toFixed(5))
+//             const paperEmission = values?.paperKgs === 0 ? 0 : Number((values?.paperKgs * 0.0005).toFixed(5))
+//             const recycledPaperEmission = values?.recycledPaperKgs === 0 ? 0 : Number((values?.recycledPaperKgs * 0.02).toFixed(5))
+//             const paintEmission = values?.paintKgs === 0 ? 0 : Number((values?.paintKgs * 1.15).toFixed(5))
+//             const projectorEmission = values?.projectorNoOfHour === 0 || values?.projectorNoOfDevice === 0 ? 0 : Number((values?.projectorNoOfHour * values?.projectorNoOfDevice * 0.215).toFixed(5))
+//             const ledScreenPanelEmission = values?.ledScreenPanelNoOfHour === 0 || values?.ledScreenPanelNoOfDevice === 0 ? 0 : Number((values?.ledScreenPanelNoOfHour * values?.ledScreenPanelNoOfDevice * 0.043).toFixed(5))
+//             const kwhEmission = Number((values?.kwh * 0.716).toFixed(5))
+//             // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(5)
+//             const hdpeBannerEmission = Number(3.11 * Number(values?.hdpeBanner)).toFixed(5)
+//             const pvcBannersEmission = Number(7.83 * Number(values?.pvcBanners)).toFixed(5)
+//             const cottonBannerEmission = Number(14.5 * Number(values?.cottonBanner)).toFixed(5)
+//             const plasticBadgeHoldersEmission = Number(4.2 * Number(values?.plasticBadgeHolders)).toFixed(5);
+//             const colouredBrochurePageEmission = Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(5)
+//             const paperBagsA4SizeEmission = Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(5)
+//             const paperBagsA5SizeEmission = Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(5)
+//             const juteBagsA4SizeEmission = Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(5)
+//             const cottonBagsA4SizeEmission = Number(17 * Number(values?.cottonBagsA4Size)).toFixed(5)
 
 //             if (sawnTimberEmission > 0) formik.setFieldValue('sawnTimberEmission', sawnTimberEmission);
 //             if (mdfEmission > 0) formik.setFieldValue('mdfEmission', mdfEmission);
@@ -1456,7 +1456,7 @@ export default Production;
 //             if (cottonBagsA4SizeEmission > 0) formik.setFieldValue('cottonBagsA4SizeEmission', cottonBagsA4SizeEmission);
 
 //             // const dataFieldOne = fieldDataOne?.map((item) => {
-//             //     const emission = values?.[`${item?.fieldName}Area`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Area`] * item?.ef).toFixed(2)) || 0;
+//             //     const emission = values?.[`${item?.fieldName}Area`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Area`] * item?.ef).toFixed(5)) || 0;
 //             //     return {
 //             //         type: item?.name,
 //             //         area: values?.[`${item?.fieldName}Area`],
@@ -1465,7 +1465,7 @@ export default Production;
 //             // });
 
 //             // const dataFieldTwo = fieldDataTwo?.map((item) => {
-//             //     const emission = values?.[`${item?.fieldName}Kgs`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Kgs`] * item?.ef).toFixed(2)) || 0;
+//             //     const emission = values?.[`${item?.fieldName}Kgs`] === 0 ? 0 : Number((values?.[`${item?.fieldName}Kgs`] * item?.ef).toFixed(5)) || 0;
 //             //     return {
 //             //         type: item?.name,
 //             //         kgs: values?.[`${item?.fieldName}Kgs`],
@@ -1474,7 +1474,7 @@ export default Production;
 //             // });
 
 //             // const dataFieldThree = fieldDataThree?.map((item) => {
-//             //     const emission = values?.[`${item?.fieldName}NoOfHour`] === 0 || values?.[`${item?.fieldName}NoOfDevice`] === 0 ? 0 : Number((values?.[`${item?.fieldName}NoOfHour`] * values?.[`${item?.fieldName}NoOfDevice`] * item?.ef).toFixed(2)) || 0;
+//             //     const emission = values?.[`${item?.fieldName}NoOfHour`] === 0 || values?.[`${item?.fieldName}NoOfDevice`] === 0 ? 0 : Number((values?.[`${item?.fieldName}NoOfHour`] * values?.[`${item?.fieldName}NoOfDevice`] * item?.ef).toFixed(5)) || 0;
 //             //     return {
 //             //         type: item?.name,
 //             //         noOfHour: values?.[`${item?.fieldName}NoOfHour`],
@@ -1484,7 +1484,7 @@ export default Production;
 //             // });
 
 //             // const dataFieldFour = fieldDataFour?.map((item) => {
-//             //     const emission = values?.[`${item?.fieldName}NoOfHour`] === 0 || values?.[`${item?.fieldName}NoOfLight`] === 0 ? 0 : Number((values?.[`${item?.fieldName}NoOfHour`] * values?.[`${item?.fieldName}NoOfLight`] * item?.ef).toFixed(2)) || 0;
+//             //     const emission = values?.[`${item?.fieldName}NoOfHour`] === 0 || values?.[`${item?.fieldName}NoOfLight`] === 0 ? 0 : Number((values?.[`${item?.fieldName}NoOfHour`] * values?.[`${item?.fieldName}NoOfLight`] * item?.ef).toFixed(5)) || 0;
 //             //     return {
 //             //         type: item?.name,
 //             //         noOfHour: values?.[`${item?.fieldName}NoOfHour`],
@@ -1828,7 +1828,7 @@ export default Production;
 //             ];
 
 //             dispatch(addProductionData({ data }));
-//             dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Event Production" }));
+//             dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Event Agency" }));
 //         },
 //     });
 
@@ -1985,7 +1985,7 @@ export default Production;
 //                                                                             formik.handleChange(e);
 //                                                                             formik.setFieldValue(
 //                                                                                 `${ite?.fieldName}Emission`,
-//                                                                                 Number((e.target.value * ite?.ef).toFixed(2))
+//                                                                                 Number((e.target.value * ite?.ef).toFixed(5))
 //                                                                             );
 //                                                                             formik.handleSubmit();
 //                                                                         }}
@@ -2035,7 +2035,7 @@ export default Production;
 //                                                                             formik.handleChange(e);
 //                                                                             formik.setFieldValue(
 //                                                                                 `${item?.fieldName}Emission`,
-//                                                                                 Number((e.target.value * item?.ef).toFixed(2))
+//                                                                                 Number((e.target.value * item?.ef).toFixed(5))
 //                                                                             );
 //                                                                             formik.handleSubmit();
 //                                                                         }}
@@ -2085,7 +2085,7 @@ export default Production;
 //                                                             value={formik?.values?.hdpeBanner}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('hdpeBanner', e.target.value);
-//                                                                 formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -2112,7 +2112,7 @@ export default Production;
 //                                                             value={formik?.values?.pvcBanners}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('pvcBanners', e.target.value);
-//                                                                 formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -2139,7 +2139,7 @@ export default Production;
 //                                                             value={formik?.values?.cottonBanner}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('cottonBanner', e.target.value);
-//                                                                 formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -2166,7 +2166,7 @@ export default Production;
 //                                                             value={formik?.values?.plasticBadgeHolders}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('plasticBadgeHolders', e.target.value);
-//                                                                 formik.setFieldValue('plasticBadgeHoldersEmission', Number(4.2 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('plasticBadgeHoldersEmission', Number(4.2 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -2206,7 +2206,7 @@ export default Production;
 //                                                             value={formik?.values?.colouredBrochurePage}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('colouredBrochurePage', e.target.value);
-//                                                                 formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -2233,7 +2233,7 @@ export default Production;
 //                                                             value={formik?.values?.paperBagsA4Size}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('paperBagsA4Size', e.target.value);
-//                                                                 formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(e.target.value)).toFixed(5));
 
 //                                                                 formik.handleSubmit();
 //                                                             }}
@@ -2261,7 +2261,7 @@ export default Production;
 //                                                             value={formik?.values?.paperBagsA5Size}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('paperBagsA5Size', e.target.value);
-//                                                                 formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(e.target.value)).toFixed(5));
 
 //                                                                 formik.handleSubmit();
 //                                                             }}
@@ -2289,7 +2289,7 @@ export default Production;
 //                                                             value={formik?.values?.juteBagsA4Size}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('juteBagsA4Size', e.target.value);
-//                                                                 formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(e.target.value)).toFixed(5));
 
 //                                                                 formik.handleSubmit();
 //                                                             }}
@@ -2317,7 +2317,7 @@ export default Production;
 //                                                             value={formik?.values?.cottonBagsA4Size}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('cottonBagsA4Size', e.target.value);
-//                                                                 formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(e.target.value)).toFixed(5));
 
 //                                                                 formik.handleSubmit();
 //                                                             }}
@@ -2370,7 +2370,7 @@ export default Production;
 //                                                                             formik.handleChange(e);
 //                                                                             formik.setFieldValue(
 //                                                                                 `${it?.fieldName}Emission`,
-//                                                                                 Number((e.target.value * formik.values[`${it?.fieldName}NoOfDevice`] * it?.ef).toFixed(2))
+//                                                                                 Number((e.target.value * formik.values[`${it?.fieldName}NoOfDevice`] * it?.ef).toFixed(5))
 //                                                                             );
 //                                                                             formik.handleSubmit();
 //                                                                         }}
@@ -2387,7 +2387,7 @@ export default Production;
 //                                                                             formik.handleChange(e);
 //                                                                             formik.setFieldValue(
 //                                                                                 `${it?.fieldName}Emission`,
-//                                                                                 Number((formik.values[`${it?.fieldName}NoOfHour`] * e.target.value * it?.ef).toFixed(2))
+//                                                                                 Number((formik.values[`${it?.fieldName}NoOfHour`] * e.target.value * it?.ef).toFixed(5))
 //                                                                             );
 //                                                                             formik.handleSubmit();
 //                                                                         }}
@@ -2438,7 +2438,7 @@ export default Production;
 //                                                                     formik.handleChange(e);
 //                                                                     formik.setFieldValue(
 //                                                                         `kwhEmission`,
-//                                                                         Number((e.target.value * 0.716).toFixed(2))
+//                                                                         Number((e.target.value * 0.716).toFixed(5))
 //                                                                     );
 //                                                                     formik.handleSubmit();
 //                                                                 }}
@@ -2517,7 +2517,7 @@ export default Production;
 //                                     </Stack>
 //                                 </Grid>
 //                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
-//                                     <Typography color="white">{`Total Event Production Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+//                                     <Typography color="white">{`Total Event Agency Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
 //                                 </Grid>
 //                             </Grid>
 //                         </Box>

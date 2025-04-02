@@ -65,18 +65,18 @@ const EnergyUpdated = (props) => {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      // const emissionOne = Number((values?.kwh * 0.716).toFixed(2))
+      // const emissionOne = Number((values?.kwh * 0.716).toFixed(5))
       const emissionOne =
         values?.kwh && values?.ElectricityEF && values?.MinusRenewableEnergy
           ? (
               Number(values?.kwh) *
               Number(values?.ElectricityEF) *
               ((100 - Number(values?.MinusRenewableEnergy)) / 100)
-            ).toFixed(2)
+            ).toFixed(5)
           : '0';
 
-      const emissionTwo = Number((values?.petrolOne * 2.32).toFixed(2));
-      const emissionThree = Number((values?.dieselOne * 2.7).toFixed(2));
+      const emissionTwo = Number((values?.petrolOne * 2.32).toFixed(5));
+      const emissionThree = Number((values?.dieselOne * 2.7).toFixed(5));
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
       if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
       if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
@@ -91,12 +91,12 @@ const EnergyUpdated = (props) => {
         {
           type: 'Petrol (Generator)',
           petrolOne: values?.petrolOne,
-          emission: emissionTwo > 0 ? Number((values?.petrolOne * 2.32).toFixed(2)) : '',
+          emission: emissionTwo > 0 ? Number((values?.petrolOne * 2.32).toFixed(5)) : '',
         },
         {
           type: 'Diesel (Generator)',
           dieselOne: values?.dieselOne,
-          emission: emissionThree > 0 ? Number((values?.dieselOne * 2.7).toFixed(2)) : '',
+          emission: emissionThree > 0 ? Number((values?.dieselOne * 2.7).toFixed(5)) : '',
         },
       ];
 
@@ -245,7 +245,7 @@ const EnergyUpdated = (props) => {
                             parseFloat(formik?.values?.ElectricityEF) *
                             parseFloat(formik?.values?.MinusRenewableEnergy)) /
                           100
-                        ).toFixed(2)
+                        ).toFixed(5)
                       );
                       formik.handleSubmit();
                     }}
@@ -270,7 +270,7 @@ const EnergyUpdated = (props) => {
                             parseFloat(formik?.values?.ElectricityEF) *
                             parseFloat(e.target.value || '0')) /
                           100
-                        ).toFixed(2)
+                        ).toFixed(5)
                       );
                       formik.handleSubmit();
                     }}
@@ -315,7 +315,7 @@ const EnergyUpdated = (props) => {
                                 kwhValue *
                                 electricityEF *
                                 ((100 - MinusRenewableEnergy) / 100)
-                              ).toFixed(2);
+                              ).toFixed(5);
                               formik.setFieldValue('emissionOne', emissionValue);
                               formik.handleSubmit();
                             }}
@@ -341,7 +341,7 @@ const EnergyUpdated = (props) => {
                                 kwhValue *
                                 electricityEF *
                                 ((100 - MinusRenewableEnergy) / 100)
-                              ).toFixed(2);
+                              ).toFixed(5);
                               formik.setFieldValue('emissionOne', emissionValue);
                               formik.handleSubmit();
                             }}
@@ -395,7 +395,7 @@ const EnergyUpdated = (props) => {
                             type="number"
                             onChange={(e) => {
                               formik.handleChange(e);
-                              formik.setFieldValue('emissionTwo', Number((e.target.value * 2.32).toFixed(2)));
+                              formik.setFieldValue('emissionTwo', Number((e.target.value * 2.32).toFixed(5)));
                               formik.handleSubmit();
                             }}
                             error={formik.touched.petrolOne && Boolean(formik.errors.petrolOne)}
@@ -432,7 +432,7 @@ const EnergyUpdated = (props) => {
                             value={formik.values.dieselOne}
                             onChange={(e) => {
                               formik.handleChange(e);
-                              formik.setFieldValue('emissionThree', Number((e.target.value * 2.7).toFixed(2)));
+                              formik.setFieldValue('emissionThree', Number((e.target.value * 2.7).toFixed(5)));
                               formik.handleSubmit();
                             }}
                             error={formik.touched.dieselOne && Boolean(formik.errors.dieselOne)}
@@ -585,9 +585,9 @@ export default EnergyUpdated;
 //     const formik = useFormik({
 //         initialValues,
 //         onSubmit: async (values) => {
-//             const emissionOne = Number((values?.kwh * 0.716).toFixed(2))
-//             const emissionTwo = Number((values?.gallonsOne * 2.288).toFixed(2))
-//             const emissionThree = Number((values?.gallonsTwo * 2.91).toFixed(2))
+//             const emissionOne = Number((values?.kwh * 0.716).toFixed(5))
+//             const emissionTwo = Number((values?.gallonsOne * 2.288).toFixed(5))
+//             const emissionThree = Number((values?.gallonsTwo * 2.91).toFixed(5))
 //             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 //             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
 //             if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
@@ -596,17 +596,17 @@ export default EnergyUpdated;
 //                 {
 //                     type: 'Electricity',
 //                     kwh: values?.kwh,
-//                     emission: emissionOne > 0 ? Number((values?.kwh * 0.716).toFixed(2)) : ''
+//                     emission: emissionOne > 0 ? Number((values?.kwh * 0.716).toFixed(5)) : ''
 //                 },
 //                 {
 //                     type: 'Petrol (Generator)',
 //                     gallonsOne: values?.gallonsOne,
-//                     emission: emissionTwo > 0 ? Number((values?.gallonsOne * 2.288).toFixed(2)) : ''
+//                     emission: emissionTwo > 0 ? Number((values?.gallonsOne * 2.288).toFixed(5)) : ''
 //                 },
 //                 {
 //                     type: 'Diesel (Generator)',
 //                     gallonsTwo: values?.gallonsTwo,
-//                     emission: emissionThree > 0 ? Number((values?.gallonsTwo * 2.91).toFixed(2)) : ''
+//                     emission: emissionThree > 0 ? Number((values?.gallonsTwo * 2.91).toFixed(5)) : ''
 //                 }
 //             ];
 
@@ -717,7 +717,7 @@ export default EnergyUpdated;
 //                                         type="number"
 //                                         onChange={(e) => {
 //                                             formik.handleChange(e);
-//                                             formik.setFieldValue('emissionOne', Number((e.target.value * 0.716).toFixed(2)));
+//                                             formik.setFieldValue('emissionOne', Number((e.target.value * 0.716).toFixed(5)));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={
@@ -767,7 +767,7 @@ export default EnergyUpdated;
 //                                         type="number"
 //                                         onChange={(e) => {
 //                                             formik.handleChange(e);
-//                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 2.288).toFixed(2)));
+//                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 2.288).toFixed(5)));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={
@@ -817,7 +817,7 @@ export default EnergyUpdated;
 //                                         value={formik.values.gallonsTwo}
 //                                         onChange={(e) => {
 //                                             formik.handleChange(e);
-//                                             formik.setFieldValue('emissionThree', Number((e.target.value * 2.91).toFixed(2)));
+//                                             formik.setFieldValue('emissionThree', Number((e.target.value * 2.91).toFixed(5)));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={

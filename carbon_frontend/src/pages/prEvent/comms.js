@@ -20,7 +20,14 @@ import { useTheme } from '@emotion/react';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCommsData, deleteCommsData } from '../../redux/slice/totalCommsSlice';
-import { addResultTableData, deleteResTabCommsData, prEventEmissionCatogorywise, deleteCommsCatogorywiseEmission, addResultTableDatasToDb, updateResultTableDatasToDb } from '../../redux/slice/resultTableDataSlice';
+import {
+  addResultTableData,
+  deleteResTabCommsData,
+  prEventEmissionCatogorywise,
+  deleteCommsCatogorywiseEmission,
+  addResultTableDatasToDb,
+  updateResultTableDatasToDb,
+} from '../../redux/slice/resultTableDataSlice';
 import commsImg from '../../assets/comms.png';
 import { IconDiv } from '../../components/IconDiv';
 import useEventData from '../../hooks/useEventData';
@@ -31,7 +38,7 @@ const Comms = (props) => {
   const dispatch = useDispatch();
   const allData = useSelector((state) => state?.totalCommsDetails?.data?.[0]?.data);
   const totalEmission = useSelector((state) => state?.totalCommsDetails?.totalEmission);
-  const resultTableData = useSelector(state => state?.resultTableDataDetails);
+  const resultTableData = useSelector((state) => state?.resultTableDataDetails);
 
   const eventsData = useEventData();
 
@@ -83,23 +90,47 @@ const Comms = (props) => {
 
     colouredBrochurePage: '',
     emissionSix: '',
-    a4Size75Gsm: '',          // Black & White
+    a4Size75Gsm: '', // Black & White
     emissionSeven: '',
   };
 
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      const emissionOne = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2);
+      const emissionOne =
+        values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0
+          ? 0
+          : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2);
 
       // const emissionTwo = values?.prFileSizeOne === 0 || values?.finalFileSizeOne === 0 || values?.sendingToMediaOne === 0 ? 0 : Number(Number(values?.prFileSizeOne) * Number(values?.finalFileSizeOne) * Number(values?.sendingToMediaOne) * Number(values?.efTwo) ).toFixed(2);
-      const emissionTwo = values?.finalFileSizeOne === 0 || values?.sendingToMediaOne === 0 ? 0 : Number(Number(values?.finalFileSizeOne) * Number(values?.sendingToMediaOne) * Number(values?.efTwo)).toFixed(2);
+      const emissionTwo =
+        values?.finalFileSizeOne === 0 || values?.sendingToMediaOne === 0
+          ? 0
+          : Number(
+              Number(values?.finalFileSizeOne) * Number(values?.sendingToMediaOne) * Number(values?.efTwo)
+            ).toFixed(2);
 
       // const emissionThree = values?.prFileSizeTwo === 0 || values?.finalFileSizeTwo === 0 ||values?.sendingToMediaTwo === 0 ||values?.sendingToMediaTwo === 0? 0: Number( Number(values?.prFileSizeTwo) * Number(values?.finalFileSizeTwo) * Number(values?.sendingToMediaTwo) * Number(values?.efThree)).toFixed(2);
-      const emissionThree = values?.finalFileSizeTwo === 0 || values?.sendingToMediaTwo === 0 || values?.sendingToMediaTwo === 0 ? 0 : Number(Number(values?.finalFileSizeTwo) * Number(values?.sendingToMediaTwo) * Number(values?.efThree)).toFixed(2);
+      const emissionThree =
+        values?.finalFileSizeTwo === 0 || values?.sendingToMediaTwo === 0 || values?.sendingToMediaTwo === 0
+          ? 0
+          : Number(
+              Number(values?.finalFileSizeTwo) * Number(values?.sendingToMediaTwo) * Number(values?.efThree)
+            ).toFixed(2);
 
-      const emissionFour = values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efFour === 0 ? 0 : Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efFour)).toFixed(2);
-      const emissionFive = values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efFive === 0 ? 0 : Number(Number(values?.videoSize) * Number(values?.videoMins) * Number(values?.impressionsTwo) * Number(values?.efFive)).toFixed(2);
+      const emissionFour =
+        values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efFour === 0
+          ? 0
+          : Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efFour)).toFixed(2);
+      const emissionFive =
+        values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efFive === 0
+          ? 0
+          : Number(
+              Number(values?.videoSize) *
+                Number(values?.videoMins) *
+                Number(values?.impressionsTwo) *
+                Number(values?.efFive)
+            ).toFixed(2);
       const emissionSix = Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2);
       const emissionSeven = Number(0.0047 * Number(values?.a4Size75Gsm)).toFixed(2);
 
@@ -117,10 +148,17 @@ const Comms = (props) => {
           noOfEmails: values?.noOfEmails,
           emialEfOne: values?.emialEfOne,
           emialEfTwo: values?.emialEfTwo,
-          emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
-          emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
+          emailEmissionOne:
+            values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
+          emailEmissionTwo:
+            values?.totalAttachmentSize === 0
+              ? 0
+              : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
           attachmentSize: values?.attachmentSize,
-          totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
+          totalAttachmentSize:
+            values?.noOfEmails === 0 || values?.attachmentSize === 0
+              ? 0
+              : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
           emission: emissionOne > 0 ? emissionOne : '',
         },
         {
@@ -165,12 +203,12 @@ const Comms = (props) => {
         {
           type: 'ColouredBrochurePage',
           colouredBrochurePage: values?.colouredBrochurePage,
-          emission: emissionSix > 0 ? emissionSix : ''
+          emission: emissionSix > 0 ? emissionSix : '',
         },
         {
-          type: 'A4Size75Gsm',   // Balck & white
+          type: 'A4Size75Gsm', // Balck & white
           a4Size75Gsm: values?.a4Size75Gsm,
-          emission: emissionSeven > 0 ? emissionSeven : ''
+          emission: emissionSeven > 0 ? emissionSeven : '',
         },
       ];
 
@@ -246,33 +284,41 @@ const Comms = (props) => {
         //   scope: 3,
         // },
         {
-          subType: "PR Assets",
+          subType: 'PR Assets',
           subTypeData: {
-            th: ["", "No. of Pages", "Emissions"],
+            th: ['', 'No. of Pages', 'Emissions'],
             td: [
               {
-                cmType: "Coloured Brochure",
+                cmType: 'Coloured Brochure',
                 noOfPages: values?.colouredBrochurePage,
-                emissions: emissionSix > 0 ? emissionSix : ''
+                emissions: emissionSix > 0 ? emissionSix : '',
               },
               {
-                cmType: "Black & White",
+                cmType: 'Black & White',
                 noOfPages: values?.a4Size75Gsm,
-                emissions: emissionSeven > 0 ? emissionSeven : ''
+                emissions: emissionSeven > 0 ? emissionSeven : '',
               },
-            ]
+            ],
           },
           // scope: 2
         },
       ];
 
       /* for Email Invitations, PR Assets  */
-      const emailInvitationEmission = (Number(emissionOne) || 0) + (Number(emissionTwo) || 0) + (Number(emissionThree) || 0);
+      const emailInvitationEmission =
+        (Number(emissionOne) || 0) + (Number(emissionTwo) || 0) + (Number(emissionThree) || 0);
       const prAssestsEmission = (Number(emissionSix) || 0) + (Number(emissionSeven) || 0);
 
       dispatch(addCommsData({ data }));
-      dispatch(addResultTableData({ from: "prEvent", data: tableData, tabTitle: 'Comms' }));
-      dispatch(prEventEmissionCatogorywise({ categories: [{ catgName: 'Email Invitations', emission: emailInvitationEmission }, { catgName: 'PR Assets', emission: prAssestsEmission }] }));
+      dispatch(addResultTableData({ from: 'prEvent', data: tableData, tabTitle: 'Comms' }));
+      dispatch(
+        prEventEmissionCatogorywise({
+          categories: [
+            { catgName: 'Email Invitations', emission: emailInvitationEmission },
+            { catgName: 'PR Assets', emission: prAssestsEmission },
+          ],
+        })
+      );
     },
   });
 
@@ -344,10 +390,10 @@ const Comms = (props) => {
       // formik.setFieldValue('impressionsTwo', allData?.[4]?.impressionsTwo);
       // formik.setFieldValue('emissionFive', allData?.[4]?.emission);
 
-      formik.setFieldValue("colouredBrochurePage", allData?.[3]?.colouredBrochurePage);
-      formik.setFieldValue("emissionSix", allData?.[3]?.emission);
-      formik.setFieldValue("a4Size75Gsm", allData?.[4]?.a4Size75Gsm);
-      formik.setFieldValue("emissionSeven", allData?.[4]?.emission);
+      formik.setFieldValue('colouredBrochurePage', allData?.[3]?.colouredBrochurePage);
+      formik.setFieldValue('emissionSix', allData?.[3]?.emission);
+      formik.setFieldValue('a4Size75Gsm', allData?.[4]?.a4Size75Gsm);
+      formik.setFieldValue('emissionSeven', allData?.[4]?.emission);
     }
   }, [value]);
 
@@ -389,14 +435,14 @@ const Comms = (props) => {
             flexDirection={'column'}
           >
             <IconDiv>
-              <img src={commsImg} alt="Local Transportation" width={100} className="tabImgWhite" />
+              <img src={commsImg} alt="Transportation" width={100} className="tabImgWhite" />
             </IconDiv>
-            <Container >
+            <Container>
               <Grid
                 container
                 // rowSpacing={4}
                 columnSpacing={0}
-                className='overflow-auto justify-content-center'
+                className="overflow-auto justify-content-center"
               >
                 <Grid item xs={12} sm={12} md={12}>
                   <Typography
@@ -409,27 +455,17 @@ const Comms = (props) => {
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} />
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <Typography
-                    className="text-white fw-bold d-flex align-items-center"
-                  >
-                    No of Emails
-                  </Typography>
+                  <Typography className="text-white fw-bold d-flex align-items-center">No of Emails</Typography>
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <Typography
-                    className="text-white fw-bold d-flex align-items-center ps-2"
-                  >
+                  <Typography className="text-white fw-bold d-flex align-items-center ps-2">
                     Attachment Size (Mb)
                   </Typography>
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <Typography
-                    className="text-white fw-bold d-flex align-items-center ps-2"
-                  >
-                    Emissions
-                  </Typography>
+                  <Typography className="text-white fw-bold d-flex align-items-center ps-2">Emissions</Typography>
                 </Grid>
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
@@ -444,9 +480,7 @@ const Comms = (props) => {
                     value={values?.noOfEmails}
                     onChange={(e) => {
                       const emailEmissionOne =
-                        e.target.value === 0
-                          ? 0
-                          : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(2));
+                        e.target.value === 0 ? 0 : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(2));
                       const totalAttachmentSize =
                         e.target.value === 0 || values?.attachmentSize === 0
                           ? 0
@@ -475,7 +509,7 @@ const Comms = (props) => {
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
                   <TextField
                     size="small"
-                    className='ps-2'
+                    className="ps-2"
                     type="number"
                     name="attachmentSize"
                     value={values?.attachmentSize}
@@ -509,10 +543,10 @@ const Comms = (props) => {
                   />
                 </Grid>
 
-                <Grid item xs={2.7} sm={2.7} md={2.7} >
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
                   <TextField
                     size="small"
-                    className='ps-2'
+                    className="ps-2"
                     type="number"
                     disabled
                     name="emissionOne"
@@ -526,27 +560,15 @@ const Comms = (props) => {
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} />
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <Typography
-                    className="text-white fw-bold d-flex align-items-center"
-                  >
-                    File Size (in Mb)
-                  </Typography>
+                  <Typography className="text-white fw-bold d-flex align-items-center">File Size (in Mb)</Typography>
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <Typography
-                    className="text-white fw-bold d-flex align-items-center ps-2"
-                  >
-                    No of Emails
-                  </Typography>
+                  <Typography className="text-white fw-bold d-flex align-items-center ps-2">No of Emails</Typography>
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <Typography
-                    className="text-white fw-bold d-flex align-items-center ps-2"
-                  >
-                    Emissions
-                  </Typography>
+                  <Typography className="text-white fw-bold d-flex align-items-center ps-2">Emissions</Typography>
                 </Grid>
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} className="text-white d-flex align-items-center">
@@ -564,11 +586,11 @@ const Comms = (props) => {
                         e.target.value === 0
                           ? 0
                           : Number(
-                            Number(e.target.value) *
-                            // Number(values?.prFileSizeOne) *
-                            Number(values?.sendingToMediaOne) *
-                            Number(values?.efTwo)
-                          ).toFixed(2);
+                              Number(e.target.value) *
+                                // Number(values?.prFileSizeOne) *
+                                Number(values?.sendingToMediaOne) *
+                                Number(values?.efTwo)
+                            ).toFixed(2);
                       formik.setFieldValue('finalFileSizeOne', e.target.value);
                       formik.setFieldValue('emissionTwo', emissionTwo);
                       formik.handleSubmit();
@@ -581,7 +603,7 @@ const Comms = (props) => {
                   <TextField
                     size="small"
                     type="number"
-                    className='ps-2'
+                    className="ps-2"
                     name="sendingToMediaOne"
                     value={values?.sendingToMediaOne}
                     onChange={(e) => {
@@ -589,11 +611,11 @@ const Comms = (props) => {
                         e.target.value === 0
                           ? 0
                           : Number(
-                            Number(e.target.value) *
-                            // Number(values?.prFileSizeOne) *
-                            Number(values?.finalFileSizeOne) *
-                            Number(values?.efTwo)
-                          ).toFixed(2);
+                              Number(e.target.value) *
+                                // Number(values?.prFileSizeOne) *
+                                Number(values?.finalFileSizeOne) *
+                                Number(values?.efTwo)
+                            ).toFixed(2);
                       formik.setFieldValue('sendingToMediaOne', e.target.value);
                       formik.setFieldValue('emissionTwo', emissionTwo);
                       formik.handleSubmit();
@@ -602,10 +624,10 @@ const Comms = (props) => {
                   />
                 </Grid>
 
-                <Grid item xs={2.7} sm={2.7} md={2.7} >
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
                   <TextField
                     size="small"
-                    className='ps-2'
+                    className="ps-2"
                     type="number"
                     name="emissionTwo"
                     disabled
@@ -631,12 +653,12 @@ const Comms = (props) => {
                         e.target.value === 0
                           ? 0
                           : Number(
-                            (Number(e.target.value) *
-                              // Number(values?.prFileSizeTwo) *
-                              Number(values?.sendingToMediaTwo) *
-                              Number(values?.efTwo)) /
-                            1000
-                          ).toFixed(2);
+                              (Number(e.target.value) *
+                                // Number(values?.prFileSizeTwo) *
+                                Number(values?.sendingToMediaTwo) *
+                                Number(values?.efTwo)) /
+                                1000
+                            ).toFixed(2);
                       formik.setFieldValue('finalFileSizeTwo', e.target.value);
                       formik.setFieldValue('emissionThree', Number(emailEmissionThree).toFixed(2));
                       formik.handleSubmit();
@@ -649,7 +671,7 @@ const Comms = (props) => {
                   <TextField
                     size="small"
                     type="number"
-                    className='ps-2'
+                    className="ps-2"
                     name="sendingToMediaTwo"
                     value={values?.sendingToMediaTwo}
                     onChange={(e) => {
@@ -657,12 +679,12 @@ const Comms = (props) => {
                         e.target.value === 0
                           ? 0
                           : Number(
-                            (Number(e.target.value) *
-                              // Number(values?.prFileSizeTwo) *
-                              Number(values?.finalFileSizeTwo) *
-                              Number(values?.efTwo)) /
-                            1000
-                          ).toFixed(2);
+                              (Number(e.target.value) *
+                                // Number(values?.prFileSizeTwo) *
+                                Number(values?.finalFileSizeTwo) *
+                                Number(values?.efTwo)) /
+                                1000
+                            ).toFixed(2);
                       formik.setFieldValue('sendingToMediaTwo', e.target.value);
                       formik.setFieldValue('emissionThree', Number(emailEmissionThree).toFixed(2));
                       formik.handleSubmit();
@@ -671,10 +693,10 @@ const Comms = (props) => {
                   />
                 </Grid>
 
-                <Grid item xs={2.7} sm={2.7} md={2.7} >
+                <Grid item xs={2.7} sm={2.7} md={2.7}>
                   <TextField
                     size="small"
-                    className='ps-2'
+                    className="ps-2"
                     type="number"
                     name="emissionThree"
                     disabled
@@ -696,19 +718,11 @@ const Comms = (props) => {
 
                 <Grid item xs={2.2} sm={2.2} md={2.2} />
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <Typography
-                    className="text-white fw-bold d-flex align-items-center"
-                  >
-                    No. of Pages
-                  </Typography>
+                  <Typography className="text-white fw-bold d-flex align-items-center">No. of Pages</Typography>
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <Typography
-                    className="text-white fw-bold d-flex align-items-center ps-2"
-                  >
-                    Emissions
-                  </Typography>
+                  <Typography className="text-white fw-bold d-flex align-items-center ps-2">Emissions</Typography>
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
@@ -718,18 +732,30 @@ const Comms = (props) => {
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small' type="number" name="colouredBrochurePage"
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="colouredBrochurePage"
                     value={formik?.values?.colouredBrochurePage}
                     onChange={(e) => {
                       formik.setFieldValue('colouredBrochurePage', e.target.value);
                       formik.setFieldValue('emissionSix', Number(1.56 * Number(e.target.value)).toFixed(2));
                       formik.handleSubmit();
                     }}
-                    inputProps={{ style: { color: 'white' } }} />
+                    inputProps={{ style: { color: 'white' } }}
+                  />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small' className='ps-2' type="number" name='emissionSix' disabled value={values?.emissionSix} onChange={formik.handleChange} />
+                  <TextField
+                    size="small"
+                    className="ps-2"
+                    type="number"
+                    name="emissionSix"
+                    disabled
+                    value={values?.emissionSix}
+                    onChange={formik.handleChange}
+                  />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
@@ -741,16 +767,29 @@ const Comms = (props) => {
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small' type="number" name='a4Size75Gsm' value={values?.a4Size75Gsm}
+                  <TextField
+                    size="small"
+                    type="number"
+                    name="a4Size75Gsm"
+                    value={values?.a4Size75Gsm}
                     onChange={(e) => {
-                      formik.setFieldValue("a4Size75Gsm", Number(e.target.value));
+                      formik.setFieldValue('a4Size75Gsm', Number(e.target.value));
                       formik.handleSubmit();
                     }}
-                    inputProps={{ style: { color: 'white' } }} />
+                    inputProps={{ style: { color: 'white' } }}
+                  />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7}>
-                  <TextField size='small' className='ps-2' type="number" name='emissionSeven' disabled value={values?.emissionSeven} onChange={formik.handleChange} />
+                  <TextField
+                    size="small"
+                    className="ps-2"
+                    type="number"
+                    name="emissionSeven"
+                    disabled
+                    value={values?.emissionSeven}
+                    onChange={formik.handleChange}
+                  />
                 </Grid>
 
                 <Grid item xs={2.7} sm={2.7} md={2.7} />
@@ -789,7 +828,7 @@ const Comms = (props) => {
                       endIcon={<FaAngleDoubleRight />}
                       onClick={() => {
                         handleSaveToDb();
-                        setValue(3)
+                        setValue(3);
                       }}
                       className="custom-btn"
                     >
@@ -813,7 +852,6 @@ const Comms = (props) => {
                     {`Total Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
                   </Typography>
                 </Grid>
-
               </Grid>
             </Container>
           </Box>

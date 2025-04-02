@@ -202,7 +202,7 @@ const Image = (props) => {
       console.log(data, 'data');
       console.log(tableData, 'tableData');
       dispatch(addCampaignData({ data }));
-      dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Digital Campaign' }));
+      dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Image' }));
     },
   });
 

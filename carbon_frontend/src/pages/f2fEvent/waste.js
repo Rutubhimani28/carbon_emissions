@@ -102,31 +102,31 @@ const Waste = (props) => {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      const BeefHerdEmission = Number(99.48 * Number(values?.BeefHerd)).toFixed(2);
-      const dairyHerdEmission = Number(33.3 * Number(values?.dairyHerd)).toFixed(2);
-      // const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2);
-      const lambMuttonEmission = Number(39.72 * Number(values?.lambMutton)).toFixed(2);
-      const poultryMeatEmission = Number(9.87 * Number(values?.poultryMeat)).toFixed(2);
-      const fishFrameEmission = Number(13.63 * Number(values?.fishFrame)).toFixed(2);
-      const PrawnsFrameEmission = Number(26.87 * Number(values?.PrawnsFrame)).toFixed(2);
-      const EggsEmission = Number(4.67 * Number(values?.Eggs)).toFixed(2);
-      const CheeseEmission = Number(23.88 * Number(values?.Cheese)).toFixed(2);
-      const RiceEmission = Number(4.45 * Number(values?.Rice)).toFixed(2);
-      const OtherPulsesEmission = Number(1.79 * Number(values?.OtherPulses)).toFixed(2);
-      const wheatRyeEmission = Number(1.57 * Number(values?.wheatRye)).toFixed(2);
-      const otherFruitsEmission = Number(1.05 * Number(values?.otherFruits)).toFixed(2);
-      const otherVegetablesEmission = Number(0.53 * Number(values?.otherVegetables)).toFixed(2);
-      const rootVegetablesEmission = Number(0.43 * Number(values?.rootVegetables)).toFixed(2);
-      const RecycledEmission = Number(0.1097 * Number(values?.Recycled)).toFixed(2);
-      const LandfilledEmission = Number(0.122 * Number(values?.Landfilled)).toFixed(2);
-      // const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.022).toFixed(2);
-      // const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.022).toFixed(2);
-      // const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.022).toFixed(2);
-      // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2);
+      const BeefHerdEmission = Number(99.48 * Number(values?.BeefHerd)).toFixed(5);
+      const dairyHerdEmission = Number(33.3 * Number(values?.dairyHerd)).toFixed(5);
+      // const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(5);
+      const lambMuttonEmission = Number(39.72 * Number(values?.lambMutton)).toFixed(5);
+      const poultryMeatEmission = Number(9.87 * Number(values?.poultryMeat)).toFixed(5);
+      const fishFrameEmission = Number(13.63 * Number(values?.fishFrame)).toFixed(5);
+      const PrawnsFrameEmission = Number(26.87 * Number(values?.PrawnsFrame)).toFixed(5);
+      const EggsEmission = Number(4.67 * Number(values?.Eggs)).toFixed(5);
+      const CheeseEmission = Number(23.88 * Number(values?.Cheese)).toFixed(5);
+      const RiceEmission = Number(4.45 * Number(values?.Rice)).toFixed(5);
+      const OtherPulsesEmission = Number(1.79 * Number(values?.OtherPulses)).toFixed(5);
+      const wheatRyeEmission = Number(1.57 * Number(values?.wheatRye)).toFixed(5);
+      const otherFruitsEmission = Number(1.05 * Number(values?.otherFruits)).toFixed(5);
+      const otherVegetablesEmission = Number(0.53 * Number(values?.otherVegetables)).toFixed(5);
+      const rootVegetablesEmission = Number(0.43 * Number(values?.rootVegetables)).toFixed(5);
+      const RecycledEmission = Number(0.1097 * Number(values?.Recycled)).toFixed(5);
+      const LandfilledEmission = Number(0.122 * Number(values?.Landfilled)).toFixed(5);
+      // const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.022).toFixed(5);
+      // const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.022).toFixed(5);
+      // const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.022).toFixed(5);
+      // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(5);
 
-      // const woodEmission = Number(Number(values?.woodKg) * 1.33).toFixed(2);
-      // const carpetEmission = Number(Number(values?.carpetKg) * 0.2).toFixed(2);
-      // const pvcEmission = Number(Number(values?.pvcKg) * 1 * 0.02).toFixed(2);
+      // const woodEmission = Number(Number(values?.woodKg) * 1.33).toFixed(5);
+      // const carpetEmission = Number(Number(values?.carpetKg) * 0.2).toFixed(5);
+      // const pvcEmission = Number(Number(values?.pvcKg) * 1 * 0.02).toFixed(5);
 
       if (BeefHerdEmission > 0) formik.setFieldValue('BeefHerdEmission', BeefHerdEmission);
       if (dairyHerdEmission > 0) formik.setFieldValue('dairyHerdEmission', dairyHerdEmission);
@@ -156,14 +156,14 @@ const Waste = (props) => {
       // if (pvcEmission > 0) formik.setFieldValue('pvcEmission', pvcEmission);
 
       // if (plasticWrappingEmission > 0) formik.setFieldValue('plasticWrappingEmission', plasticWrappingEmission);
-      // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
-      // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
-      // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(2));
-      // formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2));
-      // formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2));
-      // formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2));
-      // formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2));
-      // formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2));
+      // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(5));
+      // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(5));
+      // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(5));
+      // formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(5));
+      // formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(5));
+      // formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(5));
+      // formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(5));
+      // formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(values?.cottonBagsA4Size)).toFixed(5));
 
       const data = [
         {
@@ -497,7 +497,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'BeefHerdEmission',
-                                  Number(99.48 * Number(e?.target?.value)).toFixed(2)
+                                  Number(99.48 * Number(e?.target?.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -527,7 +527,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'dairyHerdEmission',
-                                  Number(33.3 * Number(e.target.value)).toFixed(2)
+                                  Number(33.3 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -558,7 +558,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'lambMuttonEmission',
-                                  Number(39.72 * Number(e.target.value)).toFixed(2)
+                                  Number(39.72 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -588,7 +588,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'poultryMeatEmission',
-                                  Number(9.87 * Number(e.target.value)).toFixed(2)
+                                  Number(9.87 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -618,7 +618,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'fishFrameEmission',
-                                  Number(13.63 * Number(e.target.value)).toFixed(2)
+                                  Number(13.63 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -648,7 +648,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'PrawnsFrameEmission',
-                                  Number(26.87 * Number(e.target.value)).toFixed(2)
+                                  Number(26.87 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -676,7 +676,7 @@ const Waste = (props) => {
                               value={formik?.values?.Eggs}
                               onChange={(e) => {
                                 formik.handleChange(e);
-                                formik.setFieldValue('EggsEmission', Number(4.67 * Number(e.target.value)).toFixed(2));
+                                formik.setFieldValue('EggsEmission', Number(4.67 * Number(e.target.value)).toFixed(5));
                                 formik.handleSubmit();
                               }}
                               inputProps={{ style: { color: 'white' } }}
@@ -719,7 +719,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'CheeseEmission',
-                                  Number(23.88 * Number(e.target.value)).toFixed(2)
+                                  Number(23.88 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -747,7 +747,7 @@ const Waste = (props) => {
                               value={formik?.values?.Rice}
                               onChange={(e) => {
                                 formik.handleChange(e);
-                                formik.setFieldValue('RiceEmission', Number(4.45 * Number(e.target.value)).toFixed(2));
+                                formik.setFieldValue('RiceEmission', Number(4.45 * Number(e.target.value)).toFixed(5));
                                 formik.handleSubmit();
                               }}
                               inputProps={{ style: { color: 'white' } }}
@@ -776,7 +776,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'OtherPulsesEmission',
-                                  Number(1.79 * Number(e.target.value)).toFixed(2)
+                                  Number(1.79 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -806,7 +806,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'wheatRyeEmission',
-                                  Number(1.57 * Number(e.target.value)).toFixed(2)
+                                  Number(1.57 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -836,7 +836,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'otherFruitsEmission',
-                                  Number(1.05 * Number(e.target.value)).toFixed(2)
+                                  Number(1.05 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -866,7 +866,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'otherVegetablesEmission',
-                                  Number(0.53 * Number(e.target.value)).toFixed(2)
+                                  Number(0.53 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -896,7 +896,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'rootVegetablesEmission',
-                                  Number(0.43 * Number(e.target.value)).toFixed(2)
+                                  Number(0.43 * Number(e.target.value)).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -942,7 +942,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'RecycledEmission',
-                                  Number(Number(e.target.value) * 0.1097).toFixed(2)
+                                  Number(Number(e.target.value) * 0.1097).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -972,7 +972,7 @@ const Waste = (props) => {
                                 formik.handleChange(e);
                                 formik.setFieldValue(
                                   'LandfilledEmission',
-                                  Number(Number(e.target.value) * 0.122).toFixed(2)
+                                  Number(Number(e.target.value) * 0.122).toFixed(5)
                                 );
                                 formik.handleSubmit();
                               }}
@@ -1000,7 +1000,7 @@ const Waste = (props) => {
                               value={formik?.values?.pvcKg}
                               onChange={(e) => {
                                 formik.handleChange(e);
-                                formik.setFieldValue('pvcEmission', Number(Number(e.target.value) * 0.02).toFixed(2));
+                                formik.setFieldValue('pvcEmission', Number(Number(e.target.value) * 0.02).toFixed(5));
                                 formik.handleSubmit();
                               }}
                               inputProps={{ style: { color: 'white' } }}
@@ -1152,19 +1152,19 @@ export default Waste;
 //     const formik = useFormik({
 //         initialValues,
 //         onSubmit: async (values) => {
-//             const foodWasteNonMeatEmission = Number(0.74 * Number(values?.foodWasteNonMeatKg)).toFixed(2);
-//             const foodWasteMeatEmission = Number(0.76 * Number(values?.foodWasteMeatKg)).toFixed(2);
-//             // const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2);
-//             const foodWasteMixEmission = Number(0.75 * Number(values?.foodWasteMixKg)).toFixed(2);
-//             const fruitVegetablesEmission = Number(0.31 * Number(values?.fruitVegetablesKg)).toFixed(2);
-//             const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.022).toFixed(2);
-//             const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.022).toFixed(2);
-//             const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.022).toFixed(2);
-//             // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2);
+//             const foodWasteNonMeatEmission = Number(0.74 * Number(values?.foodWasteNonMeatKg)).toFixed(5);
+//             const foodWasteMeatEmission = Number(0.76 * Number(values?.foodWasteMeatKg)).toFixed(5);
+//             // const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(5);
+//             const foodWasteMixEmission = Number(0.75 * Number(values?.foodWasteMixKg)).toFixed(5);
+//             const fruitVegetablesEmission = Number(0.31 * Number(values?.fruitVegetablesKg)).toFixed(5);
+//             const bottleOneEmission = Number(Number(values?.bottleOne) * 6.42 * 0.022).toFixed(5);
+//             const bottleTwoEmission = Number(Number(values?.bottleTwo) * 13 * 0.022).toFixed(5);
+//             const bottleThreeEmission = Number(Number(values?.bottleThree) * 21.5 * 0.022).toFixed(5);
+//             // const plasticWrappingEmission = Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(5);
 
-//             const woodEmission = Number(Number(values?.woodKg) * 1.33).toFixed(2);
-//             const carpetEmission = Number(Number(values?.carpetKg) * 0.2).toFixed(2);
-//             const pvcEmission = Number(Number(values?.pvcKg) * 1 * 0.02).toFixed(2);
+//             const woodEmission = Number(Number(values?.woodKg) * 1.33).toFixed(5);
+//             const carpetEmission = Number(Number(values?.carpetKg) * 0.2).toFixed(5);
+//             const pvcEmission = Number(Number(values?.pvcKg) * 1 * 0.02).toFixed(5);
 
 //             if (foodWasteNonMeatEmission > 0) formik.setFieldValue('foodWasteNonMeatEmission', foodWasteNonMeatEmission);
 //             if (foodWasteMeatEmission > 0) formik.setFieldValue('foodWasteMeatEmission', foodWasteMeatEmission);
@@ -1181,14 +1181,14 @@ export default Waste;
 //             if (pvcEmission > 0) formik.setFieldValue('pvcEmission', pvcEmission);
 
 //             // if (plasticWrappingEmission > 0) formik.setFieldValue('plasticWrappingEmission', plasticWrappingEmission);
-//             // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
-//             // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
-//             // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(2));
-//             // formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(2));
-//             // formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(2));
-//             // formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(2));
-//             // formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(2));
-//             // formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(values?.cottonBagsA4Size)).toFixed(2));
+//             // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(5));
+//             // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(5));
+//             // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(5));
+//             // formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(values?.colouredBrochurePage)).toFixed(5));
+//             // formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(values?.paperBagsA4Size)).toFixed(5));
+//             // formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(values?.paperBagsA5Size)).toFixed(5));
+//             // formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(values?.juteBagsA4Size)).toFixed(5));
+//             // formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(values?.cottonBagsA4Size)).toFixed(5));
 
 //             const data = [
 //                 {
@@ -1239,47 +1239,47 @@ export default Waste;
 //                 // {
 //                 //     type: 'PolyethyleneHDPEBanner',
 //                 //     hdpeBanner: values?.hdpeBanner,
-//                 //     emission: Number((3.11 * values?.hdpeBanner).toFixed(2)) || 0,
+//                 //     emission: Number((3.11 * values?.hdpeBanner).toFixed(5)) || 0,
 //                 // },
 //                 // {
 //                 //     type: 'PVCBanners',
 //                 //     pvcBanners: values?.pvcBanners,
-//                 //     emission: Number((7.83 * values?.pvcBanners).toFixed(2)) || 0,
+//                 //     emission: Number((7.83 * values?.pvcBanners).toFixed(5)) || 0,
 //                 // },
 //                 // {
 //                 //     type: 'CottonBanner',
 //                 //     cottonBanner: values?.cottonBanner,
-//                 //     emission: Number((14.5 * values?.cottonBanner).toFixed(2)) || 0,
+//                 //     emission: Number((14.5 * values?.cottonBanner).toFixed(5)) || 0,
 //                 // },
 //                 // {
 //                 //     type: 'PlasticBadgeHolders',
 //                 //     plasticBadgeHolders: values?.plasticBadgeHolders,
-//                 //     emission: Number((4.2 * values?.plasticBadgeHolders).toFixed(2)) || 0,
+//                 //     emission: Number((4.2 * values?.plasticBadgeHolders).toFixed(5)) || 0,
 //                 // },
 //                 // {
 //                 //     type: 'ColouredBrochurePage',
 //                 //     colouredBrochurePage: values?.colouredBrochurePage,
-//                 //     emission: Number((1.56 * values?.colouredBrochurePage).toFixed(2)) || 0,
+//                 //     emission: Number((1.56 * values?.colouredBrochurePage).toFixed(5)) || 0,
 //                 // },
 //                 // {
 //                 //     type: 'PaperBagsA4Size',
 //                 //     paperBagsA4Size: values?.paperBagsA4Size,
-//                 //     emission: Number((0.3125 * values?.paperBagsA4Size).toFixed(2)) || 0,
+//                 //     emission: Number((0.3125 * values?.paperBagsA4Size).toFixed(5)) || 0,
 //                 // },
 //                 // {
 //                 //     type: 'PaperBagsA5Size',
 //                 //     paperBagsA5Size: values?.paperBagsA5Size,
-//                 //     emission: Number((0.125 * values?.paperBagsA5Size).toFixed(2)) || 0,
+//                 //     emission: Number((0.125 * values?.paperBagsA5Size).toFixed(5)) || 0,
 //                 // },
 //                 // {
 //                 //     type: 'JuteBagsA4Size',
 //                 //     juteBagsA4Size: values?.juteBagsA4Size,
-//                 //     emission: Number((0.73 * values?.juteBagsA4Size).toFixed(2)) || 0,
+//                 //     emission: Number((0.73 * values?.juteBagsA4Size).toFixed(5)) || 0,
 //                 // },
 //                 // {
 //                 //     type: 'CottonBagsA4Size',
 //                 //     cottonBagsA4Size: values?.cottonBagsA4Size,
-//                 //     emission: Number((17 * values?.cottonBagsA4Size).toFixed(2)) || 0,
+//                 //     emission: Number((17 * values?.cottonBagsA4Size).toFixed(5)) || 0,
 //                 // },
 //                 {
 //                     type: 'Wood',
@@ -1511,7 +1511,7 @@ export default Waste;
 //                                                             value={formik?.values?.foodWasteNonMeatKg}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('foodWasteNonMeatEmission', Number(0.74 * Number(e?.target?.value)).toFixed(2));
+//                                                                 formik.setFieldValue('foodWasteNonMeatEmission', Number(0.74 * Number(e?.target?.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -1538,7 +1538,7 @@ export default Waste;
 //                                                             value={formik?.values?.foodWasteMeatKg}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('foodWasteMeatEmission', Number(0.76 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('foodWasteMeatEmission', Number(0.76 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }} inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1564,8 +1564,8 @@ export default Waste;
 //                                                             value={formik?.values?.municipalSolidWasteKg}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 // formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(2));
-//                                                                 formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(e.target.value)).toFixed(2));
+//                                                                 // formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(5));
+//                                                                 formik.setFieldValue('municipalSolidWasteEmission', Number(0.902 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }} inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1591,7 +1591,7 @@ export default Waste;
 //                                                             value={formik?.values?.foodWasteMixKg}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('foodWasteMixEmission', Number(0.75 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('foodWasteMixEmission', Number(0.75 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }} inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1617,7 +1617,7 @@ export default Waste;
 //                                                             value={formik?.values?.fruitVegetablesKg}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('fruitVegetablesEmission', Number(0.31 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('fruitVegetablesEmission', Number(0.31 * Number(e.target.value)).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }} inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1659,7 +1659,7 @@ export default Waste;
 //                                                             value={formik?.values?.bottleOne}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('bottleOneEmission', Number(Number(e.target.value) * 6.42 * 0.022).toFixed(2));
+//                                                                 formik.setFieldValue('bottleOneEmission', Number(Number(e.target.value) * 6.42 * 0.022).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }} inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1685,7 +1685,7 @@ export default Waste;
 //                                                             value={formik?.values?.bottleTwo}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('bottleTwoEmission', Number(Number(e.target.value) * 13 * 0.022).toFixed(2));
+//                                                                 formik.setFieldValue('bottleTwoEmission', Number(Number(e.target.value) * 13 * 0.022).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -1712,7 +1712,7 @@ export default Waste;
 //                                                             value={formik?.values?.bottleThree}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('bottleThreeEmission', Number(Number(e.target.value) * 21.5 * 0.022).toFixed(2));
+//                                                                 formik.setFieldValue('bottleThreeEmission', Number(Number(e.target.value) * 21.5 * 0.022).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }} inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1738,8 +1738,8 @@ export default Waste;
 //                                                             value={formik?.values?.plasticWrapping}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 // formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(2));
-//                                                                 formik.setFieldValue('plasticWrappingEmission', Number(Number(e.target.value) * 1 * 7.83).toFixed(2));
+//                                                                 // formik.setFieldValue('plasticWrappingEmission', Number(Number(values?.plasticWrapping) * 1 * 7.83).toFixed(5));
+//                                                                 formik.setFieldValue('plasticWrappingEmission', Number(Number(e.target.value) * 1 * 7.83).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -1783,7 +1783,7 @@ export default Waste;
 //                                                             value={formik?.values?.woodKg}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('woodEmission', Number(Number(e.target.value) * 1.33).toFixed(2));
+//                                                                 formik.setFieldValue('woodEmission', Number(Number(e.target.value) * 1.33).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }} inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1809,7 +1809,7 @@ export default Waste;
 //                                                             value={formik?.values?.carpetKg}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('carpetEmission', Number(Number(e.target.value) * 13 * 0.2).toFixed(2));
+//                                                                 formik.setFieldValue('carpetEmission', Number(Number(e.target.value) * 13 * 0.2).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
@@ -1836,7 +1836,7 @@ export default Waste;
 //                                                             value={formik?.values?.pvcKg}
 //                                                             onChange={(e) => {
 //                                                                 formik.handleChange(e);
-//                                                                 formik.setFieldValue('pvcEmission', Number(Number(e.target.value) * 0.02).toFixed(2));
+//                                                                 formik.setFieldValue('pvcEmission', Number(Number(e.target.value) * 0.02).toFixed(5));
 //                                                                 formik.handleSubmit();
 //                                                             }} inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1878,8 +1878,8 @@ export default Waste;
 //                                                             value={formik?.values?.hdpeBanner}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('hdpeBanner', e.target.value);
-//                                                                 // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(2));
-//                                                                 formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(e.target.value)).toFixed(2));
+//                                                                 // formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(values?.hdpeBanner)).toFixed(5));
+//                                                                 formik.setFieldValue('hdpeBannerEmission', Number(3.11 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1905,8 +1905,8 @@ export default Waste;
 //                                                             value={formik?.values?.pvcBanners}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('pvcBanners', e.target.value);
-//                                                                 // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(2));
-//                                                                 formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(e.target.value)).toFixed(2));
+//                                                                 // formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(values?.pvcBanners)).toFixed(5));
+//                                                                 formik.setFieldValue('pvcBannersEmission', Number(7.83 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1932,8 +1932,8 @@ export default Waste;
 //                                                             value={formik?.values?.cottonBanner}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('cottonBanner', e.target.value);
-//                                                                 // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(2));
-//                                                                 formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(e.target.value)).toFixed(2));
+//                                                                 // formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(values?.cottonBanner)).toFixed(5));
+//                                                                 formik.setFieldValue('cottonBannerEmission', Number(14.5 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -1959,7 +1959,7 @@ export default Waste;
 //                                                             value={formik?.values?.plasticBadgeHolders}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('plasticBadgeHolders', e.target.value);
-//                                                                 formik.setFieldValue('plasticBadgeHoldersEmission', Number(4.2 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('plasticBadgeHoldersEmission', Number(4.2 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -2001,7 +2001,7 @@ export default Waste;
 //                                                             value={formik?.values?.colouredBrochurePage}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('colouredBrochurePage', e.target.value);
-//                                                                 formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('colouredBrochurePageEmission', Number(1.56 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -2027,7 +2027,7 @@ export default Waste;
 //                                                             value={formik?.values?.paperBagsA4Size}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('paperBagsA4Size', e.target.value);
-//                                                                 formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('paperBagsA4SizeEmission', Number(0.3125 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -2053,7 +2053,7 @@ export default Waste;
 //                                                             value={formik?.values?.paperBagsA5Size}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('paperBagsA5Size', e.target.value);
-//                                                                 formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('paperBagsA5SizeEmission', Number(0.125 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -2079,7 +2079,7 @@ export default Waste;
 //                                                             value={formik?.values?.juteBagsA4Size}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('juteBagsA4Size', e.target.value);
-//                                                                 formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('juteBagsA4SizeEmission', Number(0.73 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 //                                                             inputProps={{ style: { color: 'white' } }}
 //                                                         />
@@ -2105,7 +2105,7 @@ export default Waste;
 //                                                             value={formik?.values?.cottonBagsA4Size}
 //                                                             onChange={(e) => {
 //                                                                 formik.setFieldValue('cottonBagsA4Size', e.target.value);
-//                                                                 formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(e.target.value)).toFixed(2));
+//                                                                 formik.setFieldValue('cottonBagsA4SizeEmission', Number(17 * Number(e.target.value)).toFixed(5));
 //                                                             }}
 
 //                                                             inputProps={{ style: { color: 'white' } }}

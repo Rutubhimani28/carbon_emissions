@@ -74,13 +74,13 @@ const DigitalContent = (props) => {
     onSubmit: async (values) => {
       // const emissionOne = Number(values?.count) * 4 / 1000;
       // const emissionTwo = Number(values?.MB) * 50 / 1000;
-      // const emissionThree = Number((values?.Colours * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
+      // const emissionThree = Number((values?.Colours * 340 * (values?.noOfHours / 5840)).toFixed(5)) || 0;
       const emissionOne =
-        values?.noOfEmails === 0 ? 0 : Number((Number(values?.noOfEmails) * 4 * 50) / 1000).toFixed(2);
+        values?.noOfEmails === 0 ? 0 : Number((Number(values?.noOfEmails) * 4 * 50) / 1000).toFixed(5);
       console.log(emissionOne, 'emissionOne');
-      // const emissionOne = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2);
-      const emissionTwo = Number((values?.Colours * 0.976).toFixed(2)) || 0;
-      const emissionThree = Number((values?.blackAndWhite * 0.946).toFixed(2)) || 0;
+      // const emissionOne = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(5);
+      const emissionTwo = Number((values?.Colours * 0.976).toFixed(5)) || 0;
+      const emissionThree = Number((values?.blackAndWhite * 0.946).toFixed(5)) || 0;
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
       if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
       if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
@@ -102,10 +102,10 @@ const DigitalContent = (props) => {
           noOfEmails: values?.noOfEmails,
           // emialEfOne: values?.emialEfOne,
           // emialEfTwo: values?.emialEfTwo,
-          // emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
-          // emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
+          // emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(5)),
+          // emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(5)),
           // attachmentSize: values?.attachmentSize,
-          // totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
+          // totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(5)),
           emission: emissionOne > 0 ? emissionOne : '',
         },
         {
@@ -160,7 +160,7 @@ const DigitalContent = (props) => {
         },
       ];
 
-      dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Digital Comms' }));
+      dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Communications ' }));
     },
   });
 
@@ -251,7 +251,7 @@ const DigitalContent = (props) => {
                                         value={formik.values.count}
                                         onChange={(e) => {
                                             formik.handleChange(e);
-                                            formik.setFieldValue('emissionOne', Number((e.target.value * 4 / 1000).toFixed(2)));
+                                            formik.setFieldValue('emissionOne', Number((e.target.value * 4 / 1000).toFixed(5)));
                                             formik.handleSubmit();
                                         }}
                                         error={
@@ -300,7 +300,7 @@ const DigitalContent = (props) => {
                                         value={formik.values.MB}
                                         onChange={(e) => {
                                             formik.handleChange(e);
-                                            formik.setFieldValue('emissionTwo', Number((e.target.value * 50 / 1000).toFixed(2)));
+                                            formik.setFieldValue('emissionTwo', Number((e.target.value * 50 / 1000).toFixed(5)));
                                             formik.handleSubmit();
                                         }}
                                         error={
@@ -405,8 +405,8 @@ const DigitalContent = (props) => {
                             value={formik.values.Colours}
                             onChange={(e) => {
                               formik.handleChange(e);
-                              // formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
-                              formik.setFieldValue('emissionTwo', Number((e.target.value * 0.976).toFixed(2)));
+                              // formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(5)));
+                              formik.setFieldValue('emissionTwo', Number((e.target.value * 0.976).toFixed(5)));
                               formik.handleSubmit();
                             }}
                             error={formik.touched.Colours && Boolean(formik.errors.Colours)}
@@ -441,7 +441,7 @@ const DigitalContent = (props) => {
                             value={formik.values.blackAndWhite}
                             onChange={(e) => {
                               formik.handleChange(e);
-                              formik.setFieldValue('emissionThree', Number((e.target.value * 0.946).toFixed(2)));
+                              formik.setFieldValue('emissionThree', Number((e.target.value * 0.946).toFixed(5)));
                               formik.handleSubmit();
                             }}
                             error={formik.touched.blackAndWhite && Boolean(formik.errors.blackAndWhite)}
@@ -483,10 +483,10 @@ const DigitalContent = (props) => {
                     value={formik.values.Colours}
                     onChange={(e) => {
                       formik.handleChange(e);
-                      // formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
+                      // formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(5)));
                       formik.setFieldValue(
                         'emissionTwo',
-                        Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2))
+                        Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(5))
                       );
                       formik.handleSubmit();
                     }}
@@ -508,10 +508,10 @@ const DigitalContent = (props) => {
                     value={formik.values.noOfHours}
                     onChange={(e) => {
                       formik.handleChange(e);
-                      // formik.setFieldValue('emissionThree', Number((formik?.values?.Colours * 340 * (e.target.value / 5840)).toFixed(2)));
+                      // formik.setFieldValue('emissionThree', Number((formik?.values?.Colours * 340 * (e.target.value / 5840)).toFixed(5)));
                       formik.setFieldValue(
                         'emissionTwo',
-                        Number((formik?.values?.Colours * 340 * (e.target.value / 5840)).toFixed(2))
+                        Number((formik?.values?.Colours * 340 * (e.target.value / 5840)).toFixed(5))
                       );
                       formik.handleSubmit();
                     }}
@@ -609,7 +609,7 @@ const DigitalContent = (props) => {
               </Grid>
               <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
                 <Typography color="white">
-                  {`Total Digital Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
+                  {`Total Communications  Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
                 </Typography>
               </Grid>
               {/* <Grid item xs={12} sm={12} md={12} marginLeft={3}>
@@ -692,9 +692,9 @@ export default DigitalContent;
 //         onSubmit: async (values) => {
 //             // const emissionOne = Number(values?.count) * 4 / 1000;
 //             // const emissionTwo = Number(values?.MB) * 50 / 1000;
-//             // const emissionThree = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
-//             const emissionOne = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(2);
-//             const emissionTwo = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(2)) || 0;
+//             // const emissionThree = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(5)) || 0;
+//             const emissionOne = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(5);
+//             const emissionTwo = Number((values?.noOfAttendees * 340 * (values?.noOfHours / 5840)).toFixed(5)) || 0;
 
 //             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 //             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
@@ -716,10 +716,10 @@ export default DigitalContent;
 //                     noOfEmails: values?.noOfEmails,
 //                     emialEfOne: values?.emialEfOne,
 //                     emialEfTwo: values?.emialEfTwo,
-//                     emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
-//                     emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
+//                     emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(5)),
+//                     emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(5)),
 //                     attachmentSize: values?.attachmentSize,
-//                     totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
+//                     totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(5)),
 //                     emission: emissionOne > 0 ? emissionOne : '',
 //                 },
 //                 {
@@ -743,10 +743,10 @@ export default DigitalContent;
 //                                 noOfEmails: values?.noOfEmails,
 //                                 // emialEfOne: values?.emialEfOne,
 //                                 // emialEfTwo: values?.emialEfTwo,
-//                                 // emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2)),
-//                                 // emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2)),
+//                                 // emailEmissionOne: values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(5)),
+//                                 // emailEmissionTwo: values?.totalAttachmentSize === 0 ? 0 : Number(((values?.totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(5)),
 //                                 attachmentSize: values?.attachmentSize,
-//                                 // totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(2)),
+//                                 // totalAttachmentSize: values?.noOfEmails === 0 || values?.attachmentSize === 0 ? 0 : Number((values?.noOfEmails * values?.attachmentSize).toFixed(5)),
 //                                 emissions: emissionOne > 0 ? emissionOne : '',
 //                             },
 //                         ]
@@ -770,7 +770,7 @@ export default DigitalContent;
 //                 },
 //             ];
 
-//             dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Digital Comms" }));
+//             dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Communications " }));
 //         },
 //     });
 
@@ -858,7 +858,7 @@ export default DigitalContent;
 //                                         value={formik.values.count}
 //                                         onChange={(e) => {
 //                                             formik.handleChange(e);
-//                                             formik.setFieldValue('emissionOne', Number((e.target.value * 4 / 1000).toFixed(2)));
+//                                             formik.setFieldValue('emissionOne', Number((e.target.value * 4 / 1000).toFixed(5)));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={
@@ -907,7 +907,7 @@ export default DigitalContent;
 //                                         value={formik.values.MB}
 //                                         onChange={(e) => {
 //                                             formik.handleChange(e);
-//                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 50 / 1000).toFixed(2)));
+//                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 50 / 1000).toFixed(5)));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={
@@ -956,15 +956,15 @@ export default DigitalContent;
 //                                         size="small"
 //                                         value={formik.values.noOfEmails}
 //                                         onChange={(e) => {
-//                                             const emailEmissionOne = e.target.value === 0 ? 0 : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(2));
-//                                             const totalAttachmentSize = e.target.value === 0 || values?.attachmentSize === 0 ? 0 : Number((e.target.value * values?.attachmentSize).toFixed(2));
-//                                             const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+//                                             const emailEmissionOne = e.target.value === 0 ? 0 : Number(((e.target.value * values?.emialEfOne) / 1000).toFixed(5));
+//                                             const totalAttachmentSize = e.target.value === 0 || values?.attachmentSize === 0 ? 0 : Number((e.target.value * values?.attachmentSize).toFixed(5));
+//                                             const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(5));
 
 //                                             formik.setFieldValue("noOfEmails", e.target.value);
 //                                             formik.setFieldValue("emailEmissionOne", emailEmissionOne);
 //                                             formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
 //                                             formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
-//                                             formik.setFieldValue("emissionOne", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
+//                                             formik.setFieldValue("emissionOne", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(5));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={
@@ -987,16 +987,16 @@ export default DigitalContent;
 //                                         size="small"
 //                                         value={values?.attachmentSize}
 //                                         onChange={(e) => {
-//                                             const emailEmissionOne = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(2));
-//                                             const totalAttachmentSize = e.target.value === 0 || values?.noOfEmails === 0 ? 0 : Number((e.target.value * values?.noOfEmails).toFixed(2));
-//                                             const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(2));
+//                                             const emailEmissionOne = values?.noOfEmails === 0 ? 0 : Number(((values?.noOfEmails * values?.emialEfOne) / 1000).toFixed(5));
+//                                             const totalAttachmentSize = e.target.value === 0 || values?.noOfEmails === 0 ? 0 : Number((e.target.value * values?.noOfEmails).toFixed(5));
+//                                             const emailEmissionTwo = totalAttachmentSize === 0 ? 0 : Number(((totalAttachmentSize * values?.emialEfTwo) / 1000).toFixed(5));
 
 //                                             formik.setFieldValue("attachmentSize", e.target.value);
 //                                             formik.setFieldValue("emailEmissionOne", emailEmissionOne);
 //                                             formik.setFieldValue("totalAttachmentSize", totalAttachmentSize);
 //                                             formik.setFieldValue("emailEmissionTwo", emailEmissionTwo);
-//                                             // formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
-//                                             formik.setFieldValue("emissionOne", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(2));
+//                                             // formik.setFieldValue("emissionThree", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(5));
+//                                             formik.setFieldValue("emissionOne", emailEmissionOne === 0 || emailEmissionTwo === 0 ? 0 : Number(Number(emailEmissionOne) + Number(emailEmissionTwo)).toFixed(5));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={
@@ -1045,8 +1045,8 @@ export default DigitalContent;
 //                                         value={formik.values.noOfAttendees}
 //                                         onChange={(e) => {
 //                                             formik.handleChange(e);
-//                                             // formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
-//                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(2)));
+//                                             // formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(5)));
+//                                             formik.setFieldValue('emissionTwo', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(5)));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={
@@ -1070,8 +1070,8 @@ export default DigitalContent;
 //                                         value={formik.values.noOfHours}
 //                                         onChange={(e) => {
 //                                             formik.handleChange(e);
-//                                             // formik.setFieldValue('emissionThree', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(2)));
-//                                             formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(2)));
+//                                             // formik.setFieldValue('emissionThree', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(5)));
+//                                             formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfAttendees * 340 * (e.target.value / 5840)).toFixed(5)));
 //                                             formik.handleSubmit();
 //                                         }}
 //                                         error={
@@ -1135,7 +1135,7 @@ export default DigitalContent;
 
 //                             </Grid>
 //                             <Grid item xs={12} sm={12} md={12} marginTop={3} marginLeft={1}>
-//                                 <Typography color='white'>{`Total Digital Comms Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+//                                 <Typography color='white'>{`Total Communications  Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
 //                             </Grid>
 //                             {/* <Grid item xs={12} sm={12} md={12} marginLeft={3}>
 //                                 <ul>

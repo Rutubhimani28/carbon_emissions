@@ -28,7 +28,7 @@ import outboundIcon from '../../assets/outboundIcon.png';
 import podcastIcon from '../../assets/podcastIcon.png';
 import TVImg from '../../layouts/user/assets/images/tv.png';
 // import PrintImg from '../../layouts/user/assets/images/print.png'
-import PrintImg from '../../layouts/user/assets/images/printer2.png'
+// import PrintImg from '../../layouts/user/assets/images/printer2.png'
 import useEventData from '../../hooks/useEventData';
 
 const style = {

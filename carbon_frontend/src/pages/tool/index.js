@@ -807,22 +807,22 @@ const Home = () => {
                         <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"}>
                             <Box onClick={() => isSubmited && navigate('/dashboard/f2f-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
                                 <img src={f2FEvent} alt="F2F Event" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
-                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">F2F Event</Typography>
+                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Event</Typography>
                             </Box>
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/virtual-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
                                 <img src={outbound} alt="Outdoor Marketing" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
-                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Outdoor Marketing</Typography>
+                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Ads </Typography>
                             </Box>
 
-                            <Box onClick={() => isSubmited && navigate('/dashboard/pr-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
+                            {/* <Box onClick={() => isSubmited && navigate('/dashboard/pr-event')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
                                 <img src={prEvent} alt="PR Event" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
                                 <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">PR Event</Typography>
-                            </Box>
+                            </Box> */}
 
                             <Box onClick={() => isSubmited && navigate('/dashboard/campaign')} className="organise m-2 p-2 h-25" style={{ borderRadius: "20px", cursor: "pointer" }}>
                                 <img src={digitalCampaign} alt="Digital Campaign" width={"100%"} style={{ borderRadius: "10px", aspectRatio: '135 / 76' }} height={"120px"} />
-                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Digital Campaign</Typography>
+                                <Typography variant='h6' className='text-center pt-1 fontFamily' color="#054723">Digital</Typography>
                             </Box>
                         </Box>
                     </Grid>

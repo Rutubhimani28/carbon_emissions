@@ -96,19 +96,19 @@ const Food = (props) => {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      const emissionOne = Number((0.7237 * values?.noOfPaxOne).toFixed(2));
-      const emissionTwo = Number((1.08555 * values?.noOfPaxTwo).toFixed(2));
-      const emissionThree = Number((1.30266 * values?.noOfPaxThree).toFixed(2));
-      const emissionFour = Number((1.01318 * values?.noOfPaxFour).toFixed(2));
-      const emissionSix = Number((1.1 * values?.noOfBottlesOne).toFixed(2));
-      const emissionSeven = Number((0.57 * values?.noOfBottlesTwo).toFixed(2));
-      const emissionEight = Number((0.67 * values?.noOfBottlesThree).toFixed(2));
-      const emissionNine = Number((2.971 * values?.noOfBottlesFour).toFixed(2));
-      const emissionTen = Number((0.74 * values?.noOfBottlesFive).toFixed(2));
-      const emissionEleven = Number((0.25 * values?.noOfBottlesSix).toFixed(2));
-      const emissionTwelve = Number((2.19 * values?.noOfBottlesSeven).toFixed(2));
-      // const emissionThirteen = Number((1.09 * values?.noOfBottlesEight).toFixed(2));
-      // const emissionFourteen = Number((1.06 * values?.noOfBottlesNine).toFixed(2));
+      const emissionOne = Number((0.7237 * values?.noOfPaxOne).toFixed(5));
+      const emissionTwo = Number((1.08555 * values?.noOfPaxTwo).toFixed(5));
+      const emissionThree = Number((1.30266 * values?.noOfPaxThree).toFixed(5));
+      const emissionFour = Number((1.01318 * values?.noOfPaxFour).toFixed(5));
+      const emissionSix = Number((1.1 * values?.noOfBottlesOne).toFixed(5));
+      const emissionSeven = Number((0.57 * values?.noOfBottlesTwo).toFixed(5));
+      const emissionEight = Number((0.67 * values?.noOfBottlesThree).toFixed(5));
+      const emissionNine = Number((2.971 * values?.noOfBottlesFour).toFixed(5));
+      const emissionTen = Number((0.74 * values?.noOfBottlesFive).toFixed(5));
+      const emissionEleven = Number((0.25 * values?.noOfBottlesSix).toFixed(5));
+      const emissionTwelve = Number((2.19 * values?.noOfBottlesSeven).toFixed(5));
+      // const emissionThirteen = Number((1.09 * values?.noOfBottlesEight).toFixed(5));
+      // const emissionFourteen = Number((1.06 * values?.noOfBottlesNine).toFixed(5));
 
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne); // Veg Plate Lunch/ Dinner
       if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo); // Non Veg plate Lunch/ Dinner
@@ -128,68 +128,68 @@ const Food = (props) => {
         {
           type: 'Vegetarian',
           noOfPax: values?.noOfPaxOne,
-          emission: Number((0.7237 * values?.noOfPaxOne).toFixed(2)) || 0,
+          emission: Number((0.7237 * values?.noOfPaxOne).toFixed(5)) || 0,
         },
         {
           type: 'Non-Veg (Poultry/ Sea Food)',
           noOfPax: values?.noOfPaxTwo,
-          emission: Number((1.08555 * values?.noOfPaxTwo).toFixed(2)) || 0,
+          emission: Number((1.08555 * values?.noOfPaxTwo).toFixed(5)) || 0,
         },
         {
           type: 'Non-Veg (Red Meat)',
           noOfPax: values?.noOfPaxThree,
-          emission: Number((1.30266 * values?.noOfPaxThree).toFixed(2)) || 0,
+          emission: Number((1.30266 * values?.noOfPaxThree).toFixed(5)) || 0,
         },
         {
           type: 'Lacto-vegetarian meal',
           noOfPax: values?.noOfPaxFour,
-          emission: Number((0.01318 * values?.noOfPaxFour).toFixed(2)) || 0,
+          emission: Number((0.01318 * values?.noOfPaxFour).toFixed(5)) || 0,
         },
         {
           type: 'Branded Wine (750ml)',
           noOfBottles: values?.noOfBottlesOne,
-          emission: Number((1.1 * values?.noOfBottlesOne).toFixed(2)) || 0,
+          emission: Number((1.1 * values?.noOfBottlesOne).toFixed(5)) || 0,
         },
         {
           type: 'Whisky (750ml)',
           noOfBottles: values?.noOfBottlesFour,
-          emission: Number((2.971 * values?.noOfBottlesFour).toFixed(2)) || 0,
+          emission: Number((2.971 * values?.noOfBottlesFour).toFixed(5)) || 0,
         },
         {
           type: 'Vodka (1l)',
           noOfBottles: values?.noOfBottlesSeven,
-          emission: Number((2.19 * values?.noOfBottlesSeven).toFixed(2)) || 0,
+          emission: Number((2.19 * values?.noOfBottlesSeven).toFixed(5)) || 0,
         },
         {
           type: 'Beer (66-cL Glass Bottle- 1l)',
           noOfBottles: values?.noOfBottlesTwo,
-          emission: Number((0.57 * values?.noOfBottlesTwo).toFixed(2)) || 0,
+          emission: Number((0.57 * values?.noOfBottlesTwo).toFixed(5)) || 0,
         },
         {
           type: 'Beer (33-cL Glass Bottle- 1l)',
           noOfBottles: values?.noOfBottlesThree,
-          emission: Number((0.67 * values?.noOfBottlesThree).toFixed(2)) || 0,
+          emission: Number((0.67 * values?.noOfBottlesThree).toFixed(5)) || 0,
         },
         {
           type: '33-cL aluminum cans- 1l',
           noOfBottles: values?.noOfBottlesFive,
-          emission: Number((0.74 * values?.noOfBottlesFive).toFixed(2)) || 0,
+          emission: Number((0.74 * values?.noOfBottlesFive).toFixed(5)) || 0,
         },
         {
           type: '30-L steel kegs- 1l',
           noOfBottles: values?.noOfBottlesSix,
-          emission: Number((0.25 * values?.noOfBottlesSix).toFixed(2)) || 0,
+          emission: Number((0.25 * values?.noOfBottlesSix).toFixed(5)) || 0,
         },
 
         // {
         //   type: 'Fruit Juices',
         //   noOfBottles: values?.noOfBottlesEight,
-        //   emission: Number((1.09 * values?.noOfBottlesEight).toFixed(2)) || 0,
+        //   emission: Number((1.09 * values?.noOfBottlesEight).toFixed(5)) || 0,
         // },
         // {
         //   type: 'Beer',
         //   noOfBottles: values?.noOfBottlesNine,
-        //   emission: Number((1.06 * values?.noOfBottlesNine).toFixed(2)) || 0,
+        //   emission: Number((1.06 * values?.noOfBottlesNine).toFixed(5)) || 0,
         // },
         // {
         //   type: 'Customised Food Menu',
@@ -281,7 +281,7 @@ const Food = (props) => {
         },
       ];
       dispatch(addFoodData({ data }));
-      dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Food & Beverages' }));
+      dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Food' }));
     },
   });
 
@@ -363,13 +363,13 @@ const Food = (props) => {
 
   const handleChangeFoodWaste = (e, fieldName, firstValue, ef) => {
     formik.handleChange(e);
-    formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(2)));
+    formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(5)));
     formik.handleSubmit();
   };
 
   const handleChangeBeveragesWaste = (e, fieldName, firstValue, ef) => {
     formik.handleChange(e);
-    formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(2)));
+    formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(5)));
     formik.handleSubmit();
   };
 
@@ -872,7 +872,7 @@ const Food = (props) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
                   <Typography color="white">
-                    {`Total Food & Beverages Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
+                    {`Total Food Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
                   </Typography>
                 </Grid>
               </Grid>
@@ -980,19 +980,19 @@ export default Food;
 //         initialValues,
 //         onSubmit: async (values) => {
 
-//             const emissionOne = Number((2 * values?.noOfPaxOne).toFixed(2))
-//             const emissionTwo = Number((5.76 * values?.noOfPaxTwo).toFixed(2))
-//             const emissionThree = Number((23.55 * values?.noOfPaxThree).toFixed(2))
-//             const emissionFour = Number((0.6 * values?.noOfPaxFour).toFixed(2))
-//             const emissionSix = Number((1.33 * values?.noOfBottlesOne).toFixed(2))
-//             const emissionSeven = Number((3.04 * values?.noOfBottlesTwo).toFixed(2))
-//             const emissionEight = Number((1.33 * values?.noOfBottlesThree).toFixed(2))
-//             const emissionNine = Number((4.29 * values?.noOfBottlesFour).toFixed(2))
-//             const emissionTen = Number((4.29 * values?.noOfBottlesFive).toFixed(2))
-//             const emissionEleven = Number((2.73 * values?.noOfBottlesSix).toFixed(2))
-//             const emissionTwelve = Number((4.29 * values?.noOfBottlesSeven).toFixed(2))
-//             const emissionThirteen = Number((1.09 * values?.noOfBottlesEight).toFixed(2))
-//             const emissionFourteen = Number((1.06 * values?.noOfBottlesNine).toFixed(2))
+//             const emissionOne = Number((2 * values?.noOfPaxOne).toFixed(5))
+//             const emissionTwo = Number((5.76 * values?.noOfPaxTwo).toFixed(5))
+//             const emissionThree = Number((23.55 * values?.noOfPaxThree).toFixed(5))
+//             const emissionFour = Number((0.6 * values?.noOfPaxFour).toFixed(5))
+//             const emissionSix = Number((1.33 * values?.noOfBottlesOne).toFixed(5))
+//             const emissionSeven = Number((3.04 * values?.noOfBottlesTwo).toFixed(5))
+//             const emissionEight = Number((1.33 * values?.noOfBottlesThree).toFixed(5))
+//             const emissionNine = Number((4.29 * values?.noOfBottlesFour).toFixed(5))
+//             const emissionTen = Number((4.29 * values?.noOfBottlesFive).toFixed(5))
+//             const emissionEleven = Number((2.73 * values?.noOfBottlesSix).toFixed(5))
+//             const emissionTwelve = Number((4.29 * values?.noOfBottlesSeven).toFixed(5))
+//             const emissionThirteen = Number((1.09 * values?.noOfBottlesEight).toFixed(5))
+//             const emissionFourteen = Number((1.06 * values?.noOfBottlesNine).toFixed(5))
 
 //             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);    // Veg Plate Lunch/ Dinner
 //             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);     // Non Veg plate Lunch/ Dinner
@@ -1012,67 +1012,67 @@ export default Food;
 //                 {
 //                     type: 'Vegetarian',
 //                     noOfPax: values?.noOfPaxOne,
-//                     emission: Number((2 * values?.noOfPaxOne).toFixed(2)) || 0
+//                     emission: Number((2 * values?.noOfPaxOne).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Non-Veg (Poultry/ Sea Food)',
 //                     noOfPax: values?.noOfPaxTwo,
-//                     emission: Number((5.76 * values?.noOfPaxTwo).toFixed(2)) || 0
+//                     emission: Number((5.76 * values?.noOfPaxTwo).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Non-Veg (Red Meat)',
 //                     noOfPax: values?.noOfPaxThree,
-//                     emission: Number((23.55 * values?.noOfPaxThree).toFixed(2)) || 0
+//                     emission: Number((23.55 * values?.noOfPaxThree).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Tea/ Coffee + Cookies',
 //                     noOfPax: values?.noOfPaxFour,
-//                     emission: Number((0.6 * values?.noOfPaxFour).toFixed(2)) || 0
+//                     emission: Number((0.6 * values?.noOfPaxFour).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Soft Drinks',
 //                     noOfBottles: values?.noOfBottlesOne,
-//                     emission: Number((1.33 * values?.noOfBottlesOne).toFixed(2)) || 0
+//                     emission: Number((1.33 * values?.noOfBottlesOne).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Red Wine',
 //                     noOfBottles: values?.noOfBottlesTwo,
-//                     emission: Number((3.04 * values?.noOfBottlesTwo).toFixed(2)) || 0
+//                     emission: Number((3.04 * values?.noOfBottlesTwo).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'White Wine',
 //                     noOfBottles: values?.noOfBottlesThree,
-//                     emission: Number((1.33 * values?.noOfBottlesThree).toFixed(2)) || 0
+//                     emission: Number((1.33 * values?.noOfBottlesThree).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Whisky',
 //                     noOfBottles: values?.noOfBottlesFour,
-//                     emission: Number((4.29 * values?.noOfBottlesFour).toFixed(2)) || 0
+//                     emission: Number((4.29 * values?.noOfBottlesFour).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Gin',
 //                     noOfBottles: values?.noOfBottlesFive,
-//                     emission: Number((4.29 * values?.noOfBottlesFive).toFixed(2)) || 0
+//                     emission: Number((4.29 * values?.noOfBottlesFive).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Rum',
 //                     noOfBottles: values?.noOfBottlesSix,
-//                     emission: Number((2.73 * values?.noOfBottlesSix).toFixed(2)) || 0
+//                     emission: Number((2.73 * values?.noOfBottlesSix).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Vodka',
 //                     noOfBottles: values?.noOfBottlesSeven,
-//                     emission: Number((4.29 * values?.noOfBottlesSeven).toFixed(2)) || 0
+//                     emission: Number((4.29 * values?.noOfBottlesSeven).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Fruit Juices',
 //                     noOfBottles: values?.noOfBottlesEight,
-//                     emission: Number((1.09 * values?.noOfBottlesEight).toFixed(2)) || 0
+//                     emission: Number((1.09 * values?.noOfBottlesEight).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Beer',
 //                     noOfBottles: values?.noOfBottlesNine,
-//                     emission: Number((1.06 * values?.noOfBottlesNine).toFixed(2)) || 0
+//                     emission: Number((1.06 * values?.noOfBottlesNine).toFixed(5)) || 0
 //                 },
 //                 {
 //                     type: 'Customised Food Menu',
@@ -1207,7 +1207,7 @@ export default Food;
 //             ];
 
 //             dispatch(addFoodData({ data }))
-//             dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Food & Beverages" }));
+//             dispatch(addResultTableData({ from: "f2fEvent", data: tableData, tabTitle: "Food" }));
 //         },
 //     });
 
@@ -1274,13 +1274,13 @@ export default Food;
 
 //     const handleChangeFoodWaste = (e, fieldName, firstValue, ef) => {
 //         formik.handleChange(e);
-//         formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(2)));
+//         formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(5)));
 //         formik.handleSubmit();
 //     };
 
 //     const handleChangeBeveragesWaste = (e, fieldName, firstValue, ef) => {
 //         formik.handleChange(e);
-//         formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(2)));
+//         formik.setFieldValue(fieldName, Number((ef * Number(firstValue)).toFixed(5)));
 //         formik.handleSubmit();
 //     };
 
@@ -1484,7 +1484,7 @@ export default Food;
 //                                     </Stack>
 //                                 </Grid>
 //                                 <Grid item xs={12} sm={12} md={12} marginTop={3}>
-//                                     <Typography color='white'>{`Total Food & Beverages Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
+//                                     <Typography color='white'>{`Total Food Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography>
 //                                 </Grid>
 //                             </Grid>
 //                         </Box>

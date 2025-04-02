@@ -60,46 +60,46 @@ const AirTravel = (props) => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
-      // const emissionOne = values?.noOfTripsOne === 0 ? 0 : (200 * values?.noOfTripsOne).toFixed(2);
-      // const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(2);
-      // const emissionThree = values?.noOfTripsThree === 0 ? 0 : (960 * values?.noOfTripsThree).toFixed(2);
-      // const emissionFour = values?.noOfTripsFour === 0 ? 0 : (400 * values?.noOfTripsFour).toFixed(2);
-      // const emissionFive = values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(2);
-      // const emissionSix = values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(2);
+      // const emissionOne = values?.noOfTripsOne === 0 ? 0 : (200 * values?.noOfTripsOne).toFixed(5);
+      // const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(5);
+      // const emissionThree = values?.noOfTripsThree === 0 ? 0 : (960 * values?.noOfTripsThree).toFixed(5);
+      // const emissionFour = values?.noOfTripsFour === 0 ? 0 : (400 * values?.noOfTripsFour).toFixed(5);
+      // const emissionFive = values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(5);
+      // const emissionSix = values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(5);
       const emissionOne =
         values?.noOfTripsOne === 0 || values?.noOfPassengerOne === 0
           ? 0
-          : (0.1286 * values?.noOfTripsOne * values?.noOfPassengerOne).toFixed(2);
+          : (0.1286 * values?.noOfTripsOne * values?.noOfPassengerOne).toFixed(5);
 
-      //   const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(2);
+      //   const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(5);
       const emissionTwo =
         values?.noOfTripsTwo === 0 || values?.noOfPassengerTwo === 0
           ? 0
-          : (0.082 * values?.noOfTripsTwo * values?.noOfPassengerTwo).toFixed(2);
+          : (0.082 * values?.noOfTripsTwo * values?.noOfPassengerTwo).toFixed(5);
 
       const emissionThree =
         values?.noOfTripsThree === 0 || values?.noOfPassengerThree === 0
           ? 0
-          : (0.1013 * values?.noOfTripsThree * values?.noOfPassengerThree).toFixed(2);
+          : (0.1013 * values?.noOfTripsThree * values?.noOfPassengerThree).toFixed(5);
 
       const emissionFour =
         values?.noOfTripsFour === 0 || values?.noOfPassengerFour === 0
           ? 0
-          : (0.1929 * values?.noOfTripsFour * values?.noOfPassengerFour).toFixed(2);
-      //   const emissionFive = values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(2);
+          : (0.1929 * values?.noOfTripsFour * values?.noOfPassengerFour).toFixed(5);
+      //   const emissionFive = values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(5);
       const emissionFive =
         values?.noOfTripsFive === 0 || values?.noOfPassengerFive === 0
           ? 0
-          : (0.1203 * values?.noOfTripsFive * values?.noOfPassengerFive).toFixed(2);
-      //   const emissionSix = values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(2);
+          : (0.1203 * values?.noOfTripsFive * values?.noOfPassengerFive).toFixed(5);
+      //   const emissionSix = values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(5);
       const emissionSix =
         values?.noOfTripsSix === 0 || values?.noOfPassengerSix === 0
           ? 0
-          : (0.15195 * values?.noOfTripsSix * values?.noOfPassengerSix).toFixed(2);
+          : (0.15195 * values?.noOfTripsSix * values?.noOfPassengerSix).toFixed(5);
 
-      // const emissionSeven = values?.noOfTripsSeven === 0 ? 0 : (600 * values?.noOfTripsSeven).toFixed(2);
-      // const emissionEight = values?.noOfTripsEight === 0 ? 0 : (1125 * values?.noOfTripsEight).toFixed(2);
-      // const emissionNine = values?.noOfTripsNine === 0 ? 0 : (2880 * values?.noOfTripsNine).toFixed(2);
+      // const emissionSeven = values?.noOfTripsSeven === 0 ? 0 : (600 * values?.noOfTripsSeven).toFixed(5);
+      // const emissionEight = values?.noOfTripsEight === 0 ? 0 : (1125 * values?.noOfTripsEight).toFixed(5);
+      // const emissionNine = values?.noOfTripsNine === 0 ? 0 : (2880 * values?.noOfTripsNine).toFixed(5);
 
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
       if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
@@ -269,19 +269,19 @@ const AirTravel = (props) => {
 
   const calclulateEconomyClass = (e, emmFieldName, firstValue, ef) => {
     formik.handleChange(e);
-    formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+    formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(5));
     formik.handleSubmit();
   };
 
   const calclulateBusinessClass = (e, emmFieldName, firstValue, ef) => {
     formik.handleChange(e);
-    formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+    formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(5));
     formik.handleSubmit();
   };
 
   // const calclulateFirstClass = (e, emmFieldName, firstValue, ef) => {
   //   formik.handleChange(e);
-  //   formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+  //   formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(5));
   //   formik.handleSubmit();
   // };
 
@@ -989,7 +989,7 @@ const AirTravel = (props) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} marginTop={2}>
                   <Typography color="white">
-                    {`Total Air Travel Carbon Footprint = ${Number(totalEmission).toFixed(2)} `}kgCO<sub>2</sub>e
+                    {`Total Air Travel Carbon Footprint = ${Number(totalEmission).toFixed(5)} `}kgCO<sub>2</sub>e
                   </Typography>
                 </Grid>
                 {/* <Grid item xs={12} sm={12} md={12} marginTop={1}>
@@ -1079,15 +1079,15 @@ export default AirTravel;
 //     const formik = useFormik({
 //         initialValues,
 //         onSubmit: (values) => {
-//             const emissionOne = values?.noOfTripsOne === 0 ? 0 : (200 * values?.noOfTripsOne).toFixed(2)
-//             const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(2)
-//             const emissionThree = values?.noOfTripsThree === 0 ? 0 : (960 * values?.noOfTripsThree).toFixed(2)
-//             const emissionFour = values?.noOfTripsFour === 0 ? 0 : (400 * values?.noOfTripsFour).toFixed(2)
-//             const emissionFive = values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(2)
-//             const emissionSix = values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(2)
-//             const emissionSeven = values?.noOfTripsSeven === 0 ? 0 : (600 * values?.noOfTripsSeven).toFixed(2)
-//             const emissionEight = values?.noOfTripsEight === 0 ? 0 : (1125 * values?.noOfTripsEight).toFixed(2)
-//             const emissionNine = values?.noOfTripsNine === 0 ? 0 : (2880 * values?.noOfTripsNine).toFixed(2)
+//             const emissionOne = values?.noOfTripsOne === 0 ? 0 : (200 * values?.noOfTripsOne).toFixed(5)
+//             const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(5)
+//             const emissionThree = values?.noOfTripsThree === 0 ? 0 : (960 * values?.noOfTripsThree).toFixed(5)
+//             const emissionFour = values?.noOfTripsFour === 0 ? 0 : (400 * values?.noOfTripsFour).toFixed(5)
+//             const emissionFive = values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(5)
+//             const emissionSix = values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(5)
+//             const emissionSeven = values?.noOfTripsSeven === 0 ? 0 : (600 * values?.noOfTripsSeven).toFixed(5)
+//             const emissionEight = values?.noOfTripsEight === 0 ? 0 : (1125 * values?.noOfTripsEight).toFixed(5)
+//             const emissionNine = values?.noOfTripsNine === 0 ? 0 : (2880 * values?.noOfTripsNine).toFixed(5)
 
 //             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 //             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
@@ -1260,19 +1260,19 @@ export default AirTravel;
 
 //     const calclulateEconomyClass = (e, emmFieldName, firstValue, ef) => {
 //         formik.handleChange(e);
-//         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+//         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(5));
 //         formik.handleSubmit();
 //     };
 
 //     const calclulateBusinessClass = (e, emmFieldName, firstValue, ef) => {
 //         formik.handleChange(e);
-//         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+//         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(5));
 //         formik.handleSubmit();
 //     };
 
 //     const calclulateFirstClass = (e, emmFieldName, firstValue, ef) => {
 //         formik.handleChange(e);
-//         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(2));
+//         formik.setFieldValue(emmFieldName, firstValue === 0 ? 0 : (ef * firstValue).toFixed(5));
 //         formik.handleSubmit();
 //     };
 

@@ -129,15 +129,15 @@ const Hotel = (props) => {
       const emissionsOne =
         values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne
           ? 0
-          : Number((values?.efOne * values?.roomsOccupied).toFixed(2));
+          : Number((values?.efOne * values?.roomsOccupied).toFixed(5));
       const emissionsTwo =
         values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0
           ? 0
-          : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2));
+          : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(5));
       const emissionsThree =
         values?.energyUtilisedKwh === 0
           ? 0
-          : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(2));
+          : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(5));
 
       if (emissionsOne > 0) formik.setFieldValue('emissionsOne', emissionsOne);
       if (emissionsTwo > 0) formik.setFieldValue('emissionsTwo', emissionsTwo);
@@ -520,7 +520,7 @@ const Hotel = (props) => {
                             'emissionsOne',
                             e.target.value === 0 || values?.efOne === 0 || !values?.efOne
                               ? 0
-                              : Number((values?.efOne * e.target.value).toFixed(2))
+                              : Number((values?.efOne * e.target.value).toFixed(5))
                           );
                           formik.handleSubmit();
                         }}
@@ -581,7 +581,7 @@ const Hotel = (props) => {
                                                     value={formik.values.totalMeetingRoomArea}
                                                     onChange={(e) => {
                                                         formik.setFieldValue('totalMeetingRoomArea', e.target.value);
-                                                        formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.meetingDuration).toFixed(2)));
+                                                        formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.meetingDuration).toFixed(5)));
                                                         formik.handleSubmit();
                                                     }}
                                                     error={
@@ -606,7 +606,7 @@ const Hotel = (props) => {
                                                     value={formik.values.meetingDuration}
                                                     onChange={(e) => {
                                                         formik.setFieldValue('meetingDuration', e.target.value);
-                                                        formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.totalMeetingRoomArea === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.totalMeetingRoomArea).toFixed(2)));
+                                                        formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.totalMeetingRoomArea === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.totalMeetingRoomArea).toFixed(5)));
                                                         formik.handleSubmit();
                                                     }}
                                                     error={
@@ -654,7 +654,7 @@ const Hotel = (props) => {
                                                     value={formik.values.energyUtilisedKwh}
                                                     onChange={(e) => {
                                                         formik.setFieldValue('energyUtilisedKwh', e.target.value);
-                                                        formik.setFieldValue('emissionsThree', (e.target.value === 0) ? 0 : Number((values?.efThree * e.target.value).toFixed(2)));
+                                                        formik.setFieldValue('emissionsThree', (e.target.value === 0) ? 0 : Number((values?.efThree * e.target.value).toFixed(5)));
                                                         formik.handleSubmit();
                                                     }}
                                                     error={
@@ -871,9 +871,9 @@ export default Hotel;
 //         enableReinitialize: true,
 //         onSubmit: async (values) => {
 
-//             const emissionsOne = (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(2))
-//             const emissionsTwo = (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(2))
-//             const emissionsThree = (values?.energyUtilisedKwh === 0) ? 0 : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(2))
+//             const emissionsOne = (values?.roomsOccupied === 0 || values?.efOne === 0 || !values?.efOne === null || !values?.efOne) ? 0 : Number((values?.efOne * values?.roomsOccupied).toFixed(5))
+//             const emissionsTwo = (values?.totalMeetingRoomArea === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * values?.totalMeetingRoomArea * values?.meetingDuration).toFixed(5))
+//             const emissionsThree = (values?.energyUtilisedKwh === 0) ? 0 : Number((Number(values?.efThree) * Number(values?.energyUtilisedKwh)).toFixed(5))
 
 //             if (emissionsOne > 0) formik.setFieldValue('emissionsOne', emissionsOne);
 //             if (emissionsTwo > 0) formik.setFieldValue('emissionsTwo', emissionsTwo);
@@ -1226,7 +1226,7 @@ export default Hotel;
 //                                                 value={formik.values.roomsOccupied || ""}
 //                                                 onChange={(e) => {
 //                                                     formik.setFieldValue("roomsOccupied", e.target.value);
-//                                                     formik.setFieldValue("emissionsOne", (e.target.value === 0 || values?.efOne === 0 || !values?.efOne) ? 0 : Number((values?.efOne * e.target.value).toFixed(2)));
+//                                                     formik.setFieldValue("emissionsOne", (e.target.value === 0 || values?.efOne === 0 || !values?.efOne) ? 0 : Number((values?.efOne * e.target.value).toFixed(5)));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 error={
@@ -1295,7 +1295,7 @@ export default Hotel;
 //                                                     value={formik.values.totalMeetingRoomArea}
 //                                                     onChange={(e) => {
 //                                                         formik.setFieldValue('totalMeetingRoomArea', e.target.value);
-//                                                         formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.meetingDuration).toFixed(2)));
+//                                                         formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.meetingDuration === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.meetingDuration).toFixed(5)));
 //                                                         formik.handleSubmit();
 //                                                     }}
 //                                                     error={
@@ -1320,7 +1320,7 @@ export default Hotel;
 //                                                     value={formik.values.meetingDuration}
 //                                                     onChange={(e) => {
 //                                                         formik.setFieldValue('meetingDuration', e.target.value);
-//                                                         formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.totalMeetingRoomArea === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.totalMeetingRoomArea).toFixed(2)));
+//                                                         formik.setFieldValue('emissionsTwo', (e.target.value === 0 || values?.totalMeetingRoomArea === 0) ? 0 : Number((values?.efTwo * e.target.value * values?.totalMeetingRoomArea).toFixed(5)));
 //                                                         formik.handleSubmit();
 //                                                     }}
 //                                                     error={
@@ -1368,7 +1368,7 @@ export default Hotel;
 //                                                     value={formik.values.energyUtilisedKwh}
 //                                                     onChange={(e) => {
 //                                                         formik.setFieldValue('energyUtilisedKwh', e.target.value);
-//                                                         formik.setFieldValue('emissionsThree', (e.target.value === 0) ? 0 : Number((values?.efThree * e.target.value).toFixed(2)));
+//                                                         formik.setFieldValue('emissionsThree', (e.target.value === 0) ? 0 : Number((values?.efThree * e.target.value).toFixed(5)));
 //                                                         formik.handleSubmit();
 //                                                     }}
 //                                                     error={

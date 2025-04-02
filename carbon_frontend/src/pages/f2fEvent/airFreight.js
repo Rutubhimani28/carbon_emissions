@@ -89,7 +89,7 @@ const AirFreight = (props) => {
     seaTone: '',
     seaTonekms: '',
     seaToneEmmisions: '',
-    seaToneEF: 0.05,
+    seaToneEF: 0.01,
   };
 
   const formik = useFormik({
@@ -102,33 +102,31 @@ const AirFreight = (props) => {
           ? 0
           : Number(
               parseFloat(values?.AirTone) * parseFloat(values?.AirTonekms) * parseFloat(values?.AirToneEf)
-            ).toFixed(2);
+            ).toFixed(5);
       const RoadToneEmmisions =
         values?.RoadTone === 0 || values?.RoadTonekms === 0
           ? 0
           : Number(
               parseFloat(values?.RoadTone) * parseFloat(values?.RoadTonekms) * parseFloat(values?.RoadToneEF)
-            ).toFixed(2);
+            ).toFixed(5);
       const RailToneEmmisions =
         values?.RailTone === 0 || values?.RailTonekms === 0
           ? 0
           : Number(
               parseFloat(values?.RailTone) * parseFloat(values?.RailTonekms) * parseFloat(values?.RailToneEF)
-            ).toFixed(2);
+            ).toFixed(5);
       const seaToneEmmisions =
         values?.seaTone === 0 || values?.seaTonekms === 0
           ? 0
-          : Number(
-              parseFloat(values?.seaTone) * parseFloat(values?.seaTonekms) * parseFloat(values?.seaToneEF)
-            ).toFixed(2);
+          : Number(parseFloat(values?.seaTone) * parseFloat(values?.seaTonekms) * 0.01).toFixed(5);
       const emissionOne =
         values?.noOfKmsOne === 0 || values?.kgsOne === 0
           ? 0
-          : Number((Number(values?.noOfKmsOne) * Number(values?.kgsOne) * Number(values?.efOne)) / 1000).toFixed(2);
+          : Number((Number(values?.noOfKmsOne) * Number(values?.kgsOne) * Number(values?.efOne)) / 1000).toFixed(5);
       const emissionTwo =
         values?.noOfKmsTwo === 0 || values?.kgsTwo === 0
           ? 0
-          : Number((Number(values?.noOfKmsTwo) * Number(values?.kgsTwo) * Number(values?.efTwo)) / 1000).toFixed(2);
+          : Number((Number(values?.noOfKmsTwo) * Number(values?.kgsTwo) * Number(values?.efTwo)) / 1000).toFixed(5);
       const emissionThree =
         values?.noOfKmsThree === 0 || values?.kgsThree === 0
           ? 0
@@ -138,15 +136,15 @@ const AirFreight = (props) => {
       const emissionFour =
         values?.noOfKmsFour === 0 || values?.kgsFour === 0
           ? 0
-          : Number((Number(values?.noOfKmsFour) * Number(values?.kgsFour) * Number(values?.efFour)) / 1000).toFixed(2);
+          : Number((Number(values?.noOfKmsFour) * Number(values?.kgsFour) * Number(values?.efFour)) / 1000).toFixed(5);
       const emissionFive =
         values?.noOfKmsFive === 0 || values?.kgsFive === 0
           ? 0
-          : Number((Number(values?.noOfKmsFive) * Number(values?.kgsFive) * Number(values?.efFive)) / 1000).toFixed(2);
+          : Number((Number(values?.noOfKmsFive) * Number(values?.kgsFive) * Number(values?.efFive)) / 1000).toFixed(5);
       const emissionSix =
         values?.noOfKmsSix === 0 || values?.kgsSix === 0
           ? 0
-          : Number((Number(values?.noOfKmsSix) * Number(values?.kgsSix) * Number(values?.efSix)) / 1000).toFixed(2);
+          : Number((Number(values?.noOfKmsSix) * Number(values?.kgsSix) * Number(values?.efSix)) / 1000).toFixed(5);
       const emissionSeven =
         values?.noOfKmsSeven === 0 || values?.kgsSeven === 0
           ? 0
@@ -258,9 +256,6 @@ const AirFreight = (props) => {
         //   emission: emissionEight > 0 ? emissionEight : '',
         // },
       ];
-      console.log(formik?.values, 'formik?.values');
-
-      console.log(AirToneEmmisions, 'AirToneEmmisions');
 
       const tableData = [
         {
@@ -390,7 +385,6 @@ const AirFreight = (props) => {
       }
     }
   };
-  console.log(allData, 'allData');
 
   useEffect(() => {
     if (allData?.length > 0) {
@@ -507,7 +501,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'AirToneEmmisions',
-                            (e.target.value * formik?.values?.AirTonekms * formik?.values?.AirToneEf).toFixed(2)
+                            (e.target.value * formik?.values?.AirTonekms * formik?.values?.AirToneEf).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -524,14 +518,13 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'AirToneEmmisions',
-                            Number(formik?.values?.AirTone * e.target.value * formik?.values?.AirToneEf).toFixed(2)
+                            Number(formik?.values?.AirTone * e.target.value * formik?.values?.AirToneEf).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
                         inputProps={{ style: { color: 'white' } }}
                       />
                     </td>
-                    {console.log(formik?.values?.AirToneEmmisions, 'formik?.values?.AirToneEmmisions')}
                     <td className="ps-2 py-1">
                       <TextField
                         size="small"
@@ -556,7 +549,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'RoadToneEmmisions',
-                            (e.target.value * formik?.values?.RoadTonekms * formik?.values?.RoadToneEF).toFixed(2)
+                            (e.target.value * formik?.values?.RoadTonekms * formik?.values?.RoadToneEF).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -573,7 +566,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'RoadToneEmmisions',
-                            Number(formik?.values?.RoadTone * e.target.value * formik?.values?.RoadToneEF).toFixed(2)
+                            Number(formik?.values?.RoadTone * e.target.value * formik?.values?.RoadToneEF).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -604,7 +597,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'RailToneEmmisions',
-                            (e.target.value * formik?.values?.RailTonekms * formik?.values?.RailToneEF).toFixed(2)
+                            (e.target.value * formik?.values?.RailTonekms * formik?.values?.RailToneEF).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -621,7 +614,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'RailToneEmmisions',
-                            Number(formik?.values?.RailTone * e.target.value * formik?.values?.RailToneEF).toFixed(2)
+                            Number(formik?.values?.RailTone * e.target.value * formik?.values?.RailToneEF).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -652,7 +645,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'seaToneEmmisions',
-                            (e.target.value * formik?.values?.seaTonekms * formik?.values?.seaToneEF).toFixed(2)
+                            (e.target.value * formik?.values?.seaTonekms * 0.01).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -669,7 +662,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'seaToneEmmisions',
-                            Number(formik?.values?.seaTone * e.target.value * formik?.values?.seaToneEF).toFixed(2)
+                            Number(formik?.values?.seaTone * e.target.value * 0.01).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -715,7 +708,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'emissionOne',
-                            Number((e.target.value * formik?.values?.kgsOne * formik?.values?.efOne) / 1000).toFixed(2)
+                            Number((e.target.value * formik?.values?.kgsOne * formik?.values?.efOne) / 1000).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -732,7 +725,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'emissionOne',
-                            Number((formik?.values?.kgsOne * e.target.value * formik?.values?.efOne) / 1000).toFixed(2)
+                            Number((formik?.values?.kgsOne * e.target.value * formik?.values?.efOne) / 1000).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -762,7 +755,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'emissionTwo',
-                            Number((e.target.value * formik?.values?.kgsTwo * formik?.values?.efTwo) / 1000).toFixed(2)
+                            Number((e.target.value * formik?.values?.kgsTwo * formik?.values?.efTwo) / 1000).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -781,7 +774,7 @@ const AirFreight = (props) => {
                             'emissionTwo',
                             Number(
                               (formik?.values?.noOfKmsTwo * e.target.value * formik?.values?.efTwo) / 1000
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -835,7 +828,7 @@ const AirFreight = (props) => {
                             'emissionFour',
                             Number(
                               (formik?.values?.noOfKmsFour * e.target.value * formik?.values?.emissionFour) / 1000
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -887,7 +880,7 @@ const AirFreight = (props) => {
                             'emissionFive',
                             Number(
                               (formik?.values?.noOfKmsFive * e.target.value * formik?.values?.efFive) / 1000
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -918,7 +911,7 @@ const AirFreight = (props) => {
                           formik.handleChange(e);
                           formik.setFieldValue(
                             'emissionSix',
-                            Number((e.target.value * formik?.values?.kgsSix * formik?.values?.efSix) / 1000).toFixed(2)
+                            Number((e.target.value * formik?.values?.kgsSix * formik?.values?.efSix) / 1000).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -937,7 +930,7 @@ const AirFreight = (props) => {
                             'emissionSix',
                             Number(
                               (formik?.values?.noOfKmsSix * e.target.value * formik?.values?.efSix) / 1000
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -970,7 +963,7 @@ const AirFreight = (props) => {
                             'emissionSeven',
                             Number(
                               (e.target.value * formik?.values?.kgsSeven * formik?.values?.efSeven) / 1000
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -989,7 +982,7 @@ const AirFreight = (props) => {
                             'emissionSeven',
                             Number(
                               (formik?.values?.noOfKmsSeven * e.target.value * formik?.values?.efSeven) / 1000
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -1022,7 +1015,7 @@ const AirFreight = (props) => {
                             'emissionEight',
                             Number(
                               (e.target.value * formik?.values?.kgsEight * formik?.values?.efEight) / 1000
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -1041,7 +1034,7 @@ const AirFreight = (props) => {
                             'emissionEight',
                             Number(
                               (formik?.values?.noOfKmsEight * e.target.value * formik?.values?.efEight) / 1000
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -1210,14 +1203,14 @@ export default AirFreight;
 //         initialValues,
 //         onSubmit: async (values) => {
 //             // Logistics, Emissions=(B24*C24*D24)/1000
-//             const emissionOne = values?.noOfKmsOne === 0 || values?.kgsOne === 0 ? 0 : Number(Number(values?.noOfKmsOne) * Number(values?.kgsOne) * Number(values?.efOne) / 1000).toFixed(2);
-//             const emissionTwo = values?.noOfKmsTwo === 0 || values?.kgsTwo === 0 ? 0 : Number(Number(values?.noOfKmsTwo) * Number(values?.kgsTwo) * Number(values?.efTwo) / 1000).toFixed(2);
-//             const emissionThree = values?.noOfKmsThree === 0 || values?.kgsThree === 0 ? 0 : Number(Number(values?.noOfKmsThree) * Number(values?.kgsThree) * Number(values?.efThree) / 1000).toFixed(2);
-//             const emissionFour = values?.noOfKmsFour === 0 || values?.kgsFour === 0 ? 0 : Number(Number(values?.noOfKmsFour) * Number(values?.kgsFour) * Number(values?.efFour) / 1000).toFixed(2);
-//             const emissionFive = values?.noOfKmsFive === 0 || values?.kgsFive === 0 ? 0 : Number(Number(values?.noOfKmsFive) * Number(values?.kgsFive) * Number(values?.efFive) / 1000).toFixed(2);
-//             const emissionSix = values?.noOfKmsSix === 0 || values?.kgsSix === 0 ? 0 : Number(Number(values?.noOfKmsSix) * Number(values?.kgsSix) * Number(values?.efSix) / 1000).toFixed(2);
-//             const emissionSeven = values?.noOfKmsSeven === 0 || values?.kgsSeven === 0 ? 0 : Number(Number(values?.noOfKmsSeven) * Number(values?.kgsSeven) * Number(values?.efSeven) / 1000).toFixed(2);
-//             const emissionEight = values?.noOfKmsEight === 0 || values?.kgsEight === 0 ? 0 : Number(Number(values?.noOfKmsEight) * Number(values?.kgsEight) * Number(values?.efEight) / 1000).toFixed(2);
+//             const emissionOne = values?.noOfKmsOne === 0 || values?.kgsOne === 0 ? 0 : Number(Number(values?.noOfKmsOne) * Number(values?.kgsOne) * Number(values?.efOne) / 1000).toFixed(5);
+//             const emissionTwo = values?.noOfKmsTwo === 0 || values?.kgsTwo === 0 ? 0 : Number(Number(values?.noOfKmsTwo) * Number(values?.kgsTwo) * Number(values?.efTwo) / 1000).toFixed(5);
+//             const emissionThree = values?.noOfKmsThree === 0 || values?.kgsThree === 0 ? 0 : Number(Number(values?.noOfKmsThree) * Number(values?.kgsThree) * Number(values?.efThree) / 1000).toFixed(5);
+//             const emissionFour = values?.noOfKmsFour === 0 || values?.kgsFour === 0 ? 0 : Number(Number(values?.noOfKmsFour) * Number(values?.kgsFour) * Number(values?.efFour) / 1000).toFixed(5);
+//             const emissionFive = values?.noOfKmsFive === 0 || values?.kgsFive === 0 ? 0 : Number(Number(values?.noOfKmsFive) * Number(values?.kgsFive) * Number(values?.efFive) / 1000).toFixed(5);
+//             const emissionSix = values?.noOfKmsSix === 0 || values?.kgsSix === 0 ? 0 : Number(Number(values?.noOfKmsSix) * Number(values?.kgsSix) * Number(values?.efSix) / 1000).toFixed(5);
+//             const emissionSeven = values?.noOfKmsSeven === 0 || values?.kgsSeven === 0 ? 0 : Number(Number(values?.noOfKmsSeven) * Number(values?.kgsSeven) * Number(values?.efSeven) / 1000).toFixed(5);
+//             const emissionEight = values?.noOfKmsEight === 0 || values?.kgsEight === 0 ? 0 : Number(Number(values?.noOfKmsEight) * Number(values?.kgsEight) * Number(values?.efEight) / 1000).toFixed(5);
 
 //             if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 //             if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
@@ -1460,7 +1453,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.noOfKmsOne}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionOne', Number((e.target.value * formik?.values?.kgsOne * formik?.values?.efOne) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionOne', Number((e.target.value * formik?.values?.kgsOne * formik?.values?.efOne) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1474,7 +1467,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.kgsOne}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionOne', Number((formik?.values?.kgsOne * e.target.value * formik?.values?.efOne) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionOne', Number((formik?.values?.kgsOne * e.target.value * formik?.values?.efOne) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1501,7 +1494,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.noOfKmsTwo}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionTwo', Number((e.target.value * formik?.values?.kgsTwo * formik?.values?.efTwo) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionTwo', Number((e.target.value * formik?.values?.kgsTwo * formik?.values?.efTwo) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1515,7 +1508,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.kgsTwo}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfKmsTwo * e.target.value * formik?.values?.efTwo) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionTwo', Number((formik?.values?.noOfKmsTwo * e.target.value * formik?.values?.efTwo) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1543,7 +1536,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.noOfKmsThree}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionThree', Number((e.target.value * formik?.values?.kgsThree * formik?.values?.efThree) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionThree', Number((e.target.value * formik?.values?.kgsThree * formik?.values?.efThree) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1557,7 +1550,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.kgsThree}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionThree', Number((formik?.values?.noOfKmsThree * e.target.value * formik?.values?.efThree) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionThree', Number((formik?.values?.noOfKmsThree * e.target.value * formik?.values?.efThree) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1585,7 +1578,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.noOfKmsFour}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionFour', Number((e.target.value * formik?.values?.kgsFour * formik?.values?.efFour) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionFour', Number((e.target.value * formik?.values?.kgsFour * formik?.values?.efFour) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1599,7 +1592,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.kgsFour}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionFour', Number((formik?.values?.noOfKmsFour * e.target.value * formik?.values?.emissionFour) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionFour', Number((formik?.values?.noOfKmsFour * e.target.value * formik?.values?.emissionFour) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1627,7 +1620,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.noOfKmsFive}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionFive', Number((e.target.value * formik?.values?.kgsFive * formik?.values?.efFive) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionFive', Number((e.target.value * formik?.values?.kgsFive * formik?.values?.efFive) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1641,7 +1634,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.kgsFive}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionFive', Number((formik?.values?.noOfKmsFive * e.target.value * formik?.values?.efFive) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionFive', Number((formik?.values?.noOfKmsFive * e.target.value * formik?.values?.efFive) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1669,7 +1662,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.noOfKmsSix}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionSix', Number((e.target.value * formik?.values?.kgsSix * formik?.values?.efSix) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionSix', Number((e.target.value * formik?.values?.kgsSix * formik?.values?.efSix) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1683,7 +1676,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.kgsSix}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionSix', Number((formik?.values?.noOfKmsSix * e.target.value * formik?.values?.efSix) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionSix', Number((formik?.values?.noOfKmsSix * e.target.value * formik?.values?.efSix) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1711,7 +1704,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.noOfKmsSeven}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionSeven', Number((e.target.value * formik?.values?.kgsSeven * formik?.values?.efSeven) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionSeven', Number((e.target.value * formik?.values?.kgsSeven * formik?.values?.efSeven) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1725,7 +1718,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.kgsSeven}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionSeven', Number((formik?.values?.noOfKmsSeven * e.target.value * formik?.values?.efSeven) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionSeven', Number((formik?.values?.noOfKmsSeven * e.target.value * formik?.values?.efSeven) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1753,7 +1746,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.noOfKmsEight}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionEight', Number((e.target.value * formik?.values?.kgsEight * formik?.values?.efEight) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionEight', Number((e.target.value * formik?.values?.kgsEight * formik?.values?.efEight) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
@@ -1767,7 +1760,7 @@ export default AirFreight;
 //                                                 value={formik?.values?.kgsEight}
 //                                                 onChange={(e) => {
 //                                                     formik.handleChange(e);
-//                                                     formik.setFieldValue('emissionEight', Number((formik?.values?.noOfKmsEight * e.target.value * formik?.values?.efEight) / 1000).toFixed(2));
+//                                                     formik.setFieldValue('emissionEight', Number((formik?.values?.noOfKmsEight * e.target.value * formik?.values?.efEight) / 1000).toFixed(5));
 //                                                     formik.handleSubmit();
 //                                                 }}
 //                                                 inputProps={{ style: { color: 'white' } }}
