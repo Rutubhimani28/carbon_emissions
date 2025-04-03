@@ -318,7 +318,7 @@ const Result = ({ value }) => {
 
     useEffect(() => {
         if (content) {
-            // chat();
+            chat();
         }
     }, [content]);
 

@@ -577,13 +577,15 @@ export default async function sendMail({
     }
 
     // Send email
-    // await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions); 
+    
     console.log("Email sent successfully");
 
     // // Clean up the PDF file
-    // if (fs.existsSync(pdfFilePath)) {
-    //     fs.unlinkSync(pdfFilePath);
-    // }
+      if (fs.existsSync(pdfFilePath)) {
+        fs.unlinkSync(pdfFilePath);
+    }
+ 
   } catch (error) {
     console.log("Error sending email:", error);
     throw error;
@@ -713,7 +715,7 @@ export const sendMailForTwoEvents = async ({ eventsData }) => {
     };
 
     // Send email
-    // await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
   } catch (error) {
     console.log("Error sending email from sendMailForTwoEvents :", error);
     throw error;
@@ -802,9 +804,9 @@ export const sendMailForDateRangeEvents = async ({
     };
 
     // Send the email with the combined PDF
-    // await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
-    // fs.unlinkSync(pdfFilePath); // Delete the combined PDF after sending
+    fs.unlinkSync(pdfFilePath); // Delete the combined PDF after sending
   } catch (error) {
     console.error("Error sending email for date range events:", error);
     throw error;

@@ -1,250 +1,268 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from "formik";
-import * as yup from "yup";
-import ClearIcon from "@mui/icons-material/Clear";
-import { LoadingButton } from "@mui/lab";
-import { CircularProgress, DialogContentText, FormLabel } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import ClearIcon from '@mui/icons-material/Clear';
+import { LoadingButton } from '@mui/lab';
+import { CircularProgress, DialogContentText, FormLabel } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { apipost } from "../../service/api";
+import { apipost } from '../../service/api';
 
 const SendMail = (props) => {
-    const { open, close, setUserAction, datas, setOpen, chatSuggestion } = props;
-    const [isLoading, setIsLoading] = useState(false);
-    const [emails, setEmails] = useState([])
-    const [messageType, setMessageType] = useState("template");
-    const [emailInput, setEmailInput] = useState('')
+  const { open, close, setUserAction, datas, setOpen, chatSuggestion } = props;
+  const [isLoading, setIsLoading] = useState(false);
+  const [emails, setEmails] = useState([]);
+  const [messageType, setMessageType] = useState('template');
+  const [emailInput, setEmailInput] = useState('');
 
-    const userid = sessionStorage.getItem('user_id');
-    const userEmail = JSON.parse(sessionStorage.getItem('user'));
+  const userid = sessionStorage.getItem('user_id');
+  const userEmail = JSON.parse(sessionStorage.getItem('user'));
 
-    const toolData = useSelector(state => state.toolDetails?.data);
-    const toolFormData = toolData.find((item) => item?.type === "toolForm");
-    const resultTableData = useSelector(state => state.resultTableDataDetails);
+  const toolData = useSelector((state) => state.toolDetails?.data);
+  const toolFormData = toolData.find((item) => item?.type === 'toolForm');
+  const resultTableData = useSelector((state) => state.resultTableDataDetails);
 
-    // -----------  validationSchema
-    const validationSchema = yup.object({
-        subject: yup.string().required("Subject is required"),
-        addEmail: yup.string().email('Email not valid')
-    });
+  // -----------  validationSchema
+  const validationSchema = yup.object({
+    subject: yup.string().required('Subject is required'),
+    addEmail: yup.string().email('Email not valid'),
+  });
 
-    // -----------   initialValues
-    const initialValues = {
-        subject: toolFormData?.activityName,
-        // receiver: userEmail,
-        receiver: toolFormData?.email,
-        sender: userid,
-        // emails: [],
-        emails: [`${toolFormData?.email}`],
-        addEmail: ''
-    };
+  // -----------   initialValues
+  const initialValues = {
+    subject: toolFormData?.activityName,
+    // receiver: userEmail,
+    receiver: toolFormData?.email,
+    sender: userid,
+    // emails: [],
+    emails: [`${toolFormData?.email}`],
+    addEmail: '',
+  };
 
-    const handleCancel = () => {
+  const handleCancel = () => {
+    formik.resetForm();
+    // formik.setFieldValue('emails', []);
+    formik.setFieldValue('emails', formik.values?.[0]);
+    setEmailInput('');
+    formik.setFieldError('addEmail', '');
+    close();
+  };
+
+  // add email api
+  const addEmail = async (values) => {
+    setIsLoading(true);
+
+    try {
+      const data = {
+        subject: `Total Carbon Footprint generated from your ${values?.subject} activity`,
+        receiver: values?.emails,
+        data: datas,
+        sender: values?.sender,
+        // templateName: "virtual_event_grand_total_result_Template",
+        emailBodyTemplateName: 'virtual_event_grand_total_result_Template',
+        attachmentTemplateName: 'virtual_event_filled_fields_Template',
+        // attachmentPdfName: `Virtual Event- ${values?.subject}`,
+        attachmentPdfName: `Ads- ${values?.subject}`,
+        activityName: toolFormData?.activityName,
+        name: toolFormData?.name,
+        totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
+        eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
+        resultTableData: resultTableData?.data?.find((item) => item.from === 'virtualEvent'),
+        // resultTableData: resultTableData?.data?.find(item => item.from === "outboundMarketing"),
+        chatSuggestion,
+      };
+
+      const result = await apipost('api/email/add', data);
+      setUserAction(result);
+
+      if (result && result.status === 201) {
         formik.resetForm();
-        // formik.setFieldValue('emails', []);
-        formik.setFieldValue('emails', formik.values?.[0]);
-        setEmailInput('');
-        formik.setFieldError('addEmail', '');
         close();
+        setOpen(false);
+        // setEmails([])
+        formik.setFieldValue('emails', []);
+      }
+    } catch (error) {
+      console.log(error);
     }
+    setIsLoading(false);
+  };
 
-    // add email api
-    const addEmail = async (values) => {
-        setIsLoading(true)
+  // formik
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    validate: (values) => {
+      const errors = {};
+      if (!Object.prototype.hasOwnProperty.call(formik.errors, 'addEmail') && values.emails.length < 1) {
+        errors.addEmail = 'Add at least one email';
+      }
 
-        try {
-            const data = {
-                subject: `Total Carbon Footprint generated from your ${values?.subject} activity`,
-                receiver: values?.emails,
-                data: datas,
-                sender: values?.sender,
-                // templateName: "virtual_event_grand_total_result_Template",
-                emailBodyTemplateName: "virtual_event_grand_total_result_Template",
-                attachmentTemplateName: "virtual_event_filled_fields_Template",
-                // attachmentPdfName: `Virtual Event- ${values?.subject}`,
-                attachmentPdfName: `Outdoor Marketing- ${values?.subject}`,
-                activityName: toolFormData?.activityName,
-                name: toolFormData?.name,
-                totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
-                eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
-                resultTableData: resultTableData?.data?.find(item => item.from === "virtualEvent"),
-                // resultTableData: resultTableData?.data?.find(item => item.from === "outboundMarketing"),
-                chatSuggestion
-            };
+      if (values.addEmail && values.emails.includes(values.addEmail)) {
+        errors.addEmail = 'Email already exists';
+      }
 
-            const result = await apipost('api/email/add', data)
-            setUserAction(result)
+      return errors;
+    },
+    onSubmit: async (values) => {
+      if (!formik.isValid) {
+        return;
+      }
+      addEmail(values);
+    },
+  });
 
-            if (result && result.status === 201) {
+  const handleInputChange = (e) => {
+    setEmailInput(e.target.value);
+    formik.setFieldValue('addEmail', e.target.value);
+  };
+
+  const addTagsButton = (e) => {
+    e.preventDefault();
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailInput !== '') {
+      if (regex.test(emailInput)) {
+        // Check if email already exists in the list
+        if (formik.values?.emails?.find((email) => email === emailInput)) {
+          formik.setFieldError('addEmail', 'Email already exists');
+          formik.setFieldTouched('addEmail', true);
+        } else {
+          // Add email to the list
+          formik.setFieldValue('emails', [...formik.values?.emails, emailInput]);
+          setEmailInput('');
+          formik.setFieldValue('addEmail', '');
+          formik.setFieldError('addEmail', '');
+          formik.setFieldTouched('addEmail', true);
+        }
+      }
+    }
+  };
+
+  const removeTag = (index) => {
+    // const newTags = [...emails];
+    const newTags = [...formik.values?.emails];
+    newTags.splice(index, 1);
+    // setEmails(newTags);
+    formik.setFieldValue('emails', newTags);
+  };
+
+  return (
+    <div>
+      <Dialog open={open} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
+        <DialogContent>
+          <Typography>
+            <ClearIcon
+              onClick={() => {
                 formik.resetForm();
                 close();
-                setOpen(false);
-                // setEmails([])
-                formik.setFieldValue('emails', []);
-            }
+              }}
+              style={{ cursor: 'pointer', float: 'right' }}
+            />
+          </Typography>
+          <form>
+            <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
+              <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+                <Grid item xs={12} sm={12} md={12} className="pt-0">
+                  <FormLabel id="demo-row-radio-buttons-group-label">
+                    Subject <span style={{ color: 'red' }}>*</span>
+                  </FormLabel>
+                  <TextField
+                    id="subject"
+                    name="subject"
+                    label=""
+                    fullWidth
+                    size="small"
+                    value={formik.values.subject}
+                    onChange={formik.handleChange}
+                    disabled
+                    error={formik.touched.subject && Boolean(formik.errors.subject)}
+                    helperText={formik.touched.subject && formik.errors.subject}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <ul
+                    id="tags"
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      width: '100%',
+                      border: formik.values.emails?.length > 0 ? '1px solid #dce0e4' : '0',
+                      padding: formik.values.emails?.length > 0 ? '5px' : '0',
+                    }}
+                  >
+                    {formik.values.emails?.map((tag, index) => (
+                      <li
+                        key={index}
+                        style={{
+                          display: 'flex',
+                          listStyle: 'none',
+                          margin: '0 5px 5px 5px',
+                          backgroundColor: 'grey',
+                          padding: '2px 5px 2px 8px',
+                          borderRadius: '20px',
+                          color: '#fff',
+                          fontSize: '14px',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <span>{tag}</span>
+                        {index === 0 ? (
+                          ''
+                        ) : (
+                          <CloseIcon
+                            style={{ fontSize: '14px', color: '#fff', marginLeft: '5px', cursor: 'pointer' }}
+                            onClick={(event) => removeTag(index)}
+                          />
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </Grid>
+                <Grid item xs={11}>
+                  <TextField
+                    name="addEmail"
+                    type="text"
+                    size="small"
+                    fullWidth
+                    value={emailInput}
+                    placeholder="Add Email"
+                    onChange={(e) => {
+                      handleInputChange(e);
+                    }}
+                    error={formik.touched.addEmail && Boolean(formik.errors.addEmail)}
+                    helperText={formik.touched.addEmail && formik.errors.addEmail}
+                  />
+                </Grid>
+                <Grid item xs={1} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                  <AddCircleOutlineIcon
+                    onClick={(event) => addTagsButton(event)}
+                    style={{ fontSize: '30px', cursor: 'pointer' }}
+                  />
+                </Grid>
+              </Grid>
+            </DialogContentText>
+          </form>
+        </DialogContent>
 
-        } catch (error) {
-            console.log(error);
-        }
-        setIsLoading(false)
-    };
-
-    // formik
-    const formik = useFormik({
-        initialValues,
-        validationSchema,
-        validate: (values) => {
-            const errors = {};
-            if (!Object.prototype.hasOwnProperty.call(formik.errors, 'addEmail') && values.emails.length < 1) {
-                errors.addEmail = 'Add at least one email';
-            }
-
-            if (values.addEmail && values.emails.includes(values.addEmail)) {
-                errors.addEmail = 'Email already exists';
-            }
-
-            return errors;
-        },
-        onSubmit: async (values) => {
-            if (!formik.isValid) {
-                return;
-            }
-            addEmail(values);
-        }
-    });
-
-    const handleInputChange = (e) => {
-        setEmailInput(e.target.value)
-        formik.setFieldValue('addEmail', e.target.value);
-    }
-
-    const addTagsButton = (e) => {
-        e.preventDefault();
-        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if (emailInput !== '') {
-            if (regex.test(emailInput)) {
-                // Check if email already exists in the list
-                if (formik.values?.emails?.find(email => email === emailInput)) {
-                    formik.setFieldError('addEmail', 'Email already exists');
-                    formik.setFieldTouched('addEmail', true);
-
-                } else {
-                    // Add email to the list
-                    formik.setFieldValue('emails', [...formik.values?.emails, emailInput]);
-                    setEmailInput('');
-                    formik.setFieldValue('addEmail', '');
-                    formik.setFieldError('addEmail', '');
-                    formik.setFieldTouched('addEmail', true);
-                }
-            }
-        }
-    };
-
-    const removeTag = (index) => {
-        // const newTags = [...emails];
-        const newTags = [...formik.values?.emails];
-        newTags.splice(index, 1);
-        // setEmails(newTags);
-        formik.setFieldValue('emails', newTags);
-    };
-
-    return (
-        <div>
-            <Dialog
-                open={open}
-                aria-labelledby="scroll-dialog-title"
-                aria-describedby="scroll-dialog-description"
-            >
-                <DialogContent>
-                    <Typography>
-                        <ClearIcon
-                            onClick={() => {
-                                formik.resetForm()
-                                close()
-                            }}
-                            style={{ cursor: "pointer", float: 'right' }}
-                        />
-                    </Typography>
-                    <form>
-                        <DialogContentText
-                            id="scroll-dialog-description"
-                            tabIndex={-1}
-                        >
-                            <Grid
-                                container
-                                rowSpacing={3}
-                                columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-                            >
-
-                                <Grid item xs={12} sm={12} md={12} className='pt-0'>
-                                    <FormLabel id="demo-row-radio-buttons-group-label">Subject <span style={{ color: "red" }}>*</span></FormLabel>
-                                    <TextField
-                                        id="subject"
-                                        name="subject"
-                                        label=""
-                                        fullWidth
-                                        size="small"
-                                        value={formik.values.subject}
-                                        onChange={formik.handleChange}
-                                        disabled
-                                        error={
-                                            formik.touched.subject &&
-                                            Boolean(formik.errors.subject)
-                                        }
-                                        helperText={
-                                            formik.touched.subject && formik.errors.subject
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <ul id='tags' style={{ display: "flex", flexWrap: "wrap", width: "100%", border: formik.values.emails?.length > 0 ? '1px solid #dce0e4' : '0', padding: formik.values.emails?.length > 0 ? '5px' : '0' }}>
-                                        {formik.values.emails?.map((tag, index) => (
-                                            <li key={index} style={{ display: "flex", listStyle: "none", margin: "0 5px 5px 5px", backgroundColor: "grey", padding: "2px 5px 2px 8px", borderRadius: "20px", color: "#fff", fontSize: "14px", alignItems: "center" }}>
-                                                <span >{tag}</span>
-                                                {index === 0 ? '' : <CloseIcon style={{ fontSize: "14px", color: "#fff", marginLeft: "5px", cursor: "pointer" }} onClick={event => removeTag(index)} />}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </Grid>
-                                <Grid item xs={11}>
-                                    <TextField
-                                        name='addEmail'
-                                        type='text'
-                                        size='small'
-                                        fullWidth
-                                        value={emailInput}
-                                        placeholder='Add Email'
-                                        onChange={(e) => { handleInputChange(e) }}
-                                        error={
-                                            formik.touched.addEmail &&
-                                            Boolean(formik.errors.addEmail)
-                                        }
-                                        helperText={
-                                            formik.touched.addEmail && formik.errors.addEmail
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={1} display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                                    <AddCircleOutlineIcon onClick={event => addTagsButton(event)} style={{ fontSize: "30px", cursor: "pointer" }} />
-                                </Grid>
-                            </Grid>
-                        </DialogContentText>
-                    </form>
-                </DialogContent>
-
-                <DialogActions>
-                    <LoadingButton onClick={formik.handleSubmit} variant='contained' color='primary' disabled={!!isLoading} className="custom-btn me-2">
-                        {isLoading ? <CircularProgress size={27} /> : 'Send'}
-                    </LoadingButton>
-                    {/* <Button
+        <DialogActions>
+          <LoadingButton
+            onClick={formik.handleSubmit}
+            variant="contained"
+            color="primary"
+            disabled={!!isLoading}
+            className="custom-btn me-2"
+          >
+            {isLoading ? <CircularProgress size={27} /> : 'Send'}
+          </LoadingButton>
+          {/* <Button
                         type="reset"
                         variant="outlined"
                         style={{ textTransform: "capitalize" }}
@@ -255,10 +273,10 @@ const SendMail = (props) => {
                     >
                         Cancle
                     </Button> */}
-                </DialogActions>
-            </Dialog>
-        </div>
-    );
-}
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+};
 
 export default SendMail;

@@ -33,7 +33,7 @@ const Result = ({ value }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [suggestion, setSuggestion] = useState('');
-  const [suggestionForPdf, setSuggestionForPdf] = useState('ABC');
+  const [suggestionForPdf, setSuggestionForPdf] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState('');
   const allDigitalContentData = useSelector((state) => state?.totalDigitalContentDetails);
@@ -294,8 +294,8 @@ const Result = ({ value }) => {
           model: 'o1-mini',
           messages: [
             {
-              role: 'user',
-              content,
+              "role": 'user',
+              "content": content,
             },
           ],
           // temperature: 0.7,
