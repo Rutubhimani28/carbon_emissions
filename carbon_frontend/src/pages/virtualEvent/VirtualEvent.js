@@ -2206,7 +2206,7 @@ const VirtualEvent = (props) => {
             {/* <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid> */}
             <Grid item xs={12} sm={12} md={12} marginTop={3}>
               <Typography color="white" className="text-center">
-                {`Total Ads Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
+                {`Total Ads Carbon Footprint = ${Number(totalEmission).toFixed(5) || 0} `}kgCO<sub>2</sub>e
               </Typography>
             </Grid>
           </Grid>

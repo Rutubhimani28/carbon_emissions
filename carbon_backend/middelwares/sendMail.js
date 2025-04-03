@@ -115,6 +115,9 @@ export default async function sendMail({
 }) {
   console.log(receiver, "receiver");
 
+  // Array to store all PDF file paths that need to be cleaned up
+  const pdfFilesToCleanup = [];
+
   try {
     let mailOptions = {
       bcc: process.env.GMAIL_FROM,
@@ -214,6 +217,7 @@ export default async function sendMail({
             : "carbon_footprint_chart.pdf"
         );
         await createPDF(attachmentTemplate, attachmentPdfFilePath);
+        pdfFilesToCleanup.push(attachmentPdfFilePath); 
 
         attachmentsArray.push({
           filename: attachmentPdfName
@@ -255,7 +259,6 @@ export default async function sendMail({
         const attachmentsArray = [];
 
         if (isf2fEvent) {
-          console.log("isf2fEvent::::::::");
           const attachmentTemplatePathOne = path.join(
             __dirname,
             "/email_templates",
@@ -273,7 +276,6 @@ export default async function sendMail({
               resultTableData: resultTableDataOne,
             }
           );
-          console.log(attachmentTemplateOne, "attachmentTemplateOne");
           const attachmentPdfFilePathOne = path.join(
             __dirname,
             attachmentPdfNameOne
@@ -282,6 +284,7 @@ export default async function sendMail({
           );
 
           await createPDF(attachmentTemplateOne, attachmentPdfFilePathOne);
+          pdfFilesToCleanup.push(attachmentPdfFilePathOne); 
 
           attachmentsArray.push({
             filename: attachmentPdfNameOne
@@ -323,6 +326,7 @@ export default async function sendMail({
           );
 
           await createPDF(attachmentTemplateTwo, attachmentPdfFilePathTwo);
+          pdfFilesToCleanup.push(attachmentPdfFilePathTwo); 
 
           attachmentsArray.push({
             filename: attachmentPdfNameTwo
@@ -364,6 +368,7 @@ export default async function sendMail({
           );
 
           await createPDF(attachmentTemplateThree, attachmentPdfFilePathThree);
+          pdfFilesToCleanup.push(attachmentPdfFilePathThree); 
 
           attachmentsArray.push({
             filename: attachmentPdfNameThree
@@ -405,6 +410,7 @@ export default async function sendMail({
           );
 
           await createPDF(attachmentTemplateFour, attachmentPdfFilePathFour);
+          pdfFilesToCleanup.push(attachmentPdfFilePathFour); 
 
           attachmentsArray.push({
             filename: attachmentPdfNameFour
@@ -430,8 +436,7 @@ export default async function sendMail({
         emailBodyTemplateName &&
         chatSuggestion
       ) {
-        console.log("DATA1");
-        console.log("chatSuggestion", chatSuggestion);
+      
 
         // for summary tab. chat + filled field data.  // else if (attachmentTemplateName && emailBodyTemplateName) {
         const attachmentTemplatePath = path.join(
@@ -483,6 +488,8 @@ export default async function sendMail({
 
         await createPDF(attachmentTemplate, attachmentPdfFilePath);
         await createPDF(chatSuggestion, chatPdfFilePath);
+        pdfFilesToCleanup.push(attachmentPdfFilePath); 
+        pdfFilesToCleanup.push(chatPdfFilePath); 
 
         mailOptions = {
           from: process.env.GMAIL_FROM,
@@ -504,6 +511,7 @@ export default async function sendMail({
             },
           ],
         };
+
       } else if (attachmentTemplateName) {
         console.log("DATA2");
         const attachmentTemplatePath = path.join(
@@ -533,6 +541,7 @@ export default async function sendMail({
         );
 
         await createPDF(attachmentTemplate, attachmentPdfFilePath);
+        pdfFilesToCleanup.push(attachmentPdfFilePath); 
 
         mailOptions = {
           from: process.env.GMAIL_FROM,
@@ -577,15 +586,27 @@ export default async function sendMail({
     }
 
     // Send email
-    await transporter.sendMail(mailOptions); 
-    
+    await transporter.sendMail(mailOptions);
+
     console.log("Email sent successfully");
 
     // // Clean up the PDF file
       if (fs.existsSync(pdfFilePath)) {
         fs.unlinkSync(pdfFilePath);
     }
- 
+
+    // Clean up all PDF files
+    for (const filePath of pdfFilesToCleanup) {
+      try {
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+          console.log(`Deleted PDF file: ${filePath}`);
+        }
+      } catch (cleanupError) {
+        console.error(`Error deleting PDF file ${filePath}:`, cleanupError);
+        // Continue with next file even if one fails
+      }
+    }
   } catch (error) {
     console.log("Error sending email:", error);
     throw error;
@@ -593,6 +614,9 @@ export default async function sendMail({
 }
 
 export const sendMailForTwoEvents = async ({ eventsData }) => {
+  // Array to store all PDF file paths that need to be cleaned up
+  const pdfFilesToCleanup = [];
+
   // for two events filled calculation datas
   try {
     const transporter = nodemailer.createTransport({
@@ -695,6 +719,7 @@ export const sendMailForTwoEvents = async ({ eventsData }) => {
             pdfName ? `${pdfName}.pdf` : "carbon_footprint.pdf"
           );
           await createPDF(renderedTemplate, pdfFilePath);
+          pdfFilesToCleanup.push(pdfFilePath); 
 
           attachmentsArray.push({
             filename: pdfName ? `${pdfName}.pdf` : "carbon_footprint.pdf",
@@ -716,6 +741,19 @@ export const sendMailForTwoEvents = async ({ eventsData }) => {
 
     // Send email
     await transporter.sendMail(mailOptions);
+
+    // Clean up all PDF files
+    for (const filePath of pdfFilesToCleanup) {
+      try {
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+          console.log(`Deleted PDF file: ${filePath}`);
+        }
+      } catch (cleanupError) {
+        console.error(`Error deleting PDF file ${filePath}:`, cleanupError);
+        // Continue with next file even if one fails
+      }
+    }
   } catch (error) {
     console.log("Error sending email from sendMailForTwoEvents :", error);
     throw error;

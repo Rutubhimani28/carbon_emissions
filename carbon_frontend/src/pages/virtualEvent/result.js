@@ -12,7 +12,7 @@ const Result = ({ value }) => {
     const [open, setOpen] = useState(false);
     const [content, setContent] = useState('');
     const [suggestion, setSuggestion] = useState('');
-    const [suggestionForPdf, setSuggestionForPdf] = useState('ABC');
+    const [suggestionForPdf, setSuggestionForPdf] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     const [sc1, setSc1] = useState(0);
@@ -20,7 +20,6 @@ const Result = ({ value }) => {
     const [sc3, setSc3] = useState(0);
 
     const allVirtualEventData = useSelector((state) => state?.totalVirtualEventDetails)
-    console.log(allVirtualEventData , "allVirtualEventData")
     const total = Number(allVirtualEventData?.totalEmission);
     const totalResultTableData = useSelector((state) => state?.resultTableDataDetails);
 
@@ -77,21 +76,20 @@ const Result = ({ value }) => {
         }
     ];
 
-    console.log("resultData" , resultData)
 
     const data = {
         // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(2),
-        "totalTvAd": Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(2),
-        "totalNewspaper": Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission).toFixed(2),
-        "totalHafepaper" : Number(allVirtualEventData?.data?.[0]?.data?.[19]?.emission).toFixed(2),
-        "colorPrint" : Number(allVirtualEventData?.data?.[0]?.data?.[20]?.emission).toFixed(2),
-        "blackAndWhite" : Number(allVirtualEventData?.data?.[0]?.data?.[21]?.emission).toFixed(2),
+        "totalTvAd": Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(5),
+        "totalNewspaper": Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission).toFixed(5),
+        "totalHafepaper" : Number(allVirtualEventData?.data?.[0]?.data?.[19]?.emission).toFixed(5),
+        "colorPrint" : Number(allVirtualEventData?.data?.[0]?.data?.[20]?.emission).toFixed(5),
+        "blackAndWhite" : Number(allVirtualEventData?.data?.[0]?.data?.[21]?.emission).toFixed(5),
         // "totalMagazine": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
         // "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(2),
-        "totalPolyethylene": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
-        "totalPVC": Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission).toFixed(2),
-        "Energy": Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission).toFixed(2),
-        "grandTotal": Number(total).toFixed(2)
+        "totalPolyethylene": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(5),
+        "totalPVC": Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission).toFixed(5),
+        "Energy": Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission).toFixed(5),
+        "grandTotal": Number(total).toFixed(5)
     };
 
     const outdoorBilboardEmission = Number(data.totalPolyethylene) + Number(data?.totalPVC) + Number(allVirtualEventData?.data?.[0]?.data?.[19]?.emission) || 0;
@@ -398,9 +396,9 @@ const Result = ({ value }) => {
                                 ))
                             }
                         </table>
-                        <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total {Number(total).toFixed(2)} kgCO<sub>2</sub>e Carbon Footprint generated from your {toolFormData?.activityName} activity</Typography>
-                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(3)} tCO<sub>2</sub>e</Typography>
-                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${(total / toolFormData?.budget).toFixed(3)}`} kgCO<sub>2</sub>e</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total {Number(total).toFixed(5)} kgCO<sub>2</sub>e Carbon Footprint generated from your {toolFormData?.activityName} activity</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>Total tCO<sub>2</sub>e = {(total / 1000).toFixed(5)} tCO<sub>2</sub>e</Typography>
+                        <Typography className='text-center py-1 fw-bold mt-1 fs-5'>For every $ you spend you are generating {`${(total / toolFormData?.budget).toFixed(5)}`} kgCO<sub>2</sub>e</Typography>
                         <Typography className='text-center py-1 fw-bold mt-2 fs-5'>Do you want to change any data? If no, please click on Submit.</Typography>
                     </Box>
 

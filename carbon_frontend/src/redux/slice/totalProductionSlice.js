@@ -23,7 +23,7 @@ const productionSlice = createSlice({
                     return total + Number(item.emission);
                 }
                 return total;
-            }, 0).toFixed(2);
+            }, 0).toFixed(5);
         },
         deleteProductionData: (state, action) => ({
             ...state,

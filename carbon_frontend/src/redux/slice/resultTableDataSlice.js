@@ -367,6 +367,72 @@ const resultTableDataSlice = createSlice({
         data: filteredData,
       };
     },
+    deleteResTabVideoData: (state, action) => {
+      const filteredData = state?.data?.map((item) => {
+        if (item?.from === 'digitalCampaign') {
+          return {
+            ...item,
+            allDataOfTab: item?.allDataOfTab?.map((tab) => {
+              if (tab?.tabTitle === 'Video') {
+                return {
+                  ...tab,
+                  tabData: [
+                    // { subType: "Social Media", scope: 3 },
+                    // { subType: "", scope: 3 },
+                    // { subType: "Email / Newsletter", scope: 1 },
+                    // { subType: "Podcast", scope: 3 },
+                    { subType: 'Network Emissions' },
+                    { subType: 'Device Emissions' },
+                    { subType: 'Data Center Emissions' },
+                    // { subType: 'Podcast' },
+                  ],
+                };
+              }
+              return tab;
+            }),
+          };
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        data: filteredData,
+      };
+    },
+    deleteResTabImageData: (state, action) => {
+      const filteredData = state?.data?.map((item) => {
+        if (item?.from === 'digitalCampaign') {
+          return {
+            ...item,
+            allDataOfTab: item?.allDataOfTab?.map((tab) => {
+              if (tab?.tabTitle === 'Image') {
+                return {
+                  ...tab,
+                  tabData: [
+                    // { subType: "Social Media", scope: 3 },
+                    // { subType: "", scope: 3 },
+                    // { subType: "Email / Newsletter", scope: 1 },
+                    // { subType: "Podcast", scope: 3 },
+                    { subType: 'Network Emissions' },
+                    { subType: 'Device Emissions' },
+                    { subType: 'Data Center Emissions' },
+                    // { subType: 'Podcast' },
+                  ],
+                };
+              }
+              return tab;
+            }),
+          };
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        data: filteredData,
+      };
+    },
     deleteResTabDgCampaignData: (state, action) => {
       const filteredData = state?.data?.map((item) => {
         if (item?.from === 'digitalCampaign') {
@@ -394,6 +460,7 @@ const resultTableDataSlice = createSlice({
         }
         return item;
       });
+
       return {
         ...state,
         data: filteredData,
@@ -662,6 +729,8 @@ export const {
   deleteResTabVrtEventData,
   deleteResTabCommsData,
   deleteResTabHospitalityData,
+  deleteResTabImageData,
+  deleteResTabVideoData,
   deleteResTabPrAgencyData,
   prEventEmissionCatogorywise,
   deleteCommsCatogorywiseEmission,

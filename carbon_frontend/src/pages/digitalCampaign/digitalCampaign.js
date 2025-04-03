@@ -170,16 +170,16 @@ const DigitalCampaign = (props) => {
                 },
             ];
 
-            dispatch(addCampaignData({ data }));
-            dispatch(addResultTableData({ from: "digitalCampaign", data: tableData, tabTitle: "Digital Campaign" }));
+            // dispatch(addCampaignData({ data }));
+            // dispatch(addResultTableData({ from: "digitalCampaign", data: tableData, tabTitle: "Digital Campaign" }));
         },
     });
 
     const { values } = formik;
 
     const handeleDelete = () => {
-        dispatch(deleteCampaignData());
-        dispatch(deleteResTabDgCampaignData());
+        // dispatch(deleteCampaignData());
+        // dispatch(deleteResTabDgCampaignData());
     };
 
     const handleSaveToDb = async () => {
@@ -201,38 +201,38 @@ const DigitalCampaign = (props) => {
         }
     };
 
-    useEffect(() => {
-        if (allData?.length > 0) {
-            formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
-            formik.setFieldValue('uploadEnergy', allData?.[0]?.uploadEnergy);
-            formik.setFieldValue('totalEnergy', allData?.[0]?.totalEnergy);
-            formik.setFieldValue('totalEnergyKwh', allData?.[0]?.totalEnergyKwh);
-            formik.setFieldValue('downloadEnergy', allData?.[0]?.downloadEnergy);
-            formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
-            formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+    // useEffect(() => {
+    //     if (allData?.length > 0) {
+    //         formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
+    //         formik.setFieldValue('uploadEnergy', allData?.[0]?.uploadEnergy);
+    //         formik.setFieldValue('totalEnergy', allData?.[0]?.totalEnergy);
+    //         formik.setFieldValue('totalEnergyKwh', allData?.[0]?.totalEnergyKwh);
+    //         formik.setFieldValue('downloadEnergy', allData?.[0]?.downloadEnergy);
+    //         formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
+    //         formik.setFieldValue('emissionOne', allData?.[0]?.emission);
 
-            formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
-            formik.setFieldValue('videoEnergy', allData?.[1]?.videoEnergy);
-            formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
-            formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
-            formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
+    //         formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
+    //         formik.setFieldValue('videoEnergy', allData?.[1]?.videoEnergy);
+    //         formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
+    //         formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
+    //         formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
 
-            formik.setFieldValue('noOfEmails', allData?.[2]?.noOfEmails);
-            formik.setFieldValue('emialEfOne', allData?.[2]?.emialEfOne);
-            formik.setFieldValue('emialEfTwo', allData?.[2]?.emialEfTwo);
-            formik.setFieldValue('emailEmissionOne', allData?.[2]?.emailEmissionOne);
-            formik.setFieldValue('emailEmissionTwo', allData?.[2]?.emailEmissionTwo);
-            formik.setFieldValue('attachmentSize', allData?.[2]?.attachmentSize);
-            formik.setFieldValue('totalAttachmentSize', allData?.[2]?.totalAttachmentSize);
-            formik.setFieldValue('emissionThree', allData?.[2]?.emission);
+    //         formik.setFieldValue('noOfEmails', allData?.[2]?.noOfEmails);
+    //         formik.setFieldValue('emialEfOne', allData?.[2]?.emialEfOne);
+    //         formik.setFieldValue('emialEfTwo', allData?.[2]?.emialEfTwo);
+    //         formik.setFieldValue('emailEmissionOne', allData?.[2]?.emailEmissionOne);
+    //         formik.setFieldValue('emailEmissionTwo', allData?.[2]?.emailEmissionTwo);
+    //         formik.setFieldValue('attachmentSize', allData?.[2]?.attachmentSize);
+    //         formik.setFieldValue('totalAttachmentSize', allData?.[2]?.totalAttachmentSize);
+    //         formik.setFieldValue('emissionThree', allData?.[2]?.emission);
 
-            formik.setFieldValue('podcastSize', allData?.[3]?.podcastSize);
-            formik.setFieldValue('noOfListeners', allData?.[3]?.noOfListeners);
-            formik.setFieldValue('podcastKwh', allData?.[3]?.podcastKwh);
-            formik.setFieldValue('podcastTotal', allData?.[3]?.podcastTotal);
-            formik.setFieldValue('emissionNineteen', allData?.[3]?.emission);
-        }
-    }, [value]);
+    //         formik.setFieldValue('podcastSize', allData?.[3]?.podcastSize);
+    //         formik.setFieldValue('noOfListeners', allData?.[3]?.noOfListeners);
+    //         formik.setFieldValue('podcastKwh', allData?.[3]?.podcastKwh);
+    //         formik.setFieldValue('podcastTotal', allData?.[3]?.podcastTotal);
+    //         formik.setFieldValue('emissionNineteen', allData?.[3]?.emission);
+    //     }
+    // }, [value]);
 
     return (
         <div>
@@ -485,7 +485,7 @@ const DigitalCampaign = (props) => {
                                 {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
                                 <Button variant='outlined' onClick={() => { formik.resetForm(); handeleDelete(); }} color='error'>Clear</Button></Stack>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid>
+                        {/* <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid> */}
                     </Grid>
                 </Card>
             </Container>

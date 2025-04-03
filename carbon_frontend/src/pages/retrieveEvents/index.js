@@ -76,7 +76,7 @@ const MyEventSelector = () => {
     {
       field: 'virtualEventTotalEmission',
       // "headerName": "Virtual Event Emission",
-      headerName: 'Outdoor Marketing Emission',
+      headerName: 'Ads Emission',
       width: 175,
     },
     {
@@ -112,7 +112,7 @@ const MyEventSelector = () => {
   const csvColumns = [
     { Header: 'Activity Name', accessor: 'activityName' },
     { Header: 'F2F Event Emission', accessor: 'f2fEventTotalEmission' },
-    { Header: 'Outdoor Marketing Emission', accessor: 'virtualEventTotalEmission' },
+    { Header: 'Ads Emission', accessor: 'virtualEventTotalEmission' },
     { Header: 'PR Event Emission', accessor: 'prEventTotalEmission' },
     { Header: 'Digital Campaign Emission', accessor: 'digitalCampaignTotalEmission' },
     { Header: 'Date/Time', accessor: 'dateTime' },
@@ -381,7 +381,7 @@ const MyEventSelector = () => {
             allDataOfTab: responseData[ind]?.prEventData || [],
           },
           // attachmentPdfNameTwo: `Virtual Event- ${responseData[ind]?.activityName}`,
-          attachmentPdfNameTwo: `Outdoor Marketing- ${responseData[ind]?.activityName}`,
+          attachmentPdfNameTwo: `Ads- ${responseData[ind]?.activityName}`,
           activityName: responseData[ind]?.activityName || '',
           budget: responseData[ind]?.budget || '',
           country: responseData[ind]?.country || '',
@@ -474,6 +474,7 @@ const MyEventSelector = () => {
     const allEventsEmissions = [];
 
     responseData.forEach((event) => {
+      console.log(event, 'event');
       // f2f-event
       const airTravelEmission = event?.airTravelAllData?.totalEmission;
       const localTranspotationEmission = event?.localTranspotationAllData?.totalEmission;
@@ -494,7 +495,11 @@ const MyEventSelector = () => {
       const hospitalityEmission = event?.hospitalityAllData?.totalEmission;
 
       // digital-campaign
-      const digitalCampaignEmission = event?.digitalCampaignAllData?.totalEmission;
+      const imageEmission = event?.imageAllData?.totalEmission;
+      const videoEmission = event?.videoAllData?.totalEmission;
+      console.log(videoEmission, 'videoEmission');
+      // const digitalCampaignEmission = event?.digitalCampaignAllData?.totalEmission;
+      const digitalCampaignEmission = Number(imageEmission || 0) + Number(videoEmission || 0);
 
       const f2fEventTotalEmission = Number(
         Number(airTravelEmission || 0) +
@@ -512,7 +517,8 @@ const MyEventSelector = () => {
         Number(commsEmission || 0) + Number(prAgencyEmission || 0) + Number(hospitalityEmission || 0)
       ).toFixed(2);
       const digitalCampaignTotalEmission = Number(digitalCampaignEmission || 0).toFixed(2);
-
+      // const digitalCampaignTotalEmission = Number(imageData?.totalEmission || 0).toFixed(2);
+      console.log('digitalCampaignTotalEmission', digitalCampaignTotalEmission);
       allEventsEmissions.push({
         f2fEventTotalEmission,
         virtualEventTotalEmission,

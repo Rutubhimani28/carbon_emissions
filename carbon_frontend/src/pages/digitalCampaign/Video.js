@@ -1,13 +1,4 @@
-// import { Grid } from '@mui/material';
-// import React from 'react';
-
-// const Video = () => {
-//   return <Grid>Video</Grid>;
-// };
-
-// export default Video;
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Grid,
   Typography,
@@ -25,23 +16,23 @@ import {
   Stack,
   Button,
 } from '@mui/material';
-import { FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
+import { FaAngleDoubleRight, FaImage, FaFileVideo, FaAngleDoubleLeft } from 'react-icons/fa';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import useEventData from '../../hooks/useEventData';
-import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
+import { addVideoData, deleteVideoData } from '../../redux/slice/videoSlice';
+// import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
 import {
+  deleteResTabVideoData,
   addResultTableData,
-  deleteResTabDgCampaignData,
   addResultTableDatasToDb,
   updateResultTableDatasToDb,
 } from '../../redux/slice/resultTableDataSlice';
 
 const Video = (props) => {
   const { setValue, value } = props;
-  const allData = useSelector((state) => state?.totalDigitalCampaignDetails?.data?.[0]?.data);
-  console.log(allData , "allData")
-  const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails?.totalEmission);
+  const allData = useSelector((state) => state?.totalVideoDetails?.data?.[0]?.data);
+  const totalEmission = useSelector((state) => state?.totalVideoDetails?.totalEmission);
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
   const eventsData = useEventData();
   const dispatch = useDispatch();
@@ -111,7 +102,6 @@ const Video = (props) => {
       if (tabletDeviceEmissions > 0) formik.setFieldValue('tabletDeviceEmissions', tabletDeviceEmissions.toFixed(5));
       if (laptopDeviceEmissions > 0) formik.setFieldValue('laptopDeviceEmissions', laptopDeviceEmissions.toFixed(5));
       if (desktopDeviceEmissions > 0) formik.setFieldValue('desktopDeviceEmissions', desktopDeviceEmissions.toFixed(5));
-      console.log(values);
 
       const data = [
         {
@@ -197,17 +187,16 @@ const Video = (props) => {
           },
         },
       ];
-      console.log(data, 'data');
-      console.log(tableData, 'tableData');
-      dispatch(addCampaignData({ data }));
+      
+      dispatch(addVideoData({ data }));
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Video' }));
     },
   });
   const handeleDelete = () => {
-    // dispatch(deleteCampaignData());
-    // dispatch(deleteResTabDgCampaignData());
+    dispatch(deleteVideoData());
+    dispatch(deleteResTabVideoData());
   };
-  console.log(formik?.values, 'valuessss');
+
   const handleSaveToDb = async (values) => {
     const eventData = {
       ...eventsData,
@@ -225,6 +214,29 @@ const Video = (props) => {
       }
     }
   };
+
+  useEffect(() => {
+    if (allData?.length > 0) {
+      formik.setFieldValue('wifiImpression', allData?.[0]?.wifi);
+      formik.setFieldValue('wifi4GImpression', allData?.[0]?.wifi4g);
+      formik.setFieldValue('wifi5GImpression', allData?.[0]?.wifi5g);
+      formik.setFieldValue('wifiTotalEmissions', allData?.[0]?.emission);
+
+      formik.setFieldValue('mobileDevice', allData?.[1]?.mobile);
+      formik.setFieldValue('mobileDeviceEmissions', allData?.[1]?.mobileEmission);
+      formik.setFieldValue('tabletDevice', allData?.[1]?.tablet);
+      formik.setFieldValue('tabletDeviceEmissions', allData?.[1]?.tabletEmission);
+      formik.setFieldValue('laptopDevice', allData?.[1]?.laptop);
+      formik.setFieldValue('laptopDeviceEmissions', allData?.[1]?.laptopEmission);
+      formik.setFieldValue('desktopDevice', allData?.[1]?.desktop);
+      formik.setFieldValue('desktopDeviceEmissions', allData?.[1]?.desktopEmission);
+
+      formik.setFieldValue('dataCenter', allData?.[2]?.dataCenter);
+      formik.setFieldValue('dataRenewable', allData?.[2]?.renewable);
+      formik.setFieldValue('dataEmissions', allData?.[2]?.emission);
+    }
+  }, [value]);
+
   const totalDevice =
     (Number(formik?.values?.mobileDeviceEmissions) || 0) +
     (Number(formik?.values?.tabletDeviceEmissions) || 0) +
@@ -270,6 +282,7 @@ const Video = (props) => {
                           const wifiTotalEF = wifiEF3 + wifiEF5 + wifiEF7;
                           const wifiTotalEmissions = (wifiTotalEF * 0.727).toFixed(5);
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
+                          formik.handleSubmit();
                         }}
                         inputProps={{ style: { color: 'white' } }}
                       />
@@ -290,6 +303,7 @@ const Video = (props) => {
                           const wifiTotalEF = wifiEF3 + wifiEF5 + wifiEF7;
                           const wifiTotalEmissions = (wifiTotalEF * 0.727).toFixed(5);
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
+                          formik.handleSubmit();
                         }}
                         inputProps={{ style: { color: 'white' } }}
                       />
@@ -310,6 +324,7 @@ const Video = (props) => {
                           const wifiTotalEF = wifiEF3 + wifiEF5 + wifiEF7;
                           const wifiTotalEmissions = (wifiTotalEF * 0.727).toFixed(5);
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
+                          formik.handleSubmit();
                         }}
                         inputProps={{ style: { color: 'white' } }}
                       />
@@ -646,6 +661,18 @@ const Video = (props) => {
             <Stack direction={'row'} spacing={2}>
               <Button
                 variant="contained"
+                startIcon={<FaAngleDoubleLeft />}
+                onClick={() => {
+                  handleSaveToDb(formik?.values);
+                  // formik.handleSubmit();
+                  setValue(value - 1);
+                }}
+                className="custom-btn"
+              >
+                Save and Previous Page
+              </Button>
+              <Button
+                variant="contained"
                 endIcon={<FaAngleDoubleRight />}
                 type="submit"
                 onClick={() => {
@@ -671,7 +698,7 @@ const Video = (props) => {
           </Grid>
           <Grid item xs={12} sm={12} md={12} marginTop={3}>
             <Typography color="white" className="text-center">
-              {/* {`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e */}
+              {`Total Video Carbon Footprint = ${Number(totalEmission || 0).toFixed(5)} `}kgCO<sub>2</sub>e
             </Typography>
           </Grid>
         </Grid>

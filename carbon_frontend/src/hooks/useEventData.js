@@ -27,8 +27,9 @@ const useEventData = () => {
     const hospitalityAllData = useSelector((state) => state?.totalHospitalityDetails);
 
     // digital-campaign
-    const digitalCampaignAllData = useSelector((state) => state?.totalDigitalCampaignDetails);
-
+    const imageAllData = useSelector((state) => state?.totalImageDetails);
+    const videoAllData = useSelector((state) => state?.totalVideoDetails);
+    // const digitalCampaignAllData = useSelector((state) => state?.totalDigitalCampaignDetails);
     return {
         activityName: toolFormData?.activityName || '',
         budget: toolFormData?.budget || '',
@@ -61,8 +62,9 @@ const useEventData = () => {
         commsAllData,
         prAgencyAllData,
         hospitalityAllData,
-
-        digitalCampaignAllData,
+        videoAllData,
+        imageAllData,
+        // digitalCampaignAllData,
     };
 };
 

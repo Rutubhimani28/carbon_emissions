@@ -30,11 +30,11 @@ const DigitalCampaignCalculation = () => {
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
           >
-            <Tab
+            {/* <Tab
               icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
               label="Digital Campaign"
               className="tab-text"
-            />
+            /> */}
             <Tab
               icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
               label="Image"
@@ -53,10 +53,10 @@ const DigitalCampaignCalculation = () => {
           </Tabs>
         </Box>
         <Box my={2} pb={2}>
-          {value === 0 && <DigitalCampaignComp setValue={setValue} value={value} />}
-          {value === 1 && <Image setValue={setValue} value={value} />}
-          {value === 2 && <Video setValue={setValue} value={value} />}
-          {value === 3 && <Result setValue={setValue} value={value} />}
+          {/* {value === 0 && <DigitalCampaignComp setValue={setValue} value={value} />} */}
+          {value === 0 && <Image setValue={setValue} value={value} />}
+          {value === 1 && <Video setValue={setValue} value={value} />}
+          {value === 2 && <Result setValue={setValue} value={value} />}
         </Box>
       </Container>
     </div>

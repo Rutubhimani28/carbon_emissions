@@ -204,7 +204,6 @@ const AirTravel = (props) => {
           // scope: 3
         },
       ];
-      console.log('AirTravel tableData', tableData);
       dispatch(addAirTravelData({ data }));
       dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Air Travel' }));
     },
@@ -221,7 +220,6 @@ const AirTravel = (props) => {
     };
 
     if (resultTableData.eventDataId) {
-      console.log('handleSaveToDb', eventData);
       eventData.eventDataId = resultTableData?.eventDataId;
       const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
 
@@ -265,7 +263,6 @@ const AirTravel = (props) => {
       // formik.setFieldValue('emissionNine', allData?.[2]?.emissionNine);
     }
   }, [value]);
-  console.log(allData, 'allData');
 
   const calclulateEconomyClass = (e, emmFieldName, firstValue, ef) => {
     formik.handleChange(e);

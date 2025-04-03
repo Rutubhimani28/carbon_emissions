@@ -42,7 +42,7 @@ const totalAirTravelSlice = createSlice({
         //   totalEmission += item?.emissiontwel ? Number(item?.emissiontwel) : 0;
         // }
       });
-      state.totalEmission = Number(totalEmission).toFixed(2) || 0;
+      state.totalEmission = Number(totalEmission).toFixed(5) || 0;
     },
     // deleteAirTravelData: (state, action) => ({
     //     ...state,

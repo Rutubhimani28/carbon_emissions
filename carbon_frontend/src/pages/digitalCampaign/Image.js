@@ -23,19 +23,19 @@ import useEventData from '../../hooks/useEventData';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
 import {
   addResultTableData,
+  deleteResTabImageData,
   deleteResTabDgCampaignData,
   addResultTableDatasToDb,
   updateResultTableDatasToDb,
 } from '../../redux/slice/resultTableDataSlice';
+import { addImageData, deleteImageData } from '../../redux/slice/imageSlice';
 
 // import { useTheme } from '@mui/material/styles';
 
 const Image = (props) => {
   const { setValue, value } = props;
-  const allData = useSelector((state) => state?.totalDigitalCampaignDetails?.data?.[0]?.data);
-  console.log(allData, 'allDataImage');
-  const totalEmission = useSelector((state) => state?.totalDigitalCampaignDetails);
-  console.log(totalEmission, 'totalEmission');
+  const allData = useSelector((state) => state?.totalImageDetails?.data?.[0]?.data);
+  const totalEmission = useSelector((state) => state?.totalImageDetails?.totalEmission);
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
   const eventsData = useEventData();
   const dispatch = useDispatch();
@@ -74,7 +74,6 @@ const Image = (props) => {
       const wifiEF6 = Number(values?.wifi5GImpression) * 0.000000189 * values?.contentSize;
       const wifiTotalEF = wifiEF2 + wifiEF4 + wifiEF6;
       const wifiTotalEmissions = wifiTotalEF * 0.727;
-      // console.log("wifiTotalEmissions", wifiTotalEmissions)
       const EFMobile2 = Number(values?.mobileDevice) * values?.EFMobile1;
       const mobileDeviceEmissions = EFMobile2 * values?.EFMobile3;
       const tabletEF2 = Number(values?.tabletDevice) * values?.tabletEF1;
@@ -102,7 +101,6 @@ const Image = (props) => {
       if (tabletDeviceEmissions > 0) formik.setFieldValue('tabletDeviceEmissions', tabletDeviceEmissions);
       if (laptopDeviceEmissions > 0) formik.setFieldValue('laptopDeviceEmissions', laptopDeviceEmissions);
       if (desktopDeviceEmissions > 0) formik.setFieldValue('desktopDeviceEmissions', desktopDeviceEmissions);
-      // console.log(values);
 
       const data = [
         {
@@ -121,7 +119,8 @@ const Image = (props) => {
           laptop: values?.laptopDevice,
           laptopEmission: Number(laptopDeviceEmissions).toFixed(5) > 0 ? Number(laptopDeviceEmissions).toFixed(5) : '',
           desktop: values?.desktopDevice,
-          desktopEmission: Number(desktopDeviceEmissions).toFixed(5) > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
+          desktopEmission:
+            Number(desktopDeviceEmissions).toFixed(5) > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
         },
         {
           type: 'Data Center Emissions',
@@ -129,8 +128,8 @@ const Image = (props) => {
           renewable: values?.dataRenewable,
           emission: dataEmissions > 0 ? dataEmissions : 0,
         },
-      ];
-      console.log(dataEmissions, 'dataEmissions');
+      ]; 
+
       const tableData = [
         {
           subType: 'Network Emissions',
@@ -189,25 +188,22 @@ const Image = (props) => {
         },
       ];
 
-      console.log(data, 'data');
-      console.log(tableData, 'tableData');
-      dispatch(addCampaignData({ data }));
+      dispatch(addImageData({ data }));
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Image' }));
+    
     },
   });
 
-  // console.log(formik.values, 'formik.values');
 
   const handeleDelete = () => {
-    dispatch(deleteCampaignData());
-    dispatch(deleteResTabDgCampaignData());
+    dispatch(deleteImageData());
+    dispatch(deleteResTabImageData());
   };
 
   const handleSaveToDb = async (values) => {
     const eventData = {
       ...eventsData,
     };
-    console.log(eventData, 'eventData');
     if (resultTableData.eventDataId) {
       eventData.eventDataId = resultTableData?.eventDataId;
       const resultAction = await dispatch(updateResultTableDatasToDb(eventData));
@@ -233,25 +229,23 @@ const Image = (props) => {
 
   useEffect(() => {
     if (allData?.length > 0) {
-      console.log(" allData?.[0]?.wifi:::", allData?.[0]?.wifi)
-      formik.setFieldValue('wifiImpression', allData?.[0]?.wifi)
-      formik.setFieldValue('wifi4GImpression', allData?.[0]?.wifi4g)
-      formik.setFieldValue('wifi5GImpression', allData?.[0]?.wifi5g)
-      formik.setFieldValue('wifiTotalEmissions', allData?.[0]?.emission)
+      formik.setFieldValue('wifiImpression', allData?.[0]?.wifi);
+      formik.setFieldValue('wifi4GImpression', allData?.[0]?.wifi4g);
+      formik.setFieldValue('wifi5GImpression', allData?.[0]?.wifi5g);
+      formik.setFieldValue('wifiTotalEmissions', allData?.[0]?.emission);
 
-      formik.setFieldValue('mobileDevice', allData?.[1]?.mobile)
-      formik.setFieldValue('mobileDeviceEmissions', allData?.[1]?.mobileEmission)
-      formik.setFieldValue('tabletDevice', allData?.[1]?.tablet)
-      formik.setFieldValue('tabletDeviceEmissions', allData?.[1]?.tabletEmission)
-      formik.setFieldValue('laptopDevice', allData?.[1]?.laptop)
-      formik.setFieldValue('laptopDeviceEmissions', allData?.[1]?.laptopEmission)
-      formik.setFieldValue('desktopDevice', allData?.[1]?.desktop)
-      formik.setFieldValue('desktopDeviceEmissions', allData?.[1]?.desktopEmission)
+      formik.setFieldValue('mobileDevice', allData?.[1]?.mobile);
+      formik.setFieldValue('mobileDeviceEmissions', allData?.[1]?.mobileEmission);
+      formik.setFieldValue('tabletDevice', allData?.[1]?.tablet);
+      formik.setFieldValue('tabletDeviceEmissions', allData?.[1]?.tabletEmission);
+      formik.setFieldValue('laptopDevice', allData?.[1]?.laptop);
+      formik.setFieldValue('laptopDeviceEmissions', allData?.[1]?.laptopEmission);
+      formik.setFieldValue('desktopDevice', allData?.[1]?.desktop);
+      formik.setFieldValue('desktopDeviceEmissions', allData?.[1]?.desktopEmission);
 
-      formik.setFieldValue('dataCenter', allData?.[2]?.dataCenter)
-      formik.setFieldValue('dataRenewable', allData?.[2]?.renewable)
-      formik.setFieldValue('dataEmissions', allData?.[2]?.emission)
-
+      formik.setFieldValue('dataCenter', allData?.[2]?.dataCenter);
+      formik.setFieldValue('dataRenewable', allData?.[2]?.renewable);
+      formik.setFieldValue('dataEmissions', allData?.[2]?.emission);
     }
   }, [value]);
 
@@ -650,7 +644,7 @@ const Image = (props) => {
                         Total Emissions
                       </TableCell>
                       <TableCell sx={{ fontWeight: 'bold', color: 'white', borderBottom: 'none' }}>
-                        {Number(ImageTotalEmissions).toFixed(2)}
+                        {Number(ImageTotalEmissions).toFixed(5)}
                       </TableCell>
                     </TableRow>
                   </TableBody>
@@ -689,7 +683,7 @@ const Image = (props) => {
           </Grid>
           <Grid item xs={12} sm={12} md={12} marginTop={3}>
             <Typography color="white" className="text-center">
-              {/* {`Total Digital Campaign Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e */}
+              {`Total Image Carbon Footprint = ${Number(totalEmission  || 0).toFixed(5)} `}kgCO<sub>2</sub>e
             </Typography>
           </Grid>
         </Grid>

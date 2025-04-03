@@ -130,16 +130,16 @@ const Result = ({ value }) => {
   ];
 
   const data = {
-    totalAirTravel: Number(allAirTravelData?.totalEmission).toFixed(2),
-    totalLocalTransportation: Number(allLocalTranspotationData?.totalEmission).toFixed(2),
-    totalHotel: Number(allHotelData?.totalEmission).toFixed(2),
-    totalFood: Number(allFoodData?.totalEmission).toFixed(2),
-    totalAirFreight: Number(allFreightData?.totalEmission).toFixed(2),
-    totlaProduction: Number(allProductionData?.totalEmission).toFixed(2),
-    totalEnergyUpdated: Number(allEnergyData?.totalEmission).toFixed(2),
-    totalDIgitalContent: Number(allDigitalContentData?.totalEmission).toFixed(2),
-    totalWaste: Number(allWasteData?.totalEmission).toFixed(2),
-    grandTotal: Number(total).toFixed(2),
+    totalAirTravel: Number(allAirTravelData?.totalEmission).toFixed(5),
+    totalLocalTransportation: Number(allLocalTranspotationData?.totalEmission).toFixed(5),
+    totalHotel: Number(allHotelData?.totalEmission).toFixed(5),
+    totalFood: Number(allFoodData?.totalEmission).toFixed(5),
+    totalAirFreight: Number(allFreightData?.totalEmission).toFixed(5),
+    totlaProduction: Number(allProductionData?.totalEmission).toFixed(5),
+    totalEnergyUpdated: Number(allEnergyData?.totalEmission).toFixed(5),
+    totalDIgitalContent: Number(allDigitalContentData?.totalEmission).toFixed(5),
+    totalWaste: Number(allWasteData?.totalEmission).toFixed(5),
+    grandTotal: Number(total).toFixed(5),
   };
 
   const handeleDelete = () => {
