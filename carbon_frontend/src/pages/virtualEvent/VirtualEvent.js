@@ -540,7 +540,6 @@ const VirtualEvent = (props) => {
         },
       ];
       dispatch(addVirtualEventData({ data }));
-      console.log({ data }, '{ data }:=================');
       const tableData = [
         {
           subType: '',
@@ -926,7 +925,6 @@ const VirtualEvent = (props) => {
   //     formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
   //   }
   // }, [value]);
-  console.log(allData , "allData?.[0]?.data:========")
   useEffect(() => {
     if (allData?.[0]?.data?.length > 0) {
       const formValues = {
@@ -965,11 +963,9 @@ const VirtualEvent = (props) => {
       });
 
       formik.setValues(formValues);
-      console.log(formValues, 'formValues');
     }
   }, [value]);
 
-  console.log(value, 'value');
   useEffect(() => {
     formik.setFieldValue(
       'totalEnergy1',

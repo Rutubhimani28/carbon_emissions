@@ -32,7 +32,6 @@ const virtualEventSlice = createSlice({
       totalEmission: 0,
     }),
     setVirtualEventAllData: (state, action) => {
-      console.log(action?.payload, 'ACTIONPAYLOAD');
       state.data = action?.payload?.data;
       state.totalEmission = action?.payload?.totalEmission;
     },
