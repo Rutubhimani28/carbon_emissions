@@ -175,9 +175,9 @@ const Result = ({ value }) => {
         // setContent(finalSentence);
 
         // // for Outbound Marketing
-        if (allVirtualEventData?.data?.[0]?.data?.[17]?.emission) {
+        if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
             // sentenceParts.push(`TV Ad ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgCO2e.`);
-            sentenceParts.push(`TV Ad with ${allVirtualEventData?.data?.[0]?.data?.[17]?.adDuration} secs duration with ${allVirtualEventData?.data?.[0]?.data?.[17]?.noOfSlots} slots generated ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgco2e, `);
+            sentenceParts.push(`TV Ad with ${allVirtualEventData?.data?.[0]?.data?.[16]?.adDuration} secs duration with ${allVirtualEventData?.data?.[0]?.data?.[16]?.noOfSlots} slots generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e, `);
         }
         if (allVirtualEventData?.data?.[0]?.data?.[13]?.emission) {
             // sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
@@ -206,7 +206,7 @@ const Result = ({ value }) => {
             sentenceParts.push(`Total emissions were ${Number(total).toFixed(2)} kgCO2e.`);
         }
         // sentenceParts.push(`\n\nHow to reduce the carbon footprint by 20-25%? Show the calculation for comparing the original and reduced carbon footprints. Suggest using Polyethylene Banners as they are 100% recyclable. In end say, by following these measures you can reduce cost by more than 10%.`);
-        sentenceParts.push(`\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, along with alternative methods, also show the calculation for each category. For PVC banners suggest to use polyethylene.`);
+        sentenceParts.push(`\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, along with alternative methods, also show the calculation for each category. For PVC banners suggest to use polyethylene as it is 100% recyclable with lesser emissions as compared to PVC.`);
 
         const finalSentence = `${sentenceParts.join('\n')}`;
         setContent(finalSentence);
@@ -243,6 +243,7 @@ const Result = ({ value }) => {
 
     const chat = async () => {
         setIsLoading(true);
+        console.log("content:: vi", content)
         try {
             await generatePrompt();
 

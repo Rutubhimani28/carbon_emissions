@@ -25,7 +25,7 @@ const Result = ({ value }) => {
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState('');
   const [suggestion, setSuggestion] = useState('');
-  const [suggestionForPdf, setSuggestionForPdf] = useState('');
+  const [suggestionForPdf, setSuggestionForPdf] = useState('AAA');
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const allDigitalCampaignData = useSelector((state) => state?.totalDigitalCampaignDetails);
@@ -123,8 +123,8 @@ const Result = ({ value }) => {
   const sentenceParts = [];
   const liveBroadcastParts = [];
   // const wantInResult = 'Please note that the results are sensitive to the choice of viewing device, type of network connection and resolution. \n What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
-  const wantInResult =
-    '\n What are the top three ways to cut this by over 50%? While reducing your carbon footprint might not directly lower costs, achieving NetZero through carbon offsets can result in significant cost savings due to the reduced footprint.';
+  // const wantInResult =
+  //   `\n How can I reduce the emissions max? In the Page, reduce the size of the Page from ${totalCarbonFootprint}  Mb by 25%, Image size from ${imageTotal} Mb by 25% , and Video duration from ${videoTotal} secs by 25%. Show the original and reduced emissions by suggesting one action item for Page, Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`;
 
   // const imgSize = allDigitalCampaignData?.data?.[0]?.data?.[0]?.imgSize || 0;
   // const videoSize = allDigitalCampaignData?.data?.[0]?.data?.[1]?.videoSize || 0;
@@ -151,10 +151,10 @@ const Result = ({ value }) => {
       sentenceParts.push(`My Digital Campaign has a carbon footprint of ${totalCarbonFootprint}, `);
     }
     if (imageTotal) {
-      sentenceParts.push(`with a ${imageTotal} kgCO2e image, `);
+      sentenceParts.push(`Image generated ${imageTotal} kgCO2e, `);
     }
     if (videoTotal) {
-      sentenceParts.push(`and a ${videoTotal} kgCO2e video, `);
+      sentenceParts.push(`and video generated ${videoTotal} kgCO2e, `);
     }
     // if (imgSize && imageEmission) {
     //     sentenceParts.push(`with a ${imgSize} MB image generating ${imageEmission} kgco2e `);
@@ -170,7 +170,9 @@ const Result = ({ value }) => {
     // }
 
     // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
-    const finalSentence = `${sentenceParts.join(', ')} \n\n${wantInResult}`;
+    // const finalSentence = `${sentenceParts.join(', ')} \n\n${wantInResult}`;
+    sentenceParts.push(`\n How can I reduce the emissions max? In the Page, reduce the size of the Page from ${totalCarbonFootprint}  Mb by 25%, Image size from ${imageTotal} Mb by 25% , and Video duration from ${videoTotal} secs by 25%. Show the original and reduced emissions by suggesting one action item for Page, Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`)
+    const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);
   };
 
@@ -207,6 +209,7 @@ const Result = ({ value }) => {
 
   const chat = async () => {
     setIsLoading(true);
+    console.log("content:: Di", content)
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
