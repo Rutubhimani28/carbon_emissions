@@ -364,53 +364,68 @@ const LocalTranspotation = (props) => {
     dispatch(deleteResTabLocalTransData());
   };
   console.log(allData, 'allData');
+  // useEffect(() => {
+  //   if (allData?.length > 0) {
+  //     // formik.setFieldValue('petrolCarKms', allData?.[0]?.petrolCarKms);
+  //     // formik.setFieldValue('petrolCarEmission', allData?.[0]?.emission);
+
+  //     // formik.setFieldValue('dieselCarKms', allData?.[1]?.dieselCarKms);
+  //     // formik.setFieldValue('dieselCarEmission', allData?.[1]?.emission);
+
+  //     // formik.setFieldValue('hybridCarKms', allData?.[2]?.hybridCarKms);
+  //     // formik.setFieldValue('hybridCarEmission', allData?.[2]?.emission);
+
+  //     // formik.setFieldValue('petrolCarKms2', allData?.[3]?.petrolCarKms2);
+  //     // formik.setFieldValue('petrolCarEmission2', allData?.[3]?.emission);
+
+  //     // formik.setFieldValue('dieselCarKms2', allData?.[4]?.dieselCarKms2);
+  //     // formik.setFieldValue('dieselCarEmission2', allData[4]?.emission);
+
+  //     // formik.setFieldValue('hybridCarKms2', allData?.[5]?.hybridCarKms2);
+  //     // formik.setFieldValue('hybridCarEmission2', allData?.[5]?.emission);
+
+  //     formik.setFieldValue('passengerOfCar', allData?.[0]?.passengerOfCar);
+  //     formik.setFieldValue('passengerOfCarKms', allData?.[0]?.passengerOfCarKms);
+  //     formik.setFieldValue('passengerEmission', allData?.[0]?.emission);
+
+  //     formik.setFieldValue('cabTaxiCars', allData?.[1]?.cabTaxiCars);
+  //     formik.setFieldValue('cabTaxiCarsKms', allData?.[1]?.cabTaxiCarsKms);
+  //     formik.setFieldValue('cabTaxiEmission', allData?.[1]?.emission);
+
+  //     formik.setFieldValue('metroPassenger', allData?.[2]?.metroPassenger);
+  //     formik.setFieldValue('metroPassengerkms', allData?.[2]?.metroPassengerkms);
+  //     formik.setFieldValue('metroEmission', allData?.[2]?.emission);
+
+  //     formik.setFieldValue('busPassenger', allData?.[3]?.busPassenger);
+  //     formik.setFieldValue('busPassengerkms', allData?.[3]?.busPassengerkms);
+  //     formik.setFieldValue('busEmission', allData?.[3]?.emission);
+
+  //     // formik.setFieldValue('busDieselKms', allData?.[6]?.busDieselKms);
+  //     // formik.setFieldValue('busDieselEmission', allData?.[6]?.emission);
+
+  //     // formik.setFieldValue('subwayTramKms', allData?.[7]?.subwayTramKms);
+  //     // formik.setFieldValue('subwayTramEmission', allData?.[7]?.emission);
+
+  //     // formik.setFieldValue('ferryKms', allData?.[8]?.ferryKms);
+  //     // formik.setFieldValue('ferryEmission', allData?.[8]?.emission);
+  //   }
+  // }, [value]);
   useEffect(() => {
     if (allData?.length > 0) {
-      // formik.setFieldValue('petrolCarKms', allData?.[0]?.petrolCarKms);
-      // formik.setFieldValue('petrolCarEmission', allData?.[0]?.emission);
-
-      // formik.setFieldValue('dieselCarKms', allData?.[1]?.dieselCarKms);
-      // formik.setFieldValue('dieselCarEmission', allData?.[1]?.emission);
-
-      // formik.setFieldValue('hybridCarKms', allData?.[2]?.hybridCarKms);
-      // formik.setFieldValue('hybridCarEmission', allData?.[2]?.emission);
-
-      // formik.setFieldValue('petrolCarKms2', allData?.[3]?.petrolCarKms2);
-      // formik.setFieldValue('petrolCarEmission2', allData?.[3]?.emission);
-
-      // formik.setFieldValue('dieselCarKms2', allData?.[4]?.dieselCarKms2);
-      // formik.setFieldValue('dieselCarEmission2', allData[4]?.emission);
-
-      // formik.setFieldValue('hybridCarKms2', allData?.[5]?.hybridCarKms2);
-      // formik.setFieldValue('hybridCarEmission2', allData?.[5]?.emission);
-
-      formik.setFieldValue('passengerOfCar', allData?.[0]?.passengerOfCar);
-      formik.setFieldValue('passengerOfCarKms', allData?.[0]?.passengerOfCarKms);
-      formik.setFieldValue('passengerEmission', allData?.[0]?.emission);
-
-      formik.setFieldValue('cabTaxiCars', allData?.[1]?.cabTaxiCars);
-      formik.setFieldValue('cabTaxiCarsKms', allData?.[1]?.cabTaxiCarsKms);
-      formik.setFieldValue('cabTaxiEmission', allData?.[1]?.emission);
-
-      formik.setFieldValue('metroPassenger', allData?.[2]?.metroPassenger);
-      formik.setFieldValue('metroPassengerkms', allData?.[2]?.metroPassengerkms);
-      formik.setFieldValue('metroEmission', allData?.[2]?.emission);
-
-      formik.setFieldValue('busPassenger', allData?.[3]?.busPassenger);
-      formik.setFieldValue('busPassengerkms', allData?.[3]?.busPassengerkms);
-      formik.setFieldValue('busEmission', allData?.[3]?.emission);
-
-      // formik.setFieldValue('busDieselKms', allData?.[6]?.busDieselKms);
-      // formik.setFieldValue('busDieselEmission', allData?.[6]?.emission);
-
-      // formik.setFieldValue('subwayTramKms', allData?.[7]?.subwayTramKms);
-      // formik.setFieldValue('subwayTramEmission', allData?.[7]?.emission);
-
-      // formik.setFieldValue('ferryKms', allData?.[8]?.ferryKms);
-      // formik.setFieldValue('ferryEmission', allData?.[8]?.emission);
+      const fieldMappings = [
+        { key: 'passengerOfCar', kms: 'passengerOfCarKms', emission: 'passengerEmission' },
+        { key: 'cabTaxiCars', kms: 'cabTaxiCarsKms', emission: 'cabTaxiEmission' },
+        { key: 'metroPassenger', kms: 'metroPassengerkms', emission: 'metroEmission' },
+        { key: 'busPassenger', kms: 'busPassengerkms', emission: 'busEmission' },
+      ];
+  
+      fieldMappings.forEach((field, index) => {
+        formik.setFieldValue(field.key, allData?.[index]?.[field.key]);
+        formik.setFieldValue(field.kms, allData?.[index]?.[field.kms]);
+        formik.setFieldValue(field.emission, allData?.[index]?.emission);
+      });
     }
   }, [value]);
-
   const { values, handleChange, setFieldValue, handleSubmit } = formik;
 
   const handleSaveToDb = async () => {

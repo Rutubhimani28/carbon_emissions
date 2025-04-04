@@ -37,12 +37,14 @@ const Video = (props) => {
   const eventsData = useEventData();
   const dispatch = useDispatch();
   const initialValues = {
+    totalImpression: '',
+
     wifiImpression: '',
     wifi4GImpression: '',
     wifi5GImpression: '',
     wifiTotalEmissions: '',
-    videoLength: 10,
-    videoSize: 40,
+    videoLength: '',
+    videoSize: '',
     mobileDevice: '',
     mobileDeviceEmissions: '',
     EFMobile1: 0.001111,
@@ -128,6 +130,11 @@ const Video = (props) => {
           renewable: values?.dataRenewable,
           emission: dataEmissions > 0 ? dataEmissions : '',
         },
+        {
+          videoLength: values?.videoLength,
+          videoSize: values?.videoSize,
+          totalImpression: values?.totalImpression,
+        },
       ];
 
       const tableData = [
@@ -137,7 +144,7 @@ const Video = (props) => {
             th: ['Wi-Fi Impressions', '4G Impressions', '5G Impressions', 'Emissions'],
             td: [
               {
-                dgType: values?.wifiImpression,
+                wifiImpression: values?.wifiImpression,
                 wifi4g: values?.wifi4GImpression,
                 wifi5g: values?.wifi5GImpression,
                 emissions: wifiTotalEmissions > 0 ? wifiTotalEmissions : '',
@@ -187,7 +194,7 @@ const Video = (props) => {
           },
         },
       ];
-      
+
       dispatch(addVideoData({ data }));
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Video' }));
     },
@@ -234,6 +241,10 @@ const Video = (props) => {
       formik.setFieldValue('dataCenter', allData?.[2]?.dataCenter);
       formik.setFieldValue('dataRenewable', allData?.[2]?.renewable);
       formik.setFieldValue('dataEmissions', allData?.[2]?.emission);
+
+      formik.setFieldValue('videoLength', allData?.[3]?.videoLength);
+      formik.setFieldValue('videoSize', allData?.[3]?.videoSize);
+      formik.setFieldValue('totalImpression', allData?.[3]?.totalImpression);
     }
   }, [value]);
 
@@ -254,7 +265,52 @@ const Video = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
-              <Typography variant="h4" className="text-center text-white mb-4">
+              <Grid sx={{ display: 'flex', justifyContent: 'center' }}>
+                <div className="table-responsive">
+                  <table className="table-custom-inpt-field">
+                    <tr>
+                      <td className="ps-2 py-1">Video Length (Secs)</td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="videoLength"
+                          value={formik?.values?.videoLength}
+                          onChange={formik.handleChange}
+                          inputProps={{ style: { color: 'white' } }}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="ps-2 py-1">Video Size (Mb)</td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="videoSize"
+                          value={formik?.values?.videoSize}
+                          onChange={formik.handleChange}
+                          inputProps={{ style: { color: 'white' } }}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="ps-2 py-1">Total Impressions</td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="totalImpression"
+                          value={formik?.values?.totalImpression}
+                          onChange={formik.handleChange}
+                          inputProps={{ style: { color: 'white' } }}
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </Grid>
+              <Typography variant="h4" className="text-center text-white mb-4 mt-4">
                 Network Emissions
               </Typography>
               <div className="table-responsive">

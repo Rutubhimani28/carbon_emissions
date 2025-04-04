@@ -44,7 +44,7 @@ const Image = (props) => {
     wifi4GImpression: '',
     wifi5GImpression: '',
     wifiTotalEmissions: '',
-    contentSize: 5,
+    contentSize: '',
     mobileDevice: '',
     mobileDeviceEmissions: '',
     EFMobile1: 0.003333,
@@ -128,16 +128,27 @@ const Image = (props) => {
           renewable: values?.dataRenewable,
           emission: dataEmissions > 0 ? dataEmissions : 0,
         },
-      ]; 
+        {
+          type: 'Content Size',
+          size: values?.contentSize,
+        },
+      ];
 
       const tableData = [
+        {
+          subType: 'Content Size (Mb)',
+          subTypeData: {
+            td: [{ contentSize: values?.contentSize }],
+          },
+        },
         {
           subType: 'Network Emissions',
           subTypeData: {
             th: ['Wi-Fi Impressions', '4G Impressions', '5G Impressions', 'Emissions'],
             td: [
               {
-                dgType: values?.wifiImpression,
+                // dgType: values?.wifiImpression,
+                wifiImpression: values?.wifiImpression,
                 wifi4g: values?.wifi4GImpression,
                 wifi5g: values?.wifi5GImpression,
                 emissions: wifiTotalEmissions > 0 ? wifiTotalEmissions : '',
@@ -179,7 +190,8 @@ const Image = (props) => {
             th: ['Total Impressions', '% of Renewable Energy', 'Emissions'],
             td: [
               {
-                dgType: values?.dataCenter,
+                // dgType: values?.dataCenter,
+                dataCenter: values?.dataCenter,
                 noOfData: values?.dataRenewable,
                 emissions: dataEmissions > 0 ? dataEmissions : 0,
               },
@@ -190,10 +202,8 @@ const Image = (props) => {
 
       dispatch(addImageData({ data }));
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Image' }));
-    
     },
   });
-
 
   const handeleDelete = () => {
     dispatch(deleteImageData());
@@ -229,6 +239,8 @@ const Image = (props) => {
 
   useEffect(() => {
     if (allData?.length > 0) {
+      formik.setFieldValue('contentSize', allData?.[3]?.size);
+
       formik.setFieldValue('wifiImpression', allData?.[0]?.wifi);
       formik.setFieldValue('wifi4GImpression', allData?.[0]?.wifi4g);
       formik.setFieldValue('wifi5GImpression', allData?.[0]?.wifi5g);
@@ -255,7 +267,22 @@ const Image = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
-              <Typography variant="h4" className="text-center text-white mb-4">
+              <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                <Typography variant="h4" className="text-center text-white mb-2">
+                  Content Size (Mb)
+                </Typography>
+                <TextField
+                  size="small"
+                  type="number"
+                  name="contentSize"
+                  sx={{ width: '300px' }}
+                  value={formik.values.contentSize}
+                  onChange={formik.handleChange}
+                  inputProps={{ style: { color: 'white' } }}
+                />
+              </Grid>
+
+              <Typography variant="h4" className="text-center text-white mb-4 mt-4">
                 Network Emissions
               </Typography>
               <div className="table-responsive">
@@ -529,7 +556,7 @@ const Image = (props) => {
 
                           const dataCenter = Number(e.target.value) || 0;
                           const dataRenewable = Number(formik.values.dataRenewable) || 0;
-                          const contentSize = formik.values.contentSize; // Default value to avoid NaN
+                          const contentSize = formik.values.contentSize;
 
                           // Calculation Logic
                           const dataEf1 = (dataCenter * contentSize) / 1024;
@@ -683,7 +710,7 @@ const Image = (props) => {
           </Grid>
           <Grid item xs={12} sm={12} md={12} marginTop={3}>
             <Typography color="white" className="text-center">
-              {`Total Image Carbon Footprint = ${Number(totalEmission  || 0).toFixed(5)} `}kgCO<sub>2</sub>e
+              {`Total Image Carbon Footprint = ${Number(totalEmission || 0).toFixed(5)} `}kgCO<sub>2</sub>e
             </Typography>
           </Grid>
         </Grid>

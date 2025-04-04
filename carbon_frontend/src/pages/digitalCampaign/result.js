@@ -25,7 +25,7 @@ const Result = ({ value }) => {
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState('');
   const [suggestion, setSuggestion] = useState('');
-  const [suggestionForPdf, setSuggestionForPdf] = useState('AAA');
+  const [suggestionForPdf, setSuggestionForPdf] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const allDigitalCampaignData = useSelector((state) => state?.totalDigitalCampaignDetails);
@@ -171,7 +171,9 @@ const Result = ({ value }) => {
 
     // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
     // const finalSentence = `${sentenceParts.join(', ')} \n\n${wantInResult}`;
-    sentenceParts.push(`\n How can I reduce the emissions max? In the Page, reduce the size of the Page from ${totalCarbonFootprint}  Mb by 25%, Image size from ${imageTotal} Mb by 25% , and Video duration from ${videoTotal} secs by 25%. Show the original and reduced emissions by suggesting one action item for Page, Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`)
+    sentenceParts.push(
+      `\n How can I reduce the emissions max? In the Page, reduce the size of the Page from ${totalCarbonFootprint}  Mb by 25%, Image size from ${imageTotal} Mb by 25% , and Video duration from ${videoTotal} secs by 25%. Show the original and reduced emissions by suggesting one action item for Page, Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`
+    );
     const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);
   };
@@ -209,7 +211,6 @@ const Result = ({ value }) => {
 
   const chat = async () => {
     setIsLoading(true);
-    console.log("content:: Di", content)
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
@@ -219,8 +220,8 @@ const Result = ({ value }) => {
           model: 'o1-mini',
           messages: [
             {
-              "role": 'user',
-              "content": content,
+              role: 'user',
+              content: content,
             },
           ],
           // temperature: 0.7,
