@@ -220,8 +220,8 @@ const Result = ({ value }) => {
           model: 'o1-mini',
           messages: [
             {
-              role: 'user',
-              content: content,
+              "role": 'user',
+              "content": content,
             },
           ],
           // temperature: 0.7,
