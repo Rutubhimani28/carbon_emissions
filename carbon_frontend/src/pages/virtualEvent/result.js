@@ -188,10 +188,10 @@ const Result = ({ value }) => {
     // setContent(finalSentence);
 
     // // for Outbound Marketing
-    if (allVirtualEventData?.data?.[0]?.data?.[17]?.emission) {
+    if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
       // sentenceParts.push(`TV Ad ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgCO2e.`);
       sentenceParts.push(
-        `TV Ad with ${allVirtualEventData?.data?.[0]?.data?.[17]?.adDuration} secs duration with ${allVirtualEventData?.data?.[0]?.data?.[17]?.noOfSlots} slots generated ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgco2e, `
+        `TV Ad with ${allVirtualEventData?.data?.[0]?.data?.[16]?.adDuration} secs duration with ${allVirtualEventData?.data?.[0]?.data?.[16]?.noOfSlots} slots generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e, `
       );
     }
     if (allVirtualEventData?.data?.[0]?.data?.[13]?.emission) {
