@@ -222,10 +222,10 @@ const getEventsEmissionsRecords = async (req, res) => {
 
       return {
         // ...event.toObject(), // Convert Mongoose Document to plain object
-        f2fEventTotalEmission: f2fEventTotalEmission.toFixed(2),
-        virtualEventTotalEmission: virtualEventTotalEmission.toFixed(2),
-        prEventTotalEmission: prEventTotalEmission.toFixed(2),
-        digitalCampaignTotalEmission: digitalCampaignTotalEmission.toFixed(2),
+        f2fEventTotalEmission: f2fEventTotalEmission.toFixed(5),
+        virtualEventTotalEmission: virtualEventTotalEmission.toFixed(5),
+        prEventTotalEmission: prEventTotalEmission.toFixed(5),
+        digitalCampaignTotalEmission: digitalCampaignTotalEmission.toFixed(5),
         activityName: event?.activityName,
         budget: event?.budget,
         createdBy: event?.createdBy?.loginId,
@@ -371,20 +371,20 @@ const generateDateReport = async (req, res) => {
 
       let activityTypeArray = [];
       if (
-        f2fEventTotalEmission.toFixed(2) <= 0 &&
-        virtualEventTotalEmission.toFixed(2) <= 0 &&
-        prEventTotalEmission.toFixed(2) <= 0 &&
-        digitalCampaignTotalEmission.toFixed(2) <= 0
+        f2fEventTotalEmission.toFixed(5) <= 0 &&
+        virtualEventTotalEmission.toFixed(5) <= 0 &&
+        prEventTotalEmission.toFixed(5) <= 0 &&
+        digitalCampaignTotalEmission.toFixed(5) <= 0
       ) {
         activityTypeArray.push(" - ");
       }
-      if (f2fEventTotalEmission.toFixed(2) > 0)
+      if (f2fEventTotalEmission.toFixed(5) > 0)
         activityTypeArray.push("F2F Event");
-      if (virtualEventTotalEmission.toFixed(2) > 0)
+      if (virtualEventTotalEmission.toFixed(5) > 0)
         activityTypeArray.push("Ads");
-      if (prEventTotalEmission.toFixed(2) > 0)
+      if (prEventTotalEmission.toFixed(5) > 0)
         activityTypeArray.push("PR Event");
-      if (digitalCampaignTotalEmission.toFixed(2) > 0)
+      if (digitalCampaignTotalEmission.toFixed(5) > 0)
         activityTypeArray.push("Digital Campaign");
 
       const activityType = activityTypeArray.join(", ");
@@ -412,13 +412,13 @@ const generateDateReport = async (req, res) => {
         Number(event?.virtualEventTotalEmission) +
         Number(event?.prEventTotalEmission) +
         Number(event?.digitalCampaignTotalEmission)
-      ).toFixed(2),
+      ).toFixed(5),
       date: formatDateTime(event?.dateTime),
     }));
 
     const totalCarbonEmissions = eventsData
       .reduce((total, data) => total + Number(data.carbon), 0)
-      .toFixed(2);
+      .toFixed(5);
 
     const html = await ejs.renderFile(
       "middelwares/email_templates/date-report-template.ejs",

@@ -23,7 +23,7 @@ const totalFoodSlice = createSlice({
             //         return total + item.emission;
             //     }
             //     return total;
-            // }, 0).toFixed(2);
+            // }, 0).toFixed(5);
             state.totalEmission = state?.data?.[0]?.data?.reduce((total, item) => item?.emission ? total + Number(item?.emission) : total, 0).toFixed(5);
         },
         deleteFoodData: (state, action) => ({

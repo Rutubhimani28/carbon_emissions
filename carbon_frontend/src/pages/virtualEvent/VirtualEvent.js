@@ -218,7 +218,7 @@ const VirtualEvent = (props) => {
       const emissionOne =
         values?.imgSize === 0 || values?.impressionsOne === 0 || values?.efOne === 0
           ? 0
-          : Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(2);
+          : Number(Number(values?.imgSize) * Number(values?.impressionsOne) * Number(values?.efOne)).toFixed(5);
       // Video
       const emissionTwo =
         values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0
@@ -228,7 +228,7 @@ const VirtualEvent = (props) => {
                 Number(values?.videoMins) *
                 Number(values?.impressionsTwo) *
                 Number(values?.efTwo)
-            ).toFixed(2);
+            ).toFixed(5);
 
       // Socail Media Platforms
       const emissionThree =
@@ -236,79 +236,79 @@ const VirtualEvent = (props) => {
           ? 0
           : Number(
               (Number(values?.noOfMinsOne) * Number(values?.noOfPeopleOne) * Number(values?.efThree)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionFour =
         values?.noOfMinsTwo === 0 || values?.noOfPeopleTwo === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsTwo) * Number(values?.noOfPeopleTwo) * Number(values?.efFour)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionFive =
         values?.noOfMinsThree === 0 || values?.noOfPeopleThree === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsThree) * Number(values?.noOfPeopleThree) * Number(values?.efFive)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionSix =
         values?.noOfMinsFour === 0 || values?.noOfPeopleFour === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsFour) * Number(values?.noOfPeopleFour) * Number(values?.efSix)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionSeven =
         values?.noOfMinsFive === 0 || values?.noOfPeopleFive === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsFive) * Number(values?.noOfPeopleFive) * Number(values?.efSeven)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionEight =
         values?.noOfMinsSix === 0 || values?.noOfPeopleSix === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsSix) * Number(values?.noOfPeopleSix) * Number(values?.efEight)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionNine =
         values?.noOfMinsSeven === 0 || values?.noOfPeopleSeven === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsSeven) * Number(values?.noOfPeopleSeven) * Number(values?.efNine)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionTen =
         values?.noOfMinsEight === 0 || values?.noOfPeopleEight === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsEight) * Number(values?.noOfPeopleEight) * Number(values?.efTen)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionEleven =
         values?.noOfMinsNine === 0 || values?.noOfPeopleNine === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsNine) * Number(values?.noOfPeopleNine) * Number(values?.efEleven)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionTwelve =
         values?.noOfMinsTen === 0 || values?.noOfPeopleTen === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsTen) * Number(values?.noOfPeopleTen) * Number(values?.efTwelve)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
       // Video Conferencing
       const emissionThirteen =
         values?.noOfMinsEleven === 0 || values?.noOfPeopleEleven === 0
           ? 0
           : Number(
               (Number(values?.noOfMinsEleven) * Number(values?.noOfPeopleEleven) * Number(values?.efThirteen)) / 1000
-            ).toFixed(2);
+            ).toFixed(5);
 
       const emissionFourteen =
-        values?.noOfCopiesOne === 0 ? 0 : Number(Number(values?.noOfCopiesOne) * Number(values?.efFourteen)).toFixed(2);
+        values?.noOfCopiesOne === 0 ? 0 : Number(Number(values?.noOfCopiesOne) * Number(values?.efFourteen)).toFixed(5);
       const emissionFifteen =
         values?.noOfPages === 0 || values?.noOfCopiesTwo === 0
           ? 0
-          : Number(Number(values?.noOfPages) * Number(values?.noOfCopiesTwo) * Number(values?.efFifteen)).toFixed(2);
+          : Number(Number(values?.noOfPages) * Number(values?.noOfCopiesTwo) * Number(values?.efFifteen)).toFixed(5);
       const emissionSixteen =
-        values?.hdpeBanner === 0 ? 0 : Number(Number(values?.hdpeBanner) * Number(values?.efSixteen)).toFixed(2);
+        values?.hdpeBanner === 0 ? 0 : Number(Number(values?.hdpeBanner) * Number(values?.efSixteen)).toFixed(5);
       const emissionSeventeen =
-        values?.pvcBanners === 0 ? 0 : Number(Number(values?.pvcBanners) * Number(values?.efSeventeen)).toFixed(2);
+        values?.pvcBanners === 0 ? 0 : Number(Number(values?.pvcBanners) * Number(values?.efSeventeen)).toFixed(5);
       const emissionEightteen =
         values?.adDuration === 0
           ? 0
@@ -318,25 +318,25 @@ const VirtualEvent = (props) => {
                 Number(values?.viewers) *
                 Number(values?.efEighteen) *
                 Number(values?.efEighteen1)
-            ).toFixed(2);
+            ).toFixed(5);
       const emissionNineteen =
         values?.podcastTotal === 0 || values?.noOfListeners === 0
           ? 0
-          : Number(Number(values?.podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
-      // const emissionTwenty = values?.energyKwh === 0 ? 0 : Number(Number(values?.energyKwh) * Number(values?.efTwenty)).toFixed(2);
+          : Number(Number(values?.podcastTotal) * Number(values?.noOfListeners)).toFixed(5);
+      // const emissionTwenty = values?.energyKwh === 0 ? 0 : Number(Number(values?.energyKwh) * Number(values?.efTwenty)).toFixed(5);
       const minusRenewanle = 100 - values?.energyRenewable;
       const emissionTwenty =
         values?.energyKwh === 0
           ? 0
-          : Number((Number(values?.energyKwh) * Number(values?.efTwenty) * minusRenewanle) / 100).toFixed(2);
+          : Number((Number(values?.energyKwh) * Number(values?.efTwenty) * minusRenewanle) / 100).toFixed(5);
       const emissionHalf =
-        values?.noOfCopiesHalf === 0 ? 0 : Number(Number(values?.noOfCopiesHalf) * Number(values?.efHalf)).toFixed(2);
+        values?.noOfCopiesHalf === 0 ? 0 : Number(Number(values?.noOfCopiesHalf) * Number(values?.efHalf)).toFixed(5);
       const emissionColour =
-        values?.colourNoOfPage === 0 ? 0 : Number(Number(values?.colourNoOfPage) * Number(values?.efColour)).toFixed(2);
+        values?.colourNoOfPage === 0 ? 0 : Number(Number(values?.colourNoOfPage) * Number(values?.efColour)).toFixed(5);
       const emissionBlackWhite =
         values?.blackWhiteNoOfPage === 0
           ? 0
-          : Number(Number(values?.blackWhiteNoOfPage) * Number(values?.efBlackWhite)).toFixed(2);
+          : Number(Number(values?.blackWhiteNoOfPage) * Number(values?.efBlackWhite)).toFixed(5);
 
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 
@@ -1036,7 +1036,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("impressionsOne", Number(e.target.value));
-                                            formik.setFieldValue("emissionOne", (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(2));
+                                            formik.setFieldValue("emissionOne", (Number(e.target.value) * Number(values.imgSize) * Number(values.efOne)).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         sx={{ marginTop: 2 }}
@@ -1069,7 +1069,7 @@ const VirtualEvent = (props) => {
                                             formik.setFieldValue("videoSize", Number(e.target.value));
                                             formik.setFieldValue("somePlatformEnergy2", Number((Number(e.target.value) / 1000) * 0.4));
                                             formik.setFieldValue("networkEnergy2", Number((0.2 / 1000) * Number(e.target.value)));
-                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values?.impressionsTwo) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
+                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values?.impressionsTwo) * Number(values.videoMins) * Number(values.efTwo)).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         sx={{ marginTop: 2 }}
@@ -1093,7 +1093,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("impressionsTwo", Number(e.target.value));
-                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo)).toFixed(2));
+                                            formik.setFieldValue("emissionTwo", (Number(e.target.value) * Number(values.videoSize) * Number(values.videoMins) * Number(values.efTwo)).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         sx={{ marginTop: 2 }}
@@ -1322,7 +1322,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPages", Number(e.target.value));
-                                            formik.setFieldValue("emissionFifteen", Number(Number(e.target.value) * Number(values?.noOfCopiesTwo)).toFixed(2));
+                                            formik.setFieldValue("emissionFifteen", Number(Number(e.target.value) * Number(values?.noOfCopiesTwo)).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         sx={{ marginTop: 2 }}
@@ -1334,7 +1334,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfCopiesTwo", Number(e.target.value));
-                                            formik.setFieldValue("emissionFifteen", Number(Number(e.target.value) * Number(values?.noOfPages)).toFixed(2));
+                                            formik.setFieldValue("emissionFifteen", Number(Number(e.target.value) * Number(values?.noOfPages)).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         sx={{ marginTop: 2 }}
@@ -1368,7 +1368,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             const podcastTotal = Number(e.target.value) * Number(values?.podcastKwh);
-                                            const emissionNineteen = Number(Number(podcastTotal) * Number(values?.noOfListeners)).toFixed(2);
+                                            const emissionNineteen = Number(Number(podcastTotal) * Number(values?.noOfListeners)).toFixed(5);
                                             formik.setFieldValue("podcastSize", Number(e.target.value));
                                             formik.setFieldValue("podcastTotal", podcastTotal);
                                             formik.setFieldValue("emissionNineteen", emissionNineteen);
@@ -1382,7 +1382,7 @@ const VirtualEvent = (props) => {
                                         variant="outlined"
                                         fullWidth
                                         onChange={(e) => {
-                                            const emissionNineteen = Number(Number(values?.podcastTotal) * Number(e.target.value)).toFixed(2);
+                                            const emissionNineteen = Number(Number(values?.podcastTotal) * Number(e.target.value)).toFixed(5);
                                             formik.setFieldValue("noOfListeners", Number(e.target.value));
                                             formik.setFieldValue("emissionNineteen", emissionNineteen);
                                             formik.handleSubmit();
@@ -1437,7 +1437,7 @@ const VirtualEvent = (props) => {
                     fullWidth
                     onChange={(e) => {
                       formik.setFieldValue('colourNoOfPage', Number(e.target.value));
-                      // formik.setFieldValue("emissionColour", Number(Number(e.target.value) * Number(values?.colour)  * Number(values?.efPage)).toFixed(2));
+                      // formik.setFieldValue("emissionColour", Number(Number(e.target.value) * Number(values?.colour)  * Number(values?.efPage)).toFixed(5));
                       formik.handleSubmit();
                     }}
                     sx={{ marginTop: 2 }}
@@ -1481,7 +1481,7 @@ const VirtualEvent = (props) => {
                     fullWidth
                     onChange={(e) => {
                       formik.setFieldValue('blackWhiteNoOfPage', Number(e.target.value));
-                      // formik.setFieldValue("emissionColour", Number(Number(e.target.value) * Number(values?.colour)  * Number(values?.efPage)).toFixed(2));
+                      // formik.setFieldValue("emissionColour", Number(Number(e.target.value) * Number(values?.colour)  * Number(values?.efPage)).toFixed(5));
                       formik.handleSubmit();
                     }}
                     sx={{ marginTop: 2 }}
@@ -1663,7 +1663,7 @@ const VirtualEvent = (props) => {
                                         value={values?.noOfMinsOne}
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsOne", e.target.value);
-                                            formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleOne) * 0.46).toFixed(2));
+                                            formik.setFieldValue("emissionThree", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleOne) * 0.46).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1679,7 +1679,7 @@ const VirtualEvent = (props) => {
                                         value={values?.noOfPeopleOne}
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleOne", e.target.value);
-                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsOne) * 0.46).toFixed(2));
+                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsOne) * 0.46).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1715,7 +1715,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsTwo", e.target.value);
-                                            formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleTwo) * 2.48).toFixed(2));
+                                            formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleTwo) * 2.48).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1727,7 +1727,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleTwo", e.target.value);
-                                            formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsTwo) * 2.48).toFixed(2));
+                                            formik.setFieldValue("emissionFour", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsTwo) * 2.48).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1757,7 +1757,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsThree", e.target.value);
-                                            formik.setFieldValue("emissionFive", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleThree) * 1.3).toFixed(2));
+                                            formik.setFieldValue("emissionFive", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleThree) * 1.3).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1769,7 +1769,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleThree", e.target.value);
-                                            formik.setFieldValue("emissionFive", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsThree) * 1.3).toFixed(2));
+                                            formik.setFieldValue("emissionFive", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsThree) * 1.3).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1801,7 +1801,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsFour", e.target.value);
-                                            formik.setFieldValue("emissionSix", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFour) * 1.05).toFixed(2));
+                                            formik.setFieldValue("emissionSix", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFour) * 1.05).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1813,7 +1813,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleFour", e.target.value);
-                                            formik.setFieldValue("emissionSix", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsFour) * 1.05).toFixed(2));
+                                            formik.setFieldValue("emissionSix", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsFour) * 1.05).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1846,7 +1846,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsFive", e.target.value);
-                                            formik.setFieldValue("emissionSeven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFive) * 0.87).toFixed(2));
+                                            formik.setFieldValue("emissionSeven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFive) * 0.87).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1858,7 +1858,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleFive", e.target.value);
-                                            formik.setFieldValue("emissionSeven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsFive) * 0.87).toFixed(2));
+                                            formik.setFieldValue("emissionSeven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsFive) * 0.87).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1890,7 +1890,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsSix", e.target.value);
-                                            formik.setFieldValue("emissionEight", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleSix) * 0.79).toFixed(2));
+                                            formik.setFieldValue("emissionEight", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleSix) * 0.79).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1902,7 +1902,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleSix", e.target.value);
-                                            formik.setFieldValue("emissionEight", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSix) * 0.79).toFixed(2));
+                                            formik.setFieldValue("emissionEight", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSix) * 0.79).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1935,7 +1935,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsSeven", e.target.value);
-                                            formik.setFieldValue("emissionNine", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.emissionNine) * 0.71).toFixed(2));
+                                            formik.setFieldValue("emissionNine", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.emissionNine) * 0.71).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1947,7 +1947,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleSeven", e.target.value);
-                                            formik.setFieldValue("emissionNine", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSeven) * 0.71).toFixed(2));
+                                            formik.setFieldValue("emissionNine", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSeven) * 0.71).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1979,7 +1979,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsEight", e.target.value);
-                                            formik.setFieldValue("emissionTen", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleEight) * 0.6).toFixed(2));
+                                            formik.setFieldValue("emissionTen", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleEight) * 0.6).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -1991,7 +1991,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleEight", e.target.value);
-                                            formik.setFieldValue("emissionTen", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSix) * 0.6).toFixed(2));
+                                            formik.setFieldValue("emissionTen", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsSix) * 0.6).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -2023,7 +2023,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsNine", e.target.value);
-                                            formik.setFieldValue("emissionEleven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleNine) * 0.55).toFixed(2));
+                                            formik.setFieldValue("emissionEleven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleNine) * 0.55).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -2035,7 +2035,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleNine", e.target.value);
-                                            formik.setFieldValue("emissionEleven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsNine) * 0.55).toFixed(2));
+                                            formik.setFieldValue("emissionEleven", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsNine) * 0.55).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -2067,7 +2067,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsTen", e.target.value);
-                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFive) * 0.46).toFixed(2));
+                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfPeopleFive) * 0.46).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -2079,7 +2079,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleTen", e.target.value);
-                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsTen) * 0.46).toFixed(2));
+                                            formik.setFieldValue("emissionTwelve", e.target.value === 0 ? 0 : Number(Number(e.target.value) * Number(values?.noOfMinsTen) * 0.46).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -2111,7 +2111,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfMinsEleven", e.target.value);
-                                            formik.setFieldValue("emissionThirteen", e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.noOfPeopleEleven) * 2.7) / 1000).toFixed(2));
+                                            formik.setFieldValue("emissionThirteen", e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.noOfPeopleEleven) * 2.7) / 1000).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}
@@ -2123,7 +2123,7 @@ const VirtualEvent = (props) => {
                                         fullWidth
                                         onChange={(e) => {
                                             formik.setFieldValue("noOfPeopleEleven", e.target.value);
-                                            formik.setFieldValue("emissionThirteen", e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.noOfPeopleEleven) * 2.7) / 1000).toFixed(2));
+                                            formik.setFieldValue("emissionThirteen", e.target.value === 0 ? 0 : Number((Number(e.target.value) * Number(values?.noOfPeopleEleven) * 2.7) / 1000).toFixed(5));
                                             formik.handleSubmit();
                                         }}
                                         inputProps={{ style: { color: 'black' } }}

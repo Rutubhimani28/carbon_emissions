@@ -57,7 +57,7 @@ const Result = ({ value }) => {
     },
     // {
     //     type: 'Social Media (Image + Video)',
-    //     totalEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0
+    //     totalEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(5) || 0
     // },
     // {
     //     type: 'Email / Newsletter',
@@ -70,11 +70,11 @@ const Result = ({ value }) => {
   ];
 
   const data = {
-    // "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(2),
+    // "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(5),
     totalImage: allDataImage?.totalEmission || 0,
     totalVideo: allDataVideo?.totalEmission || 0,
     grandTotal: Number(total || 0).toFixed(5),
-    // socialMediaEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0,
+    // socialMediaEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(5) || 0,
     // emailEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0,
     // podcastEmission: allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0
   };
@@ -140,7 +140,7 @@ const Result = ({ value }) => {
   //   const podcastSize = allDigitalCampaignData?.data?.[0]?.data?.[3]?.podcastSize || 0;
 
   const contentData = resultData.map((item) => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
-  const totalCarbonFootprint = `${Number(total).toFixed(2)} kgCO2e`;
+  const totalCarbonFootprint = `${Number(total).toFixed(5)} kgCO2e`;
   const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
   const carbonPerDollar = `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(
     3
@@ -373,9 +373,9 @@ const Result = ({ value }) => {
 
     generatePrompt();
 
-    setSc1(Number(Number(sc1Count).toFixed(2)));
-    setSc2(Number(Number(sc2Count).toFixed(2)));
-    setSc3(Number(Number(sc3Count).toFixed(2)));
+    setSc1(Number(Number(sc1Count).toFixed(5)));
+    setSc2(Number(Number(sc2Count).toFixed(5)));
+    setSc3(Number(Number(sc3Count).toFixed(5)));
   }, [value]);
 
   useEffect(() => {

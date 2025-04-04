@@ -86,14 +86,14 @@ const Result = ({ value }) => {
   ];
 
   const data = {
-    // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(2),
+    // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(5),
     totalTvAd: Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission || 0).toFixed(5),
     totalNewspaper: Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission || 0).toFixed(5),
     totalHafepaper: Number(allVirtualEventData?.data?.[0]?.data?.[19]?.emission || 0).toFixed(5),
     colorPrint: Number(allVirtualEventData?.data?.[0]?.data?.[20]?.emission || 0).toFixed(5),
     blackAndWhite: Number(allVirtualEventData?.data?.[0]?.data?.[21]?.emission || 0).toFixed(5),
-    // "totalMagazine": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
-    // "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(2),
+    // "totalMagazine": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(5),
+    // "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(5),
     totalPolyethylene: Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission || 0).toFixed(5),
     totalPVC: Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission || 0).toFixed(5),
     Energy: Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission || 0).toFixed(5),
@@ -110,7 +110,7 @@ const Result = ({ value }) => {
   const resultTableData = useSelector((state) => state.resultTableDataDetails);
 
   const contentData = resultData?.map((item) => `${item.type}: ${item.totalEmission || 0} kgCO2e`).join('\n');
-  const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`;
+  const totalCarbonFootprint = `Total Carbon Footprint: ${Number(total).toFixed(5)} kgCO2e`;
   const totalTCO2e = `Total tCO2e = ${(total / 1000).toFixed(3)} tCO2e`;
   const carbonPerDollar = `For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(
     3
@@ -220,7 +220,7 @@ const Result = ({ value }) => {
     }
     if (totalCarbonFootprint) {
       // sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);
-      sentenceParts.push(`Total emissions were ${Number(total).toFixed(2)} kgCO2e.`);
+      sentenceParts.push(`Total emissions were ${Number(total).toFixed(5)} kgCO2e.`);
     }
     // sentenceParts.push(`\n\nHow to reduce the carbon footprint by 20-25%? Show the calculation for comparing the original and reduced carbon footprints. Suggest using Polyethylene Banners as they are 100% recyclable. In end say, by following these measures you can reduce cost by more than 10%.`);
     sentenceParts.push(
@@ -351,7 +351,7 @@ const Result = ({ value }) => {
       <SendMail
         open={open}
         close={() => setOpen(false)}
-        datas={{ ...data, totalVirtualEvent: Number(allVirtualEventData?.totalEmission).toFixed(2) }}
+        datas={{ ...data, totalVirtualEvent: Number(allVirtualEventData?.totalEmission).toFixed(5) }}
         setOpen
         chatSuggestion={suggestionForPdf}
       />

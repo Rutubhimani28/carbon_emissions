@@ -309,7 +309,7 @@ const Image = (props) => {
                             Number(formik.values.wifi4GImpression || 0) * 0.00000189 * formik.values.contentSize;
                           const wifiEF6 =
                             Number(formik.values.wifi5GImpression || 0) * 0.000000189 * formik.values.contentSize;
-                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(2);
+                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(5);
 
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
@@ -332,7 +332,7 @@ const Image = (props) => {
                           const wifiEF4 = Number(value) * 0.00000189 * formik.values.contentSize;
                           const wifiEF6 =
                             Number(formik.values.wifi5GImpression || 0) * 0.000000189 * formik.values.contentSize;
-                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(2);
+                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(5);
 
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
@@ -355,7 +355,7 @@ const Image = (props) => {
                           const wifiEF4 =
                             Number(formik.values.wifi4GImpression || 0) * 0.00000189 * formik.values.contentSize;
                           const wifiEF6 = Number(value) * 0.000000189 * formik.values.contentSize;
-                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(2);
+                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(5);
 
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
@@ -504,7 +504,7 @@ const Image = (props) => {
                               Number(e?.target?.value) *
                               formik?.values?.desktopEF1 *
                               formik?.values?.desktopEF3
-                            ).toFixed(2)
+                            ).toFixed(5)
                           );
                           formik.handleSubmit();
                         }}
@@ -525,7 +525,7 @@ const Image = (props) => {
                   <tr>
                     <td className="ps-2">Total</td>
                     <td />
-                    <td style={{ textAlign: 'right' }}>{Number(totalDevice).toFixed(2)}</td>
+                    <td style={{ textAlign: 'right' }}>{Number(totalDevice).toFixed(5)}</td>
                   </tr>
                 </table>
               </div>
@@ -567,7 +567,7 @@ const Image = (props) => {
                           const dataEmissions = dataTotalEF * 0.4;
 
                           // Update field value
-                          formik.setFieldValue('dataEmissions', dataEmissions.toFixed(2));
+                          formik.setFieldValue('dataEmissions', dataEmissions.toFixed(5));
                           formik.handleSubmit();
                         }}
                         inputProps={{ style: { color: 'white' } }}
@@ -595,7 +595,7 @@ const Image = (props) => {
                           const dataEmissions = dataTotalEF * 0.4;
 
                           // Update field value
-                          formik.setFieldValue('dataEmissions', dataEmissions.toFixed(2));
+                          formik.setFieldValue('dataEmissions', dataEmissions.toFixed(5));
                           formik.handleSubmit();
                         }}
                         inputProps={{ style: { color: 'white' } }}

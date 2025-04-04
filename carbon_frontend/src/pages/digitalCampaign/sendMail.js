@@ -72,8 +72,8 @@ const SendMail = (props) => {
                 attachmentPdfName: `Digital Campaign- ${values?.subject}`,
                 activityName: toolFormData?.activityName,
                 name: toolFormData?.name,
-                totalTonCo2: (datas?.grandTotal / 1000).toFixed(2) || 0,
-                eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(2) || 0,
+                totalTonCo2: (datas?.grandTotal / 1000).toFixed(5) || 0,
+                eveydolarCo2: (datas?.grandTotal / toolFormData?.budget).toFixed(5) || 0,
                 resultTableData: resultTableData?.data?.find(item => item.from === "digitalCampaign"),
                 chatSuggestion
             };

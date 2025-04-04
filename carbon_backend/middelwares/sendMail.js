@@ -590,10 +590,10 @@ export default async function sendMail({
 
     console.log("Email sent successfully");
 
-    // // Clean up the PDF file
-      if (fs.existsSync(pdfFilePath)) {
-        fs.unlinkSync(pdfFilePath);
-    }
+    // // // Clean up the PDF file
+    //   if (fs.existsSync(pdfFilePath)) {
+    //     fs.unlinkSync(pdfFilePath);
+    // }
 
     // Clean up all PDF files
     for (const filePath of pdfFilesToCleanup) {

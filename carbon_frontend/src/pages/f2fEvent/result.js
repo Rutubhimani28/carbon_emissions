@@ -215,8 +215,8 @@ const Result = ({ value }) => {
   //         }
   //     });
 
-  //     if (total && Number(total).toFixed(2) > 0) {
-  //         contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
+  //     if (total && Number(total).toFixed(5) > 0) {
+  //         contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(5)} kgCO2e`
   //     }
   //     if (toolFormData?.budget > 0) {
   //         contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
@@ -237,9 +237,9 @@ const Result = ({ value }) => {
       }
     });
 
-    if (total && Number(total).toFixed(2) > 0) {
-      // contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(2)} kgCO2e`
-      contentData += `\nTotal ${Number(total).toFixed(2)} Carbon Footprint generated from your Product activity`;
+    if (total && Number(total).toFixed(5) > 0) {
+      // contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(5)} kgCO2e`
+      contentData += `\nTotal ${Number(total).toFixed(5)} Carbon Footprint generated from your Product activity`;
     }
     if (toolFormData?.budget > 0) {
       // contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
@@ -922,9 +922,9 @@ const Result = ({ value }) => {
 
     generatePrompt();
 
-    setSc1(Number(Number(sc1Count).toFixed(2)));
-    setSc2(Number(Number(sc2Count).toFixed(2)));
-    setSc3(Number(Number(sc3Count).toFixed(2)));
+    setSc1(Number(Number(sc1Count).toFixed(5)));
+    setSc2(Number(Number(sc2Count).toFixed(5)));
+    setSc3(Number(Number(sc3Count).toFixed(5)));
   }, [value]);
 
   useEffect(() => {
@@ -1110,7 +1110,7 @@ const Result = ({ value }) => {
             </table>
             {/* <Typography className='text-center py-1 fw-bold mt-3 fs-5'>Total To Offset = {total} kgCO<sub>2</sub>e</Typography> */}
             <Typography className="text-center py-1 fw-bold mt-3 fs-5">
-              Total {Number(total).toFixed(2)} kgCO<sub>2</sub>e Carbon Footprint generated from your{' '}
+              Total {Number(total).toFixed(5)} kgCO<sub>2</sub>e Carbon Footprint generated from your{' '}
               {toolFormData?.activityName} activity
             </Typography>
             <Typography className="text-center py-1 fw-bold mt-1 fs-5">

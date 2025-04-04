@@ -33,13 +33,13 @@ const digitalCampaignSlice = createSlice({
         }
       });
 
-      state.totalEmission = Number(totalEmission).toFixed(2) || 0;
+      state.totalEmission = Number(totalEmission).toFixed(5) || 0;
       // state.totalEmission = state?.data?.[0]?.data?.reduce((total, item) => {
       //     if (item?.emission) {
       //         return total + Number(item?.emission);
       //     }
       //     return total;
-      // }, 0).toFixed(2);
+      // }, 0).toFixed(5);
     },
     deleteCampaignData: (state, action) => ({
       ...state,

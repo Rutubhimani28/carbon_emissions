@@ -24,7 +24,7 @@ const virtualEventSlice = createSlice({
           }
           return total;
         }, 0)
-        .toFixed(2);
+        .toFixed(5);
     },
     deleteVirtualEventData: (state, action) => ({
       ...state,

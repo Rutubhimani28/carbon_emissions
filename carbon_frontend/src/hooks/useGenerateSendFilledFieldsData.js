@@ -62,15 +62,15 @@ const UseGenerateSendFilledFieldsData = () => {
         Number(energyEmission || 0) +
         Number(digitalContentEmission || 0) +
         Number(wasteEmission || 0)
-    ).toFixed(2);
-    const virtualEventTotalEmission = Number(outboundMarketingEmission || 0).toFixed(2);
+    ).toFixed(5);
+    const virtualEventTotalEmission = Number(outboundMarketingEmission || 0).toFixed(5);
     const prEventTotalEmission = Number(
       Number(commsEmission || 0) + Number(prAgencyEmission || 0) + Number(hospitalityEmission || 0)
-    ).toFixed(2);
+    ).toFixed(5);
     const digitalCampaignTotalEmission = Number(
       Number(imageAllDataEmission || 0) + Number(videoAllDataEmission || 0)
-    ).toFixed(2);
-    // const digitalCampaignTotalEmission = Number(digitalCampaignEmission || 0).toFixed(2);
+    ).toFixed(5);
+    // const digitalCampaignTotalEmission = Number(digitalCampaignEmission || 0).toFixed(5);
 
     allEventsEmissions.push({
       f2fEventTotalEmission,
@@ -141,54 +141,54 @@ const UseGenerateSendFilledFieldsData = () => {
   // Number(allDigitalCampaignData?.totalEmission);
 
   const dataOne = {
-    totalAirTravel: Number(allAirTravelData?.totalEmission).toFixed(2),
-    totalLocalTransportation: Number(allLocalTranspotationData?.totalEmission).toFixed(2),
-    totalHotel: Number(allHotelData?.totalEmission).toFixed(2),
-    totalFood: Number(allFoodData?.totalEmission).toFixed(2),
-    totalAirFreight: Number(allAirFreightData?.totalEmission).toFixed(2),
-    totlaProduction: Number(allProductionData?.totalEmission).toFixed(2),
-    totalEnergyUpdated: Number(allEnergyData?.totalEmission).toFixed(2),
-    totalDIgitalContent: Number(allDigitalContentData?.totalEmission).toFixed(2),
-    totalWaste: Number(allWasteData?.totalEmission).toFixed(2),
-    grandTotal: Number(total1).toFixed(2),
+    totalAirTravel: Number(allAirTravelData?.totalEmission).toFixed(5),
+    totalLocalTransportation: Number(allLocalTranspotationData?.totalEmission).toFixed(5),
+    totalHotel: Number(allHotelData?.totalEmission).toFixed(5),
+    totalFood: Number(allFoodData?.totalEmission).toFixed(5),
+    totalAirFreight: Number(allAirFreightData?.totalEmission).toFixed(5),
+    totlaProduction: Number(allProductionData?.totalEmission).toFixed(5),
+    totalEnergyUpdated: Number(allEnergyData?.totalEmission).toFixed(5),
+    totalDIgitalContent: Number(allDigitalContentData?.totalEmission).toFixed(5),
+    totalWaste: Number(allWasteData?.totalEmission).toFixed(5),
+    grandTotal: Number(total1).toFixed(5),
   };
 
   const dataTwo = {
-    // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(2),
-    totalTvAd: Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(2),
-    totalNewspaper: Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission).toFixed(2),
-    totalMagazine: Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(2),
-    totalPodcast: Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission).toFixed(2),
-    totalPolyethylene: Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission).toFixed(2),
-    totalPVC: Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(2),
-    grandTotal: Number(total2).toFixed(2),
+    // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(5),
+    totalTvAd: Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(5),
+    totalNewspaper: Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission).toFixed(5),
+    totalMagazine: Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(5),
+    totalPodcast: Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission).toFixed(5),
+    totalPolyethylene: Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission).toFixed(5),
+    totalPVC: Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission).toFixed(5),
+    grandTotal: Number(total2).toFixed(5),
   };
 
   const dataThree = {
-    totalComms: Number(allCommsData?.totalEmission).toFixed(2),
-    totalPrAgency: Number(allPrAgencyData?.totalEmission).toFixed(2),
-    totalHospitality: Number(allHospitalityData?.totalEmission).toFixed(2),
-    grandTotal: Number(total3).toFixed(2),
+    totalComms: Number(allCommsData?.totalEmission).toFixed(5),
+    totalPrAgency: Number(allPrAgencyData?.totalEmission).toFixed(5),
+    totalHospitality: Number(allHospitalityData?.totalEmission).toFixed(5),
+    grandTotal: Number(total3).toFixed(5),
   };
 
   const dataFour = {
-    totalDigitalCampaign: Number(allDigitalCampaignData?.totalEmission).toFixed(2),
-    grandTotal: Number(total4).toFixed(2),
+    totalDigitalCampaign: Number(allDigitalCampaignData?.totalEmission).toFixed(5),
+    grandTotal: Number(total4).toFixed(5),
     socialMediaEmission:
       Number(
         Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) +
           Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)
-      ).toFixed(2) || 0,
-    emailEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission).toFixed(2) || 0,
-    podcastEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission).toFixed(2) || 0,
+      ).toFixed(5) || 0,
+    emailEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission).toFixed(5) || 0,
+    podcastEmission: Number(allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission).toFixed(5) || 0,
   };
 
   // f2f-event
   if (total1 > 0) {
     returnObj.dataOne = dataOne;
     returnObj.attachmentTemplateNameOne = 'f2f_event__retrieve_data_filled_fields_Template';
-    returnObj.totalTonCo2One = (dataOne?.grandTotal / 1000).toFixed(2) || 0;
-    returnObj.eveydolarCo2One = (dataOne?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
+    returnObj.totalTonCo2One = (dataOne?.grandTotal / 1000).toFixed(5) || 0;
+    returnObj.eveydolarCo2One = (dataOne?.grandTotal / toolFormData?.budget).toFixed(5) || 0;
     returnObj.resultTableDataOne = resultTableData?.data?.find((item) => item.from === 'f2fEvent');
     returnObj.attachmentPdfNameOne = `F2F Event- ${toolFormData?.activityName}`;
   }
@@ -197,8 +197,8 @@ const UseGenerateSendFilledFieldsData = () => {
   if (total2 > 0) {
     returnObj.dataTwo = dataTwo;
     returnObj.attachmentTemplateNameTwo = 'virtual_event_retrieve_data_filled_fields_Template';
-    returnObj.totalTonCo2Two = (dataTwo?.grandTotal / 1000).toFixed(2) || 0;
-    returnObj.eveydolarCo2Two = (dataTwo?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
+    returnObj.totalTonCo2Two = (dataTwo?.grandTotal / 1000).toFixed(5) || 0;
+    returnObj.eveydolarCo2Two = (dataTwo?.grandTotal / toolFormData?.budget).toFixed(5) || 0;
     returnObj.resultTableDataTwo = resultTableData?.data?.find((item) => item.from === 'virtualEvent');
     // returnObj.attachmentPdfNameTwo = `Virtual Event- ${toolFormData?.activityName}`;
     returnObj.attachmentPdfNameTwo = `Ads- ${toolFormData?.activityName}`;
@@ -208,8 +208,8 @@ const UseGenerateSendFilledFieldsData = () => {
   if (total3 > 0) {
     returnObj.dataThree = dataThree;
     returnObj.attachmentTemplateNameThree = 'pr_event_retrieve_data_filled_fields_Template';
-    returnObj.totalTonCo2Three = (dataThree?.grandTotal / 1000).toFixed(2) || 0;
-    returnObj.eveydolarCo2Three = (dataThree?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
+    returnObj.totalTonCo2Three = (dataThree?.grandTotal / 1000).toFixed(5) || 0;
+    returnObj.eveydolarCo2Three = (dataThree?.grandTotal / toolFormData?.budget).toFixed(5) || 0;
     returnObj.resultTableDataThree = resultTableData?.data?.find((item) => item.from === 'prEvent');
     returnObj.attachmentPdfNameThree = `PR Event- ${toolFormData?.activityName}`;
   }
@@ -218,8 +218,8 @@ const UseGenerateSendFilledFieldsData = () => {
   if (total4 > 0) {
     returnObj.dataFour = dataFour;
     returnObj.attachmentTemplateNameFour = 'digital_campaign_retrieve_data_filled_fields_Template';
-    returnObj.totalTonCo2Four = (dataFour?.grandTotal / 1000).toFixed(2) || 0;
-    returnObj.eveydolarCo2Four = (dataFour?.grandTotal / toolFormData?.budget).toFixed(2) || 0;
+    returnObj.totalTonCo2Four = (dataFour?.grandTotal / 1000).toFixed(5) || 0;
+    returnObj.eveydolarCo2Four = (dataFour?.grandTotal / toolFormData?.budget).toFixed(5) || 0;
     returnObj.resultTableDataFour = resultTableData?.data?.find((item) => item.from === 'digitalCampaign');
     returnObj.attachmentPdfNameFour = `Digital Campaign- ${toolFormData?.activityName}`;
   }
