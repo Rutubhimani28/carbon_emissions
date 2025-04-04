@@ -68,7 +68,8 @@ const VirtualEvent = (props) => {
   const { setValue, value } = props;
   const theme = useTheme();
   const dispatch = useDispatch();
-  const allData = useSelector((state) => state?.totalVirtualEventDetails?.data?.[0]?.data);
+  const allData = useSelector((state) => state?.totalVirtualEventDetails?.data);
+
   const totalEmission = useSelector((state) => state?.totalVirtualEventDetails?.totalEmission);
   const [openInfo, setOpenInfo] = useState(false);
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
@@ -367,108 +368,108 @@ const VirtualEvent = (props) => {
       if (emissionBlackWhite > 0) formik.setFieldValue('emissionBlackWhite', emissionBlackWhite);
 
       const data = [
-        {
-          type: 'Image',
-          // imgSize: values?.imgSize,
-          // deviceEnergy1: values?.deviceEnergy1,
-          // somePlatformEnergy1: values?.somePlatformEnergy1,
-          // networkEnergy1: values?.networkEnergy1,
-          // totalEnergy1: values?.totalEnergy1,
-          // efOne: values?.efOne,
-          // impressionsOne: values?.impressionsOne,
-          // emission: emissionOne > 0 ? emissionOne : ''
-        },
-        {
-          type: 'Video',
-          // videoSize: values?.videoSize,
-          // videoMins: values?.videoMins,
-          // deviceEnergy2: values?.deviceEnergy2,
-          // somePlatformEnergy2: values?.somePlatformEnergy2,
-          // networkEnergy2: values?.networkEnergy2,
-          // totalEnergy2: values?.totalEnergy2,
-          // efTwo: values?.efTwo,
-          // impressionsTwo: values?.impressionsTwo,
-          // emission: emissionTwo > 0 ? emissionTwo : ''
-        },
+        // {
+        //   type: 'Image',
+        //   // imgSize: values?.imgSize,
+        //   // deviceEnergy1: values?.deviceEnergy1,
+        //   // somePlatformEnergy1: values?.somePlatformEnergy1,
+        //   // networkEnergy1: values?.networkEnergy1,
+        //   // totalEnergy1: values?.totalEnergy1,
+        //   // efOne: values?.efOne,
+        //   // impressionsOne: values?.impressionsOne,
+        //   // emission: emissionOne > 0 ? emissionOne : ''
+        // },
+        // {
+        //   type: 'Video',
+        //   // videoSize: values?.videoSize,
+        //   // videoMins: values?.videoMins,
+        //   // deviceEnergy2: values?.deviceEnergy2,
+        //   // somePlatformEnergy2: values?.somePlatformEnergy2,
+        //   // networkEnergy2: values?.networkEnergy2,
+        //   // totalEnergy2: values?.totalEnergy2,
+        //   // efTwo: values?.efTwo,
+        //   // impressionsTwo: values?.impressionsTwo,
+        //   // emission: emissionTwo > 0 ? emissionTwo : ''
+        // },
 
-        {
-          name: 'Tiktok',
-          noOfMins: values?.noOfMinsOne,
-          noOfPeople: values?.noOfPeopleOne,
-          // ef: values?.efThree,
-          emission: emissionThree > 0 ? emissionThree : '',
-        },
-        {
-          name: 'Reditt',
-          noOfMins: values?.noOfMinsTwo,
-          noOfPeople: values?.noOfPeopleTwo,
-          // ef: values?.efFour,
-          emission: emissionFour > 0 ? emissionFour : '',
-        },
-        {
-          name: 'Pinterest',
-          noOfMins: values?.noOfMinsThree,
-          noOfPeople: values?.noOfPeopleThree,
-          // ef: values?.efFive,
-          emission: emissionFive > 0 ? emissionFive : '',
-        },
-        {
-          name: 'Instagram Live',
-          noOfMins: values?.noOfMinsFour,
-          noOfPeople: values?.noOfPeopleFour,
-          // ef: values?.efSix,
-          emission: emissionSix > 0 ? emissionSix : '',
-        },
-        {
-          name: 'Snapchat',
-          noOfMins: values?.noOfMinsFive,
-          noOfPeople: values?.noOfPeopleFive,
-          // ef: values?.efSeven,
-          emission: emissionSeven > 0 ? emissionSeven : '',
-        },
-        {
-          name: 'Facebook Live',
-          noOfMins: values?.noOfMinsSix,
-          noOfPeople: values?.noOfPeopleSix,
-          // ef: values?.efEight,
-          emission: emissionEight > 0 ? emissionEight : '',
-        },
-        {
-          name: 'LinkedIn Live',
-          noOfMins: values?.noOfMinsSeven,
-          noOfPeople: values?.noOfPeopleSeven,
-          // ef: values?.efNine,
-          emission: emissionNine > 0 ? emissionNine : '',
-        },
-        {
-          name: 'Twitter Live',
-          noOfMins: values?.noOfMinsEight,
-          noOfPeople: values?.noOfPeopleEight,
-          // ef: values?.efTen,
-          emission: emissionTen > 0 ? emissionTen : '',
-        },
-        {
-          name: 'Twitch',
-          noOfMins: values?.noOfMinsNine,
-          noOfPeople: values?.noOfPeopleNine,
-          // ef: values?.efEleven,
-          emission: emissionEleven > 0 ? emissionEleven : '',
-        },
-        {
-          name: 'Youtube',
-          noOfMins: values?.noOfMinsTen,
-          noOfPeople: values?.noOfPeopleTen,
-          // ef: values?.efTwelve,
-          emission: emissionTwelve > 0 ? emissionTwelve : '',
-        },
+        // {
+        //   name: 'Tiktok',
+        //   noOfMins: values?.noOfMinsOne,
+        //   noOfPeople: values?.noOfPeopleOne,
+        //   // ef: values?.efThree,
+        //   emission: emissionThree > 0 ? emissionThree : '',
+        // },
+        // {
+        //   name: 'Reditt',
+        //   noOfMins: values?.noOfMinsTwo,
+        //   noOfPeople: values?.noOfPeopleTwo,
+        //   // ef: values?.efFour,
+        //   emission: emissionFour > 0 ? emissionFour : '',
+        // },
+        // {
+        //   name: 'Pinterest',
+        //   noOfMins: values?.noOfMinsThree,
+        //   noOfPeople: values?.noOfPeopleThree,
+        //   // ef: values?.efFive,
+        //   emission: emissionFive > 0 ? emissionFive : '',
+        // },
+        // {
+        //   name: 'Instagram Live',
+        //   noOfMins: values?.noOfMinsFour,
+        //   noOfPeople: values?.noOfPeopleFour,
+        //   // ef: values?.efSix,
+        //   emission: emissionSix > 0 ? emissionSix : '',
+        // },
+        // {
+        //   name: 'Snapchat',
+        //   noOfMins: values?.noOfMinsFive,
+        //   noOfPeople: values?.noOfPeopleFive,
+        //   // ef: values?.efSeven,
+        //   emission: emissionSeven > 0 ? emissionSeven : '',
+        // },
+        // {
+        //   name: 'Facebook Live',
+        //   noOfMins: values?.noOfMinsSix,
+        //   noOfPeople: values?.noOfPeopleSix,
+        //   // ef: values?.efEight,
+        //   emission: emissionEight > 0 ? emissionEight : '',
+        // },
+        // {
+        //   name: 'LinkedIn Live',
+        //   noOfMins: values?.noOfMinsSeven,
+        //   noOfPeople: values?.noOfPeopleSeven,
+        //   // ef: values?.efNine,
+        //   emission: emissionNine > 0 ? emissionNine : '',
+        // },
+        // {
+        //   name: 'Twitter Live',
+        //   noOfMins: values?.noOfMinsEight,
+        //   noOfPeople: values?.noOfPeopleEight,
+        //   // ef: values?.efTen,
+        //   emission: emissionTen > 0 ? emissionTen : '',
+        // },
+        // {
+        //   name: 'Twitch',
+        //   noOfMins: values?.noOfMinsNine,
+        //   noOfPeople: values?.noOfPeopleNine,
+        //   // ef: values?.efEleven,
+        //   emission: emissionEleven > 0 ? emissionEleven : '',
+        // },
+        // {
+        //   name: 'Youtube',
+        //   noOfMins: values?.noOfMinsTen,
+        //   noOfPeople: values?.noOfPeopleTen,
+        //   // ef: values?.efTwelve,
+        //   emission: emissionTwelve > 0 ? emissionTwelve : '',
+        // },
 
-        {
-          name: 'Video Conferencing',
-          noOfMins: values?.noOfMinsEleven,
-          noOfPeople: values?.noOfPeopleEleven,
-          // ef: values?.efThirteen,
-          emission: emissionThirteen > 0 ? emissionThirteen : '',
-        },
+        // {
+        //   name: 'Video Conferencing',
+        //   noOfMins: values?.noOfMinsEleven,
+        //   noOfPeople: values?.noOfPeopleEleven,
+        //   // ef: values?.efThirteen,
+        //   emission: emissionThirteen > 0 ? emissionThirteen : '',
+        // },
 
         {
           name: 'Newspaper- Full page Ad',
@@ -539,7 +540,6 @@ const VirtualEvent = (props) => {
         },
       ];
       dispatch(addVirtualEventData({ data }));
-
       const tableData = [
         {
           subType: '',
@@ -605,21 +605,21 @@ const VirtualEvent = (props) => {
           },
           // scope: 3
         },
-        {
-          subType: '',
-          subTypeData: {
-            th: ['', 'Podcast Size (in Mb)', 'No. of Listeners', 'Emissions'],
-            td: [
-              {
-                vtType: 'Podcast',
-                podcastSize: values?.podcastSize,
-                noOfListeners: values?.noOfListeners,
-                emissions: emissionNineteen > 0 ? emissionNineteen : '',
-              },
-            ],
-          },
-          // scope: 3
-        },
+        // {
+        //   subType: '',
+        //   subTypeData: {
+        //     th: ['', 'Podcast Size (in Mb)', 'No. of Listeners', 'Emissions'],
+        //     td: [
+        //       {
+        //         vtType: 'Podcast',
+        //         podcastSize: values?.podcastSize,
+        //         noOfListeners: values?.noOfListeners,
+        //         emissions: emissionNineteen > 0 ? emissionNineteen : '',
+        //       },
+        //     ],
+        //   },
+        //   // scope: 3
+        // },
         {
           subType: '',
           subTypeData: {
@@ -668,81 +668,81 @@ const VirtualEvent = (props) => {
         //     },
         //     scope: 3
         // },
-        {
-          subType: 'Live Broadcasting',
-          subTypeData: {
-            th: ['', 'No. of Minutes', 'No. of People', 'Emissions'],
-            td: [
-              {
-                vtType: 'Tiktok',
-                noOfMins: values?.noOfMinsOne,
-                noOfPeople: values?.noOfPeopleOne,
-                emissions: emissionThree > 0 ? emissionThree : '',
-              },
-              {
-                vtType: 'Reddit',
-                noOfMins: values?.noOfMinsTwo,
-                noOfPeople: values?.noOfPeopleTwo,
-                emissions: emissionFour > 0 ? emissionFour : '',
-              },
-              {
-                vtType: 'Pinterest',
-                noOfMins: values?.noOfMinsThree,
-                noOfPeople: values?.noOfPeopleThree,
-                emissions: emissionFive > 0 ? emissionFive : '',
-              },
-              {
-                vtType: 'Instagram Live',
-                noOfMins: values?.noOfMinsFour,
-                noOfPeople: values?.noOfPeopleFour,
-                emissions: emissionSix > 0 ? emissionSix : '',
-              },
-              {
-                vtType: 'Snapchat',
-                noOfMins: values?.noOfMinsFive,
-                noOfPeople: values?.noOfPeopleFive,
-                emissions: emissionSeven > 0 ? emissionSeven : '',
-              },
-              {
-                vtType: 'Facebook Live',
-                noOfMins: values?.noOfMinsSix,
-                noOfPeople: values?.noOfPeopleSix,
-                emissions: emissionEight > 0 ? emissionEight : '',
-              },
-              {
-                vtType: 'LinkedIn Live',
-                noOfMins: values?.noOfMinsSeven,
-                noOfPeople: values?.noOfPeopleSeven,
-                emissions: emissionNine > 0 ? emissionNine : '',
-              },
-              {
-                vtType: 'Twitter Live',
-                noOfMins: values?.noOfMinsEight,
-                noOfPeople: values?.noOfPeopleEight,
-                emissions: emissionTen > 0 ? emissionTen : '',
-              },
-              {
-                vtType: 'Twitch',
-                noOfMins: values?.noOfMinsNine,
-                noOfPeople: values?.noOfPeopleNine,
-                emissions: emissionEleven > 0 ? emissionEleven : '',
-              },
-              {
-                vtType: 'Youtube',
-                noOfMins: values?.noOfMinsTen,
-                noOfPeople: values?.noOfPeopleTen,
-                emissions: emissionTwelve > 0 ? emissionTwelve : '',
-              },
-              {
-                vtType: 'Video Conferencing',
-                noOfMins: values?.noOfMinsEleven,
-                noOfPeople: values?.noOfPeopleEleven,
-                emissions: emissionThirteen > 0 ? emissionThirteen : '',
-              },
-            ],
-          },
-          // scope: 2
-        },
+        // {
+        //   subType: 'Live Broadcasting',
+        //   subTypeData: {
+        //     th: ['', 'No. of Minutes', 'No. of People', 'Emissions'],
+        //     td: [
+        //       {
+        //         vtType: 'Tiktok',
+        //         noOfMins: values?.noOfMinsOne,
+        //         noOfPeople: values?.noOfPeopleOne,
+        //         emissions: emissionThree > 0 ? emissionThree : '',
+        //       },
+        //       {
+        //         vtType: 'Reddit',
+        //         noOfMins: values?.noOfMinsTwo,
+        //         noOfPeople: values?.noOfPeopleTwo,
+        //         emissions: emissionFour > 0 ? emissionFour : '',
+        //       },
+        //       {
+        //         vtType: 'Pinterest',
+        //         noOfMins: values?.noOfMinsThree,
+        //         noOfPeople: values?.noOfPeopleThree,
+        //         emissions: emissionFive > 0 ? emissionFive : '',
+        //       },
+        //       {
+        //         vtType: 'Instagram Live',
+        //         noOfMins: values?.noOfMinsFour,
+        //         noOfPeople: values?.noOfPeopleFour,
+        //         emissions: emissionSix > 0 ? emissionSix : '',
+        //       },
+        //       {
+        //         vtType: 'Snapchat',
+        //         noOfMins: values?.noOfMinsFive,
+        //         noOfPeople: values?.noOfPeopleFive,
+        //         emissions: emissionSeven > 0 ? emissionSeven : '',
+        //       },
+        //       {
+        //         vtType: 'Facebook Live',
+        //         noOfMins: values?.noOfMinsSix,
+        //         noOfPeople: values?.noOfPeopleSix,
+        //         emissions: emissionEight > 0 ? emissionEight : '',
+        //       },
+        //       {
+        //         vtType: 'LinkedIn Live',
+        //         noOfMins: values?.noOfMinsSeven,
+        //         noOfPeople: values?.noOfPeopleSeven,
+        //         emissions: emissionNine > 0 ? emissionNine : '',
+        //       },
+        //       {
+        //         vtType: 'Twitter Live',
+        //         noOfMins: values?.noOfMinsEight,
+        //         noOfPeople: values?.noOfPeopleEight,
+        //         emissions: emissionTen > 0 ? emissionTen : '',
+        //       },
+        //       {
+        //         vtType: 'Twitch',
+        //         noOfMins: values?.noOfMinsNine,
+        //         noOfPeople: values?.noOfPeopleNine,
+        //         emissions: emissionEleven > 0 ? emissionEleven : '',
+        //       },
+        //       {
+        //         vtType: 'Youtube',
+        //         noOfMins: values?.noOfMinsTen,
+        //         noOfPeople: values?.noOfPeopleTen,
+        //         emissions: emissionTwelve > 0 ? emissionTwelve : '',
+        //       },
+        //       {
+        //         vtType: 'Video Conferencing',
+        //         noOfMins: values?.noOfMinsEleven,
+        //         noOfPeople: values?.noOfPeopleEleven,
+        //         emissions: emissionThirteen > 0 ? emissionThirteen : '',
+        //       },
+        //     ],
+        //   },
+        //   // scope: 2
+        // },
         {
           subType: '',
           subTypeData: {
@@ -816,149 +816,126 @@ const VirtualEvent = (props) => {
   const handleInfoClose = () => setOpenInfo(false);
 
   // useEffect(() => {
-  //     if (allData?.length > 0) {
-  //         // formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
-  //         // formik.setFieldValue('deviceEnergy1', allData?.[0]?.deviceEnergy1);
-  //         // formik.setFieldValue('somePlatformEnergy1', allData?.[0]?.somePlatformEnergy1);
-  //         // formik.setFieldValue('networkEnergy1', allData?.[0]?.networkEnergy1);
-  //         // formik.setFieldValue('totalEnergy1', allData?.[0]?.totalEnergy1);
-  //         // formik.setFieldValue('efOne', allData?.[0]?.efOne);
-  //         // formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
-  //         // formik.setFieldValue('emissionOne', allData?.[0]?.emission);
+  //   if (allData?.length > 0) {
+  //     // formik.setFieldValue('imgSize', allData?.[0]?.imgSize);
+  //     // formik.setFieldValue('deviceEnergy1', allData?.[0]?.deviceEnergy1);
+  //     // formik.setFieldValue('somePlatformEnergy1', allData?.[0]?.somePlatformEnergy1);
+  //     // formik.setFieldValue('networkEnergy1', allData?.[0]?.networkEnergy1);
+  //     // formik.setFieldValue('totalEnergy1', allData?.[0]?.totalEnergy1);
+  //     // formik.setFieldValue('efOne', allData?.[0]?.efOne);
+  //     // formik.setFieldValue('impressionsOne', allData?.[0]?.impressionsOne);
+  //     // formik.setFieldValue('emissionOne', allData?.[0]?.emission);
 
-  //         // formik.setFieldValue('videoSize', allData?.[1]?.videoSize);
-  //         // formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
-  //         // formik.setFieldValue('deviceEnergy2', allData?.[1]?.deviceEnergy2);
-  //         // formik.setFieldValue('somePlatformEnergy2', allData?.[1]?.somePlatformEnergy2);
-  //         // formik.setFieldValue('networkEnergy2', allData?.[1]?.networkEnergy2);
-  //         // formik.setFieldValue('totalEnergy2', allData?.[1]?.totalEnergy2);
-  //         // formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
-  //         // formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
-  //         // formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
+  //     // formik.setFieldValue('videoSize', allData?.[1]?.videoSize);
+  //     // formik.setFieldValue('videoMins', allData?.[1]?.videoMins);
+  //     // formik.setFieldValue('deviceEnergy2', allData?.[1]?.deviceEnergy2);
+  //     // formik.setFieldValue('somePlatformEnergy2', allData?.[1]?.somePlatformEnergy2);
+  //     // formik.setFieldValue('networkEnergy2', allData?.[1]?.networkEnergy2);
+  //     // formik.setFieldValue('totalEnergy2', allData?.[1]?.totalEnergy2);
+  //     // formik.setFieldValue('efTwo', allData?.[1]?.efTwo);
+  //     // formik.setFieldValue('impressionsTwo', allData?.[1]?.impressionsTwo);
+  //     // formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
 
-  //         formik.setFieldValue('noOfMinsOne', allData?.[2]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleOne', allData?.[2]?.noOfPeople);
-  //         formik.setFieldValue('efThree', allData?.[2]?.ef);
-  //         formik.setFieldValue('emissionThree', allData?.[2]?.emission);
+  //     formik.setFieldValue('noOfMinsOne', allData?.[2]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleOne', allData?.[2]?.noOfPeople);
+  //     formik.setFieldValue('efThree', allData?.[2]?.ef);
+  //     formik.setFieldValue('emissionThree', allData?.[2]?.emission);
 
-  //         formik.setFieldValue('noOfMinsTwo', allData?.[3]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleTwo', allData?.[3]?.noOfPeople);
-  //         formik.setFieldValue('efFour', allData?.[3]?.ef);
-  //         formik.setFieldValue('emissionFour', allData?.[3]?.emission);
+  //     formik.setFieldValue('noOfMinsTwo', allData?.[3]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleTwo', allData?.[3]?.noOfPeople);
+  //     formik.setFieldValue('efFour', allData?.[3]?.ef);
+  //     formik.setFieldValue('emissionFour', allData?.[3]?.emission);
 
-  //         formik.setFieldValue('noOfMinsThree', allData?.[4]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleThree', allData?.[4]?.noOfPeople);
-  //         formik.setFieldValue('efFive', allData?.[4]?.ef);
-  //         formik.setFieldValue('emissionFive', allData?.[4]?.emission);
+  //     formik.setFieldValue('noOfMinsThree', allData?.[4]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleThree', allData?.[4]?.noOfPeople);
+  //     formik.setFieldValue('efFive', allData?.[4]?.ef);
+  //     formik.setFieldValue('emissionFive', allData?.[4]?.emission);
 
-  //         formik.setFieldValue('noOfMinsFour', allData?.[5]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleFour', allData?.[5]?.noOfPeople);
-  //         formik.setFieldValue('efSix', allData?.[5]?.ef);
-  //         formik.setFieldValue('emissionSix', allData?.[5]?.emission);
+  //     formik.setFieldValue('noOfMinsFour', allData?.[5]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleFour', allData?.[5]?.noOfPeople);
+  //     formik.setFieldValue('efSix', allData?.[5]?.ef);
+  //     formik.setFieldValue('emissionSix', allData?.[5]?.emission);
 
-  //         formik.setFieldValue('noOfMinsFive', allData?.[6]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleFive', allData?.[6]?.noOfPeople);
-  //         formik.setFieldValue('efSeven', allData?.[6]?.ef);
-  //         formik.setFieldValue('emissionSeven', allData?.[6]?.emission);
+  //     formik.setFieldValue('noOfMinsFive', allData?.[6]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleFive', allData?.[6]?.noOfPeople);
+  //     formik.setFieldValue('efSeven', allData?.[6]?.ef);
+  //     formik.setFieldValue('emissionSeven', allData?.[6]?.emission);
 
-  //         formik.setFieldValue('noOfMinsSix', allData?.[7]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleSix', allData?.[7]?.noOfPeople);
-  //         formik.setFieldValue('efEight', allData?.[7]?.ef);
-  //         formik.setFieldValue('emissionEight', allData?.[7]?.emission);
+  //     formik.setFieldValue('noOfMinsSix', allData?.[7]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleSix', allData?.[7]?.noOfPeople);
+  //     formik.setFieldValue('efEight', allData?.[7]?.ef);
+  //     formik.setFieldValue('emissionEight', allData?.[7]?.emission);
 
-  //         formik.setFieldValue('noOfMinsSeven', allData?.[8]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleSeven', allData?.[8]?.noOfPeople);
-  //         formik.setFieldValue('efNine', allData?.[8]?.ef);
-  //         formik.setFieldValue('emissionNine', allData?.[8]?.emission);
+  //     formik.setFieldValue('noOfMinsSeven', allData?.[8]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleSeven', allData?.[8]?.noOfPeople);
+  //     formik.setFieldValue('efNine', allData?.[8]?.ef);
+  //     formik.setFieldValue('emissionNine', allData?.[8]?.emission);
 
-  //         formik.setFieldValue('noOfMinsEight', allData?.[9]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleEight', allData?.[9]?.noOfPeople);
-  //         formik.setFieldValue('efTen', allData?.[9]?.ef);
-  //         formik.setFieldValue('emissionTen', allData?.[9]?.emission);
+  //     formik.setFieldValue('noOfMinsEight', allData?.[9]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleEight', allData?.[9]?.noOfPeople);
+  //     formik.setFieldValue('efTen', allData?.[9]?.ef);
+  //     formik.setFieldValue('emissionTen', allData?.[9]?.emission);
 
-  //         formik.setFieldValue('noOfMinsNine', allData?.[10]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleNine', allData?.[10]?.noOfPeople);
-  //         formik.setFieldValue('efEleven', allData?.[10]?.ef);
-  //         formik.setFieldValue('emissionEleven', allData?.[10]?.emission);
+  //     formik.setFieldValue('noOfMinsNine', allData?.[10]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleNine', allData?.[10]?.noOfPeople);
+  //     formik.setFieldValue('efEleven', allData?.[10]?.ef);
+  //     formik.setFieldValue('emissionEleven', allData?.[10]?.emission);
 
-  //         formik.setFieldValue('noOfMinsTen', allData?.[11]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleTen', allData?.[11]?.noOfPeople);
-  //         formik.setFieldValue('efTwelve', allData?.[11]?.ef);
-  //         formik.setFieldValue('emissionTwelve', allData?.[11]?.emission);
+  //     formik.setFieldValue('noOfMinsTen', allData?.[11]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleTen', allData?.[11]?.noOfPeople);
+  //     formik.setFieldValue('efTwelve', allData?.[11]?.ef);
+  //     formik.setFieldValue('emissionTwelve', allData?.[11]?.emission);
 
-  //         formik.setFieldValue('noOfMinsEleven', allData?.[12]?.noOfMins);
-  //         formik.setFieldValue('noOfPeopleEleven', allData?.[12]?.noOfPeople);
-  //         formik.setFieldValue('efThirteen', allData?.[12]?.ef);
-  //         formik.setFieldValue('emissionThirteen', allData?.[12]?.emission);
+  //     formik.setFieldValue('noOfMinsEleven', allData?.[12]?.noOfMins);
+  //     formik.setFieldValue('noOfPeopleEleven', allData?.[12]?.noOfPeople);
+  //     formik.setFieldValue('efThirteen', allData?.[12]?.ef);
+  //     formik.setFieldValue('emissionThirteen', allData?.[12]?.emission);
 
-  //         formik.setFieldValue('noOfCopiesOne', allData?.[13]?.noOfCopiesOne);
-  //         formik.setFieldValue('efFourteen', allData?.[13]?.ef);
-  //         formik.setFieldValue('emissionFourteen', allData?.[13]?.emission);
+  //     formik.setFieldValue('noOfCopiesOne', allData?.[13]?.noOfCopiesOne);
+  //     formik.setFieldValue('efFourteen', allData?.[13]?.ef);
+  //     formik.setFieldValue('emissionFourteen', allData?.[13]?.emission);
 
-  //         formik.setFieldValue('noOfPages', allData?.[14]?.noOfPages);
-  //         formik.setFieldValue('noOfCopiesTwo', allData?.[14]?.noOfCopiesTwo);
-  //         formik.setFieldValue('efFifteen', allData?.[14]?.ef);
-  //         formik.setFieldValue('emissionFifteen', allData?.[14]?.emission);
+  //     formik.setFieldValue('noOfPages', allData?.[14]?.noOfPages);
+  //     formik.setFieldValue('noOfCopiesTwo', allData?.[14]?.noOfCopiesTwo);
+  //     formik.setFieldValue('efFifteen', allData?.[14]?.ef);
+  //     formik.setFieldValue('emissionFifteen', allData?.[14]?.emission);
 
-  //         formik.setFieldValue('hdpeBanner', allData?.[15]?.hdpeBanner);
-  //         formik.setFieldValue('efSixteen', allData?.[15]?.ef);
-  //         formik.setFieldValue('emissionSixteen', allData?.[15]?.emission);
+  //     formik.setFieldValue('hdpeBanner', allData?.[15]?.hdpeBanner);
+  //     formik.setFieldValue('efSixteen', allData?.[15]?.ef);
+  //     formik.setFieldValue('emissionSixteen', allData?.[15]?.emission);
 
-  //         formik.setFieldValue('pvcBanners', allData?.[16]?.pvcBanners);
-  //         formik.setFieldValue('efSeventeen', allData?.[16]?.ef);
-  //         formik.setFieldValue('emissionSeventeen', allData?.[16]?.emission);
+  //     formik.setFieldValue('pvcBanners', allData?.[16]?.pvcBanners);
+  //     formik.setFieldValue('efSeventeen', allData?.[16]?.ef);
+  //     formik.setFieldValue('emissionSeventeen', allData?.[16]?.emission);
 
-  //         formik.setFieldValue('adDuration', allData?.[17]?.adDuration);
-  //         formik.setFieldValue('noOfSlots', allData?.[17]?.noOfSlots);
-  //         formik.setFieldValue('viewers', allData?.[17]?.viewers);
-  //         formik.setFieldValue('efEighteen', allData?.[17]?.ef);
-  //         formik.setFieldValue('emissionEightteen', allData?.[17]?.emission);
+  //     formik.setFieldValue('adDuration', allData?.[17]?.adDuration);
+  //     formik.setFieldValue('noOfSlots', allData?.[17]?.noOfSlots);
+  //     formik.setFieldValue('viewers', allData?.[17]?.viewers);
+  //     formik.setFieldValue('efEighteen', allData?.[17]?.ef);
+  //     formik.setFieldValue('emissionEightteen', allData?.[17]?.emission);
 
-  //         formik.setFieldValue('podcastSize', allData?.[18]?.podcastSize);
-  //         formik.setFieldValue('noOfListeners', allData?.[18]?.noOfListeners);
-  //         formik.setFieldValue('podcastKwh', allData?.[18]?.podcastKwh);
-  //         formik.setFieldValue('podcastTotal', allData?.[18]?.podcastTotal);
-  //         formik.setFieldValue('emissionNineteen', allData?.[18]?.emission);
+  //     formik.setFieldValue('podcastSize', allData?.[18]?.podcastSize);
+  //     formik.setFieldValue('noOfListeners', allData?.[18]?.noOfListeners);
+  //     formik.setFieldValue('podcastKwh', allData?.[18]?.podcastKwh);
+  //     formik.setFieldValue('podcastTotal', allData?.[18]?.podcastTotal);
+  //     formik.setFieldValue('emissionNineteen', allData?.[18]?.emission);
 
-  //         formik.setFieldValue('energyKwh', allData?.[19]?.energyKwh);
-  //         formik.setFieldValue('efTwenty', allData?.[19]?.ef);
-  //         formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
-  //     }
+  //     formik.setFieldValue('energyKwh', allData?.[19]?.energyKwh);
+  //     formik.setFieldValue('efTwenty', allData?.[19]?.ef);
+  //     formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
+  //   }
   // }, [value]);
-
   useEffect(() => {
-    if (allData?.length > 0) {
+    if (allData?.[0]?.data?.length > 0) {
       const formValues = {
         ...initialValues,
       };
 
-      allData.forEach((item) => {
-        //         if (item.name === "Tiktok" || item.type === "Tiktok") {
-        //             formValues.noOfMinsOne = item.noOfMins;
-        //             formValues.noOfPeopleOne = item.noOfPeople;
-        //             formValues.emissionThree = item.emission;
-        //         }
-        //         else if (item.name === "Reditt" || item.type === "Reditt") {
-        //             formValues.noOfMinsTwo = item.noOfMins;
-        //             formValues.noOfPeopleTwo = item.noOfPeople;
-        //             formValues.emissionFour = item.emission;
-        //         }
-        //         else if (item.name === "Pinterest" || item.type === "Pinterest") {
-        //             formValues.noOfMinsThree = item.noOfMins;
-        //             formValues.noOfPeopleThree = item.noOfPeople;
-        //             formValues.emissionFive = item.emission;
-        //         }
-        //         // Continue for all other platforms...
+      allData?.[0]?.data?.forEach((item) => {
         if (item.name === 'Newspaper- Full page Ad' || item.type === 'Newspaper- Full page Ad') {
           formValues.noOfCopiesOne = item.noOfCopiesOne;
           formValues.emissionFourteen = item.emission;
-        }
-        // else if (item.name === "Magazine" || item.type === "Magazine") {
-        //     formValues.noOfPages = item.noOfPages;
-        //     formValues.noOfCopiesTwo = item.noOfCopiesTwo;
-        //     formValues.emissionFifteen = item.emission;
-        // }
-        else if (item.name === 'Polyethylene HDPE Banner' || item.type === 'Polyethylene HDPE Banner') {
+        } else if (item.name === 'Polyethylene HDPE Banner' || item.type === 'Polyethylene HDPE Banner') {
           formValues.hdpeBanner = item.hdpeBanner;
           formValues.emissionSixteen = item.emission;
         } else if (item.name === 'PVC Banners' || item.type === 'PVC Banners') {
@@ -969,20 +946,7 @@ const VirtualEvent = (props) => {
           formValues.noOfSlots = item.noOfSlots;
           formValues.viewers = item.viewers;
           formValues.emissionEightteen = item.emission;
-
-          // adDuration: values?.adDuration,
-          // noOfSlots: values?.noOfSlots,
-          // viewers: values?.viewers,
-          // ef: values?.efEighteen,
-          // emission: emissionEightteen > 0 ? emissionEightteen : '',
-        }
-        //         else if (item.name === "Podcast" || item.type === "Podcast") {
-        //             formValues.podcastSize = item.podcastSize;
-        //             formValues.noOfListeners = item.noOfListeners;
-        //             formValues.podcastTotal = item.podcastTotal;
-        //             formValues.emissionNineteen = item.emission;
-        //         }
-        else if (item.name === 'Energy' || item.type === 'Energy') {
+        } else if (item.name === 'Energy' || item.type === 'Energy') {
           formValues.energyKwh = item.energyKwh;
           formValues.energyRenewable = item.energyRenewable;
           formValues.emissionTwenty = item.emission;
@@ -1188,7 +1152,7 @@ const VirtualEvent = (props) => {
                             Number(values?.noOfSlots) *
                             Number(values?.viewers) *
                             Number(values?.efEighteen)
-                        ).toFixed(2)
+                        ).toFixed(5)
                       );
                       formik.handleSubmit();
                     }}
@@ -1212,7 +1176,7 @@ const VirtualEvent = (props) => {
                             Number(values?.adDuration) *
                             Number(values?.viewers) *
                             Number(values?.efEighteen)
-                        ).toFixed(2)
+                        ).toFixed(5)
                       );
                       formik.handleSubmit();
                     }}
@@ -1236,7 +1200,7 @@ const VirtualEvent = (props) => {
                             Number(values?.adDuration) *
                             Number(values?.noOfSlots) *
                             Number(values?.efEighteen)
-                        ).toFixed(2)
+                        ).toFixed(5)
                       );
                       formik.handleSubmit();
                     }}
@@ -2206,7 +2170,7 @@ const VirtualEvent = (props) => {
             {/* <Grid item xs={12} sm={12} md={12} marginTop={3}><Typography color='white' className='text-center'>{`Total Virtual Event Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e</Typography></Grid> */}
             <Grid item xs={12} sm={12} md={12} marginTop={3}>
               <Typography color="white" className="text-center">
-                {`Total Ads Carbon Footprint = ${Number(totalEmission).toFixed(5) || 0} `}kgCO<sub>2</sub>e
+                {`Total Ads Carbon Footprint = ${Number(totalEmission || 0).toFixed(5)} `}kgCO<sub>2</sub>e
               </Typography>
             </Grid>
           </Grid>

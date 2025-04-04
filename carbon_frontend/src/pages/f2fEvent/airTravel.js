@@ -233,36 +233,61 @@ const AirTravel = (props) => {
       }
     }
   };
+
   useEffect(() => {
     if (allData?.length > 0) {
-      formik.setFieldValue('noOfTripsOne', allData?.[0]?.noOfTripsOne);
-      formik.setFieldValue('noOfTripsTwo', allData?.[0]?.noOfTripsTwo);
-      formik.setFieldValue('noOfTripsThree', allData?.[0]?.noOfTripsThree);
-      formik.setFieldValue('emissionOne', allData?.[0]?.emissionOne);
-      formik.setFieldValue('emissionTwo', allData?.[0]?.emissionTwo);
-      formik.setFieldValue('emissionThree', allData?.[0]?.emissionThree);
-      formik.setFieldValue('noOfPassengerOne', allData?.[0]?.noOfPassengerOne);
-      formik.setFieldValue('noOfPassengerTwo', allData?.[0]?.noOfPassengerTwo);
-      formik.setFieldValue('noOfPassengerThree', allData?.[0]?.noOfPassengerThree);
-
-      formik.setFieldValue('noOfPassengerFour', allData?.[1]?.noOfPassengerFour);
-      formik.setFieldValue('noOfPassengerFive', allData?.[1]?.noOfPassengerFive);
-      formik.setFieldValue('noOfPassengerSix', allData?.[1]?.noOfPassengerSix);
-      formik.setFieldValue('noOfTripsFour', allData?.[1]?.noOfTripsFour);
-      formik.setFieldValue('noOfTripsFive', allData?.[1]?.noOfTripsFive);
-      formik.setFieldValue('noOfTripsSix', allData?.[1]?.noOfTripsSix);
-      formik.setFieldValue('emissionFour', allData?.[1]?.emissionFour);
-      formik.setFieldValue('emissionFive', allData?.[1]?.emissionFive);
-      formik.setFieldValue('emissionSix', allData?.[1]?.emissionSix);
-
-      // formik.setFieldValue('noOfTripsSeven', allData?.[2]?.noOfTripsSeven);
-      // formik.setFieldValue('noOfTripsEight', allData?.[2]?.noOfTripsEight);
-      // formik.setFieldValue('noOfTripsNine', allData?.[2]?.noOfTripsNine);
-      // formik.setFieldValue('emissionSeven', allData?.[2]?.emissionSeven);
-      // formik.setFieldValue('emissionEight', allData?.[2]?.emissionEight);
-      // formik.setFieldValue('emissionNine', allData?.[2]?.emissionNine);
+      const tripKeys = [
+        'noOfTripsOne', 'noOfTripsTwo', 'noOfTripsThree',
+        'emissionOne', 'emissionTwo', 'emissionThree',
+        'noOfPassengerOne', 'noOfPassengerTwo', 'noOfPassengerThree',
+      ];
+      
+      tripKeys.forEach((key) => {
+        formik.setFieldValue(key, allData?.[0]?.[key]);
+      });
+  
+      const tripKeysSecondSet = [
+        'noOfPassengerFour', 'noOfPassengerFive', 'noOfPassengerSix',
+        'noOfTripsFour', 'noOfTripsFive', 'noOfTripsSix',
+        'emissionFour', 'emissionFive', 'emissionSix'
+      ];
+  
+      tripKeysSecondSet.forEach((key) => {
+        formik.setFieldValue(key, allData?.[1]?.[key]);
+      });
     }
   }, [value]);
+  
+  // useEffect(() => {
+  //   if (allData?.length > 0) {
+  //     formik.setFieldValue('noOfTripsOne', allData?.[0]?.noOfTripsOne);
+  //     formik.setFieldValue('noOfTripsTwo', allData?.[0]?.noOfTripsTwo);
+  //     formik.setFieldValue('noOfTripsThree', allData?.[0]?.noOfTripsThree);
+  //     formik.setFieldValue('emissionOne', allData?.[0]?.emissionOne);
+  //     formik.setFieldValue('emissionTwo', allData?.[0]?.emissionTwo);
+  //     formik.setFieldValue('emissionThree', allData?.[0]?.emissionThree);
+  //     formik.setFieldValue('noOfPassengerOne', allData?.[0]?.noOfPassengerOne);
+  //     formik.setFieldValue('noOfPassengerTwo', allData?.[0]?.noOfPassengerTwo);
+  //     formik.setFieldValue('noOfPassengerThree', allData?.[0]?.noOfPassengerThree);
+
+  //     formik.setFieldValue('noOfPassengerFour', allData?.[1]?.noOfPassengerFour);
+  //     formik.setFieldValue('noOfPassengerFive', allData?.[1]?.noOfPassengerFive);
+  //     formik.setFieldValue('noOfPassengerSix', allData?.[1]?.noOfPassengerSix);
+  //     formik.setFieldValue('noOfTripsFour', allData?.[1]?.noOfTripsFour);
+  //     formik.setFieldValue('noOfTripsFive', allData?.[1]?.noOfTripsFive);
+  //     formik.setFieldValue('noOfTripsSix', allData?.[1]?.noOfTripsSix);
+  //     formik.setFieldValue('emissionFour', allData?.[1]?.emissionFour);
+  //     formik.setFieldValue('emissionFive', allData?.[1]?.emissionFive);
+  //     formik.setFieldValue('emissionSix', allData?.[1]?.emissionSix);
+
+  //     // formik.setFieldValue('noOfTripsSeven', allData?.[2]?.noOfTripsSeven);
+  //     // formik.setFieldValue('noOfTripsEight', allData?.[2]?.noOfTripsEight);
+  //     // formik.setFieldValue('noOfTripsNine', allData?.[2]?.noOfTripsNine);
+  //     // formik.setFieldValue('emissionSeven', allData?.[2]?.emissionSeven);
+  //     // formik.setFieldValue('emissionEight', allData?.[2]?.emissionEight);
+  //     // formik.setFieldValue('emissionNine', allData?.[2]?.emissionNine);
+  //   }
+  // }, [value]);
 
   const calclulateEconomyClass = (e, emmFieldName, firstValue, ef) => {
     formik.handleChange(e);

@@ -53,9 +53,7 @@ dayjs.extend(timezone);
 const useSetEventData = () => {
   const dispatch = useDispatch();
 
-
   const setParticularEventFetchedData = (currentEventData) => {
-    console.log(currentEventData , "currentEventData");
     const userSessionData = sessionStorage.getItem('user');
     const userData = JSON.parse(userSessionData);
 

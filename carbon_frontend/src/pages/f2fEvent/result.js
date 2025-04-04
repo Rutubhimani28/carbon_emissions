@@ -130,16 +130,16 @@ const Result = ({ value }) => {
   ];
 
   const data = {
-    totalAirTravel: Number(allAirTravelData?.totalEmission).toFixed(5),
-    totalLocalTransportation: Number(allLocalTranspotationData?.totalEmission).toFixed(5),
-    totalHotel: Number(allHotelData?.totalEmission).toFixed(5),
-    totalFood: Number(allFoodData?.totalEmission).toFixed(5),
-    totalAirFreight: Number(allFreightData?.totalEmission).toFixed(5),
-    totlaProduction: Number(allProductionData?.totalEmission).toFixed(5),
-    totalEnergyUpdated: Number(allEnergyData?.totalEmission).toFixed(5),
-    totalDIgitalContent: Number(allDigitalContentData?.totalEmission).toFixed(5),
-    totalWaste: Number(allWasteData?.totalEmission).toFixed(5),
-    grandTotal: Number(total).toFixed(5),
+    totalAirTravel: Number(allAirTravelData?.totalEmission || 0).toFixed(5),
+    totalLocalTransportation: Number(allLocalTranspotationData?.totalEmission || 0).toFixed(5),
+    totalHotel: Number(allHotelData?.totalEmission || 0).toFixed(5),
+    totalFood: Number(allFoodData?.totalEmission || 0).toFixed(5),
+    totalAirFreight: Number(allFreightData?.totalEmission || 0).toFixed(5),
+    totlaProduction: Number(allProductionData?.totalEmission || 0).toFixed(5),
+    totalEnergyUpdated: Number(allEnergyData?.totalEmission || 0).toFixed(5),
+    totalDIgitalContent: Number(allDigitalContentData?.totalEmission || 0).toFixed(5),
+    totalWaste: Number(allWasteData?.totalEmission || 0).toFixed(5),
+    grandTotal: Number(total || 0).toFixed(5),
   };
 
   const handeleDelete = () => {
