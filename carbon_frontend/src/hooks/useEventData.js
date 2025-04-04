@@ -19,8 +19,7 @@ const useEventData = () => {
     const wasteAllData = useSelector((state) => state?.totalWasteDetails);
 
     // virtual-event
-    const vitrualEventAllData = useSelector((state) => state?.totalVirtualEventDetails);     // Outbound Marketing
-
+    const vitrualEventAllData = useSelector((state) => state?.totalVirtualEventDetails);
     // pr-event
     const commsAllData = useSelector((state) => state?.totalCommsDetails);
     const prAgencyAllData = useSelector((state) => state?.totalPrAgencyDetails);
@@ -29,7 +28,7 @@ const useEventData = () => {
     // digital-campaign
     const imageAllData = useSelector((state) => state?.totalImageDetails);
     const videoAllData = useSelector((state) => state?.totalVideoDetails);
-    // const digitalCampaignAllData = useSelector((state) => state?.totalDigitalCampaignDetails);
+    // const digitalCampaignAllData = useSelector((state) => state?.totalDigitalCampaig`nDetails);
     return {
         activityName: toolFormData?.activityName || '',
         budget: toolFormData?.budget || '',

@@ -73,7 +73,7 @@ const Result = ({ value }) => {
     // "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(2),
     totalImage: allDataImage?.totalEmission || 0,
     totalVideo: allDataVideo?.totalEmission || 0,
-    grandTotal: Number(total).toFixed(2),
+    grandTotal: Number(total || 0).toFixed(5),
     // socialMediaEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(2) || 0,
     // emailEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0,
     // podcastEmission: allDigitalCampaignData?.data?.[0]?.data?.[3]?.emission || 0

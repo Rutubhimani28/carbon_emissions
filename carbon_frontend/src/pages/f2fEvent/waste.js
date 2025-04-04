@@ -471,7 +471,7 @@ const Waste = (props) => {
                 <img src={WasteImg} alt="Waste" width={100} className="tabImgWhite" />
               </IconDiv>
               <Typography variant="h4" className="text-center text-white mb-4">
-                      Food Waste
+                Food Waste
               </Typography>
               <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 5 }}>
                 <Grid item xs={12} sm={12} md={6}>
@@ -699,7 +699,6 @@ const Waste = (props) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
                   <Box mt={1}>
-                  
                     <div className="table-responsive">
                       <table className="table-custom-inpt-field">
                         <tr>

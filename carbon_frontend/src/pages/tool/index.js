@@ -205,7 +205,7 @@ const Home = () => {
       return;
     }
     if (id) {
-      setParticularEventFetchedData(...(resultAction.payload?.data ? resultAction.payload?.data : {}));
+      await setParticularEventFetchedData(...(resultAction.payload?.data ? resultAction.payload?.data : {}));
       setIsSubmited(true);
     }
   };
@@ -263,7 +263,7 @@ const Home = () => {
       dateTime: formik.values?.dateTime || '',
 
       f2fEventData: [],
-      virtualEventData: [],
+      // virtualEventData: [],
       prEventData: [],
       digitalCampaignData: [],
 
@@ -274,6 +274,7 @@ const Home = () => {
       airFreightAllData: { data: [], totalEmission: 0 },
       productionAllData: { data: [], totalEmission: 0 },
       energyUpdatedAllData: { data: [], totalEmission: 0 },
+      vitrualEventAllData: { data: [], totalEmission: 0 },
       digitalContentAllData: { data: [], totalEmission: 0 },
       wasteAllData: { data: [], totalEmission: 0 },
       imageAllData: { data: [], totalEmission: 0 },
