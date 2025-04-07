@@ -180,7 +180,7 @@ const VirtualEvent = (props) => {
     viewers: '',
     efEighteen: 0.0000222,
     emissionEightteen: '',
-    efEighteen1:0.8552,
+    efEighteen1: 0.8552,
 
     // Podcast
     podcastSize: '', // Podcast Size (in Mb)
@@ -191,7 +191,7 @@ const VirtualEvent = (props) => {
 
     // Energy
     energyKwh: '',
-    efTwenty:0.8552,
+    efTwenty: 0.8552,
     energyRenewable: '',
     emissionTwenty: '',
 
@@ -203,15 +203,14 @@ const VirtualEvent = (props) => {
     // Print Ad
     colourNoOfPage: '',
     efColour: 0.017,
+    copyOne: '',
     emissionColour: '',
-    noOfcopiesColor : 10000,
 
     // blackWhite Ad
     blackWhiteNoOfPage: '',
     efBlackWhite: 0.034,
+    copyTwo: '',
     emissionBlackWhite: '',
-    noOfcopiesBlackWhite : 10000,
-
   };
 
   const formik = useFormik({
@@ -335,11 +334,15 @@ const VirtualEvent = (props) => {
       const emissionHalf =
         values?.noOfCopiesHalf === 0 ? 0 : Number(Number(values?.noOfCopiesHalf) * Number(values?.efHalf)).toFixed(5);
       const emissionColour =
-        values?.colourNoOfPage === 0 ? 0 : Number(Number(values?.colourNoOfPage)* Number(values?.noOfcopiesColor) * Number(values?.efColour)).toFixed(5);
+        values?.colourNoOfPage === 0
+          ? 0
+          : Number(Number(values?.colourNoOfPage) * Number(values?.copyOne) * Number(values?.efColour)).toFixed(5);
       const emissionBlackWhite =
         values?.blackWhiteNoOfPage === 0
           ? 0
-          : Number(Number(values?.blackWhiteNoOfPage) * Number(values?.noOfcopiesBlackWhite)* Number(values?.efBlackWhite)).toFixed(5);
+          : Number(Number(values?.blackWhiteNoOfPage) * Number(values?.copyTwo) * Number(values?.efBlackWhite)).toFixed(
+              5
+            );
 
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 
@@ -532,12 +535,14 @@ const VirtualEvent = (props) => {
         {
           name: 'Colour Print Ad',
           colourNoOfPage: values?.colourNoOfPage,
+          copyOne: values?.copyOne,
           // ef: values?.efColour,
           emission: emissionColour > 0 ? emissionColour : '',
         },
         {
           name: 'Black & White',
           blackWhiteNoOfPage: values?.blackWhiteNoOfPage,
+          copyTwo: values?.copyTwo,
           // ef: values?.efBlackWhite,
           emission: emissionBlackWhite > 0 ? emissionBlackWhite : '',
         },
@@ -762,16 +767,18 @@ const VirtualEvent = (props) => {
         {
           subType: '',
           subTypeData: {
-            th: ['', 'No. of Page', 'Emissions'],
+            th: ['', 'No. of Page', 'No of Copies', 'Emissions'],
             td: [
               {
                 vtType: 'Colour Print Ad',
                 noOfPages: values?.colourNoOfPage,
+                noOfCopy: values?.copyOne,
                 emissions: emissionColour > 0 ? emissionColour : '',
               },
               {
                 vtType: 'Black & White',
                 noOfPages: values?.blackWhiteNoOfPage,
+                noOfCopy: values?.copyTwo,
                 emissions: emissionBlackWhite > 0 ? emissionBlackWhite : '',
               },
             ],
@@ -928,6 +935,7 @@ const VirtualEvent = (props) => {
   //     formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
   //   }
   // }, [value]);
+  console.log('allData', allData);
   useEffect(() => {
     if (allData?.[0]?.data?.length > 0) {
       const formValues = {
@@ -958,9 +966,11 @@ const VirtualEvent = (props) => {
           formValues.emissionHalf = item.emission;
         } else if (item.name === 'Colour Print Ad' || item.type === 'Colour Print Ad') {
           formValues.colourNoOfPage = item.colourNoOfPage;
+          formValues.copyOne = item.copyOne;
           formValues.emissionColour = item.emission;
         } else if (item.name === 'Black & White' || item.type === 'Black & White') {
           formValues.blackWhiteNoOfPage = item.blackWhiteNoOfPage;
+          formValues.copyTwo = item.copyTwo;
           formValues.emissionBlackWhite = item.emission;
         }
       });
@@ -1446,6 +1456,24 @@ const VirtualEvent = (props) => {
                     sx={{ marginTop: 2 }}
                     inputProps={{ style: { color: 'black' } }}
                   />
+
+                  <TextField
+                    size="small"
+                    type="number"
+                    name={'copyOne'}
+                    value={values?.copyOne}
+                    label="No of Copies"
+                    variant="outlined"
+                    fullWidth
+                    onChange={(e) => {
+                      formik.setFieldValue('copyOne', Number(e.target.value));
+                      // formik.setFieldValue("emissionColour", Number(Number(e.target.value) * Number(values?.colour)  * Number(values?.efPage)).toFixed(5));
+                      formik.handleSubmit();
+                    }}
+                    sx={{ marginTop: 2 }}
+                    inputProps={{ style: { color: 'black' } }}
+                  />
+
                   <TextField
                     size="small"
                     type="number"
@@ -1490,6 +1518,24 @@ const VirtualEvent = (props) => {
                     sx={{ marginTop: 2 }}
                     inputProps={{ style: { color: 'black' } }}
                   />
+
+                  <TextField
+                    size="small"
+                    type="number"
+                    name={'copyTwo'}
+                    value={values?.copyTwo}
+                    label="No of Copies"
+                    variant="outlined"
+                    fullWidth
+                    onChange={(e) => {
+                      formik.setFieldValue('copyTwo', Number(e.target.value));
+                      // formik.setFieldValue("emissionColour", Number(Number(e.target.value) * Number(values?.colour)  * Number(values?.efPage)).toFixed(5));
+                      formik.handleSubmit();
+                    }}
+                    sx={{ marginTop: 2 }}
+                    inputProps={{ style: { color: 'black' } }}
+                  />
+
                   <TextField
                     size="small"
                     type="number"

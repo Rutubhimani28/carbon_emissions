@@ -126,7 +126,7 @@ const Image = (props) => {
           type: 'Data Center Emissions',
           dataCenter: values?.dataCenter,
           renewable: values?.dataRenewable,
-          emission: dataEmissions > 0 ? dataEmissions : 0,
+          emission: dataEmissions > 0 ? Number(dataEmissions).toFixed(5) : 0,
         },
         {
           type: 'Content Size',
@@ -393,15 +393,19 @@ const Image = (props) => {
 
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
-              <Typography variant="h4" className="text-center text-white mb-4">
+              <Typography variant="h4" className="text-center text-white mb-4 mt-3">
                 Device Emissions
               </Typography>
               <div className="table-responsive">
                 <table className="table-custom-inpt-field">
                   <tr>
                     <th className="ps-2">Device Type </th>
-                    <th className="ps-2">No. of Devices</th>
-                    <th className="ps-2">Emissions</th>
+                    <th className="ps-2" style={{ textAlign: 'center' }}>
+                      No. of Devices
+                    </th>
+                    <th className="ps-2" style={{ textAlign: 'center' }}>
+                      Emissions
+                    </th>
                   </tr>
                   <tr>
                     <td className="ps-2 py-1">Mobile</td>
@@ -534,11 +538,11 @@ const Image = (props) => {
                       />
                     </td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td className="ps-2">Total</td>
                     <td />
                     <td style={{ textAlign: 'right' }}>{Number(totalDevice).toFixed(5)}</td>
-                  </tr>
+                  </tr> */}
                 </table>
               </div>
             </Box>
@@ -546,7 +550,7 @@ const Image = (props) => {
 
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
-              <Typography variant="h4" className="text-center text-white mb-4">
+              <Typography variant="h4" className="text-center text-white mb-4 mt-3">
                 Data Center Emissions
               </Typography>
               <div className="table-responsive">
@@ -631,7 +635,7 @@ const Image = (props) => {
 
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
-              <Typography variant="h4" className="text-center text-white mb-4">
+              <Typography variant="h4" className="text-center text-white mb-4 mt-3">
                 Total Emissions
               </Typography>
               <TableContainer component={Paper} sx={{ backgroundColor: 'transparent' }}>
@@ -665,17 +669,17 @@ const Image = (props) => {
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Network</TableCell>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
-                        {Number(formik.values.wifiTotalEmissions || 0)}
+                        {Number(formik.values.wifiTotalEmissions || 0).toFixed(5)}
                       </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Device</TableCell>
-                      <TableCell sx={{ color: 'white', borderBottom: 'none' }}>{Number(totalDevice || 0)}</TableCell>
+                      <TableCell sx={{ color: 'white', borderBottom: 'none' }}>{Number(totalDevice || 0).toFixed(5)}</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Data Center</TableCell>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
-                        {Number(formik.values.dataEmissions) || 0}
+                        {Number(formik.values.dataEmissions  || 0).toFixed(5)}
                       </TableCell>
                     </TableRow>
                     <TableRow>
@@ -693,7 +697,7 @@ const Image = (props) => {
           </Grid>
         </Grid>
         <Grid>
-          <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+          <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={2}>
             <Stack direction={'row'} spacing={2}>
               <Button
                 variant="contained"

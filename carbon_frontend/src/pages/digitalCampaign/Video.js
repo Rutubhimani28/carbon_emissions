@@ -116,13 +116,13 @@ const Video = (props) => {
         {
           type: 'Device Emissions',
           mobile: values?.mobileDevice,
-          mobileEmission: mobileDeviceEmissions > 0 ? mobileDeviceEmissions : '',
+          mobileEmission: Number(mobileDeviceEmissions).toFixed(5) > 0 ? Number(mobileDeviceEmissions).toFixed(5) : '',
           tablet: values?.tabletDevice,
-          tabletEmission: tabletDeviceEmissions > 0 ? tabletDeviceEmissions : '',
+          tabletEmission: Number(tabletDeviceEmissions).toFixed(5) > 0 ? Number(tabletDeviceEmissions).toFixed(5) : '',
           laptop: values?.laptopDevice,
-          laptopEmission: laptopDeviceEmissions > 0 ? laptopDeviceEmissions : '',
+          laptopEmission: Number(laptopDeviceEmissions).toFixed(5) > 0 ? Number(laptopDeviceEmissions).toFixed(5) : '',
           desktop: values?.desktopDevice,
-          desktopEmission: desktopDeviceEmissions > 0 ? desktopDeviceEmissions : '',
+          desktopEmission: Number(desktopDeviceEmissions).toFixed(5) > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
         },
         {
           type: 'Data Center Emissions',
@@ -414,7 +414,7 @@ const Video = (props) => {
             </Box>
           </Grid>
 
-          <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+          <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={2}>
             <Box>
               <Typography variant="h4" className="text-center text-white mb-4">
                 Device Emissions
@@ -423,8 +423,12 @@ const Video = (props) => {
                 <table className="table-custom-inpt-field">
                   <tr>
                     <th className="ps-2">Device Type </th>
-                    <th className="ps-2">No. of Devices</th>
-                    <th className="ps-2">Emissions</th>
+                    <th className="ps-2" style={{ textAlign: 'center' }}>
+                      No. of Devices
+                    </th>
+                    <th className="ps-2" style={{ textAlign: 'center' }}>
+                      Emissions
+                    </th>
                   </tr>
                   <tr>
                     <td className="ps-2 py-1">Mobile</td>
@@ -567,11 +571,11 @@ const Video = (props) => {
                       />
                     </td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td className="ps-2">Total</td>
                     <td />
                     <td style={{ textAlign: 'right' }}>{Number(totalDevice).toFixed(5)}</td>
-                  </tr>
+                  </tr> */}
                 </table>
               </div>
             </Box>
@@ -579,7 +583,7 @@ const Video = (props) => {
 
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
-              <Typography variant="h4" className="text-center text-white mb-4">
+              <Typography variant="h4" className="text-center text-white mb-4 mt-3">
                 Data Center Emissions
               </Typography>
               <div className="table-responsive">
@@ -664,7 +668,7 @@ const Video = (props) => {
 
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
-              <Typography variant="h4" className="text-center text-white mb-4">
+              <Typography variant="h4" className="text-center text-white mb-4 mt-3">
                 Total Emissions
               </Typography>
               <TableContainer component={Paper} sx={{ backgroundColor: 'transparent' }}>
@@ -698,17 +702,19 @@ const Video = (props) => {
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Network</TableCell>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
-                        {Number(formik.values.wifiTotalEmissions || 0)}
+                        {Number(formik.values.wifiTotalEmissions || 0).toFixed(5)}
                       </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Device</TableCell>
-                      <TableCell sx={{ color: 'white', borderBottom: 'none' }}>{Number(totalDevice || 0)}</TableCell>
+                      <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
+                        {Number(totalDevice || 0).toFixed(5)}
+                      </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Data Center</TableCell>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
-                        {Number(formik.values.dataEmissions || 0)}
+                        {Number(formik.values.dataEmissions || 0).toFixed(5)}
                       </TableCell>
                     </TableRow>
                     <TableRow>
@@ -726,7 +732,7 @@ const Video = (props) => {
           </Grid>
         </Grid>
         <Grid>
-          <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+          <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={2}>
             <Stack direction={'row'} spacing={2}>
               <Button
                 variant="contained"
