@@ -32,7 +32,7 @@ const fetchImageData = createSlice({
           totalEmission += item?.tabletEmission ? Number(item?.tabletEmission) : 0;
         } else if (item.type === 'Data Center Emissions') {
           totalEmission += item?.emission ? Number(item?.emission) : 0;
-        }
+        } 
       });
       state.totalEmission = Number(totalEmission).toFixed(5) || 0;
     },

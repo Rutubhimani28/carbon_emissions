@@ -87,19 +87,19 @@ const Result = ({ value }) => {
 
   const data = {
     // "totalVirtualEvent": Number(allVirtualEventData?.totalEmission).toFixed(5),
-    totalTvAd: Number(allVirtualEventData?.data?.[0]?.data?.[16]?.emission || 0).toFixed(5),
-    totalNewspaper: Number(allVirtualEventData?.data?.[0]?.data?.[13]?.emission || 0).toFixed(5),
-    totalHafepaper: Number(allVirtualEventData?.data?.[0]?.data?.[19]?.emission || 0).toFixed(5),
-    colorPrint: Number(allVirtualEventData?.data?.[0]?.data?.[20]?.emission || 0).toFixed(5),
-    blackAndWhite: Number(allVirtualEventData?.data?.[0]?.data?.[21]?.emission || 0).toFixed(5),
+    totalTvAd: Number(allVirtualEventData?.data?.[0]?.data?.[3]?.emission || 0).toFixed(5),
+    totalNewspaper: Number(allVirtualEventData?.data?.[0]?.data?.[0]?.emission || 0).toFixed(5),
+    totalHafepaper: Number(allVirtualEventData?.data?.[0]?.data?.[6]?.emission || 0).toFixed(5),
+    colorPrint: Number(allVirtualEventData?.data?.[0]?.data?.[7]?.emission || 0).toFixed(5),
+    blackAndWhite: Number(allVirtualEventData?.data?.[0]?.data?.[8]?.emission || 0).toFixed(5),
     // "totalMagazine": Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission).toFixed(5),
     // "totalPodcast": Number(allVirtualEventData?.data?.[0]?.data?.[17]?.emission).toFixed(5),
-    totalPolyethylene: Number(allVirtualEventData?.data?.[0]?.data?.[14]?.emission || 0).toFixed(5),
-    totalPVC: Number(allVirtualEventData?.data?.[0]?.data?.[15]?.emission || 0).toFixed(5),
-    Energy: Number(allVirtualEventData?.data?.[0]?.data?.[18]?.emission || 0).toFixed(5),
+    totalPolyethylene: Number(allVirtualEventData?.data?.[0]?.data?.[1]?.emission || 0).toFixed(5),
+    totalPVC: Number(allVirtualEventData?.data?.[0]?.data?.[2]?.emission || 0).toFixed(5),
+    Energy: Number(allVirtualEventData?.data?.[0]?.data?.[5]?.emission || 0).toFixed(5),
     grandTotal: Number(total || 0).toFixed(5),
   };
-
+  
   const outdoorBilboardEmission =
     Number(data.totalPolyethylene) +
       Number(data?.totalPVC) +
@@ -342,7 +342,7 @@ const Result = ({ value }) => {
 
   useEffect(() => {
     if (content) {
-      chat();
+      // chat();
     }
   }, [content]);
 

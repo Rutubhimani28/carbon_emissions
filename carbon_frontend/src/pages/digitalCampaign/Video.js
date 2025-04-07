@@ -131,13 +131,26 @@ const Video = (props) => {
           emission: dataEmissions > 0 ? dataEmissions : '',
         },
         {
+          type: 'video',
           videoLength: values?.videoLength,
           videoSize: values?.videoSize,
           totalImpression: values?.totalImpression,
         },
       ];
-
       const tableData = [
+        {
+          subType: 'video',
+          subTypeData: {
+            th: ['videoLength', 'videoSize', 'videoSize'],
+            td: [
+              {
+                videoLength: values?.videoLength,
+                videoSize: values?.videoSize,
+                totalImpression: values?.totalImpression,
+              },
+            ],
+          },
+        },
         {
           subType: 'Network Emissions',
           subTypeData: {

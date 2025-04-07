@@ -130,7 +130,7 @@ const Image = (props) => {
         },
         {
           type: 'Content Size',
-          size: values?.contentSize,
+          contentSize: values?.contentSize,
         },
       ];
 
@@ -138,6 +138,7 @@ const Image = (props) => {
         {
           subType: 'Content Size (Mb)',
           subTypeData: {
+            th: ['contentSize'],
             td: [{ contentSize: values?.contentSize }],
           },
         },
@@ -239,7 +240,7 @@ const Image = (props) => {
 
   useEffect(() => {
     if (allData?.length > 0) {
-      formik.setFieldValue('contentSize', allData?.[3]?.size);
+      formik.setFieldValue('contentSize', allData?.[3]?.contentSize);
 
       formik.setFieldValue('wifiImpression', allData?.[0]?.wifi);
       formik.setFieldValue('wifi4GImpression', allData?.[0]?.wifi4g);
@@ -277,7 +278,18 @@ const Image = (props) => {
                   name="contentSize"
                   sx={{ width: '300px' }}
                   value={formik.values.contentSize}
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    formik.setFieldValue('contentSize', value);
+
+                    const wifiEF2 = Number(formik.values.wifiImpression || 0) * 0.0000017 * value;
+                    const wifiEF4 = Number(formik.values.wifi4GImpression || 0) * 0.00000189 * value;
+                    const wifiEF6 = Number(formik.values.wifi5GImpression || 0) * 0.000000189 * value;
+                    const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(5);
+
+                    formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
+                    formik.handleSubmit();
+                  }}
                   inputProps={{ style: { color: 'white' } }}
                 />
               </Grid>
