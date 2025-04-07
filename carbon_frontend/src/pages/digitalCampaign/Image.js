@@ -665,17 +665,17 @@ const Image = (props) => {
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Network</TableCell>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
-                        {Number(formik.values.wifiTotalEmissions)}
+                        {Number(formik.values.wifiTotalEmissions || 0)}
                       </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Device</TableCell>
-                      <TableCell sx={{ color: 'white', borderBottom: 'none' }}>{Number(totalDevice)}</TableCell>
+                      <TableCell sx={{ color: 'white', borderBottom: 'none' }}>{Number(totalDevice || 0)}</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Data Center</TableCell>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
-                        {Number(formik.values.dataEmissions)}
+                        {Number(formik.values.dataEmissions) || 0}
                       </TableCell>
                     </TableRow>
                     <TableRow>
@@ -683,7 +683,7 @@ const Image = (props) => {
                         Total Emissions
                       </TableCell>
                       <TableCell sx={{ fontWeight: 'bold', color: 'white', borderBottom: 'none' }}>
-                        {Number(ImageTotalEmissions).toFixed(5)}
+                        {Number(ImageTotalEmissions || 0).toFixed(5)}
                       </TableCell>
                     </TableRow>
                   </TableBody>

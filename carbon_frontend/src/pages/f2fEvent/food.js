@@ -104,7 +104,7 @@ const Food = (props) => {
       const emissionSeven = Number((0.57 * values?.noOfBottlesTwo).toFixed(5));
       const emissionEight = Number((0.67 * values?.noOfBottlesThree).toFixed(5));
       const emissionNine = Number((2.971 * values?.noOfBottlesFour).toFixed(5));
-      const emissionTen = Number((0.74 * values?.noOfBottlesFive).toFixed(5));
+      const emissionTen = Number((0.69 * values?.noOfBottlesFive).toFixed(5));
       const emissionEleven = Number((0.25 * values?.noOfBottlesSix).toFixed(5));
       const emissionTwelve = Number((2.19 * values?.noOfBottlesSeven).toFixed(5));
       // const emissionThirteen = Number((1.09 * values?.noOfBottlesEight).toFixed(5));
@@ -173,7 +173,7 @@ const Food = (props) => {
         {
           type: '33-cL aluminum cans- 1l',
           noOfBottles: values?.noOfBottlesFive,
-          emission: Number((0.74 * values?.noOfBottlesFive).toFixed(5)) || 0,
+          emission: Number((0.69 * values?.noOfBottlesFive).toFixed(5)) || 0,
         },
         {
           type: '30-L steel kegs- 1l',
@@ -656,7 +656,7 @@ const Food = (props) => {
                               name="noOfBottlesFive"
                               value={formik?.values?.noOfBottlesFive}
                               onChange={(e) => {
-                                handleChangeBeveragesWaste(e, 'emissionTen', e.target.value, 0.74);
+                                handleChangeBeveragesWaste(e, 'emissionTen', e.target.value, 0.69);
                               }}
                               inputProps={{ style: { color: 'white' } }}
                             />

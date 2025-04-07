@@ -34,9 +34,8 @@ const Result = ({ value }) => {
   const allVirtualEventData = useSelector((state) => state?.totalVirtualEventDetails);
   const total = Number(allVirtualEventData?.totalEmission);
   const totalResultTableData = useSelector((state) => state?.resultTableDataDetails);
-
   const chartData = [Number(allVirtualEventData?.totalEmission) || 0];
-//   console.log(allVirtualEventData?.data?.data[0]?.data[0]?.data?., 'allVirtualEventData');
+  //   console.log(allVirtualEventData?.data?.data[0]?.data[0]?.data?., 'allVirtualEventData');
   const resultData = [
     // {
     //     // type: 'Virtual Event',
@@ -99,7 +98,7 @@ const Result = ({ value }) => {
     Energy: Number(allVirtualEventData?.data?.[0]?.data?.[5]?.emission || 0).toFixed(5),
     grandTotal: Number(total || 0).toFixed(5),
   };
-  
+
   const outdoorBilboardEmission =
     Number(data.totalPolyethylene) +
       Number(data?.totalPVC) +
@@ -188,17 +187,39 @@ const Result = ({ value }) => {
     // setContent(finalSentence);
 
     // // for Outbound Marketing
-    if (allVirtualEventData?.data?.[0]?.data?.[16]?.emission) {
+    if (allVirtualEventData?.data?.[0]?.data?.[3]?.emission) {
       // sentenceParts.push(`TV Ad ${allVirtualEventData?.data?.[0]?.data?.[17]?.emission} kgCO2e.`);
       sentenceParts.push(
-        `TV Ad with ${allVirtualEventData?.data?.[0]?.data?.[16]?.adDuration} secs duration with ${allVirtualEventData?.data?.[0]?.data?.[16]?.noOfSlots} slots generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e, `
+        `TV Ad with ${allVirtualEventData?.data?.[0]?.data?.[3]?.adDuration} secs duration with ${allVirtualEventData?.data?.[0]?.data?.[3]?.noOfSlots} slots generated ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} kgco2e, `
       );
     }
-    if (allVirtualEventData?.data?.[0]?.data?.[13]?.emission) {
+    if (allVirtualEventData?.data?.[0]?.data?.[0]?.emission) {
       // sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
       sentenceParts.push(
-        `Newspaper ad with ${allVirtualEventData?.data?.[0]?.data?.[13]?.noOfCopiesOne} copies generated ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgco2e, `
+        `Newspaper- Full page Ad  with ${allVirtualEventData?.data?.[0]?.data?.[0]?.noOfCopiesOne} copies generated ${allVirtualEventData?.data?.[0]?.data?.[0]?.emission} kgco2e, `
       );
+    }
+    if (allVirtualEventData?.data?.[0]?.data?.[6]?.emission) {
+      // sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
+      sentenceParts.push(
+        `Newspaper- Half page Ad  with ${allVirtualEventData?.data?.[0]?.data?.[6]?.noOfCopiesHalf} copies generated ${allVirtualEventData?.data?.[0]?.data?.[6]?.emission} kgco2e, `
+      );
+    }
+    if (allVirtualEventData?.data?.[0]?.data?.[7]?.emission) {
+      // sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
+      sentenceParts.push(
+        `Colour Print Ad  with ${allVirtualEventData?.data?.[0]?.data?.[7]?.colourNoOfPage} copies generated ${allVirtualEventData?.data?.[0]?.data?.[7]?.emission} kgco2e, `
+      );
+    }
+    if (allVirtualEventData?.data?.[0]?.data?.[8]?.emission) {
+      // sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
+      sentenceParts.push(
+        `Black & White Print Ad with ${allVirtualEventData?.data?.[0]?.data?.[8]?.blackWhiteNoOfPage} copies generated ${allVirtualEventData?.data?.[0]?.data?.[8]?.emission} kgco2e, `
+      );
+    }
+    if (allVirtualEventData?.data?.[0]?.data?.[2]?.emission) {
+      // sentenceParts.push(`Newspaper- Full page Ad ${allVirtualEventData?.data?.[0]?.data?.[13]?.emission} kgCO2e.`);
+      sentenceParts.push(`and a banner generated ${allVirtualEventData?.data?.[0]?.data?.[2]?.emission} kgco2e, `);
     }
     // if (allVirtualEventData?.data?.[0]?.data?.[14]?.emission) {
     //     // sentenceParts.push(`Magazine ${allVirtualEventData?.data?.[0]?.data?.[14]?.emission} kgCO2e.`);
@@ -215,18 +236,20 @@ const Result = ({ value }) => {
     //     // sentenceParts.push(`PVC banner ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgCO2e.`);
     //     sentenceParts.push(`and PVC banner generated ${allVirtualEventData?.data?.[0]?.data?.[16]?.emission} kgco2e,`);
     // }
-    if (outdoorBilboardEmission) {
-      sentenceParts.push(`and outdoor billboard generated ${outdoorBilboardEmission} kgco2e. `);
-    }
-    if (totalCarbonFootprint) {
-      // sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);
-      sentenceParts.push(`Total emissions were ${Number(total).toFixed(5)} kgCO2e.`);
-    }
+    // if (outdoorBilboardEmission) {
+    //   sentenceParts.push(`and outdoor billboard generated ${outdoorBilboardEmission} kgco2e. `);
+    // }
+    // if (totalCarbonFootprint) {
+    //   // sentenceParts.push(`Total ${totalCarbonFootprint} Carbon Footprint generated from your Product activity.`);
+    //   sentenceParts.push(`Total emissions were ${Number(total).toFixed(5)} kgCO2e.`);
+    // }
     // sentenceParts.push(`\n\nHow to reduce the carbon footprint by 20-25%? Show the calculation for comparing the original and reduced carbon footprints. Suggest using Polyethylene Banners as they are 100% recyclable. In end say, by following these measures you can reduce cost by more than 10%.`);
+    // sentenceParts.push(
+    //   `\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, along with alternative methods, also show the calculation for each category. For PVC banners suggest to use polyethylene.`
+    // );
     sentenceParts.push(
-      `\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, along with alternative methods, also show the calculation for each category. For PVC banners suggest to use polyethylene.`
+      `\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item for each category- TV Ad, Newspaper Ad, Print Ad and Outdoor Billboard. Show the calculation for each category. For PVC banners we highly recommend you to use polyethylene as it is 100% recyclable with lesser emissions as compared to PVC.`
     );
-
     const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);
   };
@@ -342,7 +365,7 @@ const Result = ({ value }) => {
 
   useEffect(() => {
     if (content) {
-      // chat();
+      chat();
     }
   }, [content]);
 

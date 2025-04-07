@@ -180,7 +180,7 @@ const VirtualEvent = (props) => {
     viewers: '',
     efEighteen: 0.0000222,
     emissionEightteen: '',
-    efEighteen1: 0.727,
+    efEighteen1:0.8552,
 
     // Podcast
     podcastSize: '', // Podcast Size (in Mb)
@@ -191,7 +191,7 @@ const VirtualEvent = (props) => {
 
     // Energy
     energyKwh: '',
-    efTwenty: 0.727,
+    efTwenty:0.8552,
     energyRenewable: '',
     emissionTwenty: '',
 
@@ -202,13 +202,16 @@ const VirtualEvent = (props) => {
 
     // Print Ad
     colourNoOfPage: '',
-    efColour: 0.976,
+    efColour: 0.017,
     emissionColour: '',
+    noOfcopiesColor : 10000,
 
     // blackWhite Ad
     blackWhiteNoOfPage: '',
-    efBlackWhite: 0.946,
+    efBlackWhite: 0.034,
     emissionBlackWhite: '',
+    noOfcopiesBlackWhite : 10000,
+
   };
 
   const formik = useFormik({
@@ -332,11 +335,11 @@ const VirtualEvent = (props) => {
       const emissionHalf =
         values?.noOfCopiesHalf === 0 ? 0 : Number(Number(values?.noOfCopiesHalf) * Number(values?.efHalf)).toFixed(5);
       const emissionColour =
-        values?.colourNoOfPage === 0 ? 0 : Number(Number(values?.colourNoOfPage) * Number(values?.efColour)).toFixed(5);
+        values?.colourNoOfPage === 0 ? 0 : Number(Number(values?.colourNoOfPage)* Number(values?.noOfcopiesColor) * Number(values?.efColour)).toFixed(5);
       const emissionBlackWhite =
         values?.blackWhiteNoOfPage === 0
           ? 0
-          : Number(Number(values?.blackWhiteNoOfPage) * Number(values?.efBlackWhite)).toFixed(5);
+          : Number(Number(values?.blackWhiteNoOfPage) * Number(values?.noOfcopiesBlackWhite)* Number(values?.efBlackWhite)).toFixed(5);
 
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 

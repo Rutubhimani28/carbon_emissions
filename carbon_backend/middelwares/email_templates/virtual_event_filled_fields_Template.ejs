@@ -126,13 +126,13 @@
                 </td>
             </tr> -->
             <tr>
-                <th>Newspaper- Half page Ad	</th>
+                <th>Newspaper- Half page Ad </th>
                 <td>
                     <%= data.totalHafepaper %> kgCO<sub>2</sub>e
                 </td>
             </tr>
             <tr>
-                <th>Colour Print Ad	</th>
+                <th>Colour Print Ad </th>
                 <td>
                     <%= data.colorPrint %> kgCO<sub>2</sub>e
                 </td>
@@ -213,8 +213,8 @@
                                                                             rowData.impressionsOne || rowData.noOfPeople
                                                                             || rowData.noOfListeners
                                                                             ||rowData.energyRenewable||
-                                                                            rowData.noOfCopiesTwo || rowData.noOfSlots)
-                                                                            { %>
+                                                                            rowData.noOfCopiesTwo || rowData.noOfSlots
+                                                                            || rowData.noOfCopy) { %>
                                                                             <td>
                                                                                 <%= rowData.videoMins ||
                                                                                     rowData.impressionsOne ||
@@ -222,6 +222,7 @@
                                                                                     rowData.noOfSlots ||
                                                                                     rowData.noOfListeners ||
                                                                                     rowData.energyRenewable||
+                                                                                    rowData.noOfCopy ||
                                                                                     rowData.noOfCopiesTwo %>
                                                                             </td>
                                                                             <% } %>

@@ -51,7 +51,7 @@ const EnergyUpdated = (props) => {
     // emissionTwo: 0,
     // dieselOne: 0,
     // emissionThree: 0,
-    ElectricityEF: 0.727,
+    ElectricityEF: 0.8552,
     // RenewableEnergyPercentage: '',
     MinusRenewableEnergy: '',
     kwh: '',
