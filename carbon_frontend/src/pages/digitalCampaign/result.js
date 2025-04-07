@@ -151,7 +151,7 @@ const Result = ({ value }) => {
       sentenceParts.push(`My Digital Campaign has a carbon footprint of ${totalCarbonFootprint}, `);
     }
     if (imageTotal) {
-      sentenceParts.push(`Image generated ${imageTotal} kgCO2e, `);
+      sentenceParts.push(`Based on the emissions you generated from Image generated ${imageTotal} kgCO2e, `);
     }
     if (videoTotal) {
       sentenceParts.push(`and video generated ${videoTotal} kgCO2e, `);
@@ -171,8 +171,9 @@ const Result = ({ value }) => {
 
     // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
     // const finalSentence = `${sentenceParts.join(', ')} \n\n${wantInResult}`;
+
     sentenceParts.push(
-      `\n How can I reduce the emissions max? In the Page, reduce the size of the Page from ${totalCarbonFootprint}  Mb by 25%, Image size from ${imageTotal} Mb by 25% , and Video duration from ${videoTotal} secs by 25%. Show the original and reduced emissions by suggesting one action item for Page, Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`
+      `\n How can I reduce the emissions max? In the Image size from ${imageTotal} Mb by over 25% , and Video duration from ${videoTotal} secs by over 25%. Show the original and reduced emissions by suggesting one action item for  Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`
     );
     const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);
@@ -210,6 +211,7 @@ const Result = ({ value }) => {
   };
 
   const chat = async () => {
+    console.log(content,"content");
     setIsLoading(true);
     try {
       const response = await axios.post(

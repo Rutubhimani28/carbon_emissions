@@ -155,7 +155,7 @@ const VirtualEvent = (props) => {
 
     // Newspaper- Full page Ad
     noOfCopiesOne: '',
-    efFourteen: 0.025,
+    efFourteen: 0.02105,
     emissionFourteen: '',
 
     // Magazine
@@ -197,22 +197,21 @@ const VirtualEvent = (props) => {
 
     // Newspaper- Half page Ad
     noOfCopiesHalf: '',
-    efHalf: 0.0125,
+    efHalf: 0.010525,
     emissionHalf: '',
 
     // Print Ad
     colourNoOfPage: '',
-    efColour: 0.017,
+    efColour: 0.034,
     copyOne: '',
     emissionColour: '',
 
     // blackWhite Ad
     blackWhiteNoOfPage: '',
-    efBlackWhite: 0.034,
+    efBlackWhite: 0.017,
     copyTwo: '',
     emissionBlackWhite: '',
   };
-
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
@@ -331,8 +330,10 @@ const VirtualEvent = (props) => {
         values?.energyKwh === 0
           ? 0
           : Number((Number(values?.energyKwh) * Number(values?.efTwenty) * minusRenewanle) / 100).toFixed(5);
+      const divededEf = values?.efFourteen / 2;
       const emissionHalf =
-        values?.noOfCopiesHalf === 0 ? 0 : Number(Number(values?.noOfCopiesHalf) * Number(values?.efHalf)).toFixed(5);
+        values?.noOfCopiesHalf === 0 ? 0 : Number(Number(values?.noOfCopiesHalf) * Number(divededEf)).toFixed(5);
+
       const emissionColour =
         values?.colourNoOfPage === 0
           ? 0
@@ -935,7 +936,7 @@ const VirtualEvent = (props) => {
   //     formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
   //   }
   // }, [value]);
-  console.log('allData', allData);
+  
   useEffect(() => {
     if (allData?.[0]?.data?.length > 0) {
       const formValues = {
