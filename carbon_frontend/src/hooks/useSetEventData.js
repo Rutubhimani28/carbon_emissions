@@ -139,6 +139,8 @@ const useSetEventData = () => {
       activityName: currentEventData?.activityName,
       country: currentEventData?.country,
       budget: currentEventData?.budget,
+      dateTo: currentEventData?.dateTo,
+      dateFrom: currentEventData?.dateFrom,
       actionChoice: 'retrieve',
       dateFrom: dayjs(currentEventData?.dateFrom).format('YYYY-MM-DD') || null,
       dateTo: dayjs(currentEventData?.dateTo).format('YYYY-MM-DD') || null,

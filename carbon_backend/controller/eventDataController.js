@@ -470,3 +470,4 @@ export default {
   getUserRecords,
   generateDateReport,
 };
+

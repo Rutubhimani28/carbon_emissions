@@ -47,7 +47,6 @@ import digitalCampaign from '../../layouts/user/assets/images/Digital Campaign.j
 import useSetEventData from '../../hooks/useSetEventData';
 import useEventData from '../../hooks/useEventData';
 import useGenerateSendFilledFieldsData from '../../hooks/useGenerateSendFilledFieldsData';
-
 // Extend dayjs with plugins
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -147,7 +146,6 @@ const Home = () => {
     previousEvent: null,
     isDisabledRetrieveButtons: true,
   };
-
   const validationSchema = yup.object({
     // name: yup.string().required('Name is required'),
     // email: yup.string().email('Invalid Email').required('Business Email is required'),
@@ -179,7 +177,6 @@ const Home = () => {
     formik.setFieldValue('dateTo', null);
     setIsDisabledField(e.target.value === 'retrieve');
     // setActionChoiceState(e.target.value);
-
     if (e.target.value === 'retrieve') {
       formik.setFieldValue('previousEvent', null);
     }
@@ -194,7 +191,6 @@ const Home = () => {
   const handlePreviousEventSelect = (e) => {
     formik.setFieldValue('previousEvent', e || null);
     formik.setFieldValue('isDisabledRetrieveButtons', true);
-
     if (e && e.value) {
       fetchUsesAllEventsData(e.value);
       formik.setFieldValue('isDisabledRetrieveButtons', false);
@@ -211,7 +207,7 @@ const Home = () => {
       return;
     }
     if (id) {
-      await setParticularEventFetchedData(...(resultAction.payload?.data ? resultAction.payload?.data : {}));
+      setParticularEventFetchedData(...(resultAction.payload?.data ? resultAction.payload?.data : {}));
       setIsSubmited(true);
     }
   };
@@ -262,7 +258,6 @@ const Home = () => {
 
     const eventData = {
       // ...eventsData,
-
       activityName: formik.values?.activityName || '',
       budget: formik.values?.budget || '',
       country: formik.values?.country || '',
