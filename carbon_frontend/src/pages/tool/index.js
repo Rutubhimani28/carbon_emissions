@@ -22,6 +22,7 @@ import {
   RadioGroup,
 } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useFormik } from 'formik';
@@ -111,7 +112,6 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toolData = useSelector((state) => state.toolDetails?.data);
-
   const userSessionData = sessionStorage.getItem('user');
   const userData = JSON.parse(userSessionData);
 
@@ -123,7 +123,7 @@ const Home = () => {
 
   const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({
     value: item._id,
-    label: `${item?.activityName} - ${item?.dateTime}`,
+    label: `${item?.activityName} `,
   }));
   // const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm')}` }));
 
@@ -139,6 +139,8 @@ const Home = () => {
     budget: '',
     // dateTime: '',
     dateTime: null,
+    dateFrom: null,
+    dateTo: null,
     isValidData: false,
     isDirtyData: false,
     actionChoice: 'add',
@@ -152,7 +154,9 @@ const Home = () => {
     activityName: yup.string().required('Activity Name is required'),
     country: yup.string().required('Country is required'),
     budget: yup.number().required('Budget is required'),
-    dateTime: yup.string().required('Date is required'),
+    dateFrom: yup.date().required('Date is required'),
+    dateTo: yup.date().required('Date is required'),
+    // dateTime: yup.string().required('Date is required'),
   });
 
   const AddData = (values) => {
@@ -171,6 +175,8 @@ const Home = () => {
     formik.setFieldValue('country', '');
     formik.setFieldValue('budget', '');
     formik.setFieldValue('dateTime', null);
+    formik.setFieldValue('dateFrom', null);
+    formik.setFieldValue('dateTo', null);
     setIsDisabledField(e.target.value === 'retrieve');
     // setActionChoiceState(e.target.value);
 
@@ -261,9 +267,11 @@ const Home = () => {
       budget: formik.values?.budget || '',
       country: formik.values?.country || '',
       dateTime: formik.values?.dateTime || '',
+      dateFrom: formik.values?.dateFrom || '',
+      dateTo: formik.values?.dateTo || '',
 
       f2fEventData: [],
-      // virtualEventData: [],
+      virtualEventData: [],
       prEventData: [],
       digitalCampaignData: [],
 
@@ -368,6 +376,8 @@ const Home = () => {
       formik.setFieldValue('budget', formPrevData?.budget);
       // formik.setFieldValue('dateTime', formPrevData?.dateTime);
       formik.setFieldValue('dateTime', formPrevData?.dateTime);
+      formik.setFieldValue('dateTo', formPrevData?.dateTo);
+      formik.setFieldValue('dateFrom', formPrevData?.dateFrom);
       // formik.setFieldValue('dateTime', dayjs(formPrevData?.dateTime).format('MM/DD/YYYY hh:mm'));
       formik.setFieldValue('email', formPrevData?.email);
       // formik.setFieldValue('isDirtyData', formPrevData?.isDirtyData);
@@ -406,7 +416,6 @@ const Home = () => {
   useEffect(() => {
     fetchUsesAllEventsData();
   }, [dispatch, formik.values.actionChoice]);
-
   return (
     <>
       <Container maxWidth="lg" className="text-white">
@@ -663,7 +672,7 @@ const Home = () => {
                                         </div>
                                     </LocalizationProvider>
                                 </Grid> */}
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <FormLabel className="fw-bold text-white mt-1">
@@ -739,8 +748,85 @@ const Home = () => {
                       )}
                     </div>
                   </LocalizationProvider>
-                </Grid>
+                </Grid> */}
                 {/* <Grid item xs={12} sm={6} className='table-custom-inpt-field'> */}
+
+                <Grid item xs={12} sm={6}>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <FormLabel className="fw-bold text-white mt-1">
+                        Date(From) <span style={{ color: 'red' }}>*</span>
+                      </FormLabel>
+                      <DatePicker
+                        renderInput={(props) => (
+                          <TextField
+                            {...props}
+                            size="small"
+                            fullWidth
+                            disabled={isDisabledField}
+                            inputProps={{ style: { color: 'white !important' } }} // Ensure text color is white
+                            ampm={false}
+                          />
+                        )}
+                        className={`custom-dateTimePicker-field ${
+                          formik.touched.dateFrom ? 'custom-dateTimePicker-fieldTouched' : ''
+                        }`}
+                        disabled={isDisabledField}
+                        value={formik.values.dateFrom ? dayjs(formik.values.dateFrom) : null}
+                        onChange={(newValue) => {
+                          formik.setFieldValue('dateFrom', newValue ? dayjs(newValue).format('YYYY-MM-DD') : null);
+                          formik.setFieldTouched('dateFrom', true);
+                        }}
+                        onOpen={() => {
+                          formik.setFieldTouched('dateFrom', true);
+                        }}
+                        defaultValue={null}
+                        format="YYYY-MM-DD"
+                      />
+                    </div>
+                  </LocalizationProvider>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  {/* <FormLabel className="fw-bold text-white mt-1">${Date To}</FormLabel> */}
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <FormLabel className="fw-bold text-white mt-1">
+                        Date(To) <span style={{ color: 'red' }}>*</span>
+                      </FormLabel>
+                      <DatePicker
+                        renderInput={(props) => (
+                          <TextField
+                            {...props}
+                            size="small"
+                            fullWidth
+                            disabled={isDisabledField}
+                            inputProps={{ style: { color: 'white !important' } }}
+                            ampm={false}
+                          />
+                        )}
+                        className={`custom-dateTimePicker-field ${
+                          formik.touched.dateTo ? 'custom-dateTimePicker-fieldTouched' : ''
+                        }`}
+                        disabled={isDisabledField}
+                        value={formik.values.dateTo ? dayjs(formik.values.dateTo) : null}
+                        onChange={(newValue) => {
+                          formik.setFieldValue('dateTo', newValue ? dayjs(newValue).format('YYYY-MM-DD') : null);
+                          formik.setFieldTouched('dateTo', true);
+                        }}
+                        onOpen={() => {
+                          formik.setFieldTouched('dateTo', true);
+                        }}
+                        shouldDisableDate={(date) => {
+                          return formik.values.dateFrom && dayjs(date).isBefore(dayjs(formik.values.dateFrom));
+                        }}
+                        defaultValue={null}
+                        format="YYYY-MM-DD"
+                      />
+                    </div>
+                  </LocalizationProvider>
+                </Grid>
+
                 <Grid item xs={12} sm={6}>
                   <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
                     Allotted Budget (in$) <span style={{ color: 'red' }}>*</span>
@@ -849,7 +935,7 @@ const Home = () => {
         </Box>
 
         <Grid xs={3} md={6} spacing={2}>
-          <Typography className="mb-2 fs-5 text-center">Choose your Marketing activity</Typography>
+          <Typography className="mb-2 fs-5 text-center">Choose your activity type</Typography>
           <Grid xl={3} md={6} sm={12}>
             <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'}>
               <Box
