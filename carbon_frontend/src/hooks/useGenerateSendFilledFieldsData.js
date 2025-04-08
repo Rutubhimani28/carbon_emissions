@@ -20,7 +20,6 @@ const UseGenerateSendFilledFieldsData = () => {
 
   const toolData = useSelector((state) => state?.toolDetails?.data);
   const toolFormData = toolData?.find((item) => item?.type === 'toolForm');
-
   const resultTableData = useSelector((state) => state?.resultTableDataDetails); // pdf
   const userAllEventsData = resultTableData?.userAllEventsData;
 
@@ -88,6 +87,8 @@ const UseGenerateSendFilledFieldsData = () => {
     budget: toolFormData?.budget || '',
     country: toolFormData?.country || '',
     dateTime: toolFormData?.dateTime || '',
+    dateTo: toolFormData?.dateTo || '',
+    dateFrom: toolFormData?.dateFrom || '',
     isAttachment: true,
     // subject: `${toolFormData?.activityName} activity all events emissions data`,
     subject: `${toolFormData?.activityName}- Data`,

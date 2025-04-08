@@ -22,6 +22,7 @@ import {
   RadioGroup,
 } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useFormik } from 'formik';
@@ -46,7 +47,6 @@ import digitalCampaign from '../../layouts/user/assets/images/Digital Campaign.j
 import useSetEventData from '../../hooks/useSetEventData';
 import useEventData from '../../hooks/useEventData';
 import useGenerateSendFilledFieldsData from '../../hooks/useGenerateSendFilledFieldsData';
-
 // Extend dayjs with plugins
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -111,7 +111,6 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toolData = useSelector((state) => state.toolDetails?.data);
-
   const userSessionData = sessionStorage.getItem('user');
   const userData = JSON.parse(userSessionData);
 
@@ -123,7 +122,7 @@ const Home = () => {
 
   const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({
     value: item._id,
-    label: `${item?.activityName} - ${item?.dateTime}`,
+    label: `${item?.activityName} `,
   }));
   // const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm')}` }));
 
@@ -139,20 +138,23 @@ const Home = () => {
     budget: '',
     // dateTime: '',
     dateTime: null,
+    dateFrom: null,
+    dateTo: null,
     isValidData: false,
     isDirtyData: false,
     actionChoice: 'add',
     previousEvent: null,
     isDisabledRetrieveButtons: true,
   };
-
   const validationSchema = yup.object({
     // name: yup.string().required('Name is required'),
     // email: yup.string().email('Invalid Email').required('Business Email is required'),
     activityName: yup.string().required('Activity Name is required'),
     country: yup.string().required('Country is required'),
     budget: yup.number().required('Budget is required'),
-    dateTime: yup.string().required('Date is required'),
+    dateFrom: yup.date().required('Date is required'),
+    dateTo: yup.date().required('Date is required'),
+    // dateTime: yup.string().required('Date is required'),
   });
 
   const AddData = (values) => {
@@ -171,9 +173,10 @@ const Home = () => {
     formik.setFieldValue('country', '');
     formik.setFieldValue('budget', '');
     formik.setFieldValue('dateTime', null);
+    formik.setFieldValue('dateFrom', null);
+    formik.setFieldValue('dateTo', null);
     setIsDisabledField(e.target.value === 'retrieve');
     // setActionChoiceState(e.target.value);
-
     if (e.target.value === 'retrieve') {
       formik.setFieldValue('previousEvent', null);
     }
@@ -188,7 +191,6 @@ const Home = () => {
   const handlePreviousEventSelect = (e) => {
     formik.setFieldValue('previousEvent', e || null);
     formik.setFieldValue('isDisabledRetrieveButtons', true);
-
     if (e && e.value) {
       fetchUsesAllEventsData(e.value);
       formik.setFieldValue('isDisabledRetrieveButtons', false);
@@ -205,7 +207,7 @@ const Home = () => {
       return;
     }
     if (id) {
-      await setParticularEventFetchedData(...(resultAction.payload?.data ? resultAction.payload?.data : {}));
+      setParticularEventFetchedData(...(resultAction.payload?.data ? resultAction.payload?.data : {}));
       setIsSubmited(true);
     }
   };
@@ -256,14 +258,15 @@ const Home = () => {
 
     const eventData = {
       // ...eventsData,
-
       activityName: formik.values?.activityName || '',
       budget: formik.values?.budget || '',
       country: formik.values?.country || '',
       dateTime: formik.values?.dateTime || '',
+      dateFrom: formik.values?.dateFrom || null,
+      dateTo: formik.values?.dateTo || null,
 
       f2fEventData: [],
-      // virtualEventData: [],
+      virtualEventData: [],
       prEventData: [],
       digitalCampaignData: [],
 
@@ -368,6 +371,8 @@ const Home = () => {
       formik.setFieldValue('budget', formPrevData?.budget);
       // formik.setFieldValue('dateTime', formPrevData?.dateTime);
       formik.setFieldValue('dateTime', formPrevData?.dateTime);
+      formik.setFieldValue('dateTo', formPrevData?.dateTo);
+      formik.setFieldValue('dateFrom', formPrevData?.dateFrom);
       // formik.setFieldValue('dateTime', dayjs(formPrevData?.dateTime).format('MM/DD/YYYY hh:mm'));
       formik.setFieldValue('email', formPrevData?.email);
       // formik.setFieldValue('isDirtyData', formPrevData?.isDirtyData);

@@ -45,32 +45,7 @@ const index = async (req, res) => {
 
 const add = async (req, res) => {
   try {
-    const {
-      activityName,
-      budget,
-      country,
-      dateTime,
-      f2fEventData,
-      virtualEventData,
-      prEventData,
-      digitalCampaignData,
-      airTravelAllData,
-      localTranspotationAllData,
-      hotelAllData,
-      foodAllData,
-      airFreightAllData,
-      productionAllData,
-      energyAllData,
-      digitalCommsAllData,
-      wasteAllData,
-      vitrualEventAllData,
-      commsAllData,
-      prAgencyAllData,
-      hospitalityAllData,
-      imageAllData,
-      videoAllData,
-      digitalCampaignAllData,
-    } = req.body;
+        const { activityName, budget, country, dateTime,  dateFrom , dateTo, f2fEventData, virtualEventData, prEventData, digitalCampaignData, airTravelAllData, localTranspotationAllData, hotelAllData, foodAllData, airFreightAllData, productionAllData, energyAllData, digitalCommsAllData, wasteAllData, vitrualEventAllData, commsAllData, prAgencyAllData, hospitalityAllData, digitalCampaignAllData } = req.body;
     // Create a new document based on the schema
     // const newEventData = new EventData({
     //     from: eventData.from,
@@ -83,6 +58,8 @@ const add = async (req, res) => {
       budget: budget,
       country: country,
       dateTime: dateTime,
+      dateFrom:dateFrom,
+      dateTo :dateTo ,
       createdBy: new mongoose.Types.ObjectId(req.user.userId),
       f2fEventData: f2fEventData,
       prEventData: prEventData,
@@ -228,6 +205,8 @@ const getEventsEmissionsRecords = async (req, res) => {
         digitalCampaignTotalEmission: digitalCampaignTotalEmission.toFixed(5),
         activityName: event?.activityName,
         budget: event?.budget,
+        dateTo : event?.dateTo ,
+        dateFrom: event?.dateFrom,
         createdBy: event?.createdBy?.loginId,
         createdById: event?.createdBy?._id,
         dateTime: event?.dateTime,
@@ -395,6 +374,8 @@ const generateDateReport = async (req, res) => {
         createdBy: event?.createdBy?.loginId,
         createdById: event?.createdBy?._id,
         dateTime: event?.dateTime,
+         dateTo : event?.dateTo ,
+        dateFrom: event?.dateFrom,
         _id: event?._id,
         activityType,
         f2fEventTotalEmission,
@@ -462,3 +443,4 @@ export default {
   getUserRecords,
   generateDateReport,
 };
+

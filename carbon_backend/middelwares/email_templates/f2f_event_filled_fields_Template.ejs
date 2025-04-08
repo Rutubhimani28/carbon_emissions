@@ -313,6 +313,12 @@
                                                                                                                     rowData.gallons
                                                                                                                     %>
                                                                                                             </td>
+                                                                                                            <% if (rowData.renewable) { %>
+                                                                                                                <td>
+                                                                                                                    <%= rowData.renewable || ''
+                                                                                                                        %>
+                                                                                                                </td>
+                                                                                                            <% } %>
                                                                                                             <td>
                                                                                                                 <%=rowData.reEnergy||
                                                                                                                     rowData.emissions
