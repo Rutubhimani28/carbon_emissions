@@ -122,7 +122,7 @@ const Home = () => {
 
   const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({
     value: item._id,
-    label: `${item?.activityName} - ${item?.dateTime}`,
+    label: `${item?.activityName} `,
   }));
   // const previousEvent = resultTableData?.userAllEventsData?.map((item) => ({ value: item._id, label: `${item?.activityName} - ${dayjs(item?.dateTime).format('MM/DD/YYYY hh:mm')}` }));
 
@@ -146,14 +146,15 @@ const Home = () => {
     previousEvent: null,
     isDisabledRetrieveButtons: true,
   };
-
   const validationSchema = yup.object({
     // name: yup.string().required('Name is required'),
     // email: yup.string().email('Invalid Email').required('Business Email is required'),
     activityName: yup.string().required('Activity Name is required'),
     country: yup.string().required('Country is required'),
     budget: yup.number().required('Budget is required'),
-    dateTime: yup.string().required('Date is required'),
+    dateFrom: yup.date().required('Date is required'),
+    dateTo: yup.date().required('Date is required'),
+    // dateTime: yup.string().required('Date is required'),
   });
 
   const AddData = (values) => {
@@ -279,7 +280,6 @@ const Home = () => {
       digitalContentAllData: { data: [], totalEmission: 0 },
       wasteAllData: { data: [], totalEmission: 0 },
     };
-
 
     // if (resultTableData.eventDataId) {
     //     eventData.eventDataId = resultTableData?.eventDataId;
@@ -665,7 +665,7 @@ const Home = () => {
                                           </div>
                                       </LocalizationProvider>
                                   </Grid> */}
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <FormLabel className="fw-bold text-white mt-1">
@@ -741,38 +741,15 @@ const Home = () => {
                       )}
                     </div>
                   </LocalizationProvider>
-                </Grid>
+                </Grid> */}
                 {/* <Grid item xs={12} sm={6} className='table-custom-inpt-field'> */}
+
                 <Grid item xs={12} sm={6}>
-                  <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
-                    Allotted Budget (in$) <span style={{ color: 'red' }}>*</span>
-                  </FormLabel>
-                  <TextField
-                    name="budget"
-                    type="number"
-                    size="small"
-                    className={`textborder custom-inpt-field-color ${
-                      formik.touched.activityName && formik.errors.activityName && 'textErrorborder'
-                    }`}
-                    fullWidth
-                    disabled={isDisabledField}
-                    value={formik.values.budget}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={formik.touched.budget && Boolean(formik.errors.budget)}
-                    helperText={formik.touched.budget && formik.errors.budget}
-                    inputProps={{ style: { color: 'white' } }}
-                    InputProps={{
-                      style: { color: isDisabledField ? 'white' : 'white' },
-                      disabled: isDisabledField,
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormLabel className="fw-bold text-white mt-1">Activity Date</FormLabel>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <FormLabel className="fw-bold text-white mt-1">From</FormLabel>
+                      <FormLabel className="fw-bold text-white mt-1">
+                        Date(From) <span style={{ color: 'red' }}>*</span>
+                      </FormLabel>
                       <DatePicker
                         renderInput={(props) => (
                           <TextField
@@ -804,10 +781,12 @@ const Home = () => {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <FormLabel className="fw-bold text-white mt-1">{/* ${Date To} */}</FormLabel>
+                  {/* <FormLabel className="fw-bold text-white mt-1">${Date To}</FormLabel> */}
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <FormLabel className="fw-bold text-white mt-1">To</FormLabel>
+                      <FormLabel className="fw-bold text-white mt-1">
+                        Date(To) <span style={{ color: 'red' }}>*</span>
+                      </FormLabel>
                       <DatePicker
                         renderInput={(props) => (
                           <TextField
@@ -839,6 +818,32 @@ const Home = () => {
                       />
                     </div>
                   </LocalizationProvider>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <FormLabel className="fw-bold text-white mt-1" id="demo-row-radio-buttons-group-label">
+                    Allotted Budget (in$) <span style={{ color: 'red' }}>*</span>
+                  </FormLabel>
+                  <TextField
+                    name="budget"
+                    type="number"
+                    size="small"
+                    className={`textborder custom-inpt-field-color ${
+                      formik.touched.activityName && formik.errors.activityName && 'textErrorborder'
+                    }`}
+                    fullWidth
+                    disabled={isDisabledField}
+                    value={formik.values.budget}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.budget && Boolean(formik.errors.budget)}
+                    helperText={formik.touched.budget && formik.errors.budget}
+                    inputProps={{ style: { color: 'white' } }}
+                    InputProps={{
+                      style: { color: isDisabledField ? 'white' : 'white' },
+                      disabled: isDisabledField,
+                    }}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={12}>
                   <p className="pt-2">
@@ -923,7 +928,7 @@ const Home = () => {
         </Box>
 
         <Grid xs={3} md={6} spacing={2}>
-          <Typography className="mb-2 fs-5 text-center">Choose your Marketing activity</Typography>
+          <Typography className="mb-2 fs-5 text-center">Choose your activity type</Typography>
           <Grid xl={3} md={6} sm={12}>
             <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'}>
               <Box

@@ -361,6 +361,8 @@ const generateDateReport = async (req, res) => {
         createdBy: event?.createdBy?.loginId,
         createdById: event?.createdBy?._id,
         dateTime: event?.dateTime,
+         dateTo : event?.dateTo ,
+        dateFrom: event?.dateFrom,
         _id: event?._id,
         activityType,
         f2fEventTotalEmission,
