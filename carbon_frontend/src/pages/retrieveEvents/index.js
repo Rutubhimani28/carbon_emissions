@@ -76,7 +76,7 @@ const MyEventSelector = () => {
     {
       field: 'virtualEventTotalEmission',
       // "headerName": "Virtual Event Emission",
-      headerName: 'Outdoor Marketing Emission',
+      headerName: 'Ads Emission',
       width: 175,
     },
     {
@@ -112,7 +112,7 @@ const MyEventSelector = () => {
   const csvColumns = [
     { Header: 'Activity Name', accessor: 'activityName' },
     { Header: 'F2F Event Emission', accessor: 'f2fEventTotalEmission' },
-    { Header: 'Outdoor Marketing Emission', accessor: 'virtualEventTotalEmission' },
+    { Header: 'Ads Emission', accessor: 'virtualEventTotalEmission' },
     { Header: 'PR Event Emission', accessor: 'prEventTotalEmission' },
     { Header: 'Digital Campaign Emission', accessor: 'digitalCampaignTotalEmission' },
     { Header: 'Date/Time', accessor: 'dateTime' },
@@ -272,7 +272,7 @@ const MyEventSelector = () => {
             totalPodcast: Number(emissionsData.find((i) => i?.name === 'Podcast')?.emission) || 0,
             totalPolyethylene: Number(emissionsData.find((i) => i?.name === 'Polyethylene HDPE Banner')?.emission) || 0,
             totalPVC: Number(emissionsData.find((i) => i?.name === 'PVC Banners')?.emission) || 0,
-            grandTotal: Number(item?.vitrualEventAllData?.totalEmission).toFixed(2) || 0,
+            grandTotal: Number(item?.vitrualEventAllData?.totalEmission).toFixed(5) || 0,
           };
           dataTwo.push(obj);
         } else {
@@ -294,15 +294,15 @@ const MyEventSelector = () => {
 
     const dataOne = responseData?.map((item) => {
       return {
-        totalAirTravel: Number(item?.airTravelAllData?.totalEmission).toFixed(2),
-        totalLocalTransportation: Number(item?.localTranspotationAllData?.totalEmission).toFixed(2),
-        totalHotel: Number(item?.hotelAllData?.totalEmission).toFixed(2),
-        totalFood: Number(item?.foodAllData?.totalEmission).toFixed(2),
-        totalAirFreight: Number(item?.airFreightAllData?.totalEmission).toFixed(2),
-        totalProduction: Number(item?.productionAllData?.totalEmission).toFixed(2),
-        totalEnergyUpdated: Number(item?.energyAllData?.totalEmission).toFixed(2),
-        totalDigitalContent: Number(item?.digitalCommsAllData?.totalEmission).toFixed(2),
-        totalWaste: Number(item?.wasteAllData?.totalEmission).toFixed(2),
+        totalAirTravel: Number(item?.airTravelAllData?.totalEmission).toFixed(5),
+        totalLocalTransportation: Number(item?.localTranspotationAllData?.totalEmission).toFixed(5),
+        totalHotel: Number(item?.hotelAllData?.totalEmission).toFixed(5),
+        totalFood: Number(item?.foodAllData?.totalEmission).toFixed(5),
+        totalAirFreight: Number(item?.airFreightAllData?.totalEmission).toFixed(5),
+        totalProduction: Number(item?.productionAllData?.totalEmission).toFixed(5),
+        totalEnergyUpdated: Number(item?.energyAllData?.totalEmission).toFixed(5),
+        totalDigitalContent: Number(item?.digitalCommsAllData?.totalEmission).toFixed(5),
+        totalWaste: Number(item?.wasteAllData?.totalEmission).toFixed(5),
         grandTotal: (
           Number(item?.airTravelAllData?.totalEmission || 0) +
           Number(item?.localTransportationAllData?.totalEmission || 0) +
@@ -313,7 +313,7 @@ const MyEventSelector = () => {
           Number(item?.energyAllData?.totalEmission || 0) +
           Number(item?.digitalCommsAllData?.totalEmission || 0) +
           Number(item?.wasteAllData?.totalEmission || 0)
-        ).toFixed(2),
+        ).toFixed(5),
       };
     });
 
@@ -321,21 +321,21 @@ const MyEventSelector = () => {
 
     const dataThree = responseData?.map((item) => {
       return {
-        totalComms: Number(item?.commsAllData?.totalEmission).toFixed(2),
-        totalPrAgency: Number(item?.prAgencyAllData?.totalEmission).toFixed(2),
-        totalHospitality: Number(item?.hospitalityAllData?.totalEmission).toFixed(2),
+        totalComms: Number(item?.commsAllData?.totalEmission).toFixed(5),
+        totalPrAgency: Number(item?.prAgencyAllData?.totalEmission).toFixed(5),
+        totalHospitality: Number(item?.hospitalityAllData?.totalEmission).toFixed(5),
         grandTotal: (
           Number(item?.commsAllData?.totalEmission || 0) +
           Number(item?.prAgencyAllData?.totalEmission || 0) +
           Number(item?.hospitalityAllData?.totalEmission || 0)
-        ).toFixed(2),
+        ).toFixed(5),
       };
     });
 
     const dataFour = responseData?.map((item) => {
       return {
-        totalDigitalCampaign: Number(item?.digitalCampaignAllData?.totalEmission).toFixed(2),
-        grandTotal: Number(item?.digitalCampaignAllData?.totalEmission).toFixed(2),
+        totalDigitalCampaign: Number(item?.digitalCampaignAllData?.totalEmission).toFixed(5),
+        grandTotal: Number(item?.digitalCampaignAllData?.totalEmission).toFixed(5),
       };
     });
 
@@ -345,8 +345,8 @@ const MyEventSelector = () => {
         const obj = {
           dataOne: dataOne[ind],
           attachmentTemplateNameOne: 'f2f_event_retrieve_data_filled_fields_Template',
-          totalTonCo2One: (Number(item?.grandTotal) / 1000).toFixed(2) || 0,
-          eveydolarCo2One: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(2) || 0,
+          totalTonCo2One: (Number(item?.grandTotal) / 1000).toFixed(5) || 0,
+          eveydolarCo2One: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(5) || 0,
           resultTableDataOne: {
             from: 'f2fEvent',
             allDataOfTab: responseData[ind]?.f2fEventData || [],
@@ -374,14 +374,14 @@ const MyEventSelector = () => {
         const obj = {
           dataTwo: dataTwo[ind],
           attachmentTemplateNameTwo: 'virtual_event_retrieve_data_filled_fields_Template',
-          totalTonCo2Two: (Number(item?.grandTotal) / 1000).toFixed(2) || 0,
-          eveydolarCo2Two: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(2) || 0,
+          totalTonCo2Two: (Number(item?.grandTotal) / 1000).toFixed(5) || 0,
+          eveydolarCo2Two: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(5) || 0,
           resultTableDataTwo: {
             from: 'virtualEvent',
             allDataOfTab: responseData[ind]?.prEventData || [],
           },
           // attachmentPdfNameTwo: `Virtual Event- ${responseData[ind]?.activityName}`,
-          attachmentPdfNameTwo: `Outdoor Marketing- ${responseData[ind]?.activityName}`,
+          attachmentPdfNameTwo: `Ads- ${responseData[ind]?.activityName}`,
           activityName: responseData[ind]?.activityName || '',
           budget: responseData[ind]?.budget || '',
           country: responseData[ind]?.country || '',
@@ -403,8 +403,8 @@ const MyEventSelector = () => {
         const obj = {
           dataThree: dataThree[ind],
           attachmentTemplateNameThree: 'pr_event_retrieve_data_filled_fields_Template',
-          totalTonCo2Three: (Number(item?.grandTotal) / 1000).toFixed(2) || 0,
-          eveydolarCo2Three: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(2) || 0,
+          totalTonCo2Three: (Number(item?.grandTotal) / 1000).toFixed(5) || 0,
+          eveydolarCo2Three: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(5) || 0,
           resultTableDataThree: {
             from: 'prEvent',
             allDataOfTab: responseData[ind]?.prEventData || [],
@@ -432,8 +432,8 @@ const MyEventSelector = () => {
         const obj = {
           dataFour: dataFour[ind],
           attachmentTemplateNameFour: 'digital_campaign_retrieve_data_filled_fields_Template',
-          totalTonCo2Four: (Number(item?.grandTotal) / 1000).toFixed(2) || 0,
-          eveydolarCo2Four: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(2) || 0,
+          totalTonCo2Four: (Number(item?.grandTotal) / 1000).toFixed(5) || 0,
+          eveydolarCo2Four: (Number(item?.grandTotal) / Number(responseData[ind]?.budget)).toFixed(5) || 0,
           resultTableDataFour: {
             from: 'digitalCampaign',
             allDataOfTab: responseData[ind]?.digitalCampaignData || [],
@@ -474,6 +474,7 @@ const MyEventSelector = () => {
     const allEventsEmissions = [];
 
     responseData.forEach((event) => {
+      console.log(event, 'event');
       // f2f-event
       const airTravelEmission = event?.airTravelAllData?.totalEmission;
       const localTranspotationEmission = event?.localTranspotationAllData?.totalEmission;
@@ -494,7 +495,11 @@ const MyEventSelector = () => {
       const hospitalityEmission = event?.hospitalityAllData?.totalEmission;
 
       // digital-campaign
-      const digitalCampaignEmission = event?.digitalCampaignAllData?.totalEmission;
+      const imageEmission = event?.imageAllData?.totalEmission;
+      const videoEmission = event?.videoAllData?.totalEmission;
+      console.log(videoEmission, 'videoEmission');
+      // const digitalCampaignEmission = event?.digitalCampaignAllData?.totalEmission;
+      const digitalCampaignEmission = Number(imageEmission || 0) + Number(videoEmission || 0);
 
       const f2fEventTotalEmission = Number(
         Number(airTravelEmission || 0) +
@@ -506,13 +511,14 @@ const MyEventSelector = () => {
           Number(energyEmission || 0) +
           Number(digitalContentEmission || 0) +
           Number(wasteEmission || 0)
-      ).toFixed(2);
-      const virtualEventTotalEmission = Number(outboundMarketingEmission || 0).toFixed(2);
+      ).toFixed(5);
+      const virtualEventTotalEmission = Number(outboundMarketingEmission || 0).toFixed(5);
       const prEventTotalEmission = Number(
         Number(commsEmission || 0) + Number(prAgencyEmission || 0) + Number(hospitalityEmission || 0)
-      ).toFixed(2);
-      const digitalCampaignTotalEmission = Number(digitalCampaignEmission || 0).toFixed(2);
-
+      ).toFixed(5);
+      const digitalCampaignTotalEmission = Number(digitalCampaignEmission || 0).toFixed(5);
+      // const digitalCampaignTotalEmission = Number(imageData?.totalEmission || 0).toFixed(5);
+      console.log('digitalCampaignTotalEmission', digitalCampaignTotalEmission);
       allEventsEmissions.push({
         f2fEventTotalEmission,
         virtualEventTotalEmission,

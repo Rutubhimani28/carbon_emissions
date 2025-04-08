@@ -22,7 +22,7 @@ import { useTheme } from '@mui/material/styles';
 import { apipost } from '../../../../../service/api';
 
 const EventVenue = () => {
-  const theme = useTheme()
+  const theme = useTheme();
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -67,7 +67,10 @@ const EventVenue = () => {
       city: yup.string().required('City is required'),
       preferredHotels: yup.string().required('Preferred Hotels is required'),
       eventType: yup.string().required('Event Type is required'),
-      eventSizeNoOfPax: yup.number().typeError("Event Size (No. Of Pax) must be number").required('Event Size No Of Pax is required'),
+      eventSizeNoOfPax: yup
+        .number()
+        .typeError('Event Size (No. Of Pax) must be number')
+        .required('Event Size No Of Pax is required'),
       foodBeverages: yup.string().required('Food Beverages is required'),
       roomsNeeded: yup.string().required('Rooms Needed is required'),
       airportTransferNeeded: yup.string().required('Airport Transfer Needed is required'),
@@ -93,8 +96,9 @@ const EventVenue = () => {
   };
 
   return (
-    <div className={useMediaQuery(theme.breakpoints.up('md')) ? "main" : 'setMeetFounderText'}
-    // "main py-5"
+    <div
+      className={useMediaQuery(theme.breakpoints.up('md')) ? 'main' : 'setMeetFounderText'}
+      // "main py-5"
     >
       <Box>
         <Typography
@@ -257,7 +261,7 @@ const EventVenue = () => {
               fullWidth
               value={formik.values.fixedDateTo}
               inputProps={{
-                min: formik.values.fixedDateFrom
+                min: formik.values.fixedDateFrom,
               }}
               // placeholder="Enter Hear"
               onChange={formik.handleChange}
@@ -293,7 +297,7 @@ const EventVenue = () => {
               size="small"
               fullWidth
               inputProps={{
-                min: formik.values.alternateDatesFrom
+                min: formik.values.alternateDatesFrom,
               }}
               value={formik.values.alternateDatesTo}
               // placeholder="Enter Hear"
@@ -394,7 +398,7 @@ const EventVenue = () => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <FormLabel className="fw-bold text-dark mt-1" id="demo-row-radio-buttons-group-label">
-              Food & Beverages <span style={{ color: 'red' }}>*</span>
+              Food <span style={{ color: 'red' }}>*</span>
             </FormLabel>
             <RadioGroup
               value={formik?.values?.foodBeverages}
@@ -439,7 +443,9 @@ const EventVenue = () => {
               <FormControlLabel value="yes" control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
             </RadioGroup>
-            <FormHelperText error={formik.touched.airportTransferNeeded && Boolean(formik.errors.airportTransferNeeded)}>
+            <FormHelperText
+              error={formik.touched.airportTransferNeeded && Boolean(formik.errors.airportTransferNeeded)}
+            >
               {formik.touched.airportTransferNeeded && formik.errors.airportTransferNeeded}
             </FormHelperText>
           </Grid>
@@ -479,7 +485,7 @@ const EventVenue = () => {
               color="secondary"
               disableElevation
               onClick={formik.handleSubmit}
-              className='custom-btn'
+              className="custom-btn"
             >
               {isLoading ? <CircularProgress size={27} /> : 'Submit'}
             </Button>

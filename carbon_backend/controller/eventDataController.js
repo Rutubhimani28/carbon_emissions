@@ -5,15 +5,15 @@ import path from "path";
 import { fileURLToPath } from "url";
 import EventData from "../models/eventData.js";
 import User from "../models/user.js";
-import { sendMailForDateRangeEvents } from '../middelwares/sendMail.js'
+import { sendMailForDateRangeEvents } from "../middelwares/sendMail.js";
 
 const index = async (req, res) => {
   const userId = req.user.userId;
-    const user = await User.findById(userId).select('role');
+  const user = await User.findById(userId).select("role");
 
   const query = {};
 
-    if (user.role === 'admin') {
+  if (user.role === "admin") {
     if (Object.keys(req.query).length > 0) {
       Object.assign(query, req.query);
 
@@ -37,13 +37,42 @@ const index = async (req, res) => {
   }
 
   const userEventsData = await EventData.find(query);
-    const sortedUserEventsData = userEventsData.sort((a, b) => b.createdOn - a.createdOn);
+  const sortedUserEventsData = userEventsData.sort(
+    (a, b) => b.createdOn - a.createdOn
+  );
   res.status(200).json({ data: sortedUserEventsData });
 };
 
 const add = async (req, res) => {
   try {
-        const { activityName, budget, country, dateTime, f2fEventData, virtualEventData, prEventData, digitalCampaignData, airTravelAllData, localTranspotationAllData, hotelAllData, foodAllData, airFreightAllData, productionAllData, energyAllData, digitalCommsAllData, wasteAllData, vitrualEventAllData, commsAllData, prAgencyAllData, hospitalityAllData, digitalCampaignAllData } = req.body;
+    const {
+      activityName,
+      budget,
+      country,
+      dateTime,
+      dateTo,
+      dateFrom,
+      f2fEventData,
+      virtualEventData,
+      prEventData,
+      digitalCampaignData,
+      airTravelAllData,
+      localTranspotationAllData,
+      hotelAllData,
+      foodAllData,
+      airFreightAllData,
+      productionAllData,
+      energyAllData,
+      digitalCommsAllData,
+      wasteAllData,
+      vitrualEventAllData,
+      commsAllData,
+      prAgencyAllData,
+      hospitalityAllData,
+      imageAllData,
+      videoAllData,
+      digitalCampaignAllData,
+    } = req.body;
     // Create a new document based on the schema
     // const newEventData = new EventData({
     //     from: eventData.from,
@@ -56,6 +85,8 @@ const add = async (req, res) => {
       budget: budget,
       country: country,
       dateTime: dateTime,
+      dateFrom:dateFrom,
+      dateTo :dateTo ,
       createdBy: new mongoose.Types.ObjectId(req.user.userId),
       f2fEventData: f2fEventData,
       prEventData: prEventData,
@@ -74,6 +105,8 @@ const add = async (req, res) => {
       commsAllData,
       prAgencyAllData,
       hospitalityAllData,
+      imageAllData,
+      videoAllData,
       digitalCampaignAllData,
       // dateTime: new Date(),
     });
@@ -81,11 +114,16 @@ const add = async (req, res) => {
     // Save the document to the database
     const result = await newEventData.save();
 
-        res.status(200).json({ success: true, data: result, message: 'Data saved successfully' });
-
+    res
+      .status(200)
+      .json({
+        success: true,
+        data: result,
+        message: "Data saved successfully",
+      });
   } catch (error) {
-      console.error('Error saving event data:', error);
-      res.status(500).json({ error: 'Failed to save event data' });
+    console.error("Error saving event data:", error);
+    res.status(500).json({ error: "Failed to save event data" });
   }
 };
 
@@ -178,18 +216,24 @@ const getEventsEmissionsRecords = async (req, res) => {
         Number(hospitalityEmission);
 
       // Digital Campaign Emissions
-      const digitalCampaignEmission =
-        event?.digitalCampaignAllData?.totalEmission || 0;
-      const digitalCampaignTotalEmission = Number(digitalCampaignEmission);
+      const imageEmission = event?.imageAllData?.totalEmission || 0;
+      const videoEmission = event?.videoAllData?.totalEmission || 0;
+      // const digitalCampaignEmission =
+      //   event?.digitalCampaignAllData?.totalEmission || 0;
+      // const digitalCampaignTotalEmission = Number(digitalCampaignEmission);
+      const digitalCampaignTotalEmission =  Number(imageEmission) + Number(videoEmission);
+
 
       return {
         // ...event.toObject(), // Convert Mongoose Document to plain object
-        f2fEventTotalEmission: f2fEventTotalEmission.toFixed(2),
-        virtualEventTotalEmission: virtualEventTotalEmission.toFixed(2),
-        prEventTotalEmission: prEventTotalEmission.toFixed(2),
-        digitalCampaignTotalEmission: digitalCampaignTotalEmission.toFixed(2),
+        f2fEventTotalEmission: f2fEventTotalEmission.toFixed(5),
+        virtualEventTotalEmission: virtualEventTotalEmission.toFixed(5),
+        prEventTotalEmission: prEventTotalEmission.toFixed(5),
+        digitalCampaignTotalEmission: digitalCampaignTotalEmission.toFixed(5),
         activityName: event?.activityName,
         budget: event?.budget,
+        dateTo : event?.dateTo ,
+        dateFrom: event?.dateFrom,
         createdBy: event?.createdBy?.loginId,
         createdById: event?.createdBy?._id,
         dateTime: event?.dateTime,
@@ -245,18 +289,18 @@ const getUserRecords = async (req, res) => {
 
 const formatDate = (date) => {
   const d = new Date(date);
-  const day = String(d.getDate()).padStart(2, '0'); // Ensure 2 digits for day
-  const month = String(d.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+  const day = String(d.getDate()).padStart(2, "0"); // Ensure 2 digits for day
+  const month = String(d.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
   const year = d.getFullYear();
   return `${day}-${month}-${year}`;
 };
 
 function formatDateTime(input) {
   // Split date and time
-  const [datePart, timePart] = input.split(' ');
+  const [datePart, timePart] = input.split(" ");
 
   // Reorder the date part
-  const [year, month, day] = datePart.split('-');
+  const [year, month, day] = datePart.split("-");
   const formattedDate = `${day}-${month}-${year}`;
 
   // Combine with time part
@@ -270,7 +314,7 @@ const generateDateReport = async (req, res) => {
 
   const formattedStart = formatDate(startDate);
   const formattedEnd = formatDate(endDate);
-  
+
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
@@ -333,20 +377,20 @@ const generateDateReport = async (req, res) => {
 
       let activityTypeArray = [];
       if (
-        f2fEventTotalEmission.toFixed(2) <= 0 &&
-        virtualEventTotalEmission.toFixed(2) <= 0 &&
-        prEventTotalEmission.toFixed(2) <= 0 &&
-        digitalCampaignTotalEmission.toFixed(2) <= 0
+        f2fEventTotalEmission.toFixed(5) <= 0 &&
+        virtualEventTotalEmission.toFixed(5) <= 0 &&
+        prEventTotalEmission.toFixed(5) <= 0 &&
+        digitalCampaignTotalEmission.toFixed(5) <= 0
       ) {
         activityTypeArray.push(" - ");
       }
-      if (f2fEventTotalEmission.toFixed(2) > 0)
+      if (f2fEventTotalEmission.toFixed(5) > 0)
         activityTypeArray.push("F2F Event");
-      if (virtualEventTotalEmission.toFixed(2) > 0)
-        activityTypeArray.push("Outdoor Marketing");
-      if (prEventTotalEmission.toFixed(2) > 0)
+      if (virtualEventTotalEmission.toFixed(5) > 0)
+        activityTypeArray.push("Ads");
+      if (prEventTotalEmission.toFixed(5) > 0)
         activityTypeArray.push("PR Event");
-      if (digitalCampaignTotalEmission.toFixed(2) > 0)
+      if (digitalCampaignTotalEmission.toFixed(5) > 0)
         activityTypeArray.push("Digital Campaign");
 
       const activityType = activityTypeArray.join(", ");
@@ -357,6 +401,8 @@ const generateDateReport = async (req, res) => {
         createdBy: event?.createdBy?.loginId,
         createdById: event?.createdBy?._id,
         dateTime: event?.dateTime,
+         dateTo : event?.dateTo ,
+        dateFrom: event?.dateFrom,
         _id: event?._id,
         activityType,
         f2fEventTotalEmission,
@@ -374,13 +420,13 @@ const generateDateReport = async (req, res) => {
         Number(event?.virtualEventTotalEmission) +
         Number(event?.prEventTotalEmission) +
         Number(event?.digitalCampaignTotalEmission)
-      ).toFixed(2),
+      ).toFixed(5),
       date: formatDateTime(event?.dateTime),
     }));
 
     const totalCarbonEmissions = eventsData
       .reduce((total, data) => total + Number(data.carbon), 0)
-      .toFixed(2);
+      .toFixed(5);
 
     const html = await ejs.renderFile(
       "middelwares/email_templates/date-report-template.ejs",
@@ -392,20 +438,22 @@ const generateDateReport = async (req, res) => {
         logoBase64: logoBase64,
       }
     );
-    
+
     const sendMailPayload = {
       eventsData,
-      startDate: formattedStart, 
-      endDate :formattedEnd,
-      totalCarbonEmissions, name,
+      startDate: formattedStart,
+      endDate: formattedEnd,
+      totalCarbonEmissions,
+      name,
       receiver: email,
       subject: `Carbon Emissions Report from ${formattedStart} to ${formattedEnd}`,
     };
-    
-    await sendMailForDateRangeEvents(sendMailPayload); // Send email with updated recipient
-    
-    return res.status(201).json({ success: true, message: 'Email Sent successfully!' });
 
+    await sendMailForDateRangeEvents(sendMailPayload); // Send email with updated recipient
+
+    return res
+      .status(201)
+      .json({ success: true, message: "Email Sent successfully!" });
   } catch (err) {
     console.error("Failed to retrieve or process event data:", err);
     res.status(500).json({
@@ -422,3 +470,4 @@ export default {
   getUserRecords,
   generateDateReport,
 };
+

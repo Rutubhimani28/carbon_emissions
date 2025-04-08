@@ -131,7 +131,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Local Transportation</th>
+                <th>Transportation</th>
                 <td>
                     <%= data.totalLocalTransportation %> kgCO<sub>2</sub>e
                 </td>
@@ -143,7 +143,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Food & Beverages</th>
+                <th>Food</th>
                 <td>
                     <%= data.totalFood %> kgCO<sub>2</sub>e
                 </td>
@@ -155,7 +155,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Event Production</th>
+                <th>Event Agency</th>
                 <td>
                     <%= data.totlaProduction %> kgCO<sub>2</sub>e
                 </td>
@@ -167,7 +167,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Digital Comms</th>
+                <th>Communications </th>
                 <td>
                     <%= data.totalDIgitalContent %> kgCO<sub>2</sub>e
                 </td>
@@ -184,8 +184,8 @@
         <% if (resultTableData && resultTableData.allDataOfTab) { %>
             <% resultTableData.allDataOfTab.forEach(function(page) { %>
                 <% if (page.tabData && page.tabData.length> 0) { %>
-                    <% const validTabTitles=[ "Air Travel" , "Local Transportation" , "Food & Beverages" , "Logistics"
-                        , "Event Production" , "Energy" , "Digital Comms" , "Waste" , "Hotel" ]; %>
+                    <% const validTabTitles=[ "Air Travel" , "Transportation" , "Food" , "Logistics" , "Event Agency"
+                        , "Energy" , "Communications " , "Waste" , "Hotel" ]; %>
                         <% if (validTabTitles.includes(page.tabTitle)) { %>
                             <div class="page">
                                 <h4 class="title2">
@@ -222,13 +222,19 @@
                                                                             <%= rowData.noOfTrips %>
                                                                         </td>
                                                                         <td>
+                                                                            <%= rowData.noOfPassengers %>
+                                                                        </td>
+                                                                        <td>
                                                                             <%= rowData.emissions %>
                                                                         </td>
-                                                                        <% } else if
-                                                                            (page.tabTitle==="Local Transportation" ) {
-                                                                            %>
+                                                                        <% } else if (page.tabTitle==="Transportation" )
+                                                                            { %>
                                                                             <td>
                                                                                 <%= rowData.journeyType %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= rowData.noOfCars ||
+                                                                                    rowData.noOfPassengers %>
                                                                             </td>
                                                                             <td>
                                                                                 <%= rowData.noOfKms %>
@@ -236,9 +242,7 @@
                                                                             <td>
                                                                                 <%= rowData.emissions %>
                                                                             </td>
-                                                                            <% } else if
-                                                                                (page.tabTitle==="Food & Beverages" ) {
-                                                                                %>
+                                                                            <% } else if (page.tabTitle==="Food" ) { %>
                                                                                 <td>
                                                                                     <%= rowData.fBType %>
                                                                                 </td>
@@ -259,16 +263,16 @@
                                                                                                 <%= rowData.frType %>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <%= rowData.noOfKms %>
+                                                                                                <%= rowData.noOfTone %>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <%= rowData.kgs %>
+                                                                                                <%= rowData.noofKms %>
                                                                                             </td>
                                                                                             <td>
                                                                                                 <%= rowData.emissions %>
                                                                                             </td>
                                                                                             <% } else if
-                                                                                                (page.tabTitle==="Event Production"
+                                                                                                (page.tabTitle==="Event Agency"
                                                                                                 ) { %>
                                                                                                 <td>
                                                                                                     <%= rowData.pType %>
@@ -304,15 +308,24 @@
                                                                                                             <td>
                                                                                                                 <%= rowData.kwh
                                                                                                                     ||
+                                                                                                                    rowData.reEnergy
+                                                                                                                    ||
                                                                                                                     rowData.gallons
                                                                                                                     %>
                                                                                                             </td>
+                                                                                                            <% if (rowData.renewable) { %>
+                                                                                                                <td>
+                                                                                                                    <%= rowData.renewable || ''
+                                                                                                                        %>
+                                                                                                                </td>
+                                                                                                            <% } %>
                                                                                                             <td>
-                                                                                                                <%= rowData.emissions
+                                                                                                                <%=rowData.reEnergy||
+                                                                                                                    rowData.emissions
                                                                                                                     %>
                                                                                                             </td>
                                                                                                             <% } else if
-                                                                                                                (page.tabTitle==="Digital Comms"
+                                                                                                                (page.tabTitle==="Communications "
                                                                                                                 ) { %>
                                                                                                                 <td>
                                                                                                                     <%= rowData.dgType

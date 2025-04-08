@@ -21,8 +21,8 @@ const totalAirFreightSlice = createSlice({
                 }
             });
             // Recalculate totalEmission
-            // state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(2);
-            state.totalEmission = state?.data?.[0]?.data?.reduce((total, item) => item?.emission ? total + Number(item?.emission) : total, 0).toFixed(2);
+            // state.totalEmission = state.data[0].data.reduce((total, item) => total + item.emission, 0).toFixed(5);
+            state.totalEmission = state?.data?.[0]?.data?.reduce((total, item) => item?.emission ? total + Number(item?.emission) : total, 0).toFixed(5);
         },
         deleteLogisticsData: (state, action) => ({
             ...state,

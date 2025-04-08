@@ -125,14 +125,16 @@ const addEmail = async (req, res) => {
       resultTableDataThree,
       resultTableDataFour,
     };
-    await sendMail(sendMailPayload);
+    console.log("email controller sendMailPayload", sendMailPayload);
 
+    await sendMail(sendMailPayload);
     // const newEmail = new Email({ subject, receiver, sender, emailBodyTemplateName: emailBodyTemplateName || '', attachmentTemplateName: attachmentTemplateName || '', data: data });
     // await newEmail.save();
 
     return res
       .status(201)
       .json({ success: true, message: "Email Sent successfully" });
+      
   } catch (error) {
     console.error("SendMail catch error:", error);
     return res

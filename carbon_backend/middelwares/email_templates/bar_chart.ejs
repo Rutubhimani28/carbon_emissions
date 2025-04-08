@@ -112,10 +112,10 @@
                         return {
                             label: event.activity,
                             y: value,
-                            indexLabel: value > 0 ? value.toFixed(2) : "", // Display the label inside the bar
+                            indexLabel: value > 0 ? value.toFixed(5) : "", // Display the label inside the bar
                             indexLabelPlacement: "inside",                // Position label inside the bar
                             indexLabelFontColor: "#FF0000",                 // Color of the label
-                            toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(2)}`
+                            toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(5)}`
                         };
                     })
                 };
@@ -164,7 +164,7 @@
                 tableHTML += `<td>${event.activity}</td>`;
                 headers.forEach(header => {
                     const eventType = eventTypesMap.find(type => type.name === header);
-                    const value = event[eventType.field] ? parseFloat(event[eventType.field]).toFixed(2) > 0 && parseFloat(event[eventType.field]).toFixed(2) : '';
+                    const value = event[eventType.field] ? parseFloat(event[eventType.field]).toFixed(5) > 0 && parseFloat(event[eventType.field]).toFixed(5) : '';
                     tableHTML += `<td>${value || '-'}</td>`;
                 });
                 tableHTML += '</tr>';
@@ -308,7 +308,7 @@
             //                 // label: event.activity.split(" - ")[0],
             //                 label: event.activity,
             //                 y: value,
-            //                 toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(2)}`
+            //                 toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(5)}`
             //             };
             //         })
             //     };
@@ -325,7 +325,7 @@
                         return {
                             label: event.activity,
                             y: value,
-                            toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(2)}`
+                            toolTipContent: `${eventType.name}<br>Activity: ${event.activity}<br>Total Emissions: ${value.toFixed(5)}`
                         };
                     })
                 };
@@ -387,7 +387,7 @@
                 tableHTML += `<td>${event.activity}</td>`;
                 headers.forEach(header => {
                     const eventType = eventTypesMap.find(type => type.name === header);
-                    const value = event[eventType.field] ? parseFloat(event[eventType.field]).toFixed(2) > 0 && parseFloat(event[eventType.field]).toFixed(2) : '';
+                    const value = event[eventType.field] ? parseFloat(event[eventType.field]).toFixed(5) > 0 && parseFloat(event[eventType.field]).toFixed(5) : '';
                     tableHTML += `<td>${value || '-'}</td>`;
                 });
                 tableHTML += '</tr>';

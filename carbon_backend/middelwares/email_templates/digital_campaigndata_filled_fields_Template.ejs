@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emissions Report</title>
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin-top: 0.1cm;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 20px 20px 20px;
+            box-sizing: border-box;
+        }
+
+        .page {
+            margin: 20px;
+        }
+
+        .table-container {
+            margin: 20px 0;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin: 0;
+            page-break-inside: auto;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        tbody {
+            display: table-row-group;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: -8px;
+        }
+
+        .sub-title {
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-weight: bold;
+            font-size: 12;
+        }
+
+        .title2 {
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container">
+            <h3 style="text-align: center;" class="title">
+                Activity Name: <%= activityName %>
+            </h3>
+
+            <p>Total Carbon Footprint:</p>
+            <table>
+                <tr>
+                    <th>Image</th>
+                    <td>
+                        <%= data.totalImage %> kgCO<sub>2</sub>e
+                    </td>
+                </tr>
+                <tr>
+                    <th>Video</th>
+                    <td>
+                        <%= data.totalVideo %> kgCO<sub>2</sub>e
+                    </td>
+                </tr>
+            </table>
+
+            <h4>Total = <%= data.grandTotal %> kgCO<sub>2</sub>e</h4>
+
+            <% if (resultTableData && resultTableData.allDataOfTab) { %>
+                <% resultTableData.allDataOfTab.forEach(function(page) { %>
+                    <% if (page.tabData && page.tabData.length> 0) { %>
+                        <% if (page.tabTitle==="Image" || page.tabTitle==="Video" ) { %>
+                            <div class="page">
+                                <h4 class="title2">
+                                    <%= page.tabTitle %>
+                                </h4>
+
+                                <% page.tabData.forEach(function(flightClass) { %>
+                                    <% if (flightClass.subTypeData && flightClass.subTypeData.td &&
+                                        flightClass.subTypeData.td.some(rowData=> rowData.emissions !== "")) { %>
+                                        <div class="table-container">
+                                            <% if (flightClass.subTypeData.th && flightClass.subTypeData.th.length> 0) {
+                                                %>
+                                                <h5 class="sub-title">
+                                                    <%= flightClass.subType %>
+                                                </h5>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <% flightClass.subTypeData.th.forEach(function(header) { %>
+                                                                <th>
+                                                                    <%= header %>
+                                                                </th>
+                                                                <% }); %>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% flightClass.subTypeData.td.forEach(function(rowData) { %>
+                                                            <% if (rowData.emissions !=="" ) { %>
+                                                                <tr>
+                                                                    <% if (page.tabTitle==="Image" ) { %>
+
+                                                                        <% if (rowData.wifiImpression || rowData.dgType
+                                                                            || rowData.dataCenter ||
+                                                                            rowData.contentSize) { %>
+                                                                            <td>
+                                                                                <%= rowData.wifiImpression ||
+                                                                                    rowData.dgType || rowData.dataCenter
+                                                                                    || rowData.contentSize %>
+                                                                            </td>
+                                                                            <% } %>
+                                                                                <% if (rowData.wifi4g !==undefined ||
+                                                                                    rowData.noOfDevice !==undefined ||
+                                                                                    rowData.noOfData !==undefined) { %>
+                                                                                    <td>
+                                                                                        <%= rowData.wifi4g !==undefined
+                                                                                            ? rowData.wifi4g :
+                                                                                            rowData.noOfDevice
+                                                                                            !==undefined ?
+                                                                                            rowData.noOfDevice :
+                                                                                            rowData.noOfData %>
+                                                                                    </td>
+                                                                                    <% } %>
+                                                                                        <% if (rowData.wifi5g) { %>
+                                                                                            <td>
+                                                                                                <%= rowData.wifi5g %>
+                                                                                            </td>
+                                                                                            <% } %>
+                                                                                                <% if
+                                                                                                    (rowData.emissions)
+                                                                                                    { %>
+                                                                                                    <td>
+                                                                                                        <%= rowData.emissions
+                                                                                                            %>
+                                                                                                    </td>
+                                                                                                    <% } %>
+                                                                                                        <% } else if
+                                                                                                            (page.tabTitle==="Video"
+                                                                                                            ) { %>
+                                                                                                            <td>
+                                                                                                                <%= rowData.wifiImpression
+                                                                                                                    ||
+                                                                                                                    rowData.dgType
+                                                                                                                    ||
+                                                                                                                    rowData.dataCenter
+                                                                                                                    ||
+                                                                                                                    rowData.videoLength
+                                                                                                                    %>
+                                                                                                            </td>
+                                                                                                            <td>
+                                                                                                                <%= rowData.wifi4g
+                                                                                                                    !==undefined
+                                                                                                                    &&
+                                                                                                                    rowData.wifi4g
+                                                                                                                    !==null
+                                                                                                                    ?
+                                                                                                                    rowData.wifi4g
+                                                                                                                    :
+                                                                                                                    rowData.noOfDevice
+                                                                                                                    !==undefined
+                                                                                                                    &&
+                                                                                                                    rowData.noOfDevice
+                                                                                                                    !==null
+                                                                                                                    ?
+                                                                                                                    rowData.noOfDevice
+                                                                                                                    :
+                                                                                                                    rowData.noOfData
+                                                                                                                    !==undefined
+                                                                                                                    &&
+                                                                                                                    rowData.noOfData
+                                                                                                                    !==null
+                                                                                                                    ?
+                                                                                                                    rowData.noOfData
+                                                                                                                    :
+                                                                                                                    rowData.videoSize
+                                                                                                                    %>
+                                                                                                            </td>
+                                                                                                            <% if
+                                                                                                                (rowData.wifi5g)
+                                                                                                                { %>
+                                                                                                                <td>
+                                                                                                                    <%= rowData.wifi5g
+                                                                                                                        %>
+                                                                                                                </td>
+                                                                                                                <% } %>
+                                                                                                                    <td>
+                                                                                                                        <%= rowData.emissions
+                                                                                                                            ||
+                                                                                                                            rowData.totalImpression
+                                                                                                                            %>
+                                                                                                                    </td>
+                                                                                                                    <% }
+                                                                                                                        %>
+                                                                </tr>
+                                                                <% } %>
+                                                                    <% }); %>
+                                                    </tbody>
+                                                </table>
+                                                <% } %>
+                                        </div>
+                                        <% } %>
+                                            <% }); %>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    <% }); %>
+                                        <% } %>
+
+                                            <h4 style="margin-top: 35px;">For every $ you spend you are generating <%=
+                                                    eveydolarCo2 %> kgCO<sub>2</sub>e</h4>
+        </div>
+    </div>
+</body>
+
+</html>

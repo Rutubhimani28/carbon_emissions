@@ -256,18 +256,24 @@
                                                                                                             ||
                                                                                                             rowData.kwh
                                                                                                             ||
+                                                                                                            rowData.renewableEnergy
+                                                                                                            ||
                                                                                                             rowData.noOfKms
                                                                                                             %>
                                                                                                     </td>
                                                                                                     <% if
                                                                                                         (rowData.meetingDuration
                                                                                                         ||
-                                                                                                        rowData.noOfDevice)
+                                                                                                        rowData.noOfDevice
+                                                                                                        ||
+                                                                                                        rowData.renewableEnergy)
                                                                                                         { %>
                                                                                                         <td>
                                                                                                             <%= rowData.meetingDuration
                                                                                                                 ||
                                                                                                                 rowData.noOfDevice
+                                                                                                                ||
+                                                                                                                rowData.renewableEnergy
                                                                                                                 %>
                                                                                                         </td>
                                                                                                         <% } %>
