@@ -159,12 +159,15 @@
                                                                                     || rowData.contentSize %>
                                                                             </td>
                                                                             <% } %>
-                                                                                <% if ( rowData.wifi4g ||
-                                                                                    rowData.noOfDevice ||
-                                                                                    rowData.noOfData ) { %>
+                                                                                <% if (rowData.wifi4g !==undefined ||
+                                                                                    rowData.noOfDevice !==undefined ||
+                                                                                    rowData.noOfData !==undefined) { %>
                                                                                     <td>
-                                                                                        <%= rowData.wifi4g ||
-                                                                                            rowData.noOfDevice ||
+                                                                                        <%= rowData.wifi4g !==undefined
+                                                                                            ? rowData.wifi4g :
+                                                                                            rowData.noOfDevice
+                                                                                            !==undefined ?
+                                                                                            rowData.noOfDevice :
                                                                                             rowData.noOfData %>
                                                                                     </td>
                                                                                     <% } %>
@@ -196,11 +199,29 @@
                                                                                                             </td>
                                                                                                             <td>
                                                                                                                 <%= rowData.wifi4g
-                                                                                                                    ||
+                                                                                                                    !==undefined
+                                                                                                                    &&
+                                                                                                                    rowData.wifi4g
+                                                                                                                    !==null
+                                                                                                                    ?
+                                                                                                                    rowData.wifi4g
+                                                                                                                    :
                                                                                                                     rowData.noOfDevice
-                                                                                                                    ||
+                                                                                                                    !==undefined
+                                                                                                                    &&
+                                                                                                                    rowData.noOfDevice
+                                                                                                                    !==null
+                                                                                                                    ?
+                                                                                                                    rowData.noOfDevice
+                                                                                                                    :
                                                                                                                     rowData.noOfData
-                                                                                                                    ||
+                                                                                                                    !==undefined
+                                                                                                                    &&
+                                                                                                                    rowData.noOfData
+                                                                                                                    !==null
+                                                                                                                    ?
+                                                                                                                    rowData.noOfData
+                                                                                                                    :
                                                                                                                     rowData.videoSize
                                                                                                                     %>
                                                                                                             </td>

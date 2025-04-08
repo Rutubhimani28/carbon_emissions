@@ -48,19 +48,19 @@ const Video = (props) => {
     mobileDevice: '',
     mobileDeviceEmissions: '',
     EFMobile1: 0.001111,
-    EFMobile3: 0.727,
+    EFMobile3: 0.8552,
     tabletDevice: '',
     tabletDeviceEmissions: '',
     tabletEF1: 0.00625,
-    tabletEF3: 0.727,
+    tabletEF3: 0.8552,
     laptopDevice: '',
     laptopDeviceEmissions: '',
     laptopEF1: 0.013889,
-    laptopEF3: 0.727,
+    laptopEF3: 0.8552,
     desktopDevice: '',
     desktopDeviceEmissions: '',
     desktopEF1: 0.097222,
-    desktopEF3: 0.727,
+    desktopEF3: 0.8552,
 
     dataCenter: '',
     dataRenewable: '',
@@ -74,7 +74,7 @@ const Video = (props) => {
       const wifiEF5 = Number(values?.wifi4GImpression) * wifiEF1 * 0.12;
       const wifiEF7 = Number(values?.wifi5GImpression) * wifiEF1 * 0.012;
       const wifiTotalEF = wifiEF3 + wifiEF5 + wifiEF7;
-      const wifiTotalEmissions = wifiTotalEF * 0.727;
+      const wifiTotalEmissions = wifiTotalEF * 0.8552;
 
       const EFMobile2 = Number(values?.mobileDevice) * values?.videoLength * values?.EFMobile1;
       const mobileDeviceEmissions = EFMobile2 * values?.EFMobile3;
@@ -122,7 +122,8 @@ const Video = (props) => {
           laptop: values?.laptopDevice,
           laptopEmission: Number(laptopDeviceEmissions).toFixed(5) > 0 ? Number(laptopDeviceEmissions).toFixed(5) : '',
           desktop: values?.desktopDevice,
-          desktopEmission: Number(desktopDeviceEmissions).toFixed(5) > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
+          desktopEmission:
+            Number(desktopDeviceEmissions).toFixed(5) > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
         },
         {
           type: 'Data Center Emissions',
@@ -139,9 +140,9 @@ const Video = (props) => {
       ];
       const tableData = [
         {
-          subType: 'video',
+          subType: '',
           subTypeData: {
-            th: ['videoLength', 'videoSize', 'videoSize'],
+            th: ['Video Length (Secs)', 'Video Size (Mb)', 'Total Impression'],
             td: [
               {
                 videoLength: values?.videoLength,
@@ -160,7 +161,7 @@ const Video = (props) => {
                 wifiImpression: values?.wifiImpression,
                 wifi4g: values?.wifi4GImpression,
                 wifi5g: values?.wifi5GImpression,
-                emissions: wifiTotalEmissions > 0 ? wifiTotalEmissions : '',
+                emissions: wifiTotalEmissions > 0 ? Number(wifiTotalEmissions).toFixed(5) : '',
               },
             ],
           },
@@ -173,22 +174,22 @@ const Video = (props) => {
               {
                 dgType: 'Mobile',
                 noOfDevice: values?.mobileDevice,
-                emissions: mobileDeviceEmissions > 0 ? mobileDeviceEmissions : '',
+                emissions: mobileDeviceEmissions > 0 ? Number(mobileDeviceEmissions).toFixed(2) : '',
               },
               {
                 dgType: 'Tablet',
                 noOfDevice: values?.tabletDevice,
-                emissions: tabletDeviceEmissions > 0 ? tabletDeviceEmissions : '',
+                emissions: tabletDeviceEmissions > 0 ? Number(tabletDeviceEmissions).toFixed(2) : '',
               },
               {
                 dgType: 'Laptop',
                 noOfDevice: values?.laptopDevice,
-                emissions: laptopDeviceEmissions > 0 ? laptopDeviceEmissions : '',
+                emissions: laptopDeviceEmissions > 0 ? Number(laptopDeviceEmissions).toFixed(2) : '',
               },
               {
                 dgType: 'Desktop',
                 noOfDevice: values?.desktopDevice,
-                emissions: desktopDeviceEmissions > 0 ? desktopDeviceEmissions : '',
+                emissions: desktopDeviceEmissions > 0 ? Number(desktopDeviceEmissions).toFixed(2) : '',
               },
             ],
           },
@@ -201,7 +202,7 @@ const Video = (props) => {
               {
                 dgType: values?.dataCenter,
                 noOfDevice: values?.dataRenewable,
-                emissions: dataEmissions > 0 ? dataEmissions : '',
+                emissions: dataEmissions > 0 ? Number(dataEmissions).toFixed(5) : '',
               },
             ],
           },
@@ -349,7 +350,7 @@ const Video = (props) => {
                           const wifiEF5 = (Number(formik.values.wifi4GImpression) || 0) * wifiEF1 * 0.12;
                           const wifiEF7 = (Number(formik.values.wifi5GImpression) || 0) * wifiEF1 * 0.012;
                           const wifiTotalEF = wifiEF3 + wifiEF5 + wifiEF7;
-                          const wifiTotalEmissions = (wifiTotalEF * 0.727).toFixed(5);
+                          const wifiTotalEmissions = (wifiTotalEF * 0.8552).toFixed(5);
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
                         }}
@@ -370,7 +371,7 @@ const Video = (props) => {
                           const wifiEF5 = (Number(value) || 0) * wifiEF1 * 0.12;
                           const wifiEF7 = (Number(formik.values.wifi5GImpression) || 0) * wifiEF1 * 0.012;
                           const wifiTotalEF = wifiEF3 + wifiEF5 + wifiEF7;
-                          const wifiTotalEmissions = (wifiTotalEF * 0.727).toFixed(5);
+                          const wifiTotalEmissions = (wifiTotalEF * 0.8552).toFixed(5);
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
                         }}
@@ -391,7 +392,7 @@ const Video = (props) => {
                           const wifiEF5 = (Number(formik.values.wifi4GImpression) || 0) * wifiEF1 * 0.12;
                           const wifiEF7 = (Number(value) || 0) * wifiEF1 * 0.012;
                           const wifiTotalEF = wifiEF3 + wifiEF5 + wifiEF7;
-                          const wifiTotalEmissions = (wifiTotalEF * 0.727).toFixed(5);
+                          const wifiTotalEmissions = (wifiTotalEF * 0.8552).toFixed(5);
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
                         }}

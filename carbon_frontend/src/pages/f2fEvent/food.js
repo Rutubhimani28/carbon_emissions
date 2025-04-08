@@ -113,7 +113,11 @@ const Food = (props) => {
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne); // Veg Plate Lunch/ Dinner
       if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo); // Non Veg plate Lunch/ Dinner
       if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree); // Veg Starter
-      if (emissionFour > 0) formik.setFieldValue('emissionFour', emissionFour); // Non Veg starter
+      if (emissionFour > 0) {
+        formik.setFieldValue('emissionFour', emissionFour);
+      } else {
+        formik.setFieldValue('emissionFour', emissionFour);
+      }
       if (emissionSix > 0) formik.setFieldValue('emissionSix', emissionSix); // Soft Drinks
       if (emissionSeven > 0) formik.setFieldValue('emissionSeven', emissionSeven); // Red Wine
       if (emissionEight > 0) formik.setFieldValue('emissionEight', emissionEight); // White Wine
@@ -128,22 +132,26 @@ const Food = (props) => {
         {
           type: 'Vegetarian',
           noOfPax: values?.noOfPaxOne,
-          emission: Number((0.7237 * values?.noOfPaxOne).toFixed(5)) || 0,
+          emission: emissionOne,
+          // emission: Number((0.7237 * values?.noOfPaxOne).toFixed(5)) || 0,
         },
         {
           type: 'Non-Veg (Poultry/ Sea Food)',
           noOfPax: values?.noOfPaxTwo,
-          emission: Number((1.08555 * values?.noOfPaxTwo).toFixed(5)) || 0,
+          emission: emissionTwo,
+          // emission: Number((1.08555 * values?.noOfPaxTwo).toFixed(5)) || 0,
         },
         {
           type: 'Non-Veg (Red Meat)',
           noOfPax: values?.noOfPaxThree,
-          emission: Number((1.30266 * values?.noOfPaxThree).toFixed(5)) || 0,
+          emission: emissionThree,
+          // emission: Number((1.30266 * values?.noOfPaxThree).toFixed(5)) || 0,
         },
         {
           type: 'Lacto-vegetarian meal',
           noOfPax: values?.noOfPaxFour,
-          emission: Number((0.01318 * values?.noOfPaxFour).toFixed(5)) || 0,
+          // emission: Number((0.01318 * values?.noOfPaxFour).toFixed(5)) || 0,
+          emission: emissionFour,
         },
         {
           type: 'Branded Wine (750ml)',
@@ -280,6 +288,8 @@ const Food = (props) => {
           },
         },
       ];
+
+    
       dispatch(addFoodData({ data }));
       dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Food' }));
     },
@@ -307,7 +317,6 @@ const Food = (props) => {
       }
     }
   };
-  console.log(allData, 'allData');
   useEffect(() => {
     if (allData?.length > 0) {
       formik.setFieldValue('noOfPaxOne', allData?.[0]?.noOfPax);
@@ -316,6 +325,9 @@ const Food = (props) => {
       formik.setFieldValue('emissionTwo', allData?.[1]?.emission);
       formik.setFieldValue('noOfPaxThree', allData?.[2]?.noOfPax);
       formik.setFieldValue('emissionThree', allData?.[2]?.emission);
+
+
+
       formik.setFieldValue('noOfPaxFour', allData?.[3]?.noOfPax);
       formik.setFieldValue('emissionFour', allData?.[3]?.emission);
 
@@ -436,7 +448,12 @@ const Food = (props) => {
                               name="noOfPaxFour"
                               value={formik?.values?.noOfPaxFour}
                               onChange={(e) => {
-                                handleChangeFoodWaste(e, 'emissionFour', e.target.value, 1.01318);
+                                const event = e.target.value;
+                                formik?.setFieldValue('noOfPaxFour', event);
+                                const data = event * 1.01318;
+                                formik?.setFieldValue('emissionFour', data);
+                                formik.handleSubmit();
+                                // handleChangeFoodWaste(e, 'emissionFour', e.target.value, 1.01318);
                               }}
                               inputProps={{ style: { color: 'white' } }}
                             />

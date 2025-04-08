@@ -48,19 +48,19 @@ const Image = (props) => {
     mobileDevice: '',
     mobileDeviceEmissions: '',
     EFMobile1: 0.003333,
-    EFMobile3: 0.727,
+    EFMobile3: 0.8552,
     tabletDevice: '',
     tabletDeviceEmissions: '',
     tabletEF1: 0.01875,
-    tabletEF3: 0.727,
+    tabletEF3: 0.8552,
     laptopDevice: '',
     laptopDeviceEmissions: '',
     laptopEF1: 0.041667,
-    laptopEF3: 0.727,
+    laptopEF3: 0.8552,
     desktopDevice: '',
     desktopDeviceEmissions: '',
     desktopEF1: 0.291666,
-    desktopEF3: 0.727,
+    desktopEF3: 0.8552,
 
     dataCenter: '',
     dataRenewable: '',
@@ -73,7 +73,8 @@ const Image = (props) => {
       const wifiEF4 = Number(values?.wifi4GImpression) * 0.00000189 * values?.contentSize;
       const wifiEF6 = Number(values?.wifi5GImpression) * 0.000000189 * values?.contentSize;
       const wifiTotalEF = wifiEF2 + wifiEF4 + wifiEF6;
-      const wifiTotalEmissions = wifiTotalEF * 0.727;
+      const wifiTotalEmissions = wifiTotalEF * 0.8552;
+
       const EFMobile2 = Number(values?.mobileDevice) * values?.EFMobile1;
       const mobileDeviceEmissions = EFMobile2 * values?.EFMobile3;
       const tabletEF2 = Number(values?.tabletDevice) * values?.tabletEF1;
@@ -126,7 +127,7 @@ const Image = (props) => {
           type: 'Data Center Emissions',
           dataCenter: values?.dataCenter,
           renewable: values?.dataRenewable,
-          emission: dataEmissions > 0 ? Number(dataEmissions).toFixed(5) : 0,
+          emission: Number(dataEmissions).toFixed(5),
         },
         {
           type: 'Content Size',
@@ -152,7 +153,7 @@ const Image = (props) => {
                 wifiImpression: values?.wifiImpression,
                 wifi4g: values?.wifi4GImpression,
                 wifi5g: values?.wifi5GImpression,
-                emissions: wifiTotalEmissions > 0 ? wifiTotalEmissions : '',
+                emissions: wifiTotalEmissions > 0 ? Number(wifiTotalEmissions).toFixed(5) : '',
               },
             ],
           },
@@ -165,22 +166,22 @@ const Image = (props) => {
               {
                 dgType: 'Mobile',
                 noOfDevice: values?.mobileDevice,
-                emissions: mobileDeviceEmissions > 0 ? mobileDeviceEmissions : '',
+                emissions: mobileDeviceEmissions > 0 ? Number(mobileDeviceEmissions).toFixed(5) : '',
               },
               {
                 dgType: 'Tablet',
                 noOfDevice: values?.tabletDevice,
-                emissions: tabletDeviceEmissions > 0 ? tabletDeviceEmissions : '',
+                emissions: tabletDeviceEmissions > 0 ? Number(tabletDeviceEmissions).toFixed(5) : '',
               },
               {
                 dgType: 'Laptop',
                 noOfDevice: values?.laptopDevice,
-                emissions: laptopDeviceEmissions > 0 ? laptopDeviceEmissions : '',
+                emissions: laptopDeviceEmissions > 0 ? Number(laptopDeviceEmissions).toFixed(5) : '',
               },
               {
                 dgType: 'Desktop',
                 noOfDevice: values?.desktopDevice,
-                emissions: desktopDeviceEmissions > 0 ? desktopDeviceEmissions : '',
+                emissions: desktopDeviceEmissions > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
               },
             ],
           },
@@ -194,7 +195,7 @@ const Image = (props) => {
                 // dgType: values?.dataCenter,
                 dataCenter: values?.dataCenter,
                 noOfData: values?.dataRenewable,
-                emissions: dataEmissions > 0 ? dataEmissions : 0,
+                emissions: Number(dataEmissions).toFixed(5),
               },
             ],
           },
@@ -285,7 +286,7 @@ const Image = (props) => {
                     const wifiEF2 = Number(formik.values.wifiImpression || 0) * 0.0000017 * value;
                     const wifiEF4 = Number(formik.values.wifi4GImpression || 0) * 0.00000189 * value;
                     const wifiEF6 = Number(formik.values.wifi5GImpression || 0) * 0.000000189 * value;
-                    const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(5);
+                    const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.8552).toFixed(5);
 
                     formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                     formik.handleSubmit();
@@ -321,7 +322,7 @@ const Image = (props) => {
                             Number(formik.values.wifi4GImpression || 0) * 0.00000189 * formik.values.contentSize;
                           const wifiEF6 =
                             Number(formik.values.wifi5GImpression || 0) * 0.000000189 * formik.values.contentSize;
-                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(5);
+                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.8552).toFixed(5);
 
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
@@ -344,7 +345,7 @@ const Image = (props) => {
                           const wifiEF4 = Number(value) * 0.00000189 * formik.values.contentSize;
                           const wifiEF6 =
                             Number(formik.values.wifi5GImpression || 0) * 0.000000189 * formik.values.contentSize;
-                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(5);
+                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.8552).toFixed(5);
 
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
@@ -367,7 +368,7 @@ const Image = (props) => {
                           const wifiEF4 =
                             Number(formik.values.wifi4GImpression || 0) * 0.00000189 * formik.values.contentSize;
                           const wifiEF6 = Number(value) * 0.000000189 * formik.values.contentSize;
-                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.727).toFixed(5);
+                          const wifiTotalEmissions = ((wifiEF2 + wifiEF4 + wifiEF6) * 0.8552).toFixed(5);
 
                           formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
                           formik.handleSubmit();
@@ -674,12 +675,14 @@ const Image = (props) => {
                     </TableRow>
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Device</TableCell>
-                      <TableCell sx={{ color: 'white', borderBottom: 'none' }}>{Number(totalDevice || 0).toFixed(5)}</TableCell>
+                      <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
+                        {Number(totalDevice || 0).toFixed(5)}
+                      </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>Data Center</TableCell>
                       <TableCell sx={{ color: 'white', borderBottom: 'none' }}>
-                        {Number(formik.values.dataEmissions  || 0).toFixed(5)}
+                        {Number(formik.values.dataEmissions || 0).toFixed(5)}
                       </TableCell>
                     </TableRow>
                     <TableRow>
