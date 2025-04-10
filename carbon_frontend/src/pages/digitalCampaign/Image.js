@@ -73,16 +73,17 @@ const Image = (props) => {
       const wifiEF4 = Number(values?.wifi4GImpression) * 0.00000189 * values?.contentSize;
       const wifiEF6 = Number(values?.wifi5GImpression) * 0.000000189 * values?.contentSize;
       const wifiTotalEF = wifiEF2 + wifiEF4 + wifiEF6;
-      const wifiTotalEmissions = wifiTotalEF * 0.8552;
+      const wifiTotalEmissions = Number(wifiTotalEF * 0.8552).toFixed(5);
+      console.log('wifiTotalEmissions', wifiTotalEmissions);
 
       const EFMobile2 = Number(values?.mobileDevice) * values?.EFMobile1;
-      const mobileDeviceEmissions = EFMobile2 * values?.EFMobile3;
+      const mobileDeviceEmissions = (EFMobile2 * values?.EFMobile3).toFixed(5);
       const tabletEF2 = Number(values?.tabletDevice) * values?.tabletEF1;
-      const tabletDeviceEmissions = tabletEF2 * values?.tabletEF3;
+      const tabletDeviceEmissions = (tabletEF2 * values?.tabletEF3).toFixed(5);
       const laptopEF2 = Number(values?.laptopDevice) * values?.laptopEF1;
-      const laptopDeviceEmissions = laptopEF2 * values?.laptopEF3;
+      const laptopDeviceEmissions = (laptopEF2 * values?.laptopEF3).toFixed(5);
       const desktopEF2 = Number(values?.desktopDevice) * values?.desktopEF1;
-      const desktopDeviceEmissions = desktopEF2 * values?.desktopEF3;
+      const desktopDeviceEmissions = (desktopEF2 * values?.desktopEF3).toFixed(5);
 
       const dataEf1 = (Number(values?.dataCenter) * values?.contentSize) / 1024;
 
@@ -90,7 +91,7 @@ const Image = (props) => {
       const dataEF4 = dataEF3 * 1.7;
       const renewableValue = 100 - values?.dataRenewable;
       const dataTotalEF = (dataEF4 * renewableValue) / 100;
-      const dataEmissions = dataTotalEF * 0.4;
+      const dataEmissions = (dataTotalEF * 0.4).toFixed(5);
 
       if (wifiTotalEmissions > 0) formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
       if (dataEmissions > 0) {
@@ -109,31 +110,32 @@ const Image = (props) => {
           wifi: values?.wifiImpression,
           wifi4g: values?.wifi4GImpression,
           wifi5g: values?.wifi5GImpression,
-          emission: Number(wifiTotalEmissions).toFixed(5) > 0 ? Number(wifiTotalEmissions).toFixed(5) : '',
+          emission: Number(wifiTotalEmissions) > 0 ? Number(wifiTotalEmissions) : '',
         },
         {
           type: 'Device Emissions',
           mobile: values?.mobileDevice,
-          mobileEmission: Number(mobileDeviceEmissions).toFixed(5) > 0 ? Number(mobileDeviceEmissions).toFixed(5) : '',
+          mobileEmission: Number(mobileDeviceEmissions) > 0 ? Number(mobileDeviceEmissions) : '',
           tablet: values?.tabletDevice,
-          tabletEmission: Number(tabletDeviceEmissions).toFixed(5) > 0 ? Number(tabletDeviceEmissions).toFixed(5) : '',
+          tabletEmission: Number(tabletDeviceEmissions) > 0 ? Number(tabletDeviceEmissions) : '',
           laptop: values?.laptopDevice,
-          laptopEmission: Number(laptopDeviceEmissions).toFixed(5) > 0 ? Number(laptopDeviceEmissions).toFixed(5) : '',
+          laptopEmission: Number(laptopDeviceEmissions) > 0 ? Number(laptopDeviceEmissions) : '',
           desktop: values?.desktopDevice,
           desktopEmission:
-            Number(desktopDeviceEmissions).toFixed(5) > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
+            Number(desktopDeviceEmissions) > 0 ? Number(desktopDeviceEmissions) : '',
         },
         {
           type: 'Data Center Emissions',
           dataCenter: values?.dataCenter,
           renewable: values?.dataRenewable,
-          emission: Number(dataEmissions).toFixed(5),
+          emission: Number(dataEmissions),
         },
         {
           type: 'Content Size',
           contentSize: values?.contentSize,
         },
       ];
+      dispatch(addImageData({ data }));
 
       const tableData = [
         {
@@ -202,7 +204,7 @@ const Image = (props) => {
         },
       ];
 
-      dispatch(addImageData({ data }));
+
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Image' }));
     },
   });
