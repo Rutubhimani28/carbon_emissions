@@ -534,8 +534,8 @@ const Waste = (props) => {
                   <table className="table-custom-inpt-field">
                     <tr>
                       <th className="ps-2">Food Type </th>
-                      <th className="ps-2" >No of Kgs</th>
-                      <th className="ps-2">Emissions</th>
+                      <th className="ps-2" style={{ textAlign: 'center' }}>No of Kgs</th>
+                      <th className="ps-2" style={{ textAlign: 'center' }}>Emissions</th>
                     </tr>
                     <tr>
                       <td className="ps-2 py-1">Landfilled</td>
@@ -1078,7 +1078,7 @@ const Waste = (props) => {
                 </Grid> */}
               <Grid item xs={12} sm={12} md={12}>
                 <Box>
-                  <Typography variant="h4" className="text-center text-white mb-4">
+                  <Typography variant="h4" className="text-center text-white mb-4 mt-4">
                     PET Water Bottle
                   </Typography>
                   <div className="table-responsive">

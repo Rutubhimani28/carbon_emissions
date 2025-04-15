@@ -79,8 +79,8 @@ const DigitalContent = (props) => {
         values?.noOfEmails === 0 ? 0 : Number((Number(values?.noOfEmails) * 4 * 50) / 1000).toFixed(5);
       console.log(emissionOne, 'emissionOne');
       // const emissionOne = values?.emailEmissionOne === 0 || values?.emailEmissionTwo === 0 ? 0 : Number(Number(values?.emailEmissionOne) + Number(values?.emailEmissionTwo)).toFixed(5);
-      const emissionTwo = Number((values?.Colours * 0.976).toFixed(5)) || 0;
-      const emissionThree = Number((values?.blackAndWhite * 0.946).toFixed(5)) || 0;
+      const emissionTwo = Number((values?.Colours * 0.034).toFixed(5)) || 0;
+      const emissionThree = Number((values?.blackAndWhite * 0.017).toFixed(5)) || 0;
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
       if (emissionTwo > 0) formik.setFieldValue('emissionTwo', emissionTwo);
       if (emissionThree > 0) formik.setFieldValue('emissionThree', emissionThree);
@@ -406,7 +406,7 @@ const DigitalContent = (props) => {
                             onChange={(e) => {
                               formik.handleChange(e);
                               // formik.setFieldValue('emissionThree', Number((e.target.value * 340 * (formik?.values?.noOfHours / 5840)).toFixed(5)));
-                              formik.setFieldValue('emissionTwo', Number((e.target.value * 0.976).toFixed(5)));
+                              formik.setFieldValue('emissionTwo', Number((e.target.value * 0.034).toFixed(5)));
                               formik.handleSubmit();
                             }}
                             error={formik.touched.Colours && Boolean(formik.errors.Colours)}
@@ -441,7 +441,7 @@ const DigitalContent = (props) => {
                             value={formik.values.blackAndWhite}
                             onChange={(e) => {
                               formik.handleChange(e);
-                              formik.setFieldValue('emissionThree', Number((e.target.value * 0.946).toFixed(5)));
+                              formik.setFieldValue('emissionThree', Number((e.target.value * 0.017).toFixed(5)));
                               formik.handleSubmit();
                             }}
                             error={formik.touched.blackAndWhite && Boolean(formik.errors.blackAndWhite)}
