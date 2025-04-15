@@ -152,8 +152,8 @@ const Home = () => {
     activityName: yup.string().required('Activity Name is required'),
     country: yup.string().required('Country is required'),
     budget: yup.number().required('Budget is required'),
-    dateFrom: yup.date().required('Date is required'),
-    dateTo: yup.date().required('Date is required'),
+    dateFrom: yup.date().required('Date From is required'),
+    dateTo: yup.date().required('Date To is required'),
     // dateTime: yup.string().required('Date is required'),
   });
 
@@ -539,9 +539,8 @@ const Home = () => {
                     name="activityName"
                     type="text"
                     size="small"
-                    className={`textborder custom-inpt-field-color ${
-                      formik.touched.activityName && formik.errors.activityName && 'textErrorborder'
-                    }`}
+                    className={`textborder custom-inpt-field-color ${formik.touched.activityName && formik.errors.activityName && 'textErrorborder'
+                      }`}
                     fullWidth
                     disabled={isDisabledField}
                     value={formik.values.activityName}
@@ -562,9 +561,8 @@ const Home = () => {
                     type="text"
                     size="small"
                     fullWidth
-                    className={`textborder custom-inpt-field-color ${
-                      formik.touched.activityName && formik.errors.activityName && 'textErrorborder'
-                    }`}
+                    className={`textborder custom-inpt-field-color ${formik.touched.activityName && formik.errors.activityName && 'textErrorborder'
+                      }`}
                     disabled={isDisabledField}
                     value={formik.values.country}
                     onChange={formik.handleChange}
@@ -747,10 +745,13 @@ const Home = () => {
                 {/* <Grid item xs={12} sm={6} className='table-custom-inpt-field'> */}
 
                 <Grid item xs={12} sm={6}>
+                  <FormLabel className="fw-bold text-white mt-1">
+                    Activity Dates<span style={{ color: 'red' }}>*</span>
+                  </FormLabel>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <FormLabel className="fw-bold text-white mt-1">
-                        Date(From) <span style={{ color: 'red' }}>*</span>
+                        From
                       </FormLabel>
                       <DatePicker
                         renderInput={(props) => (
@@ -759,13 +760,15 @@ const Home = () => {
                             size="small"
                             fullWidth
                             disabled={isDisabledField}
-                            inputProps={{ style: { color: 'white !important' } }} // Ensure text color is white
-                            ampm={false}
+                            sx={{
+                              input: { color: 'white' }, // ✅ Correct way to set white text
+                            }}
+                            error={formik.touched.dateFrom && Boolean(formik.errors.dateFrom)}
+                            helperText={formik.touched.dateFrom && formik.errors.dateFrom}
                           />
                         )}
-                        className={`custom-dateTimePicker-field ${
-                          formik.touched.dateFrom ? 'custom-dateTimePicker-fieldTouched' : ''
-                        }`}
+                        className={`custom-dateTimePicker-field ${formik.touched.dateFrom && formik.errors.dateFrom ? 'custom-dateTimePicker-fieldTouched' : ''
+                          }`}
                         disabled={isDisabledField}
                         value={formik.values.dateFrom ? dayjs(formik.values.dateFrom) : null}
                         onChange={(newValue) => {
@@ -775,19 +778,32 @@ const Home = () => {
                         onOpen={() => {
                           formik.setFieldTouched('dateFrom', true);
                         }}
+                        onError={(error) => {
+                          if (error) {
+                            formik.setFieldTouched('dateFrom', true);
+                            formik.setFieldError('dateFrom', 'Date From is required');
+                          }
+                        }}
                         defaultValue={null}
                         format="YYYY-MM-DD"
                       />
                     </div>
+                    {formik.touched.dateFrom && formik.errors.dateFrom && (
+                      <FormLabel className="mt-1" style={{ fontSize: '0.75rem', color: '#FF4842' }}>
+                        {formik.errors.dateFrom}
+                      </FormLabel>
+                    )}
                   </LocalizationProvider>
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  {/* <FormLabel className="fw-bold text-white mt-1">${Date To}</FormLabel> */}
+                  <FormLabel className="fw-bold text-white mt-1">
+                    {/* ${Date To} */}
+                  </FormLabel>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <FormLabel className="fw-bold text-white mt-1">
-                        Date(To) <span style={{ color: 'red' }}>*</span>
+                        To
                       </FormLabel>
                       <DatePicker
                         renderInput={(props) => (
@@ -796,13 +812,13 @@ const Home = () => {
                             size="small"
                             fullWidth
                             disabled={isDisabledField}
-                            inputProps={{ style: { color: 'white !important' } }}
-                            ampm={false}
+                            inputProps={{ ...props.inputProps, style: { color: 'white' } }}
+                            error={formik.touched.dateTo && Boolean(formik.errors.dateTo)}
+                            helperText={formik.touched.dateTo && formik.errors.dateTo}
                           />
                         )}
-                        className={`custom-dateTimePicker-field ${
-                          formik.touched.dateTo ? 'custom-dateTimePicker-fieldTouched' : ''
-                        }`}
+                        className={`custom-dateTimePicker-field ${formik.touched.dateTo && formik.errors.dateTo ? 'custom-dateTimePicker-fieldTouched' : ''
+                          }`}
                         disabled={isDisabledField}
                         value={formik.values.dateTo ? dayjs(formik.values.dateTo) : null}
                         onChange={(newValue) => {
@@ -815,9 +831,20 @@ const Home = () => {
                         shouldDisableDate={(date) => {
                           return formik.values.dateFrom && dayjs(date).isBefore(dayjs(formik.values.dateFrom));
                         }}
+                        onError={(error) => {
+                          if (error) {
+                            formik.setFieldTouched('dateTo', true);
+                            formik.setFieldError('dateTo', 'Date To is required or invalid');
+                          }
+                        }}
                         defaultValue={null}
                         format="YYYY-MM-DD"
                       />
+                      {formik.touched.dateTo && formik.errors.dateTo && (
+                        <FormLabel className="mt-1" style={{ fontSize: '0.75rem', color: '#FF4842' }}>
+                          {formik.errors.dateTo}
+                        </FormLabel>
+                      )}
                     </div>
                   </LocalizationProvider>
                 </Grid>
@@ -830,9 +857,8 @@ const Home = () => {
                     name="budget"
                     type="number"
                     size="small"
-                    className={`textborder custom-inpt-field-color ${
-                      formik.touched.activityName && formik.errors.activityName && 'textErrorborder'
-                    }`}
+                    className={`textborder custom-inpt-field-color ${formik.touched.activityName && formik.errors.activityName && 'textErrorborder'
+                      }`}
                     fullWidth
                     disabled={isDisabledField}
                     value={formik.values.budget}
@@ -893,24 +919,24 @@ const Home = () => {
 
                 {(dataFromUseGenerateSendFilledFieldsData?.isGraphLoading ||
                   dataFromUseGenerateSendFilledFieldsData?.isFieldsLoading) && (
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      // bgcolor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent background
-                      backdropFilter: 'blur(1px)', // Blur effect
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      zIndex: 10, // Ensure it’s above other content
-                    }}
-                  >
-                    <CircularProgress />
-                  </Box>
-                )}
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        // bgcolor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent background
+                        backdropFilter: 'blur(1px)', // Blur effect
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 10, // Ensure it’s above other content
+                      }}
+                    >
+                      <CircularProgress />
+                    </Box>
+                  )}
 
                 <Grid item xs={5} sm={3} className="ps-0">
                   {/* <Button
@@ -1079,6 +1105,22 @@ const Home = () => {
             </ul>
           </Box>
         </Modal>
+        <Typography
+          variant="caption"
+          sx={{
+            position: 'fixed',
+            bottom: 20,
+            left: 15,
+            fontSize: '15px',
+            color: 'rgba(5, 5, 5, 0.3)', // subtle white text
+            zIndex: 9999,
+            pointerEvents: 'none', // makes it non-interactive
+            userSelect: 'none', // prevents text selection
+          }}
+        // className="fs-5"
+        >
+          Version 1.2-2025
+        </Typography>
       </Container>
     </>
   );

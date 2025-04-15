@@ -70,6 +70,7 @@ const Food = (props) => {
     emissionFour: '',
     emissionFive: '',
 
+
     noOfBottlesOne: '',
     noOfBottlesTwo: '',
     noOfBottlesThree: '',
@@ -79,6 +80,7 @@ const Food = (props) => {
     noOfBottlesSeven: '',
     noOfBottlesEight: '',
     noOfBottlesNine: '',
+    noOfBottlesTen: '',
     emissionSix: '',
     emissionSeven: '',
     emissionEight: '',
@@ -107,6 +109,7 @@ const Food = (props) => {
       const emissionTen = Number((0.69 * values?.noOfBottlesFive).toFixed(5));
       const emissionEleven = Number((0.25 * values?.noOfBottlesSix).toFixed(5));
       const emissionTwelve = Number((2.19 * values?.noOfBottlesSeven).toFixed(5));
+      const emissionThirteen = Number((0.2422 * values?.noOfBottlesTen).toFixed(5));
       // const emissionThirteen = Number((1.09 * values?.noOfBottlesEight).toFixed(5));
       // const emissionFourteen = Number((1.06 * values?.noOfBottlesNine).toFixed(5));
 
@@ -125,6 +128,7 @@ const Food = (props) => {
       if (emissionTen > 0) formik.setFieldValue('emissionTen', emissionTen); // Gin
       if (emissionEleven > 0) formik.setFieldValue('emissionEleven', emissionEleven); // Rum
       if (emissionTwelve > 0) formik.setFieldValue('emissionTwelve', emissionTwelve); // Vodka
+      if (emissionThirteen > 0) formik.setFieldValue('emissionThirteen', emissionThirteen);
       // if (emissionThirteen > 0) formik.setFieldValue('emissionThirteen', emissionThirteen); // Fruit Juices
       // if (emissionFourteen > 0) formik.setFieldValue('emissionFourteen', emissionFourteen); // Beer
 
@@ -187,6 +191,11 @@ const Food = (props) => {
           type: '30-L steel kegs- 1l',
           noOfBottles: values?.noOfBottlesSix,
           emission: Number((0.25 * values?.noOfBottlesSix).toFixed(5)) || 0,
+        },
+        {
+          type: 'Water',
+          noOfBottles: values?.noOfBottlesTen,
+          emission: Number((0.2422 * values?.noOfBottlesTen).toFixed(5)) || 0,
         },
 
         // {
@@ -279,6 +288,11 @@ const Food = (props) => {
                 noOfBottles: values?.noOfBottlesSix,
                 emissions: emissionEleven > 0 ? emissionEleven : '',
               },
+              {
+                fBType: 'Water',
+                noOfBottles: values?.noOfBottlesTen,
+                emissions: emissionThirteen > 0 ? emissionThirteen : '',
+              },
               // {
               //     fBType: "Customised Beverages",
               //     noOfBottles: '',
@@ -289,7 +303,6 @@ const Food = (props) => {
         },
       ];
 
-    
       dispatch(addFoodData({ data }));
       dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Food' }));
     },
@@ -345,6 +358,9 @@ const Food = (props) => {
       formik.setFieldValue('emissionTen', allData?.[9]?.emission);
       formik.setFieldValue('noOfBottlesSix', allData?.[10]?.noOfBottles);
       formik.setFieldValue('emissionEleven', allData?.[10]?.emission);
+
+      formik.setFieldValue('noOfBottlesTen', allData?.[11]?.noOfBottles);
+      formik.setFieldValue('emissionThirteen', allData?.[11]?.emission);
 
       // formik.setFieldValue('noOfBottlesOne', allData?.[4]?.noOfBottles);
       // formik.setFieldValue('emissionSix', allData?.[4]?.emission);
@@ -537,6 +553,31 @@ const Food = (props) => {
                           {/* <th className="ps-2">Beverages (1000ml)</th> */}
                           <th className="ps-2">No. of Bottles </th>
                           <th className="ps-2">Emissions</th>
+                        </tr>
+                        <tr>
+                          <td className="ps-2 py-1">Water</td>
+                          <td className="ps-2 py-1">
+                            <TextField
+                              size="small"
+                              type="number"
+                              name="noOfBottlesTen"
+                              value={formik?.values?.noOfBottlesTen}
+                              onChange={(e) => {
+                                handleChangeBeveragesWaste(e, 'emissionThirteen', e.target.value, 0.2422);
+                              }}
+                              inputProps={{ style: { color: 'white' } }}
+                            />
+                          </td>
+                          <td className="ps-2 py-1">
+                            <TextField
+                              size="small"
+                              type="number"
+                              disabled
+                              name="emissionThirteen"
+                              value={formik?.values?.emissionThirteen}
+                              onChange={formik.handleChange}
+                            />
+                          </td>
                         </tr>
                         <tr>
                           <td className="ps-2 py-1">Branded Wine (750ml)</td>
