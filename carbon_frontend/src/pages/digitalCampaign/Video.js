@@ -70,7 +70,7 @@ const Video = (props) => {
     initialValues,
     onSubmit: async (values) => {
       const wifiEF1 = values?.videoSize / 1024;
-      const wifiEF2 = 0.05 ; 
+      const wifiEF2 = 0.05;
       const wifiEF3 = Number(values?.wifiImpression) * wifiEF1 * wifiEF2;
       // console.log('wifiEF3',wifiEF3)
       // const wifiEF3 = Number(values?.wifiImpression) * wifiEF1 * 0.05;
@@ -89,9 +89,9 @@ const Video = (props) => {
       const desktopDeviceEmissions = desktopEF2 * values?.desktopEF3;
 
       const dataEf1 = (Number(values.dataCenter) * values.videoSize) / 1024;
-      const dataEf2 = 0.05;
-      const dataEF3 = dataEf1 * dataEf2;
-      const dataEF4 = dataEF3 * 199.22;
+      const dataEf2 = 0.03;
+      const dataEF3 = Number(dataEf1 * dataEf2);
+      const dataEF4 = dataEF3 * 1.7;
       const dataEF5 = 100 - Number(values.dataRenewable);
       const dataTotalEF = (dataEF4 * dataEF5) / 100;
       const dataEmissions = dataTotalEF * 0.4;
