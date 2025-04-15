@@ -37,6 +37,13 @@ const Waste = (props) => {
     lambMuttonEmission: '',
     poultryMeatEmission: '',
 
+
+    LandfilledFood: '',
+    LandfilledFoodEmission: '',
+    CombustedFood: '',
+    CombustedFoodEmission: '',
+    CompostedFood: '',
+    CompostedFoodEmission: '',
     // bottleOne: '',
     // bottleTwo: '',
     // bottleThree: '',
@@ -102,6 +109,11 @@ const Waste = (props) => {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
+
+      const LandfilledFoodEmission = Number(0.69 * Number(values?.LandfilledFood)).toFixed(5);
+      const CombustedFoodEmission = Number(0.05 * Number(values?.CombustedFood)).toFixed(5);
+      const CompostedFoodEmission = Number(0.11 * Number(values?.CompostedFood)).toFixed(5);
+
       const BeefHerdEmission = Number(99.48 * Number(values?.BeefHerd)).toFixed(5);
       const dairyHerdEmission = Number(33.3 * Number(values?.dairyHerd)).toFixed(5);
       // const municipalSolidWasteEmission = Number(0.902 * Number(values?.municipalSolidWasteKg)).toFixed(5);
@@ -127,6 +139,10 @@ const Waste = (props) => {
       // const woodEmission = Number(Number(values?.woodKg) * 1.33).toFixed(5);
       // const carpetEmission = Number(Number(values?.carpetKg) * 0.2).toFixed(5);
       // const pvcEmission = Number(Number(values?.pvcKg) * 1 * 0.02).toFixed(5);
+
+      if (LandfilledFoodEmission > 0) formik.setFieldValue('LandfilledFoodEmission', LandfilledFoodEmission);
+      if (CombustedFoodEmission > 0) formik.setFieldValue('CombustedFoodEmission', CombustedFoodEmission);
+      if (CompostedFoodEmission > 0) formik.setFieldValue('CompostedFoodEmission', CompostedFoodEmission);
 
       if (BeefHerdEmission > 0) formik.setFieldValue('BeefHerdEmission', BeefHerdEmission);
       if (dairyHerdEmission > 0) formik.setFieldValue('dairyHerdEmission', dairyHerdEmission);
@@ -167,20 +183,35 @@ const Waste = (props) => {
 
       const data = [
         {
-          type: 'BeefHerd',
-          BeefHerd: values?.BeefHerd,
-          emission: BeefHerdEmission > 0 ? BeefHerdEmission : '',
+          type: 'LandfilledFood',
+          LandfilledFood: values?.LandfilledFood,
+          emission: LandfilledFoodEmission > 0 ? LandfilledFoodEmission : '',
         },
         {
-          type: 'DairyHerd',
-          dairyHerd: values?.dairyHerd,
-          emission: dairyHerdEmission > 0 ? dairyHerdEmission : '',
+          type: 'CombustedFood',
+          CombustedFood: values?.CombustedFood,
+          emission: CombustedFoodEmission > 0 ? CombustedFoodEmission : '',
         },
         {
-          type: 'LambMutton',
-          lambMutton: values?.lambMutton,
-          emission: lambMuttonEmission > 0 ? lambMuttonEmission : '',
+          type: 'CompostedFood',
+          CompostedFood: values?.CompostedFood,
+          emission: CompostedFoodEmission > 0 ? CompostedFoodEmission : '',
         },
+        // {
+        //   type: 'BeefHerd',
+        //   BeefHerd: values?.BeefHerd,
+        //   emission: BeefHerdEmission > 0 ? BeefHerdEmission : '',
+        // },
+        // {
+        //   type: 'DairyHerd',
+        //   dairyHerd: values?.dairyHerd,
+        //   emission: dairyHerdEmission > 0 ? dairyHerdEmission : '',
+        // },
+        // {
+        //   type: 'LambMutton',
+        //   lambMutton: values?.lambMutton,
+        //   emission: lambMuttonEmission > 0 ? lambMuttonEmission : '',
+        // },
         {
           type: 'PoultryMeat',
           poultryMeat: values?.poultryMeat,
@@ -253,28 +284,43 @@ const Waste = (props) => {
         {
           subType: 'Food Waste',
           subTypeData: {
-            th: ['Food Type', 'Waste Weight (Kgs)', 'Emissions'],
+            th: ['Food Type', 'No of Kgs ', 'Emissions'],
             td: [
               {
-                wsType: 'Beef (beef herd)',
-                kgs: values?.BeefHerd,
-                emissions: BeefHerdEmission > 0 ? BeefHerdEmission : '',
+                wsType: 'Landfilled Food',
+                kgs: values?.LandfilledFood,
+                emissions: LandfilledFoodEmission > 0 ? LandfilledFoodEmission : '',
               },
               {
-                wsType: 'Beef (dairy herd)',
-                kgs: values?.dairyHerd,
-                emissions: dairyHerdEmission > 0 ? dairyHerdEmission : '',
+                wsType: 'Combusted Food',
+                kgs: values?.CombustedFood,
+                emissions: CombustedFoodEmission > 0 ? CombustedFoodEmission : '',
               },
+              {
+                wsType: 'Composted Food',
+                kgs: values?.CompostedFood,
+                emissions: CompostedFoodEmission > 0 ? CompostedFoodEmission : '',
+              },
+              // {
+              //   wsType: 'Beef (beef herd)',
+              //   kgs: values?.BeefHerd,
+              //   emissions: BeefHerdEmission > 0 ? BeefHerdEmission : '',
+              // },
+              // {
+              //   wsType: 'Beef (dairy herd)',
+              //   kgs: values?.dairyHerd,
+              //   emissions: dairyHerdEmission > 0 ? dairyHerdEmission : '',
+              // },
               // {
               //     wsType: "Municipal Solid Waste",
               //     kgs: values?.municipalSolidWasteKg,
               //     emissions: municipalSolidWasteEmission > 0 ? municipalSolidWasteEmission : ''
               // },
-              {
-                wsType: 'Lamb & Mutton',
-                kgs: values?.lambMutton,
-                emissions: lambMuttonEmission > 0 ? lambMuttonEmission : '',
-              },
+              // {
+              //   wsType: 'Lamb & Mutton',
+              //   kgs: values?.lambMutton,
+              //   emissions: lambMuttonEmission > 0 ? lambMuttonEmission : '',
+              // },
               {
                 wsType: 'Poultry Meat',
                 kgs: values?.poultryMeat,
@@ -337,7 +383,7 @@ const Waste = (props) => {
         {
           subType: 'PET Water Bottle',
           subTypeData: {
-            th: ['', 'No. of Bottles', 'Emissions'],
+            th: ['', 'No. of Bottlessasssss', 'Emissions'],
             td: [
               {
                 wsType: '500ml (If Recycled)',
@@ -354,7 +400,6 @@ const Waste = (props) => {
           // scope: 3
         },
       ];
-
       dispatch(addResultTableData({ from: 'f2fEvent', data: tableData, tabTitle: 'Waste' }));
     },
   });
@@ -384,14 +429,24 @@ const Waste = (props) => {
   };
   useEffect(() => {
     if (allData?.length > 0) {
-      formik.setFieldValue('BeefHerd', allData?.[0]?.BeefHerd);
-      formik.setFieldValue('BeefHerdEmission', allData?.[0]?.emission);
-      formik.setFieldValue('dairyHerd', allData?.[1]?.dairyHerd);
-      formik.setFieldValue('dairyHerdEmission', allData?.[1]?.emission);
-      formik.setFieldValue('lambMutton', allData?.[2]?.lambMutton);
-      formik.setFieldValue('lambMuttonEmission', allData?.[2]?.emission);
-      formik.setFieldValue('poultryMeat', allData?.[3]?.poultryMeat);
-      formik.setFieldValue('poultryMeatEmission', allData?.[3]?.emission);
+      // formik.setFieldValue('BeefHerd', allData?.[0]?.BeefHerd);
+      // formik.setFieldValue('BeefHerdEmission', allData?.[0]?.emission);
+
+      formik.setFieldValue('LandfilledFood', allData?.[0]?.LandfilledFood);
+      formik.setFieldValue('LandfilledFoodEmission', allData?.[0]?.emission);
+
+      formik.setFieldValue('CombustedFood', allData?.[1]?.CombustedFood);
+      formik.setFieldValue('CombustedFoodEmission', allData?.[1]?.emission);
+
+      formik.setFieldValue('CompostedFood', allData?.[2]?.CompostedFood);
+      formik.setFieldValue('CompostedFoodEmission', allData?.[2]?.emission);
+
+      // formik.setFieldValue('dairyHerd', allData?.[1]?.dairyHerd);
+      // formik.setFieldValue('dairyHerdEmission', allData?.[1]?.emission);
+      // formik.setFieldValue('lambMutton', allData?.[2]?.lambMutton);
+      // formik.setFieldValue('lambMuttonEmission', allData?.[2]?.emission);
+      // formik.setFieldValue('poultryMeat', allData?.[3]?.poultryMeat);
+      // formik.setFieldValue('poultryMeatEmission', allData?.[3]?.emission);
       formik.setFieldValue('fishFrame', allData?.[4]?.fishFrame);
 
       formik.setFieldValue('fishFrameEmission', allData?.[4]?.emission);
@@ -473,11 +528,115 @@ const Waste = (props) => {
               <Typography variant="h4" className="text-center text-white mb-4">
                 Food Waste
               </Typography>
-              <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 5 }}>
-                <Grid item xs={12} sm={12} md={6}>
-              
+              <Box>
+
+                <div className="table-responsive">
+                  <table className="table-custom-inpt-field">
+                    <tr>
+                      <th className="ps-2">Food Type </th>
+                      <th className="ps-2" >No of Kgs</th>
+                      <th className="ps-2">Emissions</th>
+                    </tr>
+                    <tr>
+                      <td className="ps-2 py-1">Landfilled</td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="LandfilledFood"
+                          value={formik?.values?.LandfilledFood}
+                          onChange={(e) => {
+                            formik.handleChange(e);
+                            formik.setFieldValue(
+                              'LandfilledFoodEmission',
+                              // Number(99.48 * Number(e?.target?.value)).toFixed(5)
+                              Number(0.69 * Number(e?.target?.values)).toFixed(5)
+                            );
+                            formik.handleSubmit();
+                          }}
+                          inputProps={{ style: { color: 'white' } }}
+                        />
+                      </td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          disabled
+                          name="LandfilledFoodEmission"
+                          value={formik?.values?.LandfilledFoodEmission}
+                          onChange={formik.handleChange}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="ps-2 py-1">Combusted</td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="CombustedFood"
+                          value={formik?.values?.CombustedFood}
+                          onChange={(e) => {
+                            formik.handleChange(e);
+                            formik.setFieldValue(
+                              'CombustedFoodEmission',
+                              Number(0.05 * Number(e.target.value)).toFixed(5)
+                            );
+                            formik.handleSubmit();
+                          }}
+                          inputProps={{ style: { color: 'white' } }}
+                        />
+                      </td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="CombustedFoodEmission"
+                          value={formik?.values?.CombustedFoodEmission}
+                          onChange={formik.handleChange}
+                          disabled
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td className="ps-2 py-1">Composted</td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="CompostedFood"
+                          value={formik?.values?.CompostedFood}
+                          onChange={(e) => {
+                            formik.handleChange(e);
+                            formik.setFieldValue(
+                              'CompostedFoodEmission',
+                              Number(0.11 * Number(e.target.value)).toFixed(5)
+                            );
+                            formik.handleSubmit();
+                          }}
+                          inputProps={{ style: { color: 'white' } }}
+                        />
+                      </td>
+                      <td className="ps-2 py-1">
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="CompostedFoodEmission"
+                          value={formik?.values?.CompostedFoodEmission}
+                          onChange={formik.handleChange}
+                          disabled
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </Box>
+              {/* <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 5 }}> */}
+              {/* <Grid item xs={12} sm={12} md={6}>
+
                   <Box>
-                    
+
                     <div className="table-responsive">
                       <table className="table-custom-inpt-field">
                         <tr>
@@ -916,80 +1075,80 @@ const Waste = (props) => {
                       </table>
                     </div>
                   </Box>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12}>
-                  <Box>
-                    <Typography variant="h4" className="text-center text-white mb-4">
-                      PET Water Bottle
-                    </Typography>
-                    <div className="table-responsive">
-                      <table className="table-custom-inpt-field">
-                        <tr>
-                          <th width="110px" />
-                          <th className="ps-3">No. of Bottles</th>
-                          <th className="ps-2">Emissions</th>
-                        </tr>
-                        <tr>
-                          <td className="ps-2 py-1">500ml (If Recycled)</td>
-                          <td className="ps-3 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="Recycled"
-                              value={formik?.values?.Recycled}
-                              onChange={(e) => {
-                                formik.handleChange(e);
-                                formik.setFieldValue(
-                                  'RecycledEmission',
-                                  Number(Number(e.target.value) * 0.1097).toFixed(5)
-                                );
-                                formik.handleSubmit();
-                              }}
-                              inputProps={{ style: { color: 'white' } }}
-                            />
-                          </td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              disabled
-                              name="RecycledEmission"
-                              value={formik?.values?.RecycledEmission}
-                              onChange={formik.handleChange}
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="ps-2 py-1">500ml (If Landfilled)</td>
-                          <td className="ps-3 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="Landfilled"
-                              value={formik?.values?.Landfilled}
-                              onChange={(e) => {
-                                formik.handleChange(e);
-                                formik.setFieldValue(
-                                  'LandfilledEmission',
-                                  Number(Number(e.target.value) * 0.122).toFixed(5)
-                                );
-                                formik.handleSubmit();
-                              }}
-                              inputProps={{ style: { color: 'white' } }}
-                            />
-                          </td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="LandfilledEmission"
-                              value={formik?.values?.LandfilledEmission}
-                              onChange={formik.handleChange}
-                              disabled
-                            />
-                          </td>
-                        </tr>
-                        {/* <tr>
+                </Grid> */}
+              <Grid item xs={12} sm={12} md={12}>
+                <Box>
+                  <Typography variant="h4" className="text-center text-white mb-4">
+                    PET Water Bottle
+                  </Typography>
+                  <div className="table-responsive">
+                    <table className="table-custom-inpt-field">
+                      <tr>
+                        <th width="110px" />
+                        <th className="ps-3">No. of Bottles</th>
+                        <th className="ps-2">Emissions</th>
+                      </tr>
+                      <tr>
+                        <td className="ps-2 py-1">500ml (If Recycled)</td>
+                        <td className="ps-3 py-1">
+                          <TextField
+                            size="small"
+                            type="number"
+                            name="Recycled"
+                            value={formik?.values?.Recycled}
+                            onChange={(e) => {
+                              formik.handleChange(e);
+                              formik.setFieldValue(
+                                'RecycledEmission',
+                                Number(Number(e.target.value) * 0.1097).toFixed(5)
+                              );
+                              formik.handleSubmit();
+                            }}
+                            inputProps={{ style: { color: 'white' } }}
+                          />
+                        </td>
+                        <td className="ps-2 py-1">
+                          <TextField
+                            size="small"
+                            type="number"
+                            disabled
+                            name="RecycledEmission"
+                            value={formik?.values?.RecycledEmission}
+                            onChange={formik.handleChange}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="ps-2 py-1">500ml (If Landfilled)</td>
+                        <td className="ps-3 py-1">
+                          <TextField
+                            size="small"
+                            type="number"
+                            name="Landfilled"
+                            value={formik?.values?.Landfilled}
+                            onChange={(e) => {
+                              formik.handleChange(e);
+                              formik.setFieldValue(
+                                'LandfilledEmission',
+                                Number(Number(e.target.value) * 0.122).toFixed(5)
+                              );
+                              formik.handleSubmit();
+                            }}
+                            inputProps={{ style: { color: 'white' } }}
+                          />
+                        </td>
+                        <td className="ps-2 py-1">
+                          <TextField
+                            size="small"
+                            type="number"
+                            name="LandfilledEmission"
+                            value={formik?.values?.LandfilledEmission}
+                            onChange={formik.handleChange}
+                            disabled
+                          />
+                        </td>
+                      </tr>
+                      {/* <tr>
                           <td className="ps-2 py-1">PVC</td>
                           <td className="ps-3 py-1">
                             <TextField
@@ -1016,57 +1175,57 @@ const Waste = (props) => {
                             />
                           </td>
                         </tr> */}
-                      </table>
-                    </div>
-                  </Box>
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
-                  <Stack columnGap={2} rowGap={2} className="flex-xl-row flex-md-row flex-sm-column">
-                    <Button
-                      variant="contained"
-                      onClick={() => {
-                        // formik.handleSubmit();
-                        handleSaveToDb();
-                        setValue(value - 1);
-                      }}
-                      startIcon={<FaAngleDoubleLeft />}
-                      className="custom-btn"
-                    >
-                      Save and Previous Page
-                    </Button>
-                    <Button
-                      variant="contained"
-                      onClick={() => {
-                        // formik.handleSubmit();
-                        handleSaveToDb();
-                        setValue(value + 1);
-                      }}
-                      className="custom-btn"
-                      endIcon={<FaAngleDoubleRight />}
-                    >
-                      Save and Next Page
-                    </Button>
-                    {/* <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button> */}
-                    {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
-                    <Button
-                      variant="outlined"
-                      onClick={() => {
-                        formik.resetForm();
-                        handeleDelete();
-                      }}
-                      color="error"
-                    >
-                      Clear
-                    </Button>
-                  </Stack>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} marginTop={3}>
-                  <Typography color="white">
-                    {`Total Waste Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
-                  </Typography>
-                </Grid>
+                    </table>
+                  </div>
+                </Box>
               </Grid>
+
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+                <Stack columnGap={2} rowGap={2} className="flex-xl-row flex-md-row flex-sm-column">
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      // formik.handleSubmit();
+                      handleSaveToDb();
+                      setValue(value - 1);
+                    }}
+                    startIcon={<FaAngleDoubleLeft />}
+                    className="custom-btn"
+                  >
+                    Save and Previous Page
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      // formik.handleSubmit();
+                      handleSaveToDb();
+                      setValue(value + 1);
+                    }}
+                    className="custom-btn"
+                    endIcon={<FaAngleDoubleRight />}
+                  >
+                    Save and Next Page
+                  </Button>
+                  {/* <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => setValue(9)} className='custom-btn'>Go To Result</Button> */}
+                  {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
+                  <Button
+                    variant="outlined"
+                    onClick={() => {
+                      formik.resetForm();
+                      handeleDelete();
+                    }}
+                    color="error"
+                  >
+                    Clear
+                  </Button>
+                </Stack>
+              </Grid>
+              <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                <Typography color="white">
+                  {`Total Waste Carbon Footprint = ${totalEmission} `}kgCO<sub>2</sub>e
+                </Typography>
+              </Grid>
+              {/* </Grid> */}
             </Box>
           </Box>
         </Card>
