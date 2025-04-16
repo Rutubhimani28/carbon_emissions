@@ -70,10 +70,7 @@ const Video = (props) => {
     initialValues,
     onSubmit: async (values) => {
       const wifiEF1 = values?.videoSize / 1024;
-      const wifiEF2 = 0.05;
-      const wifiEF3 = Number(values?.wifiImpression) * wifiEF1 * wifiEF2;
-      // console.log('wifiEF3',wifiEF3)
-      // const wifiEF3 = Number(values?.wifiImpression) * wifiEF1 * 0.05;
+      const wifiEF3 = Number(values?.wifiImpression) * wifiEF1 * 0.05;
       const wifiEF5 = Number(values?.wifi4GImpression) * wifiEF1 * 0.12;
       const wifiEF7 = Number(values?.wifi5GImpression) * wifiEF1 * 0.012;
       const wifiTotalEF = wifiEF3 + wifiEF5 + wifiEF7;
@@ -89,12 +86,11 @@ const Video = (props) => {
       const desktopDeviceEmissions = desktopEF2 * values?.desktopEF3;
 
       const dataEf1 = (Number(values.dataCenter) * values.videoSize) / 1024;
-      const dataEf2 = 0.03;
-      const dataEF3 = Number(dataEf1 * dataEf2);
+      const dataEF3 = dataEf1 * 0.3;
       const dataEF4 = dataEF3 * 1.7;
       const dataEF5 = 100 - Number(values.dataRenewable);
       const dataTotalEF = (dataEF4 * dataEF5) / 100;
-      const dataEmissions = (dataTotalEF * 0.4 * 10).toFixed(5);
+      const dataEmissions = (dataTotalEF * 0.4);
 
       if (wifiTotalEmissions > 0) formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions.toFixed(5));
 
@@ -142,7 +138,6 @@ const Video = (props) => {
           totalImpression: values?.totalImpression,
         },
       ];
-      dispatch(addVideoData({ data }));
       const tableData = [
         {
           subType: '',
@@ -214,7 +209,7 @@ const Video = (props) => {
         },
       ];
 
-
+      dispatch(addVideoData({ data }));
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Video' }));
     },
   });
