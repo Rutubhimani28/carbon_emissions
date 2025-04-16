@@ -94,7 +94,7 @@ const Video = (props) => {
       const dataEF4 = dataEF3 * 1.7;
       const dataEF5 = 100 - Number(values.dataRenewable);
       const dataTotalEF = (dataEF4 * dataEF5) / 100;
-      const dataEmissions = dataTotalEF * 0.4;
+      const dataEmissions = (dataTotalEF * 0.4 * 10).toFixed(5);
 
       if (wifiTotalEmissions > 0) formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions.toFixed(5));
 
