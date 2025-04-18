@@ -147,7 +147,7 @@ const Video = (props) => {
               {
                 videoLength: values?.videoLength,
                 videoSize: values?.videoSize,
-                totalImpression: values?.totalImpression,
+                emissions: values?.totalImpression,
               },
             ],
           },
@@ -208,7 +208,6 @@ const Video = (props) => {
           },
         },
       ];
-
       dispatch(addVideoData({ data }));
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Video' }));
     },

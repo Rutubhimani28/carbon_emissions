@@ -37,6 +37,7 @@ const Image = (props) => {
   const allData = useSelector((state) => state?.totalImageDetails?.data?.[0]?.data);
   const totalEmission = useSelector((state) => state?.totalImageDetails?.totalEmission);
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
+  const { pageSizeMB, loading, error } = useSelector((state) => state.totalGreenCheckDetails);
   const eventsData = useEventData();
   const dispatch = useDispatch();
   const initialValues = {
@@ -74,7 +75,6 @@ const Image = (props) => {
       const wifiEF6 = Number(values?.wifi5GImpression) * 0.000000189 * values?.contentSize;
       const wifiTotalEF = wifiEF2 + wifiEF4 + wifiEF6;
       const wifiTotalEmissions = Number(wifiTotalEF * 0.8552).toFixed(5);
-      console.log('wifiTotalEmissions', wifiTotalEmissions);
 
       const EFMobile2 = Number(values?.mobileDevice) * values?.EFMobile1;
       const mobileDeviceEmissions = (EFMobile2 * values?.EFMobile3).toFixed(5);
@@ -204,7 +204,6 @@ const Image = (props) => {
         },
       ];
 
-
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Image' }));
     },
   });
@@ -264,6 +263,12 @@ const Image = (props) => {
       formik.setFieldValue('dataEmissions', allData?.[2]?.emission);
     }
   }, [value]);
+
+  useEffect(() => {
+    if (pageSizeMB) {
+      formik.setFieldValue('contentSize', pageSizeMB);
+    }
+  }, [pageSizeMB]);
 
   return (
     <Container maxWidth>

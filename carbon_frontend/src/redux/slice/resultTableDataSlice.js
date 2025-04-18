@@ -433,6 +433,39 @@ const resultTableDataSlice = createSlice({
         data: filteredData,
       };
     },
+    deleteResTabPageViewData: (state, action) => {
+      const filteredData = state?.data?.map((item) => {
+        if (item?.from === 'digitalCampaign') {
+          return {
+            ...item,
+            allDataOfTab: item?.allDataOfTab?.map((tab) => {
+              if (tab?.tabTitle === 'PageView') {
+                return {
+                  ...tab,
+                  tabData: [
+                    // { subType: "Social Media", scope: 3 },
+                    // { subType: "", scope: 3 },
+                    // { subType: "Email / Newsletter", scope: 1 },
+                    // { subType: "Podcast", scope: 3 },
+                    { subType: 'Network Emissions' },
+                    { subType: 'Device Emissions' },
+                    { subType: 'Data Center Emissions' },
+                    // { subType: 'Podcast' },
+                  ],
+                };
+              }
+              return tab;
+            }),
+          };
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        data: filteredData,
+      };
+    },
     deleteResTabDgCampaignData: (state, action) => {
       const filteredData = state?.data?.map((item) => {
         if (item?.from === 'digitalCampaign') {
@@ -739,5 +772,6 @@ export const {
   deleteprEventEmissionCatogorywise,
   setResultTableAllData,
   clearResultTableData,
+  deleteResTabPageViewData
 } = resultTableDataSlice.actions;
 export default resultTableDataSlice.reducer;

@@ -282,6 +282,7 @@ const Home = () => {
       wasteAllData: { data: [], totalEmission: 0 },
       imageAllData: { data: [], totalEmission: 0 },
       videoAllData: { data: [], totalEmission: 0 },
+      pageViewAllData: { data: [], totalEmission: 0 },
     };
 
     // if (resultTableData.eventDataId) {

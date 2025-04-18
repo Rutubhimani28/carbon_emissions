@@ -34,6 +34,7 @@ const Result = ({ value }) => {
   const toolData = useSelector((state) => state?.toolDetails?.data);
   const allDataImage = useSelector((state) => state?.totalImageDetails);
   const allDataVideo = useSelector((state) => state?.totalVideoDetails);
+  const allDataPageView = useSelector((state) => state?.totalPageViewDetails);
   const toolFormData = toolData?.find((item) => item?.type === 'toolForm');
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
 
@@ -47,6 +48,10 @@ const Result = ({ value }) => {
     //     type: 'Digital Campaign',
     //     totalEmission: allDigitalCampaignData?.totalEmission
     // }
+    {
+      type: 'PageView',
+      totalEmission: allDataPageView?.totalEmission || 0,
+    },
     {
       type: 'Image',
       totalEmission: allDataImage?.totalEmission || 0,
@@ -71,8 +76,10 @@ const Result = ({ value }) => {
 
   const data = {
     // "totalDigitalCampaign": Number(allDigitalCampaignData?.totalEmission).toFixed(5),
+    totalPageView: allDataPageView?.totalEmission || 0,
     totalImage: allDataImage?.totalEmission || 0,
     totalVideo: allDataVideo?.totalEmission || 0,
+    // totalPageView: allDataPageView?.totalEmission || 0,
     grandTotal: Number(total || 0).toFixed(5),
     // socialMediaEmission: Number(Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission) || 0) + Number(Number(allDigitalCampaignData?.data?.[0]?.data?.[1]?.emission) || 0)).toFixed(5) || 0,
     // emailEmission: allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0,
@@ -131,6 +138,7 @@ const Result = ({ value }) => {
   // const videoMins = allDigitalCampaignData?.data?.[0]?.data?.[1]?.videoMins || 0;
   // const noOfMinsOne = allDigitalCampaignData?.data?.[0]?.data?.[2]?.noOfMins || 0;
   // const emailEmission = allDigitalCampaignData?.data?.[0]?.data?.[2]?.emission || 0;
+  const pageViewTotal = allDataPageView?.totalEmission || 0;
   const imageTotal = allDataImage?.totalEmission || 0;
   const videoTotal = allDataVideo?.totalEmission || 0;
   //   const imageEmission = allDigitalCampaignData?.data?.[0]?.data?.[0]?.emission || 0;
@@ -150,8 +158,11 @@ const Result = ({ value }) => {
     if (totalCarbonFootprint) {
       sentenceParts.push(`My Digital Campaign has a carbon footprint of ${totalCarbonFootprint}, `);
     }
+    if (pageViewTotal) {
+      sentenceParts.push(`Based on the Page Analytics you generated ${pageViewTotal} kgCO2e, `);
+    }
     if (imageTotal) {
-      sentenceParts.push(`Based on the emissions you generated from Image generated ${imageTotal} kgCO2e, `);
+      sentenceParts.push(` Image generated ${imageTotal} kgCO2e, `);
     }
     if (videoTotal) {
       sentenceParts.push(`and video generated ${videoTotal} kgCO2e, `);
@@ -173,7 +184,7 @@ const Result = ({ value }) => {
     // const finalSentence = `${sentenceParts.join(', ')} \n\n${wantInResult}`;
 
     sentenceParts.push(
-      `\n How can I reduce the emissions max? In the Image size from ${imageTotal} Mb by over 25% , and Video duration from ${videoTotal} secs by over 25%. Show the original and reduced emissions by suggesting one action item for  Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`
+      `\n How can I reduce the emissions max? n the Page, reduce the size of the Page from ${pageViewTotal} kgCO2e by over 25%, Image size from ${imageTotal} Mb by over 25% , and Video duration from ${videoTotal} secs by over 25%. Show the original and reduced emissions by suggesting one action item for Page, Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`
     );
     const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);
@@ -211,7 +222,6 @@ const Result = ({ value }) => {
   };
 
   const chat = async () => {
-    console.log(content,"content");
     setIsLoading(true);
     try {
       const response = await axios.post(
@@ -343,6 +353,12 @@ const Result = ({ value }) => {
         scope: 3,
         emission: Number(allDataVideo?.totalEmission) || 0,
       },
+      {
+        tabTitle: 'PageView',
+        key: 'PageView',
+        scope: 3,
+        emission: Number(allDataPageView?.totalEmission) || 0,
+      }
       //   {
       //     tabTitle: 'Digital Campaign',
       //     key: 'Email',

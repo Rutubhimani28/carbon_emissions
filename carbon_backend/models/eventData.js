@@ -47,6 +47,7 @@ const EventDataSchema = new mongoose.Schema(
         digitalCampaignAllData: oneTabAllDataSchema,
         imageAllData: oneTabAllDataSchema,
         videoAllData: oneTabAllDataSchema,
+        pageViewAllData: oneTabAllDataSchema,
         dateTime: { type: String,},
         dateFrom: { type: String,  required: true },
         dateTo: { type: String ,  required: true },

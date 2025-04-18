@@ -8,6 +8,8 @@ import DigitalCampaignComp from './digitalCampaign';
 import banner from '../../layouts/user/assets/images/NetZero Tool Pic.jpeg';
 import Image from './Image';
 import Video from './Video';
+import GreenCheck from './greenCheck';
+import PageView from './pageView';
 
 const DigitalCampaignCalculation = () => {
   const [value, setValue] = useState(0);
@@ -37,10 +39,15 @@ const DigitalCampaignCalculation = () => {
             /> */}
             <Tab
               icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
+              label="Page View"
+              className="tab-text"
+            />
+            <Tab
+              icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
               label="Image"
               className="tab-text"
             />
-             <Tab
+            <Tab
               icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
               label="Video"
               className="tab-text"
@@ -50,13 +57,20 @@ const DigitalCampaignCalculation = () => {
               label="Summary"
               className="tab-text"
             />
+            {/* <Tab
+              icon={<img src={result} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
+              label="Green"
+              className="tab-text"
+            /> */}
           </Tabs>
         </Box>
         <Box my={2} pb={2}>
           {/* {value === 0 && <DigitalCampaignComp setValue={setValue} value={value} />} */}
-          {value === 0 && <Image setValue={setValue} value={value} />}
-          {value === 1 && <Video setValue={setValue} value={value} />}
-          {value === 2 && <Result setValue={setValue} value={value} />}
+          {value === 0 && <PageView setValue={setValue} value={value} />}
+          {value === 1 && <Image setValue={setValue} value={value} />}
+          {value === 2 && <Video setValue={setValue} value={value} />}
+          {value === 3 && <Result setValue={setValue} value={value} />}
+          {/* {value === 4 && <GreenCheck />} */}
         </Box>
       </Container>
     </div>

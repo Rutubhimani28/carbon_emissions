@@ -23,11 +23,11 @@ import totalLocalTranspotationSlice from '../slice/totalLocalTranspotationSlice'
 import wasteSlice from '../slice/wasteSlice';
 import totalAirTravelSlice from '../slice/totalAirTravelSlice';
 import totalImageSlice from '../slice/imageSlice';
+import toltalPageViewsSlice from '../slice/pageViewSlice';
 import hotelSlice from '../slice/hotelSlice';
 import totalHotelSlice from '../slice/totalHotelSlice';
 import totalDigitalCampaignSlice from '../slice/totalDigitalCampaignSlice';
 import totalVideoSlice from '../slice/videoSlice';
-
 import totalVirtualEventSlice from '../slice/totalVirtualEventSlice';
 import totalCommsSlice from '../slice/totalCommsSlice';
 import totalPrAgencySlice from '../slice/totalPrAgencySlice';
@@ -35,6 +35,7 @@ import totalHospitalitySlice from '../slice/totalHospitalitySlice';
 import toolSlice from '../slice/toolSlice';
 import resultTableDataSlice from '../slice/resultTableDataSlice';
 import eventsEmissionsSlice from '../slice/eventsEmissionsDataSlice';
+import totalgreenCheckSlice from '../slice/greenCheckSlice'
 
 const middleware = (getDefaultMiddleware) => {
   return getDefaultMiddleware({
@@ -70,6 +71,12 @@ const totalImagePersistConfig = {
   key: 'totalImageDetails',
   storage: storageSession,
 };
+
+const totalPageViewPersistConfig = {
+  key: 'totalPageViewDetails',
+  storage: storageSession,
+}; 
+
 const totalHotelPersistConfig = {
   key: 'totalHotelDetails',
   storage: storageSession,
@@ -125,6 +132,10 @@ const eventsEmissionsPersistConfig = {
   storage: storageSession,
 };
 
+const totalGreenCheckPersistConfig = {
+  key: 'totalGreenCheckDetails',
+  storage: storageSession,
+};
 export const store = configureStore({
   reducer: {
     userDetails: persistReducer(userPersistConfig, userSlice),
@@ -149,6 +160,7 @@ export const store = configureStore({
     totalLocalTranspotationDetails: persistReducer(totalLocalTranspotationPersistConfig, totalLocalTranspotationSlice),
     totalAirTravelDetails: persistReducer(totalAirTravelPersistConfig, totalAirTravelSlice),
     totalImageDetails: persistReducer(totalImagePersistConfig, totalImageSlice),
+    totalPageViewDetails: persistReducer(totalPageViewPersistConfig, toltalPageViewsSlice),
     totalHotelDetails: persistReducer(totalHotelPersistConfig, totalHotelSlice),
     totalDigitalCampaignDetails: persistReducer(totalDigitalCampaignPersistConfig, totalDigitalCampaignSlice),
     totalVirtualEventDetails: persistReducer(totalVirtualEventPersistConfig, totalVirtualEventSlice),
@@ -158,6 +170,7 @@ export const store = configureStore({
     toolDetails: persistReducer(toolPersistConfig, toolSlice),
     resultTableDataDetails: persistReducer(resultTableDataPersistConfig, resultTableDataSlice),
     eventsEmissionsDetails: persistReducer(eventsEmissionsPersistConfig, eventsEmissionsSlice),
+    totalGreenCheckDetails: persistReducer(totalGreenCheckPersistConfig, totalgreenCheckSlice),
   },
   middleware,
 });
