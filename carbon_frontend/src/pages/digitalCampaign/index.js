@@ -8,7 +8,6 @@ import DigitalCampaignComp from './digitalCampaign';
 import banner from '../../layouts/user/assets/images/NetZero Tool Pic.jpeg';
 import Image from './Image';
 import Video from './Video';
-import GreenCheck from './greenCheck';
 import PageView from './pageView';
 
 const DigitalCampaignCalculation = () => {
@@ -57,11 +56,6 @@ const DigitalCampaignCalculation = () => {
               label="Summary"
               className="tab-text"
             />
-            {/* <Tab
-              icon={<img src={result} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
-              label="Green"
-              className="tab-text"
-            /> */}
           </Tabs>
         </Box>
         <Box my={2} pb={2}>
@@ -70,7 +64,6 @@ const DigitalCampaignCalculation = () => {
           {value === 1 && <Image setValue={setValue} value={value} />}
           {value === 2 && <Video setValue={setValue} value={value} />}
           {value === 3 && <Result setValue={setValue} value={value} />}
-          {/* {value === 4 && <GreenCheck />} */}
         </Box>
       </Container>
     </div>
