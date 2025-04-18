@@ -497,7 +497,7 @@ const MyEventSelector = () => {
       // digital-campaign
       const imageEmission = event?.imageAllData?.totalEmission;
       const videoEmission = event?.videoAllData?.totalEmission;
-      console.log(videoEmission, 'videoEmission');
+      const pageViewEmission = event?.pageViewAllData?.totalEmission;
       // const digitalCampaignEmission = event?.digitalCampaignAllData?.totalEmission;
       const digitalCampaignEmission = Number(imageEmission || 0) + Number(videoEmission || 0);
 

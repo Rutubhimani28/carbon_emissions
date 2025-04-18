@@ -71,6 +71,7 @@ const add = async (req, res) => {
       hospitalityAllData,
       imageAllData,
       videoAllData,
+      pageViewAllData,
       digitalCampaignAllData,
     } = req.body;
     // Create a new document based on the schema
@@ -107,6 +108,7 @@ const add = async (req, res) => {
       hospitalityAllData,
       imageAllData,
       videoAllData,
+      pageViewAllData,
       digitalCampaignAllData,
       // dateTime: new Date(),
     });
@@ -218,6 +220,7 @@ const getEventsEmissionsRecords = async (req, res) => {
       // Digital Campaign Emissions
       const imageEmission = event?.imageAllData?.totalEmission || 0;
       const videoEmission = event?.videoAllData?.totalEmission || 0;
+      const pageViewEmission = event?.pageViewAllData?.totalEmission || 0;
       // const digitalCampaignEmission =
       //   event?.digitalCampaignAllData?.totalEmission || 0;
       // const digitalCampaignTotalEmission = Number(digitalCampaignEmission);

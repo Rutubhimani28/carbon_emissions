@@ -49,6 +49,7 @@ const UseGenerateSendFilledFieldsData = () => {
     // digital-campaign
     const imageAllDataEmission = event?.imageAllData?.totalEmission;
     const videoAllDataEmission = event?.videoAllData?.totalEmission;
+    const pageViewAllDataEmission = event?.pageViewAllData?.totalEmission;
     const digitalCampaignEmission = event?.digitalCampaignAllData?.totalEmission;
 
     const f2fEventTotalEmission = Number(
@@ -137,6 +138,7 @@ const UseGenerateSendFilledFieldsData = () => {
   // digital campaign
   const allimageData = useSelector((state) => state?.totalImageDetails);
   const allVideoData = useSelector((state) => state?.totalVideoDetails);
+  const allPageViewData = useSelector((state) => state?.totalPageViewDetails);
   const allDigitalCampaignData = useSelector((state) => state?.totalDigitalCampaignDetails);
   const total4 = Number(allimageData?.totalEmission) + Number(allVideoData?.totalEmission);
   // Number(allDigitalCampaignData?.totalEmission);

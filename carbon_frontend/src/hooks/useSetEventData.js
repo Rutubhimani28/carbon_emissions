@@ -45,6 +45,7 @@ import {
 import VirtualEvent from '../pages/virtualEvent/VirtualEvent';
 import { deleteImageData, setImageAllData } from '../redux/slice/imageSlice';
 import { deleteVideoData, setVideoAllData } from '../redux/slice/videoSlice';
+import { deletePageViewData, setPageViewAllData } from '../redux/slice/pageViewSlice';
 
 // Extend dayjs with plugins
 dayjs.extend(utc);
@@ -73,6 +74,7 @@ const useSetEventData = () => {
     const resDigitalCampaignAllData = currentEventData?.digitalCampaignAllData;
     const resImageAllData = currentEventData?.imageAllData;
     const resVideoAllData = currentEventData?.videoAllData;
+    const resPageViewAllData = currentEventData?.pageViewAllData;
     const resResultTableAllData = {
       eventDataId: currentEventData?._id,
       isLoading: false,
@@ -176,6 +178,7 @@ const useSetEventData = () => {
     dispatch(setResultTableAllData(resResultTableAllData));
     dispatch(setImageAllData(resImageAllData));
     dispatch(setVideoAllData(resVideoAllData));
+    dispatch(setPageViewAllData(resPageViewAllData));
   };
 
   // clear all slice
@@ -218,6 +221,7 @@ const useSetEventData = () => {
     dispatch(deleteHospitalityData());
     dispatch(deleteImageData());
     dispatch(deleteVideoData());
+    dispatch(deletePageViewData());
   };
 
   return {

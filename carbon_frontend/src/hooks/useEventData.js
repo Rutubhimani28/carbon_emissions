@@ -29,6 +29,9 @@ const useEventData = () => {
   const digitalCampaignAllData = useSelector((state) => state?.totalDigitalCampaignDetails);
   const imageAllData = useSelector((state) => state?.totalImageDetails);
   const videoAllData = useSelector((state) => state?.totalVideoDetails);
+  const pageViewAllData = useSelector((state) => state?.totalPageViewDetails);
+
+
   return {
     activityName: toolFormData?.activityName || '',
     budget: toolFormData?.budget || '',
@@ -64,6 +67,7 @@ const useEventData = () => {
     hospitalityAllData,
     videoAllData,
     imageAllData,
+    pageViewAllData,
     digitalCampaignAllData,
   };
 };
