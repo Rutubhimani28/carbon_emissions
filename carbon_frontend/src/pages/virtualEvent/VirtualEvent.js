@@ -47,8 +47,7 @@ import VirtualEventIcon from '../../layouts/user/assets/images/virtualEvent.png'
 import outboundIcon from '../../assets/outboundIcon.png';
 import podcastIcon from '../../assets/podcastIcon.png';
 import TVImg from '../../layouts/user/assets/images/tv.png';
-// import PrintImg from '../../layouts/user/assets/images/print.png'
-// import PrintImg from '../../layouts/user/assets/images/printer2.png'
+import PrintImg from '../../layouts/user/assets/images/prints.png';
 import useEventData from '../../hooks/useEventData';
 
 const style = {
@@ -225,80 +224,80 @@ const VirtualEvent = (props) => {
         values?.videoSize === 0 || values?.videoMins === 0 || values?.impressionsTwo === 0 || values?.efTwo === 0
           ? 0
           : Number(
-              Number(values?.videoSize) *
-                Number(values?.videoMins) *
-                Number(values?.impressionsTwo) *
-                Number(values?.efTwo)
-            ).toFixed(5);
+            Number(values?.videoSize) *
+            Number(values?.videoMins) *
+            Number(values?.impressionsTwo) *
+            Number(values?.efTwo)
+          ).toFixed(5);
 
       // Socail Media Platforms
       const emissionThree =
         values?.noOfMinsOne === 0 || values?.noOfPeopleOne === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsOne) * Number(values?.noOfPeopleOne) * Number(values?.efThree)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsOne) * Number(values?.noOfPeopleOne) * Number(values?.efThree)) / 1000
+          ).toFixed(5);
       const emissionFour =
         values?.noOfMinsTwo === 0 || values?.noOfPeopleTwo === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsTwo) * Number(values?.noOfPeopleTwo) * Number(values?.efFour)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsTwo) * Number(values?.noOfPeopleTwo) * Number(values?.efFour)) / 1000
+          ).toFixed(5);
       const emissionFive =
         values?.noOfMinsThree === 0 || values?.noOfPeopleThree === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsThree) * Number(values?.noOfPeopleThree) * Number(values?.efFive)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsThree) * Number(values?.noOfPeopleThree) * Number(values?.efFive)) / 1000
+          ).toFixed(5);
       const emissionSix =
         values?.noOfMinsFour === 0 || values?.noOfPeopleFour === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsFour) * Number(values?.noOfPeopleFour) * Number(values?.efSix)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsFour) * Number(values?.noOfPeopleFour) * Number(values?.efSix)) / 1000
+          ).toFixed(5);
       const emissionSeven =
         values?.noOfMinsFive === 0 || values?.noOfPeopleFive === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsFive) * Number(values?.noOfPeopleFive) * Number(values?.efSeven)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsFive) * Number(values?.noOfPeopleFive) * Number(values?.efSeven)) / 1000
+          ).toFixed(5);
       const emissionEight =
         values?.noOfMinsSix === 0 || values?.noOfPeopleSix === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsSix) * Number(values?.noOfPeopleSix) * Number(values?.efEight)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsSix) * Number(values?.noOfPeopleSix) * Number(values?.efEight)) / 1000
+          ).toFixed(5);
       const emissionNine =
         values?.noOfMinsSeven === 0 || values?.noOfPeopleSeven === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsSeven) * Number(values?.noOfPeopleSeven) * Number(values?.efNine)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsSeven) * Number(values?.noOfPeopleSeven) * Number(values?.efNine)) / 1000
+          ).toFixed(5);
       const emissionTen =
         values?.noOfMinsEight === 0 || values?.noOfPeopleEight === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsEight) * Number(values?.noOfPeopleEight) * Number(values?.efTen)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsEight) * Number(values?.noOfPeopleEight) * Number(values?.efTen)) / 1000
+          ).toFixed(5);
       const emissionEleven =
         values?.noOfMinsNine === 0 || values?.noOfPeopleNine === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsNine) * Number(values?.noOfPeopleNine) * Number(values?.efEleven)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsNine) * Number(values?.noOfPeopleNine) * Number(values?.efEleven)) / 1000
+          ).toFixed(5);
       const emissionTwelve =
         values?.noOfMinsTen === 0 || values?.noOfPeopleTen === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsTen) * Number(values?.noOfPeopleTen) * Number(values?.efTwelve)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsTen) * Number(values?.noOfPeopleTen) * Number(values?.efTwelve)) / 1000
+          ).toFixed(5);
       // Video Conferencing
       const emissionThirteen =
         values?.noOfMinsEleven === 0 || values?.noOfPeopleEleven === 0
           ? 0
           : Number(
-              (Number(values?.noOfMinsEleven) * Number(values?.noOfPeopleEleven) * Number(values?.efThirteen)) / 1000
-            ).toFixed(5);
+            (Number(values?.noOfMinsEleven) * Number(values?.noOfPeopleEleven) * Number(values?.efThirteen)) / 1000
+          ).toFixed(5);
 
       const emissionFourteen =
         values?.noOfCopiesOne === 0 ? 0 : Number(Number(values?.noOfCopiesOne) * Number(values?.efFourteen)).toFixed(5);
@@ -314,12 +313,12 @@ const VirtualEvent = (props) => {
         values?.adDuration === 0
           ? 0
           : Number(
-              Number(values?.adDuration) *
-                Number(values?.noOfSlots) *
-                Number(values?.viewers) *
-                Number(values?.efEighteen) *
-                Number(values?.efEighteen1)
-            ).toFixed(5);
+            Number(values?.adDuration) *
+            Number(values?.noOfSlots) *
+            Number(values?.viewers) *
+            Number(values?.efEighteen) *
+            Number(values?.efEighteen1)
+          ).toFixed(5);
       const emissionNineteen =
         values?.podcastTotal === 0 || values?.noOfListeners === 0
           ? 0
@@ -342,8 +341,8 @@ const VirtualEvent = (props) => {
         values?.blackWhiteNoOfPage === 0
           ? 0
           : Number(Number(values?.blackWhiteNoOfPage) * Number(values?.copyTwo) * Number(values?.efBlackWhite)).toFixed(
-              5
-            );
+            5
+          );
 
       if (emissionOne > 0) formik.setFieldValue('emissionOne', emissionOne);
 
@@ -936,7 +935,7 @@ const VirtualEvent = (props) => {
   //     formik.setFieldValue('emissionTwenty', allData?.[19]?.emission);
   //   }
   // }, [value]);
-  
+
   useEffect(() => {
     if (allData?.[0]?.data?.length > 0) {
       const formValues = {
@@ -1163,9 +1162,9 @@ const VirtualEvent = (props) => {
                         'emissionEightteen',
                         Number(
                           Number(e.target.value) *
-                            Number(values?.noOfSlots) *
-                            Number(values?.viewers) *
-                            Number(values?.efEighteen)
+                          Number(values?.noOfSlots) *
+                          Number(values?.viewers) *
+                          Number(values?.efEighteen)
                         ).toFixed(5)
                       );
                       formik.handleSubmit();
@@ -1187,9 +1186,9 @@ const VirtualEvent = (props) => {
                         'emissionEightteen',
                         Number(
                           Number(e.target.value) *
-                            Number(values?.adDuration) *
-                            Number(values?.viewers) *
-                            Number(values?.efEighteen)
+                          Number(values?.adDuration) *
+                          Number(values?.viewers) *
+                          Number(values?.efEighteen)
                         ).toFixed(5)
                       );
                       formik.handleSubmit();
@@ -1202,7 +1201,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     name={'viewers'}
                     value={values?.viewers}
-                    label="viewers"
+                    label="No. of viewers"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -1211,9 +1210,9 @@ const VirtualEvent = (props) => {
                         'emissionEightteen',
                         Number(
                           Number(e.target.value) *
-                            Number(values?.adDuration) *
-                            Number(values?.noOfSlots) *
-                            Number(values?.efEighteen)
+                          Number(values?.adDuration) *
+                          Number(values?.noOfSlots) *
+                          Number(values?.efEighteen)
                         ).toFixed(5)
                       );
                       formik.handleSubmit();
@@ -1437,9 +1436,9 @@ const VirtualEvent = (props) => {
               >
                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                   {/* <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} /> */}
-                  <img src={TVImg} alt="printer" style={{ width: '65px', margin: 'auto' }} />
+                  <img src={PrintImg} alt="printer" style={{ width: '65px', margin: 'auto' }} />
                   <Typography variant="h6" sx={{ marginY: 1 }}>
-                    Colour Print Ad
+                    Colour Print
                   </Typography>
                   <TextField
                     size="small"
@@ -1499,9 +1498,9 @@ const VirtualEvent = (props) => {
               >
                 <CardContent sx={{ alignItems: 'center', textAlign: 'center' }}>
                   {/* <Icon component={BiSolidTv} sx={{ fontSize: 60, color: 'black' }} /> */}
-                  <img src={TVImg} alt="tv" style={{ width: '65px', margin: 'auto' }} />
+                  <img src={PrintImg} alt="tv" style={{ width: '65px', margin: 'auto' }} />
                   <Typography variant="h6" sx={{ marginY: 1 }}>
-                    Black & White Print Ad
+                    B&W Print
                   </Typography>
                   <TextField
                     size="small"

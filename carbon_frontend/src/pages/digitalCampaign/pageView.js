@@ -105,8 +105,7 @@ const PageView = (props) => {
             const desktopEF2 = Number(values?.desktopDevice) * desktopEF1;
             const desktopDeviceEmissions = (desktopEF2 * values?.desktopEF3).toFixed(5);
 
-            const dataEf1 = (Number(values?.TotalImpression) * values?.pageSizeMB) / 1024;
-
+            const dataEf1 = (Number(values?.dataCenter) * values?.pageSizeMB) / 1024;
             const dataEF3 = dataEf1 * 0.3;
             const dataEF4 = dataEF3 * 1.7;
             const renewableValue = 100 - values?.dataRenewable;
@@ -341,6 +340,7 @@ const PageView = (props) => {
                                     <tr>
                                         <td className="ps-3"> Enter your landing page link</td>
                                         <td className="ps-3" />
+                                        <td className="ps-3" />
                                         <td className="ps-3">Page Size</td>
                                     </tr>
                                     <tr>
@@ -349,6 +349,7 @@ const PageView = (props) => {
                                                 size="small"
                                                 name="APIGreenWebUrl"
                                                 // label="Enter Website URL"
+                                                placeholder='Use https://www. '
                                                 fullWidth
                                                 onChange={(e) => {
                                                     formik.setFieldValue('APIGreenWebUrl', e.target.value);
@@ -380,6 +381,37 @@ const PageView = (props) => {
                                             </Button>
                                         </td>
                                         <td className="ps-3 py-1">
+                                            {/* <Button
+                                                variant="contained"
+                                                type="submit"
+                                                style={{
+                                                    marginTop: '10px',
+                                                    padding: '8px 16px',
+                                                    borderRadius: '4px',
+                                                    border: 'none',
+                                                    // backgroundColor: "#054723",
+                                                    color: 'white',
+                                                    cursor: 'pointer',
+                                                }}
+                                                className="custom-btn"
+                                                onClick={handleCheckSize}
+                                                disabled={loading}
+                                            >
+                                                {loading ? 'Checking...' : 'Clear'}
+                                            </Button> */}
+                                            <Button
+                                                variant="outlined"
+                                                onClick={() => {
+                                                    // formik.resetForm();
+                                                    formik.setFieldValue('APIGreenWebUrl', '');
+                                                    handeleDelete();
+                                                }}
+                                                color="error"
+                                            >
+                                                Clear
+                                            </Button>
+                                        </td>
+                                        <td className="ps-3 py-1">
                                             <TextField
                                                 size="small"
                                                 fullWidth
@@ -394,7 +426,7 @@ const PageView = (props) => {
                                     </tr>
                                 </table>
                             </div>
-                            <div className="table-responsive mt-4">
+                            {/* <div className="table-responsive mt-4">
                                 <table className="table-custom-inpt-field">
                                     <tr>
                                         <td className="ps-3 text-center">Total Impression</td>
@@ -441,8 +473,91 @@ const PageView = (props) => {
                                         </td>
                                     </tr>
                                 </table>
-                            </div>
+                            </div> */}
 
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                        <Typography color="white" className="text-center">
+                            {`Note: Please wait as we calculate the page size. This may take few seconds and at times a minute or two depending on the connection speed.`}
+                        </Typography>
+                        <Typography color="white" className="text-center">
+                            {`If you wont get the page size, clear the page link and add again`}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} marginTop={3}>
+                        <Box>
+                            <div className="table-responsive">
+                                <table className="table-custom-inpt-field">
+                                    <tr>
+                                        <td className="ps-3 ">Total Impression</td>
+                                        <td className="ps-3">Average time on page (Secs)</td>
+                                        {/* <td className="ps-3">Emissions</td> */}
+                                    </tr>
+                                    <tr>
+                                        <td className="ps-3 py-1">
+                                            {/* <TextField
+                                                size="small"
+                                                name="TotalImpression"
+                                                // label="Enter Website URL"
+                                                fullWidth
+                                                // onChange={formik.handleChange}
+                                                onChange={(e) => {
+                                                    const value = e.target.value;
+                                                    formik.setFieldValue('TotalImpression', value);
+
+                                                }}
+                                                value={formik.values.TotalImpression}
+                                                inputProps={{ style: { color: 'white' } }}
+                                                sx={{ mt: 2 }}
+                                            /> */}
+                                            <TextField
+                                                size="small"
+                                                type="number"
+                                                name="dataCenter"
+                                                value={formik.values.dataCenter}
+                                                onChange={(e) => {
+                                                    formik.handleChange(e);
+
+                                                    const dataCenter = Number(e.target.value) || 0;
+                                                    const dataRenewable = Number(formik.values.dataRenewable) || 0;
+                                                    const pageSizeMB = formik.values.pageSizeMB;
+
+                                                    // Calculation Logic
+                                                    const dataEf1 = (dataCenter * pageSizeMB) / 1024;
+                                                    const dataEF3 = dataEf1 * 0.3;
+                                                    const dataEF4 = dataEF3 * 1.7;
+                                                    const renewableValue = 100 - dataRenewable;
+                                                    const dataTotalEF = (dataEF4 * renewableValue) / 100;
+                                                    const dataEmissions = dataTotalEF * 0.4;
+
+                                                    // Update field value
+                                                    formik.setFieldValue('dataEmissions', dataEmissions.toFixed(5));
+                                                    formik.handleSubmit();
+                                                }}
+                                                inputProps={{ style: { color: 'white' } }}
+                                            />
+                                        </td>
+                                        <td className="ps-3 py-1">
+                                            <TextField
+                                                size="small"
+                                                name="TimeOnPageSecs"
+                                                // label="Enter Website URL"
+                                                fullWidth
+                                                // onChange={formik.handleChange}
+                                                onChange={(e) => {
+                                                    // const value = e.target.value;
+                                                    formik.setFieldValue('TimeOnPageSecs', e.target.value);
+
+                                                }}
+                                                value={formik.values.TimeOnPageSecs}
+                                                inputProps={{ style: { color: 'white' } }}
+                                                sx={{ mt: 2 }}
+                                            />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
@@ -742,12 +857,12 @@ const PageView = (props) => {
                             <div className="table-responsive">
                                 <table className="table-custom-inpt-field">
                                     <tr>
-                                        <td className="ps-3">Total Impressions</td>
+                                        {/* <td className="ps-3">Total Impressions</td> */}
                                         <td className="ps-3">% of Renewable Energy</td>
                                         <td className="ps-3">Emissions</td>
                                     </tr>
                                     <tr>
-                                        <td className="ps-3 py-1">
+                                        {/* <td className="ps-3 py-1">
                                             <TextField
                                                 size="small"
                                                 type="number"
@@ -774,7 +889,7 @@ const PageView = (props) => {
                                                 }}
                                                 inputProps={{ style: { color: 'white' } }}
                                             />
-                                        </td>
+                                        </td> */}
                                         <td className="ps-3 py-1">
                                             <TextField
                                                 size="small"
@@ -819,6 +934,7 @@ const PageView = (props) => {
                         </Box>
                     </Grid>
 
+
                     <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
                         <Box>
                             <Typography variant="h4" className="text-center text-white mb-4 mt-3">
@@ -847,7 +963,7 @@ const PageView = (props) => {
                                                     borderBottom: 'none',
                                                 }}
                                             >
-                                                Emissions (Kg CO2e)
+                                                Emissions (kgCO<sub>2</sub>e)
                                             </TableCell>
                                         </TableRow>
                                     </TableHead>

@@ -276,7 +276,7 @@ const Image = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
-              <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+              {/* <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                 <Typography variant="h4" className="text-center text-white mb-2">
                   Content Size (Mb)
                 </Typography>
@@ -300,6 +300,93 @@ const Image = (props) => {
                   }}
                   inputProps={{ style: { color: 'white' } }}
                 />
+              </Grid> */}
+
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} marginTop={3}>
+                <Box>
+                  <div className="table-responsive">
+                    <table className="table-custom-inpt-field">
+                      <tr>
+                        <td className="ps-3">Content Size (Mb)</td>
+                        <td className="ps-3 ">Total Impression</td>
+                        {/* <td className="ps-3">Emissions</td> */}
+                      </tr>
+                      <tr>
+                        <td className="ps-3 py-1">
+                          {/* <TextField
+                                                              size="small"
+                                                              name="TotalImpression"
+                                                              // label="Enter Website URL"
+                                                              fullWidth
+                                                              // onChange={formik.handleChange}
+                                                              onChange={(e) => {
+                                                                  const value = e.target.value;
+                                                                  formik.setFieldValue('TotalImpression', value);
+              
+                                                              }}
+                                                              value={formik.values.TotalImpression}
+                                                              inputProps={{ style: { color: 'white' } }}
+                                                              sx={{ mt: 2 }}
+                                                          /> */}
+                          <TextField
+                            size="small"
+                            type="number"
+                            name="dataCenter"
+                            value={formik.values.dataCenter}
+                            onChange={(e) => {
+                              formik.handleChange(e);
+
+                              const dataCenter = Number(e.target.value) || 0;
+                              const dataRenewable = Number(formik.values.dataRenewable) || 0;
+                              const contentSize = formik.values.contentSize;
+
+                              // Calculation Logic
+                              const dataEf1 = (dataCenter * contentSize) / 1024;
+                              const dataEF3 = dataEf1 * 0.3;
+                              const dataEF4 = dataEF3 * 1.7;
+                              const renewableValue = 100 - dataRenewable;
+                              const dataTotalEF = (dataEF4 * renewableValue) / 100;
+                              const dataEmissions = dataTotalEF * 0.4;
+
+                              // Update field value
+                              formik.setFieldValue('dataEmissions', dataEmissions.toFixed(5));
+                              formik.handleSubmit();
+                            }}
+                            inputProps={{ style: { color: 'white' } }}
+                          />
+                        </td>
+                        <td className="ps-3 py-1">
+                          <TextField
+                            size="small"
+                            type="number"
+                            name="dataCenter"
+                            value={formik.values.dataCenter}
+                            onChange={(e) => {
+                              formik.handleChange(e);
+
+                              const dataCenter = Number(e.target.value) || 0;
+                              const dataRenewable = Number(formik.values.dataRenewable) || 0;
+                              const pageSizeMB = formik.values.pageSizeMB;
+
+                              // Calculation Logic
+                              const dataEf1 = (dataCenter * pageSizeMB) / 1024;
+                              const dataEF3 = dataEf1 * 0.3;
+                              const dataEF4 = dataEF3 * 1.7;
+                              const renewableValue = 100 - dataRenewable;
+                              const dataTotalEF = (dataEF4 * renewableValue) / 100;
+                              const dataEmissions = dataTotalEF * 0.4;
+
+                              // Update field value
+                              formik.setFieldValue('dataEmissions', dataEmissions.toFixed(5));
+                              formik.handleSubmit();
+                            }}
+                            inputProps={{ style: { color: 'white' } }}
+                          />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </Box>
               </Grid>
 
               <Typography variant="h4" className="text-center text-white mb-4 mt-4">
@@ -564,12 +651,12 @@ const Image = (props) => {
               <div className="table-responsive">
                 <table className="table-custom-inpt-field">
                   <tr>
-                    <td className="ps-3">Total Impressions</td>
+                    {/* <td className="ps-3">Total Impressions</td> */}
                     <td className="ps-3">% of Renewable Energy</td>
                     <td className="ps-3">Emissions</td>
                   </tr>
                   <tr>
-                    <td className="ps-3 py-1">
+                    {/* <td className="ps-3 py-1">
                       <TextField
                         size="small"
                         type="number"
@@ -596,7 +683,7 @@ const Image = (props) => {
                         }}
                         inputProps={{ style: { color: 'white' } }}
                       />
-                    </td>
+                    </td> */}
                     <td className="ps-3 py-1">
                       <TextField
                         size="small"
@@ -669,7 +756,7 @@ const Image = (props) => {
                           borderBottom: 'none',
                         }}
                       >
-                        Emissions (Kg CO2e)
+                        Emissions (kgCO<sub>2</sub>e)
                       </TableCell>
                     </TableRow>
                   </TableHead>
