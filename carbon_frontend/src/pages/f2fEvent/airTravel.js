@@ -237,27 +237,39 @@ const AirTravel = (props) => {
   useEffect(() => {
     if (allData?.length > 0) {
       const tripKeys = [
-        'noOfTripsOne', 'noOfTripsTwo', 'noOfTripsThree',
-        'emissionOne', 'emissionTwo', 'emissionThree',
-        'noOfPassengerOne', 'noOfPassengerTwo', 'noOfPassengerThree',
+        'noOfTripsOne',
+        'noOfTripsTwo',
+        'noOfTripsThree',
+        'emissionOne',
+        'emissionTwo',
+        'emissionThree',
+        'noOfPassengerOne',
+        'noOfPassengerTwo',
+        'noOfPassengerThree',
       ];
-      
+
       tripKeys.forEach((key) => {
         formik.setFieldValue(key, allData?.[0]?.[key]);
       });
-  
+
       const tripKeysSecondSet = [
-        'noOfPassengerFour', 'noOfPassengerFive', 'noOfPassengerSix',
-        'noOfTripsFour', 'noOfTripsFive', 'noOfTripsSix',
-        'emissionFour', 'emissionFive', 'emissionSix'
+        'noOfPassengerFour',
+        'noOfPassengerFive',
+        'noOfPassengerSix',
+        'noOfTripsFour',
+        'noOfTripsFive',
+        'noOfTripsSix',
+        'emissionFour',
+        'emissionFive',
+        'emissionSix',
       ];
-  
+
       tripKeysSecondSet.forEach((key) => {
         formik.setFieldValue(key, allData?.[1]?.[key]);
       });
     }
   }, [value]);
-  
+
   // useEffect(() => {
   //   if (allData?.length > 0) {
   //     formik.setFieldValue('noOfTripsOne', allData?.[0]?.noOfTripsOne);
@@ -321,7 +333,7 @@ const AirTravel = (props) => {
               <IconDiv>
                 <img src={AirTravelImg} alt="Waste" width={100} className="tabImgWhite" />
               </IconDiv>
-              <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+              <Grid item xs={12} sm={12} md={6}>
                 <Grid item xs={12} sm={12} md={6}>
                   <Box>
                     <Typography variant="h4" className="text-center text-white mb-4">
@@ -334,10 +346,10 @@ const AirTravel = (props) => {
                           <th className="ps-2">Trip (Kms)</th>
                           {/* add new  */}
                           <th className="ps-2">No. of Passengers</th>
-                          <th className="ps-2">Emissions</th>
+                          <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
                         </tr>
                         <tr>
-                          <td className="ps-2 py-1">Short Haul (~500 kms)</td>
+                          <td className="ps-2 py-1">Short Haul</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -395,7 +407,7 @@ const AirTravel = (props) => {
                           </td>
                         </tr>
                         <tr>
-                          <td className="ps-2 py-1">Medium Haul (&gt;500- &lt;3700 kms)</td>
+                          <td className="ps-2 py-1">Medium Haul </td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -453,7 +465,7 @@ const AirTravel = (props) => {
                           </td>
                         </tr>
                         <tr>
-                          <td className="ps-2 py-1">Long Haul (&gt;3700 miles)</td>
+                          <td className="ps-2 py-1">Long Haul</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -599,7 +611,7 @@ const AirTravel = (props) => {
                   </Box>
                 </Grid>
 
-                <Grid item xs={12} sm={12} md={6}>
+                <Grid item xs={12} sm={12} md={6} className="mt-4">
                   <Box>
                     <Typography variant="h4" className="text-center text-white mb-4">
                       Business / First Class
@@ -611,10 +623,10 @@ const AirTravel = (props) => {
                           <th className="ps-2">Trip (Kms)</th>
                           {/* add new */}
                           <th className="ps-2">No. of Passengers</th>
-                          <th className="ps-2">Emissions</th>
+                          <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
                         </tr>
                         <tr>
-                          <td className="ps-2 py-1">Short Haul (~500 kms)</td>
+                          <td className="ps-2 py-1">Short Haul</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -673,7 +685,7 @@ const AirTravel = (props) => {
                           </td>
                         </tr>
                         <tr>
-                          <td className="ps-2 py-1">Medium Haul (&gt;500- &lt;3700 kms)</td>
+                          <td className="ps-2 py-1">Medium Haul</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -731,7 +743,7 @@ const AirTravel = (props) => {
                           </td>
                         </tr>
                         <tr>
-                          <td className="ps-2 py-1">Long Haul (&gt;3700 miles)</td>
+                          <td className="ps-2 py-1">Long Haul</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -969,7 +981,7 @@ const AirTravel = (props) => {
                   </Box>
                 </Grid> */}
 
-                <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+                <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} className="mt-4">
                   <Stack columnGap={2} rowGap={2} className="flex-xl-row flex-md-row flex-sm-column">
                     {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                     {/* <Button variant='contained' endIcon={<FaAngleDoubleRight />} onClick={() => { formik.handleSubmit(); setValue(value + 1); }} className='custom-btn'> Save and Next Page  </Button> */}
@@ -1013,6 +1025,13 @@ const AirTravel = (props) => {
                   <Typography color="white">
                     {`Total Air Travel Carbon Footprint = ${Number(totalEmission).toFixed(5)} `}kgCO<sub>2</sub>e
                   </Typography>
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={12} marginTop={2}>
+                  <Typography color="white">{`Note:`}</Typography>
+                  <Typography color="white">{`Short Haul: ~500 kms`}</Typography>
+                  <Typography color="white">{`Medium Haul: >500 - <3700 kms`}</Typography>
+                  <Typography color="white">{`Long Haul	: >3700 miles`}</Typography>
                 </Grid>
                 {/* <Grid item xs={12} sm={12} md={12} marginTop={1}>
                                     <Typography color='white'>Note: For more accurate calculations, please visit ICAO webiste.</Typography>

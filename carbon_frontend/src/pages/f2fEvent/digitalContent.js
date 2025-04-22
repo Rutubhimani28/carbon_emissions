@@ -361,7 +361,7 @@ const DigitalContent = (props) => {
                 </Grid>
                 <Grid mt={2}>
                   <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
-                    Emissions
+                    Emissions (kgCO<sub>2</sub>e)
                   </FormLabel>
                   <TextField
                     id="emissionOne"
@@ -390,7 +390,7 @@ const DigitalContent = (props) => {
                           No. of Pages
                         </th>
                         <th className="ps-2" width="30%">
-                          Emissions
+                          Emissions (kgCO<sub>2</sub>e)
                         </th>
                       </tr>
                       <tr>

@@ -38,8 +38,12 @@ const DigitalCampaignCalculation = () => {
             /> */}
             <Tab
               icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
-              label="Page View"
+              label="Page"
               className="tab-text"
+              // sx={{
+              //   filter:
+              //     'brightness(0) saturate(100%) invert(36%) sepia(78%) saturate(707%) hue-rotate(76deg) brightness(90%) contrast(95%)',
+              // }}
             />
             <Tab
               icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}

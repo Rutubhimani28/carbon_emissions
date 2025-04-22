@@ -349,7 +349,7 @@ const EnergyUpdated = (props) => {
                         </td>
                       </tr>
                       <tr>
-                        <td className="ps-2 py-1">Emissions</td>
+                        <td className="ps-2 py-1">Emissions (kgCO<sub>2</sub>e)</td>
                         <td className="ps-3 py-1">
                           <TextField
                             id="emissionOne"
@@ -380,7 +380,7 @@ const EnergyUpdated = (props) => {
                           Fuel Type{' '}
                         </th>
                         <th className="ps-3">No. of Litres</th>
-                        <th>Emissions</th>
+                        <th>Emissions (kgCO<sub>2</sub>e)</th>
                       </tr>
                       <tr>
                         <td className="ps-2 py-1">Petrol</td>

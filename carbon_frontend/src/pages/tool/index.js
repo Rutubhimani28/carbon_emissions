@@ -960,22 +960,7 @@ const Home = () => {
           <Typography className="mb-2 fs-5 text-center">Choose your activity type</Typography>
           <Grid xl={3} md={6} sm={12}>
             <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'}>
-              <Box
-                onClick={() => isSubmited && navigate('/dashboard/f2f-event')}
-                className="organise m-2 p-2 h-25"
-                style={{ borderRadius: '20px', cursor: 'pointer' }}
-              >
-                <img
-                  src={f2FEvent}
-                  alt="F2F Event"
-                  width={'100%'}
-                  style={{ borderRadius: '10px', aspectRatio: '135 / 76' }}
-                  height={'120px'}
-                />
-                <Typography variant="h6" className="text-center pt-1 fontFamily" color="#054723">
-                  Event
-                </Typography>
-              </Box>
+
 
               <Box
                 onClick={() => isSubmited && navigate('/dashboard/virtual-event')}
@@ -1013,6 +998,23 @@ const Home = () => {
                 />
                 <Typography variant="h6" className="text-center pt-1 fontFamily" color="#054723">
                   Digital
+                </Typography>
+              </Box>
+
+              <Box
+                onClick={() => isSubmited && navigate('/dashboard/f2f-event')}
+                className="organise m-2 p-2 h-25"
+                style={{ borderRadius: '20px', cursor: 'pointer' }}
+              >
+                <img
+                  src={f2FEvent}
+                  alt="F2F Event"
+                  width={'100%'}
+                  style={{ borderRadius: '10px', aspectRatio: '135 / 76' }}
+                  height={'120px'}
+                />
+                <Typography variant="h6" className="text-center pt-1 fontFamily" color="#054723">
+                  Event
                 </Typography>
               </Box>
             </Box>

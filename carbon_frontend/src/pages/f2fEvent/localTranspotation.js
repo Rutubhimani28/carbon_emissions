@@ -418,7 +418,7 @@ const LocalTranspotation = (props) => {
         { key: 'metroPassenger', kms: 'metroPassengerkms', emission: 'metroEmission' },
         { key: 'busPassenger', kms: 'busPassengerkms', emission: 'busEmission' },
       ];
-  
+
       fieldMappings.forEach((field, index) => {
         formik.setFieldValue(field.key, allData?.[index]?.[field.key]);
         formik.setFieldValue(field.kms, allData?.[index]?.[field.kms]);
@@ -463,7 +463,7 @@ const LocalTranspotation = (props) => {
             <IconDiv>
               <img src={LocalTransportImg} alt="Transportation" width={100} className="tabImgWhite" />
             </IconDiv>
-            <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+            <Grid item xs={12} sm={12} md={6}>
               {/* <Grid item xs={12} sm={12} md={6}>
                 <Box>
                   <div className="table-responsive">
@@ -806,9 +806,11 @@ const LocalTranspotation = (props) => {
                       <tr>
                         <th className="ps-2" width="100" />
                         {/* Public Transport */}
-                        <th className="ps-3">Total No. of Cars</th>
-                        <th className="ps-2">Total No. of Kms/ Car</th>
-                        <th>Emissions</th>
+                        <th className="ps-3">No. of Cars</th>
+                        <th className="ps-2">No. of Kms/ Car</th>
+                        <th>
+                          Emissions (kgCO<sub>2</sub>e)
+                        </th>
                       </tr>
                       <tr>
                         <td className="ps-2 py-1">Passenger Car</td>
@@ -945,7 +947,7 @@ const LocalTranspotation = (props) => {
                 </Box>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={6}>
+              <Grid item xs={12} sm={12} md={6} className="mt-4">
                 <Box>
                   <div className="table-responsive">
                     <Typography
@@ -961,8 +963,10 @@ const LocalTranspotation = (props) => {
                         {/* Public Transport */}
 
                         <th className="ps-3">No. of Passenegers</th>
-                        <th className="ps-2">Total No. of Kms/ Passenger </th>
-                        <th>Emissions</th>
+                        <th className="ps-2">No. of Kms/ Passenger </th>
+                        <th>
+                          Emissions (kgCO<sub>2</sub>e)
+                        </th>
                       </tr>
                       <tr>
                         <td className="ps-2 py-1">Metro</td>
@@ -1101,7 +1105,7 @@ const LocalTranspotation = (props) => {
               {/* <Grid item xs={12} sm={12} md={12} marginY={2}>
                                 <Typography color='white'>Note: No. of passengers limit to max 4. (including driver)</Typography>
                             </Grid> */}
-              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} className="mt-4">
                 <Stack columnGap={2} rowGap={2} className="flex-xl-row flex-md-row flex-sm-column">
                   {/* <Button variant='contained' onClick={() => { formik.handleSubmit(); }} className='custom-btn'>Calculate and Add To Footprint</Button> */}
                   <Button

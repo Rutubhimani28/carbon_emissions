@@ -310,12 +310,39 @@ const Video = (props) => {
                     <tr>
                       <td className="ps-2 py-1">Total Impressions</td>
                       <td className="ps-2 py-1">
-                        <TextField
+                        {/* <TextField
                           size="small"
                           type="number"
                           name="totalImpression"
                           value={formik?.values?.totalImpression}
                           onChange={formik.handleChange}
+                          inputProps={{ style: { color: 'white' } }}
+                        /> */}
+
+                        <TextField
+                          size="small"
+                          type="number"
+                          name="dataCenter"
+                          value={formik.values.dataCenter}
+                          onChange={(e) => {
+                            formik.handleChange(e);
+
+                            const dataCenter = Number(e.target.value) || 0;
+                            const dataRenewable = Number(formik.values.dataRenewable) || 0;
+                            const videoSize = formik.values.videoSize || 1; // Default value to avoid NaN
+
+                            // Calculation Logic
+                            const dataEf1 = (dataCenter * videoSize) / 1024;
+                            const dataEF3 = dataEf1 * 0.3;
+                            const dataEF4 = dataEF3 * 1.7;
+                            const dataEF5 = 100 - dataRenewable;
+                            const dataTotalEF = (dataEF4 * dataEF5) / 100;
+                            const dataEmissions = dataTotalEF * 0.4;
+
+                            // Update field value
+                            formik.setFieldValue('dataEmissions', dataEmissions.toFixed(5));
+                            formik.handleSubmit();
+                          }}
                           inputProps={{ style: { color: 'white' } }}
                         />
                       </td>
@@ -332,7 +359,7 @@ const Video = (props) => {
                     <td className="ps-3">Wi-Fi Impressions</td>
                     <td className="ps-3">4G Impressions</td>
                     <td className="ps-3">5G Impressions</td>
-                    <td className="ps-3">Emissions</td>
+                    <td className="ps-3">Emissions (kgCO<sub>2</sub>e)</td>
                   </tr>
                   <tr>
                     <td className="ps-3 py-1">
@@ -427,7 +454,7 @@ const Video = (props) => {
                       No. of Devices
                     </th>
                     <th className="ps-2" style={{ textAlign: 'center' }}>
-                      Emissions
+                      Emissions (kgCO<sub>2</sub>e)
                     </th>
                   </tr>
                   <tr>
@@ -589,12 +616,12 @@ const Video = (props) => {
               <div className="table-responsive">
                 <table className="table-custom-inpt-field">
                   <tr>
-                    <td className="ps-3">Total Impressions</td>
+                    {/* <td className="ps-3">Total Impressions</td> */}
                     <td className="ps-3">% of Renewable Energy</td>
-                    <td className="ps-3">Emissions</td>
+                    <td className="ps-3">Emissions (kgCO<sub>2</sub>e)</td>
                   </tr>
                   <tr>
-                    <td className="ps-3 py-1">
+                    {/* <td className="ps-3 py-1">
                       <TextField
                         size="small"
                         type="number"
@@ -621,7 +648,7 @@ const Video = (props) => {
                         }}
                         inputProps={{ style: { color: 'white' } }}
                       />
-                    </td>
+                    </td> */}
                     <td className="ps-3 py-1">
                       <TextField
                         size="small"
@@ -694,7 +721,7 @@ const Video = (props) => {
                           borderBottom: 'none',
                         }}
                       >
-                        Emissions (Kg CO2e)
+                        Emissions (kgCO<sub>2</sub>e)
                       </TableCell>
                     </TableRow>
                   </TableHead>

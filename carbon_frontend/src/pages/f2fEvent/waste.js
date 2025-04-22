@@ -535,7 +535,7 @@ const Waste = (props) => {
                     <tr>
                       <th className="ps-2">Food Type </th>
                       <th className="ps-2" style={{ textAlign: 'center' }}>No of Kgs</th>
-                      <th className="ps-2" style={{ textAlign: 'center' }}>Emissions</th>
+                      <th className="ps-2" style={{ textAlign: 'center' }}>Emissions (kgCO<sub>2</sub>e)</th>
                     </tr>
                     <tr>
                       <td className="ps-2 py-1">Landfilled</td>
@@ -1079,17 +1079,17 @@ const Waste = (props) => {
               <Grid item xs={12} sm={12} md={12}>
                 <Box>
                   <Typography variant="h4" className="text-center text-white mb-4 mt-4">
-                    PET Water Bottle
+                    PET Water Bottle (500ml)
                   </Typography>
                   <div className="table-responsive">
                     <table className="table-custom-inpt-field">
                       <tr>
                         <th width="110px" />
                         <th className="ps-3">No. of Bottles</th>
-                        <th className="ps-2">Emissions</th>
+                        <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
                       </tr>
                       <tr>
-                        <td className="ps-2 py-1">500ml (If Recycled)</td>
+                        <td className="ps-2 py-1">Recycled</td>
                         <td className="ps-3 py-1">
                           <TextField
                             size="small"
@@ -1119,7 +1119,7 @@ const Waste = (props) => {
                         </td>
                       </tr>
                       <tr>
-                        <td className="ps-2 py-1">500ml (If Landfilled)</td>
+                        <td className="ps-2 py-1">Landfilled</td>
                         <td className="ps-3 py-1">
                           <TextField
                             size="small"
@@ -1180,7 +1180,7 @@ const Waste = (props) => {
                 </Box>
               </Grid>
 
-              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
+              <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={2}>
                 <Stack columnGap={2} rowGap={2} className="flex-xl-row flex-md-row flex-sm-column">
                   <Button
                     variant="contained"
