@@ -359,7 +359,7 @@ const Video = (props) => {
                     <td className="ps-3">Wi-Fi Impressions</td>
                     <td className="ps-3">4G Impressions</td>
                     <td className="ps-3">5G Impressions</td>
-                    <td className="ps-3">Emissions</td>
+                    <td className="ps-3">Emissions (kgCO<sub>2</sub>e)</td>
                   </tr>
                   <tr>
                     <td className="ps-3 py-1">
@@ -454,7 +454,7 @@ const Video = (props) => {
                       No. of Devices
                     </th>
                     <th className="ps-2" style={{ textAlign: 'center' }}>
-                      Emissions
+                      Emissions (kgCO<sub>2</sub>e)
                     </th>
                   </tr>
                   <tr>
@@ -618,7 +618,7 @@ const Video = (props) => {
                   <tr>
                     {/* <td className="ps-3">Total Impressions</td> */}
                     <td className="ps-3">% of Renewable Energy</td>
-                    <td className="ps-3">Emissions</td>
+                    <td className="ps-3">Emissions (kgCO<sub>2</sub>e)</td>
                   </tr>
                   <tr>
                     {/* <td className="ps-3 py-1">

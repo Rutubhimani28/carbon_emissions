@@ -484,10 +484,10 @@ const AirFreight = (props) => {
                 </Typography>
                 <table className="table-custom-inpt-field">
                   <tr>
-                    <th className="ps-2">Freight Mode</th>
+                    <th className="ps-2" />
                     <th className="ps-2">No. of tonnes</th>
                     <th className="ps-2">No. of tonne-kms</th>
-                    <th className="ps-2">Emissions</th>
+                    <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
                   </tr>
                   <tr>
                     <td className="ps-2 py-1">Air</td>

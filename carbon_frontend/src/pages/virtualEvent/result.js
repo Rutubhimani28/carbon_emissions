@@ -78,6 +78,10 @@ const Result = ({ value }) => {
       type: 'PVC Banner',
       totalEmission: allVirtualEventData?.data?.[0]?.data?.[2]?.emission,
     },
+    {
+      type: "Energy",
+      totalEmission: allVirtualEventData?.data?.[0]?.data?.[5]?.emission,
+    }
     // {
     //   type: 'Energy',
     //   totalEmission: allVirtualEventData?.data?.[0]?.data?.[5]?.emission,

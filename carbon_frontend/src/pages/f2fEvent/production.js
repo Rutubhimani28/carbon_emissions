@@ -632,7 +632,7 @@ const Production = (props) => {
                             Weight (Kgs)
                           </th>
                           <th className="ps-2" width="30%">
-                            Emissions
+                            Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
                         {fieldDataTwo &&
@@ -685,7 +685,7 @@ const Production = (props) => {
                             Area (m<sup>3</sup>)
                           </th>
                           <th className="ps-2" width="30%">
-                            Emissions
+                            Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
                         {fieldDataOne &&
@@ -741,11 +741,11 @@ const Production = (props) => {
                             Area (m²)
                           </th>
                           <th className="ps-2" width="30%">
-                            Emissions
+                            Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
                         <tr>
-                          <td className="py-1">Jute Carpet Flooring</td>
+                          <td className="py-1">Jute Carpet</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -775,7 +775,7 @@ const Production = (props) => {
                           </td>
                         </tr>
                         <tr>
-                          <td className="py-1">Wooden Flooring</td>
+                          <td className="py-1">Wooden</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -806,7 +806,7 @@ const Production = (props) => {
                           </td>
                         </tr>
                         <tr>
-                          <td className="py-1">PVC Flooring</td>
+                          <td className="py-1">PVC</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -854,7 +854,7 @@ const Production = (props) => {
                             Weight (Kgs)
                           </th>
                           <th className="ps-2" width="30%">
-                            Emissions
+                            Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
                         <tr>
@@ -965,7 +965,7 @@ const Production = (props) => {
                             No. of Bags
                           </th>
                           <th className="ps-2" width="30%">
-                            Emissions
+                            Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
                         <tr>

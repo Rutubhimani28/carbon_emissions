@@ -1177,7 +1177,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     name={'noOfSlots'}
                     value={values?.noOfSlots}
-                    label="No of slots"
+                    label="No. of slots"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -1224,7 +1224,7 @@ const VirtualEvent = (props) => {
                     size="small"
                     type="number"
                     disabled
-                    label="Emissions"
+                    label=<span>Emissions (kgCO<sub>2</sub>e)</span>
                     variant="outlined"
                     fullWidth
                     name={'emissionEightteen'}
@@ -1252,7 +1252,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     name={'noOfCopiesOne'}
                     value={values?.noOfCopiesOne}
-                    label="No of copies"
+                    label="No. of copies"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -1267,7 +1267,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     disabled
                     name={'emissionFourteen'}
-                    label="Emissions"
+                    label=<span>Emissions (kgCO<sub>2</sub>e)</span>
                     variant="outlined"
                     fullWidth
                     value={values?.emissionFourteen}
@@ -1294,7 +1294,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     name={'noOfCopiesHalf'}
                     value={values?.noOfCopiesHalf}
-                    label="No of copies"
+                    label="No. of copies"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -1309,7 +1309,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     disabled
                     name={'emissionHalf'}
-                    label="Emissions"
+                    label=<span>Emissions (kgCO<sub>2</sub>e)</span>
                     variant="outlined"
                     fullWidth
                     value={values?.emissionHalf}
@@ -1445,7 +1445,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     name={'colourNoOfPage'}
                     value={values?.colourNoOfPage}
-                    label="No of page"
+                    label="No. of pages"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -1462,7 +1462,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     name={'copyOne'}
                     value={values?.copyOne}
-                    label="No of Copies"
+                    label="No. of Copies"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -1478,7 +1478,7 @@ const VirtualEvent = (props) => {
                     size="small"
                     type="number"
                     disabled
-                    label="Emissions"
+                    label=<span>Emissions (kgCO<sub>2</sub>e)</span>
                     variant="outlined"
                     fullWidth
                     name={'emissionColour'}
@@ -1507,7 +1507,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     name={'blackWhiteNoOfPage'}
                     value={values?.blackWhiteNoOfPage}
-                    label="No of page"
+                    label="No. of pages"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -1524,7 +1524,7 @@ const VirtualEvent = (props) => {
                     type="number"
                     name={'copyTwo'}
                     value={values?.copyTwo}
-                    label="No of Copies"
+                    label="No. of Copies"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -1540,7 +1540,7 @@ const VirtualEvent = (props) => {
                     size="small"
                     type="number"
                     disabled
-                    label="Emissions"
+                    label=<span>Emissions (kgCO<sub>2</sub>e)</span>
                     variant="outlined"
                     fullWidth
                     name={'emissionBlackWhite'}
@@ -1564,7 +1564,7 @@ const VirtualEvent = (props) => {
                       <tr className="text-white">
                         <th />
                         <th className="ps-2">Weight (Kgs)</th>
-                        <th className="ps-2">Emissions</th>
+                        <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
                       </tr>
                       <tr>
                         <td className="ps-4 py-1 text-white">Polyethylene</td>
@@ -1629,6 +1629,9 @@ const VirtualEvent = (props) => {
             </Box>
 
             <Box className="mb-4">
+            <Typography variant="h4" className="text-center text-white mt-4 mb-2">
+                OOH/Digital Display
+              </Typography>
               <Grid item xs={12} sm={12} md={6}>
                 <Box>
                   <div className="table-responsive">
@@ -1638,7 +1641,7 @@ const VirtualEvent = (props) => {
                         <th width={'122px'} />
                         <th className="ps-2">kwh</th>
                         <th className="ps-2">% Renewable</th>
-                        <th className="ps-2">Emissions</th>
+                        <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
                       </tr>
                       <tr>
                         <td className="ps-4 py-1 text-white">Energy</td>
