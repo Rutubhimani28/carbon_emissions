@@ -339,7 +339,7 @@ const PageView = (props) => {
                     <td className="ps-3"> Enter your landing page link</td>
                     <td className="ps-3" />
                     <td className="ps-3" />
-                    <td className="ps-3">Page Size (Mb)</td>
+                    <td className="ps-3">Get WebPage Size (Mb)</td>
                   </tr>
                   <tr>
                     <td className="ps-3 py-1">
@@ -476,13 +476,22 @@ const PageView = (props) => {
                             </div> */}
             </Box>
           </Grid>
-          <Grid item xs={12} sm={12} md={12} marginTop={3}>
-            <Typography color="white" className="text-center">
-              {`Note: Please wait as we calculate the page size. This may take few seconds and at times a minute or two depending on the connection speed.`}
+          <Grid item xs={12} sm={12} md={12} marginTop={3} ml={4}>
+            <Typography color="white" className="text-start fw-bold">
+              {`Note:`}
             </Typography>
-            <Typography color="white" className="text-center">
-              {`If you wont get the page size, clear the page link and add again`}
-            </Typography>
+            <ul style={{ color: 'white', justifyContent: 'center' }}>
+              <li>
+                <Typography className="fst-italic" display="inline">
+                  {`Please wait while we calculate the page size. This may take a few seconds to a minute depending on the data connection speed.`}
+                </Typography>
+              </li>
+              <li>
+                <Typography className="fst-italic" display="inline">
+                  {`If you do not get the page size, click on the CLEAR tab and add the webpage again.`}
+                </Typography>
+              </li>
+            </ul>
           </Grid>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} marginTop={3}>
             <Box>
@@ -550,7 +559,6 @@ const PageView = (props) => {
                         }}
                         value={formik.values.TimeOnPageSecs}
                         inputProps={{ style: { color: 'white' } }}
-                        sx={{ mt: 2 }}
                       />
                     </td>
                   </tr>
@@ -566,9 +574,9 @@ const PageView = (props) => {
               <div className="table-responsive">
                 <table className="table-custom-inpt-field">
                   <tr>
-                    <td className="ps-3">Page Views- WiFi</td>
-                    <td className="ps-3">Page Views- 4G</td>
-                    <td className="ps-3">Page Views- 5G</td>
+                    <td className="ps-3">WebPage Views- WiFi</td>
+                    <td className="ps-3">WebPage Views- 4G</td>
+                    <td className="ps-3">WebPage Views- 5G</td>
                     <td className="ps-3">
                       Emissions (kgCO<sub>2</sub>e)
                     </td>
@@ -855,13 +863,14 @@ const PageView = (props) => {
               <div className="table-responsive">
                 <table className="table-custom-inpt-field">
                   <tr>
-                    {/* <td className="ps-3">Total Impressions</td> */}
+                    <td className="ps-3 invisible">Device Type</td>
                     <td className="ps-3">% of Renewable Energy</td>
                     <td className="ps-3">
                       Emissions (kgCO<sub>2</sub>e)
                     </td>
                   </tr>
                   <tr>
+                    <td className="ps-3 py-1" />
                     {/* <td className="ps-3 py-1">
                                             <TextField
                                                 size="small"

@@ -37,7 +37,7 @@ const Image = (props) => {
   const allData = useSelector((state) => state?.totalImageDetails?.data?.[0]?.data);
   const totalEmission = useSelector((state) => state?.totalImageDetails?.totalEmission);
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
-  const { pageSizeMB, loading, error } = useSelector((state) => state.totalGreenCheckDetails);
+  // const { pageSizeMB, loading, error } = useSelector((state) => state.totalGreenCheckDetails);
   const eventsData = useEventData();
   const dispatch = useDispatch();
   const initialValues = {
@@ -263,11 +263,11 @@ const Image = (props) => {
     }
   }, [value]);
 
-  useEffect(() => {
-    if (pageSizeMB) {
-      formik.setFieldValue('contentSize', pageSizeMB);
-    }
-  }, [pageSizeMB]);
+  // useEffect(() => {
+  //   if (pageSizeMB) {
+  //     formik.setFieldValue('contentSize', pageSizeMB);
+  //   }
+  // }, [pageSizeMB]);
 
   return (
     <Container maxWidth>
@@ -331,8 +331,6 @@ const Image = (props) => {
                             size="small"
                             type="number"
                             name="contentSize"
-                            sx={{ width: '300px' }}
-                            disabled
                             value={formik.values.contentSize}
                             onChange={(e) => {
                               const value = e.target.value;
@@ -392,7 +390,9 @@ const Image = (props) => {
                     <td className="ps-3">Wi-Fi Impressions</td>
                     <td className="ps-3">4G Impressions</td>
                     <td className="ps-3">5G Impressions</td>
-                    <td className="ps-3">Emissions (kgCO<sub>2</sub>e)</td>
+                    <td className="ps-3">
+                      Emissions (kgCO<sub>2</sub>e)
+                    </td>
                   </tr>
                   <tr>
                     <td className="ps-3 py-1">
@@ -645,11 +645,15 @@ const Image = (props) => {
               <div className="table-responsive">
                 <table className="table-custom-inpt-field">
                   <tr>
+                    <td className="ps-3 invisible">Device Type</td>
                     {/* <td className="ps-3">Total Impressions</td> */}
                     <td className="ps-3">% of Renewable Energy</td>
-                    <td className="ps-3">Emissions (kgCO<sub>2</sub>e)</td>
+                    <td className="ps-3">
+                      Emissions (kgCO<sub>2</sub>e)
+                    </td>
                   </tr>
                   <tr>
+                    <td className="ps-3 py-1" />
                     {/* <td className="ps-3 py-1">
                       <TextField
                         size="small"

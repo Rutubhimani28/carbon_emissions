@@ -535,7 +535,7 @@ const Hotel = (props) => {
                   </Grid>
                   <Grid mt={2} className="textborder">
                     <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
-                      Emissions
+                      Emissions (kgCO<sub>2</sub>e)
                     </FormLabel>
                     <TextField
                       id="emissionsOne"

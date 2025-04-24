@@ -972,7 +972,7 @@ const Food = (props) => {
                       </tr>
 
                       <tr>
-                        <td className="ps-2 py-1">Beer(33-cL aluminum cans- 1l)</td>
+                        <td className="ps-2 py-1">Beer (33-cL aluminum cans- 1l)</td>
                         <td className="ps-2 py-1">
                           <TextField
                             size="small"
@@ -997,7 +997,7 @@ const Food = (props) => {
                         </td>
                       </tr>
                       <tr>
-                        <td className="ps-2 py-1">Beer(30-L steel kegs- 1l)</td>
+                        <td className="ps-2 py-1">Beer (30-L steel kegs- 1l)</td>
                         <td className="ps-2 py-1">
                           <TextField
                             size="small"

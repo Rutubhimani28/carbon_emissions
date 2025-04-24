@@ -229,13 +229,7 @@ const DigitalContent = (props) => {
             <IconDiv>
               <img src={DigitalImg} alt="Digital" width={100} className="tabImgWhite" />
             </IconDiv>
-            <Grid
-              container
-              rowSpacing={3}
-              columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-              className="table-custom-inpt-field"
-              justifyContent={'center'}
-            >
+            <Grid item xs={12} sm={4} md={4}>
               {/* <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant='h4' color='white'>
                                     Emails
@@ -335,50 +329,97 @@ const DigitalContent = (props) => {
                                     />
                                 </Grid>
                             </Grid> */}
-              <Grid item xs={12} sm={4} md={4}>
-                <Typography variant="h4" color="white">
+              <Grid item xs={12} sm={4} md={7}>
+                <Typography variant="h4" color="white" className=" text-center">
                   Emails
                 </Typography>
-                <Grid mt={2}>
-                  <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
+                {/* <Grid mt={2}> */}
+                  {/* <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
                     No of Emails
-                  </FormLabel>
-                  <TextField
-                    id="noOfEmails"
-                    name="noOfEmails"
-                    label=""
-                    fullWidth
-                    size="small"
-                    value={formik.values.noOfEmails}
-                    onChange={(e) => {
-                      formik.handleChange(e);
-                      formik.handleSubmit();
-                    }}
-                    error={formik.touched.noOfEmails && Boolean(formik.errors.noOfEmails)}
-                    helperText={formik.touched.noOfEmails && formik.errors.noOfEmails}
-                    inputProps={{ style: { color: 'white' } }}
-                  />
-                </Grid>
-                <Grid mt={2}>
-                  <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
+                  </FormLabel> */}
+                  <div className="table-responsive">
+                    <table className="table-custom-inpt-field">
+                      <tr>
+                        <td className="py-1 " width="40%">No. of Emails</td>
+                        <td className="py-1 " width="40%">
+                          Emissions (kgCO<sub>2</sub>e)
+                        </td>
+                      </tr>
+                      <tr>
+                        {/* <td className="py-1 " width="40%">
+                          No. of Emails
+                        </td> */}
+                        <td className="ps-2 py-1">
+                          <TextField
+                            id="noOfEmails"
+                            name="noOfEmails"
+                            label=""
+                            fullWidth
+                            size="small"
+                            value={formik.values.noOfEmails}
+                            onChange={(e) => {
+                              formik.handleChange(e);
+                              formik.handleSubmit();
+                            }}
+                            error={formik.touched.noOfEmails && Boolean(formik.errors.noOfEmails)}
+                            helperText={formik.touched.noOfEmails && formik.errors.noOfEmails}
+                            inputProps={{ style: { color: 'white' } }}
+                          />
+                        </td>
+                        <td className="ps-2 py-1">
+                            <TextField
+                              id="emissionOne"
+                              name="emissionOne"
+                              label=""
+                              fullWidth
+                              size="small"
+                              disabled
+                              value={formik.values.emissionOne}
+                              onChange={formik.handleChange}
+                              error={formik.touched.emissionOne && Boolean(formik.errors.emissionOne)}
+                              helperText={formik.touched.emissionOne && formik.errors.emissionOne}
+                            />
+                          </td>
+                      </tr>
+                    </table>
+                  </div>
+                {/* </Grid> */}
+                {/* <Grid mt={2}> */}
+                  {/* <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
                     Emissions (kgCO<sub>2</sub>e)
-                  </FormLabel>
-                  <TextField
-                    id="emissionOne"
-                    name="emissionOne"
-                    label=""
-                    fullWidth
-                    size="small"
-                    disabled
-                    value={formik.values.emissionOne}
-                    onChange={formik.handleChange}
-                    error={formik.touched.emissionOne && Boolean(formik.errors.emissionOne)}
-                    helperText={formik.touched.emissionOne && formik.errors.emissionOne}
-                  />
-                </Grid>
+                  </FormLabel> */}
+                  {/* <div className="table-responsive">
+                    <table className="table-custom-inpt-field">
+                      <tr>
+                        <td className="py-1 " width="40%">
+                          Emissions (kgCO<sub>2</sub>e)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          
+                          <td className="ps-2 py-1">
+                            <TextField
+                              id="emissionOne"
+                              name="emissionOne"
+                              label=""
+                              fullWidth
+                              size="small"
+                              disabled
+                              value={formik.values.emissionOne}
+                              onChange={formik.handleChange}
+                              error={formik.touched.emissionOne && Boolean(formik.errors.emissionOne)}
+                              helperText={formik.touched.emissionOne && formik.errors.emissionOne}
+                            />
+                          </td>
+                        </td>
+                      </tr>
+                    </table>
+                  </div> */}
+                {/* </Grid> */}
               </Grid>
-              <Grid item xs={12} sm={4} md={7}>
-                <Typography variant="h4" className="text-start text-white mb-4">
+              <Grid item xs={12} sm={4} md={7} mb={2}>
+                <Typography variant="h4" className="mt-4 text-center text-white mb-4">
                   Printing
                 </Typography>
                 <Box>

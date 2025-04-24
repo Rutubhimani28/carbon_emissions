@@ -359,7 +359,9 @@ const Video = (props) => {
                     <td className="ps-3">Wi-Fi Impressions</td>
                     <td className="ps-3">4G Impressions</td>
                     <td className="ps-3">5G Impressions</td>
-                    <td className="ps-3">Emissions (kgCO<sub>2</sub>e)</td>
+                    <td className="ps-3">
+                      Emissions (kgCO<sub>2</sub>e)
+                    </td>
                   </tr>
                   <tr>
                     <td className="ps-3 py-1">
@@ -617,10 +619,14 @@ const Video = (props) => {
                 <table className="table-custom-inpt-field">
                   <tr>
                     {/* <td className="ps-3">Total Impressions</td> */}
+                    <td className="ps-3 invisible">Device Type</td>
                     <td className="ps-3">% of Renewable Energy</td>
-                    <td className="ps-3">Emissions (kgCO<sub>2</sub>e)</td>
+                    <td className="ps-3">
+                      Emissions (kgCO<sub>2</sub>e)
+                    </td>
                   </tr>
                   <tr>
+                    <td className="ps-3 py-1" />
                     {/* <td className="ps-3 py-1">
                       <TextField
                         size="small"
