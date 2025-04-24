@@ -38,7 +38,7 @@ const DigitalCampaignCalculation = () => {
             /> */}
             <Tab
               icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
-              label="Page"
+              label="WebPage"
               className="tab-text"
               // sx={{
               //   filter:

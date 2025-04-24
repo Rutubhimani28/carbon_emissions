@@ -627,11 +627,11 @@ const Production = (props) => {
                     <div className="table-responsive">
                       <table className="table-custom-inpt-field">
                         <tr>
-                          <th width="30%">Material Type</th>
-                          <th className="ps-2" width="30%">
+                          <th />
+                          <th className="ps-2" >
                             Weight (Kgs)
                           </th>
-                          <th className="ps-2" width="30%">
+                          <th className="ps-2" >
                             Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
@@ -680,11 +680,11 @@ const Production = (props) => {
                     <div className="table-responsive">
                       <table className="table-custom-inpt-field">
                         <tr>
-                          <th width="30%">Material Type</th>
-                          <th className="ps-2" width="30%">
+                          <th />
+                          <th className="ps-2" >
                             Area (m<sup>3</sup>)
                           </th>
-                          <th className="ps-2" width="30%">
+                          <th className="ps-2" >
                             Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
@@ -736,11 +736,11 @@ const Production = (props) => {
                     <div className="table-responsive">
                       <table className="table-custom-inpt-field">
                         <tr>
-                          <th width="30%">Material Type</th>
-                          <th className="ps-2" width="30%">
+                          <th />
+                          <th className="ps-2">
                             Area (m²)
                           </th>
-                          <th className="ps-2" width="30%">
+                          <th className="ps-2" >
                             Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
@@ -849,11 +849,11 @@ const Production = (props) => {
                     <div className="table-responsive">
                       <table className="table-custom-inpt-field">
                         <tr>
-                          <th width="30%">Material Type</th>
-                          <th className="ps-2" width="30%">
+                          <th/>
+                          <th className="ps-2" >
                             Weight (Kgs)
                           </th>
-                          <th className="ps-2" width="30%">
+                          <th className="ps-2" >
                             Emissions (kgCO<sub>2</sub>e)
                           </th>
                         </tr>
@@ -952,146 +952,148 @@ const Production = (props) => {
                   </Box>
                 </Grid>
 
-                <Grid item xs={12} sm={12} md={12}>
-                  <Typography variant="h4" className="text-center text-white mb-4">
-                    Giveaways
-                  </Typography>
-                  <Box>
-                    <div className="table-responsive">
-                      <table className="table-custom-inpt-field">
-                        <tr>
-                          <th width="30%">Material Type</th>
-                          <th className="ps-2" width="30%">
-                            No. of Bags
-                          </th>
-                          <th className="ps-2" width="30%">
-                            Emissions (kgCO<sub>2</sub>e)
-                          </th>
-                        </tr>
-                        <tr>
-                          <td className="py-1">Cotton Bags</td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="cottenBages"
-                              value={formik?.values?.cottenBages}
-                              onChange={(e) => {
-                                formik.setFieldValue('cottenBages', e.target.value);
-                                formik.setFieldValue(
-                                  'cottenBagesEmission',
-                                  Number(0.09 * Number(e.target.value)).toFixed(5)
-                                );
-                                formik.handleSubmit();
-                              }}
-                              inputProps={{ style: { color: 'white' } }}
-                            />
-                          </td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              disabled
-                              name="cottenBagesEmission"
-                              value={formik?.values?.cottenBagesEmission}
-                              onChange={formik.handleChange}
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-1">Jute Bags</td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="Jutebags"
-                              value={formik?.values?.Jutebags}
-                              onChange={(e) => {
-                                formik.setFieldValue('Jutebags', e.target.value);
-                                formik.setFieldValue(
-                                  'JutebagsEmission',
-                                  Number(0.03962 * Number(e.target.value)).toFixed(5)
-                                );
-                                formik.handleSubmit();
-                              }}
-                              inputProps={{ style: { color: 'white' } }}
-                            />
-                          </td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="JutebagsEmission"
-                              value={formik?.values?.JutebagsEmission}
-                              onChange={formik.handleChange}
-                              disabled
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-1">Paper Bags</td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="Paperbags"
-                              value={formik?.values?.Paperbags}
-                              onChange={(e) => {
-                                formik.setFieldValue('Paperbags', e.target.value);
-                                formik.setFieldValue(
-                                  'PaperbagsEmission',
-                                  Number(0.28 * Number(e.target.value)).toFixed(5)
-                                );
-                                formik.handleSubmit();
-                              }}
-                              inputProps={{ style: { color: 'white' } }}
-                            />
-                          </td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="PaperbagsEmission"
-                              value={formik?.values?.PaperbagsEmission}
-                              onChange={formik.handleChange}
-                              disabled
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-1">Recycled Paper Bags</td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="Recycledpaperbags"
-                              value={formik?.values?.Recycledpaperbags}
-                              onChange={(e) => {
-                                formik.setFieldValue('Recycledpaperbags', e.target.value);
-                                formik.setFieldValue(
-                                  'RecycledpaperbagsEmission',
-                                  Number(0.17665 * Number(e.target.value)).toFixed(5)
-                                );
-                                formik.handleSubmit();
-                              }}
-                              inputProps={{ style: { color: 'white' } }}
-                            />
-                          </td>
-                          <td className="ps-2 py-1">
-                            <TextField
-                              size="small"
-                              type="number"
-                              name="RecycledpaperbagsEmission"
-                              value={formik?.values?.RecycledpaperbagsEmission}
-                              onChange={formik.handleChange}
-                              disabled
-                            />
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </Box>
-                </Grid>
+                <Box >
+                  <div className="table-responsive">
+                    {/* <Grid item xs={12} sm={12} md={12}> */}
+                    <Typography variant="h4" className="text-center text-white mb-4 mt-4">
+                      Giveaways
+                    </Typography>
+                    <Box>
+                      <div className="table-responsive">
+                        <table className="table-custom-inpt-field">
+                          <tr>
+                            <th />
+                            <th className="ps-2">No. of Bags</th>
+                            <th className="ps-2">
+                              Emissions (kgCO<sub>2</sub>e)
+                            </th>
+                          </tr>
+                          <tr>
+                            <td className="py-1">Cotton Bags</td>
+                            <td className="ps-2 py-1">
+                              <TextField
+                                size="small"
+                                type="number"
+                                name="cottenBages"
+                                value={formik?.values?.cottenBages}
+                                onChange={(e) => {
+                                  formik.setFieldValue('cottenBages', e.target.value);
+                                  formik.setFieldValue(
+                                    'cottenBagesEmission',
+                                    Number(0.09 * Number(e.target.value)).toFixed(5)
+                                  );
+                                  formik.handleSubmit();
+                                }}
+                                inputProps={{ style: { color: 'white' } }}
+                              />
+                            </td>
+                            <td className="ps-2 py-1">
+                              <TextField
+                                size="small"
+                                type="number"
+                                disabled
+                                name="cottenBagesEmission"
+                                value={formik?.values?.cottenBagesEmission}
+                                onChange={formik.handleChange}
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="py-1">Jute Bags</td>
+                            <td className="ps-2 py-1">
+                              <TextField
+                                size="small"
+                                type="number"
+                                name="Jutebags"
+                                value={formik?.values?.Jutebags}
+                                onChange={(e) => {
+                                  formik.setFieldValue('Jutebags', e.target.value);
+                                  formik.setFieldValue(
+                                    'JutebagsEmission',
+                                    Number(0.03962 * Number(e.target.value)).toFixed(5)
+                                  );
+                                  formik.handleSubmit();
+                                }}
+                                inputProps={{ style: { color: 'white' } }}
+                              />
+                            </td>
+                            <td className="ps-2 py-1">
+                              <TextField
+                                size="small"
+                                type="number"
+                                name="JutebagsEmission"
+                                value={formik?.values?.JutebagsEmission}
+                                onChange={formik.handleChange}
+                                disabled
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="py-1">Paper Bags</td>
+                            <td className="ps-2 py-1">
+                              <TextField
+                                size="small"
+                                type="number"
+                                name="Paperbags"
+                                value={formik?.values?.Paperbags}
+                                onChange={(e) => {
+                                  formik.setFieldValue('Paperbags', e.target.value);
+                                  formik.setFieldValue(
+                                    'PaperbagsEmission',
+                                    Number(0.28 * Number(e.target.value)).toFixed(5)
+                                  );
+                                  formik.handleSubmit();
+                                }}
+                                inputProps={{ style: { color: 'white' } }}
+                              />
+                            </td>
+                            <td className="ps-2 py-1">
+                              <TextField
+                                size="small"
+                                type="number"
+                                name="PaperbagsEmission"
+                                value={formik?.values?.PaperbagsEmission}
+                                onChange={formik.handleChange}
+                                disabled
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="py-1">Recycled Paper Bags</td>
+                            <td className="ps-2 py-1">
+                              <TextField
+                                size="small"
+                                type="number"
+                                name="Recycledpaperbags"
+                                value={formik?.values?.Recycledpaperbags}
+                                onChange={(e) => {
+                                  formik.setFieldValue('Recycledpaperbags', e.target.value);
+                                  formik.setFieldValue(
+                                    'RecycledpaperbagsEmission',
+                                    Number(0.17665 * Number(e.target.value)).toFixed(5)
+                                  );
+                                  formik.handleSubmit();
+                                }}
+                                inputProps={{ style: { color: 'white' } }}
+                              />
+                            </td>
+                            <td className="ps-2 py-1">
+                              <TextField
+                                size="small"
+                                type="number"
+                                name="RecycledpaperbagsEmission"
+                                value={formik?.values?.RecycledpaperbagsEmission}
+                                onChange={formik.handleChange}
+                                disabled
+                              />
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </Box>
+                    {/* </Grid> */}
+                  </div>
+                </Box>
 
                 {/* <Grid item xs={12} sm={12} md={12} marginTop={3}>
                   <Typography color="white">Note:</Typography>

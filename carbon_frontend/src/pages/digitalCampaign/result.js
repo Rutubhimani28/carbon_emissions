@@ -49,7 +49,7 @@ const Result = ({ value }) => {
     //     totalEmission: allDigitalCampaignData?.totalEmission
     // }
     {
-      type: 'PageView',
+      type: 'WebPage',
       totalEmission: allDataPageView?.totalEmission || 0,
     },
     {

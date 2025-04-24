@@ -64,7 +64,7 @@ const EventCalculation = () => {
             />
             <Tab
               icon={<img src={food} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
-              label="Food"
+              label="F&B"
               className="tab-text"
             />
             <Tab

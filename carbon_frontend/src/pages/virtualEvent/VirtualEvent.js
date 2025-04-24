@@ -1630,7 +1630,7 @@ const VirtualEvent = (props) => {
 
             <Box className="mb-4">
             <Typography variant="h4" className="text-center text-white mt-4 mb-2">
-                OOH/Digital Display
+                OOH/ Digital Display
               </Typography>
               <Grid item xs={12} sm={12} md={6}>
                 <Box>

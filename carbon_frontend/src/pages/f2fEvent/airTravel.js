@@ -346,7 +346,9 @@ const AirTravel = (props) => {
                           <th className="ps-2">Trip (Kms)</th>
                           {/* add new  */}
                           <th className="ps-2">No. of Passengers</th>
-                          <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
+                          <th className="ps-2">
+                            Emissions (kgCO<sub>2</sub>e)
+                          </th>
                         </tr>
                         <tr>
                           <td className="ps-2 py-1">Short Haul</td>
@@ -623,7 +625,9 @@ const AirTravel = (props) => {
                           <th className="ps-2">Trip (Kms)</th>
                           {/* add new */}
                           <th className="ps-2">No. of Passengers</th>
-                          <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
+                          <th className="ps-2">
+                            Emissions (kgCO<sub>2</sub>e)
+                          </th>
                         </tr>
                         <tr>
                           <td className="ps-2 py-1">Short Haul</td>
@@ -1027,11 +1031,27 @@ const AirTravel = (props) => {
                   </Typography>
                 </Grid>
 
-                <Grid item xs={12} sm={12} md={12} marginTop={2}>
+                {/* <Grid item xs={12} sm={12} md={12} marginTop={2}>
                   <Typography color="white">{`Note:`}</Typography>
                   <Typography color="white">{`Short Haul: ~500 kms`}</Typography>
                   <Typography color="white">{`Medium Haul: >500 - <3700 kms`}</Typography>
                   <Typography color="white">{`Long Haul	: >3700 miles`}</Typography>
+                </Grid> */}
+                <Grid item xs={12} sm={12} md={12} marginTop={3}>
+                  <Typography color="white" className="text-start fw-bold">
+                    {`Note:`}
+                  </Typography>
+                  <ul style={{ color: 'white', justifyContent: 'center' }}>
+                    <li>
+                      <Typography color="white" className="fst-italic">{`Short Haul: ~500 kms`}</Typography>
+                    </li>
+                    <li>
+                      <Typography color="white" className="fst-italic">{`Medium Haul: >500 - <3700 kms`}</Typography>
+                    </li>
+                    <li>
+                      <Typography color="white" className="fst-italic">{`Long Haul	: >3700 kms`}</Typography>
+                    </li>
+                  </ul>
                 </Grid>
                 {/* <Grid item xs={12} sm={12} md={12} marginTop={1}>
                                     <Typography color='white'>Note: For more accurate calculations, please visit ICAO webiste.</Typography>

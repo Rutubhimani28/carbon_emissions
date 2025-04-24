@@ -63,7 +63,7 @@ const Result = ({ value }) => {
     //     totalEmission: allVirtualEventData?.data?.[0]?.data?.[17]?.emission
     // },
     {
-      type: 'Colour Print Ad',
+      type: 'Colour Print',
       totalEmission: allVirtualEventData?.data?.[0]?.data?.[7]?.emission,
     },
     {
@@ -79,7 +79,7 @@ const Result = ({ value }) => {
       totalEmission: allVirtualEventData?.data?.[0]?.data?.[2]?.emission,
     },
     {
-      type: "Energy",
+      type: "OOH/ Digital Display",
       totalEmission: allVirtualEventData?.data?.[0]?.data?.[5]?.emission,
     }
     // {

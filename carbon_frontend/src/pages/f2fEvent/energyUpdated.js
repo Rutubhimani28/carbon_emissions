@@ -219,13 +219,14 @@ const EnergyUpdated = (props) => {
               <img src={EnergyImg} alt="Energy" width={100} className="tabImgWhite" />
             </IconDiv>
             <Grid
-              container
-              rowSpacing={3}
-              columnSpacing={{ xs: 0, sm: 5, md: 4 }}
-              style={{ display: 'flex', justifyContent: 'center' }}
+              // container
+              // rowSpacing={3}
+              // columnSpacing={{ xs: 0, sm: 5, md: 4 }}
+              item xs={12} sm={4} md={4}
+              // style={{  display: 'flex', justifyContent: 'center' }}
             >
               <Grid item xs={12} sm={4} md={4}>
-                <Typography variant="h4">Electricity</Typography>
+                <Typography variant="h4" className="text-center">Electricity</Typography>
                 {/* <Grid mt={2}>
                   <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
                     No. of units (kwh)
@@ -371,7 +372,7 @@ const EnergyUpdated = (props) => {
               </Grid>
 
               <Grid item xs={12} sm={4} md={8}>
-                <Typography variant="h4">Generator</Typography>
+                <Typography variant="h4" className="mt-4 text-center">Generator</Typography>
                 <Box mt={3}>
                   <div className="table-responsive">
                     <table className="table-custom-inpt-field">
