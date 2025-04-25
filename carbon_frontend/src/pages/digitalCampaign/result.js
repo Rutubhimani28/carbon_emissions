@@ -33,8 +33,11 @@ const Result = ({ value }) => {
   // const total = Number(allDigitalCampaignData?.totalEmission);
   const toolData = useSelector((state) => state?.toolDetails?.data);
   const allDataImage = useSelector((state) => state?.totalImageDetails);
+  console.log("allDataImage", allDataImage.data?.[0]?.data?.[3]?.contentSize)
   const allDataVideo = useSelector((state) => state?.totalVideoDetails);
+  console.log("allDataVideo", allDataVideo.data?.[0]?.data?.[3].videoLength)
   const allDataPageView = useSelector((state) => state?.totalPageViewDetails);
+  console.log("allDataPageView", allDataPageView)
   const toolFormData = toolData?.find((item) => item?.type === 'toolForm');
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
 
@@ -156,16 +159,25 @@ const Result = ({ value }) => {
 
   const generatePrompt = async () => {
     if (totalCarbonFootprint) {
-      sentenceParts.push(`My Digital Campaign has a carbon footprint of ${totalCarbonFootprint}, `);
+      sentenceParts.push(`My digital campaign has a total carbon footprint of ${totalCarbonFootprint} kgCO2e.\n`);
+      // sentenceParts.push(`My Digital Campaign has a carbon footprint of ${totalCarbonFootprint}, `);
     }
-    if (pageViewTotal) {
-      sentenceParts.push(`Based on the Page Analytics you generated ${pageViewTotal} kgCO2e, `);
-    }
+    sentenceParts.push(`\nBreakdown:\n`);
+
+    // if (pageViewTotal) {
+    //   sentenceParts.push(`- Page: ${pageViewTotal} kgCO2e`);
+
+    //   // sentenceParts.push(`Based on the Page Analytics you generated ${pageViewTotal} kgCO2e, `);
+    // }
     if (imageTotal) {
-      sentenceParts.push(` Image generated ${imageTotal} kgCO2e, `);
+      sentenceParts.push(`- Image: ${imageTotal} kgCO2e`);
+
+      // sentenceParts.push(` Image generated ${imageTotal} kgCO2e, `);
     }
     if (videoTotal) {
-      sentenceParts.push(`and video generated ${videoTotal} kgCO2e, `);
+      sentenceParts.push(`- Video: ${videoTotal} kgCO2e`);
+
+      // sentenceParts.push(`and video generated ${videoTotal} kgCO2e, `);
     }
     // if (imgSize && imageEmission) {
     //     sentenceParts.push(`with a ${imgSize} MB image generating ${imageEmission} kgco2e `);
@@ -183,8 +195,23 @@ const Result = ({ value }) => {
     // const liveBroadcastSentence = liveBroadcastParts.length > 0 ? `Further the live broadcasting of my digital campaign of ${noOfMinsOne} mins on ${liveBroadcastParts.join(', ')}.` : '';
     // const finalSentence = `${sentenceParts.join(', ')} \n\n${wantInResult}`;
 
+    // sentenceParts.push(
+    //   `\n How can I reduce the emissions max? n the Page, reduce the size of the Page from ${pageViewTotal} kgCO2e by over 25%, Image size from ${imageTotal} Mb by over 25% , and Video duration from ${videoTotal} secs by over 25%. Show the original and reduced emissions by suggesting one action item for Page, Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`
+    // );
+
     sentenceParts.push(
-      `\n How can I reduce the emissions max? n the Page, reduce the size of the Page from ${pageViewTotal} kgCO2e by over 25%, Image size from ${imageTotal} Mb by over 25% , and Video duration from ${videoTotal} secs by over 25%. Show the original and reduced emissions by suggesting one action item for Page, Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`
+      `\n\n**How can I reduce these emissions significantly?**\n\n` +
+      `- Image: Reduce file size by over **25%** (from ${allDataImage.data?.[0]?.data?.[3]?.contentSize} MB)\n` +
+      `- Video: Cut duration by over **25%** (from ${allDataVideo.data?.[0]?.data?.[3].videoLength} secs)\n` +
+      `- Show original vs reduced emissions with calculations\n` +
+      `- Recommend one action per category (Image & Video)\n` +
+      `- Suggest tools to compress both Image and Video\n`
+    );
+
+    sentenceParts.push(
+      `\nFor **web pages over 2MB**, reduce size and design your site to be both people- and planet-friendly. ` +
+      `If any of the above value is showing as Zero, do not suggest any recommendations for that category.\n\n` +
+      `Need help building a low-carbon website? Contact us at info@sirat.earth.`
     );
     const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);
@@ -224,33 +251,34 @@ const Result = ({ value }) => {
   const chat = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          // model: "gpt-3.5-turbo",
-          // model: "gpt-4o",
-          model: 'o1-mini',
-          messages: [
-            {
-              "role": 'user',
-              "content": content,
-            },
-          ],
-          // temperature: 0.7,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${
-              constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
-            }`,
-          },
-        }
-      );
+      console.log("content : dig", content)
+      // const response = await axios.post(
+      //   'https://api.openai.com/v1/chat/completions',
+      //   {
+      //     // model: "gpt-3.5-turbo",
+      //     // model: "gpt-4o",
+      //     model: 'o1-mini',
+      //     messages: [
+      //       {
+      //         "role": 'user',
+      //         "content": content,
+      //       },
+      //     ],
+      //     // temperature: 0.7,
+      //   },
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       Authorization: `Bearer ${
+      //         constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
+      //       }`,
+      //     },
+      //   }
+      // );
 
-      const resJson = response?.data;
-      const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
-      setSuggestion(formattedSuggestions);
+      // const resJson = response?.data;
+      // const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
+      // setSuggestion(formattedSuggestions);
     } catch (error) {
       console.error('Error fetching suggestions:', error);
     } finally {
