@@ -237,18 +237,36 @@ const Result = ({ value }) => {
       }
     });
 
-    if (total && Number(total).toFixed(5) > 0) {
-      // contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(5)} kgCO2e`
-      contentData += `\nTotal ${Number(total).toFixed(5)} Carbon Footprint generated from your Product activity`;
-    }
-    if (toolFormData?.budget > 0) {
-      // contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
-      contentData += `\nThe total marketing budget for this activity is ${
-        toolFormData?.budget
-      }$ and For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`;
+    // if (total && Number(total).toFixed(5) > 0) {
+    //   // contentData += `\nTotal Carbon Footprint: ${Number(total).toFixed(5)} kgCO2e`
+    //   contentData += `\nTotal ${Number(total).toFixed(5)} Carbon Footprint generated from your Product activity`;
+    // }
+    // if (toolFormData?.budget > 0) {
+    //   // contentData += `\nThe total marketing budget for this activity is ${toolFormData?.budget} dollar`
+    //   contentData += `\nThe total marketing budget for this activity is ${
+    //     toolFormData?.budget
+    //   }$ and For every $ you spend you are generating ${(total / toolFormData?.budget).toFixed(3)} kgCO2e`;
+    // }
+
+    // contentData += `\n\nWhat are the top three ways to reduce my face-to-face event's carbon footprint by 10-20%? Suggest one actionable point for each of the ${categoryCount} categories to achieve this reduction. Show the calculation for comparing the original and reduced carbon footprints. Additionally, explain how adopting sustainable measures can lead to a 10% cost reduction, even if the cost savings aren't directly proportional to the carbon reductions.`;
+    // setContent(contentData);
+
+    if (total && Number(total).toFixed(2) > 0) {
+      contentData += `\nTotal: ${Number(total).toFixed(2)} kgCO2e\n`;
     }
 
-    contentData += `\n\nWhat are the top three ways to reduce my face-to-face event's carbon footprint by 10-20%? Suggest one actionable point for each of the ${categoryCount} categories to achieve this reduction. Show the calculation for comparing the original and reduced carbon footprints. Additionally, explain how adopting sustainable measures can lead to a 10% cost reduction, even if the cost savings aren't directly proportional to the carbon reductions.`;
+    if (toolFormData?.budget > 0) {
+      const emissionsPerDollar = (total / toolFormData.budget).toFixed(3);
+      contentData += `\nYour product launch has a total **marketing budget of $${toolFormData.budget}**, with a carbon footprint of **${emissionsPerDollar} kgCO2e per dollar spent** — that’s **${Number(total).toFixed(0)} kgCO2e** overall.\n`;
+    }
+
+    contentData += `\n**How can you reduce your face-to-face event’s carbon footprint by 10–20%?**\n\n`;
+    contentData += `- Share the **top 3 strategies** to achieve this reduction.\n`;
+    contentData += `- Provide **one actionable step** for each of the **${categoryCount} event-related categories** (e.g., Air Travel, Transportation, F&B, etc.).\n`;
+    contentData += `- Show a **before-and-after comparison** of the carbon emissions with calculations.\n`;
+
+    contentData += `\nAlso, explain how implementing sustainable practices can lead to **up to 5% cost savings**, even if the financial and emission reductions don’t scale equally. If any of the above value is showing as Zero, do not suggest any recommendations for that category.`;
+
     setContent(contentData);
   };
 
@@ -286,33 +304,34 @@ const Result = ({ value }) => {
   const chat = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          // model: "gpt-3.5-turbo",
-          // model: "gpt-4o",
-          model: 'o1-mini',
-          messages: [
-            {
-              "role": 'user',
-              "content": content,
-            },
-          ],
-          // temperature: 0.7,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${
-              constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
-            }`,
-          },
-        }
-      );
+      console.log("content", content)
+      // const response = await axios.post(
+      //   'https://api.openai.com/v1/chat/completions',
+      //   {
+      //     // model: "gpt-3.5-turbo",
+      //     // model: "gpt-4o",
+      //     model: 'o1-mini',
+      //     messages: [
+      //       {
+      //         "role": 'user',
+      //         "content": content,
+      //       },
+      //     ],
+      //     // temperature: 0.7,
+      //   },
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       Authorization: `Bearer ${
+      //         constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
+      //       }`,
+      //     },
+      //   }
+      // );
 
-      const resJson = response?.data;
-      const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
-      setSuggestion(formattedSuggestions);
+      // const resJson = response?.data;
+      // const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
+      // setSuggestion(formattedSuggestions);
     } catch (error) {
       console.error('Error fetching suggestions:', error);
     } finally {
