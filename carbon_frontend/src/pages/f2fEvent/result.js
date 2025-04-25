@@ -304,34 +304,32 @@ const Result = ({ value }) => {
   const chat = async () => {
     setIsLoading(true);
     try {
-      console.log("content", content)
-      // const response = await axios.post(
-      //   'https://api.openai.com/v1/chat/completions',
-      //   {
-      //     // model: "gpt-3.5-turbo",
-      //     // model: "gpt-4o",
-      //     model: 'o1-mini',
-      //     messages: [
-      //       {
-      //         "role": 'user',
-      //         "content": content,
-      //       },
-      //     ],
-      //     // temperature: 0.7,
-      //   },
-      //   {
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //       Authorization: `Bearer ${
-      //         constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
-      //       }`,
-      //     },
-      //   }
-      // );
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          // model: "gpt-3.5-turbo",
+          // model: "gpt-4o",
+          model: 'o1-mini',
+          messages: [
+            {
+              "role": 'user',
+              "content": content,
+            },
+          ],
+          // temperature: 0.7,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
+              }`,
+          },
+        }
+      );
 
-      // const resJson = response?.data;
-      // const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
-      // setSuggestion(formattedSuggestions);
+      const resJson = response?.data;
+      const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
+      setSuggestion(formattedSuggestions);
     } catch (error) {
       console.error('Error fetching suggestions:', error);
     } finally {

@@ -305,7 +305,6 @@ const Result = ({ value }) => {
   const chat = async () => {
     setIsLoading(true);
     try {
-      console.log("content", content)
       await generatePrompt();
 
       const response = await axios.post(
