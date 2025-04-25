@@ -389,8 +389,8 @@ const EnergyUpdated = (props) => {
                           <TextField
                             id="petrolOne"
                             name="petrolOne"
-                            label=""
-                            fullWidth
+                            // label=""
+                            // fullWidth
                             size="small"
                             value={formik.values.petrolOne}
                             type="number"
@@ -404,13 +404,12 @@ const EnergyUpdated = (props) => {
                             inputProps={{ style: { color: 'white' } }}
                           />
                         </td>
-
                         <td className="ps-2 py-1">
                           <TextField
                             id="emissionTwo"
                             name="emissionTwo"
                             label=""
-                            fullWidth
+                            // fullWidth
                             size="small"
                             disabled
                             value={formik.values.emissionTwo}
@@ -427,7 +426,7 @@ const EnergyUpdated = (props) => {
                             id="dieselOne"
                             name="dieselOne"
                             label=""
-                            fullWidth
+                            // fullWidth
                             type="number"
                             size="small"
                             value={formik.values.dieselOne}
@@ -446,7 +445,7 @@ const EnergyUpdated = (props) => {
                             id="emissionThree"
                             name="emissionThree"
                             label=""
-                            fullWidth
+                            // fullWidth
                             size="small"
                             disabled
                             value={formik.values.emissionThree}

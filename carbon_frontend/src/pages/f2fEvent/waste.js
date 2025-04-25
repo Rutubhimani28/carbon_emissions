@@ -1084,7 +1084,7 @@ const Waste = (props) => {
                   <div className="table-responsive">
                     <table className="table-custom-inpt-field">
                       <tr>
-                        <th width="110px" />
+                        <th />
                         <th className="ps-3">No. of Bottles</th>
                         <th className="ps-2">Emissions (kgCO<sub>2</sub>e)</th>
                       </tr>

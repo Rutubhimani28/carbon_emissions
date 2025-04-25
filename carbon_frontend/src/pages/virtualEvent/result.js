@@ -263,7 +263,15 @@ const Result = ({ value }) => {
     //   `\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, along with alternative methods, also show the calculation for each category. For PVC banners suggest to use polyethylene.`
     // );
     sentenceParts.push(
-      `\n\nHow can we reduce these emissions most effectively?\n\nSuggest one action per category—TV, Newspaper, Print, Outdoor Billboard, and OOH/Digital Display.\n\nShow original vs reduced emissions along with calculations. If any of the above value is showing as Zero, do not suggest any recommendations for that category.\n\nNote: For banners, we highly recommend switching to polyethylene, which is 100% recyclable and has significantly lower emissions than PVC.`
+      `\n\nThat’s quite a bit of carbon. Let’s rethink how to make each format cleaner.
+      \n\nSuggest one improvement per category—TV, Newspaper, Print, Outdoor Billboard, and
+OOH/Digital Display.
+\n\nShow original vs reduced emissions along with calculations.
+\n\nIf any of the above values are zero, do not suggest any recommendations for that category.
+\n\nNote: For banners, we highly recommend switching to polyethylene, which is 100% recyclable and has significantly lower emissions than PVC.
+\n\n**End the response with a strong closing statement:**
+\n\n"Ready to go NetZero with your media."
+`
     );
 
     const finalSentence = `${sentenceParts.join('\n')}`;
@@ -305,34 +313,35 @@ const Result = ({ value }) => {
   const chat = async () => {
     setIsLoading(true);
     try {
+      console.log('content', content);
       await generatePrompt();
 
-      const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          // model: "gpt-3.5-turbo",
-          // model: "gpt-4o",
-          model: 'o1-mini',
-          messages: [
-            {
-              "role": 'user',
-              "content": content,
-            },
-          ],
-          // temperature: 0.7,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
-              }`,
-          },
-        }
-      );
+      // const response = await axios.post(
+      //   'https://api.openai.com/v1/chat/completions',
+      //   {
+      //     // model: "gpt-3.5-turbo",
+      //     // model: "gpt-4o",
+      //     model: 'o1-mini',
+      //     messages: [
+      //       {
+      //         "role": 'user',
+      //         "content": content,
+      //       },
+      //     ],
+      //     // temperature: 0.7,
+      //   },
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
+      //         }`,
+      //     },
+      //   }
+      // );
 
-      const resJson = response?.data;
-      const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
-      setSuggestion(formattedSuggestions);
+      // const resJson = response?.data;
+      // const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
+      // setSuggestion(formattedSuggestions);
     } catch (error) {
       console.error('Error fetching suggestions:', error);
     } finally {

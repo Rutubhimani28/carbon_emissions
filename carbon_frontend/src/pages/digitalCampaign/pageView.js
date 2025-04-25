@@ -483,12 +483,12 @@ const PageView = (props) => {
             <ul style={{ color: 'white', justifyContent: 'center' }}>
               <li>
                 <Typography className="fst-italic" display="inline">
-                  {`Please wait while we calculate the page size. This may take a few seconds to a minute depending on the data connection speed.`}
+                  {` Please wait while we calculate the Webpage size. This may take a few seconds to a minute depending on the data connection speed.`}
                 </Typography>
               </li>
               <li>
                 <Typography className="fst-italic" display="inline">
-                  {`If you do not get the page size, click on the CLEAR tab and add the webpage again.`}
+                  {`If you do not get the Webpage size, click on the CLEAR tab and add the webpage again.`}
                 </Typography>
               </li>
             </ul>
@@ -1038,7 +1038,7 @@ const PageView = (props) => {
           </Grid>
           <Grid item xs={12} sm={12} md={12} marginTop={3}>
             <Typography color="white" className="text-center">
-              {`Total Image Carbon Footprint = ${Number(totalEmission || 0).toFixed(5)} `}kgCO<sub>2</sub>e
+              {`Total WebPage Carbon Footprint = ${Number(totalEmission || 0).toFixed(5)} `}kgCO<sub>2</sub>e
             </Typography>
           </Grid>
         </Grid>

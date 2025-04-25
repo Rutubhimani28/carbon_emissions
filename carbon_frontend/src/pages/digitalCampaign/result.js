@@ -159,23 +159,23 @@ const Result = ({ value }) => {
 
   const generatePrompt = async () => {
     if (totalCarbonFootprint) {
-      sentenceParts.push(`My digital campaign has a total carbon footprint of ${totalCarbonFootprint} kgCO2e.\n`);
+      sentenceParts.push(`My digital campaign has a total carbon footprint of ${totalCarbonFootprint}.\n`);
       // sentenceParts.push(`My Digital Campaign has a carbon footprint of ${totalCarbonFootprint}, `);
     }
-    sentenceParts.push(`\nBreakdown:\n`);
+    sentenceParts.push(`\nHere’s the Breakdown:\n`);
 
-    // if (pageViewTotal) {
-    //   sentenceParts.push(`- Page: ${pageViewTotal} kgCO2e`);
+    if (pageViewTotal) {
+      sentenceParts.push( `• Page: ${pageViewTotal} kgCO2e`);
 
-    //   // sentenceParts.push(`Based on the Page Analytics you generated ${pageViewTotal} kgCO2e, `);
-    // }
+      // sentenceParts.push(`Based on the Page Analytics you generated ${pageViewTotal} kgCO2e, `);
+    }
     if (imageTotal) {
-      sentenceParts.push(`- Image: ${imageTotal} kgCO2e`);
+      sentenceParts.push( `• Image: ${imageTotal} kgCO2e`);
 
       // sentenceParts.push(` Image generated ${imageTotal} kgCO2e, `);
     }
     if (videoTotal) {
-      sentenceParts.push(`- Video: ${videoTotal} kgCO2e`);
+      sentenceParts.push( `• Video: ${videoTotal} kgCO2e`);
 
       // sentenceParts.push(`and video generated ${videoTotal} kgCO2e, `);
     }
@@ -200,19 +200,24 @@ const Result = ({ value }) => {
     // );
 
     sentenceParts.push(
-      `\n\n**How can I reduce these emissions significantly?**\n\n` +
-      `- Image: Reduce file size by over **25%** (from ${allDataImage.data?.[0]?.data?.[3]?.contentSize} MB)\n` +
-      `- Video: Cut duration by over **25%** (from ${allDataVideo.data?.[0]?.data?.[3].videoLength} secs)\n` +
-      `- Show original vs reduced emissions with calculations\n` +
-      `- Recommend one action per category (Image & Video)\n` +
-      `- Suggest tools to compress both Image and Video\n`
+      `\n\n**Let’s clean that up**\n\n` +
+      `\n\nSuggest one practical improvement each for Image and Video to reduce emissions.\n` +
+       `• Image: Reduce file size by over 25% (from ${allDataImage.data?.[0]?.data?.[3]?.contentSize} MB)\n` +
+       `• Video: Cut duration by over 25% (from ${allDataVideo.data?.[0]?.data?.[3].videoLength} secs)\n` +
+      `Show original vs reduced emissions with calculations\n` +
+      `Recommend one action per category (Image & Video)\n` +
+      `For web pages over 2MB, also suggest how to optimize the site for both people and the planet.\n` +
+      `If any of the above values are zero, skip recommendations for that category.\n\n`+
+      `End the response with a strong statement:\n`+
+      `"Need help building a low-carbon website? Contact us at info@sirat.earth".`
+
     );
 
-    sentenceParts.push(
-      `\nFor **web pages over 2MB**, reduce size and design your site to be both people- and planet-friendly. ` +
-      `If any of the above value is showing as Zero, do not suggest any recommendations for that category.\n\n` +
-      `Need help building a low-carbon website? Contact us at info@sirat.earth.`
-    );
+    // sentenceParts.push(
+    //   `\nFor **web pages over 2MB**, reduce size and design your site to be both people- and planet-friendly. ` +
+    //   `If any of the above value is showing as Zero, do not suggest any recommendations for that category.\n\n` +
+    //   `Need help building a low-carbon website? Contact us at info@sirat.earth.`
+    // );
     const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);
   };

@@ -745,7 +745,7 @@ const Production = (props) => {
                           </th>
                         </tr>
                         <tr>
-                          <td className="py-1">Jute Carpet</td>
+                          <td className="py-1 pe-3">Jute Carpet</td>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -849,7 +849,7 @@ const Production = (props) => {
                     <div className="table-responsive">
                       <table className="table-custom-inpt-field">
                         <tr>
-                          <th/>
+                          <th />
                           <th className="ps-2" >
                             Weight (Kgs)
                           </th>
@@ -952,7 +952,7 @@ const Production = (props) => {
                   </Box>
                 </Grid>
 
-                <Box >
+                <Box className="d-flex justify-content-center mt-4 w-100" >
                   <div className="table-responsive">
                     {/* <Grid item xs={12} sm={12} md={12}> */}
                     <Typography variant="h4" className="text-center text-white mb-4 mt-4">
