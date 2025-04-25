@@ -333,22 +333,23 @@ const DigitalContent = (props) => {
                 <Typography variant="h4" color="white" className=" text-center">
                   Emails
                 </Typography>
-                {/* <Grid mt={2}> */}
+                <Grid mt={2}>
                   {/* <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
                     No of Emails
                   </FormLabel> */}
                   <div className="table-responsive">
                     <table className="table-custom-inpt-field">
                       <tr>
-                        <td className="py-1 " width="40%">No. of Emails</td>
-                        <td className="py-1 " width="40%">
+                        {/* <td className="ps-3 invisible">Device Type</td> */}
+                        {/* <td className="py-1 ">No. of Emails</td> */}
+                        {/* <td className="py-1 " width="40%">
                           Emissions (kgCO<sub>2</sub>e)
-                        </td>
+                        </td> */}
                       </tr>
                       <tr>
-                        {/* <td className="py-1 " width="40%">
+                        <td className="py-1 " width="40%">
                           No. of Emails
-                        </td> */}
+                        </td>
                         <td className="ps-2 py-1">
                           <TextField
                             id="noOfEmails"
@@ -366,7 +367,7 @@ const DigitalContent = (props) => {
                             inputProps={{ style: { color: 'white' } }}
                           />
                         </td>
-                        <td className="ps-2 py-1">
+                        {/* <td className="ps-2 py-1">
                             <TextField
                               id="emissionOne"
                               name="emissionOne"
@@ -379,43 +380,41 @@ const DigitalContent = (props) => {
                               error={formik.touched.emissionOne && Boolean(formik.errors.emissionOne)}
                               helperText={formik.touched.emissionOne && formik.errors.emissionOne}
                             />
-                          </td>
+                          </td> */}
                       </tr>
                     </table>
                   </div>
-                {/* </Grid> */}
+                </Grid>
                 {/* <Grid mt={2}> */}
-                  {/* <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
+                {/* <FormLabel id="demo-row-radio-buttons-group-label" className="label-white">
                     Emissions (kgCO<sub>2</sub>e)
                   </FormLabel> */}
-                  {/* <div className="table-responsive">
-                    <table className="table-custom-inpt-field">
-                      <tr>
-                        <td className="py-1 " width="40%">
-                          Emissions (kgCO<sub>2</sub>e)
+                <div className="table-responsive">
+                  <table className="table-custom-inpt-field">
+                    <tr>
+                      <td className="py-1 " width="40%">
+                        Emissions (kgCO<sub>2</sub>e)
+                      </td>
+                    {/* </tr>
+                    <tr> */}
+
+                        <td className="ps-2 py-1">
+                          <TextField
+                            id="emissionOne"
+                            name="emissionOne"
+                            label=""
+                            fullWidth
+                            size="small"
+                            disabled
+                            value={formik.values.emissionOne}
+                            onChange={formik.handleChange}
+                            error={formik.touched.emissionOne && Boolean(formik.errors.emissionOne)}
+                            helperText={formik.touched.emissionOne && formik.errors.emissionOne}
+                          />
                         </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          
-                          <td className="ps-2 py-1">
-                            <TextField
-                              id="emissionOne"
-                              name="emissionOne"
-                              label=""
-                              fullWidth
-                              size="small"
-                              disabled
-                              value={formik.values.emissionOne}
-                              onChange={formik.handleChange}
-                              error={formik.touched.emissionOne && Boolean(formik.errors.emissionOne)}
-                              helperText={formik.touched.emissionOne && formik.errors.emissionOne}
-                            />
-                          </td>
-                        </td>
-                      </tr>
-                    </table>
-                  </div> */}
+                    </tr>
+                  </table>
+                </div>
                 {/* </Grid> */}
               </Grid>
               <Grid item xs={12} sm={4} md={7} mb={2}>
@@ -426,11 +425,11 @@ const DigitalContent = (props) => {
                   <div className="table-responsive">
                     <table className="table-custom-inpt-field">
                       <tr>
-                        <th width="30%" />
-                        <th className="ps-2" width="30%">
+                        <th />
+                        <th className="ps-2" >
                           No. of Pages
                         </th>
-                        <th className="ps-2" width="30%">
+                        <th className="ps-2" >
                           Emissions (kgCO<sub>2</sub>e)
                         </th>
                       </tr>

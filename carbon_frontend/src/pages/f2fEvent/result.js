@@ -230,9 +230,18 @@ const Result = ({ value }) => {
     let contentData = `Category	Emissions (kgCO2e) \n`;
     let categoryCount = 0;
 
+    if (toolFormData?.budget > 0) {
+      const emissionsPerDollar = (total / toolFormData.budget).toFixed(3);
+      contentData += `\nYour product launch has a total **marketing budget of $${toolFormData.budget}**, with a carbon footprint of **${emissionsPerDollar} kgCO2e per dollar spent** — that’s **${Number(total).toFixed(0)} kgCO2e** overall.\n`;
+    }
+
+    contentData += `\nThat’s a significant impact—but it doesn’t have to be.\n\n`;
+
+    contentData += `\nSuggest 3 key strategies to reduce the face-to-face event’s footprint by 10–20%.\n\n`;
+    contentData += `\nThen, provide one actionable improvement for each of the 9 event-related categories:\n\n`;
     resultData?.forEach((item) => {
       if (item?.totalEmission > 0) {
-        contentData += `${item?.type}: ${item?.totalEmission || 0} kgCO2e \n`;
+        contentData +=  `• ${item?.type}: ${item?.totalEmission || 0} kgCO2e \n`;
         categoryCount += 1;
       }
     });
@@ -251,21 +260,17 @@ const Result = ({ value }) => {
     // contentData += `\n\nWhat are the top three ways to reduce my face-to-face event's carbon footprint by 10-20%? Suggest one actionable point for each of the ${categoryCount} categories to achieve this reduction. Show the calculation for comparing the original and reduced carbon footprints. Additionally, explain how adopting sustainable measures can lead to a 10% cost reduction, even if the cost savings aren't directly proportional to the carbon reductions.`;
     // setContent(contentData);
 
-    if (total && Number(total).toFixed(2) > 0) {
-      contentData += `\nTotal: ${Number(total).toFixed(2)} kgCO2e\n`;
-    }
+    // if (total && Number(total).toFixed(2) > 0) {
+    //   contentData += `\nTotal: ${Number(total).toFixed(2)} kgCO2e\n`;
+    // }
 
-    if (toolFormData?.budget > 0) {
-      const emissionsPerDollar = (total / toolFormData.budget).toFixed(3);
-      contentData += `\nYour product launch has a total **marketing budget of $${toolFormData.budget}**, with a carbon footprint of **${emissionsPerDollar} kgCO2e per dollar spent** — that’s **${Number(total).toFixed(0)} kgCO2e** overall.\n`;
-    }
+   
+    contentData += `\nShow a before-and-after comparison of the emissions for each category, with calculations.\n\n`;
+    contentData += `Also explain how sustainable practices can lead to up to 5% cost savings, even if cost and emissions reductions don’t scale equally.\n\n`;
+    contentData += `Skip any categories that show zero emissions.\n\n`;
+    contentData += `End the response with this line:\n`;
 
-    contentData += `\n**How can you reduce your face-to-face event’s carbon footprint by 10–20%?**\n\n`;
-    contentData += `- Share the **top 3 strategies** to achieve this reduction.\n`;
-    contentData += `- Provide **one actionable step** for each of the **${categoryCount} event-related categories** (e.g., Air Travel, Transportation, F&B, etc.).\n`;
-    contentData += `- Show a **before-and-after comparison** of the carbon emissions with calculations.\n`;
-
-    contentData += `\nAlso, explain how implementing sustainable practices can lead to **up to 5% cost savings**, even if the financial and emission reductions don’t scale equally. If any of the above value is showing as Zero, do not suggest any recommendations for that category.`;
+    contentData += `\n“Need more help in reducing your event emissions? Contact us at info@sirat.earth”.`;
 
     setContent(contentData);
   };
