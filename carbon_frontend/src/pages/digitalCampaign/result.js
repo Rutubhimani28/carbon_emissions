@@ -33,11 +33,8 @@ const Result = ({ value }) => {
   // const total = Number(allDigitalCampaignData?.totalEmission);
   const toolData = useSelector((state) => state?.toolDetails?.data);
   const allDataImage = useSelector((state) => state?.totalImageDetails);
-  console.log("allDataImage", allDataImage.data?.[0]?.data?.[3]?.contentSize)
   const allDataVideo = useSelector((state) => state?.totalVideoDetails);
-  console.log("allDataVideo", allDataVideo.data?.[0]?.data?.[3].videoLength)
   const allDataPageView = useSelector((state) => state?.totalPageViewDetails);
-  console.log("allDataPageView", allDataPageView)
   const toolFormData = toolData?.find((item) => item?.type === 'toolForm');
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
 

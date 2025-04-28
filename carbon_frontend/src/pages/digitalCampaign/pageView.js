@@ -160,10 +160,10 @@ const PageView = (props) => {
           type: 'Web Information',
           timeOnPageSecs: values?.TimeOnPageSecs,
         },
-        {
-          type: 'Total Impression',
-          totalImpression: values?.TotalImpression,
-        },
+        // {
+        //   type: 'Total Impression',
+        //   totalImpression: values?.TotalImpression,
+        // },
       ];
 
       dispatch(addPageViewData({ data }));
@@ -237,19 +237,20 @@ const PageView = (props) => {
             ],
           },
         },
-        {
-          subType: 'Total Emissions',
-          subTypeData: {
-            th: ['Total Emissions'],
-            td: [
-              {
-                totalEmissions: values?.TotalImpression,
-              },
-            ],
-          },
-        },
+        // {
+        //   subType: 'Total Emissions',
+        //   subTypeData: {
+        //     th: ['Total Emissions'],
+        //     td: [
+        //       {
+        //         totalEmissions: values?.TotalImpression,
+        //       },
+        //     ],
+        //   },
+        // },
       ];
 
+      console.log("tableData", tableData)
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'PageView' }));
     },
   });
@@ -311,7 +312,7 @@ const PageView = (props) => {
       formik.setFieldValue('pageSizeMB', allData?.[3]?.pageSizeMB);
       formik.setFieldValue('APIGreenWebUrl', allData?.[3]?.aPIGreenWebUrl);
       formik.setFieldValue('TimeOnPageSecs', allData?.[4]?.timeOnPageSecs);
-      formik.setFieldValue('TotalImpression', allData?.[5]?.totalImpression);
+      // formik.setFieldValue('TotalImpression', allData?.[5]?.totalImpression);
     }
   }, [value]);
 
