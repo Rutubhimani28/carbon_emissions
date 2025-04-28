@@ -224,7 +224,7 @@ const getEventsEmissionsRecords = async (req, res) => {
       // const digitalCampaignEmission =
       //   event?.digitalCampaignAllData?.totalEmission || 0;
       // const digitalCampaignTotalEmission = Number(digitalCampaignEmission);
-      const digitalCampaignTotalEmission =  Number(imageEmission) + Number(videoEmission);
+      const digitalCampaignTotalEmission =  Number(imageEmission) + Number(videoEmission) + Number(pageViewEmission);
 
 
       return {

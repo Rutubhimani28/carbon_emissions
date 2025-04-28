@@ -44,7 +44,7 @@ const Result = ({ value }) => {
   const [sc1, setSc1] = useState(0);
   const [sc2, setSc2] = useState(0);
   const [sc3, setSc3] = useState(0);
-  const total = Number(allDataImage?.totalEmission) + Number(allDataVideo?.totalEmission);
+  const total = Number(allDataImage?.totalEmission) + Number(allDataVideo?.totalEmission) + Number(allDataPageView?.totalEmission);
 
   const resultData = [
     // {
