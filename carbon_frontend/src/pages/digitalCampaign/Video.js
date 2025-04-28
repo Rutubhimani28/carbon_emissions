@@ -21,6 +21,8 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import useEventData from '../../hooks/useEventData';
 import { addVideoData, deleteVideoData } from '../../redux/slice/videoSlice';
+import VideoIcon from '../../assets/Video.png';
+
 // import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
 import {
   deleteResTabVideoData,
@@ -28,6 +30,7 @@ import {
   addResultTableDatasToDb,
   updateResultTableDatasToDb,
 } from '../../redux/slice/resultTableDataSlice';
+import { IconDiv } from '../../components/IconDiv';
 
 const Video = (props) => {
   const { setValue, value } = props;
@@ -275,6 +278,9 @@ const Video = (props) => {
   return (
     <Container maxWidth>
       <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
+      <IconDiv>
+                          <img width={100} src={VideoIcon} alt="Ads" className="tabImgWhite" />
+                        </IconDiv>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>

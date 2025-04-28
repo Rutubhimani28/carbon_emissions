@@ -32,6 +32,9 @@ import {
 // import { addImageData, deleteImageData } from '../../redux/slice/imageSlice';
 import { deletePageSizeMb, fetchPageSize } from '../../redux/slice/greenCheckSlice';
 import { addPageViewData, deletePageViewData } from '../../redux/slice/pageViewSlice';
+import { IconDiv } from '../../components/IconDiv';
+import webpage from  '../../assets/Webpage.png';
+
 
 // import { useTheme } from '@mui/material/styles';
 
@@ -328,6 +331,9 @@ const PageView = (props) => {
   return (
     <Container maxWidth>
       <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
+       <IconDiv>
+                    <img width={100} src={webpage} alt="Ads" className="tabImgWhite" />
+                  </IconDiv>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>

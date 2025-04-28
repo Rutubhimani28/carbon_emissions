@@ -29,9 +29,11 @@ import {
   updateResultTableDatasToDb,
 } from '../../redux/slice/resultTableDataSlice';
 import { addImageData, deleteImageData } from '../../redux/slice/imageSlice';
+import { IconDiv } from '../../components/IconDiv';
+import ImageIcon from '../../assets/Image.png';
 
-// import { useTheme } from '@mui/material/styles';
 
+// import { useTheme } from '@mui/material/styles'
 const Image = (props) => {
   const { setValue, value } = props;
   const allData = useSelector((state) => state?.totalImageDetails?.data?.[0]?.data);
@@ -272,6 +274,9 @@ const Image = (props) => {
   return (
     <Container maxWidth>
       <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
+      <IconDiv>
+                          <img width={100} src={ImageIcon} alt="Ads" className="tabImgWhite" />
+                        </IconDiv>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
