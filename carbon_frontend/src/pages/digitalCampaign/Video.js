@@ -797,6 +797,17 @@ const Video = (props) => {
               >
                 Save and Next Page
               </Button>
+              <Button
+                                    variant="contained"
+                                    endIcon={<FaAngleDoubleRight />}
+                                    onClick={() => {
+                                      handleSaveToDb();
+                                      setValue(3);
+                                    }}
+                                    className="custom-btn"
+                                  >
+                                    Go To Result
+                                  </Button>
               {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
               <Button
                 variant="outlined"

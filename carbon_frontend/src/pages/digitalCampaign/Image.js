@@ -18,7 +18,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
+import { FaAngleDoubleRight, FaImage, FaFileVideo , FaAngleDoubleLeft } from 'react-icons/fa';
 import useEventData from '../../hooks/useEventData';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
 import {
@@ -799,6 +799,18 @@ const Image = (props) => {
         <Grid>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={2}>
             <Stack direction={'row'} spacing={2}>
+            <Button
+                            variant="contained"
+                            startIcon={<FaAngleDoubleLeft />}
+                            onClick={() => {
+                              handleSaveToDb(formik?.values);
+                              // formik.handleSubmit();
+                              setValue(value - 1);
+                            }}
+                            className="custom-btn"
+                          >
+                            Save and Previous Page
+                          </Button>
               <Button
                 variant="contained"
                 endIcon={<FaAngleDoubleRight />}
@@ -811,6 +823,17 @@ const Image = (props) => {
               >
                 Save and Next Page
               </Button>
+              <Button
+                                    variant="contained"
+                                    endIcon={<FaAngleDoubleRight />}
+                                    onClick={() => {
+                                      handleSaveToDb();
+                                      setValue(3);
+                                    }}
+                                    className="custom-btn"
+                                  >
+                                    Go To Result
+                                  </Button>
               {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
               <Button
                 variant="outlined"
