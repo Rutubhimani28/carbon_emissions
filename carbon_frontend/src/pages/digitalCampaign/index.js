@@ -4,6 +4,9 @@ import Result from './result';
 import AirTravel from '../../assets/Travel.png';
 import Phone from '../../assets/phone2.png';
 import result from '../../assets/result.png';
+import webpage from  '../../assets/Webpage.png';
+import VideoIcon from '../../assets/Video.png';
+import ImageIcon from '../../assets/Image.png';
 import DigitalCampaignComp from './digitalCampaign';
 import banner from '../../layouts/user/assets/images/NetZero Tool Pic.jpeg';
 import Image from './Image';
@@ -37,7 +40,7 @@ const DigitalCampaignCalculation = () => {
               className="tab-text"
             /> */}
             <Tab
-              icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
+              icon={<img src={webpage} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
               label="WebPage"
               className="tab-text"
               // sx={{
@@ -46,12 +49,12 @@ const DigitalCampaignCalculation = () => {
               // }}
             />
             <Tab
-              icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
+              icon={<img src={ImageIcon} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
               label="Image"
               className="tab-text"
             />
             <Tab
-              icon={<img src={Phone} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
+              icon={<img src={VideoIcon} alt="" width={35} className="tabImgZoomIn tabImgWhite" />}
               label="Video"
               className="tab-text"
             />

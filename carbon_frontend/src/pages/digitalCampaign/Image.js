@@ -18,7 +18,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaAngleDoubleRight, FaImage, FaFileVideo } from 'react-icons/fa';
+import { FaAngleDoubleRight, FaImage, FaFileVideo , FaAngleDoubleLeft } from 'react-icons/fa';
 import useEventData from '../../hooks/useEventData';
 import { addCampaignData, deleteCampaignData } from '../../redux/slice/totalDigitalCampaignSlice';
 import {
@@ -29,9 +29,11 @@ import {
   updateResultTableDatasToDb,
 } from '../../redux/slice/resultTableDataSlice';
 import { addImageData, deleteImageData } from '../../redux/slice/imageSlice';
+import { IconDiv } from '../../components/IconDiv';
+import ImageIcon from '../../assets/Image.png';
 
-// import { useTheme } from '@mui/material/styles';
 
+// import { useTheme } from '@mui/material/styles'
 const Image = (props) => {
   const { setValue, value } = props;
   const allData = useSelector((state) => state?.totalImageDetails?.data?.[0]?.data);
@@ -272,6 +274,9 @@ const Image = (props) => {
   return (
     <Container maxWidth>
       <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
+      <IconDiv>
+                          <img width={100} src={ImageIcon} alt="Ads" className="tabImgWhite" />
+                        </IconDiv>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
@@ -794,6 +799,18 @@ const Image = (props) => {
         <Grid>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'} mt={2}>
             <Stack direction={'row'} spacing={2}>
+            <Button
+                            variant="contained"
+                            startIcon={<FaAngleDoubleLeft />}
+                            onClick={() => {
+                              handleSaveToDb(formik?.values);
+                              // formik.handleSubmit();
+                              setValue(value - 1);
+                            }}
+                            className="custom-btn"
+                          >
+                            Save and Previous Page
+                          </Button>
               <Button
                 variant="contained"
                 endIcon={<FaAngleDoubleRight />}
@@ -806,6 +823,17 @@ const Image = (props) => {
               >
                 Save and Next Page
               </Button>
+              <Button
+                                    variant="contained"
+                                    endIcon={<FaAngleDoubleRight />}
+                                    onClick={() => {
+                                      handleSaveToDb();
+                                      setValue(3);
+                                    }}
+                                    className="custom-btn"
+                                  >
+                                    Go To Result
+                                  </Button>
               {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
               <Button
                 variant="outlined"
