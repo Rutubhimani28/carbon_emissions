@@ -125,7 +125,6 @@ const addEmail = async (req, res) => {
       resultTableDataThree,
       resultTableDataFour,
     };
-    console.log("email controller sendMailPayload", sendMailPayload);
 
     await sendMail(sendMailPayload);
     // const newEmail = new Email({ subject, receiver, sender, emailBodyTemplateName: emailBodyTemplateName || '', attachmentTemplateName: attachmentTemplateName || '', data: data });
