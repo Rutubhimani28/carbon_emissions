@@ -268,6 +268,8 @@ const Result = ({ value }) => {
 OOH/Digital Display.
 \n\nShow original vs reduced emissions along with calculations.
 \n\nIf any of the above values are zero, do not suggest any recommendations for that category.
+\n\nDivide the total carbon footprint (in kgCO₂e) by 1,000. Display the message as bold and underlined:
+“Your activity generated ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} kgCO₂e and requires ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} carbon credits to fully offset these emissions.”
 \n\nNote: For banners, we highly recommend switching to polyethylene, which is 100% recyclable and has significantly lower emissions than PVC.
 \n\n**End the response with a strong closing statement:**
 \n\n"Ready to go NetZero with your media."
@@ -313,35 +315,35 @@ OOH/Digital Display.
   const chat = async () => {
     setIsLoading(true);
     try {
-      console.log('content', content);
+      // console.log('content', content);
       await generatePrompt();
 
-      // const response = await axios.post(
-      //   'https://api.openai.com/v1/chat/completions',
-      //   {
-      //     // model: "gpt-3.5-turbo",
-      //     // model: "gpt-4o",
-      //     model: 'o1-mini',
-      //     messages: [
-      //       {
-      //         "role": 'user',
-      //         "content": content,
-      //       },
-      //     ],
-      //     // temperature: 0.7,
-      //   },
-      //   {
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //       Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
-      //         }`,
-      //     },
-      //   }
-      // );
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          // model: "gpt-3.5-turbo",
+          // model: "gpt-4o",
+          model: 'o1-mini',
+          messages: [
+            {
+              "role": 'user',
+              "content": content,
+            },
+          ],
+          // temperature: 0.7,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
+              }`,
+          },
+        }
+      );
 
-      // const resJson = response?.data;
-      // const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
-      // setSuggestion(formattedSuggestions);
+      const resJson = response?.data;
+      const formattedSuggestions = formatSuggestions(resJson?.choices?.[0]?.message?.content);
+      setSuggestion(formattedSuggestions);
     } catch (error) {
       console.error('Error fetching suggestions:', error);
     } finally {

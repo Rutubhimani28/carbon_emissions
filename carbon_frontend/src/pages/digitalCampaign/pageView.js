@@ -33,7 +33,7 @@ import {
 import { deletePageSizeMb, fetchPageSize } from '../../redux/slice/greenCheckSlice';
 import { addPageViewData, deletePageViewData } from '../../redux/slice/pageViewSlice';
 import { IconDiv } from '../../components/IconDiv';
-import webpage from  '../../assets/Webpage.png';
+import webpage from '../../assets/Webpage.png';
 
 
 // import { useTheme } from '@mui/material/styles';
@@ -119,7 +119,7 @@ const PageView = (props) => {
       // }
 
       if (wifiTotalEmissions > 0) formik.setFieldValue('wifiTotalEmissions', wifiTotalEmissions);
-      if (dataEmissions > 0) {
+      if (dataEmissions) {
         formik.setFieldValue('dataEmissions', dataEmissions || 0);
       } else {
         formik.setFieldValue('dataEmissions', dataEmissions);
@@ -253,8 +253,7 @@ const PageView = (props) => {
         // },
       ];
 
-      console.log("tableData", tableData)
-      dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'PageView' }));
+      dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'WebPage' }));
     },
   });
 
@@ -331,9 +330,9 @@ const PageView = (props) => {
   return (
     <Container maxWidth>
       <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
-       <IconDiv>
-                    <img width={100} src={webpage} alt="Ads" className="tabImgWhite" />
-                  </IconDiv>
+        <IconDiv>
+          <img width={100} src={webpage} alt="Ads" className="tabImgWhite" />
+        </IconDiv>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
@@ -1031,16 +1030,16 @@ const PageView = (props) => {
                 Save and Next Page
               </Button>
               <Button
-                                    variant="contained"
-                                    endIcon={<FaAngleDoubleRight />}
-                                    onClick={() => {
-                                      handleSaveToDb();
-                                      setValue(3);
-                                    }}
-                                    className="custom-btn"
-                                  >
-                                    Go To Result
-                                  </Button>
+                variant="contained"
+                endIcon={<FaAngleDoubleRight />}
+                onClick={() => {
+                  handleSaveToDb();
+                  setValue(3);
+                }}
+                className="custom-btn"
+              >
+                Go To Result
+              </Button>
               {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
               <Button
                 variant="outlined"

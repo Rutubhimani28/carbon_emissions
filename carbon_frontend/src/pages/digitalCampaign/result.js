@@ -162,17 +162,17 @@ const Result = ({ value }) => {
     sentenceParts.push(`\nHere’s the Breakdown:\n`);
 
     if (pageViewTotal) {
-      sentenceParts.push( `• Page: ${pageViewTotal} kgCO2e`);
+      sentenceParts.push(`• Page: ${pageViewTotal} kgCO2e`);
 
       // sentenceParts.push(`Based on the Page Analytics you generated ${pageViewTotal} kgCO2e, `);
     }
     if (imageTotal) {
-      sentenceParts.push( `• Image: ${imageTotal} kgCO2e`);
+      sentenceParts.push(`• Image: ${imageTotal} kgCO2e`);
 
       // sentenceParts.push(` Image generated ${imageTotal} kgCO2e, `);
     }
     if (videoTotal) {
-      sentenceParts.push( `• Video: ${videoTotal} kgCO2e`);
+      sentenceParts.push(`• Video: ${videoTotal} kgCO2e`);
 
       // sentenceParts.push(`and video generated ${videoTotal} kgCO2e, `);
     }
@@ -197,15 +197,17 @@ const Result = ({ value }) => {
     // );
 
     sentenceParts.push(
-      `\n\n**Let’s clean that up**\n\n` +
+      `\n\nLet’s clean that up` +
       `\n\nSuggest one practical improvement each for Image and Video to reduce emissions.\n` +
-       `• Image: Reduce file size by over 25% (from ${allDataImage.data?.[0]?.data?.[3]?.contentSize} MB)\n` +
-       `• Video: Cut duration by over 25% (from ${allDataVideo.data?.[0]?.data?.[3].videoLength} secs)\n` +
+      `• Image: Reduce file size by over 25% (from ${allDataImage.data?.[0]?.data?.[3]?.contentSize} MB)\n` +
+      `• Video: Cut duration by over 25% (from ${allDataVideo.data?.[0]?.data?.[3].videoLength} secs)\n` +
       `Show original vs reduced emissions with calculations\n` +
       `Recommend one action per category (Image & Video)\n` +
       `For web pages over 2MB, also suggest how to optimize the site for both people and the planet.\n` +
-      `If any of the above values are zero, skip recommendations for that category.\n\n`+
-      `End the response with a strong statement:\n`+
+      `If any of the above values are zero, skip recommendations for that category.\n\n` +
+      `Divide the total carbon footprint (in kgCO₂e) by 1,000. Display the message as bold and underlined:\n` +
+      `“Your activity generated ${totalCarbonFootprint} kgCO₂e and requires ${totalCarbonFootprint} carbon credits to fully offset these emissions.”\n\n` +
+      `End the response with a strong statement:\n` +
       `"Need help building a low-carbon website? Contact us at info@sirat.earth".`
 
     );
@@ -270,9 +272,8 @@ const Result = ({ value }) => {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${
-              constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
-            }`,
+            Authorization: `Bearer ${constant?.chatKeyOne?.replace('skC-', '') + constant?.chatKeyTwo?.replace('dEf-', '')
+              }`,
           },
         }
       );
@@ -383,8 +384,8 @@ const Result = ({ value }) => {
         emission: Number(allDataVideo?.totalEmission) || 0,
       },
       {
-        tabTitle: 'PageView',
-        key: 'PageView',
+        tabTitle: 'WebPage',
+        key: 'WebPage',
         scope: 3,
         emission: Number(allDataPageView?.totalEmission) || 0,
       }
