@@ -232,7 +232,7 @@ const Result = ({ value }) => {
 
     if (toolFormData?.budget > 0) {
       const emissionsPerDollar = (total / toolFormData.budget).toFixed(3);
-      contentData += `\nYour product launch has a total **marketing budget of $${toolFormData.budget}**, with a carbon footprint of **${emissionsPerDollar} kgCO2e per dollar spent** — that’s **${Number(total).toFixed(0)} kgCO2e** overall.\n`;
+      contentData += `\nYour product launch has a total **marketing budget of ${toolFormData.budget}**, with a carbon footprint of **${emissionsPerDollar} kgCO2e per dollar spent** — that’s **${Number(total).toFixed(0)} kgCO2e** overall.\n`;
     }
 
     contentData += `\nThat’s a significant impact—but it doesn’t have to be.\n\n`;
@@ -241,7 +241,7 @@ const Result = ({ value }) => {
     contentData += `\nThen, provide one actionable improvement for each of the 9 event-related categories:\n\n`;
     resultData?.forEach((item) => {
       if (item?.totalEmission > 0) {
-        contentData +=  `• ${item?.type}: ${item?.totalEmission || 0} kgCO2e \n`;
+        contentData += `• ${item?.type}: ${item?.totalEmission || 0} kgCO2e \n`;
         categoryCount += 1;
       }
     });
@@ -264,10 +264,13 @@ const Result = ({ value }) => {
     //   contentData += `\nTotal: ${Number(total).toFixed(2)} kgCO2e\n`;
     // }
 
-   
+
     contentData += `\nShow a before-and-after comparison of the emissions for each category, with calculations.\n\n`;
     contentData += `Also explain how sustainable practices can lead to up to 5% cost savings, even if cost and emissions reductions don’t scale equally.\n\n`;
     contentData += `Skip any categories that show zero emissions.\n\n`;
+    contentData += `Divide the total carbon footprint (in kgCO₂e) by 1,000. Display the message as bold and underlined:`;
+    contentData += `\n“Your activity generated XX kgCO₂e and requires XX carbon credits to fully offset these emissions.”\n\n`;
+
     contentData += `End the response with this line:\n`;
 
     contentData += `\n“Need more help in reducing your event emissions? Contact us at info@sirat.earth”.`;

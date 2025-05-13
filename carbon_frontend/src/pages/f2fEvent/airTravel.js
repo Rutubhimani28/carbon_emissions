@@ -69,33 +69,33 @@ const AirTravel = (props) => {
       const emissionOne =
         values?.noOfTripsOne === 0 || values?.noOfPassengerOne === 0
           ? 0
-          : (0.08573 * values?.noOfTripsOne * values?.noOfPassengerOne).toFixed(5);
+          : (0.1298669 * values?.noOfTripsOne * values?.noOfPassengerOne).toFixed(5);
 
       //   const emissionTwo = values?.noOfTripsTwo === 0 ? 0 : (375 * values?.noOfTripsTwo).toFixed(5);
       const emissionTwo =
         values?.noOfTripsTwo === 0 || values?.noOfPassengerTwo === 0
           ? 0
-          : (0.05467 * values?.noOfTripsTwo * values?.noOfPassengerTwo).toFixed(5);
+          : (0.0807784 * values?.noOfTripsTwo * values?.noOfPassengerTwo).toFixed(5);
 
       const emissionThree =
         values?.noOfTripsThree === 0 || values?.noOfPassengerThree === 0
           ? 0
-          : (0.06753 * values?.noOfTripsThree * values?.noOfPassengerThree).toFixed(5);
+          : (0.1019051 * values?.noOfTripsThree * values?.noOfPassengerThree).toFixed(5);
 
       const emissionFour =
         values?.noOfTripsFour === 0 || values?.noOfPassengerFour === 0
           ? 0
-          : (0.1286 * values?.noOfTripsFour * values?.noOfPassengerFour).toFixed(5);
+          : (0.19480035 * values?.noOfTripsFour * values?.noOfPassengerFour).toFixed(5);
       //   const emissionFive = values?.noOfTripsFive === 0 ? 0 : (750 * values?.noOfTripsFive).toFixed(5);
       const emissionFive =
         values?.noOfTripsFive === 0 || values?.noOfPassengerFive === 0
           ? 0
-          : (0.082 * values?.noOfTripsFive * values?.noOfPassengerFive).toFixed(5);
+          : (0.1211676 * values?.noOfTripsFive * values?.noOfPassengerFive).toFixed(5);
       //   const emissionSix = values?.noOfTripsSix === 0 ? 0 : (1920 * values?.noOfTripsSix).toFixed(5);
       const emissionSix =
         values?.noOfTripsSix === 0 || values?.noOfPassengerSix === 0
           ? 0
-          : (0.1013 * values?.noOfTripsSix * values?.noOfPassengerSix).toFixed(5);
+          : (0.15285765 * values?.noOfTripsSix * values?.noOfPassengerSix).toFixed(5);
 
       // const emissionSeven = values?.noOfTripsSeven === 0 ? 0 : (600 * values?.noOfTripsSeven).toFixed(5);
       // const emissionEight = values?.noOfTripsEight === 0 ? 0 : (1125 * values?.noOfTripsEight).toFixed(5);
@@ -365,7 +365,7 @@ const AirTravel = (props) => {
                                   'emissionOne',
                                   e.target.value,
                                   formik.values.noOfPassengerOne,
-                                  0.08573
+                                  0.1298669
                                 );
                               }}
                               //   onChange={(e) => {
@@ -388,7 +388,7 @@ const AirTravel = (props) => {
                                   'emissionOne',
                                   formik.values.noOfTripsOne,
                                   e.target.value,
-                                  0.08573
+                                  0.1298669
                                 );
                               }}
                               //   onChange={(e) => {
@@ -423,7 +423,7 @@ const AirTravel = (props) => {
                                   'emissionTwo',
                                   e.target.value,
                                   formik.values.noOfPassengerTwo,
-                                  0.05467
+                                  0.0807784
                                 );
                               }}
                               //   onChange={(e) => {
@@ -446,7 +446,7 @@ const AirTravel = (props) => {
                                   'emissionTwo',
                                   formik.values.noOfTripsTwo,
                                   e.target.value,
-                                  0.05467
+                                  0.0807784
                                 );
                               }}
                               //   onChange={(e) => {
@@ -481,7 +481,7 @@ const AirTravel = (props) => {
                                   'emissionThree',
                                   e.target.value,
                                   formik.values.noOfPassengerThree,
-                                  0.06753
+                                  0.1019051
                                 );
                               }}
                               //   onChange={(e) => {
@@ -504,7 +504,7 @@ const AirTravel = (props) => {
                                   'emissionThree',
                                   formik.values.noOfTripsThree,
                                   e.target.value,
-                                  0.06753
+                                  0.1019051
                                 );
                               }}
                               //   onChange={(e) => {
@@ -644,7 +644,7 @@ const AirTravel = (props) => {
                                   'emissionFour',
                                   e.target.value,
                                   formik.values.noOfPassengerFour,
-                                  0.1286
+                                  0.19480035
                                 );
                               }}
                               //   onChange={(e) => {
@@ -667,7 +667,7 @@ const AirTravel = (props) => {
                                   'emissionFour',
                                   formik.values.noOfTripsFour,
                                   e.target.value,
-                                  0.1286
+                                  0.19480035
                                 );
                               }}
                               //   onChange={(e) => {
@@ -703,7 +703,7 @@ const AirTravel = (props) => {
                                   'emissionFive',
                                   e.target.value,
                                   formik.values.noOfPassengerFive,
-                                  0.082
+                                  0.15285765
                                 );
                               }}
                               //   onChange={(e) => {
@@ -726,7 +726,7 @@ const AirTravel = (props) => {
                                   'emissionFive',
                                   formik.values.noOfTripsFive,
                                   e.target.value,
-                                  0.082
+                                  0.15285765
                                 );
                               }}
                               //   onChange={(e) => {

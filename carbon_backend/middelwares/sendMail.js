@@ -113,8 +113,6 @@ export default async function sendMail({
   // for graph chart
   allEventsEmissions,
 }) {
-  console.log(receiver, "receiver");
-
   // Array to store all PDF file paths that need to be cleaned up
   const pdfFilesToCleanup = [];
 
@@ -245,7 +243,6 @@ export default async function sendMail({
         const isVirtualEvent = attachmentTemplateNameTwo ? true : false;
         const isPrEvent = attachmentTemplateNameThree ? true : false;
         const isDigitalcampaign = attachmentTemplateNameFour ? true : false;
-        console.log(isf2fEvent, "isf2fEvent");
         const emailBodyTemplatePath = path.join(
           __dirname,
           "/email_templates",
@@ -513,7 +510,6 @@ export default async function sendMail({
         };
 
       } else if (attachmentTemplateName) {
-        console.log("DATA2");
         const attachmentTemplatePath = path.join(
           __dirname,
           "/email_templates",
@@ -547,6 +543,7 @@ export default async function sendMail({
           from: process.env.GMAIL_FROM,
           to: receiver,
           subject: subject,
+          html: attachmentTemplate,
           attachments: [
             {
               filename: attachmentPdfName
@@ -558,7 +555,6 @@ export default async function sendMail({
           ],
         };
       } else {
-        console.log("data3");
         // for register/signup - email verification + forgot_password
         const bodyTemplatePath = path.join(
           __dirname,

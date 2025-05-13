@@ -43,6 +43,7 @@ const resultTableDataSlice = createSlice({
   reducers: {
     addResultTableData: (state, action) => {
       const { tabTitle, data, from } = action.payload;
+      console.log("tabTitle", tabTitle)
       const fromIndex = state?.data?.findIndex((item) => item?.from === from); // event-category: fr2Event
 
       if (fromIndex === -1) {
@@ -439,7 +440,7 @@ const resultTableDataSlice = createSlice({
           return {
             ...item,
             allDataOfTab: item?.allDataOfTab?.map((tab) => {
-              if (tab?.tabTitle === 'PageView') {
+              if (tab?.tabTitle === 'WebPage') {
                 return {
                   ...tab,
                   tabData: [
