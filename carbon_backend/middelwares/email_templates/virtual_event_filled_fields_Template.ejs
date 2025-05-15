@@ -168,7 +168,7 @@
         <% if (resultTableData && resultTableData.allDataOfTab) { %>
             <% resultTableData.allDataOfTab.forEach(function(page) { %>
                 <% if (page.tabData && page.tabData.length> 0) { %>
-                    <% if (page.tabTitle==="Outbound Marketing" ) { %>
+                    <% if (page.tabTitle==="Ads" ) { %>
                         <div class="page">
                             <h4 class="title2">
                                 <%= page.tabTitle %>
@@ -196,7 +196,7 @@
                                                         <% flightClass.subTypeData.td.forEach(function(rowData) { %>
                                                             <% if (rowData.emissions !=="" ) { %>
                                                                 <tr>
-                                                                    <% if (page.tabTitle==="Outbound Marketing" ) { %>
+                                                                    <% if (page.tabTitle==="Ads" ) { %>
                                                                         <td>
                                                                             <%= rowData.vtType %>
                                                                         </td>
