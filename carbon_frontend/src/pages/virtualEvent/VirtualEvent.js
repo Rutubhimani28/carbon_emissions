@@ -213,6 +213,7 @@ const VirtualEvent = (props) => {
   };
   const formik = useFormik({
     initialValues,
+
     onSubmit: async (values) => {
       // Image
       const emissionOne =
@@ -326,7 +327,7 @@ const VirtualEvent = (props) => {
       // const emissionTwenty = values?.energyKwh === 0 ? 0 : Number(Number(values?.energyKwh) * Number(values?.efTwenty)).toFixed(5);
       const minusRenewanle = 100 - values?.energyRenewable;
       const emissionTwenty =
-        values?.energyKwh === 0
+        values?.energyKwh === 0 || values?.energyRenewable === 100
           ? 0
           : Number((Number(values?.energyKwh) * Number(values?.efTwenty) * minusRenewanle) / 100).toFixed(5);
       const divededEf = values?.efFourteen / 2;
@@ -368,7 +369,7 @@ const VirtualEvent = (props) => {
       if (emissionEightteen > 0) formik.setFieldValue('emissionEightteen', emissionEightteen);
 
       if (emissionNineteen > 0) formik.setFieldValue('emissionNineteen', emissionNineteen);
-      if (emissionTwenty > 0) formik.setFieldValue('emissionTwenty', emissionTwenty);
+      if (emissionTwenty >= 0 ) formik.setFieldValue('emissionTwenty', emissionTwenty);
       if (emissionHalf > 0) formik.setFieldValue('emissionHalf', emissionHalf);
       if (emissionColour > 0) formik.setFieldValue('emissionColour', emissionColour);
       if (emissionBlackWhite > 0) formik.setFieldValue('emissionBlackWhite', emissionBlackWhite);
@@ -791,8 +792,8 @@ const VirtualEvent = (props) => {
       // dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
       // dispatch(addVirtualEventData({ data }));
       // dispatch(addResultTableData({ from: "virtualEvent", data: tableData, tabTitle: "Outbound Marketing" }));
-      dispatch(addResultTableData({ from: 'virtualEvent', data: tableData, tabTitle: 'Outbound Marketing' }));
-      dispatch(addResultTableData({ from: 'virtualEvent', data: tableData, tabTitle: 'Outbound Marketing' }));
+      dispatch(addResultTableData({ from: 'virtualEvent', data: tableData, tabTitle: 'Ads' }));
+      dispatch(addResultTableData({ from: 'virtualEvent', data: tableData, tabTitle: 'Ads' }));
     },
   });
 
@@ -1629,7 +1630,7 @@ const VirtualEvent = (props) => {
             </Box>
 
             <Box className="mb-4">
-            <Typography variant="h4" className="text-center text-white mt-4 mb-2">
+              <Typography variant="h4" className="text-center text-white mt-4 mb-2">
                 OOH/ Digital Display
               </Typography>
               <Grid item xs={12} sm={12} md={6}>
@@ -1681,7 +1682,7 @@ const VirtualEvent = (props) => {
                             disabled
                             fullWidth
                             name={'emissionTwenty'}
-                            value={values?.emissionTwenty}
+                            value={values?.emissionTwenty || 0}
                             onChange={formik.handleChange}
                           />
                         </td>

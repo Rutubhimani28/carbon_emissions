@@ -507,7 +507,7 @@ const resultTableDataSlice = createSlice({
         if (item.tabTitle === 'virtualEvent') {
           return {
             // tabTitle: "Virtual Event",
-            tabTitle: 'Outbound Marketing',
+            tabTitle: 'Ads',
             tabData: [
               // { subType: "", scope: 3 },
               // { subType: "", scope: 3 },
