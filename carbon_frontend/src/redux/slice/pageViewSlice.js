@@ -19,7 +19,6 @@ const fetchPageViewData = createSlice({
                     state.data.push(newItem);
                 }
             });
-
             // Recalculate totalEmission
             let totalEmission = 0;
             // let aPIGreenWebUrl = '';
@@ -32,13 +31,21 @@ const fetchPageViewData = createSlice({
                 //     totalEmission += item?.pageSizeMB;
                 // }
                 // else 
-                if (item.type === 'Network Emissions') {
-                    totalEmission += item?.emission ? Number(item?.emission) : 0;
-                } else if (item.type === 'Device Emissions') {
-                    totalEmission += item?.desktopEmission ? Number(item?.desktopEmission) : 0;
-                    totalEmission += item?.laptopEmission ? Number(item?.laptopEmission) : 0;
-                    totalEmission += item?.mobileEmission ? Number(item?.mobileEmission) : 0;
-                    totalEmission += item?.tabletEmission ? Number(item?.tabletEmission) : 0;
+                // const totalEmissionss = emissions.reduce((sum, val) => sum + val, 0);
+                if (item?.data?.find((i) => i?.type === "Network Emissions")) {
+                    const emissions = item?.data?.map(item => Number(item?.emission));
+                    const totalEmissionss = emissions.reduce((sum, val) => sum + val, 0);
+                    // totalEmission += item?.emission ? Number(item?.emission) : 0;
+                    totalEmission += totalEmissionss;
+
+                } else if (item?.data?.find((i) => i?.type === "Device Emissions")) {
+                    // totalEmission += item?.desktopEmission ? Number(item?.desktopEmission) : 0;
+                    // totalEmission += item?.laptopEmission ? Number(item?.laptopEmission) : 0;
+                    // totalEmission += item?.mobileEmission ? Number(item?.mobileEmission) : 0;
+                    // totalEmission += item?.tabletEmission ? Number(item?.tabletEmission) : 0;
+                    const emissions = item?.data?.map(item => Number(item?.emission));
+                    const totalEmissionss = emissions.reduce((sum, val) => sum + val, 0);
+                    totalEmission += totalEmissionss;
                 } else if (item.type === 'Data Center Emissions') {
                     totalEmission += item?.emission ? Number(item?.emission) : 0;
                 }

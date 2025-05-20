@@ -160,55 +160,71 @@
                           <% if (rowData.emissions !=="" ) { %>
                             <tr>
                               <% if (page.tabTitle==="Image" || page.tabTitle==="WebPage" ) { %>
-                                <% if (rowData.APIGreenWebUrl) { %>
+                                <% if (rowData.country) { %>
                                   <td>
-                                    <%= rowData.APIGreenWebUrl %>
+                                    <%= rowData.country %>
                                   </td>
-                                  <% } %>
-                                    <% if (rowData.wifiImpression || rowData.dgType || rowData.dataCenter ||
-                                      rowData.contentSize) { %>
+                                  <%} %>
+                                    <% if (rowData.APIGreenWebUrl) { %>
                                       <td>
-                                        <%= rowData.wifiImpression || rowData.dgType || rowData.dataCenter ||
-                                          rowData.contentSize %>
+                                        <%= rowData.APIGreenWebUrl %>
                                       </td>
                                       <% } %>
-                                        <% if (rowData.wifi4g !==undefined || rowData.noOfDevice !==undefined ||
-                                          rowData.noOfData !==undefined) { %>
-                                          <td>
-                                            <%= rowData.wifi4g !==undefined ? rowData.wifi4g : rowData.noOfDevice
-                                              !==undefined ? rowData.noOfDevice : rowData.noOfData %>
-                                          </td>
-                                          <% } %>
-                                            <% if (rowData.wifi5g) { %>
-                                              <td>
-                                                <%= rowData.wifi5g %>
-                                              </td>
-                                              <% } %>
+                                        <td>
+                                          <% if (rowData.wifiImpression || rowData.dgType || rowData.dataCenter ||
+                                            rowData.contentSize ) { %>
 
+                                            <%= rowData.wifiImpression || rowData.dgType || rowData.dataCenter ||
+                                              rowData.contentSize %>
+                                        </td>
+                                        <% } %>
+                                          <% if (rowData.wifi4g !==undefined || rowData.noOfDevice !==undefined ||
+                                            rowData.noOfData !==undefined ) { %>
+                                            <td>
+                                              <%= rowData.wifi4g !==undefined ? rowData.wifi4g : rowData.noOfDevice
+                                                !==undefined ? rowData.noOfDevice : rowData.noOfData %>
+                                            </td>
+                                            <% } %>
+
+                                              <% if (rowData.wifi5g) { %>
                                                 <td>
-                                                  <%= rowData.emissions %>
+                                                  <%= rowData.wifi5g %>
                                                 </td>
-                                                <% } else if (page.tabTitle==="Video" ) { %>
+                                                <% } %>
+                                                <% if (rowData.desktop) { %>
                                                   <td>
-                                                    <%= rowData.wifiImpression || rowData.dgType || rowData.dataCenter
-                                                      || rowData.videoLength %>
+                                                    <%= rowData.desktop %>
                                                   </td>
+                                                  <% }%>
+
                                                   <td>
-                                                    <%= rowData.wifi4g !==undefined && rowData.wifi4g !==null ?
-                                                      rowData.wifi4g : rowData.noOfDevice !==undefined &&
-                                                      rowData.noOfDevice !==null ? rowData.noOfDevice : rowData.noOfData
-                                                      !==undefined && rowData.noOfData !==null ? rowData.noOfData :
-                                                      rowData.videoSize %>
+                                                    <%= rowData.emissions %>
                                                   </td>
-                                                  <% if (rowData.wifi5g) { %>
+                                                  <% } else if (page.tabTitle==="Video" ) { %>
                                                     <td>
-                                                      <%= rowData.wifi5g %>
+                                                      <%= rowData.wifiImpression || rowData.dgType || rowData.dataCenter
+                                                        %>
                                                     </td>
-                                                    <% } %>
+                                                    <td>
+                                                      <%= rowData.videoSize !==undefined && rowData.videoSize !==null ?
+                                                        rowData.videoSize : rowData.wifi4g !==undefined &&
+                                                        rowData.wifi4g !==null ? rowData.wifi4g : rowData.noOfDevice
+                                                        !==undefined && rowData.noOfDevice !==null ? rowData.noOfDevice
+                                                        : rowData.noOfData !==undefined && rowData.noOfData !==null ?
+                                                        rowData.noOfData : rowData.videoSize %>
+                                                    </td>
+                                                    <% if (rowData.wifi5g) { %>
                                                       <td>
-                                                        <%= rowData.emissions %>
+                                                        <%= rowData.wifi5g %>
                                                       </td>
                                                       <% } %>
+                                                        <% if (rowData.emissions !==undefined && rowData.emissions
+                                                          !==null) { %>
+                                                          <td>
+                                                            <%= rowData.emissions %>
+                                                          </td>
+                                                          <% } %>
+                                                            <% } %>
                             </tr>
                             <% } %>
                               <% }); %>
