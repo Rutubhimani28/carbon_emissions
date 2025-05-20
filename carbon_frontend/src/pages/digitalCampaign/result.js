@@ -173,7 +173,19 @@ const Result = ({ value }) => {
     // const finalSentence = `${sentenceParts.join(', ')} \n\n${wantInResult}`;
 
     sentenceParts.push(
-      `\n How can I reduce the emissions max? In the Image size from ${imageTotal} Mb by over 25% , and Video duration from ${videoTotal} secs by over 25%. Show the original and reduced emissions by suggesting one action item for  Image and Video, and what tools can be used to compress Image & Video, also show the calculation for each category.`
+      `\n\nLet’s clean that up` +
+      `\n\nSuggest one practical improvement each for Image and Video to reduce emissions.\n` +
+      `• Image: Reduce file size by over 25% (from ${allDataImage.data?.[0]?.data?.[3]?.contentSize} MB)\n` +
+      `• Video: Cut duration by over 25% (from ${allDataVideo.data?.[0]?.data?.[3].videoLength} secs)\n` +
+      `Show original vs reduced emissions with calculations\n` +
+      `Recommend one action per category (Image & Video)\n` +
+      `For web pages over 2MB, also suggest how to optimize the site for both people and the planet.\n` +
+      `If any of the above values are zero, skip recommendations for that category.\n\n` +
+      `Divide the total carbon footprint (in kgCO₂e) by 1,000. Display the message as bold and underlined:\n` +
+      `“Your activity generated ${totalCarbonFootprint} tCO₂e and requires ${totalCarbonFootprint} carbon credits to fully offset these emissions.”\n\n` +
+      `End the response with a strong statement:\n` +
+      `"Need help building a low-carbon website? Contact us at info@sirat.earth".`
+
     );
     const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);

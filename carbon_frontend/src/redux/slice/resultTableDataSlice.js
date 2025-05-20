@@ -381,6 +381,7 @@ const resultTableDataSlice = createSlice({
                     // { subType: "", scope: 3 },
                     // { subType: "Email / Newsletter", scope: 1 },
                     // { subType: "Podcast", scope: 3 },
+                    { subType: 'video'},
                     { subType: 'Network Emissions' },
                     { subType: 'Device Emissions' },
                     { subType: 'Data Center Emissions' },

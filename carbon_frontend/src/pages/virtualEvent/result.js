@@ -248,7 +248,17 @@ const Result = ({ value }) => {
     //   `\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item, along with alternative methods, also show the calculation for each category. For PVC banners suggest to use polyethylene.`
     // );
     sentenceParts.push(
-      `\n\nHow can I reduce the emissions max? Show the original and reduced emissions by suggesting one action item for each category- TV Ad, Newspaper Ad, Print Ad and Outdoor Billboard. Show the calculation for each category. For PVC banners we highly recommend you to use polyethylene as it is 100% recyclable with lesser emissions as compared to PVC.`
+      `\n\nThat’s quite a bit of carbon. Let’s rethink how to make each format cleaner.
+      \n\nSuggest one improvement per category—TV, Newspaper, Print, Outdoor Billboard, and
+OOH/Digital Display.
+\n\nShow original vs reduced emissions along with calculations.
+\n\nIf any of the above values are zero, do not suggest any recommendations for that category.
+\n\nDivide the total carbon footprint (in kgCO₂e) by 1,000. Display the message as bold and underlined:
+“Your activity generated ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} tCO₂e and requires ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} carbon credits to fully offset these emissions.”
+\n\nNote: For banners, we highly recommend switching to polyethylene, which is 100% recyclable and has significantly lower emissions than PVC.
+\n\n**End the response with a strong closing statement:**
+\n\n"Ready to go NetZero with your media."
+`
     );
     const finalSentence = `${sentenceParts.join('\n')}`;
     setContent(finalSentence);
