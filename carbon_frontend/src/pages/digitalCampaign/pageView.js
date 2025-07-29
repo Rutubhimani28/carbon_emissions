@@ -45,21 +45,22 @@ const countries = [
   { code: 'IN', name: 'India', emissionFactor: 0.8552 },
   { code: 'AL', name: 'Algeria', emissionFactor: 0.508179 },
   { code: 'AN', name: 'Angola', emissionFactor: 0.166970 },
+  { code: 'BR', name: 'Brazil', emissionFactor: 0.166970 },
+  { code: 'CA', name: 'Canada', emissionFactor: 0.508179 },
 ]
 
-const countriesDevice = [
-  { code: 'IN', name: 'India', emissionFactor: 0.8552 },
-  { code: 'AL', name: 'Algeria', emissionFactor: 0.508179 },
-  { code: 'AN', name: 'Angola', emissionFactor: 0.166970 },
-  { code: 'US', name: 'United States', emissionFactor: 0.8552 },
-  { code: 'CA', name: 'Canada', emissionFactor: 0.508179 },
-  { code: 'BR', name: 'Brazil', emissionFactor: 0.166970 },
-]
+// const countriesDevice = [
+//   { code: 'IN', name: 'India', emissionFactor: 0.8552 },
+//   { code: 'AL', name: 'Algeria', emissionFactor: 0.508179 },
+//   { code: 'AN', name: 'Angola', emissionFactor: 0.166970 },
+//   { code: 'US', name: 'United States', emissionFactor: 0.8552 },
+//   { code: 'CA', name: 'Canada', emissionFactor: 0.508179 },
+//   { code: 'BR', name: 'Brazil', emissionFactor: 0.166970 },
+// ]
 
 const PageView = (props) => {
   const { setValue, value } = props;
   const allData = useSelector((state) => state?.totalPageViewDetails?.data?.[0]?.data);
-  console.log("allData", allData);
   const totalEmission = useSelector((state) => state?.totalPageViewDetails?.totalEmission);
   const resultTableData = useSelector((state) => state?.resultTableDataDetails);
   const { pageSizeMB, loading, error } = useSelector((state) => state.totalGreenCheckDetails);
@@ -155,6 +156,7 @@ const PageView = (props) => {
         desktopDevice: '',
         desktopDeviceEmissions: '',
         // desktopEF3: 0.8552,
+        deviceTotalEmissions: '',
       }
     ]
   };
@@ -175,14 +177,11 @@ const PageView = (props) => {
       // const wifiTotalEmissions = Number(wifiTotalEF * 0.8552).toFixed(5);
       const networkEmissions = formik.values.networkRows.map(row => {
         const countryData = countries.find(c => c.code === row.country);
-        const emissionFactor = countryData ? countryData.emissionFactor : 0.8552;
+        const emissionFactor = countryData ? { ...countryData }.emissionFactor : 0.8552;
 
         const wifiEF2 = Number(row.wifiImpression || 0) * 0.0000017 * pageSizeMB;
-        console.log("wifiEF2", wifiEF2);
         const wifiEF4 = Number(row.wifi4GImpression || 0) * 0.00000189 * pageSizeMB;
-        console.log("wifiEF4", wifiEF4);
         const wifiEF6 = Number(row.wifi5GImpression || 0) * 0.000000189 * pageSizeMB;
-        console.log("wifiEF6", wifiEF6);
         const wifiTotalEF = Number(wifiEF2 + wifiEF4 + wifiEF6);
         const wifiTotalEmissions = Number(wifiTotalEF * emissionFactor).toFixed(5);
 
@@ -201,8 +200,8 @@ const PageView = (props) => {
       formik.setFieldValue('wifiTotal', wifiTotal);
 
       const deviceEmissions = formik.values.deviceRows.map(row => {
-        const countryData = countriesDevice.find(c => c.code === row.country);
-        const emissionFactor = countryData ? countryData.emissionFactor : 0.8552;
+        const countryData = countries.find(c => c.code === row.country);
+        const emissionFactor = countryData ? { ...countryData }.emissionFactor : 0.8552;
         const timeOnPageSecs = Number(values?.TimeOnPageSecs) || 0;
 
         // Mobile emissions
@@ -225,6 +224,7 @@ const PageView = (props) => {
           ? (0.097222 * timeOnPageSecs * Number(row.desktopDevice)) * emissionFactor
           : 0;
 
+        const deviceTotalEmissions = (mobileEmissions + tabletEmissions + laptopEmissions + desktopEmissions).toFixed(5)
         // if (mobileEmissions > 0) formik.setFieldValue('mobileEmissions', mobileEmissions.toFixed(5));
         // if (tabletEmissions > 0) formik.setFieldValue('tabletEmissions', tabletEmissions.toFixed(5));
         // if (laptopEmissions > 0) formik.setFieldValue('laptopEmissions', laptopEmissions.toFixed(5));
@@ -240,10 +240,9 @@ const PageView = (props) => {
           laptopEmission: laptopEmissions.toFixed(5),
           desktop: row.desktopDevice,
           desktopEmission: desktopEmissions.toFixed(5),
-          total: (mobileEmissions + tabletEmissions + laptopEmissions + desktopEmissions).toFixed(5)
+          total: deviceTotalEmissions
         };
       });
-
 
       // const mobileEmissions = deviceEmissions.reduce((sum, row) => sum + (Number(row.mobileEmission) || 0), 0);
       // const tabletEmissions = deviceEmissions.reduce((sum, row) => sum + (Number(row.tabletEmission) || 0), 0);
@@ -373,6 +372,7 @@ const PageView = (props) => {
           laptopEmission: deviceEmissions[index]?.laptopEmission || 0,
           desktop: Number(row.desktopDevice) || 0,
           desktopEmission: deviceEmissions[index]?.desktopEmission || 0,
+          emission: deviceEmissions[index]?.total || 0
         }))
       };
 
@@ -433,49 +433,110 @@ const PageView = (props) => {
             ],
           },
         },
+        // {
+        //   subType: 'Network Emissions',
+        //   subTypeData: {
+        //     th: ['Webpage Views-Wi-Fi', 'Webpage Views-4G', 'Webpage Views-5G', 'Emissions'],
+        //     td: [
+        //       {
+        //         // dgType: values?.wifiImpression,
+        //         wifiImpression: values?.wifiImpression,
+        //         wifi4g: values?.wifi4GImpression,
+        //         wifi5g: values?.wifi5GImpression,
+        //         // emissions: wifiTotalEmissions > 0 ? Number(wifiTotalEmissions).toFixed(5) : '',
+        //       },
+        //     ],
+        //   },
+        // },
         {
           subType: 'Network Emissions',
           subTypeData: {
-            th: ['Webpage Views-Wi-Fi', 'Webpage Views-4G', 'Webpage Views-5G', 'Emissions'],
-            td: [
-              {
-                // dgType: values?.wifiImpression,
-                wifiImpression: values?.wifiImpression,
-                wifi4g: values?.wifi4GImpression,
-                wifi5g: values?.wifi5GImpression,
-                // emissions: wifiTotalEmissions > 0 ? Number(wifiTotalEmissions).toFixed(5) : '',
-              },
-            ],
+            th: ['Country', 'Webpage Views-Wi-Fi', 'Webpage Views-4G', 'Webpage Views-5G', 'Emissions'],
+            td: values.networkRows.map((row, index) => ({
+              country: row.country || '',
+              wifiImpression: Number(row.wifiImpression) || 0,
+              wifi4g: Number(row.wifi4GImpression) || 0,
+              wifi5g: Number(row.wifi5GImpression) || 0,
+              emissions: networkEmissions[index]?.emission
+                ? Number(networkEmissions[index].emission).toFixed(5)
+                : '0.00000',
+            })),
           },
         },
         {
           subType: 'Device Emissions',
           subTypeData: {
-            th: ['Device Type', 'No. of Devices', 'Emissions'],
-            td: [
-              {
-                dgType: 'Mobile',
-                noOfDevice: values?.mobileDevice,
-                // emissions: mobileDeviceEmissions > 0 ? Number(mobileDeviceEmissions).toFixed(5) : '',
-              },
-              {
-                dgType: 'Tablet',
-                noOfDevice: values?.tabletDevice,
-                // emissions: tabletDeviceEmissions > 0 ? Number(tabletDeviceEmissions).toFixed(5) : '',
-              },
-              {
-                dgType: 'Laptop',
-                noOfDevice: values?.laptopDevice,
-                // emissions: laptopDeviceEmissions > 0 ? Number(laptopDeviceEmissions).toFixed(5) : '',
-              },
-              {
-                dgType: 'Desktop',
-                noOfDevice: values?.desktopDevice,
-                // emissions: desktopDev iceEmissions > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
-              },
-            ],
+            th: ['Country', 'Mobile', 'Tablet', 'Laptop', 'Desktop', 'Emissions'],
+            td: values.deviceRows.map((row, index) => ({
+              country: row.country || '',
+              wifiImpression: Number(row.mobileDevice) || 0,
+              wifi4g: Number(row.tabletDevice) || 0,
+              wifi5g: Number(row.laptopDevice) || 0,
+              desktop: Number(row.desktopDevice) || 0,
+              emissions: deviceEmissions[index]?.total ? Number(deviceEmissions[index]?.total).toFixed(5)
+                : '0.00000',
+            })),
           },
         },
+
+
+        // {
+        //   subType: 'Device Emissions',
+        //   subTypeData: {
+        //     th: ['Country', 'Device Type', 'No. of Devices', 'Emissions'],
+        //     td: [
+        //     // [values.deviceRows.map((row, index) => ([
+
+        //     //   {
+        //     //     country: row.country,
+        //     //     dgType: 'Mobile',
+        //     //     noOfDevice: Number(row.mobile) || 0,
+        //     //     emissions: row.mobileEmission ? Number(row.mobileEmission).toFixed(5) : '0.00000',
+        //     //   },
+        //     //   {
+        //     //     // country: row.country,
+        //     //     dgType: 'Tablet',
+        //     //     noOfDevice: Number(row.tablet) || 0,
+        //     //     emissions: row.tabletEmission ? Number(row.tabletEmission).toFixed(5) : '0.00000',
+        //     //   },
+        //     //   {
+        //     //     // country: row.country,
+        //     //     dgType: 'Laptop',
+        //     //     noOfDevice: Number(row.laptop) || 0,
+        //     //     emissions: row.laptopEmission ? Number(row.laptopEmission).toFixed(5) : '0.00000',
+        //     //   },
+        //     //   {
+        //     //     // country: row.country,
+        //     //     dgType: 'Desktop',
+        //     //     noOfDevice: Number(row.desktop) || 0,
+        //     //     emissions: row.desktopEmission ? Number(row.desktopEmission).toFixed(5) : '0.00000',
+        //     //   } 
+        //     // ])),
+
+        //       {
+        //         country: row.country,
+        //         dgType: 'Mobile',
+        //         noOfDevice: values?.mobileDevice,
+        //         // emissions: mobileDeviceEmissions > 0 ? Number(mobileDeviceEmissions).toFixed(5) : '',
+        //       },
+        //       {
+        //         dgType: 'Tablet',
+        //         noOfDevice: values?.tabletDevice,
+        //         // emissions: tabletDeviceEmissions > 0 ? Number(tabletDeviceEmissions).toFixed(5) : '',
+        //       },
+        //       {
+        //         dgType: 'Laptop',
+        //         noOfDevice: values?.laptopDevice,
+        //         // emissions: laptopDeviceEmissions > 0 ? Number(laptopDeviceEmissions).toFixed(5) : '',
+        //       },
+        //       {
+        //         dgType: 'Desktop',
+        //         noOfDevice: values?.desktopDevice,
+        //         // emissions: desktopDev iceEmissions > 0 ? Number(desktopDeviceEmissions).toFixed(5) : '',
+        //       },
+        //     ],
+        //   },
+        // },
         {
           subType: 'Data Center Emissions',
           subTypeData: {
@@ -567,7 +628,8 @@ const PageView = (props) => {
       laptopDevice: '',
       laptopDeviceEmissions: '',
       desktopDevice: '',
-      desktopDeviceEmissions: ''
+      desktopDeviceEmissions: '',
+      deviceTotalEmissions: '',
     };
 
     const updatedRows = [...formik.values.deviceRows, newRow];
@@ -580,7 +642,7 @@ const PageView = (props) => {
 
     row[field] = value;
 
-    const countryData = countriesDevice.find(c => c.code === row.country);
+    const countryData = countries.find(c => c.code === row.country);
     const emissionFactor = countryData ? countryData.emissionFactor : 0.8552;
     const timeOnPageSecs = Number(formik.values.TimeOnPageSecs) || 0;
 
@@ -598,6 +660,15 @@ const PageView = (props) => {
       const emissionsField = `${field}Emissions`;
       row[emissionsField] = DeviceEmission(emissionsMap[field], value);
     }
+
+    row.deviceTotalEmissions = (
+      ['mobileDeviceEmissions', 'tabletDeviceEmissions', 'laptopDeviceEmissions', 'desktopDeviceEmissions']
+        .map(key => parseFloat(row[key] || '0'))
+        .reduce((sum, val) => sum + val, 0)
+        .toFixed(5)
+    )
+
+    updatedRows[index] = row;
 
     // const mobileDeviceEmissionsTotal = formik.values.deviceRows.reduce((total, row) => total + Number(row.mobileDeviceEmissions || 0), 0).toFixed(5);
     // console.log("mobileDeviceEmissionsTotal", mobileDeviceEmissionsTotal)
@@ -640,7 +711,6 @@ const PageView = (props) => {
     }
   };
 
-  console.log(formik.values, "formik.values:::::::-----------");
   // const totalDevice =
   //   (Number(formik?.values?.mobileDeviceEmissionsTotal) || 0) +
   //   (Number(formik?.values?.tabletDeviceEmissionsTotal) || 0) +
@@ -694,6 +764,7 @@ const PageView = (props) => {
           laptopDeviceEmissions: row.laptopEmission,
           desktopDevice: row.desktop,
           desktopDeviceEmissions: row.desktopEmission,
+          deviceTotalEmissions: row.emission
         })) || []);
       }
 
@@ -1164,7 +1235,7 @@ const PageView = (props) => {
                 <table className="table-custom-inpt-field">
                   <thead>
                     <tr>
-                      <th className='ps-3'>Select Country</th>
+                      <th className='ps-3'>Country</th>
                       <th className="ps-3">WebPage Views- WiFi</th>
                       <th className="ps-3">WebPage Views- 4G</th>
                       <th className="ps-3">WebPage Views- 5G</th>
@@ -1175,7 +1246,6 @@ const PageView = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {console.log(formik.values)}
                     {formik.values.networkRows?.map((row, index) => (
                       <tr key={index}>
                         <td className="ps-3 py-1" >
@@ -1444,19 +1514,22 @@ const PageView = (props) => {
                 <table className="table-custom-inpt-field">
                   <thead>
                     <tr>
-                      <th className='ps-3'>Select Country</th>
-                      <th className='ps-3' />
+                      <th className='ps-3'>Country</th>
+                      {/* <th className='ps-3' /> */}
                       <th className="ps-3">Mobile</th>
                       <th className="ps-3">Tablet</th>
                       <th className="ps-3">Laptop</th>
                       <th className="ps-3">Desktop</th>
+                      <th className="ps-3">
+                        Emissions (kgCO<sub>2</sub>e)
+                      </th>
                       <th className="ps-3">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {formik.values.deviceRows?.map((row, index) => (
                       <React.Fragment key={index}>
-                        <tr className='mb-2'>
+                        <tr className='mb-2' key={index}>
                           <td className="ps-3 py-1">
                             <Select
                               labelId={`country-label-${index}`}
@@ -1480,16 +1553,13 @@ const PageView = (props) => {
                                 }
                               }}
                             >
-                              {countriesDevice.map((c) => (
+                              {countries.map((c) => (
                                 <MenuItem key={c.code} value={c.code}>
                                   {c.name}
                                 </MenuItem>
                               ))}
                             </Select>
                           </td>
-                          <th className="ps-2" style={{ textAlign: 'center' }}>
-                            No. of Devices
-                          </th>
                           <td className="ps-2 py-1">
                             <TextField
                               size="small"
@@ -1528,6 +1598,26 @@ const PageView = (props) => {
                             />
                           </td>
                           <td className="ps-2 py-1">
+                            <TextField
+                              size="small"
+                              type="number"
+                              value={formik.values.deviceRows[index].deviceTotalEmissions}
+                              disabled
+                              // onChange={(e) => handleDeviceRowChange(index, 'deviceTotalEmissions', e.target.value)}
+                              inputProps={{ style: { color: 'white' } }}
+                            />
+                          </td>
+                          {/* <td className="ps-3 py-1">
+                            <TextField
+                              size="small"
+                              type="number"
+                              // name={`wifiTotalEmissions-${index}`}
+                              value={formik.values.deviceRows[index].deviceEmissions}
+                              disabled
+                              inputProps={{ style: { color: 'white' } }}
+                            />
+                          </td> */}
+                          <td className="ps-2 py-1">
                             <Button
                               variant="contained"
                               onClick={addDeviceRow}
@@ -1551,7 +1641,7 @@ const PageView = (props) => {
                             )}
                           </td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th className='ps-3' />
                           <th className="ps-2" style={{ textAlign: 'center' }}>
                             Emissions (kgCO<sub>2</sub>e)
@@ -1588,7 +1678,7 @@ const PageView = (props) => {
                               value={row.desktopDeviceEmissions}
                             />
                           </td>
-                        </tr>
+                        </tr> */}
                       </React.Fragment>
                     ))}
                   </tbody>

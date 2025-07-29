@@ -269,7 +269,7 @@ OOH/Digital Display.
 \n\nShow original vs reduced emissions along with calculations.
 \n\nIf any of the above values are zero, do not suggest any recommendations for that category.
 \n\nDivide the total carbon footprint (in kgCO₂e) by 1,000. Display the message as bold and underlined:
-“Your activity generated ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} kgCO₂e and requires ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} carbon credits to fully offset these emissions.”
+“Your activity generated ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} tCO₂e and requires ${allVirtualEventData?.data?.[0]?.data?.[3]?.emission} carbon credits to fully offset these emissions.”
 \n\nNote: For banners, we highly recommend switching to polyethylene, which is 100% recyclable and has significantly lower emissions than PVC.
 \n\n**End the response with a strong closing statement:**
 \n\n"Ready to go NetZero with your media."

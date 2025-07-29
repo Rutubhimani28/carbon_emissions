@@ -142,15 +142,29 @@ const Video = (props) => {
         },
       ];
       const tableData = [
+        // {
+        //   subType: 'Video Details',
+        //   subTypeData: {
+        //     th: ['Video Length (Secs)', 'Video Size (Mb)', 'Total Impression'],
+        //     td: [
+        //       {
+        //         dgType: values?.videoLength,
+        //         noOfDevice: values?.videoSize,
+        //         emissions: values?.totalImpression,
+        //       },
+        //     ],
+        //   },
+        // },
         {
-          subType: '',
+          subType: 'Video Details',
           subTypeData: {
-            th: ['Video Length (Secs)', 'Video Size (Mb)', 'Total Impression'],
+            th: ['Video Length (Secs)', 'Video Size (Mb)'],
             td: [
               {
-                videoLength: values?.videoLength,
-                videoSize: values?.videoSize,
-                emissions: values?.totalImpression,
+                wifiImpression: values?.videoLength,
+                wifi4g: values?.videoSize,
+                // wifi5g: values?.videoSize,
+                // emissions: wifiTotalEmissions > 0 ? Number(wifiTotalEmissions).toFixed(5) : '',
               },
             ],
           },
@@ -169,6 +183,7 @@ const Video = (props) => {
             ],
           },
         },
+        
         {
           subType: 'Device Emissions',
           subTypeData: {
@@ -211,10 +226,14 @@ const Video = (props) => {
           },
         },
       ];
+
+      console.log("tableData vvvvvvv", tableData)
       dispatch(addVideoData({ data }));
       dispatch(addResultTableData({ from: 'digitalCampaign', data: tableData, tabTitle: 'Video' }));
     },
   });
+
+  console.log('form values', formik.values);
   const handeleDelete = () => {
     dispatch(deleteVideoData());
     dispatch(deleteResTabVideoData());
@@ -278,9 +297,9 @@ const Video = (props) => {
   return (
     <Container maxWidth>
       <Card className="p-3 custom-inner-bg textborder" style={{ padding: '20px' }}>
-      <IconDiv>
-                          <img width={100} src={VideoIcon} alt="Ads" className="tabImgWhite" />
-                        </IconDiv>
+        <IconDiv>
+          <img width={100} src={VideoIcon} alt="Ads" className="tabImgWhite" />
+        </IconDiv>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={12} display={'flex'} justifyContent={'center'}>
             <Box>
@@ -295,7 +314,11 @@ const Video = (props) => {
                           type="number"
                           name="videoLength"
                           value={formik?.values?.videoLength}
-                          onChange={formik.handleChange}
+                          onChange={(e) => {
+                            formik.handleChange(e);
+                            formik.setFieldValue('videoLength', e.target.value);
+                            formik.handleSubmit();
+                          }}
                           inputProps={{ style: { color: 'white' } }}
                         />
                       </td>
@@ -308,7 +331,11 @@ const Video = (props) => {
                           type="number"
                           name="videoSize"
                           value={formik?.values?.videoSize}
-                          onChange={formik.handleChange}
+                          onChange={(e) => {
+                            formik.handleChange(e);
+                            formik.setFieldValue('videoSize', e.target.value);
+                            formik.handleSubmit();
+                          }}
                           inputProps={{ style: { color: 'white' } }}
                         />
                       </td>
@@ -798,16 +825,16 @@ const Video = (props) => {
                 Save and Next Page
               </Button>
               <Button
-                                    variant="contained"
-                                    endIcon={<FaAngleDoubleRight />}
-                                    onClick={() => {
-                                      handleSaveToDb();
-                                      setValue(3);
-                                    }}
-                                    className="custom-btn"
-                                  >
-                                    Go To Result
-                                  </Button>
+                variant="contained"
+                endIcon={<FaAngleDoubleRight />}
+                onClick={() => {
+                  handleSaveToDb();
+                  setValue(3);
+                }}
+                className="custom-btn"
+              >
+                Go To Result
+              </Button>
               {/* <Button variant='contained' onClick={() => { handleSaveToDb(); }} className='custom-btn'>SaveToDB</Button> */}
               <Button
                 variant="outlined"

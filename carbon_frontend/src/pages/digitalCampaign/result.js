@@ -206,7 +206,7 @@ const Result = ({ value }) => {
       `For web pages over 2MB, also suggest how to optimize the site for both people and the planet.\n` +
       `If any of the above values are zero, skip recommendations for that category.\n\n` +
       `Divide the total carbon footprint (in kgCO₂e) by 1,000. Display the message as bold and underlined:\n` +
-      `“Your activity generated ${totalCarbonFootprint} kgCO₂e and requires ${totalCarbonFootprint} carbon credits to fully offset these emissions.”\n\n` +
+      `“Your activity generated ${totalCarbonFootprint} tCO₂e and requires ${totalCarbonFootprint} carbon credits to fully offset these emissions.”\n\n` +
       `End the response with a strong statement:\n` +
       `"Need help building a low-carbon website? Contact us at info@sirat.earth".`
 
