@@ -23,7 +23,7 @@ export default function AccountPopover() {
     {
       label: 'Home',
       icon: 'eva:home-fill',
-      path: "/dashboard/home"
+      path: '/dashboard/home',
     },
     // {
     //   label: 'Profile',
@@ -42,7 +42,7 @@ export default function AccountPopover() {
     setOpen(null);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const logout = () => {
     try {
@@ -53,9 +53,9 @@ export default function AccountPopover() {
       persistor.purge();
       navigate('/login');
     } catch (error) {
-      console.error("Error while navigating:", error);
+      console.error('Error while navigating:', error);
     }
-  }
+  };
 
   // const checkTokenExpiration = () => {
   const token = sessionStorage.getItem('token'); // Retrieve the token from local storage (or session)
@@ -65,10 +65,9 @@ export default function AccountPopover() {
       const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
       if (decodedToken.exp < currentTime) {
         logout();
-        toast.error("Token has expired")
+        toast.error('Token has expired');
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error decoding token:', error);
     }
   }
@@ -76,9 +75,9 @@ export default function AccountPopover() {
 
   return (
     <>
-      <Typography sx={{ cursor: "pointer", color: "#212529" }} onClick={logout}>
+      <Typography sx={{ cursor: 'pointer', color: '#212529' }} onClick={logout}>
         Logout
-      </Typography >
+      </Typography>
       {/* <IconButton
         onClick={handleOpen}
         sx={{
